@@ -1,9 +1,12 @@
 # GIGSGeoAPI
 Repository for integrating GIGS reference data with OGC GeoAPI.
-This repository provides an executable form of Geospatial Integrity of Geoscience Software (GIGS) tests.
+This repository provides an executable form of [Geospatial Integrity of Geoscience Software](https://gigs.iogp.org/) (GIGS) tests.
 GIGS tests are published by the [International Association of Oil & Gas Producers](https://www.iogp.org) (IOGP).
 This module makes those tests available in a form that can be executed by various implementations,
 through the [OGC GeoAPI 3.0.1](https://www.geoapi.org/) standard interfaces.
+
+## Documentation
+* [Online javadoc](https://iogp-gigs.github.io/GIGSGeoAPI/).
 
 ## Warnings
 * This is a work in progress. Only a subset of GIGS tests are currently available.
