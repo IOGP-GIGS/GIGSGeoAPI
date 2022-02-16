@@ -1,0 +1,110 @@
+/*
+ * Main text.
+ */
+:not(td) > div.block {
+  text-align: justify;
+}
+
+p.right-note {
+  text-align: right;
+}
+
+/*
+ * Table without vertical space between rows, a little bit of space between columns,
+ * a light background color and a header with a darker background color. The header
+ * also have a little bit more space, and a border is drawn around the table.
+ */
+table.data caption {
+  color:          steelblue;
+  font-weight:    bold;
+  padding-bottom: 4px;
+}
+
+table.data {
+  background-color: ghostwhite;
+  border-color:     gray;
+  border-style:     solid;
+  border-width:     1px;
+  border-spacing:   0;
+  margin:           15px 40px;
+  width:            auto;
+}
+
+table.data tr th {
+  background-color:    lightsteelblue;
+  border-bottom-color: steelblue;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  padding:             3px;
+}
+
+table.data tr td {
+  padding:        1.5px 9px;
+  vertical-align: text-top;
+}
+
+table.data tr.coordinates {
+  text-align: right;
+}
+
+/*
+ * Table providing description of GIGS tests.
+ */
+table.gigs caption {
+  text-align:     left;
+  font-weight:    bold;
+  padding-bottom: 9px;
+}
+
+table.gigs {
+  border-color:     gray;
+  border-style:     solid;
+  border-width:     1px;
+  border-spacing:   15px 2px;
+  margin:           15px 0px;
+  padding:          9px;
+}
+
+table.gigs th {
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+/*
+ * Bullet and ordered lists. Put some space before and after the list.
+ * Listes of the "verbose" class also have some space betweem items.
+ */
+ul,
+ol {
+  margin-top:    9px;
+  margin-bottom: 9px;
+}
+
+li > ul,
+li > ol {
+  margin-top:    0;
+  margin-bottom: 6px;
+}
+
+/*
+ * Definition of <div class="note">
+ *
+ * Note or examples.
+ */
+div.note {
+  margin-left:   40px;
+  margin-right:  40px;
+  margin-top:     9px;
+  margin-bottom:  9px;
+  text-align: justify;
+}
+
+div.note:before {
+  color:     green;
+  position:  relative;
+  float:     left;
+  left:      -28px;
+  width:     0;
+  content:   "🛈";
+}
