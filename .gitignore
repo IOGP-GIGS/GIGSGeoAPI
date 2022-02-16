@@ -1,0 +1,21 @@
+# Maven files
+target/
+
+# Netbeans files
+nbactions.xml
+
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# IntelliJ files
+.idea/
+*.iml
+
+# MacOS files
+.DS_Store
+
+# Python files
+__pycache__/
+*.pyc

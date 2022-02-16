@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.iogp</groupId>
+  <artifactId>gigs</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>GIGS tests</name>
+  <!-- url>TBD</url -->
+  <description>
+    Implementation of Geospatial Integrity of Geoscience Software (GIGS) tests.
+    The tests can be executed on any software library implementing OGC GeoAPI 3.0.1 interfaces.
+  </description>
+
+  <organization>
+    <name>International Association of Oil &amp; Gas Producers (tentatively)</name>
+    <url>https://www.iogp.org/</url>
+  </organization>
+  <inceptionYear>2021</inceptionYear>
+
+  <developers>
+    <developer>
+      <name>Martin Desruisseaux</name>
+      <organization>Geomatys</organization>
+      <organizationUrl>https://www.geomatys.com/</organizationUrl>
+      <roles>
+        <role>Java developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.opengis</groupId>
+      <artifactId>geoapi-conformance</artifactId>
+      <version>3.0.1</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>enforce</id>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>17</version>
+                </requireJavaVersion>
+                <dependencyConvergence/>
+              </rules>
+            </configuration>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.9.0</version>
+        <configuration>
+          <release>8</release>
+          <debug>true</debug>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <useIncrementalCompilation>false</useIncrementalCompilation>
+          <showWarnings>true</showWarnings>
+          <showDeprecation>true</showDeprecation>
+          <compilerArgs>
+            <arg>-Xlint:all</arg>
+            <arg>-Xdoclint:all,-reference</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <configuration>
+          <systemPropertyVariables>
+            <maven.source.directory>${project.build.sourceDirectory}</maven.source.directory>
+          </systemPropertyVariables>
+          <printSummary>false</printSummary>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+            </manifest>
+            <manifestEntries>
+              <Specification-Title>GIGS</Specification-Title>
+              <Specification-Version>2.0</Specification-Version>
+              <Specification-Vendor>IOGP</Specification-Vendor>
+              <Implementation-Vendor>IOGP</Implementation-Vendor>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.3.2</version>
+        <configuration>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <docencoding>${project.build.sourceEncoding}</docencoding>
+          <charset>${project.build.sourceEncoding}</charset>
+          <author>false</author>
+          <version>false</version>
+          <noqualifier>all</noqualifier>
+          <quiet>true</quiet>
+          <locale>en</locale>
+          <keywords>true</keywords>
+          <breakiterator>true</breakiterator>
+          <doclint>syntax</doclint>
+          <detectJavaApiLink>false</detectJavaApiLink>
+          <links>
+            <link>https://docs.oracle.com/en/java/javase/17/docs/api/</link>
+            <link>https://junit.org/junit4/javadoc/latest/</link>
+            <link>http://www.geoapi.org/3.0/javadoc/</link>
+          </links>
+          <addStylesheets>gigs.css</addStylesheets>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
