@@ -66,7 +66,7 @@ import static org.junit.Assume.*;
  * @version 1.0
  * @since   1.0
  */
-strictfp class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CRSAuthorityFactory {
+class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CRSAuthorityFactory {
     /**
      * The reciprocal of the conversion from US feets to metres.
      */
@@ -182,13 +182,14 @@ strictfp class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFa
     /**
      * Creates the exception to be thrown when the given code has not been recognized.
      *
-     * @param  code  the code which has been requested.
+     * @param  code   the code as a numerical value.
+     * @param  given  the code as given by the user.
      * @return the exception to throw.
      */
-    private static NoSuchAuthorityCodeException noSuchAuthorityCode(final int id, final String code) {
-        final String idAsText = String.valueOf(id);
-        return new NoSuchAuthorityCodeException("No case implemented for EPSG:" + idAsText,
-                "EPSG", idAsText, code);
+    private static NoSuchAuthorityCodeException noSuchAuthorityCode(final int code, final String given) {
+        final String codeAsText = String.valueOf(code);
+        return new NoSuchAuthorityCodeException("No case implemented for EPSG:" + codeAsText,
+                "EPSG", codeAsText, given);
     }
 
     /**
@@ -998,6 +999,11 @@ strictfp class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFa
     /**
      * Implementation of the above {@link #createParameters(int)} method,
      * as a static method for direct access by {@link ParameterizedTransformTest}.
+     *
+     * @param  factory  the factory to use for creating the parameters.
+     * @param  code     authority code of the parameter to create.
+     * @return parameter for the given authority code.
+     * @throws FactoryException if the given EPSG code is unknown to this factory.
      */
     static ParameterValueGroup createParameters(final MathTransformFactory factory, final int code)
             throws FactoryException

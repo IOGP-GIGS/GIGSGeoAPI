@@ -82,7 +82,7 @@ import static org.opengis.test.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp class Test2007 extends Series2000<Transformation> {
+public class Test2007 extends Series2000<Transformation> {
     /**
      * Name of the expected transformation method.
      * This field is set by all test methods before to create and verify the {@link Transformation} instance.
@@ -149,6 +149,8 @@ public strictfp class Test2007 extends Series2000<Transformation> {
 
     /**
      * Verifies the properties of the transformation given by {@link #getIdentifiedObject()}.
+     *
+     * @throws FactoryException if an error occurred while creating the transformation.
      */
     private void verifyTransformation() throws FactoryException {
         final Transformation transformation = getIdentifiedObject();

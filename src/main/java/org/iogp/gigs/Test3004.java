@@ -94,7 +94,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp class Test3004 extends Series3000<GeodeticDatum> {
+public class Test3004 extends Series3000<GeodeticDatum> {
     /**
      * The datum created by the factory,
      * or {@code null} if not yet created or if datum creation failed.
@@ -213,6 +213,8 @@ public strictfp class Test3004 extends Series3000<GeodeticDatum> {
 
     /**
      * Verifies the properties of the geodetic datum given by {@link #getIdentifiedObject()}.
+     *
+     * @throws FactoryException if an error occurred while creating the datum.
      */
     final void verifyDatum() throws FactoryException {
         if (skipTests) {

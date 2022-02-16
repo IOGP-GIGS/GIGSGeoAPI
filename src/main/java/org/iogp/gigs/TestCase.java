@@ -57,7 +57,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-strictfp abstract class TestCase extends org.opengis.test.TestCase {
+abstract class TestCase extends org.opengis.test.TestCase {
     /**
      * The keyword for unrestricted value in {@link String} arguments.
      */
@@ -175,6 +175,9 @@ strictfp abstract class TestCase extends org.opengis.test.TestCase {
 
     /**
      * Returns the name of the given object, or {@code null} if none.
+     *
+     * @param  object  the object from which to get the name.
+     * @return name of the given object, or {@code null} if none.
      */
     static String getName(final IdentifiedObject object) {
         if (object != null) {
@@ -187,7 +190,10 @@ strictfp abstract class TestCase extends org.opengis.test.TestCase {
     }
 
     /**
-     * Returns the given message, or an empty string if the message is null.
+     * Returns the given message followed by a space, or an empty string if the message is null.
+     *
+     * @param  message  the message to be suffixed by a space, or {@code null} if none.
+     * @return the message with a space, or {@code ""} if none.
      */
     private static String nonNull(final String message) {
         return (message != null) ? message.trim().concat(" ") : "";
@@ -195,6 +201,11 @@ strictfp abstract class TestCase extends org.opengis.test.TestCase {
 
     /**
      * Verifies if we expected a null value, then returns {@code true} if the value is null as expected.
+     *
+     * @param  message   the message to report in case of failure.
+     * @param  expected  the value which is expected to be null or non-null.
+     * @param  actual    the actual null or non-null value.
+     * @return whether the expected and actual values are null.
      */
     private static boolean isNull(final String message, final Object expected, final Object actual) {
         final boolean isNull = (actual == null);
@@ -206,6 +217,10 @@ strictfp abstract class TestCase extends org.opengis.test.TestCase {
 
     /**
      * Returns {@code true} if the given codepoint is an unicode identifier start or part.
+     *
+     * @param  codepoint  the Unicode code point to test.
+     * @param  part       {@code true} if the code point is a Unicode part or {@code false} if Unicode start.
+     * @return whether the given code point is a Unicode part or start.
      */
     private static boolean isUnicodeIdentifier(final int codepoint, final boolean part) {
         return part ? Character.isUnicodeIdentifierPart (codepoint)

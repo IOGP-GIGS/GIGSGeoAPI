@@ -52,7 +52,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp abstract class Series2000<T> extends TestCase {
+public abstract class Series2000<T> extends TestCase {
     /**
      * The value to give to the {@link #aliases} field for meaning "no alias".
      */

@@ -88,7 +88,7 @@ import static org.opengis.test.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp class Test3005 extends Series3000<Conversion> {
+public class Test3005 extends Series3000<Conversion> {
     /**
      * The name of the operation method to use.
      * This field is set by all test methods before to create and verify the {@link Conversion} instance.
@@ -140,6 +140,10 @@ public strictfp class Test3005 extends Series3000<Conversion> {
     /**
      * Returns the operation method of the given name. This is a temporary method until
      * {@code getOperationMethod(…)} is added directly in the {@link CoordinateOperationFactory} interface.
+     *
+     * @param  methodName  name of the operation method to fetch.
+     * @return operation method for the given name.
+     * @throws NoSuchIdentifierException if the given name is not recognized.
      */
     private OperationMethod getOperationMethod(final String methodName) throws NoSuchIdentifierException {
         for (final OperationMethod candidate : mtFactory.getAvailableMethods(SingleOperation.class)) {
@@ -211,6 +215,8 @@ public strictfp class Test3005 extends Series3000<Conversion> {
 
     /**
      * Verifies the properties of the conversion given by {@link #getIdentifiedObject()}.
+     *
+     * @throws FactoryException if an error occurred while creating the conversion.
      */
     final void verifyConversion() throws FactoryException {
         if (skipTests) {

@@ -88,7 +88,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp class Test2001 extends Series2000<Unit<?>> {
+public class Test2001 extends Series2000<Unit<?>> {
     /**
      * Amount of {@linkplain #baseUnit base units} in one {@linkplain #getIdentifiedObject() tested unit}.
      * If this amount is not a constant (as in sexagesimal unit), then this factor is set to {@link Double#NaN}.
@@ -162,6 +162,7 @@ public strictfp class Test2001 extends Series2000<Unit<?>> {
      * Gets the unit given by {@link #getIdentifiedObject()},
      * then creates and returns the converter from that unit to the base unit.
      *
+     * @return converter from the unit given by the identified object to test.
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
     private UnitConverter createConverter() throws FactoryException {

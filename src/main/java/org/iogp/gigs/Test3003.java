@@ -78,7 +78,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp class Test3003 extends Series3000<PrimeMeridian> {
+public class Test3003 extends Series3000<PrimeMeridian> {
     /**
      * The prime meridian Greenwich longitude, in unit of {@link #angularUnit}.
      * This field is set by all test methods before to create and verify the {@link PrimeMeridian} instance.
@@ -119,6 +119,8 @@ public strictfp class Test3003 extends Series3000<PrimeMeridian> {
      * Sets the prime meridian instance to verify. This method is invoked only by other test classes
      * which need to verify the prime meridian contained in a geodetic datum instead than the prime
      * meridian immediately after creation.
+     *
+     * @param  instance  the instance to verify.
      */
     final void setIdentifiedObject(final PrimeMeridian instance) {
         primeMeridian = instance;
@@ -144,6 +146,8 @@ public strictfp class Test3003 extends Series3000<PrimeMeridian> {
 
     /**
      * Verifies the properties of the prime meridian given by {@link #getIdentifiedObject()}.
+     *
+     * @throws FactoryException if an error occurred while creating the prime meridian.
      */
     final void verifyPrimeMeridian() throws FactoryException {
         if (skipTests) {

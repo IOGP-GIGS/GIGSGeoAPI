@@ -81,7 +81,7 @@ import static org.opengis.test.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp class Test2005 extends Series2000<Conversion> {
+public class Test2005 extends Series2000<Conversion> {
     /**
      * The name of the expected operation method.
      * This field is set by all test methods before to create and verify the {@link Conversion} instance.
@@ -148,6 +148,9 @@ public strictfp class Test2005 extends Series2000<Conversion> {
 
     /**
      * Verifies the properties of the conversion given by {@link #getIdentifiedObject()}.
+     *
+     * @param  code  the authority code of the projection to verify.
+     * @throws FactoryException if an error occurred while creating the projection.
      */
     private void createAndVerifyProjection(final int code) throws FactoryException {
         this.code = code;

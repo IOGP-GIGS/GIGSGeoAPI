@@ -79,7 +79,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp class Test3002 extends Series3000<Ellipsoid> {
+public class Test3002 extends Series3000<Ellipsoid> {
     /**
      * The ellipsoid semi-major axis length, in unit of {@link #axisUnit}.
      * This field is set by all test methods before to create and verify the {@link Ellipsoid} instance.
@@ -146,6 +146,8 @@ public strictfp class Test3002 extends Series3000<Ellipsoid> {
     /**
      * Sets the ellipsoid instance to verify. This method is invoked only by other test classes which need to
      * verify the ellipsoid contained in a geodetic datum instead than the ellipsoid immediately after creation.
+     *
+     * @param  instance  the instance to verify.
      */
     final void setIdentifiedObject(final Ellipsoid instance) {
         ellipsoid = instance;
@@ -175,6 +177,8 @@ public strictfp class Test3002 extends Series3000<Ellipsoid> {
 
     /**
      * Verifies the properties of the ellipsoid given by {@link #getIdentifiedObject()}.
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid.
      */
     final void verifyEllipsoid() throws FactoryException {
         if (skipTests) {

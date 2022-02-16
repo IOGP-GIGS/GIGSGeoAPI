@@ -1,4 +1,4 @@
-# GIGSGeoAPI
+# GIGS-GeoAPI
 Repository for integrating GIGS reference data with OGC GeoAPI.
 This repository provides an executable form of [Geospatial Integrity of Geoscience Software](https://gigs.iogp.org/) (GIGS) tests.
 GIGS tests are published by the [International Association of Oil & Gas Producers](https://www.iogp.org) (IOGP).

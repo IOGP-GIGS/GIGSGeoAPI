@@ -83,7 +83,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp class Test2008 extends Series2000<VerticalCRS> {
+public class Test2008 extends Series2000<VerticalCRS> {
     /**
      * The EPSG code of the expected {@link VerticalDatum}.
      * This field is set by all test methods before to create and verify the {@link VerticalCRS} instance.
@@ -151,6 +151,8 @@ public strictfp class Test2008 extends Series2000<VerticalCRS> {
 
     /**
      * Creates a vertical datum for the current {@link #datumCode}, then verifies its name and properties.
+     *
+     * @throws FactoryException if an error occurred while creating the vertical datum instance.
      */
     private void createAndVerifyVerticalDatum() throws FactoryException {
         assumeTrue(datumAuthorityFactory != null || crsAuthorityFactory != null);
@@ -181,6 +183,8 @@ public strictfp class Test2008 extends Series2000<VerticalCRS> {
 
     /**
      * Verifies the properties of the vertical CRS given by {@link #getIdentifiedObject()}.
+     *
+     * @throws FactoryException if an error occurred while creating the vertical CRS.
      */
     private void verifyVerticalCRS() throws FactoryException {
         if (crsAuthorityFactory != null) {

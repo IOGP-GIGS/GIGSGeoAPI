@@ -43,14 +43,17 @@ import org.opengis.referencing.ReferenceIdentifier;
  * @version 1.0
  * @since   1.0
  */
-final strictfp class SimpleIdentifier implements ReferenceIdentifier {
+final class SimpleIdentifier implements ReferenceIdentifier {
     /**
-     * The value to be returned by {@link #getCode()}.
+     * The "code" part of the identifier, as a numerical value.
+     * This is the value to be returned by {@link #getCode()}.
      */
     private final int code;
 
     /**
      * Creates a new identifier for the "GIGS" namespace and the given code.
+     *
+     * @param  code  the "code" part of the identifier, as a numerical value.
      */
     SimpleIdentifier(final int code) {
         this.code = code;

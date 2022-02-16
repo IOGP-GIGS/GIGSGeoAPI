@@ -52,7 +52,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public abstract strictfp class Series3000<T> extends TestCase {
+public abstract class Series3000<T> extends TestCase {
     /**
      * The properties to be given in argument to a {@code ObjectFactory.createXXX(String)} method.
      * This map contains at least the given entries:
@@ -103,6 +103,8 @@ public abstract strictfp class Series3000<T> extends TestCase {
     /**
      * Copies the configuration to the given test cases. This method is invoked when a test depends on other tests,
      * in which case the other tests need to be run with the same configuration in order to get data.
+     *
+     * @param  destinations  the test cases to configure.
      */
     final void copyConfigurationTo(final Series3000<?>... destinations) {
         for (final Series3000<?> destination : destinations) {
@@ -137,6 +139,8 @@ public abstract strictfp class Series3000<T> extends TestCase {
 
     /**
      * Returns the code stored in the {@link #properties} map, or {@code null} if none.
+     *
+     * @return the code declared in properties map.
      */
     final String getCode() {
         final Identifier identifier = (Identifier) properties.get(IdentifiedObject.IDENTIFIERS_KEY);
@@ -145,6 +149,8 @@ public abstract strictfp class Series3000<T> extends TestCase {
 
     /**
      * Returns the name stored in the {@link #properties} map, or {@code null} if none.
+     *
+     * @return the name declared in properties map.
      */
     final String getName() {
         return (String) properties.get(IdentifiedObject.NAME_KEY);

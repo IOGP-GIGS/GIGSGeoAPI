@@ -92,7 +92,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp class Test2002 extends Series2000<Ellipsoid> {
+public class Test2002 extends Series2000<Ellipsoid> {
     /**
      * The conversion factor from the unit of {@link #semiMajorAxis} to metres.
      */
@@ -214,6 +214,8 @@ public strictfp class Test2002 extends Series2000<Ellipsoid> {
 
     /**
      * Verifies the properties of the ellipsoid given by {@link #getIdentifiedObject()}.
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid.
      */
     private void verifyEllipsoid() throws FactoryException {
         final Ellipsoid ellipsoid = getIdentifiedObject();

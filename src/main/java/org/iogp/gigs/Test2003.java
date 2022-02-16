@@ -82,7 +82,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp class Test2003 extends Series2000<PrimeMeridian> {
+public class Test2003 extends Series2000<PrimeMeridian> {
     /**
      * The expected Greenwich longitude in decimal degrees.
      * This field is set by all test methods before to create and verify the {@link PrimeMeridian} instance.
@@ -138,6 +138,8 @@ public strictfp class Test2003 extends Series2000<PrimeMeridian> {
 
     /**
      * Verifies the properties of the prime meridian given by {@link #getIdentifiedObject()}.
+     *
+     * @throws FactoryException if an error occurred while creating the prime meridian.
      */
     private void verifyPrimeMeridian() throws FactoryException {
         final PrimeMeridian pm = getIdentifiedObject();

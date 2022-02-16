@@ -81,7 +81,7 @@ import static org.opengis.test.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp class Test2006 extends Series2000<ProjectedCRS> {
+public class Test2006 extends Series2000<ProjectedCRS> {
     /**
      * The EPSG code of the expected datum.
      * This field is set by all test methods before to create and verify the {@link ProjectedCRS} instance.
@@ -170,6 +170,9 @@ public strictfp class Test2006 extends Series2000<ProjectedCRS> {
 
     /**
      * Verifies the properties of the projected CRS given by {@link #getIdentifiedObject()}.
+     *
+     * @param  code  authority code of the projected CRS to verify.
+     * @throws FactoryException if an error occurred while creating the projected CRS instance.
      */
     private void createAndVerifyProjectedCRS(final int code) throws FactoryException {
         this.code = code;

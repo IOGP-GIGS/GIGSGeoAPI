@@ -49,6 +49,13 @@ import org.opengis.test.ValidatorContainer;
 final class EPSGMock extends PseudoEpsgFactory {
     /**
      * Creates a new EPSG pseudo-factory which will use the given factories for creating coordinate system instances.
+     *
+     * @param  units         provider of pre-defined {@code Unit} instances.
+     * @param  datumFactory  factory for creating {@code Datum} instances.
+     * @param  csFactory     factory for creating {@code CoordinateSystem} instances.
+     * @param  validators    the set of validators to use for verifying objects conformance,
+     *                       Can not be {@code null}; if there is no particular validators,
+     *                       use {@link org.opengis.test.Validators#DEFAULT}.
      */
     EPSGMock(final Units              units,
              final DatumFactory       datumFactory,
@@ -56,12 +63,5 @@ final class EPSGMock extends PseudoEpsgFactory {
              final ValidatorContainer validators)
     {
         super(units, datumFactory, csFactory, null, null, null, validators);
-    }
-
-    /**
-     * Returns the coordinate system factory specified at construction time.
-     */
-    CSFactory getCSFactory() {
-        return csFactory;
     }
 }

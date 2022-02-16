@@ -96,7 +96,7 @@ import static org.opengis.test.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public strictfp class Test2004 extends Series2000<GeodeticDatum> {
+public class Test2004 extends Series2000<GeodeticDatum> {
     /**
      * The expected axis directions of two-dimensional geographic CRS with longitude first.
      * This axis order does not appear in the EPSG database, but appears often in user-defined CRS.
@@ -205,6 +205,8 @@ public strictfp class Test2004 extends Series2000<GeodeticDatum> {
 
     /**
      * Verifies the properties of the geodetic datum given by {@link #getIdentifiedObject()}.
+     *
+     * @throws FactoryException if an error occurred while creating the datum.
      */
     private void verifyDatum() throws FactoryException {
         assumeTrue(datumAuthorityFactory != null || crsAuthorityFactory != null);
@@ -297,6 +299,8 @@ public strictfp class Test2004 extends Series2000<GeodeticDatum> {
 
     /**
      * Verifies the name, ellipsoid and prime meridian of the given datum.
+     *
+     * @param  toVerify  the instance to verify.
      */
     private void verifyGeodeticDatum(final GeodeticDatum toVerify) {
         /*
