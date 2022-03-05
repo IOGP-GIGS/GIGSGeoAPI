@@ -37,6 +37,7 @@ import org.opengis.metadata.Identifier;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.IdentifiedObject;
+import org.iogp.gigs.internal.geoapi.Configuration;
 
 import static org.junit.Assert.*;
 

@@ -43,6 +43,7 @@ import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.PrimeMeridian;
+import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.Test;
 
 import static org.junit.Assume.*;

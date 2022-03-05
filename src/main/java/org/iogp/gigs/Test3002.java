@@ -36,6 +36,7 @@ import javax.measure.quantity.Length;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.DatumFactory;
+import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.Test;
 
 import static org.junit.Assume.*;

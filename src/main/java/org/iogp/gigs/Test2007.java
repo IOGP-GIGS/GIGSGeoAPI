@@ -37,6 +37,7 @@ import org.opengis.referencing.operation.Transformation;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.opengis.referencing.operation.OperationMethod;
+import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.Test;
 
 import static org.junit.Assume.*;

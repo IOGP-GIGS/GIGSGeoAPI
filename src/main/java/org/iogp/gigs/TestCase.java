@@ -44,7 +44,8 @@ import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.opengis.test.ValidatorContainer;
 import org.opengis.test.Validators;
-import org.opengis.test.Units;
+import org.iogp.gigs.internal.geoapi.Units;
+import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.AssumptionViolatedException;
 
 import static org.junit.Assert.*;

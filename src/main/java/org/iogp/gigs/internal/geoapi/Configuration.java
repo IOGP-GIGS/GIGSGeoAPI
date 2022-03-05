@@ -29,7 +29,7 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.iogp.gigs;
+package org.iogp.gigs.internal.geoapi;
 
 import java.util.Map;
 import java.util.List;
@@ -48,7 +48,7 @@ import org.opengis.referencing.IdentifiedObject;
  * @version 1.0
  * @since   1.0
  */
-final class Configuration {
+public final class Configuration {
     /**
      * The map were to store the configuration entries.
      */
@@ -78,7 +78,7 @@ final class Configuration {
     /**
      * Type-safe keys that can be used in a {@link Configuration} map.
      */
-    static final class Key<T> extends CodeList<Key<?>> {
+    public static final class Key<T> extends CodeList<Key<?>> {
         /**
          * For cross-version compatibility.
          */

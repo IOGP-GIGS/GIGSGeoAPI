@@ -36,6 +36,7 @@ import javax.measure.quantity.Angle;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.opengis.referencing.datum.DatumFactory;
+import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.Test;
 
 import static org.junit.Assume.*;

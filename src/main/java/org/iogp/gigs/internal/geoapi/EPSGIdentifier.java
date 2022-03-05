@@ -29,7 +29,7 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.iogp.gigs;
+package org.iogp.gigs.internal.geoapi;
 
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
@@ -37,33 +37,28 @@ import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
- * A simple implementation of {@link Identifier}, used for GIGS testing purpose only.
+ * A simple implementation of {@link Identifier},
+ * used for {@link PseudoEpsgFactory} purpose only.
  *
- * @author  Alexis Manin (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0
  */
-final class SimpleIdentifier implements ReferenceIdentifier {
+final strictfp class EPSGIdentifier implements ReferenceIdentifier {
     /**
-     * The "code" part of the identifier, as a numerical value.
-     * This is the value to be returned by {@link #getCode()}.
+     * The value to be returned by {@link #getCode()}.
      */
     private final int code;
 
     /**
-     * Creates a new identifier for the "GIGS" namespace and the given code.
-     *
-     * @param  code  the "code" part of the identifier, as a numerical value.
+     * Creates a new identifier for the "EPSG" namespace and the given code.
      */
-    SimpleIdentifier(final int code) {
+    EPSGIdentifier(final int code) {
         this.code = code;
     }
 
     /**
      * Person or party responsible for maintenance of the namespace.
-     *
-     * @return {@code null} in current implementation.
      */
     @Override
     public Citation getAuthority() {
@@ -72,8 +67,6 @@ final class SimpleIdentifier implements ReferenceIdentifier {
 
     /**
      * Returns the code given at construction time.
-     *
-     * @return string representation of the code given at construction time.
      */
     @Override
     public String getCode() {
@@ -81,13 +74,11 @@ final class SimpleIdentifier implements ReferenceIdentifier {
     }
 
     /**
-     * Returns the code space, which is fixed to {@code "GIGS"}.
-     *
-     * @return {@code "GIGS"}.
+     * Returns the code space, which is fixed to {@code "EPSG"}.
      */
     @Override
     public String getCodeSpace() {
-        return "GIGS";
+        return "EPSG";
     }
 
     /**
@@ -105,17 +96,17 @@ final class SimpleIdentifier implements ReferenceIdentifier {
      */
     @Override
     public String toString() {
-        return "GIGS:" + code;
+        return "EPSG:" + code;
     }
 
     /**
      * Returns an arbitrary hash code value for this identifier.
      * Current implementation does not use the codespace, since
-     * tested EPSG and GIGS codes do not overlap.
+     * tested EPSG and EPSG codes do not overlap.
      */
     @Override
     public int hashCode() {
-        return code ^ 237674218;
+        return code ^ 45729784;
     }
 
     /**
@@ -123,6 +114,6 @@ final class SimpleIdentifier implements ReferenceIdentifier {
      */
     @Override
     public boolean equals(final Object obj) {
-        return (obj instanceof SimpleIdentifier) && code == ((SimpleIdentifier) obj).code;
+        return (obj instanceof EPSGIdentifier) && code == ((EPSGIdentifier) obj).code;
     }
 }

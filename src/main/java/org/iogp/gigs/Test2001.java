@@ -38,7 +38,7 @@ import javax.measure.IncommensurableException;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.cs.CSAuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
-import org.opengis.test.Units;
+import org.iogp.gigs.internal.geoapi.Units;
 import org.junit.Test;
 
 import static org.junit.Assume.*;

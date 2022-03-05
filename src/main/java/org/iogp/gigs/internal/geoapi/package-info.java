@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2022 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,40 +29,20 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.iogp.gigs;
-
-import org.opengis.referencing.cs.CSFactory;
-import org.opengis.referencing.datum.DatumFactory;
-import org.opengis.test.ValidatorContainer;
-import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
-import org.iogp.gigs.internal.geoapi.Units;
-
 
 /**
- * Provides data for geodetic objects defined by the EPSG dataset but not present in the GIGS files.
- * This class is used when a test case needs some dependencies, and those dependencies are expected
- * to be defined in the EPSG dataset instead of in a previous test case.
+ * Helper classes for implementation of GIGS tests.
+ * This package is for internal usage by {@code org.iogp.gigs} public package only.
+ * <strong>Do not use!</strong> Classes in this package may change in incompatible
+ * way at any time, and will be inaccessible in a Jigsaw environment.
+ *
+ * <h2>Relationship with GeoAPI conformance module</h2>
+ * This package currently contains a copy of classes in development in the conformance module
+ * of GeoAPI 3.1-SNAPSHOT. The presence of those classes in this package is temporary and will
+ * be removed after GeoAPI 3.1 is released.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0
  */
-final class EPSGMock extends PseudoEpsgFactory {
-    /**
-     * Creates a new EPSG pseudo-factory which will use the given factories for creating coordinate system instances.
-     *
-     * @param  units         provider of pre-defined {@code Unit} instances.
-     * @param  datumFactory  factory for creating {@code Datum} instances.
-     * @param  csFactory     factory for creating {@code CoordinateSystem} instances.
-     * @param  validators    the set of validators to use for verifying objects conformance,
-     *                       Can not be {@code null}; if there is no particular validators,
-     *                       use {@link org.opengis.test.Validators#DEFAULT}.
-     */
-    EPSGMock(final Units              units,
-             final DatumFactory       datumFactory,
-             final CSFactory          csFactory,
-             final ValidatorContainer validators)
-    {
-        super(units, datumFactory, csFactory, null, null, null, validators);
-    }
-}
+package org.iogp.gigs.internal.geoapi;

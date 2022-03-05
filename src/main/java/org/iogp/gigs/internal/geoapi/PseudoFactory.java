@@ -29,40 +29,39 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.iogp.gigs;
+package org.iogp.gigs.internal.geoapi;
 
-import org.opengis.referencing.cs.CSFactory;
-import org.opengis.referencing.datum.DatumFactory;
-import org.opengis.test.ValidatorContainer;
-import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
-import org.iogp.gigs.internal.geoapi.Units;
+import org.opengis.util.Factory;
+import org.opengis.metadata.citation.Citation;
 
 
 /**
- * Provides data for geodetic objects defined by the EPSG dataset but not present in the GIGS files.
- * This class is used when a test case needs some dependencies, and those dependencies are expected
- * to be defined in the EPSG dataset instead of in a previous test case.
+ * Base class of pseudo-factories that simulate a subset of the capabilities of a "real"
+ * factory. For example a pseudo EPSG factory can be provided for running the tests with
+ * an implementation that do not support the creation of referencing objects from an EPSG
+ * code.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0
  */
-final class EPSGMock extends PseudoEpsgFactory {
+public class PseudoFactory implements Factory {
     /**
-     * Creates a new EPSG pseudo-factory which will use the given factories for creating coordinate system instances.
-     *
-     * @param  units         provider of pre-defined {@code Unit} instances.
-     * @param  datumFactory  factory for creating {@code Datum} instances.
-     * @param  csFactory     factory for creating {@code CoordinateSystem} instances.
-     * @param  validators    the set of validators to use for verifying objects conformance,
-     *                       Can not be {@code null}; if there is no particular validators,
-     *                       use {@link org.opengis.test.Validators#DEFAULT}.
+     * The implementer of this factory.
      */
-    EPSGMock(final Units              units,
-             final DatumFactory       datumFactory,
-             final CSFactory          csFactory,
-             final ValidatorContainer validators)
-    {
-        super(units, datumFactory, csFactory, null, null, null, validators);
+    private static final Citation VENDOR = new SimpleCitation(new SimpleInternationalString("GeoAPI"));
+
+    /**
+     * Creates a new pseudo-factory.
+     */
+    protected PseudoFactory() {
+    }
+
+    /**
+     * Returns the implementer of this pseudo-factory, which is "GeoAPI".
+     */
+    @Override
+    public Citation getVendor() {
+        return VENDOR;
     }
 }

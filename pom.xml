@@ -30,6 +30,22 @@
         <role>Java developer</role>
       </roles>
     </developer>
+    <developer>
+      <name>Alexis Manin</name>
+      <organization>Geomatys</organization>
+      <organizationUrl>https://www.geomatys.com/</organizationUrl>
+      <roles>
+        <role>Java developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Johann Sorel</name>
+      <organization>Geomatys</organization>
+      <organizationUrl>https://www.geomatys.com/</organizationUrl>
+      <roles>
+        <role>Java developer</role>
+      </roles>
+    </developer>
   </developers>
 
   <properties>
@@ -147,6 +163,7 @@
             <link>https://junit.org/junit4/javadoc/latest/</link>
             <link>http://www.geoapi.org/3.0/javadoc/</link>
           </links>
+          <excludePackageNames>org.iogp.gigs.internal*</excludePackageNames>
           <addStylesheets>gigs.css</addStylesheets>
         </configuration>
       </plugin>

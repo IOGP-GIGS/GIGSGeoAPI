@@ -37,6 +37,7 @@ import org.opengis.util.GenericName;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ReferenceIdentifier;
+import org.iogp.gigs.internal.geoapi.Configuration;
 
 import static org.junit.Assert.*;
 

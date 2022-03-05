@@ -29,7 +29,7 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.iogp.gigs;
+package org.iogp.gigs.internal.geoapi;
 
 import java.util.Set;
 import java.util.Map;
@@ -50,23 +50,25 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
 import org.opengis.test.ValidatorContainer;
-import org.opengis.test.Units;
 
 import static org.junit.Assert.*;
 import static org.junit.Assume.*;
 
 
 /**
- * Creates referencing objects for a limited set of hard-coded EPSG codes.
- * This is a placeholder for a class defined in GeoAPI 3.1-SNAPSGOT,
- * to be removed after GeoAPI 3.1 has been released.
+ * Creates referencing objects for a limited set of hard-coded EPSG codes
+ * using {@link ObjectFactory} and {@link MathTransformFactory}. This pseudo-factory
+ * can be used with implementation that do not support (or don't want to test) a "real"
+ * {@link CRSAuthorityFactory} for the EPSG database.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 1.0
  * @since   1.0
  */
-class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CRSAuthorityFactory {
+public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAuthorityFactory,
+        CSAuthorityFactory, CRSAuthorityFactory
+{
     /**
      * The reciprocal of the conversion from US feets to metres.
      */
@@ -193,14 +195,6 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     }
 
     /**
-     * Returns the implementer of this pseudo-factory.
-     */
-    @Override
-    public Citation getVendor() {
-        return null;
-    }
-
-    /**
      * The default implementation returns {@code null}.
      */
     @Override
@@ -242,14 +236,14 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     protected Map<String,Object> createPropertiesMap(final int code, final String name) {
         final Map<String,Object> properties = new HashMap<>(4);
         assertNull(properties.put(IdentifiedObject.NAME_KEY, name));
-        assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new SimpleIdentifier(code)));
+        assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new EPSGIdentifier(code)));
         return properties;
     }
 
     /**
      * Returns an arbitrary object from a code.
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>4326</td> <td>WGS 84</td></tr>
@@ -284,7 +278,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     /**
      * Returns an arbitrary {@linkplain Datum datum} from a code.
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>6326</td> <td>World Geodetic System 1984</td></tr>
@@ -358,7 +352,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     /**
      * Returns a {@linkplain GeodeticDatum geodetic datum} from a code.
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>6326</td> <td>World Geodetic System 1984</td></tr>
@@ -391,7 +385,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     /**
      * Returns an {@linkplain Ellipsoid ellipsoid} from a code.
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>7001</td> <td>Airy 1830</td></tr>
@@ -441,7 +435,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     /**
      * Returns a {@linkplain PrimeMeridian prime meridian} from a EPSG code.
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>8901</td> <td>Greenwich</td></tr>
@@ -484,7 +478,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     /**
      * Returns an arbitrary {@linkplain CoordinateSystem coordinate system} from a code.
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>6422</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: degree</td></tr>
@@ -506,7 +500,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     /**
      * Creates a Cartesian coordinate system from a code.
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>6500</td> <td>Earth centred, earth fixed, righthanded 3D coordinate system,
@@ -596,7 +590,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     /**
      * Creates an ellipsoidal coordinate system from a code.
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>6403</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: grads.</td></tr>
@@ -696,7 +690,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     /**
      * Returns a {@linkplain CoordinateSystemAxis coordinate system axis} from a code.
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th>          <th>Name</th>               <th>Unit</th></tr>
      *   <tr><td>58</td>            <td>Geodetic latitude</td>  <td>grad</td></tr>
@@ -743,7 +737,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     /**
      * Returns an {@linkplain Unit unit} from a code.
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>9001</td> <td>metre</td></tr>
@@ -763,7 +757,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
             case 9001: return units.metre();
             case 9122: // Fall through
             case 9102: return units.degree();
-            case 9105: return TestCase.grad;
+            case 9105: return units.grad();
             default:   throw noSuchAuthorityCode(id, code);
         }
     }
@@ -780,7 +774,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     /**
      * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system} from a code.
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>4326</td> <td>WGS 84</td></tr>
@@ -841,7 +835,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
     /**
      * Returns a {@linkplain GeographicCRS geographic coordinate reference system} from a code.
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>4326</td> <td>WGS 84</td></tr>
@@ -955,7 +949,7 @@ class PseudoEpsgFactory implements DatumAuthorityFactory, CSAuthorityFactory, CR
      * The following table lists the supported codes.
      * <i>Codes in italics are not official EPSG codes.</i></p>
      *
-     * <table class="data">
+     * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th>  <th>Used by CRS</th><th>CRS or transformation name</th>                 <th>Operation method</th></tr>
      *   <tr><td>19905</td> <td>3002</td>  <td>Makassar / NEIEZ</td>                                <td>Mercator (variant A)</td></tr>

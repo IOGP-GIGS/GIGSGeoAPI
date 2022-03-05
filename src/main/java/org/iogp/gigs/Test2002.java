@@ -37,6 +37,7 @@ import org.opengis.util.FactoryException;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.datum.Ellipsoid;
+import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.Test;
 
 import static org.junit.Assume.*;

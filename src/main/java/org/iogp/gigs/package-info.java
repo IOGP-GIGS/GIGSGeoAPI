@@ -34,6 +34,8 @@
  * Implements the Geospatial Integrity of Geoscience Software tests.
  *
  * @author  Martin Desruisseaux (Geomatys)
+ * @author  Alexis Manin (Geomatys)
+ * @author  Johann Sorel (Geomatys)
  * @version 1.0
  * @since   1.0
  */
