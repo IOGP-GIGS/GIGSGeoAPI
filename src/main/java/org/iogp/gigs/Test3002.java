@@ -145,7 +145,7 @@ public class Test3002 extends Series3000<Ellipsoid> {
 
     /**
      * Sets the ellipsoid instance to verify. This method is invoked only by other test classes which need to
-     * verify the ellipsoid contained in a geodetic datum instead than the ellipsoid immediately after creation.
+     * verify the ellipsoid contained in a geodetic datum instead of the ellipsoid immediately after creation.
      *
      * @param  instance  the instance to verify.
      */

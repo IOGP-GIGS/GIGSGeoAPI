@@ -173,7 +173,7 @@ public class Test3005 extends Series3000<Conversion> {
          *  - The number of target dimensions
          *
          * We currently do not verify the name because libraries often have their own
-         * hard-coded implementations of operation methods instead than creating new
+         * hard-coded implementations of operation methods instead of creating new
          * instances from the given properties.
          */
         try {

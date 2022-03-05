@@ -117,7 +117,7 @@ public class Test3003 extends Series3000<PrimeMeridian> {
 
     /**
      * Sets the prime meridian instance to verify. This method is invoked only by other test classes
-     * which need to verify the prime meridian contained in a geodetic datum instead than the prime
+     * which need to verify the prime meridian contained in a geodetic datum instead of the prime
      * meridian immediately after creation.
      *
      * @param  instance  the instance to verify.

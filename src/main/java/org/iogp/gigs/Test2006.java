@@ -98,21 +98,21 @@ public class Test2006 extends Series2000<ProjectedCRS> {
 
     /**
      * {@code true} if the expected axis directions are ({@link AxisDirection#NORTH NORTH},
-     * {@link AxisDirection#EAST EAST}) instead than the usual ({@code EAST}, {@code NORTH}).
+     * {@link AxisDirection#EAST EAST}) instead of the usual ({@code EAST}, {@code NORTH}).
      * This field is set by all test methods before to create and verify the {@link ProjectedCRS} instance.
      */
     public boolean isNorthAxisFirst;
 
     /**
      * {@code true} if the <var>x</var> values are increasing toward {@link AxisDirection#WEST WEST}
-     * instead than {@link AxisDirection#EAST EAST}.
+     * instead of {@link AxisDirection#EAST EAST}.
      * This field is set by all test methods before to create and verify the {@link ProjectedCRS} instance.
      */
     public boolean isWestOrientated;
 
     /**
      * {@code true} if the <var>y</var> values are increasing toward {@link AxisDirection#SOUTH SOUTH}
-     * instead than {@link AxisDirection#NORTH NORTH}.
+     * instead of {@link AxisDirection#NORTH NORTH}.
      * This field is set by all test methods before to create and verify the {@link ProjectedCRS} instance.
      */
     public boolean isSouthOrientated;

@@ -156,7 +156,7 @@ public abstract class Series2000<T> extends TestCase {
      * <p>Subclasses can override this method when testing an {@link AuthorityFactory} implementation
      * which is known to use slightly different name than the one used in the EPSG database, or if the
      * implementation stores the EPSG name as an {@linkplain IdentifiedObject#getAlias() alias} instead
-     * than as the {@linkplain IdentifiedObject#getName() primary name}.</p>
+     * of as the {@linkplain IdentifiedObject#getName() primary name}.</p>
      *
      * <div class="note"><b>Example:</b> if an implementation replaces all spaces by underscores,
      * then a subclass testing that implementation could override this method as below:
