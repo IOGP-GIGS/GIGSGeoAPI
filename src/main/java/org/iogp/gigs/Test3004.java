@@ -181,7 +181,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
             Unit<Angle> angularUnit = units.degree();
             AxisDirection[] directions = Test2004.GEOGRAPHIC_2D;
             switch (csCode) {
-                case 6403: angularUnit = grad; break;
+                case 6403: angularUnit = units.grad(); break;
                 case 6423: directions = Test2004.GEOGRAPHIC_3D; break;
                 case 6424: directions = Test2004.GEOGRAPHIC_XY; break;
             }

@@ -233,7 +233,7 @@ public class Test3003 extends Series3000<PrimeMeridian> {
     public void testParis() throws FactoryException {
         setCodeAndName(68903, "GIGS PM H");
         greenwichLongitude = 2.5969213;
-        angularUnit        = grad;
+        angularUnit        = units.grad();
         verifyPrimeMeridian();
     }
 

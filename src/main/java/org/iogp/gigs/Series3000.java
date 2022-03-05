@@ -53,7 +53,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-public abstract class Series3000<T> extends TestCase {
+public abstract class Series3000<T> extends IntegrityTest {
     /**
      * The properties to be given in argument to a {@code ObjectFactory.createXXX(String)} method.
      * This map contains at least the given entries:

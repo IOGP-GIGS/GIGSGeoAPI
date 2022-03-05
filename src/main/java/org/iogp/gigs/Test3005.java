@@ -918,7 +918,7 @@ public class Test3005 extends Series3000<Conversion> {
         methodName = "Lambert Conic Conformal (2SP)";
         createDefaultParameters();
         final Unit<Angle> degree = units.degree();
-        final Unit<Length> foot = TestCase.foot;
+        final Unit<Length> foot = units.foot();
         definition.parameter("Latitude of false origin").setValue(40.3333333, degree);
         definition.parameter("Longitude of false origin").setValue(-111.5, degree);
         definition.parameter("Latitude of 1st standard parallel").setValue(41.7833333, degree);
@@ -956,7 +956,7 @@ public class Test3005 extends Series3000<Conversion> {
         methodName = "Lambert Conic Conformal (2SP)";
         createDefaultParameters();
         final Unit<Angle> degree = units.degree();
-        final Unit<Length> footSurveyUS = TestCase.footSurveyUS;
+        final Unit<Length> footSurveyUS = units.footSurveyUS();
         definition.parameter("Latitude of false origin").setValue(40.3333333, degree);
         definition.parameter("Longitude of false origin").setValue(-111.5, degree);
         definition.parameter("Latitude of 1st standard parallel").setValue(41.7833333, degree);
@@ -992,7 +992,7 @@ public class Test3005 extends Series3000<Conversion> {
         setCodeAndName(65019, "GIGS projection 19");
         methodName = "Lambert Conic Conformal (1SP)";
         createDefaultParameters();
-        final Unit<Angle>  grad  = TestCase.grad;
+        final Unit<Angle>  grad  = units.grad();
         final Unit<Length> metre = units.metre();
         definition.parameter("Latitude of natural origin").setValue(52.0, grad);
         definition.parameter("Longitude of natural origin").setValue(0.0, grad);
@@ -1029,7 +1029,7 @@ public class Test3005 extends Series3000<Conversion> {
         methodName = "Transverse Mercator";
         createDefaultParameters();
         final Unit<Angle> degree = units.degree();
-        final Unit<Length> footSurveyUS = TestCase.footSurveyUS;
+        final Unit<Length> footSurveyUS = units.footSurveyUS();
         definition.parameter("Latitude of natural origin").setValue(0.0, degree);
         definition.parameter("Longitude of natural origin").setValue(3.0, degree);
         definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());

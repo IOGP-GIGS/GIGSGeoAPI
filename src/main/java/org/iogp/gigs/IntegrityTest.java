@@ -34,7 +34,6 @@ package org.iogp.gigs;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
-import org.opengis.util.Factory;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.cs.AxisDirection;
@@ -42,9 +41,6 @@ import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.PrimeMeridian;
-import org.iogp.gigs.internal.geoapi.ValidatorContainer;
-import org.iogp.gigs.internal.geoapi.Units;
-import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.AssumptionViolatedException;
 
 import static org.junit.Assert.*;
@@ -58,7 +54,7 @@ import static org.iogp.gigs.internal.geoapi.Assert.assertUnicodeIdentifierEquals
  * @version 1.0
  * @since   1.0
  */
-abstract class TestCase {
+public abstract class IntegrityTest extends TestCaseGeoAPI {
     /**
      * Relative tolerance factor from GIGS documentation.
      * This tolerance threshold is typically multiplied
@@ -74,81 +70,9 @@ abstract class TestCase {
     static final double ANGULAR_TOLERANCE = 1E-7;
 
     /**
-     * The list of tests that are enabled.
-     * This is a static field for now but will become configurable in a future version.
-     */
-    private static final Configuration config = new Configuration();
-
-    /**
-     * Provider of units of measurement (degree, metre, second, <i>etc</i>), never {@code null}.
-     * The {@link Units#degree()}, {@link Units#metre() metre()} and other methods shall return
-     * {@link javax.measure.Unit} instances compatible with the units created by the {@link Factory}
-     * instances to be tested. Those {@code Unit<?>} instances depend on the Unit of Measurement (JSR-373)
-     * implementation used by the factories.
-     */
-    final Units units;
-
-    /**
-     * Should be part of {@link #units}, but missing as of GeoAPI 3.0.1.
-     */
-    static final Unit<Length> footSurveyUS, foot;
-
-    /**
-     * Should be part of {@link #units}, but missing as of GeoAPI 3.0.1.
-     */
-    static final Unit<Angle> grad;
-    static {
-        final Units units = Units.getDefault();
-        footSurveyUS = units.metre().multiply(12 / 39.37);
-        foot         = units.metre().multiply(0.3048);
-        grad         = units.radian().multiply(Math.PI / 200);
-    }
-
-    /**
-     * The set of {@link Validator} instances to use for verifying objects conformance (never {@code null}).
-     */
-    final ValidatorContainer validators;
-
-    /**
-     * A tip set by subclasses during the execution of some optional tests.
-     * In case of optional test failure, if this field is non-null, then a message will be logged at the
-     * {@link java.util.logging.Level#INFO} for giving some tips to the developer about how he can disable the test.
-     *
-     * <p><b>Example</b></p>
-     * <blockquote><pre>&#64;Test
-     *public void myTest() {
-     *    if (isDerivativeSupported) {
-     *        configurationTip = Configuration.Key.isDerivativeSupported;
-     *        // Do some tests the require support of math transform derivatives.
-     *    }
-     *    configurationTip = null;
-     *}</pre></blockquote>
-     */
-    transient Configuration.Key<Boolean> configurationTip;
-
-    /**
      * Creates a new test.
      */
-    TestCase() {
-        units = Units.getDefault();
-        validators = ValidatorContainer.DEFAULT;
-    }
-
-    /**
-     * Returns booleans indicating whether the given operations are enabled.
-     *
-     * @param  properties  the key for which the flags are wanted.
-     * @return an array of the same length than {@code properties} in which each element at index
-     *         <var>i</var> indicates whether the {@code properties[i]} test should be enabled.
-     */
-    @SafeVarargs
-    final boolean[] getEnabledFlags(final Configuration.Key<Boolean>... properties) {
-        final boolean[] isEnabled = new boolean[properties.length];
-        for (int i=0; i<properties.length; i++) {
-            final Boolean value = config.get(properties[i]);
-            isEnabled[i] = (value == null) || value;
-        }
-        return isEnabled;
+    IntegrityTest() {
     }
 
     /**
@@ -184,6 +108,13 @@ abstract class TestCase {
         }
         return null;
     }
+
+    /*
+     * ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+     *   Methods below this point were copied from `org.opengis.test.referencing.ReferencingTestCase`
+     *   and should be deleted after next GeoAPI release.
+     * ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+     */
 
     /**
      * Compares the name, axis lengths and inverse flattening factor of the given ellipsoid against the expected values.

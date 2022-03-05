@@ -422,7 +422,7 @@ public class Test3002 extends Series3000<Ellipsoid> {
         setCodeAndName(67008, "GIGS ellipsoid J");
         semiMajorAxis     = 20925832.16;
         semiMinorAxis     = 20854892.013176885;
-        axisUnit          = footSurveyUS;
+        axisUnit          = units.footSurveyUS();
         inverseFlattening = 294.9786982;
         isIvfDefinitive   = true;
         verifyEllipsoid();
