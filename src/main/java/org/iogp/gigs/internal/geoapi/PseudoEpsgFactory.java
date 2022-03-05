@@ -49,7 +49,6 @@ import org.opengis.referencing.operation.*;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
-import org.opengis.test.ValidatorContainer;
 
 import static org.junit.Assert.*;
 import static org.junit.Assume.*;
@@ -133,9 +132,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * @param  crsFactory    factory for creating {@link CoordinateReferenceSystem} instances.
      * @param  copFactory    factory for creating {@link Conversion} instances.
      * @param  mtFactory     factory for creating {@link MathTransform} instances.
-     * @param  validators    the set of validators to use for verifying objects conformance,
-     *                       Can not be {@code null}; if there is no particular validators,
-     *                       use {@link org.opengis.test.Validators#DEFAULT}.
+     * @param  validators    the set of validators to use for verifying objects conformance.
      */
     public PseudoEpsgFactory(
             final Units                           units,

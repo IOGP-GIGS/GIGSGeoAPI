@@ -40,7 +40,8 @@ import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.Test;
 
 import static org.junit.Assume.*;
-import static org.opengis.test.Assert.*;
+import static org.junit.Assert.*;
+import static org.iogp.gigs.internal.geoapi.Assert.assertInstanceOf;
 
 
 /**

@@ -33,7 +33,7 @@ package org.iogp.gigs;
 
 import org.opengis.referencing.cs.CSFactory;
 import org.opengis.referencing.datum.DatumFactory;
-import org.opengis.test.ValidatorContainer;
+import org.iogp.gigs.internal.geoapi.ValidatorContainer;
 import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
 import org.iogp.gigs.internal.geoapi.Units;
 
@@ -54,9 +54,7 @@ final class EPSGMock extends PseudoEpsgFactory {
      * @param  units         provider of pre-defined {@code Unit} instances.
      * @param  datumFactory  factory for creating {@code Datum} instances.
      * @param  csFactory     factory for creating {@code CoordinateSystem} instances.
-     * @param  validators    the set of validators to use for verifying objects conformance,
-     *                       Can not be {@code null}; if there is no particular validators,
-     *                       use {@link org.opengis.test.Validators#DEFAULT}.
+     * @param  validators    the set of validators to use for verifying objects conformance.
      */
     EPSGMock(final Units              units,
              final DatumFactory       datumFactory,

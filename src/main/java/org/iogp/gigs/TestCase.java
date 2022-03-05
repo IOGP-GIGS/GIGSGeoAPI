@@ -42,13 +42,13 @@ import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.PrimeMeridian;
-import org.opengis.test.ValidatorContainer;
-import org.opengis.test.Validators;
+import org.iogp.gigs.internal.geoapi.ValidatorContainer;
 import org.iogp.gigs.internal.geoapi.Units;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.AssumptionViolatedException;
 
 import static org.junit.Assert.*;
+import static org.iogp.gigs.internal.geoapi.Assert.assertUnicodeIdentifierEquals;
 
 
 /**
@@ -58,12 +58,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since   1.0
  */
-abstract class TestCase extends org.opengis.test.TestCase {
-    /**
-     * The keyword for unrestricted value in {@link String} arguments.
-     */
-    private static final String UNRESTRICTED = "##unrestricted";
-
+abstract class TestCase {
     /**
      * Relative tolerance factor from GIGS documentation.
      * This tolerance threshold is typically multiplied
@@ -136,7 +131,7 @@ abstract class TestCase extends org.opengis.test.TestCase {
      */
     TestCase() {
         units = Units.getDefault();
-        validators = Validators.DEFAULT;
+        validators = ValidatorContainer.DEFAULT;
     }
 
     /**
@@ -191,139 +186,6 @@ abstract class TestCase extends org.opengis.test.TestCase {
     }
 
     /**
-     * Returns the given message followed by a space, or an empty string if the message is null.
-     *
-     * @param  message  the message to be suffixed by a space, or {@code null} if none.
-     * @return the message with a space, or {@code ""} if none.
-     */
-    private static String nonNull(final String message) {
-        return (message != null) ? message.trim().concat(" ") : "";
-    }
-
-    /**
-     * Verifies if we expected a null value, then returns {@code true} if the value is null as expected.
-     *
-     * @param  message   the message to report in case of failure.
-     * @param  expected  the value which is expected to be null or non-null.
-     * @param  actual    the actual null or non-null value.
-     * @return whether the expected and actual values are null.
-     */
-    private static boolean isNull(final String message, final Object expected, final Object actual) {
-        final boolean isNull = (actual == null);
-        if (isNull != (expected == null)) {
-            fail(concat(message, isNull ? "Value is null." : "Expected null."));
-        }
-        return isNull;
-    }
-
-    /**
-     * Returns {@code true} if the given codepoint is an unicode identifier start or part.
-     *
-     * @param  codepoint  the Unicode code point to test.
-     * @param  part       {@code true} if the code point is a Unicode part or {@code false} if Unicode start.
-     * @return whether the given code point is a Unicode part or start.
-     */
-    private static boolean isUnicodeIdentifier(final int codepoint, final boolean part) {
-        return part ? Character.isUnicodeIdentifierPart (codepoint)
-                    : Character.isUnicodeIdentifierStart(codepoint);
-    }
-
-    /**
-     * Returns the concatenation of the given message with the given extension.
-     * This method returns the given extension if the message is null or empty.
-     *
-     * @param  message  the message, or {@code null}.
-     * @param  ext      the extension to append after the message.
-     * @return the concatenated string.
-     */
-    private static String concat(String message, final String ext) {
-        if (message == null || (message = message.trim()).isEmpty()) {
-            return ext;
-        }
-        return message + ' ' + ext;
-    }
-
-    /**
-     * Asserts that all axes in the given coordinate system are pointing toward the given
-     * directions, in the same order.
-     *
-     * @param message   header of the exception message in case of failure, or {@code null} if none.
-     * @param cs        the coordinate system to test.
-     * @param expected  the expected axis directions.
-     */
-    static void assertAxisDirectionsEqual(String message,
-            final CoordinateSystem cs, final AxisDirection... expected)
-    {
-        assertEquals(concat(message, "Wrong coordinate system dimension."), expected.length, cs.getDimension());
-        message = concat(message, "Wrong axis direction.");
-        for (int i=0; i<expected.length; i++) {
-            assertEquals(message, expected[i], cs.getAxis(i).getDirection());
-        }
-    }
-
-    /**
-     * Asserts that the character sequences are equal, ignoring any characters that are not valid for Unicode identifiers.
-     * First, this method locates the {@linkplain Character#isUnicodeIdentifierStart(int) Unicode identifier start}
-     * in each sequences, ignoring any other characters before them. Then, starting from the identifier starts, this
-     * method compares only the {@linkplain Character#isUnicodeIdentifierPart(int) Unicode identifier parts} until
-     * the end of character sequences.
-     *
-     * <p><b>Examples:</b> {@code "WGS 84"} and {@code "WGS84"} as equal according this method.</p>
-     *
-     * @param message     header of the exception message in case of failure, or {@code null} if none.
-     * @param expected    the expected character sequence (may be {@code null}), or {@code "##unrestricted"}.
-     * @param actual      the character sequence to compare, or {@code null}.
-     * @param ignoreCase  {@code true} for ignoring case.
-     */
-    private static void assertUnicodeIdentifierEquals(final String message,
-            final CharSequence expected, final CharSequence actual, final boolean ignoreCase)
-    {
-        if (UNRESTRICTED.equals(expected) || isNull(message, expected, actual)) {
-            return;
-        }
-        final int expLength = expected.length();
-        final int valLength = actual.length();
-        int       expOffset = 0;
-        int       valOffset = 0;
-        boolean   expPart   = false;
-        boolean   valPart   = false;
-        while (expOffset < expLength) {
-            int expCode = Character.codePointAt(expected, expOffset);
-            if (isUnicodeIdentifier(expCode, expPart)) {
-                expPart = true;
-                int valCode;
-                do {
-                    if (valOffset >= valLength) {
-                        fail(nonNull(message) + "Expected \"" + expected + "\" but got \"" + actual + "\". "
-                                + "Missing part: \"" + expected.subSequence(expOffset, expLength) + "\".");
-                        return;
-                    }
-                    valCode    = Character.codePointAt(actual, valOffset);
-                    valOffset += Character.charCount(valCode);
-                } while (!isUnicodeIdentifier(valCode, valPart));
-                valPart = true;
-                if (ignoreCase) {
-                    expCode = Character.toLowerCase(expCode);
-                    valCode = Character.toLowerCase(valCode);
-                }
-                if (valCode != expCode) {
-                    fail(nonNull(message) + "Expected \"" + expected + "\" but got \"" + actual + "\".");
-                    return;
-                }
-            }
-            expOffset += Character.charCount(expCode);
-        }
-        while (valOffset < valLength) {
-            final int valCode = Character.codePointAt(actual, valOffset);
-            if (isUnicodeIdentifier(valCode, valPart)) {
-                fail(nonNull(message) + "Expected \"" + expected + "\", but found it with a unexpected "
-                        + "trailing string: \"" + actual.subSequence(valOffset, valLength) + "\".");
-            }
-            valOffset += Character.charCount(valCode);
-        }
-    }
-
-    /**
      * Compares the name, axis lengths and inverse flattening factor of the given ellipsoid against the expected values.
      * This method allows for some flexibilities:
      *
@@ -341,7 +203,7 @@ abstract class TestCase extends org.opengis.test.TestCase {
      * </ul>
      *
      * If the given {@code ellipsoid} is {@code null}, then this method does nothing.
-     * Deciding if {@code null} datum are allowed or not is {@link org.opengis.test.Validator}'s job.
+     * Deciding if {@code null} datum are allowed or not is {@link org.iogp.gigs.internal.geoapi.Validator}'s job.
      *
      * @param ellipsoid          the ellipsoid to verify, or {@code null} if none.
      * @param name               the expected name (ignoring code space), or {@code null} if unrestricted.
@@ -382,7 +244,7 @@ abstract class TestCase extends org.opengis.test.TestCase {
      * </ul>
      *
      * If the given {@code primeMeridian} is {@code null}, then this method does nothing.
-     * Deciding if {@code null} prime meridians are allowed or not is {@link org.opengis.test.Validator}'s job.
+     * Deciding if {@code null} prime meridians are allowed or not is {@link org.iogp.gigs.internal.geoapi.Validator}'s job.
      *
      * @param primeMeridian       the prime meridian to verify, or {@code null} if none.
      * @param name                the expected name (ignoring code space), or {@code null} if unrestricted.
@@ -410,7 +272,7 @@ abstract class TestCase extends org.opengis.test.TestCase {
      * This method does not verify axis names neither because the names specified by ISO 19111 and ISO 19162 differ.
      *
      * <p>If the given {@code cs} is {@code null}, then this method does nothing.
-     * Deciding if {@code null} coordinate systems are allowed or not is {@link org.opengis.test.Validator}'s job.</p>
+     * Deciding if {@code null} coordinate systems are allowed or not is {@link org.iogp.gigs.internal.geoapi.Validator}'s job.</p>
      *
      * @param  cs          the coordinate system to verify, or {@code null} if none.
      * @param  type        the expected coordinate system type.
@@ -443,7 +305,7 @@ abstract class TestCase extends org.opengis.test.TestCase {
      *       <li>Only the value returned by {@link Identifier#getCode()} is verified.
      *           The code space, authority and version are ignored.</li>
      *       <li>Only the characters that are valid for Unicode identifiers are compared (ignoring case), as documented in
-     *           {@link org.opengis.test.Assert#assertUnicodeIdentifierEquals Assert.assertUnicodeIdentifierEquals(…)}.</li>
+     *           {@link org.iogp.gigs.internal.geoapi.Assert#assertUnicodeIdentifierEquals Assert.assertUnicodeIdentifierEquals(…)}.</li>
      *     </ul>
      *   </li>
      *   <li>For {@link IdentifiedObject#getIdentifiers()}:
@@ -458,7 +320,7 @@ abstract class TestCase extends org.opengis.test.TestCase {
      * </ul>
      *
      * If the given {@code object} is {@code null}, then this method does nothing.
-     * Deciding if {@code null} objects are allowed or not is {@link org.opengis.test.Validator}'s job.
+     * Deciding if {@code null} objects are allowed or not is {@link org.iogp.gigs.internal.geoapi.Validator}'s job.
      *
      * @param object      the object to verify, or {@code null} if none.
      * @param name        the expected name (ignoring code space), or {@code null} if unrestricted.

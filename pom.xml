@@ -55,8 +55,13 @@
   <dependencies>
     <dependency>
       <groupId>org.opengis</groupId>
-      <artifactId>geoapi-conformance</artifactId>
+      <artifactId>geoapi</artifactId>
       <version>3.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
     </dependency>
   </dependencies>
 
