@@ -48,6 +48,7 @@ import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.DatumFactory;
+import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.Test;
 
 import static org.junit.Assume.*;
@@ -136,6 +137,32 @@ public class Test3004 extends Series3000<GeodeticDatum> {
         primeMeridianData = new Test3003(datumFactory);
         ellipsoidData.skipTests = true;
         primeMeridianData.skipTests = true;
+    }
+
+    /**
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     *
+     * <ul>
+     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *     <ul>
+     *       <li>{@link #isFactoryPreservingUserValues}</li>
+     *       <li>{@linkplain GIGS3002#datumFactory}</li>
+     *       <li>{@code csFactory}</li>
+     *       <li>{@linkplain #crsFactory}</li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @return the configuration of the test being run.
+     */
+    @Override
+    public Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.datumFactory, ellipsoidData.datumFactory));
+        assertNull(op.put(Configuration.Key.csFactory, epsgFactory.getCSFactory()));
+        assertNull(op.put(Configuration.Key.crsFactory, crsFactory));
+        return op;
     }
 
     /**

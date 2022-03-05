@@ -34,15 +34,31 @@ package org.iogp.gigs.internal.geoapi;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 import org.opengis.util.CodeList;
+import org.opengis.util.GenericName;
+import org.opengis.util.InternationalString;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.cs.CSFactory;
+import org.opengis.referencing.cs.CSAuthorityFactory;
+import org.opengis.referencing.crs.CRSFactory;
+import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.referencing.operation.Matrix;
+import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.referencing.operation.CoordinateOperationFactory;
+import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 
 
 /**
  * Contains information about the test environment, like available factories and disabled tests.
- * This is a placeholder for a class defined in GeoAPI 3.1-SNAPSGOT,
- * to be removed after GeoAPI 3.1 has been released.
+ * This class provides {@link #get get}, {@link #put put} and {@link #remove remove} methods
+ * similar to those of the {@code java.util.Map} interface, with the addition of type-safety.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
@@ -55,10 +71,29 @@ public final class Configuration {
     private final Map<Key<?>,Object> properties;
 
     /**
+     * An unmodifiable view of the {@link #properties} map.
+     *
+     * @see #map()
+     */
+    private final Map<Key<?>,Object> unmodifiable;
+
+    /**
      * Creates a new, initially empty, configuration map.
      */
     public Configuration() {
         properties = new LinkedHashMap<>();
+        unmodifiable = Collections.unmodifiableMap(properties);
+    }
+
+    /**
+     * Creates a new configuration with the same mappings as the specified configuration.
+     *
+     * @param  toCopy  the configuration whose mappings are to be placed in this map.
+     * @throws NullPointerException if the specified configuration is null.
+     */
+    public Configuration(final Configuration toCopy) {
+        properties = new LinkedHashMap<>(toCopy.properties);
+        unmodifiable = Collections.unmodifiableMap(properties);
     }
 
     /**
@@ -76,7 +111,96 @@ public final class Configuration {
     }
 
     /**
+     * Removes the mapping for a key from this map if it is present.
+     *
+     * @param  <T>  the value type, which is determined by the key.
+     * @param  key  the key whose associated value is to be removed.
+     * @return the value which was previously mapped to the specified key, or {@code null}.
+     * @throws NullPointerException if the specified key is null.
+     */
+    public <T> T remove(final Key<T> key) {
+        return key.type.cast(properties.remove(key));
+    }
+
+    /**
+     * Associates the specified value with the specified key in this map.
+     *
+     * @param  <T>    the value type, which is determined by the key.
+     * @param  key    the key with which the specified value is to be associated.
+     * @param  value  the value to be associated with the specified key (can be {@code null}).
+     * @return the previous value associated with {@code key}, or {@code null} if there was no mapping for that key.
+     * @throws NullPointerException if the specified key is null.
+     */
+    public <T> T put(final Key<T> key, final T value) {
+        return key.type.cast(properties.put(key, value));
+    }
+
+    /**
+     * Declares that all given operations are unsupported. This is a convenience method
+     * invoking <code>{@linkplain #put(Key,Object) put}(key, Boolean.False)</code> for
+     * all operations given in argument.
+     *
+     * @param  operations  the operations to declare as unsupported.
+     * @throws NullPointerException if a specified key is null.
+     */
+    @SafeVarargs
+    public final void unsupported(final Key<Boolean>... operations) {
+        for (final Key<Boolean> operation : operations) {
+            put(operation, Boolean.FALSE);
+        }
+    }
+
+    /**
+     * Returns all entries as an unmodifiable map.
+     *
+     * @return a map view over the entries in this {@code Configuration} object.
+     */
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
+    public Map<Key<?>,Object> map() {
+        return unmodifiable;
+    }
+
+    /**
+     * Returns a hash code value for this configuration map.
+     */
+    @Override
+    public int hashCode() {
+        return properties.hashCode() ^ 438658750;
+    }
+
+    /**
+     * Compares this configuration with the given object for equality.
+     *
+     * @param  other  the other object to compare with this configuration.
+     */
+    @Override
+    public boolean equals(final Object other) {
+        if (other instanceof Configuration) {
+            return properties.equals(((Configuration) other).properties);
+        }
+        return false;
+    }
+
+    /**
+     * Returns a string representation of this configuration map.
+     */
+    @Override
+    public String toString() {
+        return properties.toString();
+    }
+
+    /**
      * Type-safe keys that can be used in a {@link Configuration} map.
+     * This code list is extensible: users can create new instances by
+     * invoking the {@link #valueOf(String, Class)} static method.
+     *
+     * <p><b><u>Note on field names:</u></b><br>
+     * Every constants declared in this class have a name matching exactly the field names in
+     * {@link TestCase} subclasses. This is a departure from the usual <cite>"all upper-case
+     * letters"</cite> convention, but make the relationship with fields more obvious
+     * and the parsing of {@link java.util.Properties} files easier.</p>
+     *
+     * @param  <T>  the type of values associated with the key.
      */
     public static final class Key<T> extends CodeList<Key<?>> {
         /**
@@ -89,6 +213,29 @@ public final class Configuration {
          * any key that the user may have created. Must be declared before any key declaration.
          */
         private static final List<Key<?>> VALUES = new ArrayList<>(32);
+
+        /**
+         * Whether the {@link InternationalString} instances can support more than one {@link java.util.Locale}.
+         * If {@code false}, then the factory method may retain only one locale among the set of user-provided
+         * localized strings.
+         *
+         * @see org.opengis.test.util.NameTest#isMultiLocaleSupported
+         */
+        public static final Key<Boolean> isMultiLocaleSupported =
+                new Key<>(Boolean.class, "isMultiLocaleSupported");
+
+        /**
+         * Whether the {@link GenericName} instances can apply different syntax rules in different
+         * parts of their name. If {@code true}, then URI using different separators in different
+         * parts of their name (e.g. {@code ":"}, {@code "."}, {@code "/"} and {@code "#"}
+         * in {@code "http://www.opengis.net/gml/srs/epsg.xml#4326"}) are supported.
+         * If {@code false}, then only a single rule can be applied to the name as a whole
+         * (e.g. only the {@code ":"} separator is used in {@code "urn:ogc:def:crs:epsg:4326"}).
+         *
+         * @see org.opengis.test.util.NameTest#isMixedNameSyntaxSupported
+         */
+        public static final Key<Boolean> isMixedNameSyntaxSupported =
+                new Key<>(Boolean.class, "isMixedNameSyntaxSupported");
 
         /**
          * Whether the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getName()
@@ -118,6 +265,181 @@ public final class Configuration {
                 new Key<>(Boolean.class, "isDeprecatedObjectCreationSupported");
 
         /**
+         * Whether {@link MathTransform#transform(double[], int, double[], int, int)} is supported.
+         * Implementers can set the value for this key to {@code false} in order to test
+         * {@link MathTransform} instances which are not yet fully implemented.
+         */
+        public static final Key<Boolean> isDoubleToDoubleSupported =
+                new Key<>(Boolean.class, "isDoubleToDoubleSupported");
+
+        /**
+         * Whether {@link MathTransform#transform(float[], int, float[], int, int)} is supported.
+         * Implementers can set the value for this key to {@code false} in order to test
+         * {@link MathTransform} instances which are not yet fully implemented.
+         */
+        public static final Key<Boolean> isFloatToFloatSupported =
+                new Key<>(Boolean.class, "isFloatToFloatSupported");
+
+        /**
+         * Whether {@link MathTransform#transform(double[], int, float[], int, int)} is supported.
+         * Implementers can set the value for this key to {@code false} in order to test
+         * {@link MathTransform} instances which are not yet fully implemented.
+         */
+        public static final Key<Boolean> isDoubleToFloatSupported =
+                new Key<>(Boolean.class, "isDoubleToFloatSupported");
+
+        /**
+         * Whether {@link MathTransform#transform(float[], int, double[], int, int)} is supported.
+         * Implementers can set the value for this key to {@code false} in order to test
+         * {@link MathTransform} instances which are not yet fully implemented.
+         */
+        public static final Key<Boolean> isFloatToDoubleSupported =
+                new Key<>(Boolean.class, "isFloatToDoubleSupported");
+
+        /**
+         * Whether source and destination arrays can overlap in {@link MathTransform} operations.
+         * Overlapping occur when:
+         *
+         * <ul>
+         *   <li>The invoked method is one of the following:
+         *     <ul>
+         *       <li>{@link MathTransform#transform(double[], int, double[], int, int)}</li>
+         *       <li>{@link MathTransform#transform(float[], int, float[], int, int)}</li>
+         *     </ul></li>
+         *   <li>The {@code srcPts} and {@code dstPts} arguments are references to the same array.</li>
+         *   <li>The {@code srcOff} and {@code dstOff} offsets are such that the source region of
+         *       the array overlaps with the target region.</li>
+         * </ul>
+         *
+         * @see org.opengis.test.referencing.TransformTestCase#isOverlappingArraySupported
+         */
+        public static final Key<Boolean> isOverlappingArraySupported =
+                new Key<>(Boolean.class, "isOverlappingArraySupported");
+
+        /**
+         * Whether {@link MathTransform#inverse()} is supported.
+         * Implementers can set the value for this key to {@code false} in order to test
+         * {@link MathTransform} instances which are not yet fully implemented.
+         */
+        public static final Key<Boolean> isInverseTransformSupported =
+                new Key<>(Boolean.class, "isInverseTransformSupported");
+
+        /**
+         * Whether {@link MathTransform#derivative(DirectPosition)} is supported.
+         * Implementers can set the value for this key to {@code false} in order to test
+         * {@link MathTransform} instances which are not yet fully implemented.
+         */
+        public static final Key<Boolean> isDerivativeSupported =
+                new Key<>(Boolean.class, "isDerivativeSupported");
+
+        /**
+         * Whether {@link MathTransformFactory#createAffineTransform(Matrix)} accepts non-square matrixes.
+         */
+        public static final Key<Boolean> isNonSquareMatrixSupported =
+                new Key<>(Boolean.class, "isNonSquareMatrixSupported");
+
+        /**
+         * Whether {@link MathTransformFactory} can create transforms between spaces that are
+         * not two-dimensional. If {@code true}, then the tested spaces may be one-dimensional
+         * (typically elevation or time), three-dimensional or four-dimensional.
+         */
+        public static final Key<Boolean> isNonBidimensionalSpaceSupported =
+                new Key<>(Boolean.class, "isNonBidimensionalSpaceSupported");
+
+        /**
+         * Whether (<var>y</var>,<var>x</var>) axis order is supported. This axis swapping is not
+         * supported, then the tests that would normally expect (<var>y</var>,<var>x</var>) axis
+         * order or <cite>South Oriented</cite> CRS will rather use the (<var>x</var>,<var>y</var>)
+         * axis order and <cite>North Oriented</cite> CRS in their test.
+         */
+        public static final Key<Boolean> isAxisSwappingSupported =
+                new Key<>(Boolean.class, "isAxisSwappingSupported");
+
+        /**
+         * Whether the test methods can invoke a <code>{@linkplain TestCase#validators validators}.validate(…)}</code>
+         * method. GeoAPI allows to disable the validation checks in some tests where strict conformance to a standard
+         * is relaxed.
+         *
+         * <div class="note"><b>Example:</b>
+         * ISO 19111 (the <cite>referencing by coordinates</cite> abstract model) specifies that the name of
+         * the latitude axis in a geographic CRS shall be <cite>"Geodetic latitude"</cite> while ISO 19162
+         * (a.k.a <cite>Well Known Text 2</cite>) specifies <cite>"Latitude"</cite>. Consequently the GeoAPI
+         * conformance module allows implementer to disable the check for ISO 19111 conformance if their WKT
+         * parser does not adapt the parsed CRS objects to the ISO 19111 axis naming.</div>
+         */
+        public static final Key<Boolean> isValidationEnabled =
+                new Key<>(Boolean.class, "isValidationEnabled");
+
+        /**
+         * Whether the tolerance threshold of a {@link org.opengis.test.referencing.TransformTestCase}
+         * has been relaxed. This information is determined after test execution.
+         */
+        public static final Key<Boolean> isToleranceRelaxed =
+                new Key<>(Boolean.class, "isToleranceRelaxed");
+
+        /**
+         * The provider of {@linkplain Units units} to use for tests. If this configuration hint
+         * is not specified, then the {@linkplain Units#getDefault() default instance} is used.
+         */
+        public static final Key<Units> units = new Key<>(Units.class, "units");
+
+        /**
+         * The {@linkplain MathTransformFactory Math Transform factory} instance used for a test.
+         */
+        public static final Key<MathTransformFactory> mtFactory =
+                new Key<>(MathTransformFactory.class, "mtFactory");
+
+        /**
+         * The {@linkplain CoordinateOperationFactory Coordinate Operation factory} instance used for a test.
+         */
+        public static final Key<CoordinateOperationFactory> copFactory =
+                new Key<>(CoordinateOperationFactory.class, "copFactory");
+
+        /**
+         * The {@linkplain CoordinateOperationAuthorityFactory Coordinate Operation authority factory}
+         * instance used for a test.
+         */
+        public static final Key<CoordinateOperationAuthorityFactory> copAuthorityFactory =
+                new Key<>(CoordinateOperationAuthorityFactory.class, "copAuthorityFactory");
+
+        /**
+         * The {@linkplain CRSFactory Coordinate Reference System factory} instance used for a test.
+         */
+        public static final Key<CRSFactory> crsFactory =
+                new Key<>(CRSFactory.class, "crsFactory");
+
+        /**
+         * The {@linkplain CRSAuthorityFactory Coordinate Reference System authority factory}
+         * instance used for a test.
+         */
+        public static final Key<CRSAuthorityFactory> crsAuthorityFactory =
+                new Key<>(CRSAuthorityFactory.class, "crsAuthorityFactory");
+
+        /**
+         * The {@linkplain CSFactory Coordinate System factory} instance used for a test.
+         */
+        public static final Key<CSFactory> csFactory =
+                new Key<>(CSFactory.class, "csFactory");
+
+        /**
+         * The {@linkplain CSAuthorityFactory Coordinate System authority factory} instance used for a test.
+         */
+        public static final Key<CSAuthorityFactory> csAuthorityFactory =
+                new Key<>(CSAuthorityFactory.class, "csAuthorityFactory");
+
+        /**
+         * The {@linkplain DatumFactory Datum factory} instance used for a test.
+         */
+        public static final Key<DatumFactory> datumFactory =
+                new Key<>(DatumFactory.class, "datumFactory");
+
+        /**
+         * The {@linkplain DatumAuthorityFactory Datum authority factory} instance used for a test.
+         */
+        public static final Key<DatumAuthorityFactory> datumAuthorityFactory =
+                new Key<>(DatumAuthorityFactory.class, "datumAuthorityFactory");
+
+        /**
          * Whether the objects created by the tested {@link org.opengis.referencing.ObjectFactory} use the
          * specified values <i>as-is</i>. This flag should be set to {@code false} if the factory performs
          * any of the following operations:
@@ -138,6 +460,14 @@ public final class Configuration {
                 new Key<>(Boolean.class, "isFactoryPreservingUserValues");
 
         /**
+         * The set of {@link Validator} instances to use for validating objects.
+         * If no value is provided for this key, then the system-wide
+         * {@linkplain Validators#DEFAULT default validators} are used.
+         */
+        public static final Key<ValidatorContainer> validators =
+                new Key<>(ValidatorContainer.class, "validators");
+
+        /**
          * The type of values associated to this key.
          */
         private final Class<T> type;
@@ -152,6 +482,39 @@ public final class Configuration {
         private Key(final Class<T> type, final String name) {
             super(name, VALUES);
             this.type = type;
+        }
+
+        /**
+         * Returns the key that matches the given name, or returns a new one if none match it.
+         * If no existing instance is found, then a new one is created for the given name and
+         * type.
+         *
+         * @param  <T>   the type of the key to fetch.
+         * @param  type  the type of the key to fetch.
+         * @param  name  the name of the key to fetch or to create.
+         * @return a key matching the given name.
+         * @throws NullPointerException if the given name or type is {@code null}.
+         * @throws ClassCastException if a key is found but the type is not assignable to the given type.
+         */
+        @SuppressWarnings("unchecked")
+        public static <T> Key<? extends T> valueOf(final String name, final Class<T> type) {
+            Objects.requireNonNull(type, "type");
+            final Key<?> key = valueOf(Key.class, new Filter() {
+                @Override public boolean accept(CodeList<?> code) {
+                    return name.equals(code.name());
+                }
+
+                @Override public String codename() {
+                    return null;
+                }
+            });
+            if (key != null) {
+                if (!type.isAssignableFrom(key.type)) {
+                    throw new ClassCastException(key.type.getName());
+                }
+                return (Key) key;
+            }
+            return new Key<>(type, name);
         }
 
         /**

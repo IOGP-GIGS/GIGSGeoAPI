@@ -63,4 +63,11 @@ final class EPSGMock extends PseudoEpsgFactory {
     {
         super(units, datumFactory, csFactory, null, null, null, validators);
     }
+
+    /**
+     * Returns the coordinate system factory specified at construction time.
+     */
+    CSFactory getCSFactory() {
+        return csFactory;
+    }
 }

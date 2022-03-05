@@ -117,6 +117,28 @@ public class Test3003 extends Series3000<PrimeMeridian> {
     }
 
     /**
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     *
+     * <ul>
+     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *     <ul>
+     *       <li>{@link #isFactoryPreservingUserValues}</li>
+     *       <li>{@linkplain #datumFactory}</li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @return the configuration of the test being run.
+     */
+    @Override
+    Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.datumFactory, datumFactory));
+        return op;
+    }
+
+    /**
      * Sets the prime meridian instance to verify. This method is invoked only by other test classes
      * which need to verify the prime meridian contained in a geodetic datum instead of the prime
      * meridian immediately after creation.

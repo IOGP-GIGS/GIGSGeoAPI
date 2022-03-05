@@ -143,6 +143,31 @@ public class Test2006 extends Series2000<ProjectedCRS> {
     }
 
     /**
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     *
+     * <ul>
+     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *     <ul>
+     *       <li>{@link #isStandardNameSupported}</li>
+     *       <li>{@link #isStandardAliasSupported}</li>
+     *       <li>{@link #isDependencyIdentificationSupported}</li>
+     *       <li>{@link #isDeprecatedObjectCreationSupported}</li>
+     *       <li>{@link #crsAuthorityFactory}</li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @return the configuration of the test being run.
+     */
+    @Override
+    Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.crsAuthorityFactory, crsAuthorityFactory));
+        return op;
+    }
+
+    /**
      * Returns the projected CRS instance to be tested. When this method is invoked for the first time, it creates the
      * CRS to test by invoking the {@link CRSAuthorityFactory#createProjectedCRS(String)} method with the current
      * {@link #code} value in argument. The created object is then cached and returned in all subsequent invocations

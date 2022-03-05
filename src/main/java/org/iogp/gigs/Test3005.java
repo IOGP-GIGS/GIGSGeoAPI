@@ -45,6 +45,7 @@ import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.SingleOperation;
+import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.Test;
 
 import static org.junit.Assume.*;
@@ -136,6 +137,30 @@ public class Test3005 extends Series3000<Conversion> {
     public Test3005(final CoordinateOperationFactory copFactory, final MathTransformFactory mtFactory) {
         this.copFactory = copFactory;
         this.mtFactory = mtFactory;
+    }
+
+    /**
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     *
+     * <ul>
+     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *     <ul>
+     *       <li>{@link #isFactoryPreservingUserValues}</li>
+     *       <li>{@linkplain #copFactory}</li>
+     *       <li>{@linkplain #mtFactory}</li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @return the configuration of the test being run.
+     */
+    @Override
+    public Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.copFactory, copFactory));
+        assertNull(op.put(Configuration.Key.mtFactory,  mtFactory));
+        return op;
     }
 
     /**

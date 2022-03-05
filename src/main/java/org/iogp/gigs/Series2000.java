@@ -32,8 +32,8 @@
 package org.iogp.gigs;
 
 import java.util.Collection;
-import org.opengis.util.FactoryException;
 import org.opengis.util.GenericName;
+import org.opengis.util.FactoryException;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ReferenceIdentifier;
@@ -133,6 +133,33 @@ public abstract class Series2000<T> extends IntegrityTest {
         isStandardAliasSupported            = isEnabled[1];
         isDependencyIdentificationSupported = isEnabled[2];
         isDeprecatedObjectCreationSupported = isEnabled[3];
+    }
+
+    /**
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     *
+     * <ul>
+     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *     <ul>
+     *       <li>{@link #isStandardNameSupported}</li>
+     *       <li>{@link #isStandardAliasSupported}</li>
+     *       <li>{@link #isDependencyIdentificationSupported}</li>
+     *       <li>The factories used by the test (provided by subclasses)</li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @return the configuration of the test being run.
+     */
+    @Override
+    Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.isStandardNameSupported,             isStandardNameSupported));
+        assertNull(op.put(Configuration.Key.isStandardAliasSupported,            isStandardAliasSupported));
+        assertNull(op.put(Configuration.Key.isDependencyIdentificationSupported, isDependencyIdentificationSupported));
+        assertNull(op.put(Configuration.Key.isDeprecatedObjectCreationSupported, isDeprecatedObjectCreationSupported));
+        return op;
     }
 
     /**

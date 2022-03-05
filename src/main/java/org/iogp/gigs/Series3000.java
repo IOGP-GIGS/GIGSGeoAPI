@@ -102,6 +102,28 @@ public abstract class Series3000<T> extends IntegrityTest {
     }
 
     /**
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     *
+     * <ul>
+     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *     <ul>
+     *       <li>{@link #isFactoryPreservingUserValues}</li>
+     *       <li>The factories used by the test (provided by subclasses)</li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @return the configuration of the test being run.
+     */
+    @Override
+    Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.isFactoryPreservingUserValues, isFactoryPreservingUserValues));
+        return op;
+    }
+
+    /**
      * Copies the configuration to the given test cases. This method is invoked when a test depends on other tests,
      * in which case the other tests need to be run with the same configuration in order to get data.
      *
