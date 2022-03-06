@@ -218,8 +218,6 @@ public final class Configuration {
          * Whether the {@link InternationalString} instances can support more than one {@link java.util.Locale}.
          * If {@code false}, then the factory method may retain only one locale among the set of user-provided
          * localized strings.
-         *
-         * @see org.opengis.test.util.NameTest#isMultiLocaleSupported
          */
         public static final Key<Boolean> isMultiLocaleSupported =
                 new Key<>(Boolean.class, "isMultiLocaleSupported");
@@ -231,8 +229,6 @@ public final class Configuration {
          * in {@code "http://www.opengis.net/gml/srs/epsg.xml#4326"}) are supported.
          * If {@code false}, then only a single rule can be applied to the name as a whole
          * (e.g. only the {@code ":"} separator is used in {@code "urn:ogc:def:crs:epsg:4326"}).
-         *
-         * @see org.opengis.test.util.NameTest#isMixedNameSyntaxSupported
          */
         public static final Key<Boolean> isMixedNameSyntaxSupported =
                 new Key<>(Boolean.class, "isMixedNameSyntaxSupported");
@@ -310,8 +306,6 @@ public final class Configuration {
          *   <li>The {@code srcOff} and {@code dstOff} offsets are such that the source region of
          *       the array overlaps with the target region.</li>
          * </ul>
-         *
-         * @see org.opengis.test.referencing.TransformTestCase#isOverlappingArraySupported
          */
         public static final Key<Boolean> isOverlappingArraySupported =
                 new Key<>(Boolean.class, "isOverlappingArraySupported");

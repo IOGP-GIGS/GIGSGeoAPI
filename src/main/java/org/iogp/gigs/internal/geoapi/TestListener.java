@@ -33,6 +33,7 @@ package org.iogp.gigs.internal.geoapi;
 
 import java.util.Arrays;
 import java.util.EventListener;
+import org.junit.runner.notification.RunListener;
 
 
 /**
@@ -45,7 +46,7 @@ import java.util.EventListener;
  * @deprecated To be replaced by JUnit 5 listener mechanism.
  */
 @Deprecated
-public abstract class TestListener implements EventListener {
+public abstract class TestListener extends RunListener implements EventListener {
     /**
      * The test listeners. We intentionally copy the full array every time a listener is
      * added or removed. We do not clone the array used by the {@link #listener} field,
@@ -117,14 +118,16 @@ public abstract class TestListener implements EventListener {
      *
      * @param event  a description of the test which is about to be run.
      */
-    public abstract void starting(TestEvent event);
+    public void starting(TestEvent event) {
+    }
 
     /**
      * Invoked when a test succeeds.
      *
      * @param event  a description of the test which has been run.
      */
-    public abstract void succeeded(TestEvent event);
+    public void succeeded(TestEvent event) {
+    }
 
     /**
      * Invoked when a test fails.
@@ -132,12 +135,14 @@ public abstract class TestListener implements EventListener {
      * @param event      a description of the test which has been run.
      * @param exception  the exception that occurred during the execution.
      */
-    public abstract void failed(TestEvent event, Throwable exception);
+    public void failed(TestEvent event, Throwable exception) {
+    }
 
     /**
      * Invoked when a test method finishes (whether passing or failing).
      *
      * @param event  a description of the test which has been run.
      */
-    public abstract void finished(TestEvent event);
+    public void finished(TestEvent event) {
+    }
 }

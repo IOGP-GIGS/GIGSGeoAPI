@@ -56,10 +56,10 @@ import static org.junit.Assert.*;
 public abstract class ReferencingValidator extends Validator {
     /**
      * Provider of units of measurement (degree, metre, second, <i>etc</i>).
-     * This field is set to the {@linkplain Units#getDefault() default provider} for now
+     * This field is set to the {@link Units#getInstance() default provider} for now
      * (it may be revisited in a future GeoAPI-conformance version).
      */
-    final Units units = Units.getDefault();
+    final Units units = Units.getInstance();
 
     /**
      * Creates a new validator instance.

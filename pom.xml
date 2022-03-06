@@ -137,6 +137,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
+              <mainClass>org.iogp.gigs.runner.Launcher</mainClass>
             </manifest>
             <manifestEntries>
               <Specification-Title>GIGS</Specification-Title>
@@ -168,7 +169,7 @@
             <link>https://junit.org/junit4/javadoc/latest/</link>
             <link>http://www.geoapi.org/3.0/javadoc/</link>
           </links>
-          <excludePackageNames>org.iogp.gigs.internal*</excludePackageNames>
+          <excludePackageNames>org.iogp.gigs.internal:org.iogp.gigs.internal.*</excludePackageNames>
           <addStylesheets>gigs.css</addStylesheets>
         </configuration>
       </plugin>

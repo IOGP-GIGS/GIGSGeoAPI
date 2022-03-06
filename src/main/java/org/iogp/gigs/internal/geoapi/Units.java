@@ -31,6 +31,7 @@
  */
 package org.iogp.gigs.internal.geoapi;
 
+import java.util.ServiceLoader;
 import javax.measure.Unit;
 import javax.measure.quantity.Time;
 import javax.measure.quantity.Angle;
@@ -53,9 +54,9 @@ public class Units extends PseudoFactory {
     /**
      * The default instance, created when first needed.
      *
-     * @see #getDefault()
+     * @see #getInstance()
      */
-    private static Units DEFAULT;
+    private static Units instance;
 
     /**
      * Linear units used in the tests.
@@ -111,11 +112,33 @@ public class Units extends PseudoFactory {
      *
      * @return the default units factory.
      */
-    public static synchronized Units getDefault() {
-        if (DEFAULT == null) {
-            DEFAULT = new Units(ServiceProvider.current().getSystemOfUnitsService().getSystemOfUnits());
+    public static synchronized Units getInstance() {
+        if (instance == null) {
+            setInstance(ServiceProvider.current());
         }
-        return DEFAULT;
+        return instance;
+    }
+
+    /**
+     * Initializes {@link #instance} using the given unit service provider.
+     */
+    private static void setInstance(final ServiceProvider provider) {
+        instance = new Units(provider.getSystemOfUnitsService().getSystemOfUnits());
+    }
+
+    /**
+     * Sets the units factory by loading the first service provider found using the given class loader.
+     *
+     * @param  loader  the class loader to use for initializing the instance, or {@code null} to reset the default.
+     */
+    public static synchronized void setInstance(final ClassLoader loader) {
+        if (loader != null) {
+            for (final ServiceProvider provider : ServiceLoader.load(ServiceProvider.class, loader)) {
+                setInstance(provider);
+                return;
+            }
+        }
+        instance = null;
     }
 
     /**

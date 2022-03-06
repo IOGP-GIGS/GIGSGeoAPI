@@ -99,7 +99,7 @@ abstract class TestCaseGeoAPI {
      * Creates a new test.
      */
     TestCaseGeoAPI() {
-        units = Units.getDefault();
+        units = Units.getInstance();
         validators = ValidatorContainer.DEFAULT;
     }
 
@@ -122,17 +122,7 @@ abstract class TestCaseGeoAPI {
 
     /**
      * Returns information about the configuration of the test which has been run.
-     * The content of this map depends on the {@code TestCase} subclass and on the
-     * values returned by the {@link ImplementationDetails#configuration(Factory[])}
-     * method for the factories being tested. For a description of the map content,
-     * see any of the following subclasses:
-     *
-     * <ul>
-     *   <li>{@link org.opengis.test.referencing.AffineTransformTest#configuration()}</li>
-     *   <li>{@link org.opengis.test.referencing.ParameterizedTransformTest#configuration()}</li>
-     *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest#configuration()}</li>
-     *   <li>{@link org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#configuration()}</li>
-     * </ul>
+     * The content of this map depends on the {@code TestCase} subclass.
      *
      * @return the configuration of the test being run, or an empty map if none.
      *         This method returns a modifiable map in order to allow subclasses to modify it.
@@ -194,7 +184,7 @@ abstract class TestCaseGeoAPI {
             final Configuration.Key<Boolean> tip = configurationTip;
             if (tip != null) {
                 event.configurationTip = tip;
-                final Logger logger = Logger.getLogger("org.opengis.test");
+                final Logger logger = Logger.getLogger("org.iogp.gigs");
                 final LogRecord record = new LogRecord(Level.INFO, "A test failure occurred while "
                         + "testing an optional feature. To skip that part of the test, set the '"
                         + tip.name() + "' boolean field to false or specify that value in the "
