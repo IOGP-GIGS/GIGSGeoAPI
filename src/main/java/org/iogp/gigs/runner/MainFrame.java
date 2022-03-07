@@ -42,6 +42,7 @@ import java.util.concurrent.ExecutionException;
 
 import java.awt.Desktop;
 import java.awt.BorderLayout;
+import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -49,7 +50,6 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
 import javax.swing.JOptionPane;
-import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -57,7 +57,6 @@ import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableColumnModel;
 
 import org.iogp.gigs.internal.TestSuite;
@@ -209,13 +208,15 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
     @Override
     public void run() {
         final String directory = preferences.get(JAR_DIRECTORY_KEY, null);
-        final JFileChooser chooser = new JFileChooser(directory != null ? new File(directory) : null);
-        chooser.setDialogTitle("Select a GeoAPI implementation");
-        chooser.setFileFilter(new FileNameExtensionFilter("Java Archive Files", "jar"));
-        chooser.setMultiSelectionEnabled(true);
-        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            preferences.put(JAR_DIRECTORY_KEY, chooser.getCurrentDirectory().getPath());
-            new Loader(chooser.getSelectedFiles()).execute();
+        final FileDialog chooser = new FileDialog(this, "Select a GeoAPI implementation");
+        chooser.setDirectory(directory);
+        chooser.setFilenameFilter((file, name) -> name.endsWith(".jar"));
+        chooser.setMultipleMode(true);
+        chooser.setVisible(true);
+        final File[] files = chooser.getFiles();
+        if (files.length != 0) {
+            preferences.put(JAR_DIRECTORY_KEY, chooser.getDirectory());
+            new Loader(files).execute();
         }
     }
 
@@ -345,8 +346,10 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
             } catch (InterruptedException e) {
                 // Should not happen at this point.
             } catch (ExecutionException e) {
-                JOptionPane.showMessageDialog(MainFrame.this,
-                        "An error occurred while processing the JAR files: " + e.getCause(),
+                String message = e.getCause().toString().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+                message = "<html><body><p style='width: 600px;'>An error occurred while processing the JAR files:</p>"
+                        + "<p style='width: 600px;'>" + message + "</p></body></html>";
+                JOptionPane.showMessageDialog(MainFrame.this, message,
                         "Can not use the JAR files", JOptionPane.ERROR_MESSAGE);
             }
         }
