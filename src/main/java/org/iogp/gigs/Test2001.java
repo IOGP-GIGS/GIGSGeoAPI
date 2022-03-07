@@ -40,10 +40,9 @@ import org.opengis.referencing.cs.CSAuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.geoapi.Units;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -193,14 +192,13 @@ public class Test2001 extends Series2000<Unit<?>> {
      */
     private UnitConverter createConverter() throws FactoryException {
         final Unit<?> unit = getIdentifiedObject();
-        assertNotNull("Unit", unit);
-        final UnitConverter converter;
+        assertNotNull(unit, "Unit");
         try {
-            converter = unit.getConverterToAny(baseUnit);
+            return unit.getConverterToAny(baseUnit);
         } catch (IncommensurableException e) {
-            throw new AssertionError("Can not convert “" + name + "” from “" + unit + "” to “" + baseUnit + "”.", e);
+            fail("Can not convert “" + name + "” from “" + unit + "” to “" + baseUnit + "”.", e);
+            throw new AssertionError();
         }
-        return converter;
     }
 
     /**
@@ -212,12 +210,12 @@ public class Test2001 extends Series2000<Unit<?>> {
     private void verifyLinearConversions(final UnitConverter converter) {
         final Random random = new Random();
         final double tolerance = TOLERANCE * unitToBase;
-        assertEquals(name, 0, converter.convert(0), tolerance);
-        assertEquals(name,  unitToBase, converter.convert( 1), tolerance);
-        assertEquals(name, -unitToBase, converter.convert(-1), tolerance);
+        assertEquals(0, converter.convert(0), tolerance, name);
+        assertEquals( unitToBase, converter.convert( 1), tolerance, name);
+        assertEquals(-unitToBase, converter.convert(-1), tolerance, name);
         for (double sample = -90; sample <= 90; sample += 4*random.nextDouble()) {
             final double expected = sample * unitToBase;
-            assertEquals(name, expected, converter.convert(sample), tolerance);
+            assertEquals(expected, converter.convert(sample), tolerance, name);
         }
     }
 
@@ -720,14 +718,14 @@ public class Test2001 extends Series2000<Unit<?>> {
         baseUnit   = units.degree();
         final UnitConverter converter = createConverter();
         final double tolerance = 10*TOLERANCE;
-        assertEquals(name,  10.00, converter.convert( 10.0000), tolerance);
-        assertEquals(name, -10.00, converter.convert(-10.0000), tolerance);
-        assertEquals(name,  20.01, converter.convert( 20.0036), tolerance);
-        assertEquals(name, -20.01, converter.convert(-20.0036), tolerance);
-        assertEquals(name,  30.50, converter.convert( 30.3000), tolerance);
-        assertEquals(name, -30.50, converter.convert(-30.3000), tolerance);
-        assertEquals(name,  40.99, converter.convert( 40.5924), tolerance);
-        assertEquals(name, -40.99, converter.convert(-40.5924), tolerance);
+        assertEquals( 10.00, converter.convert( 10.0000), tolerance, name);
+        assertEquals(-10.00, converter.convert(-10.0000), tolerance, name);
+        assertEquals( 20.01, converter.convert( 20.0036), tolerance, name);
+        assertEquals(-20.01, converter.convert(-20.0036), tolerance, name);
+        assertEquals( 30.50, converter.convert( 30.3000), tolerance, name);
+        assertEquals(-30.50, converter.convert(-30.3000), tolerance, name);
+        assertEquals( 40.99, converter.convert( 40.5924), tolerance, name);
+        assertEquals(-40.99, converter.convert(-40.5924), tolerance, name);
     }
 
     /**

@@ -32,7 +32,6 @@
 package org.iogp.gigs.internal.geoapi;
 
 import java.util.Collection;
-
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.ReferenceIdentifier;
@@ -40,7 +39,7 @@ import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystem;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -100,36 +99,10 @@ public final strictfp class Assert {
     }
 
     /**
-     * Asserts that the given value is an instance of the given class. No tests are performed if
-     * the type is {@code null}. If the type is not-null but the value is null, this is considered
-     * as a failure.
-     *
-     * @param message       header of the exception message in case of failure, or {@code null} if none.
-     * @param expectedType  the expected parent class of the value, or {@code null} if unrestricted.
-     * @param value         the value to test, or {@code null} (which is a failure).
-     */
-    public static void assertInstanceOf(final String message, final Class<?> expectedType, final Object value) {
-        if (expectedType != null && !expectedType.isInstance(value)) {
-            if (value == null) {
-                fail(nonNull(message) + "Value is null.");
-            } else {
-                String expectedName = expectedType.getSimpleName();
-                String actualName = value.getClass().getSimpleName();
-                if (expectedName.equals(actualName)) {
-                    expectedName = expectedType.getCanonicalName();
-                    actualName = value.getClass().getCanonicalName();
-                }
-                fail(nonNull(message) + "Value \"" + value + "\" is of type " + actualName +
-                        " while the expected type was " + expectedName + " or a subtype.");
-            }
-        }
-    }
-
-    /**
      * Asserts that the given integer value is positive, including zero.
      *
      * @param message  header of the exception message in case of failure, or {@code null} if none.
-     * @param value   The value to test.
+     * @param value    the value to test.
      */
     public static void assertPositive(final String message, final int value) {
         if (value < 0) {
@@ -407,10 +380,10 @@ public final strictfp class Assert {
     public static void assertAxisDirectionsEqual(String message,
             final CoordinateSystem cs, final AxisDirection... expected)
     {
-        assertEquals(concat(message, "Wrong coordinate system dimension."), expected.length, cs.getDimension());
+        assertEquals(expected.length, cs.getDimension(), concat(message, "Wrong coordinate system dimension."));
         message = concat(message, "Wrong axis direction.");
         for (int i=0; i<expected.length; i++) {
-            assertEquals(message, expected[i], cs.getAxis(i).getDirection());
+            assertEquals(expected[i], cs.getAxis(i).getDirection(), message);
         }
     }
 
@@ -428,8 +401,8 @@ public final strictfp class Assert {
         }
         final int numRow = actual.getNumRow();
         final int numCol = actual.getNumCol();
-        assertEquals("numRow", expected.getNumRow(), numRow);
-        assertEquals("numCol", expected.getNumCol(), numCol);
+        assertEquals(expected.getNumRow(), numRow, "numRow");
+        assertEquals(expected.getNumCol(), numCol, "numCol");
         for (int j=0; j<numRow; j++) {
             for (int i=0; i<numCol; i++) {
                 final double e = expected.getElement(j,i);

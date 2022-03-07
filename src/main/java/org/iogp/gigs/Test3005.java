@@ -46,11 +46,9 @@ import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.SingleOperation;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
-import static org.iogp.gigs.internal.geoapi.Assert.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -212,8 +210,8 @@ public class Test3005 extends Series3000<Conversion> {
             fail("CoordinateOperationFactory.getOperationMethod(\"" + methodName + "\") shall not return null.");
         }
         validators.validate(method);
-        assertEquals("OperationMethod.getSourceDimensions()", Integer.valueOf(2), method.getSourceDimensions());
-        assertEquals("OperationMethod.getTargetDimensions()", Integer.valueOf(2), method.getTargetDimensions());
+        assertEquals(Integer.valueOf(2), method.getSourceDimensions(), "OperationMethod.getSourceDimensions()");
+        assertEquals(Integer.valueOf(2), method.getTargetDimensions(), "OperationMethod.getTargetDimensions()");
         definition = method.getParameters().createValue();
     }
 
@@ -231,8 +229,8 @@ public class Test3005 extends Series3000<Conversion> {
         if (conversion == null) {
             validators.validate(definition);
             final CoordinateOperation operation = copFactory.createDefiningConversion(properties, method, definition);
-            if (operation != null) {  // For consistency with the behavior in other classes.
-                assertInstanceOf(getName(), Conversion.class, operation);
+            if (operation != null) {            // For consistency with the behavior in other classes.
+                assertInstanceOf(Conversion.class, operation, getName());
                 conversion = (Conversion) operation;
             }
         }
@@ -251,7 +249,7 @@ public class Test3005 extends Series3000<Conversion> {
         final String name = getName();
         final String code = getCode();
         final Conversion conversion = getIdentifiedObject();
-        assertNotNull("Conversion", conversion);
+        assertNotNull(conversion, "Conversion");
         validators.validate(conversion);
         verifyIdentification(conversion, name, code);
         /*
@@ -260,7 +258,7 @@ public class Test3005 extends Series3000<Conversion> {
          * additional parameters, then those extra parameters will be ignored.
          */
         final ParameterValueGroup projectionParameters = conversion.getParameterValues();
-        assertNotNull("Conversion.getParameterValues()", projectionParameters);
+        assertNotNull(projectionParameters, "Conversion.getParameterValues()");
         if (isFactoryPreservingUserValues) {
             for (final GeneralParameterValue info : definition.values()) {
                 final String paramName = getName(info.getDescriptor());
@@ -277,9 +275,9 @@ public class Test3005 extends Series3000<Conversion> {
                 if (info instanceof ParameterValue<?>) {
                     final ParameterValue<?> expected = (ParameterValue<?>) info;
                     final ParameterValue<?> param = projectionParameters.parameter(paramName);
-                    assertNotNull(paramName, param);
+                    assertNotNull(param, paramName);
                     final double value = expected.doubleValue();
-                    assertEquals(paramName, value, param.doubleValue(expected.getUnit()), StrictMath.abs(TOLERANCE * value));
+                    assertEquals(value, param.doubleValue(expected.getUnit()), StrictMath.abs(TOLERANCE * value), paramName);
                 }
             }
         }

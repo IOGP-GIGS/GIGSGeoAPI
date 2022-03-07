@@ -31,19 +31,11 @@
  */
 package org.iogp.gigs;
 
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
 import org.opengis.util.Factory;
 import org.iogp.gigs.internal.geoapi.Units;
 import org.iogp.gigs.internal.geoapi.Validator;
 import org.iogp.gigs.internal.geoapi.ValidatorContainer;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.iogp.gigs.internal.geoapi.TestListener;
-import org.iogp.gigs.internal.geoapi.TestEvent;
-import org.junit.Rule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
 
 
 /**
@@ -133,81 +125,4 @@ abstract class TestCaseGeoAPI {
         configuration.put(Configuration.Key.validators, validators);
         return configuration;
     }
-
-    /**
-     * A JUnit {@linkplain Rule rule} for listening to test execution events.
-     *
-     * <p>This field is public because JUnit requires us to do so, but should be considered
-     * as an implementation details (it should have been a private field).</p>
-     *
-     * @deprecated To be replaced by JUnit 5 listener mechanism.
-     */
-    @Rule
-    @Deprecated
-    public final TestWatcher listener = new TestWatcher() {
-        /**
-         * A snapshot of the test listeners. We make this snapshot at rule creation time
-         * in order to be sure that the same set of listeners is notified for all phases
-         * of the test method being run.
-         */
-        private final TestListener[] listeners = TestListener.getTestListeners();
-
-        /**
-         * Invoked when a test is about to start.
-         */
-        @Override
-        protected void starting(final Description description) {
-            final TestEvent event = new TestEvent(TestCaseGeoAPI.this, description);
-            for (final TestListener listener : listeners) {
-                listener.starting(event);
-            }
-        }
-
-        /**
-         * Invoked when a test succeeds.
-         */
-        @Override
-        protected void succeeded(final Description description) {
-            final TestEvent event = new TestEvent(TestCaseGeoAPI.this, description);
-            for (final TestListener listener : listeners) {
-                listener.succeeded(event);
-            }
-        }
-
-        /**
-         * Invoked when a test fails. If the failure occurred in an optional part of the test,
-         * logs an information message for helping the developer to disable that test if (s)he wishes.
-         */
-        @Override
-        protected void failed(final Throwable exception, final Description description) {
-            final TestEvent event = new TestEvent(TestCaseGeoAPI.this, description);
-            final Configuration.Key<Boolean> tip = configurationTip;
-            if (tip != null) {
-                event.configurationTip = tip;
-                final Logger logger = Logger.getLogger("org.iogp.gigs");
-                final LogRecord record = new LogRecord(Level.INFO, "A test failure occurred while "
-                        + "testing an optional feature. To skip that part of the test, set the '"
-                        + tip.name() + "' boolean field to false or specify that value in the "
-                        + "Configuration map.");
-                record.setLoggerName(logger.getName());
-                record.setSourceClassName(event.className);
-                record.setSourceMethodName(event.methodName);
-                logger.log(record);
-            }
-            for (final TestListener listener : listeners) {
-                listener.failed(event, exception);
-            }
-        }
-
-        /**
-         * Invoked when a test method finishes (whether passing or failing)
-         */
-        @Override
-        protected void finished(final Description description) {
-            final TestEvent event = new TestEvent(TestCaseGeoAPI.this, description);
-            for (final TestListener listener : listeners) {
-                listener.finished(event);
-            }
-        }
-    };
 }

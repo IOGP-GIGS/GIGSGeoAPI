@@ -37,10 +37,9 @@ import org.opengis.util.FactoryException;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.DatumFactory;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -210,19 +209,19 @@ public class Test3002 extends Series3000<Ellipsoid> {
         final String name = getName();
         final String code = getCode();
         final Ellipsoid ellipsoid = getIdentifiedObject();
-        assertNotNull("Ellipsoid", ellipsoid);
+        assertNotNull(ellipsoid, "Ellipsoid");
         validators.validate(ellipsoid);
 
         verifyFlattenedSphere(ellipsoid, name, semiMajorAxis, inverseFlattening, axisUnit);
         verifyIdentification(ellipsoid, name, code);
         if (isFactoryPreservingUserValues) {
             configurationTip = Configuration.Key.isFactoryPreservingUserValues;
-            assertEquals("Ellipsoid.getAxisUnit()",          axisUnit,          ellipsoid.getAxisUnit());
-            assertEquals("Ellipsoid.getSemiMajorAxis()",     semiMajorAxis,     ellipsoid.getSemiMajorAxis(),     TOLERANCE*semiMajorAxis);
-            assertEquals("Ellipsoid.getSemiMinorAxis()",     semiMinorAxis,     ellipsoid.getSemiMinorAxis(),     TOLERANCE*semiMinorAxis);
-            assertEquals("Ellipsoid.getInverseFlattening()", inverseFlattening, ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
-            assertEquals("Ellipsoid.isIvfDefinitive()",      isIvfDefinitive,   ellipsoid.isIvfDefinitive());
-            assertEquals("Ellipsoid.isSphere()",             isSphere,          ellipsoid.isSphere());
+            assertEquals(axisUnit,          ellipsoid.getAxisUnit(),                                       "Ellipsoid.getAxisUnit()");
+            assertEquals(semiMajorAxis,     ellipsoid.getSemiMajorAxis(),     TOLERANCE*semiMajorAxis,     "Ellipsoid.getSemiMajorAxis()");
+            assertEquals(semiMinorAxis,     ellipsoid.getSemiMinorAxis(),     TOLERANCE*semiMinorAxis,     "Ellipsoid.getSemiMinorAxis()");
+            assertEquals(inverseFlattening, ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening, "Ellipsoid.getInverseFlattening()");
+            assertEquals(isIvfDefinitive,   ellipsoid.isIvfDefinitive(),                                   "Ellipsoid.isIvfDefinitive()");
+            assertEquals(isSphere,          ellipsoid.isSphere(),                                          "Ellipsoid.isSphere()");
             configurationTip = null;
         }
     }

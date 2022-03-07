@@ -42,7 +42,7 @@ import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.metadata.Identifier;
 import org.opengis.util.GenericName;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -135,7 +135,7 @@ public abstract class ReferencingValidator extends Validator {
         if (identifiers != null) {
             validate(identifiers);
             for (final Identifier id : identifiers) {
-                assertNotNull("IdentifiedObject: getIdentifiers() can not contain null element.", id);
+                assertNotNull(id, "IdentifiedObject: getIdentifiers() can not contain null element.");
                 validate(id);
             }
         }
@@ -143,7 +143,7 @@ public abstract class ReferencingValidator extends Validator {
         if (alias != null) {
             validate(alias);
             for (final GenericName name : alias) {
-                assertNotNull("IdentifiedObject: getAlias() can not contain null element.", alias);
+                assertNotNull(alias, "IdentifiedObject: getAlias() can not contain null element.");
                 container.validate(name);
             }
         }

@@ -38,10 +38,9 @@ import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -169,7 +168,7 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      */
     private void verifyPrimeMeridian() throws FactoryException {
         final PrimeMeridian pm = getIdentifiedObject();
-        assertNotNull("PrimeMeridian", pm);
+        assertNotNull(pm, "PrimeMeridian");
         validators.validate(pm);
 
         // Prime meridian identifiers.
@@ -178,7 +177,7 @@ public class Test2003 extends Series2000<PrimeMeridian> {
         // Prime meridian name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("PrimeMeridian.getName()", name, getVerifiableName(pm));
+            assertEquals(name, getVerifiableName(pm), "PrimeMeridian.getName()");
             configurationTip = null;
         }
 
@@ -199,8 +198,7 @@ public class Test2003 extends Series2000<PrimeMeridian> {
         if (unit != null && !unit.equals(degree)) {
             longitude = degree.getConverterTo(unit).convert(longitude);
         }
-        assertEquals("PrimeMeridian.getGreenwichLongitude()", longitude,
-                pm.getGreenwichLongitude(), ANGULAR_TOLERANCE);
+        assertEquals(longitude, pm.getGreenwichLongitude(), ANGULAR_TOLERANCE, "PrimeMeridian.getGreenwichLongitude()");
     }
 
     /**

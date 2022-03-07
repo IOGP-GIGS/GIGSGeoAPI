@@ -109,14 +109,13 @@ final class ResultCellRenderer extends DefaultTableCellRenderer {
         Color background = this.background;
         boolean isIgnore = false;
         if (!isSelected) {
-            switch (entry.status) {
-                case IGNORED:
-                case ASSUMPTION_NOT_MET: {
+            switch (entry.result.getStatus()) {
+                case ABORTED: {
                     foreground = ignoreColor;
                     isIgnore = true;
                     break;
                 }
-                case FAILURE: {
+                case FAILED: {
                     foreground = failureColor;
                     break;
                 }

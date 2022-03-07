@@ -39,7 +39,7 @@ import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.IdentifiedObject;
 import org.iogp.gigs.internal.geoapi.Configuration;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -156,8 +156,8 @@ public abstract class Series3000<T> extends IntegrityTest {
      * @param  name  the name of the object to create.
      */
     final void setCodeAndName(final int code, final String name) {
-        assertNull(IdentifiedObject.NAME_KEY,        properties.put(IdentifiedObject.NAME_KEY, name));
-        assertNull(IdentifiedObject.IDENTIFIERS_KEY, properties.put(IdentifiedObject.IDENTIFIERS_KEY, new SimpleIdentifier(code)));
+        assertNull(properties.put(IdentifiedObject.NAME_KEY, name), IdentifiedObject.NAME_KEY);
+        assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new SimpleIdentifier(code)), IdentifiedObject.IDENTIFIERS_KEY);
     }
 
     /**

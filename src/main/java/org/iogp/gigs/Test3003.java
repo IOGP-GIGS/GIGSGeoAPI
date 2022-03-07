@@ -37,10 +37,9 @@ import org.opengis.util.FactoryException;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.opengis.referencing.datum.DatumFactory;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -179,15 +178,15 @@ public class Test3003 extends Series3000<PrimeMeridian> {
         final String name = getName();
         final String code = getCode();
         final PrimeMeridian primeMeridian = getIdentifiedObject();
-        assertNotNull("PrimeMeridian", primeMeridian);
+        assertNotNull(primeMeridian, "PrimeMeridian");
         validators.validate(primeMeridian);
 
         verifyPrimeMeridian(primeMeridian, name, greenwichLongitude, angularUnit);
         verifyIdentification(primeMeridian, name, code);
         if (isFactoryPreservingUserValues) {
             configurationTip = Configuration.Key.isFactoryPreservingUserValues;
-            assertEquals("PrimeMeridian.getAngularUnit()",        angularUnit,        primeMeridian.getAngularUnit());
-            assertEquals("PrimeMeridian.getGreenwichLongitude()", greenwichLongitude, primeMeridian.getGreenwichLongitude(), ANGULAR_TOLERANCE);
+            assertEquals(angularUnit, primeMeridian.getAngularUnit(), "PrimeMeridian.getAngularUnit()");
+            assertEquals(greenwichLongitude, primeMeridian.getGreenwichLongitude(), ANGULAR_TOLERANCE, "PrimeMeridian.getGreenwichLongitude()");
             configurationTip = null;
         }
     }

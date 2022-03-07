@@ -31,6 +31,7 @@
  */
 package org.iogp.gigs.runner;
 
+import java.net.URI;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -60,6 +61,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableColumnModel;
 
 import org.iogp.gigs.internal.TestSuite;
+import org.junit.platform.engine.TestSource;
+import org.junit.platform.engine.support.descriptor.MethodSource;
 
 
 /**
@@ -243,14 +246,19 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
             factories.entries     = Collections.emptyList();
             configuration.entries = Collections.emptyList();
         } else {
-            className  = entry.className;
-            methodName = entry.methodName;
-            switch (entry.status) {
-                case FAILURE: {
-                    if (entry.exception != null) {
+            final TestSource source = entry.identifier.getSource().orElse(null);
+            if (source instanceof MethodSource) {
+                final MethodSource ms = (MethodSource) source;
+                className  = ms.getClassName();
+                methodName = ms.getMethodName();
+            }
+            switch (entry.result.getStatus()) {
+                case FAILED: {
+                    final Throwable exception = entry.result.getThrowable().orElse(null);
+                    if (exception != null) {
                         final StringWriter buffer = new StringWriter();
                         final PrintWriter printer = new PrintWriter(buffer);
-                        entry.exception.printStackTrace(printer);
+                        exception.printStackTrace(printer);
                         printer.flush();
                         stacktrace = buffer.toString();
                     }
@@ -290,7 +298,10 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
     @Override
     public void actionPerformed(final ActionEvent event) {
         if (currentReport != null) try {
-            desktop.browse(currentReport.getJavadocURL());
+            final URI uri = currentReport.getJavadocURL();
+            if (uri != null) {
+                desktop.browse(uri);
+            }
         } catch (IOException e) {
             JOptionPane.showMessageDialog(MainFrame.this, e.toString(),
                     "Can not open the browser", JOptionPane.ERROR_MESSAGE);
@@ -320,7 +331,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
         protected Object doInBackground() throws IOException {
             final ImplementationManifest manifest = ImplementationManifest.parse(files);
             setManifest(manifest);
-            TestSuite.run(runner, manifest != null ? manifest.dependencies : files);
+            TestSuite.INSTANCE.run(runner, manifest != null ? manifest.dependencies : files);
             return null;
         }
 

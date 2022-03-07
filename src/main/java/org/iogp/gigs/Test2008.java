@@ -38,10 +38,10 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.datum.VerticalDatum;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 
 /**
@@ -194,7 +194,7 @@ public class Test2008 extends Series2000<VerticalCRS> {
             }
 
             // Datum validation.
-            assertNotNull("VerticalDatum", datum);
+            assertNotNull(datum, "VerticalDatum");
             validators.validate(datum);
 
             // Datum identifier. Important in order to distinguish datum.
@@ -203,7 +203,7 @@ public class Test2008 extends Series2000<VerticalCRS> {
             // Datum name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals("VerticalDatum.getName()", datumName, getVerifiableName(datum));
+                assertEquals(datumName, getVerifiableName(datum), "VerticalDatum.getName()");
                 configurationTip = null;
             }
         }
@@ -219,7 +219,7 @@ public class Test2008 extends Series2000<VerticalCRS> {
             final VerticalCRS crs = getIdentifiedObject();
 
             // CRS validation.
-            assertNotNull("VerticalCRS", crs);
+            assertNotNull(crs, "VerticalCRS");
             validators.validate(crs);
 
             // CRS identifier.
@@ -228,13 +228,13 @@ public class Test2008 extends Series2000<VerticalCRS> {
             // CRS name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals("VerticalCRS.getName()", name, getVerifiableName(crs));
+                assertEquals(name, getVerifiableName(crs), "VerticalCRS.getName()");
                 configurationTip = null;
             }
 
             // Datum associated to the CRS.
             final VerticalDatum datum = crs.getDatum();
-            assertNotNull("VerticalCRS.getDatum()", datum);
+            assertNotNull(datum, "VerticalCRS.getDatum()");
 
             // Datum identification.
             if (isDependencyIdentificationSupported) {
@@ -243,7 +243,7 @@ public class Test2008 extends Series2000<VerticalCRS> {
                         datumCode, datum.getIdentifiers());
 
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals("VerticalCRS.getDatum().getName()", datumName, getVerifiableName(datum));
+                assertEquals(datumName, getVerifiableName(datum), "VerticalCRS.getDatum().getName()");
                 configurationTip = null;
             }
         }

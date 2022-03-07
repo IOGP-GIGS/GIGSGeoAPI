@@ -39,7 +39,7 @@ import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.iogp.gigs.internal.geoapi.Configuration;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -219,7 +219,7 @@ public abstract class Series2000<T> extends IntegrityTest {
     static void assertContainsAll(final String message, final String[] expected,
             final Collection<GenericName> aliases)
     {
-        assertNotNull(message, aliases);
+        assertNotNull(aliases, message);
 next:   for (final String search : expected) {
             for (final GenericName alias : aliases) {
                 final String tip = alias.tip().toString();
@@ -243,19 +243,19 @@ next:   for (final String search : expected) {
     static void assertContainsCode(final String message, final String codespace, final int expected,
             final Collection<? extends ReferenceIdentifier> identifiers)
     {
-        assertNotNull(message, identifiers);
+        assertNotNull(identifiers, message);
         int found = 0;
         for (final ReferenceIdentifier id : identifiers) {
             if (codespace.equalsIgnoreCase(id.getCodeSpace().trim())) {
                 found++;
                 try {
-                    assertEquals(message, expected, Integer.parseInt(id.getCode()));
+                    assertEquals(expected, Integer.parseInt(id.getCode()), message);
                 } catch (NumberFormatException e) {
                     fail(message + ".getCode(): expected " + expected +
                             " but got a non-numerical value: " + e);
                 }
             }
         }
-        assertEquals(message + ": occurrence of " + codespace + ':' + expected, 1, found);
+        assertEquals(1, found, () -> message + ": occurrence of " + codespace + ':' + expected);
     }
 }

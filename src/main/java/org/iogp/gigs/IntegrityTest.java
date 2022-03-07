@@ -34,6 +34,7 @@ package org.iogp.gigs;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
+import org.opengis.util.Factory;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.cs.AxisDirection;
@@ -41,9 +42,13 @@ import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.PrimeMeridian;
-import org.junit.AssumptionViolatedException;
+import org.iogp.gigs.internal.TestSuite;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.iogp.gigs.internal.geoapi.Assert.assertUnicodeIdentifierEquals;
 
 
@@ -54,6 +59,7 @@ import static org.iogp.gigs.internal.geoapi.Assert.assertUnicodeIdentifierEquals
  * @version 1.0
  * @since   1.0
  */
+@TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public abstract class IntegrityTest extends TestCaseGeoAPI {
     /**
      * Relative tolerance factor from GIGS documentation.
@@ -70,9 +76,36 @@ public abstract class IntegrityTest extends TestCaseGeoAPI {
     static final double ANGULAR_TOLERANCE = 1E-7;
 
     /**
+     * The extension which will perform dependency injection. When a constructor an argument of the {@code FooFactory},
+     * the {@link TestSuite#resolveParameter resolveParameter(…)} method is invoked for providing the factory instance.
+     */
+    @RegisterExtension
+    static final TestSuite INJECTION = TestSuite.INSTANCE;
+
+    /**
      * Creates a new test.
      */
     IntegrityTest() {
+    }
+
+    /**
+     * Keeps a reference to the instance of the test which has been executed.
+     * It will be used for fetching configuration information if needed.
+     */
+    @AfterEach
+    final void reference() {
+        TestSuite.INSTANCE.executing = this;
+        TestSuite.INSTANCE.configurationTip = configurationTip;
+    }
+
+    /**
+     * Verifies that the given factory is not null.
+     * If null, the test is ignored.
+     *
+     * @param  factory  a factory required by the tests to execute.
+     */
+    static void assumeNotNull(final Factory factory) {
+        assumeTrue(factory != null);
     }
 
     /**
@@ -90,7 +123,7 @@ public abstract class IntegrityTest extends TestCaseGeoAPI {
         buffer.append(code);
         if (quote) buffer.append('"');
         buffer.append("] not supported.");
-        throw new AssumptionViolatedException(buffer.toString());
+        assumeTrue(false, buffer.toString());
     }
 
     /**
@@ -150,11 +183,10 @@ public abstract class IntegrityTest extends TestCaseGeoAPI {
                 assertUnicodeIdentifierEquals("Ellipsoid.getName().getCode()", name, getName(ellipsoid), true);
             }
             final Unit<Length> actualUnit = ellipsoid.getAxisUnit();
-            assertNotNull("Ellipsoid.getAxisUnit()", actualUnit);
-            assertEquals("Ellipsoid.getSemiMajorAxis()", semiMajor,
-                    actualUnit.getConverterTo(axisUnit).convert(ellipsoid.getSemiMajorAxis()),
-                    units.metre().getConverterTo(axisUnit).convert(5E-4));
-            assertEquals("Ellipsoid.getInverseFlattening()", inverseFlattening, ellipsoid.getInverseFlattening(), 5E-10);
+            assertNotNull(actualUnit, "Ellipsoid.getAxisUnit()");
+            assertEquals(semiMajor, actualUnit.getConverterTo(axisUnit).convert(ellipsoid.getSemiMajorAxis()),
+                         units.metre().getConverterTo(axisUnit).convert(5E-4), "Ellipsoid.getSemiMajorAxis()");
+            assertEquals(inverseFlattening, ellipsoid.getInverseFlattening(), 5E-10, "Ellipsoid.getInverseFlattening()");
         }
     }
 
@@ -190,10 +222,9 @@ public abstract class IntegrityTest extends TestCaseGeoAPI {
                 assertUnicodeIdentifierEquals("PrimeMeridian.getName().getCode()", name, getName(primeMeridian), true);
             }
             final Unit<Angle> actualUnit = primeMeridian.getAngularUnit();
-            assertNotNull("PrimeMeridian.getAngularUnit()", actualUnit);
-            assertEquals("PrimeMeridian.getGreenwichLongitude()", greenwichLongitude,
-                    actualUnit.getConverterTo(angularUnit).convert(primeMeridian.getGreenwichLongitude()),
-                    units.degree().getConverterTo(angularUnit).convert(5E-8));
+            assertNotNull(actualUnit, "PrimeMeridian.getAngularUnit()");
+            assertEquals(greenwichLongitude, actualUnit.getConverterTo(angularUnit).convert(primeMeridian.getGreenwichLongitude()),
+                         units.degree().getConverterTo(angularUnit).convert(5E-8), "PrimeMeridian.getGreenwichLongitude()");
         }
     }
 
@@ -216,12 +247,12 @@ public abstract class IntegrityTest extends TestCaseGeoAPI {
             final AxisDirection[] directions, final Unit<?>... axisUnits)
     {
         if (cs != null) {
-            assertEquals("CoordinateSystem.getDimension()", directions.length, cs.getDimension());
+            assertEquals(directions.length, cs.getDimension(), "CoordinateSystem.getDimension()");
             for (int i=0; i<directions.length; i++) {
                 final CoordinateSystemAxis axis = cs.getAxis(i);
-                assertNotNull("CoordinateSystem.getAxis(*)", axis);
-                assertEquals ("CoordinateSystem.getAxis(*).getDirection()", directions[i], axis.getDirection());
-                assertEquals ("CoordinateSystem.getAxis(*).getUnit()", axisUnits[Math.min(i, axisUnits.length-1)], axis.getUnit());
+                assertNotNull(axis, "CoordinateSystem.getAxis(*)");
+                assertEquals(directions[i], axis.getDirection(), "CoordinateSystem.getAxis(*).getDirection()");
+                assertEquals(axisUnits[Math.min(i, axisUnits.length-1)], axis.getUnit(), "CoordinateSystem.getAxis(*).getUnit()");
             }
         }
     }
@@ -264,7 +295,7 @@ public abstract class IntegrityTest extends TestCaseGeoAPI {
             }
             if (identifier != null) {
                 for (final Identifier id : object.getIdentifiers()) {
-                    assertNotNull("getName().getIdentifiers()", id);
+                    assertNotNull(id, "getName().getIdentifiers()");
                     if (identifier.equalsIgnoreCase(id.getCode())) {
                         return;
                     }

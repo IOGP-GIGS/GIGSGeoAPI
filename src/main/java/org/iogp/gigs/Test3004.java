@@ -49,10 +49,9 @@ import org.opengis.referencing.datum.PrimeMeridian;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.DatumFactory;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -198,7 +197,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
         if (crsFactory != null) {
             final GeographicCRS crs = crsFactory.createGeographicCRS(properties(crsCode, crsName),
                     getIdentifiedObject(), epsgFactory.createEllipsoidalCS(String.valueOf(csCode)));
-            assertNotNull("CRSFactory.createGeographicCRS(…) shall not return null.", crs);
+            assertNotNull(crs, "CRSFactory.createGeographicCRS(…) shall not return null.");
             validators.validate(crs);
             verifyIdentification(crs, crsName, String.valueOf(crsCode));
             /*
@@ -231,7 +230,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
         if (crsFactory != null) {
             final GeocentricCRS crs = crsFactory.createGeocentricCRS(properties(crsCode, crsName),
                     getIdentifiedObject(), epsgFactory.createCartesianCS(String.valueOf(csCode)));
-            assertNotNull("CRSFactory.createGeocentricCRS(…) shall not return null.", crs);
+            assertNotNull(crs, "CRSFactory.createGeocentricCRS(…) shall not return null.");
             validators.validate(crs);
             verifyIdentification(crs, crsName, String.valueOf(crsCode));
             verifyCoordinateSystem(crs.getCoordinateSystem(), CartesianCS.class, Test2004.GEOCENTRIC, units.metre());
@@ -251,7 +250,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
         final String code = getCode();
         final String anchorPoint = (String) properties.get(GeodeticDatum.ANCHOR_POINT_KEY);
         final GeodeticDatum datum = getIdentifiedObject();
-        assertNotNull("GeodeticDatum", datum);
+        assertNotNull(datum, "GeodeticDatum");
         validators.validate(datum);
 
         verifyIdentification(datum, name, code);
@@ -267,8 +266,8 @@ public class Test3004 extends Series3000<GeodeticDatum> {
 
         if (anchorPoint != null) {
             final InternationalString actual = datum.getAnchorPoint();
-            assertNotNull("GeodeticDatum.getAnchorPoint()", actual);
-            assertEquals ("GeodeticDatum.getAnchorPoint()", anchorPoint, actual.toString());
+            assertNotNull(actual, "GeodeticDatum.getAnchorPoint()");
+            assertEquals(anchorPoint, actual.toString(), "GeodeticDatum.getAnchorPoint()");
         }
     }
 
@@ -421,7 +420,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testGDA94() throws FactoryException {
         setCodeAndName(66006, "GIGS geodetic datum F");
-        assertNull(GeodeticDatum.ANCHOR_POINT_KEY, properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin F"));
+        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin F"), GeodeticDatum.ANCHOR_POINT_KEY);
         ellipsoidData.testGRS1980();
         primeMeridianData.testGreenwich();
         verifyDatum();
@@ -449,7 +448,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testETRS89() throws FactoryException {
         setCodeAndName(66007, "GIGS geodetic datum G");
-        assertNull(GeodeticDatum.ANCHOR_POINT_KEY, properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin G"));
+        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin G"), GeodeticDatum.ANCHOR_POINT_KEY);
         ellipsoidData.testGRS1980();
         primeMeridianData.testGreenwich();
         verifyDatum();
@@ -551,7 +550,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testBatavia() throws FactoryException {
         setCodeAndName(66011, "GIGS geodetic datum L");
-        assertNull(GeodeticDatum.ANCHOR_POINT_KEY, properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin L"));
+        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin L"), GeodeticDatum.ANCHOR_POINT_KEY);
         ellipsoidData.testBessel();
         primeMeridianData.testGreenwich();
         verifyDatum();
@@ -678,7 +677,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testNAD83() throws FactoryException {
         setCodeAndName(66015, "GIGS geodetic datum Z");
-        assertNull(GeodeticDatum.ANCHOR_POINT_KEY, properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin Z"));
+        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin Z"), GeodeticDatum.ANCHOR_POINT_KEY);
         ellipsoidData.testGRS1980();
         primeMeridianData.testGreenwich();
         verifyDatum();
@@ -929,7 +928,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testAmersfoort_p1() throws FactoryException {
         setCodeAndName(66018, "GIGS geodetic datum C′");
-        assertNull(GeodeticDatum.ANCHOR_POINT_KEY, properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin C"));
+        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin C"), GeodeticDatum.ANCHOR_POINT_KEY);
         ellipsoidData.testBessel();
         primeMeridianData.testGreenwich();
         verifyDatum();

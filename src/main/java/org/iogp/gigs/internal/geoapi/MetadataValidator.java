@@ -35,8 +35,7 @@ import java.util.Collection;
 import java.lang.reflect.Array;
 import org.opengis.util.InternationalString;
 
-import static org.junit.Assert.*;
-import static org.iogp.gigs.internal.geoapi.Assert.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -68,17 +67,17 @@ public abstract class MetadataValidator extends Validator {
      * @param objects      the collection to validate (never {@code null}).
      */
     final <T> T[] toArray(final Class<T> elementType, final Collection<? extends T> objects) {
-        assertNotNull("Null collection. Should be an empty one if there is no elements.", objects);
+        assertNotNull(objects, "Null collection. Should be an empty one if there is no elements.");
         validate(objects);
         @SuppressWarnings("unchecked")
         final T[] array = (T[]) Array.newInstance(elementType, objects.size());
         int count = 0;
         for (final T element : objects) {
-            assertNotNull("Collection should not contain null element.", element);
-            assertInstanceOf("Wrong element type in the collection.", elementType, element);
+            assertNotNull(element, "Collection should not contain null element.");
+            assertInstanceOf(elementType, element, "Wrong element type in the collection.");
             array[count++] = element;
         }
-        assertEquals("Unexpected end of iteration", array.length, count);
+        assertEquals(array.length, count, "Unexpected end of iteration");
         return array;
     }
 

@@ -42,15 +42,16 @@ import java.util.AbstractMap;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
-import org.junit.runner.Description;
-
 import org.opengis.util.Factory;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.iogp.gigs.internal.geoapi.TestEvent;
+import org.iogp.gigs.internal.TestSuite;
+import org.junit.platform.launcher.TestIdentifier;
+import org.junit.platform.engine.TestExecutionResult;
+import org.junit.platform.engine.TestSource;
+import org.junit.platform.engine.support.descriptor.MethodSource;
 
 
 /**
@@ -62,13 +63,6 @@ import org.iogp.gigs.internal.geoapi.TestEvent;
  * @since   1.0
  */
 final class ResultEntry {
-    /**
-     * The status (success, failure) of the test.
-     */
-    static enum Status {
-        SUCCESS, FAILURE, ASSUMPTION_NOT_MET, IGNORED
-    };
-
     /**
      * The status (success, failure, disabled) of an optional test.
      */
@@ -96,16 +90,14 @@ final class ResultEntry {
     private static final String METHODNAME_PREFIX = "test";
 
     /**
-     * The fully qualified name {@code className} or the simplified name {@code simpleClassName}
-     * of the class containing the tests to be run.
+     * Identification of the test.
      */
-    final String className, simpleClassName;
+    final TestIdentifier identifier;
 
     /**
-     * The fully name {@code methodName} or the simplified name {@code simpleMethodName}
-     * of the test method being run.
+     * The simplified class name and method name of the test method being run.
      */
-    final String methodName, simpleMethodName;
+    final String simpleClassName, simpleMethodName;
 
     /**
      * The factories declared in the configuration. Each row in this list is an array of length 4.
@@ -128,19 +120,14 @@ final class ResultEntry {
     final List<Map.Entry<Configuration.Key<?>, StatusOptional>> configuration;
 
     /**
-     * The test status.
+     * The test status, optionally with the exception.
      */
-    final Status status;
-
-    /**
-     * The exception, or {@code null} if none.
-     */
-    final Throwable exception;
+    final TestExecutionResult result;
 
     /**
      * An estimation of the test coverage, as a floating point value between 0 and 1.
      */
-    private float coverage;
+    private final float coverage;
 
     /**
      * {@code true} if the tolerance threshold has been relaxed.
@@ -148,26 +135,39 @@ final class ResultEntry {
     private boolean isToleranceRelaxed;
 
     /**
-     * Creates a new entry for the given event.
+     * Creates a new entry for the given result.
      */
-    ResultEntry(final TestEvent event, final Status status, final Throwable exception) {
-        this.className        = event.className;
-        this.methodName       = event.methodName;
-        this.simpleClassName  = createSimpleClassName(className);
-        this.simpleMethodName = createSimpleMethodName(methodName);
-        this.status           = status;
-        this.exception        = exception;
-        trimStackTrace(exception);
+    ResultEntry(final TestIdentifier identifier, final TestExecutionResult result) {
+        this.identifier = identifier;
+        this.result     = result;
+        result.getThrowable().ifPresent(ResultEntry::trimStackTrace);
+        final TestSource source = identifier.getSource().orElse(null);
+        if (source instanceof MethodSource) {
+            final MethodSource ms = (MethodSource) source;
+            String name = ms.getClassName();
+            int length = name.length();
+            if (name.endsWith(CLASSNAME_SUFFIX)) {
+                length -= CLASSNAME_SUFFIX.length();
+            }
+            simpleClassName = separateWords(name.substring(name.lastIndexOf('.', length)+1, length), false);
+            name = ((MethodSource) source).getMethodName();
+            if (name.startsWith(METHODNAME_PREFIX)) {
+                name = name.substring(METHODNAME_PREFIX.length());
+            }
+            simpleMethodName = separateWords(name.replace('_', ':'), false);
+        } else {
+            simpleClassName = simpleMethodName = "(unnamed)";
+        }
         /*
          * Extract information from the configuration:
          *  - Computes an estimation of test coverage as a number between 0 and 1.
          *  - Get the list of factories.
          */
         int numTests=1, numSupported=1;
-        final Configuration.Key<Boolean> configurationTip = event.configurationTip;
+        final Configuration.Key<Boolean> configurationTip = TestSuite.INSTANCE.configurationTip;
         final List<String[]> factories = new ArrayList<>();
         final List<Map.Entry<Configuration.Key<?>, StatusOptional>> configuration = new ArrayList<>();
-        for (Map.Entry<Configuration.Key<?>,Object> entry : event.configuration().map().entrySet()) {
+        for (Map.Entry<Configuration.Key<?>,Object> entry : TestSuite.INSTANCE.configuration().map().entrySet()) {
             final Configuration.Key<?> key = entry.getKey();
             final String   name  = key.name();
             final Class<?> type  = key.valueType();
@@ -186,15 +186,15 @@ final class ResultEntry {
                         numSupported++;
                         so = (key == configurationTip) ? StatusOptional.FAILED : StatusOptional.ENABLED;
                     }
-                    configuration.add(new AbstractMap.SimpleImmutableEntry<Configuration.Key<?>, StatusOptional>(key, so));
+                    configuration.add(new AbstractMap.SimpleImmutableEntry<>(key, so));
                     numTests++;
                 } else if (name.equals("isToleranceRelaxed")) {
                     isToleranceRelaxed = (Boolean) value;
                 }
             }
             /*
-             * Check for factories. See the javadoc of the 'factories' field for the
-             * meaning of array elements.
+             * Check for factories. See the javadoc of the `factories` field
+             * for the meaning of array elements.
              */
             if (Factory.class.isAssignableFrom(type)) {
                 String impl = null;
@@ -220,49 +220,12 @@ final class ResultEntry {
     }
 
     /**
-     * Creates a new entry for the given description.
-     * This constructor is used only for ignored tests.
-     */
-    ResultEntry(final Description description, final Status status, final Throwable exception) {
-        this.className        = description.getClassName();
-        this.methodName       = description.getMethodName();
-        this.simpleClassName  = createSimpleClassName(className);
-        this.simpleMethodName = createSimpleMethodName(methodName);
-        this.status           = status;
-        this.exception        = exception;
-        this.factories        = Collections.emptyList();
-        this.configuration    = Collections.emptyList();
-        trimStackTrace(exception);
-    }
-
-    /**
-     * Creates a simple name from the given class name.
-     */
-    private static String createSimpleClassName(final String name) {
-        int length = name.length();
-        if (name.endsWith(CLASSNAME_SUFFIX)) {
-            length -= CLASSNAME_SUFFIX.length();
-        }
-        return separateWords(name.substring(name.lastIndexOf('.', length)+1, length), false);
-    }
-
-    /**
-     * Returns the method name without the {@code "test"} prefix (if any).
-     */
-    private static String createSimpleMethodName(String name) {
-        if (name.startsWith(METHODNAME_PREFIX)) {
-            name = name.substring(METHODNAME_PREFIX.length());
-        }
-        return separateWords(name.replace('_', ':'), false);
-    }
-
-    /**
      * Puts space between words in the given string.
      * The first letter is never modified.
      */
     static String separateWords(final String name, final boolean toLowerCase) {
         StringBuilder buffer = null;
-        for (int i=name.length(); i>=2;) {
+        for (int i = name.length(); i >= 2;) {
             final int c = name.codePointBefore(i);
             final int nc = Character.charCount(c);
             i -= nc;
@@ -330,34 +293,37 @@ final class ResultEntry {
      * after the last {@code org.iogp.gigs} package which is not this runner package.
      */
     private static void trimStackTrace(Throwable exception) {
-        while (exception != null) {
-            final StackTraceElement[] stackTrace = exception.getStackTrace();
-            for (int i=stackTrace.length; --i>=0;) {
-                final String className = stackTrace[i].getClassName();
-                if (className.startsWith("org.iogp.gigs.") &&
-                   !className.startsWith("org.iogp.gigs.runner."))
-                {
-                    exception.setStackTrace(Arrays.copyOf(stackTrace, i+1));
-                    break;
-                }
+        final StackTraceElement[] stackTrace = exception.getStackTrace();
+        for (int i=stackTrace.length; --i>=0;) {
+            final String className = stackTrace[i].getClassName();
+            if (className.startsWith("org.iogp.gigs.") &&
+               !className.startsWith("org.iogp.gigs.runner."))
+            {
+                exception.setStackTrace(Arrays.copyOf(stackTrace, i+1));
+                break;
             }
-            exception = exception.getCause();
         }
+        exception = exception.getCause();
     }
 
     /**
-     * Returns the URL to the javadoc of the test method. Users can follow this URL in
-     * order to have more details about the test data or procedure.
+     * Returns the URL to the javadoc of the test method. Users can follow this URL
+     * in order to have more details about the test data or procedure.
      *
-     * @return the URI to the javadoc of the test method (never {@code null}).
+     * @return the URI to the javadoc of the test method, or {@code null} if none.
      */
     public URI getJavadocURL() {
-        String method = methodName;
-        final int s = method.indexOf('[');
-        if (s >= 0) {
-            method = method.substring(0, s);
+        final TestSource source = identifier.getSource().orElse(null);
+        if (source instanceof MethodSource) {
+            final MethodSource ms = (MethodSource) source;
+            String method = ms.getMethodName();
+            final int s = method.indexOf('[');
+            if (s >= 0) {
+                method = method.substring(0, s);
+            }
+            return URI.create(JAVADOC_BASEURL + ms.getClassName().replace('.', '/') + ".html#" + method + "()");
         }
-        return URI.create(JAVADOC_BASEURL + className.replace('.', '/') + ".html#" + method + "()");
+        return null;
     }
 
     /**
@@ -370,13 +336,17 @@ final class ResultEntry {
      */
     void drawCoverage(final Graphics2D graphics, final Rectangle bounds) {
         final Color color;
-        switch (status) {
-            case SUCCESS: {
+        switch (result.getStatus()) {
+            case SUCCESSFUL: {
                 color = isToleranceRelaxed ? Color.ORANGE : Color.GREEN;
                 break;
             }
-            case FAILURE: {
+            case FAILED: {
                 color = Color.RED;
+                break;
+            }
+            case ABORTED: {
+                color = Color.GRAY;
                 break;
             }
             default: {
@@ -395,6 +365,6 @@ final class ResultEntry {
      */
     @Override
     public String toString() {
-        return className + '.' + methodName + ": " + status;
+        return simpleClassName + '.' + simpleMethodName + ": " + result.getStatus();
     }
 }

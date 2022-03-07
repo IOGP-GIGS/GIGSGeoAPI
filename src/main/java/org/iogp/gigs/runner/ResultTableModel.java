@@ -35,6 +35,7 @@ import java.awt.EventQueue;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.AbstractTableModel;
+import org.junit.platform.engine.TestExecutionResult;
 
 
 /**
@@ -134,14 +135,14 @@ final class ResultTableModel extends AbstractTableModel implements ChangeListene
         switch (column) {
             case CLASS_COLUMN:  return entry.simpleClassName;
             case METHOD_COLUMN: return entry.simpleMethodName;
-            case RESULT_COLUMN: switch (entry.status) {
-                case SUCCESS: return "success";
-                case FAILURE: return "failure";
-                default:      return null;
+            case RESULT_COLUMN: switch (entry.result.getStatus()) {
+                case SUCCESSFUL: return "success";
+                case FAILED:     return "failure";
+                default:         return null;
             }
             case MESSAGE_COLUMN: {
-                if (entry.status != ResultEntry.Status.ASSUMPTION_NOT_MET) {
-                    final Throwable exception = entry.exception;
+                if (entry.result.getStatus() != TestExecutionResult.Status.ABORTED) {
+                    final Throwable exception = entry.result.getThrowable().orElse(null);
                     if (exception != null) {
                         String message = exception.getLocalizedMessage();
                         if (message != null) {

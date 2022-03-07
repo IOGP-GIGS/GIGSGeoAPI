@@ -38,11 +38,9 @@ import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.opengis.referencing.operation.OperationMethod;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
-import static org.iogp.gigs.internal.geoapi.Assert.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -167,7 +165,7 @@ public class Test2007 extends Series2000<Transformation> {
                 throw e;
             }
             if (operation != null) {                        // For consistency with the behavior in other classes.
-                assertInstanceOf(codeAsString, Transformation.class, operation);
+                assertInstanceOf(Transformation.class, operation, codeAsString);
                 transformation = (Transformation) operation;
             }
         }
@@ -181,7 +179,7 @@ public class Test2007 extends Series2000<Transformation> {
      */
     private void verifyTransformation() throws FactoryException {
         final Transformation transformation = getIdentifiedObject();
-        assertNotNull("Transformation", transformation);
+        assertNotNull(transformation, "Transformation");
         validators.validate(transformation);
 
         // Transformation identifier.
@@ -190,18 +188,18 @@ public class Test2007 extends Series2000<Transformation> {
         // Transformation name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("Transformation.getName()", name, getVerifiableName(transformation));
+            assertEquals(name, getVerifiableName(transformation), "Transformation.getName()");
             configurationTip = null;
         }
 
         // Operation method.
         final OperationMethod m = transformation.getMethod();
-        assertNotNull("Transformation.getMethod()", m);
+        assertNotNull(m, "Transformation.getMethod()");
 
         // Operation method name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("Transformation.getMethod().getName()", methodName, getVerifiableName(m));
+            assertEquals(methodName, getVerifiableName(m), "Transformation.getMethod().getName()");
             configurationTip = null;
         }
     }

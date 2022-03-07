@@ -44,8 +44,6 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
-import static org.iogp.gigs.runner.Runner.LINE_SEPARATOR;
-
 
 /**
  * Information about a GeoAPI implementation, as found in the JAR manifest.
@@ -196,12 +194,13 @@ scan:       while (entries.hasMoreElements()) {
      */
     @Override
     public String toString() {
+        final String lineSeparator = System.lineSeparator();
         final StringBuilder buffer = new StringBuilder();
-        if (title    != null) buffer.append("Title:     ").append(title   ).append(LINE_SEPARATOR);
-        if (version  != null) buffer.append("Version:   ").append(version ).append(LINE_SEPARATOR);
-        if (vendor   != null) buffer.append("Vendor:    ").append(vendor  ).append(LINE_SEPARATOR);
-        if (vendorID != null) buffer.append("Vendor ID: ").append(vendorID).append(LINE_SEPARATOR);
-        if (url      != null) buffer.append("URL:       ").append(url     ).append(LINE_SEPARATOR);
+        if (title    != null) buffer.append("Title:     ").append(title   ).append(lineSeparator);
+        if (version  != null) buffer.append("Version:   ").append(version ).append(lineSeparator);
+        if (vendor   != null) buffer.append("Vendor:    ").append(vendor  ).append(lineSeparator);
+        if (vendorID != null) buffer.append("Vendor ID: ").append(vendorID).append(lineSeparator);
+        if (url      != null) buffer.append("URL:       ").append(url     ).append(lineSeparator);
         return buffer.toString();
     }
 }

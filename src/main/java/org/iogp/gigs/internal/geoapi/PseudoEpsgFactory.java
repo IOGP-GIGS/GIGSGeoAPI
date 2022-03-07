@@ -50,8 +50,8 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
 
-import static org.junit.Assert.*;
-import static org.junit.Assume.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 
 /**
@@ -371,7 +371,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 6284: name="Pulkovo 1942";               ellipsoid=7024; primeMeridian=8901; break;
             default:   throw noSuchAuthorityCode(id, code);
         }
-        assumeNotNull(datumFactory);
+        assumeTrue(datumFactory != null);
         final GeodeticDatum object = datumFactory.createGeodeticDatum(createPropertiesMap(id, name),
                 createEllipsoid    (String.valueOf(ellipsoid)),
                 createPrimeMeridian(String.valueOf(primeMeridian)));
@@ -416,7 +416,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 7011: name="Clarke 1880 (IGN)";  semiMajorAxis=6378249.2;   semiMinorAxis=6356515;           break;
             default:   throw noSuchAuthorityCode(id, code);
         }
-        assumeNotNull(datumFactory);
+        assumeTrue(datumFactory != null);
         final Map<String,?> properties = createPropertiesMap(id, name);
         final Unit<Length> unit = createUnit(String.valueOf(unitCode)).asType(Length.class);
         final Ellipsoid object;
@@ -456,7 +456,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 8908: name="Jakarta";   longitude=106.80771944444444; unit=9102; break;
             default:   throw noSuchAuthorityCode(id, code);
         }
-        assumeNotNull(datumFactory);
+        assumeTrue(datumFactory != null);
         final PrimeMeridian object = datumFactory.createPrimeMeridian(createPropertiesMap(id, name),
                 longitude, createUnit(String.valueOf(unit)).asType(Angle.class));
         validators.validate(object);
@@ -530,7 +530,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             default: throw noSuchAuthorityCode(id, code);
         }
-        assumeNotNull(csFactory);
+        assumeTrue(csFactory != null);
         final Map<String,?>   properties = createPropertiesMap(id, name);
         final CoordinateSystemAxis axis0 = createCoordinateSystemAxis(String.valueOf(axisCode0));
         final CoordinateSystemAxis axis1 = createCoordinateSystemAxis(String.valueOf(axisCode1));
@@ -643,7 +643,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             default: throw noSuchAuthorityCode(id, code);
         }
-        assumeNotNull(csFactory);
+        assumeTrue(csFactory != null);
         final Map<String,?>   properties = createPropertiesMap(id, name);
         final CoordinateSystemAxis axis0 = createCoordinateSystemAxis(String.valueOf(axisCode0));
         final CoordinateSystemAxis axis1 = createCoordinateSystemAxis(String.valueOf(axisCode1));
@@ -724,7 +724,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 117: name="Geocentric Z";       abbreviation="Z";    direction=AxisDirection.GEOCENTRIC_Z; unit=9001; break;
             default:  throw noSuchAuthorityCode(id, code);
         }
-        assumeNotNull(csFactory);
+        assumeTrue(csFactory != null);
         final CoordinateSystemAxis object = csFactory.createCoordinateSystemAxis(createPropertiesMap(id, name),
                 abbreviation, direction, createUnit(String.valueOf(unit)));
         validators.validate(object);
@@ -854,7 +854,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 4284: name="Pulkovo 1942"; datum=6284; coordinateSystem=6422; break;
             default:   throw noSuchAuthorityCode(id, code);
         }
-        assumeNotNull(crsFactory);
+        assumeTrue(crsFactory != null);
         final GeographicCRS object = crsFactory.createGeographicCRS(createPropertiesMap(id, name),
                 createGeodeticDatum(String.valueOf(datum)),
                 createEllipsoidalCS(String.valueOf(coordinateSystem)));

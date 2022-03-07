@@ -37,11 +37,9 @@ import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
-import static org.iogp.gigs.internal.geoapi.Assert.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -165,8 +163,8 @@ public class Test2005 extends Series2000<Conversion> {
                 unsupportedCode(Conversion.class, code);
                 throw e;
             }
-            if (operation != null) {  // For consistency with the behavior in other classes.
-                assertInstanceOf(codeAsString, Conversion.class, operation);
+            if (operation != null) {            // For consistency with the behavior in other classes.
+                assertInstanceOf(Conversion.class, operation, codeAsString);
                 conversion = (Conversion) operation;
             }
         }
@@ -184,7 +182,7 @@ public class Test2005 extends Series2000<Conversion> {
         conversion = null;              // For forcing the fetch of a new operation.
 
         final Conversion conversion = getIdentifiedObject();
-        assertNotNull("Conversion", conversion);
+        assertNotNull(conversion, "Conversion");
         validators.validate(conversion);
 
         // Map projection identifier.
@@ -193,7 +191,7 @@ public class Test2005 extends Series2000<Conversion> {
         // Map projection name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("Conversion.getMethod().getName()", methodName, getVerifiableName(conversion.getMethod()));
+            assertEquals(methodName, getVerifiableName(conversion.getMethod()), "Conversion.getMethod().getName()");
             configurationTip = null;
         }
     }

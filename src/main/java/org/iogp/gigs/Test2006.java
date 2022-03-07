@@ -38,10 +38,9 @@ import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CartesianCS;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.iogp.gigs.internal.geoapi.Assert.assertAxisDirectionsEqual;
 
 
@@ -206,7 +205,7 @@ public class Test2006 extends Series2000<ProjectedCRS> {
         crs = null;                 // For forcing the fetch of a new projected CRS.
 
         final ProjectedCRS crs = getIdentifiedObject();
-        assertNotNull("ProjectedCRS", crs);
+        assertNotNull(crs, "ProjectedCRS");
         validators.validate(crs);
 
         // Projected CRS identifier.
@@ -223,15 +222,15 @@ public class Test2006 extends Series2000<ProjectedCRS> {
             // Base geographic CRS name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals("ProjectedCRS.getBaseCRS().getName()", name, getVerifiableName(crs.getBaseCRS()));
+                assertEquals(name, getVerifiableName(crs.getBaseCRS()), "ProjectedCRS.getBaseCRS().getName()");
             }
             configurationTip = null;
         }
 
         // Projected CRS coordinate system.
         final CartesianCS cs = crs.getCoordinateSystem();
-        assertNotNull("ProjectedCRS.getCoordinateSystem()", crs);
-        assertEquals("ProjectedCRS.getCoordinateSystem().getDimension()", 2, cs.getDimension());
+        assertNotNull(crs, "ProjectedCRS.getCoordinateSystem()");
+        assertEquals(2, cs.getDimension(), "ProjectedCRS.getCoordinateSystem().getDimension()");
 
         // Coordinate sytem axis directions.
         final AxisDirection[] directions = new AxisDirection[2];

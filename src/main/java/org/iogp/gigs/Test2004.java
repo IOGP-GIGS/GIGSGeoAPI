@@ -44,10 +44,10 @@ import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.iogp.gigs.internal.geoapi.Assert.assertAxisDirectionsEqual;
 
 
@@ -241,7 +241,7 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         assumeTrue(datumAuthorityFactory != null || crsAuthorityFactory != null);
         if (datumAuthorityFactory != null) {
             final GeodeticDatum datum = getIdentifiedObject();
-            assertNotNull("GeodeticDatum", datum);
+            assertNotNull(datum, "GeodeticDatum");
             validators.validate(datum);
             verifyGeodeticDatum(datum);
         }
@@ -302,7 +302,7 @@ public class Test2004 extends Series2000<GeodeticDatum> {
      * @param expectedDirections  either {@link #GEOGRAPHIC_2D}, {@link #GEOGRAPHIC_3D} or {@link #GEOCENTRIC}.
      */
     private void verifyGeodeticCRS(final int crsCode, final GeodeticCRS crs, final AxisDirection[] expectedDirections) {
-        assertNotNull("GeodeticCRS", crs);
+        assertNotNull(crs, "GeodeticCRS");
 
         // Geodetic CRS identifier.
         assertContainsCode("GeodeticCRS.getIdentifiers()", "EPSG", crsCode, crs.getIdentifiers());
@@ -310,19 +310,19 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         // Geodetic CRS name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("GeodeticCRS.getName()", crsName, getVerifiableName(crs));
+            assertEquals(crsName, getVerifiableName(crs), "GeodeticCRS.getName()");
             configurationTip = null;
         }
 
         // Geodetic CRS datum.
         final GeodeticDatum crsDatum = crs.getDatum();
-        assertNotNull("GeodeticCRS.getDatum()", crsDatum);
+        assertNotNull(crsDatum, "GeodeticCRS.getDatum()");
         verifyGeodeticDatum(crsDatum);
 
         // Geodetic CRS coordinate system.
         final CoordinateSystem cs = crs.getCoordinateSystem();
-        assertNotNull("GeodeticCRS.getCoordinateSystem()", cs);
-        assertEquals("GeodeticCRS.getCoordinateSystem().getDimension()",  expectedDirections.length, cs.getDimension());
+        assertNotNull(cs, "GeodeticCRS.getCoordinateSystem()");
+        assertEquals(expectedDirections.length, cs.getDimension(), "GeodeticCRS.getCoordinateSystem().getDimension()");
         assertAxisDirectionsEqual("GeodeticCRS.getCoordinateSystem().getAxis(*)", cs, expectedDirections);
     }
 
@@ -343,30 +343,30 @@ public class Test2004 extends Series2000<GeodeticDatum> {
 
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals("GeodeticDatum.getName()", name, getVerifiableName(toVerify));
+                assertEquals(name, getVerifiableName(toVerify), "GeodeticDatum.getName()");
             }
             configurationTip = null;
         }
 
         // Geodetic datum ellipsoid.
         final Ellipsoid e = toVerify.getEllipsoid();
-        assertNotNull("GeodeticDatum.getEllipsoid()", e);
+        assertNotNull(e, "GeodeticDatum.getEllipsoid()");
 
         // Ellipsoid name.
         if (isDependencyIdentificationSupported && isStandardNameSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertEquals("GeodeticDatum.getEllipsoid().getName()", ellipsoidName, getVerifiableName(e));
+            assertEquals(ellipsoidName, getVerifiableName(e), "GeodeticDatum.getEllipsoid().getName()");
             configurationTip = null;
         }
 
         // Geodetic datum prime meridian.
         final PrimeMeridian pm = toVerify.getPrimeMeridian();
-        assertNotNull("GeodeticDatum.getPrimeMeridian()", pm);
+        assertNotNull(pm, "GeodeticDatum.getPrimeMeridian()");
 
         // Prime meridian name.
         if (isDependencyIdentificationSupported && isStandardNameSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertEquals("GeodeticDatum.getPrimeMeridian().getName()", primeMeridianName, getVerifiableName(pm));
+            assertEquals(primeMeridianName, getVerifiableName(pm), "GeodeticDatum.getPrimeMeridian().getName()");
             configurationTip = null;
         }
     }
@@ -1864,7 +1864,7 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         crsName           = "NAD27 Michigan";
         ellipsoidName     = "Clarke 1866 Michigan";
         primeMeridianName = "Greenwich";
-        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
+        assumeTrue(isDeprecatedObjectCreationSupported, "Creation of deprecated objects not supported.");
         verifyDatum();
         createAndVerifyGeographicCRS(4268, GEOGRAPHIC_2D);
     }
@@ -2212,7 +2212,7 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         crsName           = "Padang";
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
-        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
+        assumeTrue(isDeprecatedObjectCreationSupported, "Creation of deprecated objects not supported.");
         verifyDatum();
         createAndVerifyGeographicCRS(4280, GEOGRAPHIC_2D);
     }
@@ -2240,7 +2240,7 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         crsName           = "Padang (Jakarta)";
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Jakarta";
-        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
+        assumeTrue(isDeprecatedObjectCreationSupported, "Creation of deprecated objects not supported.");
         verifyDatum();
         createAndVerifyGeographicCRS(4808, GEOGRAPHIC_2D);
     }
@@ -7485,7 +7485,7 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         crsName           = "Popular Visualisation CRS";
         ellipsoidName     = "Popular Visualisation Sphere";
         primeMeridianName = "Greenwich";
-        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
+        assumeTrue(isDeprecatedObjectCreationSupported, "Creation of deprecated objects not supported.");
         verifyDatum();
         createAndVerifyGeographicCRS(4055, GEOGRAPHIC_2D);
     }
