@@ -60,7 +60,7 @@ import static org.iogp.gigs.internal.geoapi.Assert.assertUnicodeIdentifierEquals
  * @since   1.0
  */
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
-public abstract class IntegrityTest extends TestCaseGeoAPI {
+public abstract class IntegrityTest extends ConformanceTest {
     /**
      * Relative tolerance factor from GIGS documentation.
      * This tolerance threshold is typically multiplied

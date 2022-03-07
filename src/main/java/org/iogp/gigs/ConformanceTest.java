@@ -49,7 +49,7 @@ import org.iogp.gigs.internal.geoapi.Configuration;
  * @version 1.0
  * @since   1.0
  */
-abstract class TestCaseGeoAPI {
+abstract class ConformanceTest {
     /**
      * The list of tests that are enabled.
      * This is a static field for now but will become configurable in a future version.
@@ -90,7 +90,7 @@ abstract class TestCaseGeoAPI {
     /**
      * Creates a new test.
      */
-    TestCaseGeoAPI() {
+    ConformanceTest() {
         units = Units.getInstance();
         validators = ValidatorContainer.DEFAULT;
     }
