@@ -68,6 +68,12 @@
       <artifactId>junit-platform-launcher</artifactId>
       <version>1.8.2</version>
     </dependency>
+    <dependency>
+      <groupId>tech.uom</groupId>
+      <artifactId>seshat</artifactId>
+      <version>1.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
