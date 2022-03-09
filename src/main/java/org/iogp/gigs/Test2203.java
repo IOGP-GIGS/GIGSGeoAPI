@@ -31,6 +31,7 @@ import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.iogp.gigs.internal.geoapi.Configuration;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -75,7 +76,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 1.0
  * @since   1.0
  */
-public class Test2003 extends Series2000<PrimeMeridian> {
+public class Test2203 extends Series2000<PrimeMeridian> {
     /**
      * The expected Greenwich longitude in decimal degrees.
      * This field is set by all test methods before to create and verify the {@link PrimeMeridian} instance.
@@ -102,7 +103,7 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *
      * @param datumFactory  factory for creating {@link PrimeMeridian} instances.
      */
-    public Test2003(final DatumAuthorityFactory datumFactory) {
+    public Test2203(final DatumAuthorityFactory datumFactory) {
         datumAuthorityFactory = datumFactory;
     }
 
@@ -201,11 +202,17 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian code: <b>8912</b></li>
      *   <li>EPSG prime meridian name: <b>Athens</b></li>
      *   <li>Greenwich longitude: <b>23°42′58.815″</b></li>
+     *   <li>Angular unit: <b>sexagesimal DMS</b></li>
+     *   <li>Specific usage / Remarks: <b>Used in Greece for older mapping based on Hatt projection</b></li>
+     *   <li>EPSG Usage Extent: <b>Greece</b></li>
      * </ul>
+     *
+     * Remarks: Used in Greece for older mapping based on Hatt projection.
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      */
     @Test
+    @DisplayName("Athens")
     public void testAthens() throws FactoryException {
         code               = 8912;
         name               = "Athens";
@@ -221,11 +228,18 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian code: <b>8907</b></li>
      *   <li>EPSG prime meridian name: <b>Bern</b></li>
      *   <li>Greenwich longitude: <b>7°26′22.5″</b></li>
+     *   <li>Angular unit: <b>sexagesimal DMS</b></li>
+     *   <li>Specific usage / Remarks: <b>1895 value; Newer value of 7°26′22.335″ determined in 1938</b></li>
+     *   <li>EPSG Usage Extent: <b>Europe</b></li>
      * </ul>
+     *
+     * Remarks: 1895 value.
+     * Newer value of 7°26′22.335″ determined in 1938.
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      */
     @Test
+    @DisplayName("Bern")
     public void testBern() throws FactoryException {
         code               = 8907;
         name               = "Bern";
@@ -241,6 +255,8 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian code: <b>8904</b></li>
      *   <li>EPSG prime meridian name: <b>Bogota</b></li>
      *   <li>Greenwich longitude: <b>-74°04′51.3″</b></li>
+     *   <li>Angular unit: <b>sexagesimal DMS</b></li>
+     *   <li>EPSG Usage Extent: <b>South America</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
@@ -248,6 +264,7 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      * @see Test3003#testBogota()
      */
     @Test
+    @DisplayName("Bogota")
     public void testBogota() throws FactoryException {
         code               = 8904;
         name               = "Bogota";
@@ -263,11 +280,14 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian code: <b>8910</b></li>
      *   <li>EPSG prime meridian name: <b>Brussels</b></li>
      *   <li>Greenwich longitude: <b>4°22′04.71″</b></li>
+     *   <li>Angular unit: <b>sexagesimal DMS</b></li>
+     *   <li>EPSG Usage Extent: <b>Europe</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      */
     @Test
+    @DisplayName("Brussels")
     public void testBrussels() throws FactoryException {
         code               = 8910;
         name               = "Brussels";
@@ -282,19 +302,21 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      * <ul>
      *   <li>EPSG prime meridian code: <b>8909</b></li>
      *   <li>EPSG prime meridian name: <b>Ferro</b></li>
+     *   <li>Alias(es) given by EPSG: <b>El Hierro</b></li>
      *   <li>Greenwich longitude: <b>-17°40′</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Angular unit: <b>sexagesimal DMS</b></li>
+     *   <li>EPSG Usage Extent: <b>Western Europe</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      */
     @Test
+    @DisplayName("Ferro")
     public void testFerro() throws FactoryException {
-        important          = true;
         code               = 8909;
         name               = "Ferro";
-        aliases            = NONE;
-        greenwichLongitude = -17.666666666666668;
+        aliases            = new String[] {"El Hierro"};
+        greenwichLongitude = -17.666666666666667;
         verifyPrimeMeridian();
     }
 
@@ -305,16 +327,20 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian code: <b>8901</b></li>
      *   <li>EPSG prime meridian name: <b>Greenwich</b></li>
      *   <li>Greenwich longitude: <b>0°</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Angular unit: <b>degree</b></li>
+     *   <li>Specific usage / Remarks: <b>International reference meridian as defined by IERS</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: International reference meridian as defined by IERS.
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      *
      * @see Test3003#testGreenwich()
      */
     @Test
+    @DisplayName("Greenwich")
     public void testGreenwich() throws FactoryException {
-        important          = true;
         code               = 8901;
         name               = "Greenwich";
         aliases            = NONE;
@@ -329,16 +355,21 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian code: <b>8908</b></li>
      *   <li>EPSG prime meridian name: <b>Jakarta</b></li>
      *   <li>Greenwich longitude: <b>106°48′27.79″</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Angular unit: <b>sexagesimal DMS</b></li>
+     *   <li>Specific usage / Remarks: <b>1924 determination; Supersedes 1910 value of 106 48 37.05 E of Greenwich</b></li>
+     *   <li>EPSG Usage Extent: <b>Southeast Asia</b></li>
      * </ul>
+     *
+     * Remarks: 1924 determination.
+     * Supersedes 1910 value of 106°48′37.05″E of Greenwich.
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      *
      * @see Test3003#testJakarta()
      */
     @Test
+    @DisplayName("Jakarta")
     public void testJakarta() throws FactoryException {
-        important          = true;
         code               = 8908;
         name               = "Jakarta";
         aliases            = NONE;
@@ -353,11 +384,14 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian code: <b>8902</b></li>
      *   <li>EPSG prime meridian name: <b>Lisbon</b></li>
      *   <li>Greenwich longitude: <b>-9°07′54.862″</b></li>
+     *   <li>Angular unit: <b>sexagesimal DMS</b></li>
+     *   <li>EPSG Usage Extent: <b>Europe</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      */
     @Test
+    @DisplayName("Lisbon")
     public void testLisbon() throws FactoryException {
         code               = 8902;
         name               = "Lisbon";
@@ -373,11 +407,17 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian code: <b>8905</b></li>
      *   <li>EPSG prime meridian name: <b>Madrid</b></li>
      *   <li>Greenwich longitude: <b>-3°41′14.55″</b></li>
+     *   <li>Angular unit: <b>sexagesimal DMS</b></li>
+     *   <li>Specific usage / Remarks: <b>Longitude has had various determinations</b></li>
+     *   <li>EPSG Usage Extent: <b>Spain</b></li>
      * </ul>
+     *
+     * Remarks: Longitude has had various determinations.
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      */
     @Test
+    @DisplayName("Madrid")
     public void testMadrid() throws FactoryException {
         code               = 8905;
         name               = "Madrid";
@@ -392,17 +432,20 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      * <ul>
      *   <li>EPSG prime meridian code: <b>8913</b></li>
      *   <li>EPSG prime meridian name: <b>Oslo</b></li>
-     *   <li>Alias(es) given by EPSG: <b>Kristiania</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Kristiania</b>, <b>Christiana</b></li>
      *   <li>Greenwich longitude: <b>10°43′22.5″</b></li>
+     *   <li>Angular unit: <b>sexagesimal DMS</b></li>
+     *   <li>EPSG Usage Extent: <b>Scandinavia</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      */
     @Test
+    @DisplayName("Oslo")
     public void testOslo() throws FactoryException {
         code               = 8913;
         name               = "Oslo";
-        aliases            = new String[] {"Kristiania"};
+        aliases            = new String[] {"Kristiania", "Christiana"};
         greenwichLongitude = 10.722916666666666;
         verifyPrimeMeridian();
     }
@@ -414,17 +457,20 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian code: <b>8903</b></li>
      *   <li>EPSG prime meridian name: <b>Paris</b></li>
      *   <li>Greenwich longitude: <b>2.5969213</b></li>
-     *   <li>Specific usage / Remarks: <b>Equivalent to 2°20'14.025\".</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Angular unit: <b>grad</b></li>
+     *   <li>Specific usage / Remarks: <b>Value adopted by IGN (Paris) in 1936; Equivalent to 2 20 14.025; Preferred by EPSG to earlier value of 2 20 13.95 (2.596898 grads) used by RGS London</b></li>
+     *   <li>EPSG Usage Extent: <b>Europe</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     * Remarks: Value adopted by IGN (Paris) in 1936.
+     * Equivalent to 2°20′14.025″.
+     * Preferred by EPSG to earlier value of 2 20 13.95 (2.596898 grads) used by RGS London.
      *
-     * @see Test3003#testParis()
+     * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      */
     @Test
+    @DisplayName("Paris")
     public void testParis() throws FactoryException {
-        important          = true;
         code               = 8903;
         name               = "Paris";
         aliases            = NONE;
@@ -439,11 +485,17 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian code: <b>8914</b></li>
      *   <li>EPSG prime meridian name: <b>Paris RGS</b></li>
      *   <li>Greenwich longitude: <b>2°20′13.95″</b></li>
+     *   <li>Angular unit: <b>sexagesimal DMS</b></li>
+     *   <li>Specific usage / Remarks: <b>Equivalent to 2.596898 grads</b></li>
+     *   <li>EPSG Usage Extent: <b>Europe</b></li>
      * </ul>
+     *
+     * Remarks: Equivalent to 2.596898 grads.
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      */
     @Test
+    @DisplayName("Paris RGS")
     public void testParisRGS() throws FactoryException {
         code               = 8914;
         name               = "Paris RGS";
@@ -459,11 +511,14 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian code: <b>8906</b></li>
      *   <li>EPSG prime meridian name: <b>Rome</b></li>
      *   <li>Greenwich longitude: <b>12°27′08.4″</b></li>
+     *   <li>Angular unit: <b>sexagesimal DMS</b></li>
+     *   <li>EPSG Usage Extent: <b>Europe</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      */
     @Test
+    @DisplayName("Rome")
     public void testRome() throws FactoryException {
         code               = 8906;
         name               = "Rome";
@@ -479,11 +534,14 @@ public class Test2003 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian code: <b>8911</b></li>
      *   <li>EPSG prime meridian name: <b>Stockholm</b></li>
      *   <li>Greenwich longitude: <b>18°03′29.8″</b></li>
+     *   <li>Angular unit: <b>sexagesimal DMS</b></li>
+     *   <li>EPSG Usage Extent: <b>Europe</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
      */
     @Test
+    @DisplayName("Stockholm")
     public void testStockholm() throws FactoryException {
         code               = 8911;
         name               = "Stockholm";
