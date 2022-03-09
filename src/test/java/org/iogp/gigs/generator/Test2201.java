@@ -44,7 +44,7 @@ public final class Test2201 extends TestMethodGenerator {
      * We put an entry in this map only when a name different
      * than the automatically generated name is desired.
      */
-    private final Map<String,String> METHOD_NAMES = Map.of(
+    private final Map<String,String> METHOD_NAMES = map(
         "British chain (Sears 1922)",           "testBritishChain",
         "British foot (Sears 1922)",            "testBritishFoot",
         "British yard (Sears 1922)",            "testBritishYard",

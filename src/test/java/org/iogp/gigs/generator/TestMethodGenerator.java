@@ -82,6 +82,21 @@ public abstract class TestMethodGenerator {
     }
 
     /**
+     * Creates a map from the given (key, value) tuples.
+     *
+     * @param  entries  the (key, value) tuples.
+     * @return map with the given entries.
+     */
+    static Map<String,String> map(final String... entries) {
+        assertTrue((entries.length & 1) == 0);
+        final Map<String,String> map = new HashMap<>(1 + (int) (entries.length * 2./3));
+        for (int i=0; i<entries.length;) {
+            assertNull(map.put(entries[i++], entries[i++]));
+        }
+        return map;
+    }
+
+    /**
      * Retrieves the unit of the given name.
      *
      * @param  name  the unit name.
