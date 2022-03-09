@@ -243,30 +243,6 @@ public class Test2008 extends Series2000<VerticalCRS> {
     }
 
     /**
-     * Tests “AHD (Tasmania) height” vertical CRS creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG vertical datum code: <b>5112</b></li>
-     *   <li>EPSG vertical datum name: <b>Australian Height Datum (Tasmania)</b></li>
-     *   <li>EPSG vertical CRS code: <b>5712</b></li>
-     *   <li>EPSG vertical CRS name: <b>AHD (Tasmania) height</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the vertical datum or CRS from the EPSG code.
-     */
-    @Test
-    public void testAHD_Tasmania() throws FactoryException {
-        important = true;
-        datumName = "Australian Height Datum (Tasmania)";
-        datumCode = 5112;
-        name      = "AHD (Tasmania) height";
-        code      = 5712;
-        createAndVerifyVerticalDatum();
-        verifyVerticalCRS();
-    }
-
-    /**
      * Tests “AHD height” vertical CRS creation from the factory.
      *
      * <ul>
@@ -286,6 +262,30 @@ public class Test2008 extends Series2000<VerticalCRS> {
         datumCode = 5111;
         name      = "AHD height";
         code      = 5711;
+        createAndVerifyVerticalDatum();
+        verifyVerticalCRS();
+    }
+
+    /**
+     * Tests “AHD (Tasmania) height” vertical CRS creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG vertical datum code: <b>5112</b></li>
+     *   <li>EPSG vertical datum name: <b>Australian Height Datum (Tasmania)</b></li>
+     *   <li>EPSG vertical CRS code: <b>5712</b></li>
+     *   <li>EPSG vertical CRS name: <b>AHD (Tasmania) height</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the vertical datum or CRS from the EPSG code.
+     */
+    @Test
+    public void testAHD_Tasmania() throws FactoryException {
+        important = true;
+        datumName = "Australian Height Datum (Tasmania)";
+        datumCode = 5112;
+        name      = "AHD (Tasmania) height";
+        code      = 5712;
         createAndVerifyVerticalDatum();
         verifyVerticalCRS();
     }
@@ -651,6 +651,30 @@ public class Test2008 extends Series2000<VerticalCRS> {
     }
 
     /**
+     * Tests “NGF IGN69 height” vertical CRS creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG vertical datum code: <b>5119</b></li>
+     *   <li>EPSG vertical datum name: <b>Nivellement General de la France - IGN69</b></li>
+     *   <li>EPSG vertical CRS code: <b>5720</b></li>
+     *   <li>EPSG vertical CRS name: <b>NGF-IGN69 height</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the vertical datum or CRS from the EPSG code.
+     */
+    @Test
+    public void testIGN69() throws FactoryException {
+        important = true;
+        datumName = "Nivellement General de la France - IGN69";
+        datumCode = 5119;
+        name      = "NGF-IGN69 height";
+        code      = 5720;
+        createAndVerifyVerticalDatum();
+        verifyVerticalCRS();
+    }
+
+    /**
      * Tests “KOC CD height” vertical CRS creation from the factory.
      *
      * <ul>
@@ -771,6 +795,30 @@ public class Test2008 extends Series2000<VerticalCRS> {
     }
 
     /**
+     * Tests “NGF Lallemand height” vertical CRS creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG vertical datum code: <b>5118</b></li>
+     *   <li>EPSG vertical datum name: <b>Nivellement General de la France - Lallemand</b></li>
+     *   <li>EPSG vertical CRS code: <b>5719</b></li>
+     *   <li>EPSG vertical CRS name: <b>NGF Lallemand height</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the vertical datum or CRS from the EPSG code.
+     */
+    @Test
+    public void testLallemand() throws FactoryException {
+        important = true;
+        datumName = "Nivellement General de la France - Lallemand";
+        datumCode = 5118;
+        name      = "NGF Lallemand height";
+        code      = 5719;
+        createAndVerifyVerticalDatum();
+        verifyVerticalCRS();
+    }
+
+    /**
      * Tests “msl depth” vertical CRS creation from the factory.
      *
      * <ul>
@@ -862,54 +910,6 @@ public class Test2008 extends Series2000<VerticalCRS> {
         datumCode = 5103;
         name      = "NAVD88 height";
         code      = 5703;
-        createAndVerifyVerticalDatum();
-        verifyVerticalCRS();
-    }
-
-    /**
-     * Tests “NGF IGN69 height” vertical CRS creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG vertical datum code: <b>5119</b></li>
-     *   <li>EPSG vertical datum name: <b>Nivellement General de la France - IGN69</b></li>
-     *   <li>EPSG vertical CRS code: <b>5720</b></li>
-     *   <li>EPSG vertical CRS name: <b>NGF-IGN69 height</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the vertical datum or CRS from the EPSG code.
-     */
-    @Test
-    public void testIGN69() throws FactoryException {
-        important = true;
-        datumName = "Nivellement General de la France - IGN69";
-        datumCode = 5119;
-        name      = "NGF-IGN69 height";
-        code      = 5720;
-        createAndVerifyVerticalDatum();
-        verifyVerticalCRS();
-    }
-
-    /**
-     * Tests “NGF Lallemand height” vertical CRS creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG vertical datum code: <b>5118</b></li>
-     *   <li>EPSG vertical datum name: <b>Nivellement General de la France - Lallemand</b></li>
-     *   <li>EPSG vertical CRS code: <b>5719</b></li>
-     *   <li>EPSG vertical CRS name: <b>NGF Lallemand height</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the vertical datum or CRS from the EPSG code.
-     */
-    @Test
-    public void testLallemand() throws FactoryException {
-        important = true;
-        datumName = "Nivellement General de la France - Lallemand";
-        datumCode = 5118;
-        name      = "NGF Lallemand height";
-        code      = 5719;
         createAndVerifyVerticalDatum();
         verifyVerticalCRS();
     }

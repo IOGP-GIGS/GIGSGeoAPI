@@ -185,6 +185,28 @@ public class Test3003 extends Series3000<PrimeMeridian> {
     }
 
     /**
+     * Tests “GIGS PM I” prime meridian creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS prime meridian code: <b>68904</b></li>
+     *   <li>GIGS prime meridian name: <b>GIGS PM I</b></li>
+     *   <li>EPSG equivalence: <b>8904 – Bogota</b></li>
+     *   <li>Greenwich longitude: <b>-74°04'51.3° (74.08091666666667°)</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the prime meridian from the properties.
+     *
+     * @see Test2003#testBogota()
+     */
+    @Test
+    public void testBogota() throws FactoryException {
+        setCodeAndName(68904, "GIGS PM I");
+        greenwichLongitude = 74.08091666666667;
+        angularUnit        = units.degree();
+        verifyPrimeMeridian();
+    }
+
+    /**
      * Tests “GIGS PM A” prime meridian creation from the factory.
      *
      * <ul>
@@ -248,28 +270,6 @@ public class Test3003 extends Series3000<PrimeMeridian> {
         setCodeAndName(68903, "GIGS PM H");
         greenwichLongitude = 2.5969213;
         angularUnit        = units.grad();
-        verifyPrimeMeridian();
-    }
-
-    /**
-     * Tests “GIGS PM I” prime meridian creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS prime meridian code: <b>68904</b></li>
-     *   <li>GIGS prime meridian name: <b>GIGS PM I</b></li>
-     *   <li>EPSG equivalence: <b>8904 – Bogota</b></li>
-     *   <li>Greenwich longitude: <b>-74°04'51.3° (74.08091666666667°)</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the prime meridian from the properties.
-     *
-     * @see Test2003#testBogota()
-     */
-    @Test
-    public void testBogota() throws FactoryException {
-        setCodeAndName(68904, "GIGS PM I");
-        greenwichLongitude = 74.08091666666667;
-        angularUnit        = units.degree();
         verifyPrimeMeridian();
     }
 }

@@ -706,27 +706,6 @@ public class Test2006 extends Series2000<ProjectedCRS> {
     }
 
     /**
-     * Tests “Egypt Gulf of Suez S-650 TL”-based projected CRS creation from the factory.
-     *
-     * <ul>
-     *   <li>Projected CRS codes: <b>3355</b></li>
-     *   <li>Geographic CRS name: <b>Egypt Gulf of Suez S-650 TL</b></li>
-     *   <li>Projection names (informative): <b>Egypt Red belt</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the projected CRS from the EPSG code.
-     */
-    @Test
-    public void testGulfOfSuez() throws FactoryException {
-        important       = true;
-        name            = "Egypt Gulf of Suez S-650 TL";
-        projectionNames = new String[] {"Egypt Red belt"};
-        datumCode       = 6706;
-        createAndVerifyProjectedCRS(3355);
-    }
-
-    /**
      * Tests “ELD79”-based projected CRS creation from the factory.
      *
      * <ul>
@@ -861,6 +840,27 @@ public class Test2006 extends Series2000<ProjectedCRS> {
         datumCode       = 6742;
         createAndVerifyProjectedCRS(3375);
         createAndVerifyProjectedCRS(3376);
+    }
+
+    /**
+     * Tests “Egypt Gulf of Suez S-650 TL”-based projected CRS creation from the factory.
+     *
+     * <ul>
+     *   <li>Projected CRS codes: <b>3355</b></li>
+     *   <li>Geographic CRS name: <b>Egypt Gulf of Suez S-650 TL</b></li>
+     *   <li>Projection names (informative): <b>Egypt Red belt</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the projected CRS from the EPSG code.
+     */
+    @Test
+    public void testGulfOfSuez() throws FactoryException {
+        important       = true;
+        name            = "Egypt Gulf of Suez S-650 TL";
+        projectionNames = new String[] {"Egypt Red belt"};
+        datumCode       = 6706;
+        createAndVerifyProjectedCRS(3355);
     }
 
     /**
@@ -1139,6 +1139,28 @@ public class Test2006 extends Series2000<ProjectedCRS> {
     }
 
     /**
+     * Tests “LKS94”-based projected CRS creation from the factory.
+     *
+     * <ul>
+     *   <li>Projected CRS codes: <b>3346</b></li>
+     *   <li>Geographic CRS name: <b>LKS94</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the projected CRS from the EPSG code.
+     */
+    @Test
+    public void testLKS94() throws FactoryException {
+        important        = true;
+        name             = "LKS94";
+        projectionNames  = new String[] {"UTM"};
+        datumCode        = 6126;
+        isNorthAxisFirst = true;
+        createAndVerifyProjectedCRS(3346);
+    }
+
+    /**
      * Tests “Luzon 1911”-based projected CRS creation from the factory.
      *
      * <ul>
@@ -1248,52 +1270,6 @@ public class Test2006 extends Series2000<ProjectedCRS> {
         createAndVerifyProjectedCRS(3343);
         createAndVerifyProjectedCRS(3344);
         createAndVerifyProjectedCRS(3345);
-    }
-
-    /**
-     * Tests “LKS94”-based projected CRS creation from the factory.
-     *
-     * <ul>
-     *   <li>Projected CRS codes: <b>3346</b></li>
-     *   <li>Geographic CRS name: <b>LKS94</b></li>
-     *   <li>Projection names (informative): <b>UTM</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the projected CRS from the EPSG code.
-     */
-    @Test
-    public void testLKS94() throws FactoryException {
-        important        = true;
-        name             = "LKS94";
-        projectionNames  = new String[] {"UTM"};
-        datumCode        = 6126;
-        isNorthAxisFirst = true;
-        createAndVerifyProjectedCRS(3346);
-    }
-
-    /**
-     * Tests “Pulkovo 1942”-based projected CRS creation from the factory.
-     *
-     * <ul>
-     *   <li>Projected CRS codes: <b>3350</b>, <b>3351</b>, <b>3352</b></li>
-     *   <li>Geographic CRS name: <b>Pulkovo 1942</b></li>
-     *   <li>Projection names (informative): <b>UTM</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the projected CRS from the EPSG code.
-     */
-    @Test
-    public void testPulkovo1942_UTM() throws FactoryException {
-        important        = true;
-        name             = "Pulkovo 1942";
-        projectionNames  = new String[] {"UTM"};
-        datumCode        = 6284;
-        isNorthAxisFirst = true;
-        createAndVerifyProjectedCRS(3350);
-        createAndVerifyProjectedCRS(3351);
-        createAndVerifyProjectedCRS(3352);
     }
 
     /**
@@ -1712,27 +1688,6 @@ public class Test2006 extends Series2000<ProjectedCRS> {
     }
 
     /**
-     * Tests “PSD93”-based projected CRS creation from the factory.
-     *
-     * <ul>
-     *   <li>Projected CRS codes: <b>3440</b></li>
-     *   <li>Geographic CRS name: <b>PSD93</b></li>
-     *   <li>Projection names (informative): <b>UTM</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the projected CRS from the EPSG code.
-     */
-    @Test
-    public void testPSD93() throws FactoryException {
-        important       = true;
-        name            = "PSD93";
-        projectionNames = new String[] {"UTM"};
-        datumCode       = 6134;
-        createAndVerifyProjectedCRS(3440);
-    }
-
-    /**
      * Tests “Pointe Noire”-based projected CRS creation from the factory.
      *
      * <ul>
@@ -1855,6 +1810,27 @@ public class Test2006 extends Series2000<ProjectedCRS> {
     }
 
     /**
+     * Tests “PSD93”-based projected CRS creation from the factory.
+     *
+     * <ul>
+     *   <li>Projected CRS codes: <b>3440</b></li>
+     *   <li>Geographic CRS name: <b>PSD93</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the projected CRS from the EPSG code.
+     */
+    @Test
+    public void testPSD93() throws FactoryException {
+        important       = true;
+        name            = "PSD93";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6134;
+        createAndVerifyProjectedCRS(3440);
+    }
+
+    /**
      * Tests “Pulkovo 1942”-based projected CRS creation from the factory.
      *
      * <ul>
@@ -1925,6 +1901,30 @@ public class Test2006 extends Series2000<ProjectedCRS> {
         datumCode        = 6178;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3836);
+    }
+
+    /**
+     * Tests “Pulkovo 1942”-based projected CRS creation from the factory.
+     *
+     * <ul>
+     *   <li>Projected CRS codes: <b>3350</b>, <b>3351</b>, <b>3352</b></li>
+     *   <li>Geographic CRS name: <b>Pulkovo 1942</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the projected CRS from the EPSG code.
+     */
+    @Test
+    public void testPulkovo1942_UTM() throws FactoryException {
+        important        = true;
+        name             = "Pulkovo 1942";
+        projectionNames  = new String[] {"UTM"};
+        datumCode        = 6284;
+        isNorthAxisFirst = true;
+        createAndVerifyProjectedCRS(3350);
+        createAndVerifyProjectedCRS(3351);
+        createAndVerifyProjectedCRS(3352);
     }
 
     /**

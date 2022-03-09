@@ -195,101 +195,6 @@ public class Test2003 extends Series2000<PrimeMeridian> {
     }
 
     /**
-     * Tests “Greenwich” prime meridian creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG prime meridian code: <b>8901</b></li>
-     *   <li>EPSG prime meridian name: <b>Greenwich</b></li>
-     *   <li>Greenwich longitude: <b>0°</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
-     *
-     * @see Test3003#testGreenwich()
-     */
-    @Test
-    public void testGreenwich() throws FactoryException {
-        important          = true;
-        code               = 8901;
-        name               = "Greenwich";
-        aliases            = NONE;
-        greenwichLongitude = 0.0;
-        verifyPrimeMeridian();
-    }
-
-    /**
-     * Tests “Ferro” prime meridian creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG prime meridian code: <b>8909</b></li>
-     *   <li>EPSG prime meridian name: <b>Ferro</b></li>
-     *   <li>Greenwich longitude: <b>-17°40′</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
-     */
-    @Test
-    public void testFerro() throws FactoryException {
-        important          = true;
-        code               = 8909;
-        name               = "Ferro";
-        aliases            = NONE;
-        greenwichLongitude = -17.666666666666668;
-        verifyPrimeMeridian();
-    }
-
-    /**
-     * Tests “Jakarta” prime meridian creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG prime meridian code: <b>8908</b></li>
-     *   <li>EPSG prime meridian name: <b>Jakarta</b></li>
-     *   <li>Greenwich longitude: <b>106°48′27.79″</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
-     *
-     * @see Test3003#testJakarta()
-     */
-    @Test
-    public void testJakarta() throws FactoryException {
-        important          = true;
-        code               = 8908;
-        name               = "Jakarta";
-        aliases            = NONE;
-        greenwichLongitude = 106.80771944444444;
-        verifyPrimeMeridian();
-    }
-
-    /**
-     * Tests “Paris” prime meridian creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG prime meridian code: <b>8903</b></li>
-     *   <li>EPSG prime meridian name: <b>Paris</b></li>
-     *   <li>Greenwich longitude: <b>2.5969213</b></li>
-     *   <li>Specific usage / Remarks: <b>Equivalent to 2°20'14.025\".</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
-     *
-     * @see Test3003#testParis()
-     */
-    @Test
-    public void testParis() throws FactoryException {
-        important          = true;
-        code               = 8903;
-        name               = "Paris";
-        aliases            = NONE;
-        greenwichLongitude = 2.33722917;
-        verifyPrimeMeridian();
-    }
-
-    /**
      * Tests “Athens” prime meridian creation from the factory.
      *
      * <ul>
@@ -372,6 +277,76 @@ public class Test2003 extends Series2000<PrimeMeridian> {
     }
 
     /**
+     * Tests “Ferro” prime meridian creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG prime meridian code: <b>8909</b></li>
+     *   <li>EPSG prime meridian name: <b>Ferro</b></li>
+     *   <li>Greenwich longitude: <b>-17°40′</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     */
+    @Test
+    public void testFerro() throws FactoryException {
+        important          = true;
+        code               = 8909;
+        name               = "Ferro";
+        aliases            = NONE;
+        greenwichLongitude = -17.666666666666668;
+        verifyPrimeMeridian();
+    }
+
+    /**
+     * Tests “Greenwich” prime meridian creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG prime meridian code: <b>8901</b></li>
+     *   <li>EPSG prime meridian name: <b>Greenwich</b></li>
+     *   <li>Greenwich longitude: <b>0°</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     *
+     * @see Test3003#testGreenwich()
+     */
+    @Test
+    public void testGreenwich() throws FactoryException {
+        important          = true;
+        code               = 8901;
+        name               = "Greenwich";
+        aliases            = NONE;
+        greenwichLongitude = 0.0;
+        verifyPrimeMeridian();
+    }
+
+    /**
+     * Tests “Jakarta” prime meridian creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG prime meridian code: <b>8908</b></li>
+     *   <li>EPSG prime meridian name: <b>Jakarta</b></li>
+     *   <li>Greenwich longitude: <b>106°48′27.79″</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     *
+     * @see Test3003#testJakarta()
+     */
+    @Test
+    public void testJakarta() throws FactoryException {
+        important          = true;
+        code               = 8908;
+        name               = "Jakarta";
+        aliases            = NONE;
+        greenwichLongitude = 106.80771944444444;
+        verifyPrimeMeridian();
+    }
+
+    /**
      * Tests “Lisbon” prime meridian creation from the factory.
      *
      * <ul>
@@ -429,6 +404,31 @@ public class Test2003 extends Series2000<PrimeMeridian> {
         name               = "Oslo";
         aliases            = new String[] {"Kristiania"};
         greenwichLongitude = 10.722916666666666;
+        verifyPrimeMeridian();
+    }
+
+    /**
+     * Tests “Paris” prime meridian creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG prime meridian code: <b>8903</b></li>
+     *   <li>EPSG prime meridian name: <b>Paris</b></li>
+     *   <li>Greenwich longitude: <b>2.5969213</b></li>
+     *   <li>Specific usage / Remarks: <b>Equivalent to 2°20'14.025\".</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     *
+     * @see Test3003#testParis()
+     */
+    @Test
+    public void testParis() throws FactoryException {
+        important          = true;
+        code               = 8903;
+        name               = "Paris";
+        aliases            = NONE;
+        greenwichLongitude = 2.33722917;
         verifyPrimeMeridian();
     }
 

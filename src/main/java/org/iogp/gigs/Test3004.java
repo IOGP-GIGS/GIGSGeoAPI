@@ -265,57 +265,50 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     }
 
     /**
-     * Tests “GIGS geodetic datum A” geodetic datum creation from the factory.
+     * Tests “GIGS geodetic datum X” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>GIGS datum code: <b>66001</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum A</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid A</b></li>
+     *   <li>GIGS datum code: <b>66013</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum X</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid X</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64001 – GIGS geocenCRS A</b></li>
-     *   <li>EPSG equivalence: <b>4978 – WGS 84</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64016 – GIGS geogCRS X</b></li>
+     *   <li>EPSG equivalence: <b>4202 – AGD66</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
      *
-     * @see Test2004#testWGS84()
+     * @see Test2004#testAGD66()
      */
     @Test
-    public void testWGS84() throws FactoryException {
-        setCodeAndName(66001, "GIGS geodetic datum A");
-        ellipsoidData.testWGS84();
+    public void testAGD66() throws FactoryException {
+        setCodeAndName(66013, "GIGS geodetic datum X");
+        ellipsoidData.testAustralianNationalSpheroid();
         primeMeridianData.testGreenwich();
         verifyDatum();
-        createAndVerifyGeocentricCRS(64001, "GIGS geocenCRS A", 6500);
-        createAndVerifyGeographicCRS(64002, "GIGS geog3DCRS A", 6423);
-        createAndVerifyGeographicCRS(64003, "GIGS geogCRS A", 6422);
-        createAndVerifyGeographicCRS(64004, "GIGS geogCRS Alonlat", 6424);
-        createAndVerifyGeographicCRS(64033, "GIGS geogCRS Agr", 6403);
+        createAndVerifyGeographicCRS(64016, "GIGS geogCRS X", 6422);
     }
 
     /**
-     * Tests “GIGS geodetic datum B” geodetic datum creation from the factory.
+     * Tests “GIGS geodetic datum X′” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>GIGS datum code: <b>66002</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum B</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid B</b></li>
+     *   <li>GIGS datum code: <b>66022</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum X′</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid X</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64019 – GIGS geog3DCRS B</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64032 – GIGS geogCRS X′</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see Test2004#testOSGB1936()
      */
     @Test
-    public void testOSGB1936() throws FactoryException {
-        setCodeAndName(66002, "GIGS geodetic datum B");
-        ellipsoidData.testAiry();
+    public void testAGD66_p1() throws FactoryException {
+        setCodeAndName(66022, "GIGS geodetic datum X′");
+        ellipsoidData.testAustralianNationalSpheroid();
         primeMeridianData.testGreenwich();
         verifyDatum();
-        createAndVerifyGeographicCRS(64019, "GIGS geog3DCRS B", 6423);
-        createAndVerifyGeographicCRS(64005, "GIGS geogCRS B", 6422);
+        createAndVerifyGeographicCRS(64032, "GIGS geogCRS X′", 6422);
     }
 
     /**
@@ -344,6 +337,85 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     }
 
     /**
+     * Tests “GIGS geodetic datum CC” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66289</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum CC</b></li>
+     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64289 – GIGS geogCRS CC</b></li>
+     *   <li>EPSG equivalence: <b>4289 – Amersfoort</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testAmersfoort()
+     */
+    @Test
+    public void testAmersfoort_bis() throws FactoryException {
+        setCodeAndName(66289, "GIGS geodetic datum CC");
+        ellipsoidData.testBessel();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64289, "GIGS geogCRS CC", 6422);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum C′” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66018</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum C′</b></li>
+     *   <li>GIGS datum anchor point: <b>Origin C</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid C</b></li>
+     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64025 – GIGS geogCRS C′</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testAmersfoort()
+     */
+    @Test
+    public void testAmersfoort_p1() throws FactoryException {
+        setCodeAndName(66018, "GIGS geodetic datum C′");
+        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin C"), GeodeticDatum.ANCHOR_POINT_KEY);
+        ellipsoidData.testBessel();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64025, "GIGS geogCRS C′", 6422);
+        createAndVerifyGeographicCRS(64026, "GIGS geog3DCRS C′", 6423);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum L” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66011</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum L</b></li>
+     *   <li>GIGS datum anchor point: <b>Origin L</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid C</b></li>
+     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64014 – GIGS geogCRS L</b></li>
+     *   <li>EPSG equivalence: <b>4211 – Batavia</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see Test2004#testBatavia()
+     */
+    @Test
+    public void testBatavia() throws FactoryException {
+        setCodeAndName(66011, "GIGS geodetic datum L");
+        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin L"), GeodeticDatum.ANCHOR_POINT_KEY);
+        ellipsoidData.testBessel();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64014, "GIGS geogCRS L", 6422);
+    }
+
+    /**
      * Tests “GIGS geodetic datum D” geodetic datum creation from the factory.
      *
      * <ul>
@@ -366,6 +438,31 @@ public class Test3004 extends Series3000<GeodeticDatum> {
         primeMeridianData.testJakarta();
         verifyDatum();
         createAndVerifyGeographicCRS(64007, "GIGS geogCRS D", 6422);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum DD” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66813</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum DD</b></li>
+     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
+     *   <li>Prime meridian name: <b>Jakarta</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64813 – GIGS geogCRS DD</b></li>
+     *   <li>EPSG equivalence: <b>4813 – Batavia (Jakarta)</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testBatavia_Jakarta()
+     */
+    @Test
+    public void testBatavia_Jakarta_bis() throws FactoryException {
+        setCodeAndName(66813, "GIGS geodetic datum DD");
+        ellipsoidData.testBessel();
+        primeMeridianData.testJakarta();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64813, "GIGS geogCRS DD", 6422);
     }
 
     /**
@@ -394,30 +491,78 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     }
 
     /**
-     * Tests “GIGS geodetic datum F” geodetic datum creation from the factory.
+     * Tests “GIGS geodetic datum EE” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>GIGS datum code: <b>66006</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum F</b></li>
-     *   <li>GIGS datum anchor point: <b>Origin F</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid F</b></li>
-     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64009 – GIGS geogCRS F</b></li>
-     *   <li>EPSG equivalence: <b>4283 – GDA94</b></li>
+     *   <li>GIGS datum code: <b>66313</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum EE</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64313 – GIGS geogCRS EE</b></li>
+     *   <li>EPSG equivalence: <b>4313 – Belge 1972</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
      *
-     * @see Test2004#testGDA94()
+     * @see #testBelge1972()
      */
     @Test
-    public void testGDA94() throws FactoryException {
-        setCodeAndName(66006, "GIGS geodetic datum F");
-        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin F"), GeodeticDatum.ANCHOR_POINT_KEY);
-        ellipsoidData.testGRS1980();
+    public void testBelge1972_bis() throws FactoryException {
+        setCodeAndName(66313, "GIGS geodetic datum EE");
+        ellipsoidData.testInternational1924();
         primeMeridianData.testGreenwich();
         verifyDatum();
-        createAndVerifyGeographicCRS(64009, "GIGS geogCRS F", 6422);
+        createAndVerifyGeographicCRS(64313, "GIGS geogCRS EE", 6422);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum E′” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66023</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum E′</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid E</b></li>
+     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64027 – GIGS geogCRS E′</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testBelge1972()
+     */
+    @Test
+    public void testBelge1972_p1() throws FactoryException {
+        setCodeAndName(66023, "GIGS geodetic datum E′");
+        ellipsoidData.testInternational1924();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64027, "GIGS geogCRS E′", 6422);
+        createAndVerifyGeographicCRS(64028, "GIGS geog3DCRS E′", 6423);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum M” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66016</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum M</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid E</b></li>
+     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64020 – GIGS geogCRS M</b></li>
+     *   <li>EPSG equivalence: <b>4230 – ED50</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see Test2004#testED50()
+     */
+    @Test
+    public void testED50() throws FactoryException {
+        setCodeAndName(66016, "GIGS geodetic datum M");
+        ellipsoidData.testInternational1924();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64020, "GIGS geogCRS M", 6422);
     }
 
     /**
@@ -449,357 +594,30 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     }
 
     /**
-     * Tests “GIGS geodetic datum H” geodetic datum creation from the factory.
+     * Tests “GIGS geodetic datum F” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>GIGS datum code: <b>66008</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum H</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid H</b></li>
-     *   <li>Prime meridian name: <b>GIGS PM H</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64011 – GIGS geogCRS H</b></li>
-     *   <li>EPSG equivalence: <b>4807 – NTF (Paris)</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see Test2004#testNTF_Paris()
-     */
-    @Test
-    public void testNTF_Paris() throws FactoryException {
-        setCodeAndName(66008, "GIGS geodetic datum H");
-        ellipsoidData.testClarkeIGN();
-        primeMeridianData.testParis();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64011, "GIGS geogCRS H", 6403);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum J” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66009</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum J</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid J</b></li>
-     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64012 – GIGS geogCRS J</b></li>
-     *   <li>EPSG equivalence: <b>4267 – NAD27</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see Test2004#testNAD27()
-     */
-    @Test
-    public void testNAD27() throws FactoryException {
-        setCodeAndName(66009, "GIGS geodetic datum J");
-        ellipsoidData.testClarke1866();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64012, "GIGS geogCRS J", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum K” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66012</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum K</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid K</b></li>
-     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64015 – GIGS geogCRS K</b></li>
-     *   <li>EPSG equivalence: <b>4237 – HD72</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see Test2004#testHD72()
-     */
-    @Test
-    public void testHD72() throws FactoryException {
-        setCodeAndName(66012, "GIGS geodetic datum K");
-        ellipsoidData.testGRS1967();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64015, "GIGS geogCRS K", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum L” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66011</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum L</b></li>
-     *   <li>GIGS datum anchor point: <b>Origin L</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid C</b></li>
-     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64014 – GIGS geogCRS L</b></li>
-     *   <li>EPSG equivalence: <b>4211 – Batavia</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see Test2004#testBatavia()
-     */
-    @Test
-    public void testBatavia() throws FactoryException {
-        setCodeAndName(66011, "GIGS geodetic datum L");
-        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin L"), GeodeticDatum.ANCHOR_POINT_KEY);
-        ellipsoidData.testBessel();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64014, "GIGS geogCRS L", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum M” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66016</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum M</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid E</b></li>
-     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64020 – GIGS geogCRS M</b></li>
-     *   <li>EPSG equivalence: <b>4230 – ED50</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see Test2004#testED50()
-     */
-    @Test
-    public void testED50() throws FactoryException {
-        setCodeAndName(66016, "GIGS geodetic datum M");
-        ellipsoidData.testInternational1924();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64020, "GIGS geogCRS M", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum T” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66010</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum T</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid H</b></li>
-     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64013 – GIGS geogCRS T</b></li>
-     *   <li>EPSG equivalence: <b>4275 – NTF</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see Test2004#testNTF()
-     */
-    @Test
-    public void testNTF() throws FactoryException {
-        setCodeAndName(66010, "GIGS geodetic datum T");
-        ellipsoidData.testClarkeIGN();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64013, "GIGS geogCRS T", 6403);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum X” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66013</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum X</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid X</b></li>
-     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64016 – GIGS geogCRS X</b></li>
-     *   <li>EPSG equivalence: <b>4202 – AGD66</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see Test2004#testAGD66()
-     */
-    @Test
-    public void testAGD66() throws FactoryException {
-        setCodeAndName(66013, "GIGS geodetic datum X");
-        ellipsoidData.testAustralianNationalSpheroid();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64016, "GIGS geogCRS X", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum Y” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66014</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum Y</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid Y</b></li>
-     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64017 – GIGS geogCRS Y</b></li>
-     *   <li>EPSG equivalence: <b>4284 – Pulkovo 1942</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see Test2004#testPulkovo1942()
-     */
-    @Test
-    public void testPulkovo1942() throws FactoryException {
-        setCodeAndName(66014, "GIGS geodetic datum Y");
-        ellipsoidData.testKrassowsky();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64017, "GIGS geogCRS Y", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum Z” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66015</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum Z</b></li>
-     *   <li>GIGS datum anchor point: <b>Origin Z</b></li>
+     *   <li>GIGS datum code: <b>66006</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum F</b></li>
+     *   <li>GIGS datum anchor point: <b>Origin F</b></li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid F</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64018 – GIGS geogCRS Z</b></li>
-     *   <li>EPSG equivalence: <b>4269 – NAD83</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64009 – GIGS geogCRS F</b></li>
+     *   <li>EPSG equivalence: <b>4283 – GDA94</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
      *
-     * @see Test2004#testNAD83()
+     * @see Test2004#testGDA94()
      */
     @Test
-    public void testNAD83() throws FactoryException {
-        setCodeAndName(66015, "GIGS geodetic datum Z");
-        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin Z"), GeodeticDatum.ANCHOR_POINT_KEY);
+    public void testGDA94() throws FactoryException {
+        setCodeAndName(66006, "GIGS geodetic datum F");
+        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin F"), GeodeticDatum.ANCHOR_POINT_KEY);
         ellipsoidData.testGRS1980();
         primeMeridianData.testGreenwich();
         verifyDatum();
-        createAndVerifyGeographicCRS(64018, "GIGS geogCRS Z", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum AA” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66326</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum AA</b></li>
-     *   <li>Ellipsoid name: <b>WGS 84</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64326 – GIGS geogCRS AA</b></li>
-     *   <li>EPSG equivalence: <b>4326 – WGS 84</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see #testWGS84()
-     */
-    @Test
-    public void testWGS84_bis() throws FactoryException {
-        setCodeAndName(66326, "GIGS geodetic datum AA");
-        ellipsoidData.testWGS84();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64326, "GIGS geogCRS AA", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum BB” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66277</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum BB</b></li>
-     *   <li>Ellipsoid name: <b>Airy 1830</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64277 – GIGS geogCRS BB</b></li>
-     *   <li>EPSG equivalence: <b>4277 – OSGB 1936</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see #testOSGB1936()
-     */
-    @Test
-    public void testOSGB1936_bis() throws FactoryException {
-        setCodeAndName(66277, "GIGS geodetic datum BB");
-        ellipsoidData.testAiry();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64277, "GIGS geogCRS BB", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum CC” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66289</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum CC</b></li>
-     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64289 – GIGS geogCRS CC</b></li>
-     *   <li>EPSG equivalence: <b>4289 – Amersfoort</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see #testAmersfoort()
-     */
-    @Test
-    public void testAmersfoort_bis() throws FactoryException {
-        setCodeAndName(66289, "GIGS geodetic datum CC");
-        ellipsoidData.testBessel();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64289, "GIGS geogCRS CC", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum DD” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66813</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum DD</b></li>
-     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
-     *   <li>Prime meridian name: <b>Jakarta</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64813 – GIGS geogCRS DD</b></li>
-     *   <li>EPSG equivalence: <b>4813 – Batavia (Jakarta)</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see #testBatavia_Jakarta()
-     */
-    @Test
-    public void testBatavia_Jakarta_bis() throws FactoryException {
-        setCodeAndName(66813, "GIGS geodetic datum DD");
-        ellipsoidData.testBessel();
-        primeMeridianData.testJakarta();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64813, "GIGS geogCRS DD", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum EE” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66313</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum EE</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64313 – GIGS geogCRS EE</b></li>
-     *   <li>EPSG equivalence: <b>4313 – Belge 1972</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see #testBelge1972()
-     */
-    @Test
-    public void testBelge1972_bis() throws FactoryException {
-        setCodeAndName(66313, "GIGS geodetic datum EE");
-        ellipsoidData.testInternational1924();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64313, "GIGS geogCRS EE", 6422);
+        createAndVerifyGeographicCRS(64009, "GIGS geogCRS F", 6422);
     }
 
     /**
@@ -828,130 +646,53 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     }
 
     /**
-     * Tests “GIGS geodetic datum HH” geodetic datum creation from the factory.
+     * Tests “GIGS geodetic datum K” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>GIGS datum code: <b>66807</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum HH</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
-     *   <li>Prime meridian name: <b>Paris</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64807 – GIGS geogCRS HH</b></li>
-     *   <li>EPSG equivalence: <b>4807 – NTF(Paris)</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see #testNTF_Paris()
-     */
-    @Test
-    public void testNTF_Paris_bis() throws FactoryException {
-        setCodeAndName(66807, "GIGS geodetic datum HH");
-        ellipsoidData.testClarkeIGN();
-        primeMeridianData.testParis();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64807, "GIGS geogCRS HH", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum ZZ” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66269</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum ZZ</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64269 – GIGS geogCRS ZZ</b></li>
-     *   <li>EPSG equivalence: <b>4269 – NAD83</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see #testNAD83()
-     */
-    @Test
-    public void testNAD83_bis() throws FactoryException {
-        setCodeAndName(66269, "GIGS geodetic datum ZZ");
-        ellipsoidData.testGRS1980();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64269, "GIGS geogCRS ZZ", 6422);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum B′” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66017</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum B′</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid B</b></li>
+     *   <li>GIGS datum code: <b>66012</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum K</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid K</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64023 – GIGS geogCRS B′</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64015 – GIGS geogCRS K</b></li>
+     *   <li>EPSG equivalence: <b>4237 – HD72</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
      *
-     * @see #testOSGB1936()
+     * @see Test2004#testHD72()
      */
     @Test
-    public void testOSGB1936_p1() throws FactoryException {
-        setCodeAndName(66017, "GIGS geodetic datum B′");
-        ellipsoidData.testAiry();
+    public void testHD72() throws FactoryException {
+        setCodeAndName(66012, "GIGS geodetic datum K");
+        ellipsoidData.testGRS1967();
         primeMeridianData.testGreenwich();
         verifyDatum();
-        createAndVerifyGeographicCRS(64023, "GIGS geogCRS B′", 6422);
-        createAndVerifyGeographicCRS(64024, "GIGS geog3DCRS B′", 6423);
+        createAndVerifyGeographicCRS(64015, "GIGS geogCRS K", 6422);
     }
 
     /**
-     * Tests “GIGS geodetic datum C′” geodetic datum creation from the factory.
+     * Tests “GIGS geodetic datum J” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>GIGS datum code: <b>66018</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum C′</b></li>
-     *   <li>GIGS datum anchor point: <b>Origin C</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid C</b></li>
+     *   <li>GIGS datum code: <b>66009</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum J</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid J</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64025 – GIGS geogCRS C′</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64012 – GIGS geogCRS J</b></li>
+     *   <li>EPSG equivalence: <b>4267 – NAD27</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
      *
-     * @see #testAmersfoort()
+     * @see Test2004#testNAD27()
      */
     @Test
-    public void testAmersfoort_p1() throws FactoryException {
-        setCodeAndName(66018, "GIGS geodetic datum C′");
-        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin C"), GeodeticDatum.ANCHOR_POINT_KEY);
-        ellipsoidData.testBessel();
+    public void testNAD27() throws FactoryException {
+        setCodeAndName(66009, "GIGS geodetic datum J");
+        ellipsoidData.testClarke1866();
         primeMeridianData.testGreenwich();
         verifyDatum();
-        createAndVerifyGeographicCRS(64025, "GIGS geogCRS C′", 6422);
-        createAndVerifyGeographicCRS(64026, "GIGS geog3DCRS C′", 6423);
-    }
-
-    /**
-     * Tests “GIGS geodetic datum E′” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS datum code: <b>66023</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum E′</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid E</b></li>
-     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64027 – GIGS geogCRS E′</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
-     *
-     * @see #testBelge1972()
-     */
-    @Test
-    public void testBelge1972_p1() throws FactoryException {
-        setCodeAndName(66023, "GIGS geodetic datum E′");
-        ellipsoidData.testInternational1924();
-        primeMeridianData.testGreenwich();
-        verifyDatum();
-        createAndVerifyGeographicCRS(64027, "GIGS geogCRS E′", 6422);
-        createAndVerifyGeographicCRS(64028, "GIGS geog3DCRS E′", 6423);
+        createAndVerifyGeographicCRS(64012, "GIGS geogCRS J", 6422);
     }
 
     /**
@@ -1027,24 +768,283 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     }
 
     /**
-     * Tests “GIGS geodetic datum X′” geodetic datum creation from the factory.
+     * Tests “GIGS geodetic datum Z” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>GIGS datum code: <b>66022</b></li>
-     *   <li>GIGS datum name: <b>GIGS geodetic datum X′</b></li>
-     *   <li>Ellipsoid name: <b>GIGS ellipsoid X</b></li>
+     *   <li>GIGS datum code: <b>66015</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum Z</b></li>
+     *   <li>GIGS datum anchor point: <b>Origin Z</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid F</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
-     *   <li>GIGS coordinate reference system using the datum: <b>64032 – GIGS geogCRS X′</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64018 – GIGS geogCRS Z</b></li>
+     *   <li>EPSG equivalence: <b>4269 – NAD83</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see Test2004#testNAD83()
      */
     @Test
-    public void testAGD66_p1() throws FactoryException {
-        setCodeAndName(66022, "GIGS geodetic datum X′");
-        ellipsoidData.testAustralianNationalSpheroid();
+    public void testNAD83() throws FactoryException {
+        setCodeAndName(66015, "GIGS geodetic datum Z");
+        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin Z"), GeodeticDatum.ANCHOR_POINT_KEY);
+        ellipsoidData.testGRS1980();
         primeMeridianData.testGreenwich();
         verifyDatum();
-        createAndVerifyGeographicCRS(64032, "GIGS geogCRS X′", 6422);
+        createAndVerifyGeographicCRS(64018, "GIGS geogCRS Z", 6422);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum ZZ” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66269</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum ZZ</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64269 – GIGS geogCRS ZZ</b></li>
+     *   <li>EPSG equivalence: <b>4269 – NAD83</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testNAD83()
+     */
+    @Test
+    public void testNAD83_bis() throws FactoryException {
+        setCodeAndName(66269, "GIGS geodetic datum ZZ");
+        ellipsoidData.testGRS1980();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64269, "GIGS geogCRS ZZ", 6422);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum T” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66010</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum T</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid H</b></li>
+     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64013 – GIGS geogCRS T</b></li>
+     *   <li>EPSG equivalence: <b>4275 – NTF</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see Test2004#testNTF()
+     */
+    @Test
+    public void testNTF() throws FactoryException {
+        setCodeAndName(66010, "GIGS geodetic datum T");
+        ellipsoidData.testClarkeIGN();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64013, "GIGS geogCRS T", 6403);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum H” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66008</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum H</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid H</b></li>
+     *   <li>Prime meridian name: <b>GIGS PM H</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64011 – GIGS geogCRS H</b></li>
+     *   <li>EPSG equivalence: <b>4807 – NTF (Paris)</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see Test2004#testNTF_Paris()
+     */
+    @Test
+    public void testNTF_Paris() throws FactoryException {
+        setCodeAndName(66008, "GIGS geodetic datum H");
+        ellipsoidData.testClarkeIGN();
+        primeMeridianData.testParis();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64011, "GIGS geogCRS H", 6403);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum HH” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66807</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum HH</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
+     *   <li>Prime meridian name: <b>Paris</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64807 – GIGS geogCRS HH</b></li>
+     *   <li>EPSG equivalence: <b>4807 – NTF(Paris)</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testNTF_Paris()
+     */
+    @Test
+    public void testNTF_Paris_bis() throws FactoryException {
+        setCodeAndName(66807, "GIGS geodetic datum HH");
+        ellipsoidData.testClarkeIGN();
+        primeMeridianData.testParis();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64807, "GIGS geogCRS HH", 6422);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum B” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66002</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum B</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid B</b></li>
+     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64019 – GIGS geog3DCRS B</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see Test2004#testOSGB1936()
+     */
+    @Test
+    public void testOSGB1936() throws FactoryException {
+        setCodeAndName(66002, "GIGS geodetic datum B");
+        ellipsoidData.testAiry();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64019, "GIGS geog3DCRS B", 6423);
+        createAndVerifyGeographicCRS(64005, "GIGS geogCRS B", 6422);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum BB” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66277</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum BB</b></li>
+     *   <li>Ellipsoid name: <b>Airy 1830</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64277 – GIGS geogCRS BB</b></li>
+     *   <li>EPSG equivalence: <b>4277 – OSGB 1936</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testOSGB1936()
+     */
+    @Test
+    public void testOSGB1936_bis() throws FactoryException {
+        setCodeAndName(66277, "GIGS geodetic datum BB");
+        ellipsoidData.testAiry();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64277, "GIGS geogCRS BB", 6422);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum B′” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66017</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum B′</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid B</b></li>
+     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64023 – GIGS geogCRS B′</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testOSGB1936()
+     */
+    @Test
+    public void testOSGB1936_p1() throws FactoryException {
+        setCodeAndName(66017, "GIGS geodetic datum B′");
+        ellipsoidData.testAiry();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64023, "GIGS geogCRS B′", 6422);
+        createAndVerifyGeographicCRS(64024, "GIGS geog3DCRS B′", 6423);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum Y” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66014</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum Y</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid Y</b></li>
+     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64017 – GIGS geogCRS Y</b></li>
+     *   <li>EPSG equivalence: <b>4284 – Pulkovo 1942</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see Test2004#testPulkovo1942()
+     */
+    @Test
+    public void testPulkovo1942() throws FactoryException {
+        setCodeAndName(66014, "GIGS geodetic datum Y");
+        ellipsoidData.testKrassowsky();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64017, "GIGS geogCRS Y", 6422);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum A” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66001</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum A</b></li>
+     *   <li>Ellipsoid name: <b>GIGS ellipsoid A</b></li>
+     *   <li>Prime meridian name: <b>GIGS PM A</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64001 – GIGS geocenCRS A</b></li>
+     *   <li>EPSG equivalence: <b>4978 – WGS 84</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see Test2004#testWGS84()
+     */
+    @Test
+    public void testWGS84() throws FactoryException {
+        setCodeAndName(66001, "GIGS geodetic datum A");
+        ellipsoidData.testWGS84();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeocentricCRS(64001, "GIGS geocenCRS A", 6500);
+        createAndVerifyGeographicCRS(64002, "GIGS geog3DCRS A", 6423);
+        createAndVerifyGeographicCRS(64003, "GIGS geogCRS A", 6422);
+        createAndVerifyGeographicCRS(64004, "GIGS geogCRS Alonlat", 6424);
+        createAndVerifyGeographicCRS(64033, "GIGS geogCRS Agr", 6403);
+    }
+
+    /**
+     * Tests “GIGS geodetic datum AA” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS datum code: <b>66326</b></li>
+     *   <li>GIGS datum name: <b>GIGS geodetic datum AA</b></li>
+     *   <li>Ellipsoid name: <b>WGS 84</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>GIGS coordinate reference system using the datum: <b>64326 – GIGS geogCRS AA</b></li>
+     *   <li>EPSG equivalence: <b>4326 – WGS 84</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testWGS84()
+     */
+    @Test
+    public void testWGS84_bis() throws FactoryException {
+        setCodeAndName(66326, "GIGS geodetic datum AA");
+        ellipsoidData.testWGS84();
+        primeMeridianData.testGreenwich();
+        verifyDatum();
+        createAndVerifyGeographicCRS(64326, "GIGS geogCRS AA", 6422);
     }
 }

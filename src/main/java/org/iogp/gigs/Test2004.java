@@ -417,6 +417,78 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Adindan” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6201</b></li>
+     *   <li>EPSG datum name: <b>Adindan</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Adindan</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testAdindan() throws FactoryException {
+        code              = 6201;
+        name              = "Adindan";
+        crsName           = "Adindan";
+        ellipsoidName     = "Clarke 1880 (RGS)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4201, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Afgooye” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6205</b></li>
+     *   <li>EPSG datum name: <b>Afgooye</b></li>
+     *   <li>Ellipsoid name: <b>Krassowsky 1940</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Afgooye</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testAfgooye() throws FactoryException {
+        code              = 6205;
+        name              = "Afgooye";
+        crsName           = "Afgooye";
+        ellipsoidName     = "Krassowsky 1940";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4205, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Agadez” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6206</b></li>
+     *   <li>EPSG datum name: <b>Agadez</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Agadez</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testAgadez() throws FactoryException {
+        code              = 6206;
+        name              = "Agadez";
+        crsName           = "Agadez";
+        ellipsoidName     = "Clarke 1880 (IGN)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4206, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Australian Geodetic Datum 1966” geodetic datum creation from the factory.
      *
      * <ul>
@@ -495,2623 +567,6 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
-     * Tests “Amersfoort” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6289</b></li>
-     *   <li>EPSG datum name: <b>Amersfoort</b></li>
-     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Amersfoort</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testAmersfoort() throws FactoryException {
-        important         = true;
-        code              = 6289;
-        name              = "Amersfoort";
-        crsName           = "Amersfoort";
-        ellipsoidName     = "Bessel 1841";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4289, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Aratu” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6208</b></li>
-     *   <li>EPSG datum name: <b>Aratu</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Aratu</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testAratu() throws FactoryException {
-        important         = true;
-        code              = 6208;
-        name              = "Aratu";
-        crsName           = "Aratu";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4208, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Batavia” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6211</b></li>
-     *   <li>EPSG datum name: <b>Batavia</b></li>
-     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Batavia</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testBatavia() throws FactoryException {
-        important         = true;
-        code              = 6211;
-        name              = "Batavia";
-        crsName           = "Batavia";
-        ellipsoidName     = "Bessel 1841";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4211, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Batavia (Jakarta)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6813</b></li>
-     *   <li>EPSG datum name: <b>Batavia (Jakarta)</b></li>
-     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
-     *   <li>Prime meridian name: <b>Jakarta</b></li>
-     *   <li>CRS using the datum: <b>Batavia (Jakarta)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testBatavia_Jakarta() throws FactoryException {
-        important         = true;
-        code              = 6813;
-        name              = "Batavia (Jakarta)";
-        crsName           = "Batavia (Jakarta)";
-        ellipsoidName     = "Bessel 1841";
-        primeMeridianName = "Jakarta";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4813, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Beijing 1954” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6214</b></li>
-     *   <li>EPSG datum name: <b>Beijing 1954</b></li>
-     *   <li>Ellipsoid name: <b>Krassowsky 1940</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Beijing 1954</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testBeijing() throws FactoryException {
-        important         = true;
-        code              = 6214;
-        name              = "Beijing 1954";
-        crsName           = "Beijing 1954";
-        ellipsoidName     = "Krassowsky 1940";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4214, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Bogota 1975” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6218</b></li>
-     *   <li>EPSG datum name: <b>Bogota 1975</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Bogota 1975</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testBogota() throws FactoryException {
-        important         = true;
-        code              = 6218;
-        name              = "Bogota 1975";
-        crsName           = "Bogota 1975";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4218, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Camacupa” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6220</b></li>
-     *   <li>EPSG datum name: <b>Camacupa</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Camacupa</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testCamacupa() throws FactoryException {
-        important         = true;
-        code              = 6220;
-        name              = "Camacupa 1948";
-        crsName           = "Camacupa 1948";
-        ellipsoidName     = "Clarke 1880 (RGS)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4220, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Campo Inchauspe” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6221</b></li>
-     *   <li>EPSG datum name: <b>Campo Inchauspe</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Campo Inchauspe</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testCampoInchauspe() throws FactoryException {
-        important         = true;
-        code              = 6221;
-        name              = "Campo Inchauspe";
-        crsName           = "Campo Inchauspe";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4221, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Carthage” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6223</b></li>
-     *   <li>EPSG datum name: <b>Carthage</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Carthage</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testCarthage() throws FactoryException {
-        important         = true;
-        code              = 6223;
-        name              = "Carthage";
-        crsName           = "Carthage";
-        ellipsoidName     = "Clarke 1880 (IGN)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4223, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Chos Malal 1914” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6160</b></li>
-     *   <li>EPSG datum name: <b>Chos Malal 1914</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Chos Malal 1914</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testChosMalal() throws FactoryException {
-        important         = true;
-        code              = 6160;
-        name              = "Chos Malal 1914";
-        crsName           = "Chos Malal 1914";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4160, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Dealul Piscului 1930” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6316</b></li>
-     *   <li>EPSG datum name: <b>Dealul Piscului 1930</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Dealul Piscului 1930</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testDealulPiscului() throws FactoryException {
-        important         = true;
-        code              = 6316;
-        name              = "Dealul Piscului 1930";
-        crsName           = "Dealul Piscului 1930";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4316, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Deir ez Zor” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6227</b></li>
-     *   <li>EPSG datum name: <b>Deir ez Zor</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Deir ez Zor</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testDeirEzZor() throws FactoryException {
-        important         = true;
-        code              = 6227;
-        name              = "Deir ez Zor";
-        crsName           = "Deir ez Zor";
-        ellipsoidName     = "Clarke 1880 (IGN)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4227, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Datum Geodesi Nasional 1995” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6755</b></li>
-     *   <li>EPSG datum name: <b>Datum Geodesi Nasional 1995</b></li>
-     *   <li>Ellipsoid name: <b>WGS 84</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>DGN95</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testDGN95() throws FactoryException {
-        important         = true;
-        code              = 6755;
-        name              = "Datum Geodesi Nasional 1995";
-        crsName           = "DGN95";
-        ellipsoidName     = "WGS 84";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4897);
-        createAndVerifyGeographicCRS(4898, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4755, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Deutsches Hauptdreiecksnetz” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6314</b></li>
-     *   <li>EPSG datum name: <b>Deutsches Hauptdreiecksnetz</b></li>
-     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>DHDN</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testDHDN() throws FactoryException {
-        important         = true;
-        code              = 6314;
-        name              = "Deutsches Hauptdreiecksnetz";
-        crsName           = "DHDN";
-        ellipsoidName     = "Bessel 1841";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4314, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Douala 1948” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6192</b></li>
-     *   <li>EPSG datum name: <b>Douala 1948</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Douala 1948</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testDouala() throws FactoryException {
-        important         = true;
-        code              = 6192;
-        name              = "Douala 1948";
-        crsName           = "Douala 1948";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4192, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “European Datum 1950” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6230</b></li>
-     *   <li>EPSG datum name: <b>European Datum 1950</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>ED50</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testED50() throws FactoryException {
-        important         = true;
-        code              = 6230;
-        name              = "European Datum 1950";
-        crsName           = "ED50";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4230, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “European Datum 1950(1977)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6154</b></li>
-     *   <li>EPSG datum name: <b>European Datum 1950(1977)</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>ED50(ED77)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testED50_77() throws FactoryException {
-        important         = true;
-        code              = 6154;
-        name              = "European Datum 1950(1977)";
-        crsName           = "ED50(ED77)";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4154, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Egypt 1907” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6229</b></li>
-     *   <li>EPSG datum name: <b>Egypt 1907</b></li>
-     *   <li>Ellipsoid name: <b>Helmert 1906</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Egypt 1907</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testEgypt1907() throws FactoryException {
-        important         = true;
-        code              = 6229;
-        name              = "Egypt 1907";
-        crsName           = "Egypt 1907";
-        ellipsoidName     = "Helmert 1906";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4229, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Egypt Gulf of Suez S-650 TL” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6706</b></li>
-     *   <li>EPSG datum name: <b>Egypt Gulf of Suez S-650 TL</b></li>
-     *   <li>Ellipsoid name: <b>Helmert 1906</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Egypt Gulf of Suez S-650 TL</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testGulfOfSuez() throws FactoryException {
-        important         = true;
-        code              = 6706;
-        name              = "Egypt Gulf of Suez S-650 TL";
-        crsName           = "Egypt Gulf of Suez S-650 TL";
-        ellipsoidName     = "Helmert 1906";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4706, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “European Libyan Datum 1979” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6159</b></li>
-     *   <li>EPSG datum name: <b>European Libyan Datum 1979</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>ELD79</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testELD79() throws FactoryException {
-        important         = true;
-        code              = 6159;
-        name              = "European Libyan Datum 1979";
-        crsName           = "ELD79";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4159, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “European Terrestrial Reference System 1989” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6258</b></li>
-     *   <li>EPSG datum name: <b>European Terrestrial Reference System 1989</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>ETRS89</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testETRS89() throws FactoryException {
-        important         = true;
-        code              = 6258;
-        name              = "European Terrestrial Reference System 1989";
-        crsName           = "ETRS89";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4936);
-        createAndVerifyGeographicCRS(4937, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4258, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Fahud” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6232</b></li>
-     *   <li>EPSG datum name: <b>Fahud</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Fahud</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testFahud() throws FactoryException {
-        important         = true;
-        code              = 6232;
-        name              = "Fahud";
-        crsName           = "Fahud";
-        ellipsoidName     = "Clarke 1880 (RGS)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4232, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Final Datum 1958” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6132</b></li>
-     *   <li>EPSG datum name: <b>Final Datum 1958</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>FD58</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testFD58() throws FactoryException {
-        important         = true;
-        code              = 6132;
-        name              = "Final Datum 1958";
-        crsName           = "FD58";
-        ellipsoidName     = "Clarke 1880 (RGS)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4132, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Geocentric Datum of Australia 1994” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6283</b></li>
-     *   <li>EPSG datum name: <b>Geocentric Datum of Australia 1994</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>GDA94</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testGDA94() throws FactoryException {
-        important         = true;
-        code              = 6283;
-        name              = "Geocentric Datum of Australia 1994";
-        crsName           = "GDA94";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4938);
-        createAndVerifyGeographicCRS(4939, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4283, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Geodetic Datum of Malaysia 2000” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6742</b></li>
-     *   <li>EPSG datum name: <b>Geodetic Datum of Malaysia 2000</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>GDM2000</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testGDM2000() throws FactoryException {
-        important         = true;
-        code              = 6742;
-        name              = "Geodetic Datum of Malaysia 2000";
-        crsName           = "GDM2000";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4920);
-        createAndVerifyGeographicCRS(4921, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4742, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Hungarian Datum 1972” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6237</b></li>
-     *   <li>EPSG datum name: <b>Hungarian Datum 1972</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1967</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>HD72</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testHD72() throws FactoryException {
-        important         = true;
-        code              = 6237;
-        name              = "Hungarian Datum 1972";
-        crsName           = "HD72";
-        ellipsoidName     = "GRS 1967";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4237, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Hito XVIII 1963” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6254</b></li>
-     *   <li>EPSG datum name: <b>Hito XVIII 1963</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Hito XVIII 1963</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testHito() throws FactoryException {
-        important         = true;
-        code              = 6254;
-        name              = "Hito XVIII 1963";
-        crsName           = "Hito XVIII 1963";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4254, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Indonesian Datum 1974” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6238</b></li>
-     *   <li>EPSG datum name: <b>Indonesian Datum 1974</b></li>
-     *   <li>Ellipsoid name: <b>Indonesian National Spheroid</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>ID74</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testID74() throws FactoryException {
-        important         = true;
-        code              = 6238;
-        name              = "Indonesian Datum 1974";
-        crsName           = "ID74";
-        ellipsoidName     = "Indonesian National Spheroid";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4238, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “IGN Astro 1960” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6700</b></li>
-     *   <li>EPSG datum name: <b>IGN Astro 1960</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>IGN Astro 1960</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testIGNAstro1960() throws FactoryException {
-        important         = true;
-        code              = 6700;
-        name              = "IGN Astro 1960";
-        crsName           = "IGN Astro 1960";
-        ellipsoidName     = "Clarke 1880 (RGS)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4700, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Indian 1954” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6239</b></li>
-     *   <li>EPSG datum name: <b>Indian 1954</b></li>
-     *   <li>Ellipsoid name: <b>Everest 1830 (1937 Adjustment)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Indian 1954</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testIndian1954() throws FactoryException {
-        important         = true;
-        code              = 6239;
-        name              = "Indian 1954";
-        crsName           = "Indian 1954";
-        ellipsoidName     = "Everest 1830 (1937 Adjustment)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4239, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Indian 1960” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6131</b></li>
-     *   <li>EPSG datum name: <b>Indian 1960</b></li>
-     *   <li>Ellipsoid name: <b>Everest 1830 (1937 Adjustment)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Indian 1960</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testIndian1960() throws FactoryException {
-        important         = true;
-        code              = 6131;
-        name              = "Indian 1960";
-        crsName           = "Indian 1960";
-        ellipsoidName     = "Everest 1830 (1937 Adjustment)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4131, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Indian 1975” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6240</b></li>
-     *   <li>EPSG datum name: <b>Indian 1975</b></li>
-     *   <li>Ellipsoid name: <b>Everest 1830 (1937 Adjustment)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Indian 1975</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testIndian1975() throws FactoryException {
-        important         = true;
-        code              = 6240;
-        name              = "Indian 1975";
-        crsName           = "Indian 1975";
-        ellipsoidName     = "Everest 1830 (1937 Adjustment)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4240, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Kalianpur 1937” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6144</b></li>
-     *   <li>EPSG datum name: <b>Kalianpur 1937</b></li>
-     *   <li>Ellipsoid name: <b>Everest 1830 (1937 Adjustment)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Kalianpur 1937</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testKalianpur1937() throws FactoryException {
-        important         = true;
-        code              = 6144;
-        name              = "Kalianpur 1937";
-        crsName           = "Kalianpur 1937";
-        ellipsoidName     = "Everest 1830 (1937 Adjustment)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4144, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Kalianpur 1962” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6145</b></li>
-     *   <li>EPSG datum name: <b>Kalianpur 1962</b></li>
-     *   <li>Ellipsoid name: <b>Everest 1830 (1962 Definition)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Kalianpur 1962</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testKalianpur1962() throws FactoryException {
-        important         = true;
-        code              = 6145;
-        name              = "Kalianpur 1962";
-        crsName           = "Kalianpur 1962";
-        ellipsoidName     = "Everest 1830 (1962 Definition)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4145, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Kalianpur 1975” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6146</b></li>
-     *   <li>EPSG datum name: <b>Kalianpur 1975</b></li>
-     *   <li>Ellipsoid name: <b>Everest 1830 (1975 Definition)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Kalianpur 1975</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testKalianpur1975() throws FactoryException {
-        important         = true;
-        code              = 6146;
-        name              = "Kalianpur 1975";
-        crsName           = "Kalianpur 1975";
-        ellipsoidName     = "Everest 1830 (1975 Definition)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4146, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Kertau 1968” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6245</b></li>
-     *   <li>EPSG datum name: <b>Kertau 1968</b></li>
-     *   <li>Ellipsoid name: <b>Everest 1830 Modified</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Kertau 1968</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testKertau() throws FactoryException {
-        important         = true;
-        code              = 6245;
-        name              = "Kertau 1968";
-        crsName           = "Kertau 1968";
-        ellipsoidName     = "Everest 1830 Modified";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4245, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Kuwait Oil Company” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6246</b></li>
-     *   <li>EPSG datum name: <b>Kuwait Oil Company</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>KOC</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testKOC() throws FactoryException {
-        important         = true;
-        code              = 6246;
-        name              = "Kuwait Oil Company";
-        crsName           = "KOC";
-        ellipsoidName     = "Clarke 1880 (RGS)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4246, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Libyan Geodetic Datum 2006” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6754</b></li>
-     *   <li>EPSG datum name: <b>Libyan Geodetic Datum 2006</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>LGD2006</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testLGD2006() throws FactoryException {
-        important         = true;
-        code              = 6754;
-        name              = "Libyan Geodetic Datum 2006";
-        crsName           = "LGD2006";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4899);
-        createAndVerifyGeographicCRS(4900, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4754, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Luzon 1911” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6253</b></li>
-     *   <li>EPSG datum name: <b>Luzon 1911</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1866</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Luzon 1911</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testLuzon() throws FactoryException {
-        important         = true;
-        code              = 6253;
-        name              = "Luzon 1911";
-        crsName           = "Luzon 1911";
-        ellipsoidName     = "Clarke 1866";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4253, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Marco Geocentrico Nacional de Referencia” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6686</b></li>
-     *   <li>EPSG datum name: <b>Marco Geocentrico Nacional de Referencia</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>MAGNA-SIRGAS</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testMAGNA_SIRGAS() throws FactoryException {
-        important         = true;
-        code              = 6686;
-        name              = "Marco Geocentrico Nacional de Referencia";
-        crsName           = "MAGNA-SIRGAS";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4996);
-        createAndVerifyGeographicCRS(4997, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4686, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Malongo 1987” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6259</b></li>
-     *   <li>EPSG datum name: <b>Malongo 1987</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Malongo 1987</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testMalongo() throws FactoryException {
-        important         = true;
-        code              = 6259;
-        name              = "Malongo 1987";
-        crsName           = "Malongo 1987";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4259, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Manoca 1962” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6193</b></li>
-     *   <li>EPSG datum name: <b>Manoca 1962</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Manoca 1962</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testManoca() throws FactoryException {
-        important         = true;
-        code              = 6193;
-        name              = "Manoca 1962";
-        crsName           = "Manoca 1962";
-        ellipsoidName     = "Clarke 1880 (IGN)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4193, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Mauritania 1999” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6702</b></li>
-     *   <li>EPSG datum name: <b>Mauritania 1999</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Mauritania 1999</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testMauritania() throws FactoryException {
-        important         = true;
-        code              = 6702;
-        name              = "Mauritania 1999";
-        crsName           = "Mauritania 1999";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4924);
-        createAndVerifyGeographicCRS(4925, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4702, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Militar-Geographische Institut” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6312</b></li>
-     *   <li>EPSG datum name: <b>Militar-Geographische Institut</b></li>
-     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>MGI</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testMGI() throws FactoryException {
-        important         = true;
-        code              = 6312;
-        name              = "Militar-Geographische Institut";
-        crsName           = "MGI";
-        ellipsoidName     = "Bessel 1841";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4312, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Militar-Geographische Institut (Ferro)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6805</b></li>
-     *   <li>EPSG datum name: <b>Militar-Geographische Institut (Ferro)</b></li>
-     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
-     *   <li>Prime meridian name: <b>Ferro</b></li>
-     *   <li>CRS using the datum: <b>MGI (Ferro)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testMGI_Ferro() throws FactoryException {
-        important         = true;
-        code              = 6805;
-        name              = "Militar-Geographische Institut (Ferro)";
-        crsName           = "MGI (Ferro)";
-        ellipsoidName     = "Bessel 1841";
-        primeMeridianName = "Ferro";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4805, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Mhast (offshore)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6705</b></li>
-     *   <li>EPSG datum name: <b>Mhast (offshore)</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Mhast (offshore)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testMhast_offshore() throws FactoryException {
-        important         = true;
-        code              = 6705;
-        name              = "Mhast (offshore)";
-        crsName           = "Mhast (offshore)";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4705, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Mhast (onshore)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6704</b></li>
-     *   <li>EPSG datum name: <b>Mhast (onshore)</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Mhast (onshore)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testMhast_onshore() throws FactoryException {
-        important         = true;
-        code              = 6704;
-        name              = "Mhast (onshore)";
-        crsName           = "Mhast (onshore)";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4704, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Minna” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6263</b></li>
-     *   <li>EPSG datum name: <b>Minna</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Minna</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testMinna() throws FactoryException {
-        important         = true;
-        code              = 6263;
-        name              = "Minna";
-        crsName           = "Minna";
-        ellipsoidName     = "Clarke 1880 (RGS)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4263, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Monte Mario” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6265</b></li>
-     *   <li>EPSG datum name: <b>Monte Mario</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Monte Mario</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testMonteMario() throws FactoryException {
-        important         = true;
-        code              = 6265;
-        name              = "Monte Mario";
-        crsName           = "Monte Mario";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4265, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “M'poraloko” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6266</b></li>
-     *   <li>EPSG datum name: <b>M'poraloko</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>M'poraloko</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testMPoraloko() throws FactoryException {
-        important         = true;
-        code              = 6266;
-        name              = "M'poraloko";
-        crsName           = "M'poraloko";
-        ellipsoidName     = "Clarke 1880 (IGN)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4266, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “North American Datum 1927” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6267</b></li>
-     *   <li>EPSG datum name: <b>North American Datum 1927</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1866</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>NAD27</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNAD27() throws FactoryException {
-        important         = true;
-        code              = 6267;
-        name              = "North American Datum 1927";
-        crsName           = "NAD27";
-        ellipsoidName     = "Clarke 1866";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4267, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “NAD27 Michigan” geodetic datum creation from the factory <em>(deprecated)</em>.
-     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6268</b></li>
-     *   <li>EPSG datum name: <b>NAD27 Michigan</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1866 Michigan</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>NAD27 Michigan</b></li>
-     *   <li><b>Deprecated:</b> Ellipsoid scaling moved from datum to map projection to accord with NGS practice.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNAD27_Michigan() throws FactoryException {
-        important         = true;
-        code              = 6268;
-        name              = "NAD27 Michigan";
-        crsName           = "NAD27 Michigan";
-        ellipsoidName     = "Clarke 1866 Michigan";
-        primeMeridianName = "Greenwich";
-        assumeTrue(isDeprecatedObjectCreationSupported, "Creation of deprecated objects not supported.");
-        verifyDatum();
-        createAndVerifyGeographicCRS(4268, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “North American Datum 1983” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6269</b></li>
-     *   <li>EPSG datum name: <b>North American Datum 1983</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>NAD83</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNAD83() throws FactoryException {
-        important         = true;
-        code              = 6269;
-        name              = "North American Datum 1983";
-        crsName           = "NAD83";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4269, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “NAD83 Canadian Spatial Reference System” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6140</b></li>
-     *   <li>EPSG datum name: <b>NAD83 Canadian Spatial Reference System</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>NAD83(CSRS)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNAD83_CSRS() throws FactoryException {
-        important         = true;
-        code              = 6140;
-        name              = "NAD83 Canadian Spatial Reference System";
-        crsName           = "NAD83(CSRS)";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4954);
-        createAndVerifyGeographicCRS(4955, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4617, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “NAD83 (High Accuracy Reference Network)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6152</b></li>
-     *   <li>EPSG datum name: <b>NAD83 (High Accuracy Reference Network)</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>NAD83(HARN)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNAD83_HARN() throws FactoryException {
-        important         = true;
-        code              = 6152;
-        name              = "NAD83 (High Accuracy Reference Network)";
-        crsName           = "NAD83(HARN)";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4956);
-        createAndVerifyGeographicCRS(4957, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4152, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “NAD83 (National Spatial Reference System 2007)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6759</b></li>
-     *   <li>EPSG datum name: <b>NAD83 (National Spatial Reference System 2007)</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>NAD83(NSRS2007)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNAD83_NSRS2007() throws FactoryException {
-        important         = true;
-        code              = 6759;
-        name              = "NAD83 (National Spatial Reference System 2007)";
-        crsName           = "NAD83(NSRS2007)";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4892);
-        createAndVerifyGeographicCRS(4893, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4759, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Nahrwan 1967” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6270</b></li>
-     *   <li>EPSG datum name: <b>Nahrwan 1967</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Nahrwan 1967</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNahrwan1967() throws FactoryException {
-        important         = true;
-        code              = 6270;
-        name              = "Nahrwan 1967";
-        crsName           = "Nahrwan 1967";
-        ellipsoidName     = "Clarke 1880 (RGS)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4270, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Naparima 1955” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6158</b></li>
-     *   <li>EPSG datum name: <b>Naparima 1955</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Naparima 1955</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNaparima1955() throws FactoryException {
-        important         = true;
-        code              = 6158;
-        name              = "Naparima 1955";
-        crsName           = "Naparima 1955";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4158, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Nord Sahara 1959” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6307</b></li>
-     *   <li>EPSG datum name: <b>Nord Sahara 1959</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Nord Sahara 1959</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNordSahara() throws FactoryException {
-        important         = true;
-        code              = 6307;
-        name              = "Nord Sahara 1959";
-        crsName           = "Nord Sahara 1959";
-        ellipsoidName     = "Clarke 1880 (RGS)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4307, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Nouvelle Triangulation Francaise” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6275</b></li>
-     *   <li>EPSG datum name: <b>Nouvelle Triangulation Francaise</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>NTF</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNTF() throws FactoryException {
-        important         = true;
-        code              = 6275;
-        name              = "Nouvelle Triangulation Francaise";
-        crsName           = "NTF";
-        ellipsoidName     = "Clarke 1880 (IGN)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4275, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Nouvelle Triangulation Francaise (Paris)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6807</b></li>
-     *   <li>EPSG datum name: <b>Nouvelle Triangulation Francaise (Paris)</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
-     *   <li>Prime meridian name: <b>Paris</b></li>
-     *   <li>CRS using the datum: <b>NTF (Paris)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNTF_Paris() throws FactoryException {
-        important         = true;
-        code              = 6807;
-        name              = "Nouvelle Triangulation Francaise (Paris)";
-        crsName           = "NTF (Paris)";
-        ellipsoidName     = "Clarke 1880 (IGN)";
-        primeMeridianName = "Paris";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4807, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “New Zealand Geodetic Datum 2000” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6167</b></li>
-     *   <li>EPSG datum name: <b>New Zealand Geodetic Datum 2000</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>NZGD2000</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNZGD2000() throws FactoryException {
-        important         = true;
-        code              = 6167;
-        name              = "New Zealand Geodetic Datum 2000";
-        crsName           = "NZGD2000";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4958);
-        createAndVerifyGeographicCRS(4959, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4167, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “New Zealand Geodetic Datum 1949” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6272</b></li>
-     *   <li>EPSG datum name: <b>New Zealand Geodetic Datum 1949</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>NZGD49</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNZGD49() throws FactoryException {
-        important         = true;
-        code              = 6272;
-        name              = "New Zealand Geodetic Datum 1949";
-        crsName           = "NZGD49";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4272, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “OSGB 1936” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6277</b></li>
-     *   <li>EPSG datum name: <b>OSGB 1936</b></li>
-     *   <li>Ellipsoid name: <b>Airy 1830</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>OSGB 1936</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testOSGB1936() throws FactoryException {
-        important         = true;
-        code              = 6277;
-        name              = "OSGB 1936";
-        crsName           = "OSGB 1936";
-        ellipsoidName     = "Airy 1830";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4277, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Padang 1884” geodetic datum creation from the factory <em>(deprecated)</em>.
-     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}..
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6280</b></li>
-     *   <li>EPSG datum name: <b>Padang 1884</b></li>
-     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Padang</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testPadang() throws FactoryException {
-        important         = true;
-        code              = 6280;
-        name              = "Padang 1884";
-        crsName           = "Padang";
-        ellipsoidName     = "Bessel 1841";
-        primeMeridianName = "Greenwich";
-        assumeTrue(isDeprecatedObjectCreationSupported, "Creation of deprecated objects not supported.");
-        verifyDatum();
-        createAndVerifyGeographicCRS(4280, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Padang 1884 (Jakarta)” geodetic datum creation from the factory <em>(deprecated)</em>.
-     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}..
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6808</b></li>
-     *   <li>EPSG datum name: <b>Padang 1884 (Jakarta)</b></li>
-     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
-     *   <li>Prime meridian name: <b>Jakarta</b></li>
-     *   <li>CRS using the datum: <b>Padang (Jakarta)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testPadang_Jakarta() throws FactoryException {
-        important         = true;
-        code              = 6808;
-        name              = "Padang 1884 (Jakarta)";
-        crsName           = "Padang (Jakarta)";
-        ellipsoidName     = "Bessel 1841";
-        primeMeridianName = "Jakarta";
-        assumeTrue(isDeprecatedObjectCreationSupported, "Creation of deprecated objects not supported.");
-        verifyDatum();
-        createAndVerifyGeographicCRS(4808, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “PDO Survey Datum 1993” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6134</b></li>
-     *   <li>EPSG datum name: <b>PDO Survey Datum 1993</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>PSD93</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testPSD93() throws FactoryException {
-        important         = true;
-        code              = 6134;
-        name              = "PDO Survey Datum 1993";
-        crsName           = "PSD93";
-        ellipsoidName     = "Clarke 1880 (RGS)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4134, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Congo 1960 Pointe Noire” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6282</b></li>
-     *   <li>EPSG datum name: <b>Congo 1960 Pointe Noire</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Pointe Noire</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testPointeNoire() throws FactoryException {
-        important         = true;
-        code              = 6282;
-        name              = "Congo 1960 Pointe Noire";
-        crsName           = "Pointe Noire";
-        ellipsoidName     = "Clarke 1880 (IGN)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4282, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Posiciones Geodesicas Argentinas 1994” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6694</b></li>
-     *   <li>EPSG datum name: <b>Posiciones Geodesicas Argentinas 1994</b></li>
-     *   <li>Ellipsoid name: <b>WGS 84</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>POSGAR 94</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testPOSGAR94() throws FactoryException {
-        important         = true;
-        code              = 6694;
-        name              = "Posiciones Geodesicas Argentinas 1994";
-        crsName           = "POSGAR 94";
-        ellipsoidName     = "WGS 84";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4928);
-        createAndVerifyGeographicCRS(4929, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4694, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Posiciones Geodesicas Argentinas 1998” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6190</b></li>
-     *   <li>EPSG datum name: <b>Posiciones Geodesicas Argentinas 1998</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>POSGAR 98</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testPOSGAR98() throws FactoryException {
-        important         = true;
-        code              = 6190;
-        name              = "Posiciones Geodesicas Argentinas 1998";
-        crsName           = "POSGAR 98";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4960);
-        createAndVerifyGeographicCRS(4961, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4190, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Philippine Reference System 1992” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6683</b></li>
-     *   <li>EPSG datum name: <b>Philippine Reference System 1992</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1866</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>PRS92</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testPRS92() throws FactoryException {
-        important         = true;
-        code              = 6683;
-        name              = "Philippine Reference System 1992";
-        crsName           = "PRS92";
-        ellipsoidName     = "Clarke 1866";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4994);
-        createAndVerifyGeographicCRS(4995, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4683, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Provisional South American Datum 1956” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6248</b></li>
-     *   <li>EPSG datum name: <b>Provisional South American Datum 1956</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>PSAD56</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testPSAD56() throws FactoryException {
-        important         = true;
-        code              = 6248;
-        name              = "Provisional South American Datum 1956";
-        crsName           = "PSAD56";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4248, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Pulkovo 1942” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6284</b></li>
-     *   <li>EPSG datum name: <b>Pulkovo 1942</b></li>
-     *   <li>Ellipsoid name: <b>Krassowsky 1940</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Pulkovo 1942</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testPulkovo1942() throws FactoryException {
-        important         = true;
-        code              = 6284;
-        name              = "Pulkovo 1942";
-        crsName           = "Pulkovo 1942";
-        ellipsoidName     = "Krassowsky 1940";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4284, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Pulkovo 1942(58)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6179</b></li>
-     *   <li>EPSG datum name: <b>Pulkovo 1942(58)</b></li>
-     *   <li>Ellipsoid name: <b>Krassowsky 1940</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Pulkovo 1942(58)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testPulkovo1942_58() throws FactoryException {
-        important         = true;
-        code              = 6179;
-        name              = "Pulkovo 1942(58)";
-        crsName           = "Pulkovo 1942(58)";
-        ellipsoidName     = "Krassowsky 1940";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4179, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Pulkovo 1942(83)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6178</b></li>
-     *   <li>EPSG datum name: <b>Pulkovo 1942(83)</b></li>
-     *   <li>Ellipsoid name: <b>Krassowsky 1940</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Pulkovo 1942(83)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testPulkovo1942_83() throws FactoryException {
-        important         = true;
-        code              = 6178;
-        name              = "Pulkovo 1942(83)";
-        crsName           = "Pulkovo 1942(83)";
-        ellipsoidName     = "Krassowsky 1940";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4178, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Qatar 1948” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6286</b></li>
-     *   <li>EPSG datum name: <b>Qatar 1948</b></li>
-     *   <li>Ellipsoid name: <b>Helmert 1906</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Qatar 1948</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testQatar1948() throws FactoryException {
-        important         = true;
-        code              = 6286;
-        name              = "Qatar 1948";
-        crsName           = "Qatar 1948";
-        ellipsoidName     = "Helmert 1906";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4286, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Qatar 1974” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6285</b></li>
-     *   <li>EPSG datum name: <b>Qatar 1974</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Qatar 1974</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testQatar1974() throws FactoryException {
-        important         = true;
-        code              = 6285;
-        name              = "Qatar 1974";
-        crsName           = "Qatar 1974";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4285, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Qatar National Datum 1995” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6614</b></li>
-     *   <li>EPSG datum name: <b>Qatar National Datum 1995</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>QND95</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testQatar1995() throws FactoryException {
-        important         = true;
-        code              = 6614;
-        name              = "Qatar National Datum 1995";
-        crsName           = "QND95";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4614, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Red Geodesica Venezolana” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6189</b></li>
-     *   <li>EPSG datum name: <b>Red Geodesica Venezolana</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>REGVEN</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testREGVEN() throws FactoryException {
-        important         = true;
-        code              = 6189;
-        name              = "Red Geodesica Venezolana";
-        crsName           = "REGVEN";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4962);
-        createAndVerifyGeographicCRS(4963, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4189, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Reseau Geodesique Francais 1993” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6171</b></li>
-     *   <li>EPSG datum name: <b>Reseau Geodesique Francais 1993</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>RGF93</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testRGF93() throws FactoryException {
-        important         = true;
-        code              = 6171;
-        name              = "Reseau Geodesique Francais 1993";
-        crsName           = "RGF93";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4964);
-        createAndVerifyGeographicCRS(4965, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4171, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “South American Datum 1969” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6618</b></li>
-     *   <li>EPSG datum name: <b>South American Datum 1969</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1967 Modified</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>SAD69</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testSAD69() throws FactoryException {
-        important         = true;
-        code              = 6618;
-        name              = "South American Datum 1969";
-        crsName           = "SAD69";
-        ellipsoidName     = "GRS 1967 Modified";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4618, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Schwarzeck” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6293</b></li>
-     *   <li>EPSG datum name: <b>Schwarzeck</b></li>
-     *   <li>Ellipsoid name: <b>Bessel Namibia (GLM)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Schwarzeck</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testSchwarzeck() throws FactoryException {
-        important         = true;
-        code              = 6293;
-        name              = "Schwarzeck";
-        crsName           = "Schwarzeck";
-        ellipsoidName     = "Bessel Namibia (GLM)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4293, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Sistema de Referencia Geocentrico para America del Sur 1995” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6170</b></li>
-     *   <li>EPSG datum name: <b>Sistema de Referencia Geocentrico para America del Sur 1995</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>SIRGAS 1995</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testSIRGAS1995() throws FactoryException {
-        important         = true;
-        code              = 6170;
-        name              = "Sistema de Referencia Geocentrico para America del Sur 1995";
-        crsName           = "SIRGAS 1995";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4974);
-        createAndVerifyGeographicCRS(4975, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4170, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Sistema de Referencia Geocentrico para las AmericaS 2000” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6674</b></li>
-     *   <li>EPSG datum name: <b>Sistema de Referencia Geocentrico para las AmericaS 2000</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>SIRGAS 2000</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testSIRGAS2000() throws FactoryException {
-        important         = true;
-        code              = 6674;
-        name              = "Sistema de Referencia Geocentrico para las AmericaS 2000";
-        crsName           = "SIRGAS 2000";
-        ellipsoidName     = "GRS 1980";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4988);
-        createAndVerifyGeographicCRS(4989, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4674, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Tananarive 1925” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6297</b></li>
-     *   <li>EPSG datum name: <b>Tananarive 1925</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Tananarive</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testTananarive() throws FactoryException {
-        important         = true;
-        code              = 6297;
-        name              = "Tananarive 1925";
-        crsName           = "Tananarive";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4297, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Tananarive 1925 (Paris)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6810</b></li>
-     *   <li>EPSG datum name: <b>Tananarive 1925 (Paris)</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Paris</b></li>
-     *   <li>CRS using the datum: <b>Tananarive (Paris)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testTananarive_Paris() throws FactoryException {
-        important         = true;
-        code              = 6810;
-        name              = "Tananarive 1925 (Paris)";
-        crsName           = "Tananarive (Paris)";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Paris";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4810, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Trucial Coast 1948” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6303</b></li>
-     *   <li>EPSG datum name: <b>Trucial Coast 1948</b></li>
-     *   <li>Ellipsoid name: <b>Helmert 1906</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>TC(1948)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testTrucialCoast() throws FactoryException {
-        important         = true;
-        code              = 6303;
-        name              = "Trucial Coast 1948";
-        crsName           = "TC(1948)";
-        ellipsoidName     = "Helmert 1906";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4303, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Timbalai 1948” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6298</b></li>
-     *   <li>EPSG datum name: <b>Timbalai 1948</b></li>
-     *   <li>Ellipsoid name: <b>Everest 1830 (1967 Definition)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Timbalai 1948</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testTimbalai() throws FactoryException {
-        important         = true;
-        code              = 6298;
-        name              = "Timbalai 1948";
-        crsName           = "Timbalai 1948";
-        ellipsoidName     = "Everest 1830 (1967 Definition)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4298, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Trinidad 1903” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6302</b></li>
-     *   <li>EPSG datum name: <b>Trinidad 1903</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1858</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Trinidad 1903</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testTrinidad() throws FactoryException {
-        important         = true;
-        code              = 6302;
-        name              = "Trinidad 1903";
-        crsName           = "Trinidad 1903";
-        ellipsoidName     = "Clarke 1858";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4302, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Voirol 1875” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6304</b></li>
-     *   <li>EPSG datum name: <b>Voirol 1875</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Voirol 1875</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testVoirol1875() throws FactoryException {
-        important         = true;
-        code              = 6304;
-        name              = "Voirol 1875";
-        crsName           = "Voirol 1875";
-        ellipsoidName     = "Clarke 1880 (IGN)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4304, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Voirol 1875 (Paris)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6811</b></li>
-     *   <li>EPSG datum name: <b>Voirol 1875 (Paris)</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
-     *   <li>Prime meridian name: <b>Paris</b></li>
-     *   <li>CRS using the datum: <b>Voirol 1875 (Paris)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testVoirol1875_Paris() throws FactoryException {
-        important         = true;
-        code              = 6811;
-        name              = "Voirol 1875 (Paris)";
-        crsName           = "Voirol 1875 (Paris)";
-        ellipsoidName     = "Clarke 1880 (IGN)";
-        primeMeridianName = "Paris";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4811, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “World Geodetic System 1972” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6322</b></li>
-     *   <li>EPSG datum name: <b>World Geodetic System 1972</b></li>
-     *   <li>Ellipsoid name: <b>WGS 72</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>WGS 72</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testWGS72() throws FactoryException {
-        important         = true;
-        code              = 6322;
-        name              = "World Geodetic System 1972";
-        crsName           = "WGS 72";
-        ellipsoidName     = "WGS 72";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4984);
-        createAndVerifyGeographicCRS(4985, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4322, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “WGS 72 Transit Broadcast Ephemeris” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6324</b></li>
-     *   <li>EPSG datum name: <b>WGS 72 Transit Broadcast Ephemeris</b></li>
-     *   <li>Ellipsoid name: <b>WGS 72</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>WGS 72BE</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testWGS72BE() throws FactoryException {
-        important         = true;
-        code              = 6324;
-        name              = "WGS 72 Transit Broadcast Ephemeris";
-        crsName           = "WGS 72BE";
-        ellipsoidName     = "WGS 72";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4986);
-        createAndVerifyGeographicCRS(4987, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4324, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “World Geodetic System 1984” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6326</b></li>
-     *   <li>EPSG datum name: <b>World Geodetic System 1984</b></li>
-     *   <li>Ellipsoid name: <b>WGS 84</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>WGS 84</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testWGS84() throws FactoryException {
-        important         = true;
-        code              = 6326;
-        name              = "World Geodetic System 1984";
-        crsName           = "WGS 84";
-        ellipsoidName     = "WGS 84";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4978);
-        createAndVerifyGeographicCRS(4979, GEOGRAPHIC_3D);
-        createAndVerifyGeographicCRS(4326, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Xian 1980” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6610</b></li>
-     *   <li>EPSG datum name: <b>Xian 1980</b></li>
-     *   <li>Ellipsoid name: <b>IAG 1975</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Xian 1980</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testXian() throws FactoryException {
-        important         = true;
-        code              = 6610;
-        name              = "Xian 1980";
-        crsName           = "Xian 1980";
-        ellipsoidName     = "IAG 1975";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4610, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Yemen National Geodetic Network 1996” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6163</b></li>
-     *   <li>EPSG datum name: <b>Yemen National Geodetic Network 1996</b></li>
-     *   <li>Ellipsoid name: <b>WGS 84</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Yemen NGN96</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testYemen() throws FactoryException {
-        important         = true;
-        code              = 6163;
-        name              = "Yemen National Geodetic Network 1996";
-        crsName           = "Yemen NGN96";
-        ellipsoidName     = "WGS 84";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeocentricCRS(4980);
-        createAndVerifyGeographicCRS(4163, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Adindan” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6201</b></li>
-     *   <li>EPSG datum name: <b>Adindan</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Adindan</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testAdindan() throws FactoryException {
-        code              = 6201;
-        name              = "Adindan";
-        crsName           = "Adindan";
-        ellipsoidName     = "Clarke 1880 (RGS)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4201, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Afgooye” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6205</b></li>
-     *   <li>EPSG datum name: <b>Afgooye</b></li>
-     *   <li>Ellipsoid name: <b>Krassowsky 1940</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Afgooye</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testAfgooye() throws FactoryException {
-        code              = 6205;
-        name              = "Afgooye";
-        crsName           = "Afgooye";
-        ellipsoidName     = "Krassowsky 1940";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4205, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Agadez” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6206</b></li>
-     *   <li>EPSG datum name: <b>Agadez</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Agadez</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testAgadez() throws FactoryException {
-        code              = 6206;
-        name              = "Agadez";
-        crsName           = "Agadez";
-        ellipsoidName     = "Clarke 1880 (IGN)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4206, GEOGRAPHIC_2D);
-    }
-
-    /**
      * Tests “Albanian 1987” geodetic datum creation from the factory.
      *
      * <ul>
@@ -3157,6 +612,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4169, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Amersfoort” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6289</b></li>
+     *   <li>EPSG datum name: <b>Amersfoort</b></li>
+     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Amersfoort</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testAmersfoort() throws FactoryException {
+        important         = true;
+        code              = 6289;
+        name              = "Amersfoort";
+        crsName           = "Amersfoort";
+        ellipsoidName     = "Bessel 1841";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4289, GEOGRAPHIC_2D);
     }
 
     /**
@@ -3229,6 +710,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4601, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Aratu” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6208</b></li>
+     *   <li>EPSG datum name: <b>Aratu</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Aratu</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testAratu() throws FactoryException {
+        important         = true;
+        code              = 6208;
+        name              = "Aratu";
+        crsName           = "Aratu";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4208, GEOGRAPHIC_2D);
     }
 
     /**
@@ -3544,6 +1051,58 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Batavia” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6211</b></li>
+     *   <li>EPSG datum name: <b>Batavia</b></li>
+     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Batavia</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testBatavia() throws FactoryException {
+        important         = true;
+        code              = 6211;
+        name              = "Batavia";
+        crsName           = "Batavia";
+        ellipsoidName     = "Bessel 1841";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4211, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Batavia (Jakarta)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6813</b></li>
+     *   <li>EPSG datum name: <b>Batavia (Jakarta)</b></li>
+     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
+     *   <li>Prime meridian name: <b>Jakarta</b></li>
+     *   <li>CRS using the datum: <b>Batavia (Jakarta)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testBatavia_Jakarta() throws FactoryException {
+        important         = true;
+        code              = 6813;
+        name              = "Batavia (Jakarta)";
+        crsName           = "Batavia (Jakarta)";
+        ellipsoidName     = "Bessel 1841";
+        primeMeridianName = "Jakarta";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4813, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Bermuda 2000” geodetic datum creation from the factory.
      *
      * <ul>
@@ -3589,6 +1148,56 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4213, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Beijing 1954” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6214</b></li>
+     *   <li>EPSG datum name: <b>Beijing 1954</b></li>
+     *   <li>Ellipsoid name: <b>Krassowsky 1940</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Beijing 1954</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testBeijing() throws FactoryException {
+        important         = true;
+        code              = 6214;
+        name              = "Beijing 1954";
+        crsName           = "Beijing 1954";
+        ellipsoidName     = "Krassowsky 1940";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4214, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “ST71 Belep” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6643</b></li>
+     *   <li>EPSG datum name: <b>ST71 Belep</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>ST71 Belep</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testBelep() throws FactoryException {
+        code              = 6643;
+        name              = "ST71 Belep";
+        crsName           = "ST71 Belep";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4643, GEOGRAPHIC_2D);
     }
 
     /**
@@ -3784,6 +1393,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Bogota 1975” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6218</b></li>
+     *   <li>EPSG datum name: <b>Bogota 1975</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Bogota 1975</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testBogota() throws FactoryException {
+        important         = true;
+        code              = 6218;
+        name              = "Bogota 1975";
+        crsName           = "Bogota 1975";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4218, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Bogota 1975 (Bogota)” geodetic datum creation from the factory.
      *
      * <ul>
@@ -3832,6 +1467,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Camacupa” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6220</b></li>
+     *   <li>EPSG datum name: <b>Camacupa</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Camacupa</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testCamacupa() throws FactoryException {
+        important         = true;
+        code              = 6220;
+        name              = "Camacupa 1948";
+        crsName           = "Camacupa 1948";
+        ellipsoidName     = "Clarke 1880 (RGS)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4220, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Camp Area Astro” geodetic datum creation from the factory.
      *
      * <ul>
@@ -3853,6 +1514,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4715, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Campo Inchauspe” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6221</b></li>
+     *   <li>EPSG datum name: <b>Campo Inchauspe</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Campo Inchauspe</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testCampoInchauspe() throws FactoryException {
+        important         = true;
+        code              = 6221;
+        name              = "Campo Inchauspe";
+        crsName           = "Campo Inchauspe";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4221, GEOGRAPHIC_2D);
     }
 
     /**
@@ -3901,6 +1588,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4717, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Carthage” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6223</b></li>
+     *   <li>EPSG datum name: <b>Carthage</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Carthage</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testCarthage() throws FactoryException {
+        important         = true;
+        code              = 6223;
+        name              = "Carthage";
+        crsName           = "Carthage";
+        ellipsoidName     = "Clarke 1880 (IGN)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4223, GEOGRAPHIC_2D);
     }
 
     /**
@@ -4024,6 +1737,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Chos Malal 1914” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6160</b></li>
+     *   <li>EPSG datum name: <b>Chos Malal 1914</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Chos Malal 1914</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testChosMalal() throws FactoryException {
+        important         = true;
+        code              = 6160;
+        name              = "Chos Malal 1914";
+        crsName           = "Chos Malal 1914";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4160, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Swiss Terrestrial Reference Frame 1995” geodetic datum creation from the factory.
      *
      * <ul>
@@ -4144,6 +1883,30 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Institut Geographique du Congo Belge 1955” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6701</b></li>
+     *   <li>EPSG datum name: <b>Institut Geographique du Congo Belge 1955</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>IGCB 1955</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testCongoBelge() throws FactoryException {
+        code              = 6701;
+        name              = "Institut Geographique du Congo Belge 1955";
+        crsName           = "IGCB 1955";
+        ellipsoidName     = "Clarke 1880 (RGS)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4701, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Corrego Alegre 1970-72” geodetic datum creation from the factory.
      *
      * <ul>
@@ -4240,6 +2003,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Dealul Piscului 1930” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6316</b></li>
+     *   <li>EPSG datum name: <b>Dealul Piscului 1930</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Dealul Piscului 1930</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testDealulPiscului() throws FactoryException {
+        important         = true;
+        code              = 6316;
+        name              = "Dealul Piscului 1930";
+        crsName           = "Dealul Piscului 1930";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4316, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Deception Island” geodetic datum creation from the factory.
      *
      * <ul>
@@ -4261,6 +2050,86 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4736, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Deir ez Zor” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6227</b></li>
+     *   <li>EPSG datum name: <b>Deir ez Zor</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Deir ez Zor</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testDeirEzZor() throws FactoryException {
+        important         = true;
+        code              = 6227;
+        name              = "Deir ez Zor";
+        crsName           = "Deir ez Zor";
+        ellipsoidName     = "Clarke 1880 (IGN)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4227, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Datum Geodesi Nasional 1995” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6755</b></li>
+     *   <li>EPSG datum name: <b>Datum Geodesi Nasional 1995</b></li>
+     *   <li>Ellipsoid name: <b>WGS 84</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>DGN95</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testDGN95() throws FactoryException {
+        important         = true;
+        code              = 6755;
+        name              = "Datum Geodesi Nasional 1995";
+        crsName           = "DGN95";
+        ellipsoidName     = "WGS 84";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4897);
+        createAndVerifyGeographicCRS(4898, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4755, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Deutsches Hauptdreiecksnetz” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6314</b></li>
+     *   <li>EPSG datum name: <b>Deutsches Hauptdreiecksnetz</b></li>
+     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>DHDN</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testDHDN() throws FactoryException {
+        important         = true;
+        code              = 6314;
+        name              = "Deutsches Hauptdreiecksnetz";
+        crsName           = "DHDN";
+        ellipsoidName     = "Bessel 1841";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4314, GEOGRAPHIC_2D);
     }
 
     /**
@@ -4312,6 +2181,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Douala 1948” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6192</b></li>
+     *   <li>EPSG datum name: <b>Douala 1948</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Douala 1948</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testDouala() throws FactoryException {
+        important         = true;
+        code              = 6192;
+        name              = "Douala 1948";
+        crsName           = "Douala 1948";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4192, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Easter Island 1967” geodetic datum creation from the factory.
      *
      * <ul>
@@ -4333,6 +2228,58 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4719, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “European Datum 1950” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6230</b></li>
+     *   <li>EPSG datum name: <b>European Datum 1950</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>ED50</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testED50() throws FactoryException {
+        important         = true;
+        code              = 6230;
+        name              = "European Datum 1950";
+        crsName           = "ED50";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4230, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “European Datum 1950(1977)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6154</b></li>
+     *   <li>EPSG datum name: <b>European Datum 1950(1977)</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>ED50(ED77)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testED50_77() throws FactoryException {
+        important         = true;
+        code              = 6154;
+        name              = "European Datum 1950(1977)";
+        crsName           = "ED50(ED77)";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4154, GEOGRAPHIC_2D);
     }
 
     /**
@@ -4384,6 +2331,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Egypt 1907” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6229</b></li>
+     *   <li>EPSG datum name: <b>Egypt 1907</b></li>
+     *   <li>Ellipsoid name: <b>Helmert 1906</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Egypt 1907</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testEgypt1907() throws FactoryException {
+        important         = true;
+        code              = 6229;
+        name              = "Egypt 1907";
+        crsName           = "Egypt 1907";
+        ellipsoidName     = "Helmert 1906";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4229, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Egypt 1930” geodetic datum creation from the factory.
      *
      * <ul>
@@ -4405,6 +2378,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4199, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “European Libyan Datum 1979” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6159</b></li>
+     *   <li>EPSG datum name: <b>European Libyan Datum 1979</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>ELD79</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testELD79() throws FactoryException {
+        important         = true;
+        code              = 6159;
+        name              = "European Libyan Datum 1979";
+        crsName           = "ELD79";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4159, GEOGRAPHIC_2D);
     }
 
     /**
@@ -4456,6 +2455,60 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “European Terrestrial Reference System 1989” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6258</b></li>
+     *   <li>EPSG datum name: <b>European Terrestrial Reference System 1989</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>ETRS89</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testETRS89() throws FactoryException {
+        important         = true;
+        code              = 6258;
+        name              = "European Terrestrial Reference System 1989";
+        crsName           = "ETRS89";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4936);
+        createAndVerifyGeographicCRS(4937, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4258, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Fahud” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6232</b></li>
+     *   <li>EPSG datum name: <b>Fahud</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Fahud</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testFahud() throws FactoryException {
+        important         = true;
+        code              = 6232;
+        name              = "Fahud";
+        crsName           = "Fahud";
+        ellipsoidName     = "Clarke 1880 (RGS)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4232, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Fatu Iva 72” geodetic datum creation from the factory.
      *
      * <ul>
@@ -4501,6 +2554,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4741, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Final Datum 1958” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6132</b></li>
+     *   <li>EPSG datum name: <b>Final Datum 1958</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>FD58</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testFD58() throws FactoryException {
+        important         = true;
+        code              = 6132;
+        name              = "Final Datum 1958";
+        crsName           = "FD58";
+        ellipsoidName     = "Clarke 1880 (RGS)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4132, GEOGRAPHIC_2D);
     }
 
     /**
@@ -4648,6 +2727,62 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Geocentric Datum of Australia 1994” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6283</b></li>
+     *   <li>EPSG datum name: <b>Geocentric Datum of Australia 1994</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>GDA94</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testGDA94() throws FactoryException {
+        important         = true;
+        code              = 6283;
+        name              = "Geocentric Datum of Australia 1994";
+        crsName           = "GDA94";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4938);
+        createAndVerifyGeographicCRS(4939, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4283, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Geodetic Datum of Malaysia 2000” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6742</b></li>
+     *   <li>EPSG datum name: <b>Geodetic Datum of Malaysia 2000</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>GDM2000</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testGDM2000() throws FactoryException {
+        important         = true;
+        code              = 6742;
+        name              = "Geodetic Datum of Malaysia 2000";
+        crsName           = "GDM2000";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4920);
+        createAndVerifyGeographicCRS(4921, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4742, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Greek Geodetic Reference System 1987” geodetic datum creation from the factory.
      *
      * <ul>
@@ -4741,6 +2876,30 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4646, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “IGN72 Grande Terre” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6634</b></li>
+     *   <li>EPSG datum name: <b>IGN72 Grande Terre</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>IGN72 Grande Terre</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testGrandeTerre() throws FactoryException {
+        code              = 6634;
+        name              = "IGN72 Grande Terre";
+        crsName           = "IGN72 Grande Terre";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4662, GEOGRAPHIC_2D);
     }
 
     /**
@@ -4864,6 +3023,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Egypt Gulf of Suez S-650 TL” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6706</b></li>
+     *   <li>EPSG datum name: <b>Egypt Gulf of Suez S-650 TL</b></li>
+     *   <li>Ellipsoid name: <b>Helmert 1906</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Egypt Gulf of Suez S-650 TL</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testGulfOfSuez() throws FactoryException {
+        important         = true;
+        code              = 6706;
+        name              = "Egypt Gulf of Suez S-650 TL";
+        crsName           = "Egypt Gulf of Suez S-650 TL";
+        ellipsoidName     = "Helmert 1906";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4706, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Gulshan 303” geodetic datum creation from the factory.
      *
      * <ul>
@@ -4960,6 +3145,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Hungarian Datum 1972” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6237</b></li>
+     *   <li>EPSG datum name: <b>Hungarian Datum 1972</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1967</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>HD72</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testHD72() throws FactoryException {
+        important         = true;
+        code              = 6237;
+        name              = "Hungarian Datum 1972";
+        crsName           = "HD72";
+        ellipsoidName     = "GRS 1967";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4237, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Helle 1954” geodetic datum creation from the factory.
      *
      * <ul>
@@ -5005,6 +3216,56 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4255, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Hito XVIII 1963” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6254</b></li>
+     *   <li>EPSG datum name: <b>Hito XVIII 1963</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Hito XVIII 1963</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testHito() throws FactoryException {
+        important         = true;
+        code              = 6254;
+        name              = "Hito XVIII 1963";
+        crsName           = "Hito XVIII 1963";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4254, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “IGN63 Hiva Oa” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6689</b></li>
+     *   <li>EPSG datum name: <b>IGN63 Hiva Oa</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>IGN63 Hiva Oa</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testHivaOa() throws FactoryException {
+        code              = 6689;
+        name              = "IGN63 Hiva Oa";
+        crsName           = "IGN63 Hiva Oa";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4689, GEOGRAPHIC_2D);
     }
 
     /**
@@ -5152,6 +3413,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Indonesian Datum 1974” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6238</b></li>
+     *   <li>EPSG datum name: <b>Indonesian Datum 1974</b></li>
+     *   <li>Ellipsoid name: <b>Indonesian National Spheroid</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>ID74</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testID74() throws FactoryException {
+        important         = true;
+        code              = 6238;
+        name              = "Indonesian Datum 1974";
+        crsName           = "ID74";
+        ellipsoidName     = "Indonesian National Spheroid";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4238, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “IGC 1962 Arc of the 6th Parallel South” geodetic datum creation from the factory.
      *
      * <ul>
@@ -5173,30 +3460,6 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4697, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Institut Geographique du Congo Belge 1955” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6701</b></li>
-     *   <li>EPSG datum name: <b>Institut Geographique du Congo Belge 1955</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>IGCB 1955</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testCongoBelge() throws FactoryException {
-        code              = 6701;
-        name              = "Institut Geographique du Congo Belge 1955";
-        crsName           = "IGCB 1955";
-        ellipsoidName     = "Clarke 1880 (RGS)";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4701, GEOGRAPHIC_2D);
     }
 
     /**
@@ -5224,147 +3487,29 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
-     * Tests “IGN 1962 Kerguelen” geodetic datum creation from the factory.
+     * Tests “IGN Astro 1960” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>EPSG datum code: <b>6698</b></li>
-     *   <li>EPSG datum name: <b>IGN 1962 Kerguelen</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>EPSG datum code: <b>6700</b></li>
+     *   <li>EPSG datum name: <b>IGN Astro 1960</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>IGN 1962 Kerguelen</b></li>
+     *   <li>CRS using the datum: <b>IGN Astro 1960</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKerguelen() throws FactoryException {
-        code              = 6698;
-        name              = "IGN 1962 Kerguelen";
-        crsName           = "IGN 1962 Kerguelen";
-        ellipsoidName     = "International 1924";
+    public void testIGNAstro1960() throws FactoryException {
+        important         = true;
+        code              = 6700;
+        name              = "IGN Astro 1960";
+        crsName           = "IGN Astro 1960";
+        ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
-        createAndVerifyGeographicCRS(4698, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “IGN53 Mare” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6641</b></li>
-     *   <li>EPSG datum name: <b>IGN53 Mare</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>IGN53 Mare</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testMare() throws FactoryException {
-        code              = 6641;
-        name              = "IGN53 Mare";
-        crsName           = "IGN53 Mare";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4641, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “IGN56 Lifou” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6633</b></li>
-     *   <li>EPSG datum name: <b>IGN56 Lifou</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>IGN56 Lifou</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testLifou() throws FactoryException {
-        code              = 6633;
-        name              = "IGN56 Lifou";
-        crsName           = "IGN56 Lifou";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4633, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “IGN63 Hiva Oa” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6689</b></li>
-     *   <li>EPSG datum name: <b>IGN63 Hiva Oa</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>IGN63 Hiva Oa</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testHivaOa() throws FactoryException {
-        code              = 6689;
-        name              = "IGN63 Hiva Oa";
-        crsName           = "IGN63 Hiva Oa";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4689, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “IGN72 Grande Terre” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6634</b></li>
-     *   <li>EPSG datum name: <b>IGN72 Grande Terre</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>IGN72 Grande Terre</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testGrandeTerre() throws FactoryException {
-        code              = 6634;
-        name              = "IGN72 Grande Terre";
-        crsName           = "IGN72 Grande Terre";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4662, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “IGN72 Nuku Hiva” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6630</b></li>
-     *   <li>EPSG datum name: <b>IGN72 Nuku Hiva</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>IGN72 Nuku Hiva</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNukuHiva() throws FactoryException {
-        code              = 6630;
-        name              = "IGN72 Nuku Hiva";
-        crsName           = "IGN72 Nuku Hiva";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4630, GEOGRAPHIC_2D);
+        createAndVerifyGeographicCRS(4700, GEOGRAPHIC_2D);
     }
 
     /**
@@ -5389,6 +3534,108 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4667, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “ST84 Ile des Pins” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6642</b></li>
+     *   <li>EPSG datum name: <b>ST84 Ile des Pins</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>ST84 Ile des Pins</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testIleDesPins() throws FactoryException {
+        code              = 6642;
+        name              = "ST84 Ile des Pins";
+        crsName           = "ST84 Ile des Pins";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4642, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Indian 1954” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6239</b></li>
+     *   <li>EPSG datum name: <b>Indian 1954</b></li>
+     *   <li>Ellipsoid name: <b>Everest 1830 (1937 Adjustment)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Indian 1954</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testIndian1954() throws FactoryException {
+        important         = true;
+        code              = 6239;
+        name              = "Indian 1954";
+        crsName           = "Indian 1954";
+        ellipsoidName     = "Everest 1830 (1937 Adjustment)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4239, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Indian 1960” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6131</b></li>
+     *   <li>EPSG datum name: <b>Indian 1960</b></li>
+     *   <li>Ellipsoid name: <b>Everest 1830 (1937 Adjustment)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Indian 1960</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testIndian1960() throws FactoryException {
+        important         = true;
+        code              = 6131;
+        name              = "Indian 1960";
+        crsName           = "Indian 1960";
+        ellipsoidName     = "Everest 1830 (1937 Adjustment)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4131, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Indian 1975” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6240</b></li>
+     *   <li>EPSG datum name: <b>Indian 1975</b></li>
+     *   <li>Ellipsoid name: <b>Everest 1830 (1937 Adjustment)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Indian 1975</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testIndian1975() throws FactoryException {
+        important         = true;
+        code              = 6240;
+        name              = "Indian 1975";
+        crsName           = "Indian 1975";
+        ellipsoidName     = "Everest 1830 (1937 Adjustment)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4240, GEOGRAPHIC_2D);
     }
 
     /**
@@ -5488,27 +3735,27 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
-     * Tests “Jamaica 2001” geodetic datum creation from the factory.
+     * Tests “Jamaica 1875” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>EPSG datum code: <b>6758</b></li>
-     *   <li>EPSG datum name: <b>Jamaica 2001</b></li>
-     *   <li>Ellipsoid name: <b>WGS 84</b></li>
+     *   <li>EPSG datum code: <b>6241</b></li>
+     *   <li>EPSG datum name: <b>Jamaica 1875</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>JAD2001</b></li>
+     *   <li>CRS using the datum: <b>Jamaica 1875</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testJamaica2001() throws FactoryException {
-        code              = 6758;
-        name              = "Jamaica 2001";
-        crsName           = "JAD2001";
-        ellipsoidName     = "WGS 84";
+    public void testJamaica1875() throws FactoryException {
+        code              = 6241;
+        name              = "Jamaica 1875";
+        crsName           = "Jamaica 1875";
+        ellipsoidName     = "Clarke 1880";
         primeMeridianName = "Greenwich";
         verifyDatum();
-        createAndVerifyGeographicCRS(4758, GEOGRAPHIC_2D);
+        createAndVerifyGeographicCRS(4241, GEOGRAPHIC_2D);
     }
 
     /**
@@ -5536,27 +3783,27 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
-     * Tests “Jamaica 1875” geodetic datum creation from the factory.
+     * Tests “Jamaica 2001” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>EPSG datum code: <b>6241</b></li>
-     *   <li>EPSG datum name: <b>Jamaica 1875</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880</b></li>
+     *   <li>EPSG datum code: <b>6758</b></li>
+     *   <li>EPSG datum name: <b>Jamaica 2001</b></li>
+     *   <li>Ellipsoid name: <b>WGS 84</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Jamaica 1875</b></li>
+     *   <li>CRS using the datum: <b>JAD2001</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testJamaica1875() throws FactoryException {
-        code              = 6241;
-        name              = "Jamaica 1875";
-        crsName           = "Jamaica 1875";
-        ellipsoidName     = "Clarke 1880";
+    public void testJamaica2001() throws FactoryException {
+        code              = 6758;
+        name              = "Jamaica 2001";
+        crsName           = "JAD2001";
+        ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
-        createAndVerifyGeographicCRS(4241, GEOGRAPHIC_2D);
+        createAndVerifyGeographicCRS(4758, GEOGRAPHIC_2D);
     }
 
     /**
@@ -5656,6 +3903,84 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Kalianpur 1937” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6144</b></li>
+     *   <li>EPSG datum name: <b>Kalianpur 1937</b></li>
+     *   <li>Ellipsoid name: <b>Everest 1830 (1937 Adjustment)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Kalianpur 1937</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testKalianpur1937() throws FactoryException {
+        important         = true;
+        code              = 6144;
+        name              = "Kalianpur 1937";
+        crsName           = "Kalianpur 1937";
+        ellipsoidName     = "Everest 1830 (1937 Adjustment)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4144, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Kalianpur 1962” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6145</b></li>
+     *   <li>EPSG datum name: <b>Kalianpur 1962</b></li>
+     *   <li>Ellipsoid name: <b>Everest 1830 (1962 Definition)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Kalianpur 1962</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testKalianpur1962() throws FactoryException {
+        important         = true;
+        code              = 6145;
+        name              = "Kalianpur 1962";
+        crsName           = "Kalianpur 1962";
+        ellipsoidName     = "Everest 1830 (1962 Definition)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4145, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Kalianpur 1975” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6146</b></li>
+     *   <li>EPSG datum name: <b>Kalianpur 1975</b></li>
+     *   <li>Ellipsoid name: <b>Everest 1830 (1975 Definition)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Kalianpur 1975</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testKalianpur1975() throws FactoryException {
+        important         = true;
+        code              = 6146;
+        name              = "Kalianpur 1975";
+        crsName           = "Kalianpur 1975";
+        ellipsoidName     = "Everest 1830 (1975 Definition)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4146, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Kandawala” geodetic datum creation from the factory.
      *
      * <ul>
@@ -5752,6 +4077,56 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “IGN 1962 Kerguelen” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6698</b></li>
+     *   <li>EPSG datum name: <b>IGN 1962 Kerguelen</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>IGN 1962 Kerguelen</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testKerguelen() throws FactoryException {
+        code              = 6698;
+        name              = "IGN 1962 Kerguelen";
+        crsName           = "IGN 1962 Kerguelen";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4698, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Kertau 1968” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6245</b></li>
+     *   <li>EPSG datum name: <b>Kertau 1968</b></li>
+     *   <li>Ellipsoid name: <b>Everest 1830 Modified</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Kertau 1968</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testKertau() throws FactoryException {
+        important         = true;
+        code              = 6245;
+        name              = "Kertau 1968";
+        crsName           = "Kertau 1968";
+        ellipsoidName     = "Everest 1830 Modified";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4245, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Kertau (RSO)” geodetic datum creation from the factory.
      *
      * <ul>
@@ -5800,27 +4175,29 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
-     * Tests “Geocentric datum of Korea” geodetic datum creation from the factory.
+     * Tests “Kuwait Oil Company” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>EPSG datum code: <b>6737</b></li>
-     *   <li>EPSG datum name: <b>Geocentric datum of Korea</b></li>
-     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>EPSG datum code: <b>6246</b></li>
+     *   <li>EPSG datum name: <b>Kuwait Oil Company</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Korea 2000</b></li>
+     *   <li>CRS using the datum: <b>KOC</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKorea2000() throws FactoryException {
-        code              = 6737;
-        name              = "Geocentric datum of Korea";
-        crsName           = "Korea 2000";
-        ellipsoidName     = "GRS 1980";
+    public void testKOC() throws FactoryException {
+        important         = true;
+        code              = 6246;
+        name              = "Kuwait Oil Company";
+        crsName           = "KOC";
+        ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
-        createAndVerifyGeographicCRS(4737, GEOGRAPHIC_2D);
+        createAndVerifyGeographicCRS(4246, GEOGRAPHIC_2D);
     }
 
     /**
@@ -5869,6 +4246,30 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4166, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Geocentric datum of Korea” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6737</b></li>
+     *   <li>EPSG datum name: <b>Geocentric datum of Korea</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Korea 2000</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testKorea2000() throws FactoryException {
+        code              = 6737;
+        name              = "Geocentric datum of Korea";
+        crsName           = "Korea 2000";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4737, GEOGRAPHIC_2D);
     }
 
     /**
@@ -6040,6 +4441,30 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Leigon” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6250</b></li>
+     *   <li>EPSG datum name: <b>Leigon</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Leigon</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testLeigon() throws FactoryException {
+        code              = 6250;
+        name              = "Leigon";
+        crsName           = "Leigon";
+        ellipsoidName     = "Clarke 1880 (RGS)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4250, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Le Pouce 1934” geodetic datum creation from the factory.
      *
      * <ul>
@@ -6064,27 +4489,31 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
-     * Tests “Leigon” geodetic datum creation from the factory.
+     * Tests “Libyan Geodetic Datum 2006” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>EPSG datum code: <b>6250</b></li>
-     *   <li>EPSG datum name: <b>Leigon</b></li>
-     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
+     *   <li>EPSG datum code: <b>6754</b></li>
+     *   <li>EPSG datum name: <b>Libyan Geodetic Datum 2006</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Leigon</b></li>
+     *   <li>CRS using the datum: <b>LGD2006</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLeigon() throws FactoryException {
-        code              = 6250;
-        name              = "Leigon";
-        crsName           = "Leigon";
-        ellipsoidName     = "Clarke 1880 (RGS)";
+    public void testLGD2006() throws FactoryException {
+        important         = true;
+        code              = 6754;
+        name              = "Libyan Geodetic Datum 2006";
+        crsName           = "LGD2006";
+        ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
-        createAndVerifyGeographicCRS(4250, GEOGRAPHIC_2D);
+        createAndVerifyGeocentricCRS(4899);
+        createAndVerifyGeographicCRS(4900, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4754, GEOGRAPHIC_2D);
     }
 
     /**
@@ -6112,51 +4541,27 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
-     * Tests “Lisbon 1937” geodetic datum creation from the factory.
+     * Tests “IGN56 Lifou” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>EPSG datum code: <b>6207</b></li>
-     *   <li>EPSG datum name: <b>Lisbon 1937</b></li>
+     *   <li>EPSG datum code: <b>6633</b></li>
+     *   <li>EPSG datum name: <b>IGN56 Lifou</b></li>
      *   <li>Ellipsoid name: <b>International 1924</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Lisbon</b></li>
+     *   <li>CRS using the datum: <b>IGN56 Lifou</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLisbon1937() throws FactoryException {
-        code              = 6207;
-        name              = "Lisbon 1937";
-        crsName           = "Lisbon";
+    public void testLifou() throws FactoryException {
+        code              = 6633;
+        name              = "IGN56 Lifou";
+        crsName           = "IGN56 Lifou";
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
-        createAndVerifyGeographicCRS(4207, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “Lisbon 1937 (Lisbon)” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6803</b></li>
-     *   <li>EPSG datum name: <b>Lisbon 1937 (Lisbon)</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Lisbon</b></li>
-     *   <li>CRS using the datum: <b>Lisbon (Lisbon)</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testLisbon1937_Lisbon() throws FactoryException {
-        code              = 6803;
-        name              = "Lisbon 1937 (Lisbon)";
-        crsName           = "Lisbon (Lisbon)";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Lisbon";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4803, GEOGRAPHIC_2D);
+        createAndVerifyGeographicCRS(4633, GEOGRAPHIC_2D);
     }
 
     /**
@@ -6205,6 +4610,54 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Lisbon";
         verifyDatum();
         createAndVerifyGeographicCRS(4904, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Lisbon 1937” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6207</b></li>
+     *   <li>EPSG datum name: <b>Lisbon 1937</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Lisbon</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testLisbon1937() throws FactoryException {
+        code              = 6207;
+        name              = "Lisbon 1937";
+        crsName           = "Lisbon";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4207, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Lisbon 1937 (Lisbon)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6803</b></li>
+     *   <li>EPSG datum name: <b>Lisbon 1937 (Lisbon)</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Lisbon</b></li>
+     *   <li>CRS using the datum: <b>Lisbon (Lisbon)</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testLisbon1937_Lisbon() throws FactoryException {
+        code              = 6803;
+        name              = "Lisbon 1937 (Lisbon)";
+        crsName           = "Lisbon (Lisbon)";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Lisbon";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4803, GEOGRAPHIC_2D);
     }
 
     /**
@@ -6376,6 +4829,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Luzon 1911” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6253</b></li>
+     *   <li>EPSG datum name: <b>Luzon 1911</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1866</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Luzon 1911</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testLuzon() throws FactoryException {
+        important         = true;
+        code              = 6253;
+        name              = "Luzon 1911";
+        crsName           = "Luzon 1911";
+        ellipsoidName     = "Clarke 1866";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4253, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Madrid 1870 (Madrid)” geodetic datum creation from the factory.
      *
      * <ul>
@@ -6421,6 +4900,34 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4128, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Marco Geocentrico Nacional de Referencia” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6686</b></li>
+     *   <li>EPSG datum name: <b>Marco Geocentrico Nacional de Referencia</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>MAGNA-SIRGAS</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testMAGNA_SIRGAS() throws FactoryException {
+        important         = true;
+        code              = 6686;
+        name              = "Marco Geocentrico Nacional de Referencia";
+        crsName           = "MAGNA-SIRGAS";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4996);
+        createAndVerifyGeographicCRS(4997, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4686, GEOGRAPHIC_2D);
     }
 
     /**
@@ -6496,6 +5003,58 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Malongo 1987” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6259</b></li>
+     *   <li>EPSG datum name: <b>Malongo 1987</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Malongo 1987</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testMalongo() throws FactoryException {
+        important         = true;
+        code              = 6259;
+        name              = "Malongo 1987";
+        crsName           = "Malongo 1987";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4259, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Manoca 1962” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6193</b></li>
+     *   <li>EPSG datum name: <b>Manoca 1962</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Manoca 1962</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testManoca() throws FactoryException {
+        important         = true;
+        code              = 6193;
+        name              = "Manoca 1962";
+        crsName           = "Manoca 1962";
+        ellipsoidName     = "Clarke 1880 (IGN)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4193, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Marcus Island 1952” geodetic datum creation from the factory.
      *
      * <ul>
@@ -6517,6 +5076,30 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4711, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “IGN53 Mare” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6641</b></li>
+     *   <li>EPSG datum name: <b>IGN53 Mare</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>IGN53 Mare</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testMare() throws FactoryException {
+        code              = 6641;
+        name              = "IGN53 Mare";
+        crsName           = "IGN53 Mare";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4641, GEOGRAPHIC_2D);
     }
 
     /**
@@ -6616,6 +5199,34 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Mauritania 1999” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6702</b></li>
+     *   <li>EPSG datum name: <b>Mauritania 1999</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Mauritania 1999</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testMauritania() throws FactoryException {
+        important         = true;
+        code              = 6702;
+        name              = "Mauritania 1999";
+        crsName           = "Mauritania 1999";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4924);
+        createAndVerifyGeographicCRS(4925, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4702, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Merchich” geodetic datum creation from the factory.
      *
      * <ul>
@@ -6637,6 +5248,58 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4261, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Militar-Geographische Institut” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6312</b></li>
+     *   <li>EPSG datum name: <b>Militar-Geographische Institut</b></li>
+     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>MGI</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testMGI() throws FactoryException {
+        important         = true;
+        code              = 6312;
+        name              = "Militar-Geographische Institut";
+        crsName           = "MGI";
+        ellipsoidName     = "Bessel 1841";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4312, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Militar-Geographische Institut (Ferro)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6805</b></li>
+     *   <li>EPSG datum name: <b>Militar-Geographische Institut (Ferro)</b></li>
+     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
+     *   <li>Prime meridian name: <b>Ferro</b></li>
+     *   <li>CRS using the datum: <b>MGI (Ferro)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testMGI_Ferro() throws FactoryException {
+        important         = true;
+        code              = 6805;
+        name              = "Militar-Geographische Institut (Ferro)";
+        crsName           = "MGI (Ferro)";
+        ellipsoidName     = "Bessel 1841";
+        primeMeridianName = "Ferro";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4805, GEOGRAPHIC_2D);
     }
 
     /**
@@ -6664,6 +5327,58 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Mhast (offshore)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6705</b></li>
+     *   <li>EPSG datum name: <b>Mhast (offshore)</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Mhast (offshore)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testMhast_offshore() throws FactoryException {
+        important         = true;
+        code              = 6705;
+        name              = "Mhast (offshore)";
+        crsName           = "Mhast (offshore)";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4705, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Mhast (onshore)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6704</b></li>
+     *   <li>EPSG datum name: <b>Mhast (onshore)</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Mhast (onshore)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testMhast_onshore() throws FactoryException {
+        important         = true;
+        code              = 6704;
+        name              = "Mhast (onshore)";
+        crsName           = "Mhast (onshore)";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4704, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Midway 1961” geodetic datum creation from the factory.
      *
      * <ul>
@@ -6685,6 +5400,58 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4727, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Minna” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6263</b></li>
+     *   <li>EPSG datum name: <b>Minna</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Minna</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testMinna() throws FactoryException {
+        important         = true;
+        code              = 6263;
+        name              = "Minna";
+        crsName           = "Minna";
+        ellipsoidName     = "Clarke 1880 (RGS)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4263, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Monte Mario” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6265</b></li>
+     *   <li>EPSG datum name: <b>Monte Mario</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Monte Mario</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testMonteMario() throws FactoryException {
+        important         = true;
+        code              = 6265;
+        name              = "Monte Mario";
+        crsName           = "Monte Mario";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4265, GEOGRAPHIC_2D);
     }
 
     /**
@@ -6832,6 +5599,58 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “M'poraloko” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6266</b></li>
+     *   <li>EPSG datum name: <b>M'poraloko</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>M'poraloko</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testMPoraloko() throws FactoryException {
+        important         = true;
+        code              = 6266;
+        name              = "M'poraloko";
+        crsName           = "M'poraloko";
+        ellipsoidName     = "Clarke 1880 (IGN)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4266, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “North American Datum 1927” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6267</b></li>
+     *   <li>EPSG datum name: <b>North American Datum 1927</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1866</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>NAD27</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNAD27() throws FactoryException {
+        important         = true;
+        code              = 6267;
+        name              = "North American Datum 1927";
+        crsName           = "NAD27";
+        ellipsoidName     = "Clarke 1866";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4267, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “North American Datum 1927 (1976)” geodetic datum creation from the factory.
      *
      * <ul>
@@ -6880,6 +5699,144 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “NAD27 Michigan” geodetic datum creation from the factory <em>(deprecated)</em>.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6268</b></li>
+     *   <li>EPSG datum name: <b>NAD27 Michigan</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1866 Michigan</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>NAD27 Michigan</b></li>
+     *   <li><b>Deprecated:</b> Ellipsoid scaling moved from datum to map projection to accord with NGS practice.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNAD27_Michigan() throws FactoryException {
+        important         = true;
+        code              = 6268;
+        name              = "NAD27 Michigan";
+        crsName           = "NAD27 Michigan";
+        ellipsoidName     = "Clarke 1866 Michigan";
+        primeMeridianName = "Greenwich";
+        assumeTrue(isDeprecatedObjectCreationSupported, "Creation of deprecated objects not supported.");
+        verifyDatum();
+        createAndVerifyGeographicCRS(4268, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “North American Datum 1983” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6269</b></li>
+     *   <li>EPSG datum name: <b>North American Datum 1983</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>NAD83</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNAD83() throws FactoryException {
+        important         = true;
+        code              = 6269;
+        name              = "North American Datum 1983";
+        crsName           = "NAD83";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4269, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “NAD83 Canadian Spatial Reference System” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6140</b></li>
+     *   <li>EPSG datum name: <b>NAD83 Canadian Spatial Reference System</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>NAD83(CSRS)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNAD83_CSRS() throws FactoryException {
+        important         = true;
+        code              = 6140;
+        name              = "NAD83 Canadian Spatial Reference System";
+        crsName           = "NAD83(CSRS)";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4954);
+        createAndVerifyGeographicCRS(4955, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4617, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “NAD83 (High Accuracy Reference Network)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6152</b></li>
+     *   <li>EPSG datum name: <b>NAD83 (High Accuracy Reference Network)</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>NAD83(HARN)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNAD83_HARN() throws FactoryException {
+        important         = true;
+        code              = 6152;
+        name              = "NAD83 (High Accuracy Reference Network)";
+        crsName           = "NAD83(HARN)";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4956);
+        createAndVerifyGeographicCRS(4957, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4152, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “NAD83 (National Spatial Reference System 2007)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6759</b></li>
+     *   <li>EPSG datum name: <b>NAD83 (National Spatial Reference System 2007)</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>NAD83(NSRS2007)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNAD83_NSRS2007() throws FactoryException {
+        important         = true;
+        code              = 6759;
+        name              = "NAD83 (National Spatial Reference System 2007)";
+        crsName           = "NAD83(NSRS2007)";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4892);
+        createAndVerifyGeographicCRS(4893, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4759, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Nahrwan 1934” geodetic datum creation from the factory.
      *
      * <ul>
@@ -6901,6 +5858,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4744, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Nahrwan 1967” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6270</b></li>
+     *   <li>EPSG datum name: <b>Nahrwan 1967</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Nahrwan 1967</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNahrwan1967() throws FactoryException {
+        important         = true;
+        code              = 6270;
+        name              = "Nahrwan 1967";
+        crsName           = "Nahrwan 1967";
+        ellipsoidName     = "Clarke 1880 (RGS)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4270, GEOGRAPHIC_2D);
     }
 
     /**
@@ -6928,6 +5911,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Naparima 1955” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6158</b></li>
+     *   <li>EPSG datum name: <b>Naparima 1955</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Naparima 1955</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNaparima1955() throws FactoryException {
+        important         = true;
+        code              = 6158;
+        name              = "Naparima 1955";
+        crsName           = "Naparima 1955";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4158, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Naparima 1972” geodetic datum creation from the factory.
      *
      * <ul>
@@ -6950,30 +5959,6 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4271, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “NEA74 Noumea” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6644</b></li>
-     *   <li>EPSG datum name: <b>NEA74 Noumea</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>NEA74 Noumea</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testNoumea() throws FactoryException {
-        code              = 6644;
-        name              = "NEA74 Noumea";
-        crsName           = "NEA74 Noumea";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4644, GEOGRAPHIC_2D);
     }
 
     /**
@@ -7049,6 +6034,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Nord Sahara 1959” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6307</b></li>
+     *   <li>EPSG datum name: <b>Nord Sahara 1959</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Nord Sahara 1959</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNordSahara() throws FactoryException {
+        important         = true;
+        code              = 6307;
+        name              = "Nord Sahara 1959";
+        crsName           = "Nord Sahara 1959";
+        ellipsoidName     = "Clarke 1880 (RGS)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4307, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Nouakchott 1965” geodetic datum creation from the factory.
      *
      * <ul>
@@ -7073,6 +6084,30 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “NEA74 Noumea” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6644</b></li>
+     *   <li>EPSG datum name: <b>NEA74 Noumea</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>NEA74 Noumea</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNoumea() throws FactoryException {
+        code              = 6644;
+        name              = "NEA74 Noumea";
+        crsName           = "NEA74 Noumea";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4644, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “NSWC 9Z-2” geodetic datum creation from the factory.
      *
      * <ul>
@@ -7094,6 +6129,136 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4276, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Nouvelle Triangulation Francaise” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6275</b></li>
+     *   <li>EPSG datum name: <b>Nouvelle Triangulation Francaise</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>NTF</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNTF() throws FactoryException {
+        important         = true;
+        code              = 6275;
+        name              = "Nouvelle Triangulation Francaise";
+        crsName           = "NTF";
+        ellipsoidName     = "Clarke 1880 (IGN)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4275, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Nouvelle Triangulation Francaise (Paris)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6807</b></li>
+     *   <li>EPSG datum name: <b>Nouvelle Triangulation Francaise (Paris)</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
+     *   <li>Prime meridian name: <b>Paris</b></li>
+     *   <li>CRS using the datum: <b>NTF (Paris)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNTF_Paris() throws FactoryException {
+        important         = true;
+        code              = 6807;
+        name              = "Nouvelle Triangulation Francaise (Paris)";
+        crsName           = "NTF (Paris)";
+        ellipsoidName     = "Clarke 1880 (IGN)";
+        primeMeridianName = "Paris";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4807, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “IGN72 Nuku Hiva” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6630</b></li>
+     *   <li>EPSG datum name: <b>IGN72 Nuku Hiva</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>IGN72 Nuku Hiva</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNukuHiva() throws FactoryException {
+        code              = 6630;
+        name              = "IGN72 Nuku Hiva";
+        crsName           = "IGN72 Nuku Hiva";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4630, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “New Zealand Geodetic Datum 2000” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6167</b></li>
+     *   <li>EPSG datum name: <b>New Zealand Geodetic Datum 2000</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>NZGD2000</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNZGD2000() throws FactoryException {
+        important         = true;
+        code              = 6167;
+        name              = "New Zealand Geodetic Datum 2000";
+        crsName           = "NZGD2000";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4958);
+        createAndVerifyGeographicCRS(4959, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4167, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “New Zealand Geodetic Datum 1949” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6272</b></li>
+     *   <li>EPSG datum name: <b>New Zealand Geodetic Datum 1949</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>NZGD49</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testNZGD49() throws FactoryException {
+        important         = true;
+        code              = 6272;
+        name              = "New Zealand Geodetic Datum 1949";
+        crsName           = "NZGD49";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4272, GEOGRAPHIC_2D);
     }
 
     /**
@@ -7169,6 +6334,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “OSGB 1936” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6277</b></li>
+     *   <li>EPSG datum name: <b>OSGB 1936</b></li>
+     *   <li>Ellipsoid name: <b>Airy 1830</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>OSGB 1936</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testOSGB1936() throws FactoryException {
+        important         = true;
+        code              = 6277;
+        name              = "OSGB 1936";
+        crsName           = "OSGB 1936";
+        ellipsoidName     = "Airy 1830";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4277, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “OSGB 1970 (SN)” geodetic datum creation from the factory.
      *
      * <ul>
@@ -7214,6 +6405,86 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4188, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “ST87 Ouvea” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6750</b></li>
+     *   <li>EPSG datum name: <b>ST87 Ouvea</b></li>
+     *   <li>Ellipsoid name: <b>WGS 84</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>ST87 Ouvea</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testOuvea() throws FactoryException {
+        code              = 6750;
+        name              = "ST87 Ouvea";
+        crsName           = "ST87 Ouvea";
+        ellipsoidName     = "WGS 84";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4750, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Padang 1884” geodetic datum creation from the factory <em>(deprecated)</em>.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}..
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6280</b></li>
+     *   <li>EPSG datum name: <b>Padang 1884</b></li>
+     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Padang</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testPadang() throws FactoryException {
+        important         = true;
+        code              = 6280;
+        name              = "Padang 1884";
+        crsName           = "Padang";
+        ellipsoidName     = "Bessel 1841";
+        primeMeridianName = "Greenwich";
+        assumeTrue(isDeprecatedObjectCreationSupported, "Creation of deprecated objects not supported.");
+        verifyDatum();
+        createAndVerifyGeographicCRS(4280, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Padang 1884 (Jakarta)” geodetic datum creation from the factory <em>(deprecated)</em>.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}..
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6808</b></li>
+     *   <li>EPSG datum name: <b>Padang 1884 (Jakarta)</b></li>
+     *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
+     *   <li>Prime meridian name: <b>Jakarta</b></li>
+     *   <li>CRS using the datum: <b>Padang (Jakarta)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testPadang_Jakarta() throws FactoryException {
+        important         = true;
+        code              = 6808;
+        name              = "Padang 1884 (Jakarta)";
+        crsName           = "Padang (Jakarta)";
+        ellipsoidName     = "Bessel 1841";
+        primeMeridianName = "Jakarta";
+        assumeTrue(isDeprecatedObjectCreationSupported, "Creation of deprecated objects not supported.");
+        verifyDatum();
+        createAndVerifyGeographicCRS(4808, GEOGRAPHIC_2D);
     }
 
     /**
@@ -7457,6 +6728,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Congo 1960 Pointe Noire” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6282</b></li>
+     *   <li>EPSG datum name: <b>Congo 1960 Pointe Noire</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Pointe Noire</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testPointeNoire() throws FactoryException {
+        important         = true;
+        code              = 6282;
+        name              = "Congo 1960 Pointe Noire";
+        crsName           = "Pointe Noire";
+        ellipsoidName     = "Clarke 1880 (IGN)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4282, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Popular Visualisation Datum” geodetic datum creation from the factory <em>(deprecated)</em>.
      * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
      *
@@ -7532,6 +6829,142 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Posiciones Geodesicas Argentinas 1994” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6694</b></li>
+     *   <li>EPSG datum name: <b>Posiciones Geodesicas Argentinas 1994</b></li>
+     *   <li>Ellipsoid name: <b>WGS 84</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>POSGAR 94</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testPOSGAR94() throws FactoryException {
+        important         = true;
+        code              = 6694;
+        name              = "Posiciones Geodesicas Argentinas 1994";
+        crsName           = "POSGAR 94";
+        ellipsoidName     = "WGS 84";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4928);
+        createAndVerifyGeographicCRS(4929, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4694, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Posiciones Geodesicas Argentinas 1998” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6190</b></li>
+     *   <li>EPSG datum name: <b>Posiciones Geodesicas Argentinas 1998</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>POSGAR 98</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testPOSGAR98() throws FactoryException {
+        important         = true;
+        code              = 6190;
+        name              = "Posiciones Geodesicas Argentinas 1998";
+        crsName           = "POSGAR 98";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4960);
+        createAndVerifyGeographicCRS(4961, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4190, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Philippine Reference System 1992” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6683</b></li>
+     *   <li>EPSG datum name: <b>Philippine Reference System 1992</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1866</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>PRS92</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testPRS92() throws FactoryException {
+        important         = true;
+        code              = 6683;
+        name              = "Philippine Reference System 1992";
+        crsName           = "PRS92";
+        ellipsoidName     = "Clarke 1866";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4994);
+        createAndVerifyGeographicCRS(4995, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4683, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Provisional South American Datum 1956” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6248</b></li>
+     *   <li>EPSG datum name: <b>Provisional South American Datum 1956</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>PSAD56</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testPSAD56() throws FactoryException {
+        important         = true;
+        code              = 6248;
+        name              = "Provisional South American Datum 1956";
+        crsName           = "PSAD56";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4248, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “PDO Survey Datum 1993” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6134</b></li>
+     *   <li>EPSG datum name: <b>PDO Survey Datum 1993</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>PSD93</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testPSD93() throws FactoryException {
+        important         = true;
+        code              = 6134;
+        name              = "PDO Survey Datum 1993";
+        crsName           = "PSD93";
+        ellipsoidName     = "Clarke 1880 (RGS)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4134, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Puerto Rico” geodetic datum creation from the factory.
      *
      * <ul>
@@ -7553,6 +6986,84 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4139, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Pulkovo 1942” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6284</b></li>
+     *   <li>EPSG datum name: <b>Pulkovo 1942</b></li>
+     *   <li>Ellipsoid name: <b>Krassowsky 1940</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Pulkovo 1942</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testPulkovo1942() throws FactoryException {
+        important         = true;
+        code              = 6284;
+        name              = "Pulkovo 1942";
+        crsName           = "Pulkovo 1942";
+        ellipsoidName     = "Krassowsky 1940";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4284, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Pulkovo 1942(58)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6179</b></li>
+     *   <li>EPSG datum name: <b>Pulkovo 1942(58)</b></li>
+     *   <li>Ellipsoid name: <b>Krassowsky 1940</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Pulkovo 1942(58)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testPulkovo1942_58() throws FactoryException {
+        important         = true;
+        code              = 6179;
+        name              = "Pulkovo 1942(58)";
+        crsName           = "Pulkovo 1942(58)";
+        ellipsoidName     = "Krassowsky 1940";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4179, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Pulkovo 1942(83)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6178</b></li>
+     *   <li>EPSG datum name: <b>Pulkovo 1942(83)</b></li>
+     *   <li>Ellipsoid name: <b>Krassowsky 1940</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Pulkovo 1942(83)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testPulkovo1942_83() throws FactoryException {
+        important         = true;
+        code              = 6178;
+        name              = "Pulkovo 1942(83)";
+        crsName           = "Pulkovo 1942(83)";
+        ellipsoidName     = "Krassowsky 1940";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4178, GEOGRAPHIC_2D);
     }
 
     /**
@@ -7601,6 +7112,84 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4740, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Qatar 1948” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6286</b></li>
+     *   <li>EPSG datum name: <b>Qatar 1948</b></li>
+     *   <li>Ellipsoid name: <b>Helmert 1906</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Qatar 1948</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testQatar1948() throws FactoryException {
+        important         = true;
+        code              = 6286;
+        name              = "Qatar 1948";
+        crsName           = "Qatar 1948";
+        ellipsoidName     = "Helmert 1906";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4286, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Qatar 1974” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6285</b></li>
+     *   <li>EPSG datum name: <b>Qatar 1974</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Qatar 1974</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testQatar1974() throws FactoryException {
+        important         = true;
+        code              = 6285;
+        name              = "Qatar 1974";
+        crsName           = "Qatar 1974";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4285, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Qatar National Datum 1995” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6614</b></li>
+     *   <li>EPSG datum name: <b>Qatar National Datum 1995</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>QND95</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testQatar1995() throws FactoryException {
+        important         = true;
+        code              = 6614;
+        name              = "Qatar National Datum 1995";
+        crsName           = "QND95";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4614, GEOGRAPHIC_2D);
     }
 
     /**
@@ -7676,6 +7265,34 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Red Geodesica Venezolana” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6189</b></li>
+     *   <li>EPSG datum name: <b>Red Geodesica Venezolana</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>REGVEN</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testREGVEN() throws FactoryException {
+        important         = true;
+        code              = 6189;
+        name              = "Red Geodesica Venezolana";
+        crsName           = "REGVEN";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4962);
+        createAndVerifyGeographicCRS(4963, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4189, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Reunion 1947” geodetic datum creation from the factory.
      *
      * <ul>
@@ -7721,6 +7338,34 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4657, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Reseau Geodesique Francais 1993” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6171</b></li>
+     *   <li>EPSG datum name: <b>Reseau Geodesique Francais 1993</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>RGF93</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testRGF93() throws FactoryException {
+        important         = true;
+        code              = 6171;
+        name              = "Reseau Geodesique Francais 1993";
+        crsName           = "RGF93";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4964);
+        createAndVerifyGeographicCRS(4965, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4171, GEOGRAPHIC_2D);
     }
 
     /**
@@ -7940,6 +7585,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “South American Datum 1969” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6618</b></li>
+     *   <li>EPSG datum name: <b>South American Datum 1969</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1967 Modified</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>SAD69</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testSAD69() throws FactoryException {
+        important         = true;
+        code              = 6618;
+        name              = "South American Datum 1969";
+        crsName           = "SAD69";
+        ellipsoidName     = "GRS 1967 Modified";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4618, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Saint Pierre et Miquelon 1950” geodetic datum creation from the factory.
      *
      * <ul>
@@ -8009,6 +7680,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4292, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Schwarzeck” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6293</b></li>
+     *   <li>EPSG datum name: <b>Schwarzeck</b></li>
+     *   <li>Ellipsoid name: <b>Bessel Namibia (GLM)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Schwarzeck</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testSchwarzeck() throws FactoryException {
+        important         = true;
+        code              = 6293;
+        name              = "Schwarzeck";
+        crsName           = "Schwarzeck";
+        ellipsoidName     = "Bessel Namibia (GLM)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4293, GEOGRAPHIC_2D);
     }
 
     /**
@@ -8177,6 +7874,62 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4175, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Sistema de Referencia Geocentrico para America del Sur 1995” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6170</b></li>
+     *   <li>EPSG datum name: <b>Sistema de Referencia Geocentrico para America del Sur 1995</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>SIRGAS 1995</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testSIRGAS1995() throws FactoryException {
+        important         = true;
+        code              = 6170;
+        name              = "Sistema de Referencia Geocentrico para America del Sur 1995";
+        crsName           = "SIRGAS 1995";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4974);
+        createAndVerifyGeographicCRS(4975, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4170, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Sistema de Referencia Geocentrico para las AmericaS 2000” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6674</b></li>
+     *   <li>EPSG datum name: <b>Sistema de Referencia Geocentrico para las AmericaS 2000</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>SIRGAS 2000</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testSIRGAS2000() throws FactoryException {
+        important         = true;
+        code              = 6674;
+        name              = "Sistema de Referencia Geocentrico para las AmericaS 2000";
+        crsName           = "SIRGAS 2000";
+        ellipsoidName     = "GRS 1980";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4988);
+        createAndVerifyGeographicCRS(4989, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4674, GEOGRAPHIC_2D);
     }
 
     /**
@@ -8492,78 +8245,6 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
-     * Tests “ST71 Belep” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6643</b></li>
-     *   <li>EPSG datum name: <b>ST71 Belep</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>ST71 Belep</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testBelep() throws FactoryException {
-        code              = 6643;
-        name              = "ST71 Belep";
-        crsName           = "ST71 Belep";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4643, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “ST84 Ile des Pins” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6642</b></li>
-     *   <li>EPSG datum name: <b>ST84 Ile des Pins</b></li>
-     *   <li>Ellipsoid name: <b>International 1924</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>ST84 Ile des Pins</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testIleDesPins() throws FactoryException {
-        code              = 6642;
-        name              = "ST84 Ile des Pins";
-        crsName           = "ST84 Ile des Pins";
-        ellipsoidName     = "International 1924";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4642, GEOGRAPHIC_2D);
-    }
-
-    /**
-     * Tests “ST87 Ouvea” geodetic datum creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG datum code: <b>6750</b></li>
-     *   <li>EPSG datum name: <b>ST87 Ouvea</b></li>
-     *   <li>Ellipsoid name: <b>WGS 84</b></li>
-     *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>ST87 Ouvea</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
-     */
-    @Test
-    public void testOuvea() throws FactoryException {
-        code              = 6750;
-        name              = "ST87 Ouvea";
-        crsName           = "ST87 Ouvea";
-        ellipsoidName     = "WGS 84";
-        primeMeridianName = "Greenwich";
-        verifyDatum();
-        createAndVerifyGeographicCRS(4750, GEOGRAPHIC_2D);
-    }
-
-    /**
      * Tests “SVY21” geodetic datum creation from the factory.
      *
      * <ul>
@@ -8684,6 +8365,58 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Tananarive 1925” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6297</b></li>
+     *   <li>EPSG datum name: <b>Tananarive 1925</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Tananarive</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testTananarive() throws FactoryException {
+        important         = true;
+        code              = 6297;
+        name              = "Tananarive 1925";
+        crsName           = "Tananarive";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4297, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Tananarive 1925 (Paris)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6810</b></li>
+     *   <li>EPSG datum name: <b>Tananarive 1925 (Paris)</b></li>
+     *   <li>Ellipsoid name: <b>International 1924</b></li>
+     *   <li>Prime meridian name: <b>Paris</b></li>
+     *   <li>CRS using the datum: <b>Tananarive (Paris)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testTananarive_Paris() throws FactoryException {
+        important         = true;
+        code              = 6810;
+        name              = "Tananarive 1925 (Paris)";
+        crsName           = "Tananarive (Paris)";
+        ellipsoidName     = "International 1924";
+        primeMeridianName = "Paris";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4810, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Tern Island 1961” geodetic datum creation from the factory.
      *
      * <ul>
@@ -8729,6 +8462,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4127, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Timbalai 1948” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6298</b></li>
+     *   <li>EPSG datum name: <b>Timbalai 1948</b></li>
+     *   <li>Ellipsoid name: <b>Everest 1830 (1967 Definition)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Timbalai 1948</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testTimbalai() throws FactoryException {
+        important         = true;
+        code              = 6298;
+        name              = "Timbalai 1948";
+        crsName           = "Timbalai 1948";
+        ellipsoidName     = "Everest 1830 (1967 Definition)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4298, GEOGRAPHIC_2D);
     }
 
     /**
@@ -8804,6 +8563,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Trinidad 1903” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6302</b></li>
+     *   <li>EPSG datum name: <b>Trinidad 1903</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1858</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Trinidad 1903</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testTrinidad() throws FactoryException {
+        important         = true;
+        code              = 6302;
+        name              = "Trinidad 1903";
+        crsName           = "Trinidad 1903";
+        ellipsoidName     = "Clarke 1858";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4302, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Tristan 1968” geodetic datum creation from the factory.
      *
      * <ul>
@@ -8825,6 +8610,32 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4734, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Trucial Coast 1948” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6303</b></li>
+     *   <li>EPSG datum name: <b>Trucial Coast 1948</b></li>
+     *   <li>Ellipsoid name: <b>Helmert 1906</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>TC(1948)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testTrucialCoast() throws FactoryException {
+        important         = true;
+        code              = 6303;
+        name              = "Trucial Coast 1948";
+        crsName           = "TC(1948)";
+        ellipsoidName     = "Helmert 1906";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4303, GEOGRAPHIC_2D);
     }
 
     /**
@@ -8972,6 +8783,58 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “Voirol 1875” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6304</b></li>
+     *   <li>EPSG datum name: <b>Voirol 1875</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Voirol 1875</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testVoirol1875() throws FactoryException {
+        important         = true;
+        code              = 6304;
+        name              = "Voirol 1875";
+        crsName           = "Voirol 1875";
+        ellipsoidName     = "Clarke 1880 (IGN)";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4304, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Voirol 1875 (Paris)” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6811</b></li>
+     *   <li>EPSG datum name: <b>Voirol 1875 (Paris)</b></li>
+     *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
+     *   <li>Prime meridian name: <b>Paris</b></li>
+     *   <li>CRS using the datum: <b>Voirol 1875 (Paris)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testVoirol1875_Paris() throws FactoryException {
+        important         = true;
+        code              = 6811;
+        name              = "Voirol 1875 (Paris)";
+        crsName           = "Voirol 1875 (Paris)";
+        ellipsoidName     = "Clarke 1880 (IGN)";
+        primeMeridianName = "Paris";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4811, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Voirol 1879” geodetic datum creation from the factory.
      *
      * <ul>
@@ -9068,6 +8931,116 @@ public class Test2004 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Tests “World Geodetic System 1972” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6322</b></li>
+     *   <li>EPSG datum name: <b>World Geodetic System 1972</b></li>
+     *   <li>Ellipsoid name: <b>WGS 72</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>WGS 72</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testWGS72() throws FactoryException {
+        important         = true;
+        code              = 6322;
+        name              = "World Geodetic System 1972";
+        crsName           = "WGS 72";
+        ellipsoidName     = "WGS 72";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4984);
+        createAndVerifyGeographicCRS(4985, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4322, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “WGS 72 Transit Broadcast Ephemeris” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6324</b></li>
+     *   <li>EPSG datum name: <b>WGS 72 Transit Broadcast Ephemeris</b></li>
+     *   <li>Ellipsoid name: <b>WGS 72</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>WGS 72BE</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testWGS72BE() throws FactoryException {
+        important         = true;
+        code              = 6324;
+        name              = "WGS 72 Transit Broadcast Ephemeris";
+        crsName           = "WGS 72BE";
+        ellipsoidName     = "WGS 72";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4986);
+        createAndVerifyGeographicCRS(4987, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4324, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “World Geodetic System 1984” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6326</b></li>
+     *   <li>EPSG datum name: <b>World Geodetic System 1984</b></li>
+     *   <li>Ellipsoid name: <b>WGS 84</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>WGS 84</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testWGS84() throws FactoryException {
+        important         = true;
+        code              = 6326;
+        name              = "World Geodetic System 1984";
+        crsName           = "WGS 84";
+        ellipsoidName     = "WGS 84";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4978);
+        createAndVerifyGeographicCRS(4979, GEOGRAPHIC_3D);
+        createAndVerifyGeographicCRS(4326, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Xian 1980” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6610</b></li>
+     *   <li>EPSG datum name: <b>Xian 1980</b></li>
+     *   <li>Ellipsoid name: <b>IAG 1975</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Xian 1980</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testXian() throws FactoryException {
+        important         = true;
+        code              = 6610;
+        name              = "Xian 1980";
+        crsName           = "Xian 1980";
+        ellipsoidName     = "IAG 1975";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeographicCRS(4610, GEOGRAPHIC_2D);
+    }
+
+    /**
      * Tests “Yacare” geodetic datum creation from the factory.
      *
      * <ul>
@@ -9089,6 +9062,33 @@ public class Test2004 extends Series2000<GeodeticDatum> {
         primeMeridianName = "Greenwich";
         verifyDatum();
         createAndVerifyGeographicCRS(4309, GEOGRAPHIC_2D);
+    }
+
+    /**
+     * Tests “Yemen National Geodetic Network 1996” geodetic datum creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG datum code: <b>6163</b></li>
+     *   <li>EPSG datum name: <b>Yemen National Geodetic Network 1996</b></li>
+     *   <li>Ellipsoid name: <b>WGS 84</b></li>
+     *   <li>Prime meridian name: <b>Greenwich</b></li>
+     *   <li>CRS using the datum: <b>Yemen NGN96</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
+     */
+    @Test
+    public void testYemen() throws FactoryException {
+        important         = true;
+        code              = 6163;
+        name              = "Yemen National Geodetic Network 1996";
+        crsName           = "Yemen NGN96";
+        ellipsoidName     = "WGS 84";
+        primeMeridianName = "Greenwich";
+        verifyDatum();
+        createAndVerifyGeocentricCRS(4980);
+        createAndVerifyGeographicCRS(4163, GEOGRAPHIC_2D);
     }
 
     /**

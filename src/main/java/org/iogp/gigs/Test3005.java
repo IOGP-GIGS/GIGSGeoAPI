@@ -277,40 +277,228 @@ public class Test3005 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS projection 1” conversion creation from the factory.
+     * Tests “GIGS projection 11” conversion creation from the factory.
      *
      * <ul>
-     *   <li>GIGS conversion code: <b>65001</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 1</b></li>
+     *   <li>GIGS conversion code: <b>65011</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 11</b></li>
      *   <li>EPSG operation method: <b>Transverse Mercator</b></li>
-     *   <li>EPSG equivalence: <b>16031 – UTM zone 31N</b></li>
+     *   <li>EPSG equivalence: <b>18035 – Argentina zone 5</b></li>
      * </ul>
      * <table class="data">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>3°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.9996</td></tr>
-     *   <tr><td>False easting</td><td>500000 metres</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>-90°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>-60°</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>1</td></tr>
+     *   <tr><td>False easting</td><td>5500000 metres</td></tr>
      *   <tr><td>False northing</td><td>0 metre</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
      *
-     * @see Test2005#testUTM()
+     * @see Test2005#testArgentinaZones()
      */
     @Test
-    public void testUTM_zone31N() throws FactoryException {
-        setCodeAndName(65001, "GIGS projection 1");
+    public void testArgentinaZone5() throws FactoryException {
+        setCodeAndName(65011, "GIGS projection 11");
+        methodName = "Transverse Mercator";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(-90.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(-60.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(1.0, units.one());
+        definition.parameter("False easting").setValue(5500000.0, metre);
+        definition.parameter("False northing").setValue(0.0, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 9” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65009</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 9</b></li>
+     *   <li>EPSG operation method: <b>Albers Equal Area</b></li>
+     *   <li>EPSG equivalence: <b>17365 – Australian Albers</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of false origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of false origin</td><td>132°</td></tr>
+     *   <tr><td>Latitude of 1st standard parallel</td><td>-18°</td></tr>
+     *   <tr><td>Latitude of 2nd standard parallel</td><td>-36°</td></tr>
+     *   <tr><td>Easting at false origin</td><td>0 metre</td></tr>
+     *   <tr><td>Northing at false origin</td><td>0 metre</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     */
+    @Test
+    public void testAustralianAlbers() throws FactoryException {
+        setCodeAndName(65009, "GIGS projection 9");
+        methodName = "Albers Equal Area";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of false origin").setValue(0.0, degree);
+        definition.parameter("Longitude of false origin").setValue(132.0, degree);
+        definition.parameter("Latitude of 1st standard parallel").setValue(-18.0, degree);
+        definition.parameter("Latitude of 2nd standard parallel").setValue(-36.0, degree);
+        definition.parameter("Easting at false origin").setValue(0.0, metre);
+        definition.parameter("Northing at false origin").setValue(0.0, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 7” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65007</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 7</b></li>
+     *   <li>EPSG operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG equivalence: <b>17454 – Australian Map Grid zone 54</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>141°</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.9996</td></tr>
+     *   <tr><td>False easting</td><td>500000 metres</td></tr>
+     *   <tr><td>False northing</td><td>10000000 metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     *
+     * @see Test2005#testAustralianMapGridZones()
+     */
+    @Test
+    public void testAustralianMapGridZone54() throws FactoryException {
+        setCodeAndName(65007, "GIGS projection 7");
         methodName = "Transverse Mercator";
         createDefaultParameters();
         final Unit<Angle> degree = units.degree();
         final Unit<Length> metre = units.metre();
         definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(3.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(141.0, degree);
         definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
         definition.parameter("False easting").setValue(500000.0, metre);
-        definition.parameter("False northing").setValue(0.0, metre);
+        definition.parameter("False northing").setValue(1.0E7, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 8” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65008</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 8</b></li>
+     *   <li>EPSG operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG equivalence: <b>17455 – Australian Map Grid zone 55</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>147°</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.9996</td></tr>
+     *   <tr><td>False easting</td><td>500000 metres</td></tr>
+     *   <tr><td>False northing</td><td>10000000 metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     *
+     * @see Test2005#testAustralianMapGridZones()
+     */
+    @Test
+    public void testAustralianMapGridZone55() throws FactoryException {
+        setCodeAndName(65008, "GIGS projection 8");
+        methodName = "Transverse Mercator";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(147.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(500000.0, metre);
+        definition.parameter("False northing").setValue(1.0E7, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 6” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65006</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 6</b></li>
+     *   <li>EPSG operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>EPSG equivalence: <b>19961 – Belgian Lambert 72</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of false origin</td><td>90°</td></tr>
+     *   <tr><td>Longitude of false origin</td><td>4°22'02.952E</td></tr>
+     *   <tr><td>Latitude of 1st standard parallel</td><td>51°10'00.00204N</td></tr>
+     *   <tr><td>Latitude of 2nd standard parallel</td><td>49°50'00.00204N</td></tr>
+     *   <tr><td>Easting at false origin</td><td>150000.013 metres</td></tr>
+     *   <tr><td>Northing at false origin</td><td>5400088.438 metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     */
+    @Test
+    public void testBelgianLambert72() throws FactoryException {
+        setCodeAndName(65006, "GIGS projection 6");
+        methodName = "Lambert Conic Conformal (2SP)";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of false origin").setValue(90.0, degree);
+        definition.parameter("Longitude of false origin").setValue(4.3674867, degree);
+        definition.parameter("Latitude of 1st standard parallel").setValue(51.1666672, degree);
+        definition.parameter("Latitude of 2nd standard parallel").setValue(49.8333339, degree);
+        definition.parameter("Easting at false origin").setValue(150000.013, metre);
+        definition.parameter("Northing at false origin").setValue(5400088.438, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 12” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65012</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 12</b></li>
+     *   <li>EPSG operation method: <b>American Polyconic</b></li>
+     *   <li>EPSG equivalence: <b>19941 – Brazil Polyconic</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>-54°</td></tr>
+     *   <tr><td>False easting</td><td>5000000 metres</td></tr>
+     *   <tr><td>False northing</td><td>10000000 metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     *
+     * @see Test2005#testBrazilPolyconic()
+     */
+    @Test
+    public void testBrazilPolyconic() throws FactoryException {
+        setCodeAndName(65012, "GIGS projection 12");
+        methodName = "American Polyconic";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(-54.0, degree);
+        definition.parameter("False easting").setValue(5000000.0, metre);
+        definition.parameter("False northing").setValue(1.0E7, metre);
         verifyConversion();
     }
 
@@ -423,245 +611,19 @@ public class Test3005 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS projection 4” conversion creation from the factory.
+     * Tests “GIGS projection 24” conversion creation from the factory.
      *
      * <ul>
-     *   <li>GIGS conversion code: <b>65004</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 4</b></li>
-     *   <li>EPSG operation method: <b>Oblique Stereographic</b></li>
-     *   <li>EPSG equivalence: <b>19914 – RD New</b></li>
+     *   <li>GIGS conversion code: <b>65024</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 24</b></li>
+     *   <li>EPSG operation method: <b>Mercator (Variant B)</b></li>
+     *   <li>EPSG equivalence: <b>19884 – Caspian Sea Mercator</b></li>
      * </ul>
      * <table class="data">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>52°09'22.178N</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>5°23'15.5E</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.9999079</td></tr>
-     *   <tr><td>False easting</td><td>155000 metres</td></tr>
-     *   <tr><td>False northing</td><td>463000 metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     *
-     * @see Test2005#testRDNew()
-     */
-    @Test
-    public void testRDNew() throws FactoryException {
-        setCodeAndName(65004, "GIGS projection 4");
-        methodName = "Oblique Stereographic";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(52.1561606, degree);
-        definition.parameter("Longitude of natural origin").setValue(5.3876389, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.9999079, units.one());
-        definition.parameter("False easting").setValue(155000.0, metre);
-        definition.parameter("False northing").setValue(463000.0, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 5” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65005</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 5</b></li>
-     *   <li>EPSG operation method: <b>Mercator (1SP)</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>3°11'32.21E</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.997</td></tr>
-     *   <tr><td>False easting</td><td>3900000 metres</td></tr>
-     *   <tr><td>False northing</td><td>900000 metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     */
-    @Test
-    public void testGIGSProjection5() throws FactoryException {
-        setCodeAndName(65005, "GIGS projection 5");
-        methodName = "Mercator (1SP)";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(3.1922806, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.997, units.one());
-        definition.parameter("False easting").setValue(3900000.0, metre);
-        definition.parameter("False northing").setValue(900000.0, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 6” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65006</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 6</b></li>
-     *   <li>EPSG operation method: <b>Lambert Conic Conformal (2SP)</b></li>
-     *   <li>EPSG equivalence: <b>19961 – Belgian Lambert 72</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of false origin</td><td>90°</td></tr>
-     *   <tr><td>Longitude of false origin</td><td>4°22'02.952E</td></tr>
-     *   <tr><td>Latitude of 1st standard parallel</td><td>51°10'00.00204N</td></tr>
-     *   <tr><td>Latitude of 2nd standard parallel</td><td>49°50'00.00204N</td></tr>
-     *   <tr><td>Easting at false origin</td><td>150000.013 metres</td></tr>
-     *   <tr><td>Northing at false origin</td><td>5400088.438 metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     */
-    @Test
-    public void testBelgianLambert72() throws FactoryException {
-        setCodeAndName(65006, "GIGS projection 6");
-        methodName = "Lambert Conic Conformal (2SP)";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of false origin").setValue(90.0, degree);
-        definition.parameter("Longitude of false origin").setValue(4.3674867, degree);
-        definition.parameter("Latitude of 1st standard parallel").setValue(51.1666672, degree);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(49.8333339, degree);
-        definition.parameter("Easting at false origin").setValue(150000.013, metre);
-        definition.parameter("Northing at false origin").setValue(5400088.438, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 7” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65007</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 7</b></li>
-     *   <li>EPSG operation method: <b>Transverse Mercator</b></li>
-     *   <li>EPSG equivalence: <b>17454 – Australian Map Grid zone 54</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>141°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.9996</td></tr>
-     *   <tr><td>False easting</td><td>500000 metres</td></tr>
-     *   <tr><td>False northing</td><td>10000000 metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     *
-     * @see Test2005#testAustralianMapGridZones()
-     */
-    @Test
-    public void testAustralianMapGridZone54() throws FactoryException {
-        setCodeAndName(65007, "GIGS projection 7");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(141.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
-        definition.parameter("False easting").setValue(500000.0, metre);
-        definition.parameter("False northing").setValue(1.0E7, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 8” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65008</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 8</b></li>
-     *   <li>EPSG operation method: <b>Transverse Mercator</b></li>
-     *   <li>EPSG equivalence: <b>17455 – Australian Map Grid zone 55</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>147°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.9996</td></tr>
-     *   <tr><td>False easting</td><td>500000 metres</td></tr>
-     *   <tr><td>False northing</td><td>10000000 metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     *
-     * @see Test2005#testAustralianMapGridZones()
-     */
-    @Test
-    public void testAustralianMapGridZone55() throws FactoryException {
-        setCodeAndName(65008, "GIGS projection 8");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(147.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
-        definition.parameter("False easting").setValue(500000.0, metre);
-        definition.parameter("False northing").setValue(1.0E7, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 9” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65009</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 9</b></li>
-     *   <li>EPSG operation method: <b>Albers Equal Area</b></li>
-     *   <li>EPSG equivalence: <b>17365 – Australian Albers</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of false origin</td><td>0°</td></tr>
-     *   <tr><td>Longitude of false origin</td><td>132°</td></tr>
-     *   <tr><td>Latitude of 1st standard parallel</td><td>-18°</td></tr>
-     *   <tr><td>Latitude of 2nd standard parallel</td><td>-36°</td></tr>
-     *   <tr><td>Easting at false origin</td><td>0 metre</td></tr>
-     *   <tr><td>Northing at false origin</td><td>0 metre</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     */
-    @Test
-    public void testAustralianAlbers() throws FactoryException {
-        setCodeAndName(65009, "GIGS projection 9");
-        methodName = "Albers Equal Area";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of false origin").setValue(0.0, degree);
-        definition.parameter("Longitude of false origin").setValue(132.0, degree);
-        definition.parameter("Latitude of 1st standard parallel").setValue(-18.0, degree);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(-36.0, degree);
-        definition.parameter("Easting at false origin").setValue(0.0, metre);
-        definition.parameter("Northing at false origin").setValue(0.0, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 10” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65010</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 10</b></li>
-     *   <li>EPSG operation method: <b>Transverse Mercator (South Orientated)</b></li>
-     *   <li>EPSG equivalence: <b>17521 – South African Survey Grid zone 21</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>21°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>1</td></tr>
+     *   <tr><td>Latitude of 1st standard parallel</td><td>42°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>51°</td></tr>
      *   <tr><td>False easting</td><td>0 metre</td></tr>
      *   <tr><td>False northing</td><td>0 metre</td></tr>
      * </table>
@@ -669,131 +631,16 @@ public class Test3005 extends Series3000<Conversion> {
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
      */
     @Test
-    public void testSouthAfricanSurveyGridZone21() throws FactoryException {
-        setCodeAndName(65010, "GIGS projection 10");
-        methodName = "Transverse Mercator (South Orientated)";
+    public void testCaspianSeaMercator() throws FactoryException {
+        setCodeAndName(65024, "GIGS projection 24");
+        methodName = "Mercator (Variant B)";
         createDefaultParameters();
         final Unit<Angle> degree = units.degree();
         final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(21.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(1.0, units.one());
+        definition.parameter("Latitude of 1st standard parallel").setValue(42.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(51.0, degree);
         definition.parameter("False easting").setValue(0.0, metre);
         definition.parameter("False northing").setValue(0.0, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 11” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65011</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 11</b></li>
-     *   <li>EPSG operation method: <b>Transverse Mercator</b></li>
-     *   <li>EPSG equivalence: <b>18035 – Argentina zone 5</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>-90°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>-60°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>1</td></tr>
-     *   <tr><td>False easting</td><td>5500000 metres</td></tr>
-     *   <tr><td>False northing</td><td>0 metre</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     *
-     * @see Test2005#testArgentinaZones()
-     */
-    @Test
-    public void testArgentinaZone5() throws FactoryException {
-        setCodeAndName(65011, "GIGS projection 11");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(-90.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(-60.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(1.0, units.one());
-        definition.parameter("False easting").setValue(5500000.0, metre);
-        definition.parameter("False northing").setValue(0.0, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 12” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65012</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 12</b></li>
-     *   <li>EPSG operation method: <b>American Polyconic</b></li>
-     *   <li>EPSG equivalence: <b>19941 – Brazil Polyconic</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>-54°</td></tr>
-     *   <tr><td>False easting</td><td>5000000 metres</td></tr>
-     *   <tr><td>False northing</td><td>10000000 metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     *
-     * @see Test2005#testBrazilPolyconic()
-     */
-    @Test
-    public void testBrazilPolyconic() throws FactoryException {
-        setCodeAndName(65012, "GIGS projection 12");
-        methodName = "American Polyconic";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(-54.0, degree);
-        definition.parameter("False easting").setValue(5000000.0, metre);
-        definition.parameter("False northing").setValue(1.0E7, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 13” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65013</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 13</b></li>
-     *   <li>EPSG operation method: <b>Hotine Oblique Mercator (variant B)</b></li>
-     *   <li>Specific usage / Remarks: <b>metre</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of projection centre</td><td>4°</td></tr>
-     *   <tr><td>Longitude of projection centre</td><td>115°</td></tr>
-     *   <tr><td>Azimuth of initial line</td><td>53°18'56.9158</td></tr>
-     *   <tr><td>Angle from Rectified to Skew Grid</td><td>53°07'48.3685</td></tr>
-     *   <tr><td>Scale factor on initial line</td><td>0.99984</td></tr>
-     *   <tr><td>Easting at projection centre</td><td>590521.147 metres</td></tr>
-     *   <tr><td>Northing at projection centre</td><td>442890.861 metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     */
-    @Test
-    public void testGIGSProjection13() throws FactoryException {
-        setCodeAndName(65013, "GIGS projection 13");
-        methodName = "Hotine Oblique Mercator (variant B)";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of projection centre").setValue(4.0, degree);
-        definition.parameter("Longitude of projection centre").setValue(115.0, degree);
-        definition.parameter("Azimuth of initial line").setValue(53.3158099, degree);
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.1301024, degree);
-        definition.parameter("Scale factor on initial line").setValue(0.99984, units.one());
-        definition.parameter("Easting at projection centre").setValue(590521.147, metre);
-        definition.parameter("Northing at projection centre").setValue(442890.861, metre);
         verifyConversion();
     }
 
@@ -839,36 +686,45 @@ public class Test3005 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS projection 15” conversion creation from the factory.
+     * Tests “GIGS projection 26” conversion creation from the factory.
      *
      * <ul>
-     *   <li>GIGS conversion code: <b>65015</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 15</b></li>
-     *   <li>EPSG operation method: <b>Cassini-Soldner</b></li>
-     *   <li>EPSG equivalence: <b>19893 – Johor Grid</b></li>
+     *   <li>GIGS conversion code: <b>65026</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 26</b></li>
+     *   <li>EPSG operation method: <b>Hotine Oblique Mercator (variant B)</b></li>
+     *   <li>EPSG equivalence: <b>19931 – EOV</b></li>
+     *   <li>Specific usage / Remarks: <b>metre</b></li>
      * </ul>
      * <table class="data">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>2°07'18.0471N</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>103°25'40.5704E</td></tr>
-     *   <tr><td>False easting</td><td>-14810.562 metres</td></tr>
-     *   <tr><td>False northing</td><td>8758.32 metres</td></tr>
+     *   <tr><td>Latitude of projection centre</td><td>47°08'39.8174N</td></tr>
+     *   <tr><td>Longitude of projection centre</td><td>19°02'54.8584E</td></tr>
+     *   <tr><td>Azimuth of initial line</td><td>90°</td></tr>
+     *   <tr><td>Angle from Rectified to Skew Grid</td><td>90°</td></tr>
+     *   <tr><td>Scale factor on initial line</td><td>0.99993</td></tr>
+     *   <tr><td>Easting at projection centre</td><td>650000 metres</td></tr>
+     *   <tr><td>Northing at projection centre</td><td>200000 metres</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     *
+     * @see Test2005#testEOV()
      */
     @Test
-    public void testJohorGrid() throws FactoryException {
-        setCodeAndName(65015, "GIGS projection 15");
-        methodName = "Cassini-Soldner";
+    public void testEOV() throws FactoryException {
+        setCodeAndName(65026, "GIGS projection 26");
+        methodName = "Hotine Oblique Mercator (variant B)";
         createDefaultParameters();
         final Unit<Angle> degree = units.degree();
         final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(2.1216797, degree);
-        definition.parameter("Longitude of natural origin").setValue(103.4279361, degree);
-        definition.parameter("False easting").setValue(-14810.562, metre);
-        definition.parameter("False northing").setValue(8758.32, metre);
+        definition.parameter("Latitude of projection centre").setValue(47.14439372222222, degree);
+        definition.parameter("Longitude of projection centre").setValue(19.048571777777777, degree);
+        definition.parameter("Azimuth of initial line").setValue(90.0, degree);
+        definition.parameter("Angle from Rectified to Skew Grid").setValue(90.0, degree);
+        definition.parameter("Scale factor on initial line").setValue(0.99993, units.one());
+        definition.parameter("Easting at projection centre").setValue(650000.0, metre);
+        definition.parameter("Northing at projection centre").setValue(200000.0, metre);
         verifyConversion();
     }
 
@@ -903,6 +759,335 @@ public class Test3005 extends Series3000<Conversion> {
         definition.parameter("Longitude of natural origin").setValue(10.0, degree);
         definition.parameter("False easting").setValue(4321000.0, metre);
         definition.parameter("False northing").setValue(3210000.0, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 25” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65025</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 25</b></li>
+     *   <li>EPSG operation method: <b>Lambert Conic Conformal (1SP)</b></li>
+     *   <li>EPSG equivalence: <b>18086 – France EuroLambert</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of natural origin</td><td>46°48'N</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>2°20'14.025E</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.99987742</td></tr>
+     *   <tr><td>False easting</td><td>600000 metres</td></tr>
+     *   <tr><td>False northing</td><td>2200000 metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     */
+    @Test
+    public void testFranceEuroLambert() throws FactoryException {
+        setCodeAndName(65025, "GIGS projection 25");
+        methodName = "Lambert Conic Conformal (1SP)";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(46.8, degree);
+        definition.parameter("Longitude of natural origin").setValue(2.3372292, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.99987742, units.one());
+        definition.parameter("False easting").setValue(600000.0, metre);
+        definition.parameter("False northing").setValue(2200000.0, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 13” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65013</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 13</b></li>
+     *   <li>EPSG operation method: <b>Hotine Oblique Mercator (variant B)</b></li>
+     *   <li>Specific usage / Remarks: <b>metre</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of projection centre</td><td>4°</td></tr>
+     *   <tr><td>Longitude of projection centre</td><td>115°</td></tr>
+     *   <tr><td>Azimuth of initial line</td><td>53°18'56.9158</td></tr>
+     *   <tr><td>Angle from Rectified to Skew Grid</td><td>53°07'48.3685</td></tr>
+     *   <tr><td>Scale factor on initial line</td><td>0.99984</td></tr>
+     *   <tr><td>Easting at projection centre</td><td>590521.147 metres</td></tr>
+     *   <tr><td>Northing at projection centre</td><td>442890.861 metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     */
+    @Test
+    public void testGIGSProjection13() throws FactoryException {
+        setCodeAndName(65013, "GIGS projection 13");
+        methodName = "Hotine Oblique Mercator (variant B)";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of projection centre").setValue(4.0, degree);
+        definition.parameter("Longitude of projection centre").setValue(115.0, degree);
+        definition.parameter("Azimuth of initial line").setValue(53.3158099, degree);
+        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.1301024, degree);
+        definition.parameter("Scale factor on initial line").setValue(0.99984, units.one());
+        definition.parameter("Easting at projection centre").setValue(590521.147, metre);
+        definition.parameter("Northing at projection centre").setValue(442890.861, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 23” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65023</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 23</b></li>
+     *   <li>EPSG operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG equivalence: <b>No direct equivalent</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>3°</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.9996</td></tr>
+     *   <tr><td>False easting</td><td>1640416.667 US survey foots</td></tr>
+     *   <tr><td>False northing</td><td>0 US survey foot</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     */
+    @Test
+    public void testGIGSProjection23() throws FactoryException {
+        setCodeAndName(65023, "GIGS projection 23");
+        methodName = "Transverse Mercator";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> footSurveyUS = units.footSurveyUS();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(3.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(1640416.667, footSurveyUS);
+        definition.parameter("False northing").setValue(0.0, footSurveyUS);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 5” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65005</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 5</b></li>
+     *   <li>EPSG operation method: <b>Mercator (1SP)</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>3°11'32.21E</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.997</td></tr>
+     *   <tr><td>False easting</td><td>3900000 metres</td></tr>
+     *   <tr><td>False northing</td><td>900000 metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     */
+    @Test
+    public void testGIGSProjection5() throws FactoryException {
+        setCodeAndName(65005, "GIGS projection 5");
+        methodName = "Mercator (1SP)";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(3.1922806, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.997, units.one());
+        definition.parameter("False easting").setValue(3900000.0, metre);
+        definition.parameter("False northing").setValue(900000.0, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 15” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65015</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 15</b></li>
+     *   <li>EPSG operation method: <b>Cassini-Soldner</b></li>
+     *   <li>EPSG equivalence: <b>19893 – Johor Grid</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of natural origin</td><td>2°07'18.0471N</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>103°25'40.5704E</td></tr>
+     *   <tr><td>False easting</td><td>-14810.562 metres</td></tr>
+     *   <tr><td>False northing</td><td>8758.32 metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     */
+    @Test
+    public void testJohorGrid() throws FactoryException {
+        setCodeAndName(65015, "GIGS projection 15");
+        methodName = "Cassini-Soldner";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(2.1216797, degree);
+        definition.parameter("Longitude of natural origin").setValue(103.4279361, degree);
+        definition.parameter("False easting").setValue(-14810.562, metre);
+        definition.parameter("False northing").setValue(8758.32, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 19” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65019</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 19</b></li>
+     *   <li>EPSG operation method: <b>Lambert Conic Conformal (1SP)</b></li>
+     *   <li>EPSG equivalence: <b>18082 – Lambert zone II</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of natural origin</td><td>52 grads</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>0 grad</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.99987742</td></tr>
+     *   <tr><td>False easting</td><td>600000 metres</td></tr>
+     *   <tr><td>False northing</td><td>2200000 metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     */
+    @Test
+    public void testLambertZoneII() throws FactoryException {
+        setCodeAndName(65019, "GIGS projection 19");
+        methodName = "Lambert Conic Conformal (1SP)";
+        createDefaultParameters();
+        final Unit<Angle>  grad  = units.grad();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(52.0, grad);
+        definition.parameter("Longitude of natural origin").setValue(0.0, grad);
+        definition.parameter("Scale factor at natural origin").setValue(0.99987742, units.one());
+        definition.parameter("False easting").setValue(600000.0, metre);
+        definition.parameter("False northing").setValue(2200000.0, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 27” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65027</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 27</b></li>
+     *   <li>EPSG operation method: <b>Mercator (variant A)</b></li>
+     *   <li>EPSG equivalence: <b>19905 – NEIEZ</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>110°</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.997</td></tr>
+     *   <tr><td>False easting</td><td>3900000 metres</td></tr>
+     *   <tr><td>False northing</td><td>900000 metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     *
+     * @see Test2005#testNEIEZ()
+     */
+    @Test
+    public void testNEIEZ() throws FactoryException {
+        setCodeAndName(65027, "GIGS projection 27");
+        methodName = "Mercator (variant A)";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(110.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.997, units.one());
+        definition.parameter("False easting").setValue(3900000.0, metre);
+        definition.parameter("False northing").setValue(900000.0, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 4” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65004</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 4</b></li>
+     *   <li>EPSG operation method: <b>Oblique Stereographic</b></li>
+     *   <li>EPSG equivalence: <b>19914 – RD New</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of natural origin</td><td>52°09'22.178N</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>5°23'15.5E</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.9999079</td></tr>
+     *   <tr><td>False easting</td><td>155000 metres</td></tr>
+     *   <tr><td>False northing</td><td>463000 metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     *
+     * @see Test2005#testRDNew()
+     */
+    @Test
+    public void testRDNew() throws FactoryException {
+        setCodeAndName(65004, "GIGS projection 4");
+        methodName = "Oblique Stereographic";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(52.1561606, degree);
+        definition.parameter("Longitude of natural origin").setValue(5.3876389, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.9999079, units.one());
+        definition.parameter("False easting").setValue(155000.0, metre);
+        definition.parameter("False northing").setValue(463000.0, metre);
+        verifyConversion();
+    }
+
+    /**
+     * Tests “GIGS projection 10” conversion creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS conversion code: <b>65010</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 10</b></li>
+     *   <li>EPSG operation method: <b>Transverse Mercator (South Orientated)</b></li>
+     *   <li>EPSG equivalence: <b>17521 – South African Survey Grid zone 21</b></li>
+     * </ul>
+     * <table class="data">
+     *   <caption>Conversion parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>21°</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>1</td></tr>
+     *   <tr><td>False easting</td><td>0 metre</td></tr>
+     *   <tr><td>False northing</td><td>0 metre</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     */
+    @Test
+    public void testSouthAfricanSurveyGridZone21() throws FactoryException {
+        setCodeAndName(65010, "GIGS projection 10");
+        methodName = "Transverse Mercator (South Orientated)";
+        createDefaultParameters();
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(21.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(1.0, units.one());
+        definition.parameter("False easting").setValue(0.0, metre);
+        definition.parameter("False northing").setValue(0.0, metre);
         verifyConversion();
     }
 
@@ -983,49 +1168,13 @@ public class Test3005 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS projection 19” conversion creation from the factory.
+     * Tests “GIGS projection 1” conversion creation from the factory.
      *
      * <ul>
-     *   <li>GIGS conversion code: <b>65019</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 19</b></li>
-     *   <li>EPSG operation method: <b>Lambert Conic Conformal (1SP)</b></li>
-     *   <li>EPSG equivalence: <b>18082 – Lambert zone II</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>52 grads</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>0 grad</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.99987742</td></tr>
-     *   <tr><td>False easting</td><td>600000 metres</td></tr>
-     *   <tr><td>False northing</td><td>2200000 metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     */
-    @Test
-    public void testLambertZoneII() throws FactoryException {
-        setCodeAndName(65019, "GIGS projection 19");
-        methodName = "Lambert Conic Conformal (1SP)";
-        createDefaultParameters();
-        final Unit<Angle>  grad  = units.grad();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(52.0, grad);
-        definition.parameter("Longitude of natural origin").setValue(0.0, grad);
-        definition.parameter("Scale factor at natural origin").setValue(0.99987742, units.one());
-        definition.parameter("False easting").setValue(600000.0, metre);
-        definition.parameter("False northing").setValue(2200000.0, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 23” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65023</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 23</b></li>
+     *   <li>GIGS conversion code: <b>65001</b></li>
+     *   <li>GIGS conversion name: <b>GIGS projection 1</b></li>
      *   <li>EPSG operation method: <b>Transverse Mercator</b></li>
-     *   <li>EPSG equivalence: <b>No direct equivalent</b></li>
+     *   <li>EPSG equivalence: <b>16031 – UTM zone 31N</b></li>
      * </ul>
      * <table class="data">
      *   <caption>Conversion parameters</caption>
@@ -1033,175 +1182,26 @@ public class Test3005 extends Series3000<Conversion> {
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
      *   <tr><td>Longitude of natural origin</td><td>3°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.9996</td></tr>
-     *   <tr><td>False easting</td><td>1640416.667 US survey foots</td></tr>
-     *   <tr><td>False northing</td><td>0 US survey foot</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     */
-    @Test
-    public void testGIGSProjection23() throws FactoryException {
-        setCodeAndName(65023, "GIGS projection 23");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> footSurveyUS = units.footSurveyUS();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(3.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
-        definition.parameter("False easting").setValue(1640416.667, footSurveyUS);
-        definition.parameter("False northing").setValue(0.0, footSurveyUS);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 24” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65024</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 24</b></li>
-     *   <li>EPSG operation method: <b>Mercator (Variant B)</b></li>
-     *   <li>EPSG equivalence: <b>19884 – Caspian Sea Mercator</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of 1st standard parallel</td><td>42°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>51°</td></tr>
-     *   <tr><td>False easting</td><td>0 metre</td></tr>
+     *   <tr><td>False easting</td><td>500000 metres</td></tr>
      *   <tr><td>False northing</td><td>0 metre</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
+     *
+     * @see Test2005#testUTM()
      */
     @Test
-    public void testCaspianSeaMercator() throws FactoryException {
-        setCodeAndName(65024, "GIGS projection 24");
-        methodName = "Mercator (Variant B)";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of 1st standard parallel").setValue(42.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(51.0, degree);
-        definition.parameter("False easting").setValue(0.0, metre);
-        definition.parameter("False northing").setValue(0.0, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 25” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65025</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 25</b></li>
-     *   <li>EPSG operation method: <b>Lambert Conic Conformal (1SP)</b></li>
-     *   <li>EPSG equivalence: <b>18086 – France EuroLambert</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>46°48'N</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>2°20'14.025E</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.99987742</td></tr>
-     *   <tr><td>False easting</td><td>600000 metres</td></tr>
-     *   <tr><td>False northing</td><td>2200000 metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     */
-    @Test
-    public void testFranceEuroLambert() throws FactoryException {
-        setCodeAndName(65025, "GIGS projection 25");
-        methodName = "Lambert Conic Conformal (1SP)";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(46.8, degree);
-        definition.parameter("Longitude of natural origin").setValue(2.3372292, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.99987742, units.one());
-        definition.parameter("False easting").setValue(600000.0, metre);
-        definition.parameter("False northing").setValue(2200000.0, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 26” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65026</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 26</b></li>
-     *   <li>EPSG operation method: <b>Hotine Oblique Mercator (variant B)</b></li>
-     *   <li>EPSG equivalence: <b>19931 – EOV</b></li>
-     *   <li>Specific usage / Remarks: <b>metre</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of projection centre</td><td>47°08'39.8174N</td></tr>
-     *   <tr><td>Longitude of projection centre</td><td>19°02'54.8584E</td></tr>
-     *   <tr><td>Azimuth of initial line</td><td>90°</td></tr>
-     *   <tr><td>Angle from Rectified to Skew Grid</td><td>90°</td></tr>
-     *   <tr><td>Scale factor on initial line</td><td>0.99993</td></tr>
-     *   <tr><td>Easting at projection centre</td><td>650000 metres</td></tr>
-     *   <tr><td>Northing at projection centre</td><td>200000 metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     *
-     * @see Test2005#testEOV()
-     */
-    @Test
-    public void testEOV() throws FactoryException {
-        setCodeAndName(65026, "GIGS projection 26");
-        methodName = "Hotine Oblique Mercator (variant B)";
-        createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of projection centre").setValue(47.14439372222222, degree);
-        definition.parameter("Longitude of projection centre").setValue(19.048571777777777, degree);
-        definition.parameter("Azimuth of initial line").setValue(90.0, degree);
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(90.0, degree);
-        definition.parameter("Scale factor on initial line").setValue(0.99993, units.one());
-        definition.parameter("Easting at projection centre").setValue(650000.0, metre);
-        definition.parameter("Northing at projection centre").setValue(200000.0, metre);
-        verifyConversion();
-    }
-
-    /**
-     * Tests “GIGS projection 27” conversion creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS conversion code: <b>65027</b></li>
-     *   <li>GIGS conversion name: <b>GIGS projection 27</b></li>
-     *   <li>EPSG operation method: <b>Mercator (variant A)</b></li>
-     *   <li>EPSG equivalence: <b>19905 – NEIEZ</b></li>
-     * </ul>
-     * <table class="data">
-     *   <caption>Conversion parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>110°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.997</td></tr>
-     *   <tr><td>False easting</td><td>3900000 metres</td></tr>
-     *   <tr><td>False northing</td><td>900000 metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the conversion from the properties.
-     *
-     * @see Test2005#testNEIEZ()
-     */
-    @Test
-    public void testNEIEZ() throws FactoryException {
-        setCodeAndName(65027, "GIGS projection 27");
-        methodName = "Mercator (variant A)";
+    public void testUTM_zone31N() throws FactoryException {
+        setCodeAndName(65001, "GIGS projection 1");
+        methodName = "Transverse Mercator";
         createDefaultParameters();
         final Unit<Angle> degree = units.degree();
         final Unit<Length> metre = units.metre();
         definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(110.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.997, units.one());
-        definition.parameter("False easting").setValue(3900000.0, metre);
-        definition.parameter("False northing").setValue(900000.0, metre);
+        definition.parameter("Longitude of natural origin").setValue(3.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(500000.0, metre);
+        definition.parameter("False northing").setValue(0.0, metre);
         verifyConversion();
     }
 

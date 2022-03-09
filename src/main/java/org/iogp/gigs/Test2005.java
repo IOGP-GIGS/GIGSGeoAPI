@@ -190,63 +190,12 @@ public class Test2005 extends Series2000<Conversion> {
     }
 
     /**
-     * Tests “UTM” coordinate operation creation from the factory.
+     * Tests “3-degree Gauss-Kruger” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16001</b>, <b>16002</b>, <b>16003</b>, <b>16004</b>, <b>16005</b>,
-     *       <b>16006</b>, <b>16007</b>, <b>16008</b>, <b>16009</b>, <b>16010</b>, <i>…110 more</i></li>
-     *   <li>EPSG coordinate operation name: <b>UTM</b></li>
-     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>All 120 zones</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
-     */
-    @Test
-    public void testUTM() throws FactoryException {
-        important  = true;
-        name       = "UTM";
-        methodName = "Transverse Mercator";
-        for (int code = 16001; code <= 16060; code++) {    // Loop over 60 codes
-            createAndVerifyProjection(code);
-        }
-        for (int code = 16101; code <= 16160; code++) {    // Loop over 60 codes
-            createAndVerifyProjection(code);
-        }
-    }
-
-    /**
-     * Tests “6-degree Gauss-Kruger + zone prefix” coordinate operation creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16201</b>, <b>16202</b>, <b>16203</b>, <b>16204</b>, <b>16205</b>,
-     *       <b>16206</b>, <b>16207</b>, <b>16208</b>, <b>16209</b>, <b>16210</b>, <i>…50 more</i></li>
-     *   <li>EPSG coordinate operation name: <b>6-degree Gauss-Kruger</b></li>
-     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting.</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
-     */
-    @Test
-    public void test6DegreeGaussKrugerWithZonePrefix() throws FactoryException {
-        important  = true;
-        name       = "6-degree Gauss-Kruger";
-        methodName = "Transverse Mercator";
-        for (int code = 16201; code <= 16260; code++) {    // Loop over 60 codes
-            createAndVerifyProjection(code);
-        }
-    }
-
-    /**
-     * Tests “6-degree Gauss-Kruger” coordinate operation creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16301</b>, <b>16302</b>, <b>16303</b>, <b>16304</b>, <b>16305</b>,
-     *       <b>16306</b>, <b>16307</b>, <b>16308</b>, <b>16309</b>, <b>16310</b>, <i>…50 more</i></li>
-     *   <li>EPSG coordinate operation name: <b>6-degree Gauss-Kruger</b></li>
+     *   <li>EPSG coordinate operation codes: <b>16362</b>, <b>16364</b>, <b>16366</b>, <b>16368</b>, <b>16370</b>,
+     *       <b>16372</b>, <b>16374</b>, <b>16376</b>, <b>16378</b>, <b>16380</b>, <i>…22 more</i></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>Specific usage / Remarks: <b>Without zone prefix in easting.</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
@@ -255,11 +204,14 @@ public class Test2005 extends Series2000<Conversion> {
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
-    public void test6DegreeGaussKruger() throws FactoryException {
+    public void test3DegreeGaussKruger() throws FactoryException {
         important  = true;
-        name       = "6-degree Gauss-Kruger";
+        name       = "3-degree Gauss-Kruger";
         methodName = "Transverse Mercator";
-        for (int code = 16301; code <= 16360; code++) {    // Loop over 60 codes
+        for (int code = 16362; code <= 16398; code += 2) {    // Loop over 19 codes
+            createAndVerifyProjection(code);
+        }
+        for (int code = 16170; code <= 16194; code += 2) {    // Loop over 13 codes
             createAndVerifyProjection(code);
         }
     }
@@ -296,12 +248,12 @@ public class Test2005 extends Series2000<Conversion> {
     }
 
     /**
-     * Tests “3-degree Gauss-Kruger” coordinate operation creation from the factory.
+     * Tests “6-degree Gauss-Kruger” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16362</b>, <b>16364</b>, <b>16366</b>, <b>16368</b>, <b>16370</b>,
-     *       <b>16372</b>, <b>16374</b>, <b>16376</b>, <b>16378</b>, <b>16380</b>, <i>…22 more</i></li>
-     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger</b></li>
+     *   <li>EPSG coordinate operation codes: <b>16301</b>, <b>16302</b>, <b>16303</b>, <b>16304</b>, <b>16305</b>,
+     *       <b>16306</b>, <b>16307</b>, <b>16308</b>, <b>16309</b>, <b>16310</b>, <i>…50 more</i></li>
+     *   <li>EPSG coordinate operation name: <b>6-degree Gauss-Kruger</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>Specific usage / Remarks: <b>Without zone prefix in easting.</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
@@ -310,14 +262,35 @@ public class Test2005 extends Series2000<Conversion> {
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
-    public void test3DegreeGaussKruger() throws FactoryException {
+    public void test6DegreeGaussKruger() throws FactoryException {
         important  = true;
-        name       = "3-degree Gauss-Kruger";
+        name       = "6-degree Gauss-Kruger";
         methodName = "Transverse Mercator";
-        for (int code = 16362; code <= 16398; code += 2) {    // Loop over 19 codes
+        for (int code = 16301; code <= 16360; code++) {    // Loop over 60 codes
             createAndVerifyProjection(code);
         }
-        for (int code = 16170; code <= 16194; code += 2) {    // Loop over 13 codes
+    }
+
+    /**
+     * Tests “6-degree Gauss-Kruger + zone prefix” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16201</b>, <b>16202</b>, <b>16203</b>, <b>16204</b>, <b>16205</b>,
+     *       <b>16206</b>, <b>16207</b>, <b>16208</b>, <b>16209</b>, <b>16210</b>, <i>…50 more</i></li>
+     *   <li>EPSG coordinate operation name: <b>6-degree Gauss-Kruger</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting.</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    public void test6DegreeGaussKrugerWithZonePrefix() throws FactoryException {
+        important  = true;
+        name       = "6-degree Gauss-Kruger";
+        methodName = "Transverse Mercator";
+        for (int code = 16201; code <= 16260; code++) {    // Loop over 60 codes
             createAndVerifyProjection(code);
         }
     }
@@ -417,26 +390,6 @@ public class Test2005 extends Series2000<Conversion> {
     }
 
     /**
-     * Tests “British National Grid” coordinate operation creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19916</b></li>
-     *   <li>EPSG coordinate operation name: <b>British National Grid</b></li>
-     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
-     */
-    @Test
-    public void testBritishNationalGrid() throws FactoryException {
-        important  = true;
-        name       = "British National Grid";
-        methodName = "Transverse Mercator";
-        createAndVerifyProjection(19916);
-    }
-
-    /**
      * Tests “Brazil Polyconic” coordinate operation creation from the factory.
      *
      * <ul>
@@ -454,6 +407,26 @@ public class Test2005 extends Series2000<Conversion> {
         name       = "Brazil Polyconic";
         methodName = "American Polyconic";
         createAndVerifyProjection(19941);
+    }
+
+    /**
+     * Tests “British National Grid” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>19916</b></li>
+     *   <li>EPSG coordinate operation name: <b>British National Grid</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    public void testBritishNationalGrid() throws FactoryException {
+        important  = true;
+        name       = "British National Grid";
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(19916);
     }
 
     /**
@@ -542,27 +515,6 @@ public class Test2005 extends Series2000<Conversion> {
         createAndVerifyProjection(18081);
         createAndVerifyProjection(18082);
         createAndVerifyProjection(18083);
-    }
-
-    /**
-     * Tests “Lambert-93” coordinate operation creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18085</b></li>
-     *   <li>EPSG coordinate operation name: <b>Lambert-93</b></li>
-     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
-     *   <li>Specific usage / Remarks: <b>Use grads</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
-     */
-    @Test
-    public void testLambert93() throws FactoryException {
-        important  = true;
-        name       = "Lambert-93";
-        methodName = "Lambert Conic Conformal (2SP)";
-        createAndVerifyProjection(18085);
     }
 
     /**
@@ -667,10 +619,30 @@ public class Test2005 extends Series2000<Conversion> {
         name       = "Laborde Grid approximation";
         methodName = "Hotine Oblique Mercator (variant B)";
         createAndVerifyProjection(19911);
-
         name       = "Laborde Grid";
         methodName = "Laborde Oblique Mercator";
         createAndVerifyProjection(19861);
+    }
+
+    /**
+     * Tests “Lambert-93” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18085</b></li>
+     *   <li>EPSG coordinate operation name: <b>Lambert-93</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>Specific usage / Remarks: <b>Use grads</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    public void testLambert93() throws FactoryException {
+        important  = true;
+        name       = "Lambert-93";
+        methodName = "Lambert Conic Conformal (2SP)";
+        createAndVerifyProjection(18085);
     }
 
     /**
@@ -720,23 +692,48 @@ public class Test2005 extends Series2000<Conversion> {
     }
 
     /**
-     * Tests “SW Africa Survey Grid” coordinate operation creation from the factory.
+     * Tests “Malaysia RSO grids” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17611</b></li>
-     *   <li>EPSG coordinate operation name: <b>SW Africa Survey Grid</b></li>
-     *   <li>Coordinate operation method: <b>Transverse Mercator (South Orientated)</b></li>
+     *   <li>EPSG coordinate operation codes: <b>19871</b>, <b>19872</b>, <b>19894</b>, <b>19895</b></li>
+     *   <li>EPSG coordinate operation name: <b>Malaysia RSO grids</b></li>
+     *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant A)</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
-    public void testSWAfricaSurveyGrid() throws FactoryException {
+    public void testMalaysiaRSOGrids_VariantA() throws FactoryException {
         important  = true;
-        name       = "SW Africa Survey Grid";
-        methodName = "Transverse Mercator (South Orientated)";
-        createAndVerifyProjection(17611);
+        name       = "Malaysia RSO grids";
+        methodName = "Hotine Oblique Mercator (variant A)";
+        createAndVerifyProjection(19871);
+        createAndVerifyProjection(19872);
+        createAndVerifyProjection(19894);
+        createAndVerifyProjection(19895);
+    }
+
+    /**
+     * Tests “Malaysia RSO grids” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>19956</b>, <b>19957</b>, <b>19958</b></li>
+     *   <li>EPSG coordinate operation name: <b>Malaysia RSO grids</b></li>
+     *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant B)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    public void testMalaysiaRSOGrids_VariantB() throws FactoryException {
+        important  = true;
+        name       = "Malaysia RSO grids";
+        methodName = "Hotine Oblique Mercator (variant B)";
+        createAndVerifyProjection(19956);
+        createAndVerifyProjection(19957);
+        createAndVerifyProjection(19958);
     }
 
     /**
@@ -782,6 +779,26 @@ public class Test2005 extends Series2000<Conversion> {
     }
 
     /**
+     * Tests “NZMG” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>19917</b></li>
+     *   <li>EPSG coordinate operation name: <b>NZMG</b></li>
+     *   <li>Coordinate operation method: <b>New Zealand Map Grid</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    public void testNZMG() throws FactoryException {
+        important  = true;
+        name       = "NZMG";
+        methodName = "New Zealand Map Grid";
+        createAndVerifyProjection(19917);
+    }
+
+    /**
      * Tests “NZ TM zones” coordinate operation creation from the factory.
      *
      * <ul>
@@ -801,26 +818,6 @@ public class Test2005 extends Series2000<Conversion> {
         createAndVerifyProjection(18141);
         createAndVerifyProjection(18142);
         createAndVerifyProjection(19971);
-    }
-
-    /**
-     * Tests “NZMG” coordinate operation creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19917</b></li>
-     *   <li>EPSG coordinate operation name: <b>NZMG</b></li>
-     *   <li>Coordinate operation method: <b>New Zealand Map Grid</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
-     */
-    @Test
-    public void testNZMG() throws FactoryException {
-        important  = true;
-        name       = "NZMG";
-        methodName = "New Zealand Map Grid";
-        createAndVerifyProjection(19917);
     }
 
     /**
@@ -928,149 +925,6 @@ public class Test2005 extends Series2000<Conversion> {
     }
 
     /**
-     * Tests “Malaysia RSO grids” coordinate operation creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19956</b>, <b>19957</b>, <b>19958</b></li>
-     *   <li>EPSG coordinate operation name: <b>Malaysia RSO grids</b></li>
-     *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant B)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
-     */
-    @Test
-    public void testMalaysiaRSOGrids_VariantB() throws FactoryException {
-        important  = true;
-        name       = "Malaysia RSO grids";
-        methodName = "Hotine Oblique Mercator (variant B)";
-        createAndVerifyProjection(19956);
-        createAndVerifyProjection(19957);
-        createAndVerifyProjection(19958);
-    }
-
-    /**
-     * Tests “Malaysia RSO grids” coordinate operation creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19871</b>, <b>19872</b>, <b>19894</b>, <b>19895</b></li>
-     *   <li>EPSG coordinate operation name: <b>Malaysia RSO grids</b></li>
-     *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant A)</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
-     */
-    @Test
-    public void testMalaysiaRSOGrids_VariantA() throws FactoryException {
-        important  = true;
-        name       = "Malaysia RSO grids";
-        methodName = "Hotine Oblique Mercator (variant A)";
-        createAndVerifyProjection(19871);
-        createAndVerifyProjection(19872);
-        createAndVerifyProjection(19894);
-        createAndVerifyProjection(19895);
-    }
-
-    /**
-     * Tests “US State Plane zones” coordinate operation creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15002</b>, <b>15003</b>, <b>15004</b>, <b>15005</b>, <b>15006</b>,
-     *       <b>15007</b>, <b>15008</b>, <b>15009</b>, <b>15032</b>, <b>15033</b>, <i>…12 more</i></li>
-     *   <li>EPSG coordinate operation name: <b>US State Plane zones</b></li>
-     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>SPCS27 and SPCS83. Check especially FE/FN units.
-     *       Concentrate on states with E&amp;P interest: AK; CA; LA; MI; NM; OK; TX; WY</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
-     */
-    @Test
-    public void testUSStatePlaneZones_TM() throws FactoryException {
-        important  = true;
-        name       = "US State Plane zones";
-        methodName = "Transverse Mercator";
-        for (int code = 15002; code <= 15009; code++) {    // Loop over 8 codes
-            createAndVerifyProjection(code);
-        }
-        for (int code = 15032; code <= 15039; code++) {    // Loop over 8 codes
-            createAndVerifyProjection(code);
-        }
-        createAndVerifyProjection(13001);
-        createAndVerifyProjection(13031);
-        createAndVerifyProjection(15339);
-        createAndVerifyProjection(14903);
-        createAndVerifyProjection(14933);
-        createAndVerifyProjection(14937);
-    }
-
-    /**
-     * Tests “US State Plane zones” coordinate operation creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG coordinate operation codes: <b>10404</b>, <b>10405</b>, <b>10406</b>, <b>10408</b>, <b>10434</b>,
-     *       <b>10435</b>, <b>10436</b>, <b>15310</b>, <b>15311</b>, <b>15312</b>, <i>…33 more</i></li>
-     *   <li>EPSG coordinate operation name: <b>US State Plane zones</b></li>
-     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
-     *   <li>Specific usage / Remarks: <b>SPCS27 and SPCS83. Check especially FE/FN units.
-     *       Concentrate on states with E&amp;P interest: AK; CA; LA; MI; NM; OK; TX; WY</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * <b>Note:</b> EPSG:12112 and 12113 are tested only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
-     * Raison is: Method changed to accord with NGS practice.
-     *
-     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
-     */
-    @Test
-    public void testUSStatePlaneZones_LCC() throws FactoryException {
-        important  = true;
-        name       = "US State Plane zones";
-        methodName = "Lambert Conic Conformal (2SP)";
-        createAndVerifyProjection(10404);
-        createAndVerifyProjection(10405);
-        createAndVerifyProjection(10406);
-        createAndVerifyProjection(10408);
-        createAndVerifyProjection(10434);
-        createAndVerifyProjection(10435);
-        createAndVerifyProjection(10436);
-        createAndVerifyProjection(15310);
-        createAndVerifyProjection(15311);
-        createAndVerifyProjection(15312);
-        createAndVerifyProjection(11701);
-        createAndVerifyProjection(11702);
-        createAndVerifyProjection(11731);
-        createAndVerifyProjection(11732);
-        createAndVerifyProjection(15391);
-        createAndVerifyProjection(15392);
-        createAndVerifyProjection(12142);
-        createAndVerifyProjection(12143);
-        createAndVerifyProjection(15334);
-        createAndVerifyProjection(15335);
-        createAndVerifyProjection(13501);
-        createAndVerifyProjection(13502);
-        createAndVerifyProjection(13531);
-        createAndVerifyProjection(13532);
-        createAndVerifyProjection(15349);
-        createAndVerifyProjection(15350);
-        for (int code = 14201; code <= 14205; code++) {    // Loop over 5 codes
-            createAndVerifyProjection(code);
-        }
-        for (int code = 14231; code <= 14235; code++) {    // Loop over 5 codes
-            createAndVerifyProjection(code);
-        }
-        for (int code = 15357; code <= 15361; code++) {    // Loop over 5 codes
-            createAndVerifyProjection(code);
-        }
-        if (isDeprecatedObjectCreationSupported) {
-            createAndVerifyProjection(12112);
-            createAndVerifyProjection(12113);
-        }
-    }
-
-    /**
      * Tests “Stereo33” coordinate operation creation from the factory.
      *
      * <ul>
@@ -1111,6 +965,26 @@ public class Test2005 extends Series2000<Conversion> {
     }
 
     /**
+     * Tests “SW Africa Survey Grid” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17611</b></li>
+     *   <li>EPSG coordinate operation name: <b>SW Africa Survey Grid</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator (South Orientated)</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    public void testSWAfricaSurveyGrid() throws FactoryException {
+        important  = true;
+        name       = "SW Africa Survey Grid";
+        methodName = "Transverse Mercator (South Orientated)";
+        createAndVerifyProjection(17611);
+    }
+
+    /**
      * Tests “Syria Lambert” coordinate operation creation from the factory.
      *
      * <ul>
@@ -1148,26 +1022,6 @@ public class Test2005 extends Series2000<Conversion> {
         name       = "TM 0 N";
         methodName = "Transverse Mercator";
         createAndVerifyProjection(16400);
-    }
-
-    /**
-     * Tests “TM 1 NW” coordinate operation creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17001</b></li>
-     *   <li>EPSG coordinate operation name: <b>TM 1 NW</b></li>
-     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
-     */
-    @Test
-    public void testTM1NW() throws FactoryException {
-        important  = true;
-        name       = "TM 1 NW";
-        methodName = "Transverse Mercator";
-        createAndVerifyProjection(17001);
     }
 
     /**
@@ -1228,6 +1082,26 @@ public class Test2005 extends Series2000<Conversion> {
         name       = "TM 12 SE";
         methodName = "Transverse Mercator";
         createAndVerifyProjection(16612);
+    }
+
+    /**
+     * Tests “TM 1 NW” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17001</b></li>
+     *   <li>EPSG coordinate operation name: <b>TM 1 NW</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    public void testTM1NW() throws FactoryException {
+        important  = true;
+        name       = "TM 1 NW";
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(17001);
     }
 
     /**
@@ -1310,6 +1184,131 @@ public class Test2005 extends Series2000<Conversion> {
         methodName = "Lambert Conic Conformal (1SP)";
         createAndVerifyProjection(18181);
         createAndVerifyProjection(18182);
+    }
+
+    /**
+     * Tests “US State Plane zones” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>10404</b>, <b>10405</b>, <b>10406</b>, <b>10408</b>, <b>10434</b>,
+     *       <b>10435</b>, <b>10436</b>, <b>15310</b>, <b>15311</b>, <b>15312</b>, <i>…33 more</i></li>
+     *   <li>EPSG coordinate operation name: <b>US State Plane zones</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>Specific usage / Remarks: <b>SPCS27 and SPCS83. Check especially FE/FN units.
+     *       Concentrate on states with E&amp;P interest: AK; CA; LA; MI; NM; OK; TX; WY</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * <b>Note:</b> EPSG:12112 and 12113 are tested only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
+     * Raison is: Method changed to accord with NGS practice.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    public void testUSStatePlaneZones_LCC() throws FactoryException {
+        important  = true;
+        name       = "US State Plane zones";
+        methodName = "Lambert Conic Conformal (2SP)";
+        createAndVerifyProjection(10404);
+        createAndVerifyProjection(10405);
+        createAndVerifyProjection(10406);
+        createAndVerifyProjection(10408);
+        createAndVerifyProjection(10434);
+        createAndVerifyProjection(10435);
+        createAndVerifyProjection(10436);
+        createAndVerifyProjection(15310);
+        createAndVerifyProjection(15311);
+        createAndVerifyProjection(15312);
+        createAndVerifyProjection(11701);
+        createAndVerifyProjection(11702);
+        createAndVerifyProjection(11731);
+        createAndVerifyProjection(11732);
+        createAndVerifyProjection(15391);
+        createAndVerifyProjection(15392);
+        createAndVerifyProjection(12142);
+        createAndVerifyProjection(12143);
+        createAndVerifyProjection(15334);
+        createAndVerifyProjection(15335);
+        createAndVerifyProjection(13501);
+        createAndVerifyProjection(13502);
+        createAndVerifyProjection(13531);
+        createAndVerifyProjection(13532);
+        createAndVerifyProjection(15349);
+        createAndVerifyProjection(15350);
+        for (int code = 14201; code <= 14205; code++) {    // Loop over 5 codes
+            createAndVerifyProjection(code);
+        }
+        for (int code = 14231; code <= 14235; code++) {    // Loop over 5 codes
+            createAndVerifyProjection(code);
+        }
+        for (int code = 15357; code <= 15361; code++) {    // Loop over 5 codes
+            createAndVerifyProjection(code);
+        }
+        if (isDeprecatedObjectCreationSupported) {
+            createAndVerifyProjection(12112);
+            createAndVerifyProjection(12113);
+        }
+    }
+
+    /**
+     * Tests “US State Plane zones” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15002</b>, <b>15003</b>, <b>15004</b>, <b>15005</b>, <b>15006</b>,
+     *       <b>15007</b>, <b>15008</b>, <b>15009</b>, <b>15032</b>, <b>15033</b>, <i>…12 more</i></li>
+     *   <li>EPSG coordinate operation name: <b>US State Plane zones</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>SPCS27 and SPCS83. Check especially FE/FN units.
+     *       Concentrate on states with E&amp;P interest: AK; CA; LA; MI; NM; OK; TX; WY</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    public void testUSStatePlaneZones_TM() throws FactoryException {
+        important  = true;
+        name       = "US State Plane zones";
+        methodName = "Transverse Mercator";
+        for (int code = 15002; code <= 15009; code++) {    // Loop over 8 codes
+            createAndVerifyProjection(code);
+        }
+        for (int code = 15032; code <= 15039; code++) {    // Loop over 8 codes
+            createAndVerifyProjection(code);
+        }
+        createAndVerifyProjection(13001);
+        createAndVerifyProjection(13031);
+        createAndVerifyProjection(15339);
+        createAndVerifyProjection(14903);
+        createAndVerifyProjection(14933);
+        createAndVerifyProjection(14937);
+    }
+
+    /**
+     * Tests “UTM” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16001</b>, <b>16002</b>, <b>16003</b>, <b>16004</b>, <b>16005</b>,
+     *       <b>16006</b>, <b>16007</b>, <b>16008</b>, <b>16009</b>, <b>16010</b>, <i>…110 more</i></li>
+     *   <li>EPSG coordinate operation name: <b>UTM</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>All 120 zones</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    public void testUTM() throws FactoryException {
+        important  = true;
+        name       = "UTM";
+        methodName = "Transverse Mercator";
+        for (int code = 16001; code <= 16060; code++) {    // Loop over 60 codes
+            createAndVerifyProjection(code);
+        }
+        for (int code = 16101; code <= 16160; code++) {    // Loop over 60 codes
+            createAndVerifyProjection(code);
+        }
     }
 
     /**

@@ -220,34 +220,6 @@ public class Test3002 extends Series3000<Ellipsoid> {
     }
 
     /**
-     * Tests “GIGS ellipsoid A” flattened sphere creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS ellipsoid code: <b>67030</b></li>
-     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid A</b></li>
-     *   <li>EPSG equivalence: <b>7030 – WGS 84</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378137.0 metres</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6356752.314247833 metres</b></li>
-     *   <li>Inverse flattening (1/<var>f</var>): <b>298.2572236</b></li>
-     *   <li>Specific usage / Remarks: <b>Defined using a and 1/f</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
-     *
-     * @see Test2002#testWGS84()
-     */
-    @Test
-    public void testWGS84() throws FactoryException {
-        setCodeAndName(67030, "GIGS ellipsoid A");
-        semiMajorAxis     = 6378137.0;
-        semiMinorAxis     = 6356752.314247833;
-        axisUnit          = units.metre();
-        inverseFlattening = 298.2572236;
-        isIvfDefinitive   = true;
-        verifyEllipsoid();
-    }
-
-    /**
      * Tests “GIGS ellipsoid B” flattened sphere creation from the factory.
      *
      * <ul>
@@ -271,201 +243,6 @@ public class Test3002 extends Series3000<Ellipsoid> {
         semiMinorAxis     = 6356256.909237285;
         axisUnit          = units.metre();
         inverseFlattening = 299.3249646;
-        isIvfDefinitive   = true;
-        verifyEllipsoid();
-    }
-
-    /**
-     * Tests “GIGS ellipsoid C” flattened sphere creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS ellipsoid code: <b>67004</b></li>
-     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid C</b></li>
-     *   <li>EPSG equivalence: <b>7004 – Bessel 1841</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377397.155 metres</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6356078.962818189 metres</b></li>
-     *   <li>Inverse flattening (1/<var>f</var>): <b>299.1528128</b></li>
-     *   <li>Specific usage / Remarks: <b>Defined using a and 1/f</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
-     *
-     * @see Test2002#testBessel()
-     */
-    @Test
-    public void testBessel() throws FactoryException {
-        setCodeAndName(67004, "GIGS ellipsoid C");
-        semiMajorAxis     = 6377397.155;
-        semiMinorAxis     = 6356078.962818189;
-        axisUnit          = units.metre();
-        inverseFlattening = 299.1528128;
-        isIvfDefinitive   = true;
-        verifyEllipsoid();
-    }
-
-    /**
-     * Tests “GIGS ellipsoid E” flattened sphere creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS ellipsoid code: <b>67022</b></li>
-     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid E</b></li>
-     *   <li>EPSG equivalence: <b>7022 – International 1924</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378388.0 metres</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6356911.9461279465 metres</b></li>
-     *   <li>Inverse flattening (1/<var>f</var>): <b>297</b></li>
-     *   <li>Specific usage / Remarks: <b>Defined using a and 1/f</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
-     *
-     * @see Test2002#testInternational1924()
-     */
-    @Test
-    public void testInternational1924() throws FactoryException {
-        setCodeAndName(67022, "GIGS ellipsoid E");
-        semiMajorAxis     = 6378388.0;
-        semiMinorAxis     = 6356911.9461279465;
-        axisUnit          = units.metre();
-        inverseFlattening = 297.0;
-        isIvfDefinitive   = true;
-        verifyEllipsoid();
-    }
-
-    /**
-     * Tests “GIGS ellipsoid F” flattened sphere creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS ellipsoid code: <b>67019</b></li>
-     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid F</b></li>
-     *   <li>EPSG equivalence: <b>7019 – GRS 1980</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378.137 kilometres (6378137.0 metres)</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6356.7523141402835 kilometres (6356752.3141402835 metres)</b></li>
-     *   <li>Inverse flattening (1/<var>f</var>): <b>298.2572221</b></li>
-     *   <li>Specific usage / Remarks: <b>not metres</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
-     *
-     * @see Test2002#testGRS1980()
-     */
-    @Test
-    public void testGRS1980() throws FactoryException {
-        setCodeAndName(67019, "GIGS ellipsoid F");
-        semiMajorAxis     = 6378.137;
-        semiMinorAxis     = 6356.7523141402835;
-        axisUnit          = units.kilometre();
-        inverseFlattening = 298.2572221;
-        isIvfDefinitive   = true;
-        verifyEllipsoid();
-    }
-
-    /**
-     * Tests “GIGS ellipsoid H” ellipsoid creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS ellipsoid code: <b>67011</b></li>
-     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid H</b></li>
-     *   <li>EPSG equivalence: <b>7011 – Clarke 1880 (IGN)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378249.2 metres</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6356515.0 metres</b></li>
-     *   <li>Inverse flattening (1/<var>f</var>): <b>293.4660212936269</b></li>
-     *   <li>Specific usage / Remarks: <b>Defined using a and b. Calculated 1/f = 293.4660213</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
-     *
-     * @see Test2002#testClarkeIGN()
-     */
-    @Test
-    public void testClarkeIGN() throws FactoryException {
-        setCodeAndName(67011, "GIGS ellipsoid H");
-        semiMajorAxis     = 6378249.2;
-        semiMinorAxis     = 6356515.0;
-        axisUnit          = units.metre();
-        inverseFlattening = 293.4660212936269;
-        verifyEllipsoid();
-    }
-
-    /**
-     * Tests “GIGS ellipsoid I” sphere creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS ellipsoid code: <b>67052</b></li>
-     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid I</b></li>
-     *   <li>EPSG equivalence: <b>7052 – Clarke 1866 Authalic Sphere</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6370997.0 metres</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6370997.0 metres</b></li>
-     *   <li>Inverse flattening (1/<var>f</var>): <b>Infinity</b></li>
-     *   <li>Specific usage / Remarks: <b>Sphere</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
-     *
-     * @see Test2002#testClarkeAuthalicSphere()
-     */
-    @Test
-    public void testClarkeAuthalicSphere() throws FactoryException {
-        setCodeAndName(67052, "GIGS ellipsoid I");
-        semiMajorAxis     = 6370997.0;
-        semiMinorAxis     = 6370997.0;
-        axisUnit          = units.metre();
-        inverseFlattening = Double.POSITIVE_INFINITY;
-        isSphere          = true;
-        verifyEllipsoid();
-    }
-
-    /**
-     * Tests “GIGS ellipsoid J” flattened sphere creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS ellipsoid code: <b>67008</b></li>
-     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid J</b></li>
-     *   <li>EPSG equivalence: <b>7008 – Clarke 1866</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>20925832.16 US survey foot (6378206.4 metres)</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>20854892.013176885 US survey foot (6356583.807100443 metres)</b></li>
-     *   <li>Inverse flattening (1/<var>f</var>): <b>294.9786982</b></li>
-     *   <li>Specific usage / Remarks: <b>not metres</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
-     *
-     * @see Test2002#testClarke1866()
-     */
-    @Test
-    public void testClarke1866() throws FactoryException {
-        setCodeAndName(67008, "GIGS ellipsoid J");
-        semiMajorAxis     = 20925832.16;
-        semiMinorAxis     = 20854892.013176885;
-        axisUnit          = units.footSurveyUS();
-        inverseFlattening = 294.9786982;
-        isIvfDefinitive   = true;
-        verifyEllipsoid();
-    }
-
-    /**
-     * Tests “GIGS ellipsoid K” flattened sphere creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS ellipsoid code: <b>67036</b></li>
-     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid K</b></li>
-     *   <li>EPSG equivalence: <b>7036 – GRS 1967</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378160.0 metres</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6356774.516088779 metres</b></li>
-     *   <li>Inverse flattening (1/<var>f</var>): <b>298.2471674</b></li>
-     *   <li>Specific usage / Remarks: <b>Defined using a and 1/f</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
-     *
-     * @see Test2002#testGRS1967()
-     */
-    @Test
-    public void testGRS1967() throws FactoryException {
-        setCodeAndName(67036, "GIGS ellipsoid K");
-        semiMajorAxis     = 6378160.0;
-        semiMinorAxis     = 6356774.516088779;
-        axisUnit          = units.metre();
-        inverseFlattening = 298.2471674;
         isIvfDefinitive   = true;
         verifyEllipsoid();
     }
@@ -499,6 +276,201 @@ public class Test3002 extends Series3000<Ellipsoid> {
     }
 
     /**
+     * Tests “GIGS ellipsoid C” flattened sphere creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS ellipsoid code: <b>67004</b></li>
+     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid C</b></li>
+     *   <li>EPSG equivalence: <b>7004 – Bessel 1841</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377397.155 metres</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6356078.962818189 metres</b></li>
+     *   <li>Inverse flattening (1/<var>f</var>): <b>299.1528128</b></li>
+     *   <li>Specific usage / Remarks: <b>Defined using a and 1/f</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see Test2002#testBessel()
+     */
+    @Test
+    public void testBessel() throws FactoryException {
+        setCodeAndName(67004, "GIGS ellipsoid C");
+        semiMajorAxis     = 6377397.155;
+        semiMinorAxis     = 6356078.962818189;
+        axisUnit          = units.metre();
+        inverseFlattening = 299.1528128;
+        isIvfDefinitive   = true;
+        verifyEllipsoid();
+    }
+
+    /**
+     * Tests “GIGS ellipsoid J” flattened sphere creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS ellipsoid code: <b>67008</b></li>
+     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid J</b></li>
+     *   <li>EPSG equivalence: <b>7008 – Clarke 1866</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>20925832.16 US survey foot (6378206.4 metres)</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>20854892.013176885 US survey foot (6356583.807100443 metres)</b></li>
+     *   <li>Inverse flattening (1/<var>f</var>): <b>294.9786982</b></li>
+     *   <li>Specific usage / Remarks: <b>not metres</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see Test2002#testClarke1866()
+     */
+    @Test
+    public void testClarke1866() throws FactoryException {
+        setCodeAndName(67008, "GIGS ellipsoid J");
+        semiMajorAxis     = 20925832.16;
+        semiMinorAxis     = 20854892.013176885;
+        axisUnit          = units.footSurveyUS();
+        inverseFlattening = 294.9786982;
+        isIvfDefinitive   = true;
+        verifyEllipsoid();
+    }
+
+    /**
+     * Tests “GIGS ellipsoid I” sphere creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS ellipsoid code: <b>67052</b></li>
+     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid I</b></li>
+     *   <li>EPSG equivalence: <b>7052 – Clarke 1866 Authalic Sphere</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6370997.0 metres</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6370997.0 metres</b></li>
+     *   <li>Inverse flattening (1/<var>f</var>): <b>Infinity</b></li>
+     *   <li>Specific usage / Remarks: <b>Sphere</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see Test2002#testClarkeAuthalicSphere()
+     */
+    @Test
+    public void testClarkeAuthalicSphere() throws FactoryException {
+        setCodeAndName(67052, "GIGS ellipsoid I");
+        semiMajorAxis     = 6370997.0;
+        semiMinorAxis     = 6370997.0;
+        axisUnit          = units.metre();
+        inverseFlattening = Double.POSITIVE_INFINITY;
+        isSphere          = true;
+        verifyEllipsoid();
+    }
+
+    /**
+     * Tests “GIGS ellipsoid H” ellipsoid creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS ellipsoid code: <b>67011</b></li>
+     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid H</b></li>
+     *   <li>EPSG equivalence: <b>7011 – Clarke 1880 (IGN)</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378249.2 metres</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6356515.0 metres</b></li>
+     *   <li>Inverse flattening (1/<var>f</var>): <b>293.4660212936269</b></li>
+     *   <li>Specific usage / Remarks: <b>Defined using a and b. Calculated 1/f = 293.4660213</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see Test2002#testClarkeIGN()
+     */
+    @Test
+    public void testClarkeIGN() throws FactoryException {
+        setCodeAndName(67011, "GIGS ellipsoid H");
+        semiMajorAxis     = 6378249.2;
+        semiMinorAxis     = 6356515.0;
+        axisUnit          = units.metre();
+        inverseFlattening = 293.4660212936269;
+        verifyEllipsoid();
+    }
+
+    /**
+     * Tests “GIGS ellipsoid K” flattened sphere creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS ellipsoid code: <b>67036</b></li>
+     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid K</b></li>
+     *   <li>EPSG equivalence: <b>7036 – GRS 1967</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378160.0 metres</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6356774.516088779 metres</b></li>
+     *   <li>Inverse flattening (1/<var>f</var>): <b>298.2471674</b></li>
+     *   <li>Specific usage / Remarks: <b>Defined using a and 1/f</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see Test2002#testGRS1967()
+     */
+    @Test
+    public void testGRS1967() throws FactoryException {
+        setCodeAndName(67036, "GIGS ellipsoid K");
+        semiMajorAxis     = 6378160.0;
+        semiMinorAxis     = 6356774.516088779;
+        axisUnit          = units.metre();
+        inverseFlattening = 298.2471674;
+        isIvfDefinitive   = true;
+        verifyEllipsoid();
+    }
+
+    /**
+     * Tests “GIGS ellipsoid F” flattened sphere creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS ellipsoid code: <b>67019</b></li>
+     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid F</b></li>
+     *   <li>EPSG equivalence: <b>7019 – GRS 1980</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378.137 kilometres (6378137.0 metres)</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6356.7523141402835 kilometres (6356752.3141402835 metres)</b></li>
+     *   <li>Inverse flattening (1/<var>f</var>): <b>298.2572221</b></li>
+     *   <li>Specific usage / Remarks: <b>not metres</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see Test2002#testGRS1980()
+     */
+    @Test
+    public void testGRS1980() throws FactoryException {
+        setCodeAndName(67019, "GIGS ellipsoid F");
+        semiMajorAxis     = 6378.137;
+        semiMinorAxis     = 6356.7523141402835;
+        axisUnit          = units.kilometre();
+        inverseFlattening = 298.2572221;
+        isIvfDefinitive   = true;
+        verifyEllipsoid();
+    }
+
+    /**
+     * Tests “GIGS ellipsoid E” flattened sphere creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS ellipsoid code: <b>67022</b></li>
+     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid E</b></li>
+     *   <li>EPSG equivalence: <b>7022 – International 1924</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378388.0 metres</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6356911.9461279465 metres</b></li>
+     *   <li>Inverse flattening (1/<var>f</var>): <b>297</b></li>
+     *   <li>Specific usage / Remarks: <b>Defined using a and 1/f</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see Test2002#testInternational1924()
+     */
+    @Test
+    public void testInternational1924() throws FactoryException {
+        setCodeAndName(67022, "GIGS ellipsoid E");
+        semiMajorAxis     = 6378388.0;
+        semiMinorAxis     = 6356911.9461279465;
+        axisUnit          = units.metre();
+        inverseFlattening = 297.0;
+        isIvfDefinitive   = true;
+        verifyEllipsoid();
+    }
+
+    /**
      * Tests “GIGS ellipsoid Y” flattened sphere creation from the factory.
      *
      * <ul>
@@ -522,6 +494,34 @@ public class Test3002 extends Series3000<Ellipsoid> {
         semiMinorAxis     = 6356863.018773047;
         axisUnit          = units.metre();
         inverseFlattening = 298.3;
+        isIvfDefinitive   = true;
+        verifyEllipsoid();
+    }
+
+    /**
+     * Tests “GIGS ellipsoid A” flattened sphere creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS ellipsoid code: <b>67030</b></li>
+     *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid A</b></li>
+     *   <li>EPSG equivalence: <b>7030 – WGS 84</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378137.0 metres</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6356752.314247833 metres</b></li>
+     *   <li>Inverse flattening (1/<var>f</var>): <b>298.2572236</b></li>
+     *   <li>Specific usage / Remarks: <b>Defined using a and 1/f</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see Test2002#testWGS84()
+     */
+    @Test
+    public void testWGS84() throws FactoryException {
+        setCodeAndName(67030, "GIGS ellipsoid A");
+        semiMajorAxis     = 6378137.0;
+        semiMinorAxis     = 6356752.314247833;
+        axisUnit          = units.metre();
+        inverseFlattening = 298.2572236;
         isIvfDefinitive   = true;
         verifyEllipsoid();
     }
