@@ -26,7 +26,6 @@ package org.iogp.gigs.generator;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.io.PrintStream;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
@@ -68,15 +67,18 @@ public abstract class TestMethodGenerator {
 
     /**
      * Where to write the generated code.
+     * The Unix line separator ({@code '\n'}) should be used when writing content in this buffer.
+     * It will be replaced by the platform-specific line separator by the {@link #print()} method.
+     *
+     * @see #print()
      */
-    final PrintStream out;
+    final StringBuilder out;
 
     /**
      * Creates a new test generator.
      */
-    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     protected TestMethodGenerator() {
-        out = System.out;
+        out = new StringBuilder(8000);
     }
 
     /**
@@ -161,7 +163,7 @@ public abstract class TestMethodGenerator {
      * Prints the margin at the beginning of a new line.
      */
     final void indent(int n) {
-        do out.print("    ");
+        do out.append("    ");
         while (--n != 0);
     }
 
@@ -182,27 +184,22 @@ public abstract class TestMethodGenerator {
      */
     final void printJavadocKeyValues(final Object... pairs) {
         assertTrue((pairs.length & 1) == 0, "Array length shall be even");
-        indent(1); out.println(" * <ul>");
+        indent(1); out.append(" * <ul>\n");
         for (int i=0; i<pairs.length; i += 2) {
             final Object value = pairs[i+1];
             if (value != null && !omitFromJavadoc(value)) {
                 if (value instanceof Boolean) {
                     if ((Boolean) value) {
                         indent(1);
-                        out.print(" *   <li>");
-                        out.print(pairs[i]);
-                        out.println("</li>");
+                        out.append(" *   <li>").append(pairs[i]).append("</li>\n");
                     }
                 } else {
                     indent(1);
-                    out.print(" *   <li>");
-                    out.print(pairs[i]);
-                    out.print(": <b>");
+                    out.append(" *   <li>").append(pairs[i]).append(": <b>");
                     if (value instanceof Object[]) {
                         String separator = "";
                         for (final Object e : (Object[]) value) {
-                            out.print(separator);
-                            out.print(e);
+                            out.append(separator).append(e);
                             separator = "</b>, <b>";
                         }
                     } else if (value instanceof int[]) {
@@ -210,32 +207,29 @@ public abstract class TestMethodGenerator {
                         final int length = ((int[]) value).length;
                         final int stopAt = StrictMath.min(length, 10);
                         for (int j=0; j<stopAt; j++) {
-                            out.print(separator);
-                            out.print(((int[]) value)[j]);
+                            out.append(separator).append(((int[]) value)[j]);
                             separator = "</b>, <b>";
                         }
                         if (stopAt != length) {
-                            out.print("</b>, <i>…");
-                            out.print(length - stopAt);
-                            out.println(" more</i></li>");
-                            continue;                       // Because we already wrote the closing </li>.
+                            out.append("</b>, <i>…").append(length - stopAt).append(" more</i></li>\n");
+                            continue;                   // Because we already wrote the closing </li>.
                         }
                     } else if (value instanceof Double) {
                         final double asDouble = (Double) value;
                         final int asInteger = (int) asDouble;
                         if (asDouble == asInteger) {
-                            out.print(asInteger);
+                            out.append(asInteger);
                         } else {
-                            out.print(asDouble);
+                            out.append(asDouble);
                         }
                     } else {
-                        out.print(value);
+                        out.append(value);
                     }
-                    out.println("</b></li>");
+                    out.append("</b></li>\n");
                 }
             }
         }
-        indent(1); out.println(" * </ul>");
+        indent(1); out.append(" * </ul>\n");
     }
 
     /**
@@ -294,9 +288,9 @@ public abstract class TestMethodGenerator {
      * @param caption The table caption (e.g. "Conversion parameters").
      */
     final void printParameterTableHeader(final String caption) {
-        indent(1); out.println(" * <table class=\"ogc\">");
-        indent(1); out.print(" *   <caption>"); out.print(caption); out.println("</caption>");
-        indent(1); out.println(" *   <tr><th>Parameter name</th><th>Value</th></tr>");
+        indent(1); out.append(" * <table class=\"ogc\">\n");
+        indent(1); out.append(" *   <caption>").append(caption).append("</caption>\n");
+        indent(1); out.append(" *   <tr><th>Parameter name</th><th>Value</th></tr>\n");
     }
 
     /**
@@ -304,37 +298,59 @@ public abstract class TestMethodGenerator {
      */
     final void printParameterTableRow(final String name, final String value, String unit) {
         indent(1);
-        out.print(" *   <tr><td>");
-        out.print(name);
-        out.print("</td><td>");
-        out.print(value);
+        out.append(" *   <tr><td>").append(name).append("</td><td>").append(value);
         if (unit != null && !unit.equals("unity") && !unit.equals(SEXAGESIMAL_DEGREE)) {
             if (unit.equals("degree")) {
-                out.print('°');
+                out.append('°');
             } else {
                 if (StrictMath.abs(Double.valueOf(value)) > 1) {
                     unit += 's';
                 }
-                out.print(' ');
-                out.print(unit);
+                out.append(' ').append(unit);
             }
         }
-        out.println("</td></tr>");
+        out.append("</td></tr>\n");
     }
 
     /**
      * Prints the last lines for the table of parameters in Javadoc.
      */
     final void printParameterTableFooter() {
-        indent(1); out.println(" * </table>");
+        indent(1); out.append(" * </table>\n");
+    }
+
+    /**
+     * Prints the given remarks if they are not null.
+     * The remarks may be separated on many lines.
+     *
+     * @param  remarks  the remarks, or {@code null} or empty if none.
+     */
+    final void printRemarks(final String remarks) {
+        if (remarks != null && !remarks.isEmpty()) {
+            indent(1); out.append(" *\n");
+            indent(1); out.append(" * Remarks: ");
+            int start = 0, end;
+            while ((end = remarks.indexOf("; ", start)) >= 0) {
+                out.append(Character.toUpperCase(remarks.charAt(start)))
+                   .append(remarks, start+1, end).append(".\n");
+                indent(1); out.append(" * ");
+                start = end + 2;
+            }
+            out.append(Character.toUpperCase(remarks.charAt(start)))
+               .append(remarks, start+1, remarks.length());
+            if (!remarks.endsWith(".")) {
+                out.append('.');
+            }
+            out.append('\n');
+        }
     }
 
     /**
      * Prints the javadoc {@code throws FactoryException} followed by the given explanatory text.
      */
     final void printJavadocThrows(final String condition) {
-        indent(1); out.println(" *");
-        indent(1); out.print  (" * @throws FactoryException "); out.println(condition);
+        indent(1); out.append(" *\n");
+        indent(1); out.append(" * @throws FactoryException ").append(condition).append('\n');
     }
 
     /**
@@ -345,23 +361,13 @@ public abstract class TestMethodGenerator {
      */
     final void printJavadocSee(final String classe, final String method) {
         if (method != null) {
-            indent(1); out.println(" *");
-            indent(1); out.print(" * @see ");
+            indent(1); out.append(" *\n");
+            indent(1); out.append(" * @see ");
             if (classe != null) {
-                out.print(classe);
+                out.append(classe);
             }
-            out.print('#');
-            out.print(method);
-            out.println("()");
+            out.append('#').append(method).append("()\n");
         }
-    }
-
-    /**
-     * @deprecated We needs to complete the {@code METHOD_NAMES} map in all generator classes.
-     */
-    @Deprecated
-    final void printTestMethodSignature(final String name) {
-        printTestMethodSignature(java.util.Collections.<String,String>emptyMap(), name);
     }
 
     /**
@@ -372,16 +378,18 @@ public abstract class TestMethodGenerator {
      *        If this map does not contain an entry for the given {@code name}, then this method
      *        will generate a new name by trimming illegal characters from the given {@code name}.
      * @param name  the name to use for generating a method name.
+     *              Spaces will be replaced by camel-cases.
      */
     final void printTestMethodSignature(final Map<String,String> nameToMethod, final String name) {
-        indent(1); out.println(" */");
-        indent(1); out.println("@Test");
-        indent(1); out.print  ("public void ");
+        indent(1); out.append(" */\n");
+        indent(1); out.append("@Test\n");
+        indent(1); out.append("@DisplayName(\"").append(name).append("\")\n");
+        indent(1); out.append("public void ");
         final String predefined = nameToMethod.get(name);
         if (predefined != null) {
-            out.print(predefined);
+            out.append(predefined);
         } else {
-            out.print("test");
+            out.append("test");
             boolean toUpperCase = true;
             for (int i=0; i<name.length(); i++) {
                 char c = name.charAt(i);
@@ -390,11 +398,11 @@ public abstract class TestMethodGenerator {
                         toUpperCase = false;
                         c = Character.toUpperCase(c);
                     }
-                    out.print(c);
+                    out.append(c);
                 } else {
                     if (c == '(' || c == ')') {
                         if (i+1 < name.length()) {
-                            out.print('_');
+                            out.append('_');
                             toUpperCase = false;
                         }
                     } else {
@@ -410,7 +418,7 @@ public abstract class TestMethodGenerator {
                 }
             }
         }
-        out.println("() throws FactoryException {");
+        out.append("() throws FactoryException {\n");
     }
 
     /**
@@ -430,38 +438,37 @@ public abstract class TestMethodGenerator {
             final Object value = pairs[i+1];
             if (!(value instanceof Boolean) || (Boolean) value) {
                 indent(2);
-                out.print(name);
+                out.append(name);
                 for (int j = length - name.length(); --j >= 0;) {
-                    out.print(' ');
+                    out.append(' ');
                 }
-                out.print(" = ");
+                out.append(" = ");
                 if (value instanceof Unit<?>) {
                     printProgrammaticName((Unit<?>) value);
                 } else if (value instanceof String[]) {
                     if (((String[]) value).length == 0) {
-                        out.print("NONE");
+                        out.append("NONE");
                     } else {
                         String separator = "new String[] {\"";
                         for (final String e : (String[]) value) {
-                            out.print(separator);
-                            out.print(e);
+                            out.append(separator).append(e);
                             separator = "\", \"";
                         }
-                        out.print("\"}");
+                        out.append("\"}");
                     }
                 } else if (value instanceof Double && ((Double) value).isNaN()) {
-                    out.print("Double.NaN");
+                    out.append("Double.NaN");
                 } else {
                     final boolean quote = (value instanceof CharSequence);
                     if (quote) {
-                        out.print('"');
+                        out.append('"');
                     }
-                    out.print(value);
+                    out.append(value);
                     if (quote) {
-                        out.print('"');
+                        out.append('"');
                     }
                 }
-                out.println(';');
+                out.append(";\n");
             }
         }
     }
@@ -474,7 +481,7 @@ public abstract class TestMethodGenerator {
     final void printProgrammaticName(final Unit<?> unit) {
         final String name = UNIT_NAMES.get(unit);
         assertNotNull(unit.toString(), name);
-        out.print(name);
+        out.append(name);
     }
 
     /**
@@ -499,35 +506,26 @@ public abstract class TestMethodGenerator {
                     }
                     if (upper - i >= CALL_IN_LOOP_THRESHOLD) {
                         indent(2);
-                        out.print("for (int code = ");
-                        out.print(codes[i]);
-                        out.print("; code <= ");
-                        out.print(codes[upper - 1]);
-                        out.print("; ");
+                        out.append("for (int code = ").append(codes[i])
+                           .append("; code <= ").append(codes[upper - 1])
+                           .append("; ");
                         if (delta == 1) {
-                            out.print("code++");
+                            out.append("code++");
                         } else {
-                            out.print("code += ");
-                            out.print(delta);
+                            out.append("code += ").append(delta);
                         }
-                        out.print(") {    // Loop over ");
-                        out.print(upper - i);
-                        out.println(" codes");
+                        out.append(") {    // Loop over ").append(upper - i).append(" codes\n");
                         indent(3);
-                        out.print(method);
-                        out.println("(code);");
+                        out.append(method).append("(code);\n");
                         indent(2);
-                        out.println("}");
+                        out.append("}\n");
                         i = upper - 1;                      // Skip the sequence.
                         continue;
                     }
                 }
             }
             indent(2);
-            out.print(method);
-            out.print('(');
-            out.print(codes[i]);
-            out.println(");");
+            out.append(method).append('(').append(codes[i]).append(");\n");
         }
     }
 
@@ -536,10 +534,24 @@ public abstract class TestMethodGenerator {
      */
     final void printCallToSetCodeAndName(final int code, final String name) {
         indent(2);
-        out.print("setCodeAndName(");
-        out.print(code);
-        out.print(", \"");
-        out.print(name);
-        out.println("\");");
+        out.append("setCodeAndName(").append(code).append(", \"").append(name).append("\");\n");
+    }
+
+    /**
+     * Prints the {@link #out} content to the standard output stream
+     * and clears the buffer for next entry.
+     */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
+    final void print() {
+        final String lineSeparator = System.lineSeparator();
+        if (!lineSeparator.equals("\n")) {
+            int i = 0;
+            while ((i = out.indexOf("\n", i)) >= 0) {
+                out.replace(i, i+1, lineSeparator);
+                i += lineSeparator.length();
+            }
+        }
+        System.out.println(out.toString());
+        out.setLength(0);
     }
 }

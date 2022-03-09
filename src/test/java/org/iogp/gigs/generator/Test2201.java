@@ -24,6 +24,7 @@
  */
 package org.iogp.gigs.generator;
 
+import java.util.Map;
 import java.io.IOException;
 import javax.measure.Unit;
 
@@ -38,6 +39,17 @@ import javax.measure.Unit;
  * @since   1.0
  */
 public final class Test2201 extends TestMethodGenerator {
+    /**
+     * The mapping from a few GIGS test names to method names.
+     * We put an entry in this map only when a name different
+     * than the automatically generated name is desired.
+     */
+    private final Map<String,String> METHOD_NAMES = Map.of(
+        "British chain (Sears 1922)",           "testBritishChain",
+        "British foot (Sears 1922)",            "testBritishFoot",
+        "British yard (Sears 1922)",            "testBritishYard",
+        "British chain (Sears 1922 truncated)", "testBritishChainTruncated");
+
     /**
      * Launcher.
      *
@@ -79,29 +91,30 @@ public final class Test2201 extends TestMethodGenerator {
             else if (type.equalsIgnoreCase("Scale" )) base = units.one();
             else throw new IOException("Unknown type: " + type);
 
-            out.println();
-            indent(1); out.println("/**");
-            indent(1); out.print(" * Tests “"); out.print(name); out.println("” unit creation from the factory.");
-            indent(1); out.println(" *");
+            out.append('\n');
+            indent(1); out.append("/**\n");
+            indent(1); out.append(" * Tests “").append(name).append("” unit creation from the factory.\n");
+            indent(1); out.append(" *\n");
             printJavadocKeyValues("EPSG UoM code", code,
-                                  "Alias(es) given by EPSG", aliases,
                                   "Type", type,
                                   "Name of Units used in EPSG dataset", name,
+                                  "Alias(es) given by EPSG", aliases,
                                   "Base units per unit", unitToBase,
                                   "Base units per unit description", description,
-                                  "EPSG Usage Extent", extent,
-                                  "Specific usage / Remarks", remarks);
+                                  "EPSG Usage Extent", extent);
+            printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the unit from the EPSG code.");
-            printTestMethodSignature(name);
+            printTestMethodSignature(METHOD_NAMES, name);
             printFieldAssignments("code",       code,
                                   "name",       name,
                                   "aliases",    aliases,
                                   "unitToBase", unitToBase);
-            indent(2); out.print("baseUnit   = ");
+            indent(2); out.append("baseUnit   = ");
             printProgrammaticName(base);
-            out.println(';');
-            indent(2); out.println("verifyLinearConversions(createConverter());");
-            indent(1); out.println('}');
+            out.append(";\n");
+            indent(2); out.append("verifyLinearConversions(createConverter());\n");
+            indent(1); out.append('}');
+            print();
         }
     }
 }
