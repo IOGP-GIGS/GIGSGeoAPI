@@ -36,8 +36,10 @@ import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.iogp.gigs.internal.TestSuite;
-import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -52,6 +54,7 @@ import static org.iogp.gigs.internal.geoapi.Assert.assertUnicodeIdentifierEquals
  * @version 1.0
  * @since   1.0
  */
+@TestMethodOrder(MethodOrderer.Random.class)
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public abstract class IntegrityTest extends ConformanceTest {
     /**

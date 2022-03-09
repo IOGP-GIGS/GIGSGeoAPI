@@ -39,6 +39,7 @@ import javax.swing.event.ChangeListener;
 import org.junit.platform.launcher.TestIdentifier;
 import org.junit.platform.engine.TestExecutionResult;
 import org.junit.platform.launcher.TestExecutionListener;
+import org.junit.platform.engine.support.descriptor.MethodSource;
 
 
 /**
@@ -87,17 +88,24 @@ final class Runner implements TestExecutionListener {
 
     /**
      * Called when a test finished, successfully or not.
+     * This method is invoked after each method, but also after each class.
+     * We collect the results only for test methods.
+     *
+     * @param  identifier  identification of the test method or test class.
+     * @param  result      result of the test.
      */
     @Override
     public void executionFinished​(final TestIdentifier identifier, final TestExecutionResult result) {
-        final ResultEntry entry = new ResultEntry(identifier, result);
-        final ChangeListener[] list;
-        synchronized (entries) {
-            entries.add(entry);
-            list = listeners;
-        }
-        for (final ChangeListener listener : list) {
-            listener.stateChanged(event);
+        if (identifier.getSource().orElse(null) instanceof MethodSource) {
+            final ResultEntry entry = new ResultEntry(identifier, result);
+            final ChangeListener[] list;
+            synchronized (entries) {
+                entries.add(entry);
+                list = listeners;
+            }
+            for (final ChangeListener listener : list) {
+                listener.stateChanged(event);
+            }
         }
     }
 

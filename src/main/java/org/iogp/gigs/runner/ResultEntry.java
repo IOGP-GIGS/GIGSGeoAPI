@@ -95,9 +95,14 @@ final class ResultEntry {
     final TestIdentifier identifier;
 
     /**
-     * The simplified class name and method name of the test method being run.
+     * The simplified class name of the test method being run.
      */
-    final String simpleClassName, simpleMethodName;
+    final String simpleClassName;
+
+    /**
+     * The human-readable name for the test method.
+     */
+    final String displayName;
 
     /**
      * The factories declared in the configuration. Each row in this list is an array of length 4.
@@ -138,8 +143,9 @@ final class ResultEntry {
      * Creates a new entry for the given result.
      */
     ResultEntry(final TestIdentifier identifier, final TestExecutionResult result) {
-        this.identifier = identifier;
-        this.result     = result;
+        this.identifier  = identifier;
+        this.result      = result;
+        this.displayName = identifier.getDisplayName();
         result.getThrowable().ifPresent(ResultEntry::trimStackTrace);
         final TestSource source = identifier.getSource().orElse(null);
         if (source instanceof MethodSource) {
@@ -154,9 +160,8 @@ final class ResultEntry {
             if (name.startsWith(METHODNAME_PREFIX)) {
                 name = name.substring(METHODNAME_PREFIX.length());
             }
-            simpleMethodName = separateWords(name.replace('_', ':'), false);
         } else {
-            simpleClassName = simpleMethodName = "(unnamed)";
+            simpleClassName = "(unnamed)";
         }
         /*
          * Extract information from the configuration:
@@ -365,6 +370,6 @@ final class ResultEntry {
      */
     @Override
     public String toString() {
-        return simpleClassName + '.' + simpleMethodName + ": " + result.getStatus();
+        return simpleClassName + ": " + displayName + ": " + result.getStatus();
     }
 }
