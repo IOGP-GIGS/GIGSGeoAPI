@@ -26,6 +26,8 @@ package org.iogp.gigs.generator;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.TreeMap;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
@@ -75,10 +77,22 @@ public abstract class TestMethodGenerator {
     final StringBuilder out;
 
     /**
+     * The generated test methods, sorted in order defined by the keys.
+     */
+    private final Map<String,String> methods;
+
+    /**
+     * Name of the generated test method.
+     * This is updated when {@link #printTestMethodSignature(Map, String)} is invoked.
+     */
+    private String methodName;
+
+    /**
      * Creates a new test generator.
      */
     protected TestMethodGenerator() {
         out = new StringBuilder(8000);
+        methods = new TreeMap<>();
     }
 
     /**
@@ -400,10 +414,11 @@ public abstract class TestMethodGenerator {
         indent(1); out.append("@Test\n");
         indent(1); out.append("@DisplayName(\"").append(name).append("\")\n");
         indent(1); out.append("public void ");
-        final String predefined = nameToMethod.get(name);
-        if (predefined != null) {
-            out.append(predefined);
+        methodName = nameToMethod.get(name);
+        if (methodName != null) {
+            out.append(methodName);
         } else {
+            final int start = out.length();
             out.append("test");
             boolean toUpperCase = true;
             for (int i=0; i<name.length(); i++) {
@@ -432,6 +447,7 @@ public abstract class TestMethodGenerator {
                     }
                 }
             }
+            methodName = out.substring(start, out.length());
         }
         out.append("() throws FactoryException {\n");
     }
@@ -553,11 +569,10 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Prints the {@link #out} content to the standard output stream
-     * and clears the buffer for next entry.
+     * Saves the {@link #out} content and clears the buffer for next entry.
+     * Methods will be sorted by test method names.
      */
-    @SuppressWarnings("UseOfSystemOutOrSystemErr")
-    final void print() {
+    final void saveTestMethod() {
         final String lineSeparator = System.lineSeparator();
         if (!lineSeparator.equals("\n")) {
             int i = 0;
@@ -566,7 +581,15 @@ public abstract class TestMethodGenerator {
                 i += lineSeparator.length();
             }
         }
-        System.out.println(out.toString());
+        assertNull(methods.put(methodName.toLowerCase(Locale.US), out.toString()));
         out.setLength(0);
+    }
+
+    /**
+     * Prints all saved methods to the standard output stream.
+     */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
+    final void printAllMethods() {
+        methods.values().forEach(System.out::println);
     }
 }

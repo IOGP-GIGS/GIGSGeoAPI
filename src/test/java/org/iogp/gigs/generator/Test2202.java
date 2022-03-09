@@ -143,7 +143,8 @@ public final class Test2202 extends TestMethodGenerator {
                                   "isSphere",          isSphere);
             indent(2); out.append("verifyEllipsoid();\n");
             indent(1); out.append('}');
-            print();
+            saveTestMethod();
         }
+        printAllMethods();
     }
 }

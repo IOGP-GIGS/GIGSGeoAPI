@@ -214,134 +214,176 @@ public class Test2201 extends Series2000<Unit<?>> {
     }
 
     /**
-     * Tests “metre” unit creation from the factory.
+     * Tests “arc-second” unit creation from the factory.
      *
      * <ul>
-     *   <li>EPSG UoM code: <b>9001</b></li>
-     *   <li>Type: <b>Linear</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>metre</b></li>
-     *   <li>Alias(es) given by EPSG: <b>meter</b>, <b>International metre</b>, <b>m</b></li>
-     *   <li>Base units per unit: <b>1</b></li>
-     *   <li>Base units per unit description: <b>metres per unit</b></li>
+     *   <li>EPSG UoM code: <b>9104</b></li>
+     *   <li>Type: <b>Angle</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>arc-second</b></li>
+     *   <li>Alias(es) given by EPSG: <b>sec</b>, <b>angular second</b></li>
+     *   <li>Base units per unit: <b>4.848136811095355E-6</b></li>
+     *   <li>Base units per unit description: <b>radians per unit</b></li>
      *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
      *
-     * Remarks: SI base unit for length.
+     * Remarks: 1/60th arc-minute equal to ((pi/180) / 3600) radians.
      *
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
     @Test
-    @DisplayName("metre")
-    public void testMetre() throws FactoryException {
-        code       = 9001;
-        name       = "metre";
-        aliases    = new String[] {"meter", "International metre", "m"};
-        unitToBase = 1.0;
+    @DisplayName("arc-second")
+    public void testArcSecond() throws FactoryException {
+        code       = 9104;
+        name       = "arc-second";
+        aliases    = new String[] {"sec", "angular second"};
+        unitToBase = 4.848136811095355E-6;
+        baseUnit   = units.radian();
+        verifyLinearConversions(createConverter());
+    }
+
+    /**
+     * Tests “British chain (Sears 1922)” unit creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG UoM code: <b>9042</b></li>
+     *   <li>Type: <b>Linear</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>British chain (Sears 1922)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>chain</b>, <b>chSe</b></li>
+     *   <li>Base units per unit: <b>20.116765121552632</b></li>
+     *   <li>Base units per unit description: <b>metres per unit</b></li>
+     *   <li>EPSG Usage Extent: <b>East Malaysia; New Zealand</b></li>
+     * </ul>
+     *
+     * Remarks: Uses Sear's 1922 British yard-metre ratio as given by Bomford as 39.370147 inches per metre.
+     *
+     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
+     *
+     * @see #testBritishChainTruncated()
+     */
+    @Test
+    @DisplayName("British chain (Sears 1922)")
+    public void testBritishChain() throws FactoryException {
+        code       = 9042;
+        name       = "British chain (Sears 1922)";
+        aliases    = new String[] {"chain", "chSe"};
+        unitToBase = 20.116765121552632;
         baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
     /**
-     * Tests “kilometre” unit creation from the factory.
+     * Tests “British chain (Sears 1922 truncated)” unit creation from the factory.
      *
      * <ul>
-     *   <li>EPSG UoM code: <b>9036</b></li>
+     *   <li>EPSG UoM code: <b>9301</b></li>
      *   <li>Type: <b>Linear</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>kilometre</b></li>
-     *   <li>Alias(es) given by EPSG: <b>kilometer</b>, <b>km</b></li>
-     *   <li>Base units per unit: <b>1000</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>British chain (Sears 1922 truncated)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>chain</b>, <b>chSe(T)</b></li>
+     *   <li>Base units per unit: <b>20.116756</b></li>
      *   <li>Base units per unit description: <b>metres per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
+     *   <li>EPSG Usage Extent: <b>Malaysia</b></li>
      * </ul>
+     *
+     * Remarks: Uses Sear's 1922 British yard-metre ratio (UoM code 9040) truncated to 6 significant figures.
+     * This truncated ratio (0.914398 UoM code 9099) then converted to other imperial units.
+     * 1 chSe(T) equal to 22 ydSe(T).
+     * Used in metrication of Malaya RSO grid.
      *
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
     @Test
-    @DisplayName("kilometre")
-    public void testKilometre() throws FactoryException {
-        code       = 9036;
-        name       = "kilometre";
-        aliases    = new String[] {"kilometer", "km"};
-        unitToBase = 1000.0;
+    @DisplayName("British chain (Sears 1922 truncated)")
+    public void testBritishChainTruncated() throws FactoryException {
+        code       = 9301;
+        name       = "British chain (Sears 1922 truncated)";
+        aliases    = new String[] {"chain", "chSe(T)"};
+        unitToBase = 20.116756;
         baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
     /**
-     * Tests “foot” unit creation from the factory.
+     * Tests “British foot (Sears 1922)” unit creation from the factory.
      *
      * <ul>
-     *   <li>EPSG UoM code: <b>9002</b></li>
+     *   <li>EPSG UoM code: <b>9041</b></li>
      *   <li>Type: <b>Linear</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>foot</b></li>
-     *   <li>Alias(es) given by EPSG: <b>international foot</b>, <b>ft</b></li>
-     *   <li>Base units per unit: <b>0.3048</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>British foot (Sears 1922)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>foot</b>, <b>ftSe</b></li>
+     *   <li>Base units per unit: <b>0.3047994715386762</b></li>
      *   <li>Base units per unit description: <b>metres per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
+     *   <li>EPSG Usage Extent: <b>East Malaysia; New Zealand</b></li>
      * </ul>
+     *
+     * Remarks: Uses Sear's 1922 British yard-metre ratio as given by Bomford as 39.370147 inches per metre.
      *
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
     @Test
-    @DisplayName("foot")
-    public void testFoot() throws FactoryException {
-        code       = 9002;
-        name       = "foot";
-        aliases    = new String[] {"international foot", "ft"};
-        unitToBase = 0.3048;
+    @DisplayName("British foot (Sears 1922)")
+    public void testBritishFoot() throws FactoryException {
+        code       = 9041;
+        name       = "British foot (Sears 1922)";
+        aliases    = new String[] {"foot", "ftSe"};
+        unitToBase = 0.3047994715386762;
         baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
     /**
-     * Tests “US survey foot” unit creation from the factory.
+     * Tests “British yard (Sears 1922)” unit creation from the factory.
      *
      * <ul>
-     *   <li>EPSG UoM code: <b>9003</b></li>
+     *   <li>EPSG UoM code: <b>9040</b></li>
      *   <li>Type: <b>Linear</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>US survey foot</b></li>
-     *   <li>Alias(es) given by EPSG: <b>American foot</b>, <b>ftUS</b>, <b>ft(US)</b></li>
-     *   <li>Base units per unit: <b>0.30480060960121924</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>British yard (Sears 1922)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>yard</b>, <b>ydSe</b></li>
+     *   <li>Base units per unit: <b>0.9143984146160287</b></li>
      *   <li>Base units per unit description: <b>metres per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>USA</b></li>
+     *   <li>EPSG Usage Extent: <b>East Malaysia; New Zealand</b></li>
      * </ul>
+     *
+     * Remarks: Uses Sear's 1922 British yard-metre ratio as given by Bomford as 39.370147 inches per metre.
      *
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
     @Test
-    @DisplayName("US survey foot")
-    public void testUSSurveyFoot() throws FactoryException {
-        code       = 9003;
-        name       = "US survey foot";
-        aliases    = new String[] {"American foot", "ftUS", "ft(US)"};
-        unitToBase = 0.30480060960121924;
+    @DisplayName("British yard (Sears 1922)")
+    public void testBritishYard() throws FactoryException {
+        code       = 9040;
+        name       = "British yard (Sears 1922)";
+        aliases    = new String[] {"yard", "ydSe"};
+        unitToBase = 0.9143984146160287;
         baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
     /**
-     * Tests “German legal metre” unit creation from the factory.
+     * Tests “centesimal second” unit creation from the factory.
      *
      * <ul>
-     *   <li>EPSG UoM code: <b>9031</b></li>
-     *   <li>Type: <b>Linear</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>German legal metre</b></li>
-     *   <li>Alias(es) given by EPSG: <b>GLM</b></li>
-     *   <li>Base units per unit: <b>1.0000135965</b></li>
-     *   <li>Base units per unit description: <b>metres per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>Namibia</b></li>
+     *   <li>EPSG UoM code: <b>9113</b></li>
+     *   <li>Type: <b>Angle</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>centesimal second</b></li>
+     *   <li>Alias(es) given by EPSG: <b>cc</b>, <b>centesimal-second</b></li>
+     *   <li>Base units per unit: <b>1.570796326794895E-6</b></li>
+     *   <li>Base units per unit description: <b>radians per unit</b></li>
+     *   <li>EPSG Usage Extent: <b>Switzerland</b></li>
      * </ul>
+     *
+     * Remarks: 1/100 of a centesimal minute or 1/10000th of a grad and gon equal to ((pi/200) / 10000) radians.
+     * Used in one geocentric 7-parameter transformation.
      *
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
     @Test
-    @DisplayName("German legal metre")
-    public void testGermanLegalMetre() throws FactoryException {
-        code       = 9031;
-        name       = "German legal metre";
-        aliases    = new String[] {"GLM"};
-        unitToBase = 1.0000135965;
-        baseUnit   = units.metre();
+    @DisplayName("centesimal second")
+    public void testCentesimalSecond() throws FactoryException {
+        code       = 9113;
+        name       = "centesimal second";
+        aliases    = new String[] {"cc", "centesimal-second"};
+        unitToBase = 1.570796326794895E-6;
+        baseUnit   = units.radian();
         verifyLinearConversions(createConverter());
     }
 
@@ -405,147 +447,108 @@ public class Test2201 extends Series2000<Unit<?>> {
     }
 
     /**
-     * Tests “British chain (Sears 1922)” unit creation from the factory.
+     * Tests “coefficient” unit creation from the factory.
      *
      * <ul>
-     *   <li>EPSG UoM code: <b>9042</b></li>
-     *   <li>Type: <b>Linear</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>British chain (Sears 1922)</b></li>
-     *   <li>Alias(es) given by EPSG: <b>chain</b>, <b>chSe</b></li>
-     *   <li>Base units per unit: <b>20.116765121552632</b></li>
-     *   <li>Base units per unit description: <b>metres per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>East Malaysia; New Zealand</b></li>
+     *   <li>EPSG UoM code: <b>9203</b></li>
+     *   <li>Type: <b>Scale</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>coefficient</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
      *
-     * Remarks: Uses Sear's 1922 British yard-metre ratio as given by Bomford as 39.370147 inches per metre.
+     * Remarks: Used when parameters are coefficients.
+     * They inherently take the units which depend upon the term to which the coefficient applies.
      *
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
-     *
-     * @see #testBritishChainTruncated()
      */
     @Test
-    @DisplayName("British chain (Sears 1922)")
-    public void testBritishChain() throws FactoryException {
-        code       = 9042;
-        name       = "British chain (Sears 1922)";
-        aliases    = new String[] {"chain", "chSe"};
-        unitToBase = 20.116765121552632;
+    @DisplayName("coefficient")
+    public void testCoefficient() throws FactoryException {
+        code       = 9203;
+        name       = "coefficient";
+        aliases    = NONE;
+        unitToBase = 1.0;
+        baseUnit   = units.one();
+        verifyLinearConversions(createConverter());
+    }
+
+    /**
+     * Tests “degree” unit creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG UoM code: <b>9102</b></li>
+     *   <li>Type: <b>Angle</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>degree</b></li>
+     *   <li>Alias(es) given by EPSG: <b>deg</b>, <b>angular degree</b></li>
+     *   <li>Base units per unit: <b>0.017453292519943278</b></li>
+     *   <li>Base units per unit description: <b>radians per unit</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
+     * </ul>
+     *
+     * Remarks: Equal to pi/180 radians.
+     * Finite or fractional representation e.g. DDD.dddddddd referred to as decimal degree.
+     *
+     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
+     */
+    @Test
+    @DisplayName("degree")
+    public void testDegree() throws FactoryException {
+        code       = 9102;
+        name       = "degree";
+        aliases    = new String[] {"deg", "angular degree"};
+        unitToBase = 0.017453292519943278;
+        baseUnit   = units.radian();
+        verifyLinearConversions(createConverter());
+    }
+
+    /**
+     * Tests “foot” unit creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG UoM code: <b>9002</b></li>
+     *   <li>Type: <b>Linear</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>foot</b></li>
+     *   <li>Alias(es) given by EPSG: <b>international foot</b>, <b>ft</b></li>
+     *   <li>Base units per unit: <b>0.3048</b></li>
+     *   <li>Base units per unit description: <b>metres per unit</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
+     */
+    @Test
+    @DisplayName("foot")
+    public void testFoot() throws FactoryException {
+        code       = 9002;
+        name       = "foot";
+        aliases    = new String[] {"international foot", "ft"};
+        unitToBase = 0.3048;
         baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
     /**
-     * Tests “British foot (Sears 1922)” unit creation from the factory.
+     * Tests “German legal metre” unit creation from the factory.
      *
      * <ul>
-     *   <li>EPSG UoM code: <b>9041</b></li>
+     *   <li>EPSG UoM code: <b>9031</b></li>
      *   <li>Type: <b>Linear</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>British foot (Sears 1922)</b></li>
-     *   <li>Alias(es) given by EPSG: <b>foot</b>, <b>ftSe</b></li>
-     *   <li>Base units per unit: <b>0.3047994715386762</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>German legal metre</b></li>
+     *   <li>Alias(es) given by EPSG: <b>GLM</b></li>
+     *   <li>Base units per unit: <b>1.0000135965</b></li>
      *   <li>Base units per unit description: <b>metres per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>East Malaysia; New Zealand</b></li>
+     *   <li>EPSG Usage Extent: <b>Namibia</b></li>
      * </ul>
-     *
-     * Remarks: Uses Sear's 1922 British yard-metre ratio as given by Bomford as 39.370147 inches per metre.
      *
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
     @Test
-    @DisplayName("British foot (Sears 1922)")
-    public void testBritishFoot() throws FactoryException {
-        code       = 9041;
-        name       = "British foot (Sears 1922)";
-        aliases    = new String[] {"foot", "ftSe"};
-        unitToBase = 0.3047994715386762;
-        baseUnit   = units.metre();
-        verifyLinearConversions(createConverter());
-    }
-
-    /**
-     * Tests “British yard (Sears 1922)” unit creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG UoM code: <b>9040</b></li>
-     *   <li>Type: <b>Linear</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>British yard (Sears 1922)</b></li>
-     *   <li>Alias(es) given by EPSG: <b>yard</b>, <b>ydSe</b></li>
-     *   <li>Base units per unit: <b>0.9143984146160287</b></li>
-     *   <li>Base units per unit description: <b>metres per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>East Malaysia; New Zealand</b></li>
-     * </ul>
-     *
-     * Remarks: Uses Sear's 1922 British yard-metre ratio as given by Bomford as 39.370147 inches per metre.
-     *
-     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
-     */
-    @Test
-    @DisplayName("British yard (Sears 1922)")
-    public void testBritishYard() throws FactoryException {
-        code       = 9040;
-        name       = "British yard (Sears 1922)";
-        aliases    = new String[] {"yard", "ydSe"};
-        unitToBase = 0.9143984146160287;
-        baseUnit   = units.metre();
-        verifyLinearConversions(createConverter());
-    }
-
-    /**
-     * Tests “British chain (Sears 1922 truncated)” unit creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG UoM code: <b>9301</b></li>
-     *   <li>Type: <b>Linear</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>British chain (Sears 1922 truncated)</b></li>
-     *   <li>Alias(es) given by EPSG: <b>chain</b>, <b>chSe(T)</b></li>
-     *   <li>Base units per unit: <b>20.116756</b></li>
-     *   <li>Base units per unit description: <b>metres per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>Malaysia</b></li>
-     * </ul>
-     *
-     * Remarks: Uses Sear's 1922 British yard-metre ratio (UoM code 9040) truncated to 6 significant figures.
-     * This truncated ratio (0.914398 UoM code 9099) then converted to other imperial units.
-     * 1 chSe(T) equal to 22 ydSe(T).
-     * Used in metrication of Malaya RSO grid.
-     *
-     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
-     */
-    @Test
-    @DisplayName("British chain (Sears 1922 truncated)")
-    public void testBritishChainTruncated() throws FactoryException {
-        code       = 9301;
-        name       = "British chain (Sears 1922 truncated)";
-        aliases    = new String[] {"chain", "chSe(T)"};
-        unitToBase = 20.116756;
-        baseUnit   = units.metre();
-        verifyLinearConversions(createConverter());
-    }
-
-    /**
-     * Tests “Indian yard” unit creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG UoM code: <b>9084</b></li>
-     *   <li>Type: <b>Linear</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>Indian yard</b></li>
-     *   <li>Alias(es) given by EPSG: <b>yard</b>, <b>ydInd</b></li>
-     *   <li>Base units per unit: <b>0.9143985307444408</b></li>
-     *   <li>Base units per unit description: <b>metres per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>South Asia</b></li>
-     * </ul>
-     *
-     * Remarks: Indian Foot equal to 0.99999566 British feet (A.R.Clarke 1865).
-     * British yard (equal to 3 British feet) taken to be J.S.Clark's 1865 value of 0.9144025 metres.
-     *
-     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
-     */
-    @Test
-    @DisplayName("Indian yard")
-    public void testIndianYard() throws FactoryException {
-        code       = 9084;
-        name       = "Indian yard";
-        aliases    = new String[] {"yard", "ydInd"};
-        unitToBase = 0.9143985307444408;
+    @DisplayName("German legal metre")
+    public void testGermanLegalMetre() throws FactoryException {
+        code       = 9031;
+        name       = "German legal metre";
+        aliases    = new String[] {"GLM"};
+        unitToBase = 1.0000135965;
         baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
@@ -580,120 +583,6 @@ public class Test2201 extends Series2000<Unit<?>> {
     }
 
     /**
-     * Tests “link” unit creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG UoM code: <b>9098</b></li>
-     *   <li>Type: <b>Linear</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>link</b></li>
-     *   <li>Alias(es) given by EPSG: <b>international link</b>, <b>lk</b></li>
-     *   <li>Base units per unit: <b>0.201168</b></li>
-     *   <li>Base units per unit description: <b>metres per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>Fiji</b></li>
-     * </ul>
-     *
-     * Remarks: Equal to 1/100 international chain.
-     *
-     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
-     */
-    @Test
-    @DisplayName("link")
-    public void testLink() throws FactoryException {
-        code       = 9098;
-        name       = "link";
-        aliases    = new String[] {"international link", "lk"};
-        unitToBase = 0.201168;
-        baseUnit   = units.metre();
-        verifyLinearConversions(createConverter());
-    }
-
-    /**
-     * Tests “radian” unit creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG UoM code: <b>9101</b></li>
-     *   <li>Type: <b>Angle</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>radian</b></li>
-     *   <li>Alias(es) given by EPSG: <b>rad</b></li>
-     *   <li>Base units per unit: <b>1.0</b></li>
-     *   <li>Base units per unit description: <b>radians per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>Colombia; USA; Canada</b></li>
-     * </ul>
-     *
-     * Remarks: SI coherent derived unit (standard unit) for plane angle.
-     * Used in some geocentric 7- and 10-parameter transformations.
-     *
-     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
-     */
-    @Test
-    @DisplayName("radian")
-    public void testRadian() throws FactoryException {
-        code       = 9101;
-        name       = "radian";
-        aliases    = new String[] {"rad"};
-        unitToBase = 1.0;
-        baseUnit   = units.radian();
-        verifyLinearConversions(createConverter());
-    }
-
-    /**
-     * Tests “degree” unit creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG UoM code: <b>9102</b></li>
-     *   <li>Type: <b>Angle</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>degree</b></li>
-     *   <li>Alias(es) given by EPSG: <b>deg</b>, <b>angular degree</b></li>
-     *   <li>Base units per unit: <b>0.017453292519943278</b></li>
-     *   <li>Base units per unit description: <b>radians per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
-     * </ul>
-     *
-     * Remarks: Equal to pi/180 radians.
-     * Finite or fractional representation e.g. DDD.dddddddd referred to as decimal degree.
-     *
-     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
-     */
-    @Test
-    @DisplayName("degree")
-    public void testDegree() throws FactoryException {
-        code       = 9102;
-        name       = "degree";
-        aliases    = new String[] {"deg", "angular degree"};
-        unitToBase = 0.017453292519943278;
-        baseUnit   = units.radian();
-        verifyLinearConversions(createConverter());
-    }
-
-    /**
-     * Tests “arc-second” unit creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG UoM code: <b>9104</b></li>
-     *   <li>Type: <b>Angle</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>arc-second</b></li>
-     *   <li>Alias(es) given by EPSG: <b>sec</b>, <b>angular second</b></li>
-     *   <li>Base units per unit: <b>4.848136811095355E-6</b></li>
-     *   <li>Base units per unit description: <b>radians per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
-     * </ul>
-     *
-     * Remarks: 1/60th arc-minute equal to ((pi/180) / 3600) radians.
-     *
-     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
-     */
-    @Test
-    @DisplayName("arc-second")
-    public void testArcSecond() throws FactoryException {
-        code       = 9104;
-        name       = "arc-second";
-        aliases    = new String[] {"sec", "angular second"};
-        unitToBase = 4.848136811095355E-6;
-        baseUnit   = units.radian();
-        verifyLinearConversions(createConverter());
-    }
-
-    /**
      * Tests “grad” unit creation from the factory.
      *
      * <ul>
@@ -722,6 +611,117 @@ public class Test2201 extends Series2000<Unit<?>> {
     }
 
     /**
+     * Tests “Indian yard” unit creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG UoM code: <b>9084</b></li>
+     *   <li>Type: <b>Linear</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>Indian yard</b></li>
+     *   <li>Alias(es) given by EPSG: <b>yard</b>, <b>ydInd</b></li>
+     *   <li>Base units per unit: <b>0.9143985307444408</b></li>
+     *   <li>Base units per unit description: <b>metres per unit</b></li>
+     *   <li>EPSG Usage Extent: <b>South Asia</b></li>
+     * </ul>
+     *
+     * Remarks: Indian Foot equal to 0.99999566 British feet (A.R.Clarke 1865).
+     * British yard (equal to 3 British feet) taken to be J.S.Clark's 1865 value of 0.9144025 metres.
+     *
+     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
+     */
+    @Test
+    @DisplayName("Indian yard")
+    public void testIndianYard() throws FactoryException {
+        code       = 9084;
+        name       = "Indian yard";
+        aliases    = new String[] {"yard", "ydInd"};
+        unitToBase = 0.9143985307444408;
+        baseUnit   = units.metre();
+        verifyLinearConversions(createConverter());
+    }
+
+    /**
+     * Tests “kilometre” unit creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG UoM code: <b>9036</b></li>
+     *   <li>Type: <b>Linear</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>kilometre</b></li>
+     *   <li>Alias(es) given by EPSG: <b>kilometer</b>, <b>km</b></li>
+     *   <li>Base units per unit: <b>1000</b></li>
+     *   <li>Base units per unit description: <b>metres per unit</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
+     */
+    @Test
+    @DisplayName("kilometre")
+    public void testKilometre() throws FactoryException {
+        code       = 9036;
+        name       = "kilometre";
+        aliases    = new String[] {"kilometer", "km"};
+        unitToBase = 1000.0;
+        baseUnit   = units.metre();
+        verifyLinearConversions(createConverter());
+    }
+
+    /**
+     * Tests “link” unit creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG UoM code: <b>9098</b></li>
+     *   <li>Type: <b>Linear</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>link</b></li>
+     *   <li>Alias(es) given by EPSG: <b>international link</b>, <b>lk</b></li>
+     *   <li>Base units per unit: <b>0.201168</b></li>
+     *   <li>Base units per unit description: <b>metres per unit</b></li>
+     *   <li>EPSG Usage Extent: <b>Fiji</b></li>
+     * </ul>
+     *
+     * Remarks: Equal to 1/100 international chain.
+     *
+     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
+     */
+    @Test
+    @DisplayName("link")
+    public void testLink() throws FactoryException {
+        code       = 9098;
+        name       = "link";
+        aliases    = new String[] {"international link", "lk"};
+        unitToBase = 0.201168;
+        baseUnit   = units.metre();
+        verifyLinearConversions(createConverter());
+    }
+
+    /**
+     * Tests “metre” unit creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG UoM code: <b>9001</b></li>
+     *   <li>Type: <b>Linear</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>metre</b></li>
+     *   <li>Alias(es) given by EPSG: <b>meter</b>, <b>International metre</b>, <b>m</b></li>
+     *   <li>Base units per unit: <b>1</b></li>
+     *   <li>Base units per unit description: <b>metres per unit</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
+     * </ul>
+     *
+     * Remarks: SI base unit for length.
+     *
+     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
+     */
+    @Test
+    @DisplayName("metre")
+    public void testMetre() throws FactoryException {
+        code       = 9001;
+        name       = "metre";
+        aliases    = new String[] {"meter", "International metre", "m"};
+        unitToBase = 1.0;
+        baseUnit   = units.metre();
+        verifyLinearConversions(createConverter());
+    }
+
+    /**
      * Tests “microradian” unit creation from the factory.
      *
      * <ul>
@@ -729,7 +729,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Angle</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>microradian</b></li>
      *   <li>Alias(es) given by EPSG: <b>µrad</b></li>
-     *   <li>Base units per unit: <b>1E-6</b></li>
+     *   <li>Base units per unit: <b>1.0E-6</b></li>
      *   <li>Base units per unit description: <b>radians per unit</b></li>
      *   <li>EPSG Usage Extent: <b>Netherlands; Norway</b></li>
      * </ul>
@@ -744,7 +744,62 @@ public class Test2201 extends Series2000<Unit<?>> {
         code       = 9109;
         name       = "microradian";
         aliases    = new String[] {"µrad"};
-        unitToBase = 1E-6;
+        unitToBase = 1.0E-6;
+        baseUnit   = units.radian();
+        verifyLinearConversions(createConverter());
+    }
+
+    /**
+     * Tests “parts per million” unit creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG UoM code: <b>9202</b></li>
+     *   <li>Type: <b>Scale</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>parts per million</b></li>
+     *   <li>Alias(es) given by EPSG: <b>ppm</b>, <b>µm/m</b></li>
+     *   <li>Base units per unit: <b>1.0E-6</b></li>
+     *   <li>Base units per unit description: <b>parts per unit</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
+     */
+    @Test
+    @DisplayName("parts per million")
+    public void testPartsPerMillion() throws FactoryException {
+        code       = 9202;
+        name       = "parts per million";
+        aliases    = new String[] {"ppm", "µm/m"};
+        unitToBase = 1.0E-6;
+        baseUnit   = units.one();
+        verifyLinearConversions(createConverter());
+    }
+
+    /**
+     * Tests “radian” unit creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG UoM code: <b>9101</b></li>
+     *   <li>Type: <b>Angle</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>radian</b></li>
+     *   <li>Alias(es) given by EPSG: <b>rad</b></li>
+     *   <li>Base units per unit: <b>1</b></li>
+     *   <li>Base units per unit description: <b>radians per unit</b></li>
+     *   <li>EPSG Usage Extent: <b>Colombia; USA; Canada</b></li>
+     * </ul>
+     *
+     * Remarks: SI coherent derived unit (standard unit) for plane angle.
+     * Used in some geocentric 7- and 10-parameter transformations.
+     *
+     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
+     */
+    @Test
+    @DisplayName("radian")
+    public void testRadian() throws FactoryException {
+        code       = 9101;
+        name       = "radian";
+        aliases    = new String[] {"rad"};
+        unitToBase = 1.0;
         baseUnit   = units.radian();
         verifyLinearConversions(createConverter());
     }
@@ -791,35 +846,6 @@ public class Test2201 extends Series2000<Unit<?>> {
     }
 
     /**
-     * Tests “centesimal second” unit creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG UoM code: <b>9113</b></li>
-     *   <li>Type: <b>Angle</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>centesimal second</b></li>
-     *   <li>Alias(es) given by EPSG: <b>cc</b>, <b>centesimal-second</b></li>
-     *   <li>Base units per unit: <b>1.570796326794895E-6</b></li>
-     *   <li>Base units per unit description: <b>radians per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>Switzerland</b></li>
-     * </ul>
-     *
-     * Remarks: 1/100 of a centesimal minute or 1/10000th of a grad and gon equal to ((pi/200) / 10000) radians.
-     * Used in one geocentric 7-parameter transformation.
-     *
-     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
-     */
-    @Test
-    @DisplayName("centesimal second")
-    public void testCentesimalSecond() throws FactoryException {
-        code       = 9113;
-        name       = "centesimal second";
-        aliases    = new String[] {"cc", "centesimal-second"};
-        unitToBase = 1.570796326794895E-6;
-        baseUnit   = units.radian();
-        verifyLinearConversions(createConverter());
-    }
-
-    /**
      * Tests “unity” unit creation from the factory.
      *
      * <ul>
@@ -827,7 +853,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Scale</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>unity</b></li>
      *   <li>Alias(es) given by EPSG: <b>euclid</b></li>
-     *   <li>Base units per unit: <b>1.0</b></li>
+     *   <li>Base units per unit: <b>1</b></li>
      *   <li>Base units per unit description: <b>parts per unit</b></li>
      *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
@@ -850,54 +876,28 @@ public class Test2201 extends Series2000<Unit<?>> {
     }
 
     /**
-     * Tests “parts per million” unit creation from the factory.
+     * Tests “US survey foot” unit creation from the factory.
      *
      * <ul>
-     *   <li>EPSG UoM code: <b>9202</b></li>
-     *   <li>Type: <b>Scale</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>parts per million</b></li>
-     *   <li>Alias(es) given by EPSG: <b>ppm</b>, <b>µm/m</b></li>
-     *   <li>Base units per unit: <b>1E-6</b></li>
-     *   <li>Base units per unit description: <b>parts per unit</b></li>
-     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
+     *   <li>EPSG UoM code: <b>9003</b></li>
+     *   <li>Type: <b>Linear</b></li>
+     *   <li>Name of Units used in EPSG dataset: <b>US survey foot</b></li>
+     *   <li>Alias(es) given by EPSG: <b>American foot</b>, <b>ftUS</b>, <b>ft(US)</b></li>
+     *   <li>Base units per unit: <b>0.30480060960121924</b></li>
+     *   <li>Base units per unit description: <b>metres per unit</b></li>
+     *   <li>EPSG Usage Extent: <b>USA</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
     @Test
-    @DisplayName("parts per million")
-    public void testPartsPerMillion() throws FactoryException {
-        code       = 9202;
-        name       = "parts per million";
-        aliases    = new String[] {"ppm", "µm/m"};
-        unitToBase = 1E-6;
-        baseUnit   = units.one();
-        verifyLinearConversions(createConverter());
-    }
-
-    /**
-     * Tests “coefficient” unit creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG UoM code: <b>9203</b></li>
-     *   <li>Type: <b>Scale</b></li>
-     *   <li>Name of Units used in EPSG dataset: <b>coefficient</b></li>
-     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
-     * </ul>
-     *
-     * Remarks: Used when parameters are coefficients.
-     * They inherently take the units which depend upon the term to which the coefficient applies.
-     *
-     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
-     */
-    @Test
-    @DisplayName("coefficient")
-    public void testCoefficient() throws FactoryException {
-        code       = 9203;
-        name       = "coefficient";
-        aliases    = NONE;
-        unitToBase = 1.0;
-        baseUnit   = units.one();
+    @DisplayName("US survey foot")
+    public void testUSSurveyFoot() throws FactoryException {
+        code       = 9003;
+        name       = "US survey foot";
+        aliases    = new String[] {"American foot", "ftUS", "ft(US)"};
+        unitToBase = 0.30480060960121924;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 }

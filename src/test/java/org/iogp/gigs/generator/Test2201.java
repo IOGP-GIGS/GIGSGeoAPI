@@ -114,7 +114,8 @@ public final class Test2201 extends TestMethodGenerator {
             out.append(";\n");
             indent(2); out.append("verifyLinearConversions(createConverter());\n");
             indent(1); out.append('}');
-            print();
+            saveTestMethod();
         }
+        printAllMethods();
     }
 }
