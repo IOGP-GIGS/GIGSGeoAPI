@@ -31,6 +31,7 @@ import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.iogp.gigs.internal.geoapi.Configuration;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -86,7 +87,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
  * @version 1.0
  * @since   1.0
  */
-public class Test2002 extends Series2000<Ellipsoid> {
+public class Test2202 extends Series2000<Ellipsoid> {
     /**
      * The conversion factor from the unit of {@link #semiMajorAxis} to metres.
      */
@@ -148,7 +149,7 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *
      * @param datumFactory  factory for creating {@link Ellipsoid} instances.
      */
-    public Test2002(final DatumAuthorityFactory datumFactory) {
+    public Test2202(final DatumAuthorityFactory datumFactory) {
         datumAuthorityFactory = datumFactory;
     }
 
@@ -287,18 +288,23 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7001</b></li>
      *   <li>EPSG ellipsoid name: <b>Airy 1830</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377563.396</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377563.396 metres</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>299.3249646</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>United Kingdom</b></li>
      * </ul>
+     *
+     * Remarks: Original definition is a=20923713.
+     * B=20853810 feet of 1796.
+     * 1/f is given to 7 decimal places.
+     * For the 1936 retriangulation OSGB defines the relationship of 10 feet of 1796 to the International metre through ([10^0.48401603]/10) exactly = 0.3048007491.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      *
      * @see Test3002#testAiry()
      */
     @Test
-    public void testAiry() throws FactoryException {
-        important         = true;
+    @DisplayName("Airy 1830")
+    public void testAiry1830() throws FactoryException {
         code              = 7001;
         name              = "Airy 1830";
         aliases           = NONE;
@@ -316,16 +322,18 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7002</b></li>
      *   <li>EPSG ellipsoid name: <b>Airy Modified 1849</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377340.189</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377340.189 metres</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>299.3249646</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Ireland</b></li>
      * </ul>
+     *
+     * Remarks: OSGB Airy 1830 figure (ellipsoid code 7001) rescaled by 0.999965 to best fit the scale of the 19th century primary triangulation of Ireland.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Airy Modified 1849")
     public void testAiryModified() throws FactoryException {
-        important         = true;
         code              = 7002;
         name              = "Airy Modified 1849";
         aliases           = NONE;
@@ -344,18 +352,19 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *   <li>EPSG ellipsoid code: <b>7003</b></li>
      *   <li>EPSG ellipsoid name: <b>Australian National Spheroid</b></li>
      *   <li>Alias(es) given by EPSG: <b>ANS</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378160</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378160.0 metres</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.25</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Australia</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     * Remarks: Based on the GRS 1967 figure but with 1/f taken to 2 decimal places exactly.
+     * The dimensions are also used as the GRS 1967 Modified ellipsoid (see code 7050).
      *
-     * @see Test3002#testAustralianNationalSpheroid()
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Australian National Spheroid")
     public void testAustralianNationalSpheroid() throws FactoryException {
-        important         = true;
         code              = 7003;
         name              = "Australian National Spheroid";
         aliases           = new String[] {"ANS"};
@@ -373,18 +382,22 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7004</b></li>
      *   <li>EPSG ellipsoid name: <b>Bessel 1841</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377397.155</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377397.155 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>299.1528128</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Original Bessel definition is a=3272077.14 and b=3261139.33 toise.
+     * This used a weighted mean of values from several authors but did not account for differences
+     * in the length of the various toise: the Bessel toise is therefore of uncertain length.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      *
      * @see Test3002#testBessel()
      */
     @Test
+    @DisplayName("Bessel 1841")
     public void testBessel() throws FactoryException {
-        important         = true;
         code              = 7004;
         name              = "Bessel 1841";
         aliases           = NONE;
@@ -402,21 +415,25 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7046</b></li>
      *   <li>EPSG ellipsoid name: <b>Bessel Namibia (GLM)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377397.155</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377397.155 German legal metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>299.1528128</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Namibia</b></li>
      * </ul>
+     *
+     * Remarks: The semi-major axis has the same value as the Bessel 1841 ellipsoid (code 7004)
+     * but is in different units - German Legal Metres rather than International metres - hence
+     * a different size. a = 6377483.865 International metres.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
-    public void testBesselNamibia() throws FactoryException {
-        important         = true;
+    @DisplayName("Bessel Namibia (GLM)")
+    public void testBesselNamibia_GLM() throws FactoryException {
         code              = 7046;
         name              = "Bessel Namibia (GLM)";
         aliases           = NONE;
-        toMetres          = 1.000013597;
-        semiMajorInMetres = 6377483.865;
+        toMetres          = 1.0000135965;
+        semiMajorInMetres = 6377483.86528042;
         semiMajorAxis     = 6377397.155;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 299.1528128;
@@ -429,21 +446,26 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7007</b></li>
      *   <li>EPSG ellipsoid name: <b>Clarke 1858</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>20926348</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>20855233</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Semi-major axis (<var>a</var>): <b>20926348 Clarke's foot</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>20855233 Clarke's foot</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Clarke's 1858/II solution. Derived parameters:
+     * a = 6378293.645m using his 1865 ratio of 0.3047972654 feet per metre; 1/f = 294.26068.
+     * In Australia and Amoco Trinidad 1/f taken to two decimal places (294.26 exactly).
+     * Elsewhere a and b used to derive 1/f.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Clarke 1858")
     public void testClarke1858() throws FactoryException {
-        important         = true;
         code              = 7007;
         name              = "Clarke 1858";
         aliases           = NONE;
-        toMetres          = 0.304797265;
-        semiMajorInMetres = 6378293.645;
+        toMetres          = 0.3047972654;
+        semiMajorInMetres = 6378293.64520876;
         semiMajorAxis     = 20926348.0;
         semiMinorAxis     = 20855233.0;
         inverseFlattening = Double.NaN;
@@ -456,18 +478,22 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7008</b></li>
      *   <li>EPSG ellipsoid name: <b>Clarke 1866</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378206.4</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6356583.8</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378206.4 metre</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6356583.8 metre</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Original definition a=20926062 and b=20855121 (British) feet.
+     * Uses Clarke's 1865 inch-metre ratio of 39.370432 to obtain metres.
+     * (Metric value then converted to US survey feet for use in the US and international feet for use in Cayman Islands).
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      *
      * @see Test3002#testClarke1866()
      */
     @Test
+    @DisplayName("Clarke 1866")
     public void testClarke1866() throws FactoryException {
-        important         = true;
         code              = 7008;
         name              = "Clarke 1866";
         aliases           = NONE;
@@ -494,6 +520,7 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Clarke 1866 Michigan")
     public void testClarkeMichigan() throws FactoryException {
         important         = true;
         code              = 7009;
@@ -514,18 +541,21 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7011</b></li>
      *   <li>EPSG ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378249.2</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6356515</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378249.2 metre</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6356515.0 metre</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Adopts Clarke's values for a and b using his 1865 ratio
+     * of 39.370432 inches per metre to convert axes to metres.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      *
      * @see Test3002#testClarkeIGN()
      */
     @Test
+    @DisplayName("Clarke 1880 (IGN)")
     public void testClarkeIGN() throws FactoryException {
-        important         = true;
         code              = 7011;
         name              = "Clarke 1880 (IGN)";
         aliases           = NONE;
@@ -544,16 +574,19 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *   <li>EPSG ellipsoid code: <b>7012</b></li>
      *   <li>EPSG ellipsoid name: <b>Clarke 1880 (RGS)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Clarke Modified 1880</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378249.145</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378249.145 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>293.465</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Adopts Clarke's values for a and 1/f.
+     * Adopts his 1865 ratio of 39.370432 inches per metre to convert semi-major axis to metres.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Clarke 1880 (RGS)")
     public void testClarkeRGS() throws FactoryException {
-        important         = true;
         code              = 7012;
         name              = "Clarke 1880 (RGS)";
         aliases           = new String[] {"Clarke Modified 1880"};
@@ -571,16 +604,20 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7015</b></li>
      *   <li>EPSG ellipsoid name: <b>Everest 1830 (1937 Adjustment)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377276.345</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377276.345 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>300.8017</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>India</b></li>
      * </ul>
+     *
+     * Remarks: Used for the 1937 readjustment of Indian triangulation.
+     * Clarke's 1865 Indian-British foot ratio (0.99999566) and Benoit's 1898 British inch-metre ratio (39.370113)
+     * rounded as 0.30479841 exactly and applied to Everest's 1830 definition taken as a and 1/f.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Everest 1830 (1937 Adjustment)")
     public void testEverest1937() throws FactoryException {
-        important         = true;
         code              = 7015;
         name              = "Everest 1830 (1937 Adjustment)";
         aliases           = NONE;
@@ -598,16 +635,20 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7044</b></li>
      *   <li>EPSG ellipsoid name: <b>Everest 1830 (1962 Definition)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377301.243</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377301.243 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>300.8017255</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Asia</b></li>
      * </ul>
+     *
+     * Remarks: Used by Pakistan since metrication.
+     * Clarke's 1865 Indian foot-British foot ratio (0.99999566) and his 1865 British inch-metre ratio (39.369971)
+     * rounded with slight error as 1 Ind ft = 0.3047995m exactly and applied to Everest's 1830 definition of a &amp; b.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Everest 1830 (1962 Definition)")
     public void testEverest1962() throws FactoryException {
-        important         = true;
         code              = 7044;
         name              = "Everest 1830 (1962 Definition)";
         aliases           = NONE;
@@ -625,16 +666,19 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7016</b></li>
      *   <li>EPSG ellipsoid name: <b>Everest 1830 (1967 Definition)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377298.556</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377298.556 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>300.8017</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>East Malaysia</b></li>
      * </ul>
+     *
+     * Remarks: Applies Sears 1922 inch-metre ratio of 39.370147 to Everest 1830 original
+     * definition of a and 1/f but with a taken to be in British rather than Indian feet.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Everest 1830 (1967 Definition)")
     public void testEverest1967() throws FactoryException {
-        important         = true;
         code              = 7016;
         name              = "Everest 1830 (1967 Definition)";
         aliases           = NONE;
@@ -652,16 +696,20 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7045</b></li>
      *   <li>EPSG ellipsoid name: <b>Everest 1830 (1975 Definition)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377299.151</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377299.151 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>300.8017255</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Asia</b></li>
      * </ul>
+     *
+     * Remarks: Used by India since metrication.
+     * Clarke's 1865 Indian foot-British foot ratio (0.99999566) and his 1865 British inch-metre ratio (39.369971)
+     * rounded as 1 Ind ft = 0.3047995m exactly applied to Everest's 1830 original definition taken as a and b.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Everest 1830 (1975 Definition)")
     public void testEverest1975() throws FactoryException {
-        important         = true;
         code              = 7045;
         name              = "Everest 1830 (1975 Definition)";
         aliases           = NONE;
@@ -679,16 +727,19 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7018</b></li>
      *   <li>EPSG ellipsoid name: <b>Everest 1830 Modified</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377304.063</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377304.063 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>300.8017</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>West Malaysia</b></li>
      * </ul>
+     *
+     * Remarks: Applies Benoit 1898 inch-metre ratio of 39.370113 to Everest 1830 original
+     * definition of a and 1/f but with a taken to be in British rather than Indian feet.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Everest 1830 Modified")
     public void testEverestModified() throws FactoryException {
-        important         = true;
         code              = 7018;
         name              = "Everest 1830 Modified";
         aliases           = NONE;
@@ -707,9 +758,9 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *   <li>EPSG ellipsoid code: <b>7036</b></li>
      *   <li>EPSG ellipsoid name: <b>GRS 1967</b></li>
      *   <li>Alias(es) given by EPSG: <b>International 1967</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378160</b></li>
-     *   <li>Inverse flattening (1/<var>f</var>): <b>298.2471674</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378160.0 metre</b></li>
+     *   <li>Inverse flattening (1/<var>f</var>): <b>298.247167427</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
@@ -717,8 +768,8 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * @see Test3002#testGRS1967()
      */
     @Test
+    @DisplayName("GRS 1967")
     public void testGRS1967() throws FactoryException {
-        important         = true;
         code              = 7036;
         name              = "GRS 1967";
         aliases           = new String[] {"International 1967"};
@@ -726,7 +777,7 @@ public class Test2002 extends Series2000<Ellipsoid> {
         semiMajorInMetres = 6378160.0;
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = Double.NaN;
-        inverseFlattening = 298.2471674;
+        inverseFlattening = 298.247167427;
         verifyEllipsoid();
     }
 
@@ -737,16 +788,20 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *   <li>EPSG ellipsoid code: <b>7050</b></li>
      *   <li>EPSG ellipsoid name: <b>GRS 1967 Modified</b></li>
      *   <li>Alias(es) given by EPSG: <b>GRS 1967</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378160</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378160.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.25</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Australia</b></li>
      * </ul>
+     *
+     * Remarks: Based on the GRS 1967 figure (code 7036) but with 1/f taken to 2 decimal places exactly.
+     * Used with SAD69 and TWD67 datums.
+     * The dimensions are also used as the Australian National Spheroid (code 7003).
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("GRS 1967 Modified")
     public void testGRS1967Modified() throws FactoryException {
-        important         = true;
         code              = 7050;
         name              = "GRS 1967 Modified";
         aliases           = new String[] {"GRS 1967"};
@@ -765,18 +820,18 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *   <li>EPSG ellipsoid code: <b>7019</b></li>
      *   <li>EPSG ellipsoid name: <b>GRS 1980</b></li>
      *   <li>Alias(es) given by EPSG: <b>International 1979</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378137</b></li>
-     *   <li>Inverse flattening (1/<var>f</var>): <b>298.2572221</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378137.0 metre</b></li>
+     *   <li>Inverse flattening (1/<var>f</var>): <b>298.257222101</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     * Remarks: Adopted by IUGG 1979 Canberra.
      *
-     * @see Test3002#testGRS1980()
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("GRS 1980")
     public void testGRS1980() throws FactoryException {
-        important         = true;
         code              = 7019;
         name              = "GRS 1980";
         aliases           = new String[] {"International 1979"};
@@ -784,7 +839,7 @@ public class Test2002 extends Series2000<Ellipsoid> {
         semiMajorInMetres = 6378137.0;
         semiMajorAxis     = 6378137.0;
         semiMinorAxis     = Double.NaN;
-        inverseFlattening = 298.2572221;
+        inverseFlattening = 298.257222101;
         verifyEllipsoid();
     }
 
@@ -794,16 +849,18 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7020</b></li>
      *   <li>EPSG ellipsoid name: <b>Helmert 1906</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378200</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378200.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.3</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Egypt</b></li>
      * </ul>
+     *
+     * Remarks: Helmert 1906/III solution.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Helmert 1906")
     public void testHelmert() throws FactoryException {
-        important         = true;
         code              = 7020;
         name              = "Helmert 1906";
         aliases           = NONE;
@@ -821,16 +878,18 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7021</b></li>
      *   <li>EPSG ellipsoid name: <b>Indonesian National Spheroid</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378160</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378160.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.247</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Indonesia</b></li>
      * </ul>
+     *
+     * Remarks: Based on the GRS 1967 figure but with 1/f taken to 3 decimal places exactly.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Indonesian National Spheroid")
     public void testIndonesianNational() throws FactoryException {
-        important         = true;
         code              = 7021;
         name              = "Indonesian National Spheroid";
         aliases           = NONE;
@@ -849,18 +908,18 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *   <li>EPSG ellipsoid code: <b>7022</b></li>
      *   <li>EPSG ellipsoid name: <b>International 1924</b></li>
      *   <li>Alias(es) given by EPSG: <b>Hayford 1909</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378388</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378388.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>297</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     * Remarks: Adopted by IUGG 1924 in Madrid. Based on Hayford 1909/1910 figures.
      *
-     * @see Test3002#testInternational1924()
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("International 1924")
     public void testInternational1924() throws FactoryException {
-        important         = true;
         code              = 7022;
         name              = "International 1924";
         aliases           = new String[] {"Hayford 1909"};
@@ -878,18 +937,16 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7024</b></li>
      *   <li>EPSG ellipsoid name: <b>Krassowsky 1940</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378245</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378245.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.3</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Russia; Asia</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
-     *
-     * @see Test3002#testKrassowsky()
      */
     @Test
-    public void testKrassowsky() throws FactoryException {
-        important         = true;
+    @DisplayName("Krassowsky 1940")
+    public void testKrassowsky1940() throws FactoryException {
         code              = 7024;
         name              = "Krassowsky 1940";
         aliases           = NONE;
@@ -908,16 +965,21 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *   <li>EPSG ellipsoid code: <b>7029</b></li>
      *   <li>EPSG ellipsoid name: <b>War Office</b></li>
      *   <li>Alias(es) given by EPSG: <b>McCaw 1924</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378300</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378300.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>296</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Ghana</b></li>
      * </ul>
+     *
+     * Remarks: In non-metric form.
+     * A=20926201 Gold Coast feet.
+     * DMA Technical Manual 8358.1 and data derived from this quotes value for semi-major axis as 6378300.58m:
+     * IOGP recommends use of defined value 6378300m exactly.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("War Office")
     public void testWarOffice() throws FactoryException {
-        important         = true;
         code              = 7029;
         name              = "War Office";
         aliases           = new String[] {"McCaw 1924"};
@@ -936,16 +998,16 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *   <li>EPSG ellipsoid code: <b>7043</b></li>
      *   <li>EPSG ellipsoid name: <b>WGS 72</b></li>
      *   <li>Alias(es) given by EPSG: <b>NWL 10D</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378135</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378135.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.26</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("WGS 72")
     public void testWGS72() throws FactoryException {
-        important         = true;
         code              = 7043;
         name              = "WGS 72";
         aliases           = new String[] {"NWL 10D"};
@@ -964,18 +1026,16 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *   <li>EPSG ellipsoid code: <b>7030</b></li>
      *   <li>EPSG ellipsoid name: <b>WGS 84</b></li>
      *   <li>Alias(es) given by EPSG: <b>WGS84</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378137</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378137.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.257223563</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
-     *
-     * @see Test3002#testWGS84()
      */
     @Test
+    @DisplayName("WGS 84")
     public void testWGS84() throws FactoryException {
-        important         = true;
         code              = 7030;
         name              = "WGS 84";
         aliases           = new String[] {"WGS84"};
@@ -994,16 +1054,16 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *   <li>EPSG ellipsoid code: <b>7049</b></li>
      *   <li>EPSG ellipsoid name: <b>IAG 1975</b></li>
      *   <li>Alias(es) given by EPSG: <b>Xian 1980</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378140</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378140.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.257</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG Usage Extent: <b>China</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("IAG 1975")
     public void testIAG1975() throws FactoryException {
-        important         = true;
         code              = 7049;
         name              = "IAG 1975";
         aliases           = new String[] {"Xian 1980"};
@@ -1021,14 +1081,16 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7041</b></li>
      *   <li>EPSG ellipsoid name: <b>Average Terrestrial System 1977</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378135</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378135.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.257</b></li>
+     *   <li>EPSG Usage Extent: <b>Canada</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
-    public void testAverageTerrestrialSystem() throws FactoryException {
+    @DisplayName("Average Terrestrial System 1977")
+    public void testAverageTerrestrialSystem1977() throws FactoryException {
         code              = 7041;
         name              = "Average Terrestrial System 1977";
         aliases           = NONE;
@@ -1046,13 +1108,17 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7005</b></li>
      *   <li>EPSG ellipsoid name: <b>Bessel Modified</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377492.018</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377492.018 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>299.1528128</b></li>
+     *   <li>EPSG Usage Extent: <b>Norway; Sweden</b></li>
      * </ul>
+     *
+     * Remarks: 1mm increase in semi-major axis.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Bessel Modified")
     public void testBesselModified() throws FactoryException {
         code              = 7005;
         name              = "Bessel Modified";
@@ -1071,15 +1137,17 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7052</b></li>
      *   <li>EPSG ellipsoid name: <b>Clarke 1866 Authalic Sphere</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6370997</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6370997</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6370997.0 metre</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6370997.0 metre</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     * Remarks: Authalic sphere derived from Clarke 1866 ellipsoid (code 7008).
      *
-     * @see Test3002#testClarkeAuthalicSphere()
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Clarke 1866 Authalic Sphere")
     public void testClarkeAuthalicSphere() throws FactoryException {
         code              = 7052;
         name              = "Clarke 1866 Authalic Sphere";
@@ -1099,19 +1167,23 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7034</b></li>
      *   <li>EPSG ellipsoid name: <b>Clarke 1880</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>20926202</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>20854895</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>20926202 Clarke's foot</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>20854895 Clarke's foot</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Clarke gave a and b and also 1/f=293.465 (to 3 decimal places exactly).
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Clarke 1880")
     public void testClarke1880() throws FactoryException {
         code              = 7034;
         name              = "Clarke 1880";
         aliases           = NONE;
-        toMetres          = 0.304797265;
-        semiMajorInMetres = 6378249.145;
+        toMetres          = 0.3047972654;
+        semiMajorInMetres = 6378249.14480801;
         semiMajorAxis     = 20926202.0;
         semiMinorAxis     = 20854895.0;
         inverseFlattening = Double.NaN;
@@ -1125,13 +1197,18 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *   <li>EPSG ellipsoid code: <b>7013</b></li>
      *   <li>EPSG ellipsoid name: <b>Clarke 1880 (Arc)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Modified Clarke 1880 (South Africa)</b>, <b>Clarke 1880 (Cape)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378249.145</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378249.145 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>293.4663077</b></li>
+     *   <li>EPSG Usage Extent: <b>South Africa</b></li>
      * </ul>
+     *
+     * Remarks: Adopts Clarke's value for a with derived 1/f.
+     * Uses his 1865 ratio of 39.370432 inch per metre to convert semi-major axis to metres.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Clarke 1880 (Arc)")
     public void testClarkeArc() throws FactoryException {
         code              = 7013;
         name              = "Clarke 1880 (Arc)";
@@ -1150,13 +1227,18 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7010</b></li>
      *   <li>EPSG ellipsoid name: <b>Clarke 1880 (Benoit)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378300.789</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6356566.435</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378300.789 metre</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6356566.435 metre</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Adopts Clarke's values for a and b.
+     * Uses Benoit's 1895 ratio of 0.9143992 metres per yard to convert to metres.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Clarke 1880 (Benoit)")
     public void testClarkeBenoit() throws FactoryException {
         code              = 7010;
         name              = "Clarke 1880 (Benoit)";
@@ -1175,19 +1257,25 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7055</b></li>
      *   <li>EPSG ellipsoid name: <b>Clarke 1880 (international foot)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>20926202</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>20854895</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>20926202 foot</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>20854895 foot</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Clarke's 1880 definition in feet assumed for the purposes of metric conversion to be international foot.
+     * A = 6378306.370 metres.
+     * 1/f derived from a and b = 293.4663077.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
-    public void testClarkeInternationalFoot() throws FactoryException {
+    @DisplayName("Clarke 1880 (international foot)")
+    public void testClarke1880_internationalFoot() throws FactoryException {
         code              = 7055;
         name              = "Clarke 1880 (international foot)";
         aliases           = NONE;
         toMetres          = 0.3048;
-        semiMajorInMetres = 6378306.37;
+        semiMajorInMetres = 6378306.3696;
         semiMajorAxis     = 20926202.0;
         semiMinorAxis     = 20854895.0;
         inverseFlattening = Double.NaN;
@@ -1200,13 +1288,18 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7014</b></li>
      *   <li>EPSG ellipsoid name: <b>Clarke 1880 (SGA 1922)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378249.2</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378249.2 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>293.46598</b></li>
+     *   <li>EPSG Usage Extent: <b>France</b></li>
      * </ul>
+     *
+     * Remarks: Used in Old French Triangulation (ATF).
+     * Uses Clarke's 1865 inch-metre ratio of 39.370432 to convert axes to metres.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Clarke 1880 (SGA 1922)")
     public void testClarkeSGA() throws FactoryException {
         code              = 7014;
         name              = "Clarke 1880 (SGA 1922)";
@@ -1225,13 +1318,18 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7051</b></li>
      *   <li>EPSG ellipsoid name: <b>Danish 1876</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377019.27</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377019.27 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>300</b></li>
+     *   <li>EPSG Usage Extent: <b>Denmark</b></li>
      * </ul>
+     *
+     * Remarks: Semi-major axis originally given as 3271883.25 toise.
+     * Uses toise to French metre ratio of 1.94903631 to two decimal place precision.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Danish 1876")
     public void testDanish() throws FactoryException {
         code              = 7051;
         name              = "Danish 1876";
@@ -1250,20 +1348,24 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7042</b></li>
      *   <li>EPSG ellipsoid name: <b>Everest (1830 Definition)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>20922931.80</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>20853374.58</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>20922931.8 Indian foot</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>20853374.58 Indian foot</b></li>
+     *   <li>EPSG Usage Extent: <b>Asia</b></li>
      * </ul>
+     *
+     * Remarks: Everest gave a and b to 2 decimal places and also 1/f=300.8017 (to 4 decimal places exactly).
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Everest (1830 Definition)")
     public void testEverest1830() throws FactoryException {
         code              = 7042;
         name              = "Everest (1830 Definition)";
         aliases           = NONE;
-        toMetres          = 0.30479951;
-        semiMajorInMetres = 6377299.366;
-        semiMajorAxis     = 20922931.80;
+        toMetres          = 0.304799510248147;
+        semiMajorInMetres = 6377299.36559538;
+        semiMajorAxis     = 20922931.8;
         semiMinorAxis     = 20853374.58;
         inverseFlattening = Double.NaN;
         verifyEllipsoid();
@@ -1275,13 +1377,20 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7056</b></li>
      *   <li>EPSG ellipsoid name: <b>Everest 1830 (RSO 1969)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377295.664</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377295.664 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>300.8017</b></li>
+     *   <li>EPSG Usage Extent: <b>Malaysia</b></li>
      * </ul>
+     *
+     * Remarks: Adopted for 1969 metrication of peninsula Malaysia RSO grid.
+     * Uses Sears 1922 yard-metre ratio truncated to 6 significant figures
+     * applied to Everest 1830 original definition of a and 1/f but with a
+     * taken to be in British rather than Indian feet.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Everest 1830 (RSO 1969)")
     public void testEverestRSO() throws FactoryException {
         code              = 7056;
         name              = "Everest 1830 (RSO 1969)";
@@ -1300,13 +1409,17 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7031</b></li>
      *   <li>EPSG ellipsoid name: <b>GEM 10C</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378137</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378137.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.257223563</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Used for  GEM 10C Gravity Potential Model.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("GEM 10C")
     public void testGEM10C() throws FactoryException {
         code              = 7031;
         name              = "GEM 10C";
@@ -1325,13 +1438,18 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7048</b></li>
      *   <li>EPSG ellipsoid name: <b>GRS 1980 Authalic Sphere</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6371007</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6371007</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6371007.0 metre</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6371007.0 metre</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia</b></li>
      * </ul>
+     *
+     * Remarks: Authalic sphere derived from GRS 1980 ellipsoid (code 7019).
+     * 1/f is infinite.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("GRS 1980 Authalic Sphere")
     public void testGRS1980AuthalicSphere() throws FactoryException {
         code              = 7048;
         name              = "GRS 1980 Authalic Sphere";
@@ -1351,13 +1469,15 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7053</b></li>
      *   <li>EPSG ellipsoid name: <b>Hough 1960</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378270</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378270.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>297</b></li>
+     *   <li>EPSG Usage Extent: <b>USA</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Hough 1960")
     public void testHough1960() throws FactoryException {
         code              = 7053;
         name              = "Hough 1960";
@@ -1376,13 +1496,19 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7058</b></li>
      *   <li>EPSG ellipsoid name: <b>Hughes 1980</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378273</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6356889.449</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378273.0 metre</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6356889.449 metre</b></li>
+     *   <li>EPSG Usage Extent: <b>Polar</b></li>
      * </ul>
+     *
+     * Remarks: Semi-minor axis derived from eccentricity = 0.081816153.
+     * Semi-major axis (a) sometimes given as 3443.992nm which OGP suspects is a derived approximation.
+     * IOGP conversion assumes 1nm=1852m exactly.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Hughes 1980")
     public void testHughes1980() throws FactoryException {
         code              = 7058;
         name              = "Hughes 1980";
@@ -1401,13 +1527,17 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7057</b></li>
      *   <li>EPSG ellipsoid name: <b>International 1924 Authalic Sphere</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6371228</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6371228</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6371228.0 metre</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6371228.0 metre</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Authalic sphere derived from International 1924 ellipsoid (code 7022).
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("International 1924 Authalic Sphere")
     public void testInternational1924AuthalicSphere() throws FactoryException {
         code              = 7057;
         name              = "International 1924 Authalic Sphere";
@@ -1428,13 +1558,15 @@ public class Test2002 extends Series2000<Ellipsoid> {
      *   <li>EPSG ellipsoid code: <b>7025</b></li>
      *   <li>EPSG ellipsoid name: <b>NWL 9D</b></li>
      *   <li>Alias(es) given by EPSG: <b>WGS 66</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378145</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378145.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.25</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("NWL 9D")
     public void testNWL9D() throws FactoryException {
         code              = 7025;
         name              = "NWL 9D";
@@ -1453,13 +1585,17 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7032</b></li>
      *   <li>EPSG ellipsoid name: <b>OSU86F</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378136.2</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378136.2 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.257223563</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Used for OSU86 gravity potential (geoidal) model.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("OSU86F")
     public void testOSU86F() throws FactoryException {
         code              = 7032;
         name              = "OSU86F";
@@ -1478,13 +1614,17 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7033</b></li>
      *   <li>EPSG ellipsoid name: <b>OSU91A</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378136.3</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378136.3 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>298.257223563</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Used for OSU91 gravity potential (geoidal) model.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("OSU91A")
     public void testOSU91A() throws FactoryException {
         code              = 7033;
         name              = "OSU91A";
@@ -1503,13 +1643,17 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7027</b></li>
      *   <li>EPSG ellipsoid name: <b>Plessis 1817</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6376523</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6376523.0 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>308.64</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Rescaling of Delambre 1810 figure (a=6376985 m) to make meridional arc from equator to pole equal to 10000000 metres exactly.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Plessis 1817")
     public void testPlessis() throws FactoryException {
         code              = 7027;
         name              = "Plessis 1817";
@@ -1537,6 +1681,7 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Popular Visualisation Sphere")
     public void testPopularVisualisationSphere() throws FactoryException {
         code              = 7059;
         name              = "Popular Visualisation Sphere";
@@ -1557,13 +1702,15 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7054</b></li>
      *   <li>EPSG ellipsoid name: <b>PZ-90</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378136</b></li>
-     *   <li>Inverse flattening (1/<var>f</var>): <b>298.2578393</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378136.0 metre</b></li>
+     *   <li>Inverse flattening (1/<var>f</var>): <b>298.257839303</b></li>
+     *   <li>EPSG Usage Extent: <b>Russia</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("PZ-90")
     public void testPZ90() throws FactoryException {
         code              = 7054;
         name              = "PZ-90";
@@ -1572,7 +1719,7 @@ public class Test2002 extends Series2000<Ellipsoid> {
         semiMajorInMetres = 6378136.0;
         semiMajorAxis     = 6378136.0;
         semiMinorAxis     = Double.NaN;
-        inverseFlattening = 298.2578393;
+        inverseFlattening = 298.257839303;
         verifyEllipsoid();
     }
 
@@ -1582,13 +1729,17 @@ public class Test2002 extends Series2000<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7028</b></li>
      *   <li>EPSG ellipsoid name: <b>Struve 1860</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6378298.3</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6378298.3 metre</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>294.73</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
+     *
+     * Remarks: Original definition of semi-major axis given as 3272539 toise.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
      */
     @Test
+    @DisplayName("Struve 1860")
     public void testStruve() throws FactoryException {
         code              = 7028;
         name              = "Struve 1860";

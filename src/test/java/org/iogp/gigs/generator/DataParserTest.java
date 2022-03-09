@@ -57,4 +57,64 @@ public final class DataParserTest {
         assertEquals("sexagesimal degree",  values[5], "Unit Name");
         assertEquals(Double.valueOf(0.0),   values[6], "Longitude from Greenwich (degrees)");
     }
+
+    /**
+     * Tests loading the data from the {@code "GIGS_lib_2202_Ellipsoid.txt"} file.
+     * The purpose of this test is to ensure that the file is fully loaded.
+     * A few sampled records are tested in this process.
+     *
+     * @throws IOException if an error occurred while reading the test data.
+     */
+    @Test
+    public void testFileLoading() throws IOException {
+        final int[] expectedCodes = {
+            7001, 7002, 7003, 7004, 7005, 7007, 7008, 7010, 7011, 7012, 7013, 7014, 7015,
+            7016, 7018, 7019, 7020, 7021, 7022, 7024, 7025, 7027, 7028, 7029, 7030, 7031,
+            7032, 7033, 7034, 7036, 7041, 7042, 7043, 7044, 7045, 7046, 7048, 7049, 7050,
+            7051, 7052, 7053, 7054, 7055, 7056, 7057, 7058
+        };
+
+        // We will inspect only the first 5 columns for this test.
+        final DataParser data = new DataParser(Series.PREDEFINED, "GIGS_lib_2202_Ellipsoid.txt",
+            Integer.class,      // [ 0]: EPSG Ellipsoid Code
+            String .class,      // [ 1]: EPSG Ellipsoid Name
+            String .class,      // [ 2]: Alias(es) given by EPSG
+            Double .class);     // [ 3]: Semi-major axis (a)
+
+        int index = 0;
+        while (data.next()) {
+            final int      code      = data.getInt    (0);
+            final String   name      = data.getString (1);
+            final String[] aliases   = data.getStrings(2);
+            final double   semiMajor = data.getDouble (3);
+            final String   message   = "EPSG:" + code;
+            assertEquals (expectedCodes[index], code, message);
+            assertNotNull(name, message);
+            assertFalse  (name.isEmpty(), message);
+            assertNotNull(aliases, message);
+            assertTrue   (semiMajor > 0, message);
+            switch (code) {
+                case 7043: {
+                    assertEquals("WGS 72", name, message);
+                    assertEquals(6378135,  semiMajor, 0, message);
+                    assertArrayEquals(new String[] {"NWL 10D"}, aliases, message);
+                    break;
+                }
+                case 7030: {
+                    assertEquals("WGS 84", name, message);
+                    assertEquals(6378137,  semiMajor, 0, message);
+                    assertArrayEquals(new String[] {"WGS84"}, aliases, message);
+                    break;
+                }
+                case 7013: {
+                    assertEquals("Clarke 1880 (Arc)", name, message);
+                    assertEquals(6378249.145, semiMajor, 1E-4, message);
+                    assertArrayEquals(new String[] {"Modified Clarke 1880 (South Africa)", "Clarke 1880 (Cape)"}, aliases, message);
+                    break;
+                }
+            }
+            index++;
+        }
+        assertEquals(expectedCodes.length, index, "Missing records.");
+    }
 }
