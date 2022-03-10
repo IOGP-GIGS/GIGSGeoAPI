@@ -213,7 +213,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Athens")
-    public void test8912() throws FactoryException {
+    public void EPSG_8912() throws FactoryException {
         code               = 8912;
         name               = "Athens";
         aliases            = NONE;
@@ -240,7 +240,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Bern")
-    public void test8907() throws FactoryException {
+    public void EPSG_8907() throws FactoryException {
         code               = 8907;
         name               = "Bern";
         aliases            = NONE;
@@ -263,7 +263,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Bogota")
-    public void test8904() throws FactoryException {
+    public void EPSG_8904() throws FactoryException {
         code               = 8904;
         name               = "Bogota";
         aliases            = NONE;
@@ -286,7 +286,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Brussels")
-    public void test8910() throws FactoryException {
+    public void EPSG_8910() throws FactoryException {
         code               = 8910;
         name               = "Brussels";
         aliases            = NONE;
@@ -310,7 +310,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Ferro")
-    public void test8909() throws FactoryException {
+    public void EPSG_8909() throws FactoryException {
         code               = 8909;
         name               = "Ferro";
         aliases            = new String[] {"El Hierro"};
@@ -336,7 +336,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Greenwich")
-    public void test8901() throws FactoryException {
+    public void EPSG_8901() throws FactoryException {
         code               = 8901;
         name               = "Greenwich";
         aliases            = NONE;
@@ -363,7 +363,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Jakarta")
-    public void test8908() throws FactoryException {
+    public void EPSG_8908() throws FactoryException {
         code               = 8908;
         name               = "Jakarta";
         aliases            = NONE;
@@ -386,7 +386,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Lisbon")
-    public void test8902() throws FactoryException {
+    public void EPSG_8902() throws FactoryException {
         code               = 8902;
         name               = "Lisbon";
         aliases            = NONE;
@@ -412,7 +412,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Madrid")
-    public void test8905() throws FactoryException {
+    public void EPSG_8905() throws FactoryException {
         code               = 8905;
         name               = "Madrid";
         aliases            = NONE;
@@ -436,7 +436,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Oslo")
-    public void test8913() throws FactoryException {
+    public void EPSG_8913() throws FactoryException {
         code               = 8913;
         name               = "Oslo";
         aliases            = new String[] {"Kristiania", "Christiana"};
@@ -464,7 +464,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Paris")
-    public void test8903() throws FactoryException {
+    public void EPSG_8903() throws FactoryException {
         code               = 8903;
         name               = "Paris";
         aliases            = NONE;
@@ -490,7 +490,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Paris RGS")
-    public void test8914() throws FactoryException {
+    public void EPSG_8914() throws FactoryException {
         code               = 8914;
         name               = "Paris RGS";
         aliases            = NONE;
@@ -513,7 +513,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Rome")
-    public void test8906() throws FactoryException {
+    public void EPSG_8906() throws FactoryException {
         code               = 8906;
         name               = "Rome";
         aliases            = NONE;
@@ -536,7 +536,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Stockholm")
-    public void test8911() throws FactoryException {
+    public void EPSG_8911() throws FactoryException {
         code               = 8911;
         name               = "Stockholm";
         aliases            = NONE;

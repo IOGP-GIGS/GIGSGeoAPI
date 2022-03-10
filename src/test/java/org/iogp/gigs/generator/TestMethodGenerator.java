@@ -395,7 +395,7 @@ public abstract class TestMethodGenerator {
         indent(1); out.append(" */\n");
         indent(1); out.append("@Test\n");
         indent(1); out.append("@DisplayName(\"").append(name).append("\")\n");
-        indent(1); out.append("public void test").append(code).append("() throws FactoryException {\n");
+        indent(1); out.append("public void EPSG_").append(code).append("() throws FactoryException {\n");
         final StringBuilder buffer = new StringBuilder(name.length());
         for (int c, i=0; i<name.length(); i += Character.charCount(c)) {
             c = name.codePointAt(i);

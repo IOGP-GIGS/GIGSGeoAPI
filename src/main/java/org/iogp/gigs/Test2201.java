@@ -232,7 +232,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("arc-second")
-    public void test9104() throws FactoryException {
+    public void EPSG_9104() throws FactoryException {
         code       = 9104;
         name       = "arc-second";
         aliases    = new String[] {"sec", "angular second"};
@@ -260,7 +260,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("British chain (Sears 1922)")
-    public void test9042() throws FactoryException {
+    public void EPSG_9042() throws FactoryException {
         code       = 9042;
         name       = "British chain (Sears 1922)";
         aliases    = new String[] {"chain", "chSe"};
@@ -291,7 +291,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("British chain (Sears 1922 truncated)")
-    public void test9301() throws FactoryException {
+    public void EPSG_9301() throws FactoryException {
         code       = 9301;
         name       = "British chain (Sears 1922 truncated)";
         aliases    = new String[] {"chain", "chSe(T)"};
@@ -319,7 +319,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("British foot (Sears 1922)")
-    public void test9041() throws FactoryException {
+    public void EPSG_9041() throws FactoryException {
         code       = 9041;
         name       = "British foot (Sears 1922)";
         aliases    = new String[] {"foot", "ftSe"};
@@ -347,7 +347,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("British yard (Sears 1922)")
-    public void test9040() throws FactoryException {
+    public void EPSG_9040() throws FactoryException {
         code       = 9040;
         name       = "British yard (Sears 1922)";
         aliases    = new String[] {"yard", "ydSe"};
@@ -376,7 +376,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("centesimal second")
-    public void test9113() throws FactoryException {
+    public void EPSG_9113() throws FactoryException {
         code       = 9113;
         name       = "centesimal second";
         aliases    = new String[] {"cc", "centesimal-second"};
@@ -405,7 +405,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("Clarke's foot")
-    public void test9005() throws FactoryException {
+    public void EPSG_9005() throws FactoryException {
         code       = 9005;
         name       = "Clarke's foot";
         aliases    = new String[] {"South African geodetic foot", "ftCla", "Clarke foot"};
@@ -435,7 +435,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("Clarke's link")
-    public void test9039() throws FactoryException {
+    public void EPSG_9039() throws FactoryException {
         code       = 9039;
         name       = "Clarke's link";
         aliases    = new String[] {"link (Clarke's ratio)", "lkCla", "Clarke link"};
@@ -461,7 +461,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("coefficient")
-    public void test9203() throws FactoryException {
+    public void EPSG_9203() throws FactoryException {
         code       = 9203;
         name       = "coefficient";
         aliases    = NONE;
@@ -490,7 +490,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("degree")
-    public void test9102() throws FactoryException {
+    public void EPSG_9102() throws FactoryException {
         code       = 9102;
         name       = "degree";
         aliases    = new String[] {"deg", "angular degree"};
@@ -516,7 +516,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("foot")
-    public void test9002() throws FactoryException {
+    public void EPSG_9002() throws FactoryException {
         code       = 9002;
         name       = "foot";
         aliases    = new String[] {"international foot", "ft"};
@@ -542,7 +542,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("German legal metre")
-    public void test9031() throws FactoryException {
+    public void EPSG_9031() throws FactoryException {
         code       = 9031;
         name       = "German legal metre";
         aliases    = new String[] {"GLM"};
@@ -571,7 +571,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("Gold Coast foot")
-    public void test9094() throws FactoryException {
+    public void EPSG_9094() throws FactoryException {
         code       = 9094;
         name       = "Gold Coast foot";
         aliases    = new String[] {"foot", "ftGC"};
@@ -599,7 +599,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("grad")
-    public void test9105() throws FactoryException {
+    public void EPSG_9105() throws FactoryException {
         code       = 9105;
         name       = "grad";
         aliases    = new String[] {"gr", "gon"};
@@ -628,7 +628,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("Indian yard")
-    public void test9084() throws FactoryException {
+    public void EPSG_9084() throws FactoryException {
         code       = 9084;
         name       = "Indian yard";
         aliases    = new String[] {"yard", "ydInd"};
@@ -654,7 +654,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("kilometre")
-    public void test9036() throws FactoryException {
+    public void EPSG_9036() throws FactoryException {
         code       = 9036;
         name       = "kilometre";
         aliases    = new String[] {"kilometer", "km"};
@@ -682,7 +682,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("link")
-    public void test9098() throws FactoryException {
+    public void EPSG_9098() throws FactoryException {
         code       = 9098;
         name       = "link";
         aliases    = new String[] {"international link", "lk"};
@@ -710,7 +710,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("metre")
-    public void test9001() throws FactoryException {
+    public void EPSG_9001() throws FactoryException {
         code       = 9001;
         name       = "metre";
         aliases    = new String[] {"meter", "International metre", "m"};
@@ -738,7 +738,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("microradian")
-    public void test9109() throws FactoryException {
+    public void EPSG_9109() throws FactoryException {
         code       = 9109;
         name       = "microradian";
         aliases    = new String[] {"µrad"};
@@ -764,7 +764,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("parts per million")
-    public void test9202() throws FactoryException {
+    public void EPSG_9202() throws FactoryException {
         code       = 9202;
         name       = "parts per million";
         aliases    = new String[] {"ppm", "µm/m"};
@@ -793,7 +793,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("radian")
-    public void test9101() throws FactoryException {
+    public void EPSG_9101() throws FactoryException {
         code       = 9101;
         name       = "radian";
         aliases    = new String[] {"rad"};
@@ -825,7 +825,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("sexagesimal DMS")
-    public void test9110() throws FactoryException {
+    public void EPSG_9110() throws FactoryException {
         code       = 9110;
         name       = "sexagesimal DMS";
         aliases    = new String[] {"DDD.MMSSsss", "sexagesimal degree DDD.MMSSsss"};
@@ -864,7 +864,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("unity")
-    public void test9201() throws FactoryException {
+    public void EPSG_9201() throws FactoryException {
         code       = 9201;
         name       = "unity";
         aliases    = new String[] {"euclid"};
@@ -890,7 +890,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      */
     @Test
     @DisplayName("US survey foot")
-    public void test9003() throws FactoryException {
+    public void EPSG_9003() throws FactoryException {
         code       = 9003;
         name       = "US survey foot";
         aliases    = new String[] {"American foot", "ftUS", "ft(US)"};

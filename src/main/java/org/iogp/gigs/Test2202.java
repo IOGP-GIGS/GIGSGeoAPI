@@ -302,7 +302,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Airy 1830")
-    public void test7001() throws FactoryException {
+    public void EPSG_7001() throws FactoryException {
         code              = 7001;
         name              = "Airy 1830";
         aliases           = NONE;
@@ -331,7 +331,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Airy Modified 1849")
-    public void test7002() throws FactoryException {
+    public void EPSG_7002() throws FactoryException {
         code              = 7002;
         name              = "Airy Modified 1849";
         aliases           = NONE;
@@ -362,7 +362,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Australian National Spheroid")
-    public void test7003() throws FactoryException {
+    public void EPSG_7003() throws FactoryException {
         code              = 7003;
         name              = "Australian National Spheroid";
         aliases           = new String[] {"ANS"};
@@ -389,7 +389,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Average Terrestrial System 1977")
-    public void test7041() throws FactoryException {
+    public void EPSG_7041() throws FactoryException {
         code              = 7041;
         name              = "Average Terrestrial System 1977";
         aliases           = NONE;
@@ -420,7 +420,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Bessel 1841")
-    public void test7004() throws FactoryException {
+    public void EPSG_7004() throws FactoryException {
         code              = 7004;
         name              = "Bessel 1841";
         aliases           = NONE;
@@ -449,7 +449,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Bessel Modified")
-    public void test7005() throws FactoryException {
+    public void EPSG_7005() throws FactoryException {
         code              = 7005;
         name              = "Bessel Modified";
         aliases           = NONE;
@@ -480,7 +480,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Bessel Namibia (GLM)")
-    public void test7046() throws FactoryException {
+    public void EPSG_7046() throws FactoryException {
         code              = 7046;
         name              = "Bessel Namibia (GLM)";
         aliases           = NONE;
@@ -512,7 +512,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1858")
-    public void test7007() throws FactoryException {
+    public void EPSG_7007() throws FactoryException {
         code              = 7007;
         name              = "Clarke 1858";
         aliases           = NONE;
@@ -543,7 +543,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1866")
-    public void test7008() throws FactoryException {
+    public void EPSG_7008() throws FactoryException {
         code              = 7008;
         name              = "Clarke 1866";
         aliases           = NONE;
@@ -572,7 +572,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1866 Authalic Sphere")
-    public void test7052() throws FactoryException {
+    public void EPSG_7052() throws FactoryException {
         code              = 7052;
         name              = "Clarke 1866 Authalic Sphere";
         aliases           = NONE;
@@ -602,7 +602,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1880")
-    public void test7034() throws FactoryException {
+    public void EPSG_7034() throws FactoryException {
         code              = 7034;
         name              = "Clarke 1880";
         aliases           = NONE;
@@ -633,7 +633,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1880 (Arc)")
-    public void test7013() throws FactoryException {
+    public void EPSG_7013() throws FactoryException {
         code              = 7013;
         name              = "Clarke 1880 (Arc)";
         aliases           = new String[] {"Modified Clarke 1880 (South Africa)", "Clarke 1880 (Cape)"};
@@ -663,7 +663,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1880 (Benoit)")
-    public void test7010() throws FactoryException {
+    public void EPSG_7010() throws FactoryException {
         code              = 7010;
         name              = "Clarke 1880 (Benoit)";
         aliases           = NONE;
@@ -693,7 +693,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1880 (IGN)")
-    public void test7011() throws FactoryException {
+    public void EPSG_7011() throws FactoryException {
         code              = 7011;
         name              = "Clarke 1880 (IGN)";
         aliases           = NONE;
@@ -724,7 +724,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1880 (international foot)")
-    public void test7055() throws FactoryException {
+    public void EPSG_7055() throws FactoryException {
         code              = 7055;
         name              = "Clarke 1880 (international foot)";
         aliases           = NONE;
@@ -752,7 +752,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1866 Michigan")
-    public void test7009() throws FactoryException {
+    public void EPSG_7009() throws FactoryException {
         important         = true;
         code              = 7009;
         name              = "Clarke 1866 Michigan";
@@ -785,7 +785,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1880 (RGS)")
-    public void test7012() throws FactoryException {
+    public void EPSG_7012() throws FactoryException {
         code              = 7012;
         name              = "Clarke 1880 (RGS)";
         aliases           = new String[] {"Clarke Modified 1880"};
@@ -815,7 +815,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1880 (SGA 1922)")
-    public void test7014() throws FactoryException {
+    public void EPSG_7014() throws FactoryException {
         code              = 7014;
         name              = "Clarke 1880 (SGA 1922)";
         aliases           = NONE;
@@ -845,7 +845,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Danish 1876")
-    public void test7051() throws FactoryException {
+    public void EPSG_7051() throws FactoryException {
         code              = 7051;
         name              = "Danish 1876";
         aliases           = NONE;
@@ -874,7 +874,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest (1830 Definition)")
-    public void test7042() throws FactoryException {
+    public void EPSG_7042() throws FactoryException {
         code              = 7042;
         name              = "Everest (1830 Definition)";
         aliases           = NONE;
@@ -905,7 +905,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest 1830 (1937 Adjustment)")
-    public void test7015() throws FactoryException {
+    public void EPSG_7015() throws FactoryException {
         code              = 7015;
         name              = "Everest 1830 (1937 Adjustment)";
         aliases           = NONE;
@@ -936,7 +936,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest 1830 (1962 Definition)")
-    public void test7044() throws FactoryException {
+    public void EPSG_7044() throws FactoryException {
         code              = 7044;
         name              = "Everest 1830 (1962 Definition)";
         aliases           = NONE;
@@ -966,7 +966,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest 1830 (1967 Definition)")
-    public void test7016() throws FactoryException {
+    public void EPSG_7016() throws FactoryException {
         code              = 7016;
         name              = "Everest 1830 (1967 Definition)";
         aliases           = NONE;
@@ -997,7 +997,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest 1830 (1975 Definition)")
-    public void test7045() throws FactoryException {
+    public void EPSG_7045() throws FactoryException {
         code              = 7045;
         name              = "Everest 1830 (1975 Definition)";
         aliases           = NONE;
@@ -1029,7 +1029,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest 1830 (RSO 1969)")
-    public void test7056() throws FactoryException {
+    public void EPSG_7056() throws FactoryException {
         code              = 7056;
         name              = "Everest 1830 (RSO 1969)";
         aliases           = NONE;
@@ -1059,7 +1059,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest 1830 Modified")
-    public void test7018() throws FactoryException {
+    public void EPSG_7018() throws FactoryException {
         code              = 7018;
         name              = "Everest 1830 Modified";
         aliases           = NONE;
@@ -1088,7 +1088,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("GEM 10C")
-    public void test7031() throws FactoryException {
+    public void EPSG_7031() throws FactoryException {
         code              = 7031;
         name              = "GEM 10C";
         aliases           = NONE;
@@ -1116,7 +1116,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("GRS 1967")
-    public void test7036() throws FactoryException {
+    public void EPSG_7036() throws FactoryException {
         code              = 7036;
         name              = "GRS 1967";
         aliases           = new String[] {"International 1967"};
@@ -1148,7 +1148,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("GRS 1967 Modified")
-    public void test7050() throws FactoryException {
+    public void EPSG_7050() throws FactoryException {
         code              = 7050;
         name              = "GRS 1967 Modified";
         aliases           = new String[] {"GRS 1967"};
@@ -1178,7 +1178,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("GRS 1980")
-    public void test7019() throws FactoryException {
+    public void EPSG_7019() throws FactoryException {
         code              = 7019;
         name              = "GRS 1980";
         aliases           = new String[] {"International 1979"};
@@ -1208,7 +1208,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("GRS 1980 Authalic Sphere")
-    public void test7048() throws FactoryException {
+    public void EPSG_7048() throws FactoryException {
         code              = 7048;
         name              = "GRS 1980 Authalic Sphere";
         aliases           = NONE;
@@ -1238,7 +1238,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Helmert 1906")
-    public void test7020() throws FactoryException {
+    public void EPSG_7020() throws FactoryException {
         code              = 7020;
         name              = "Helmert 1906";
         aliases           = NONE;
@@ -1265,7 +1265,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Hough 1960")
-    public void test7053() throws FactoryException {
+    public void EPSG_7053() throws FactoryException {
         code              = 7053;
         name              = "Hough 1960";
         aliases           = NONE;
@@ -1296,7 +1296,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Hughes 1980")
-    public void test7058() throws FactoryException {
+    public void EPSG_7058() throws FactoryException {
         code              = 7058;
         name              = "Hughes 1980";
         aliases           = NONE;
@@ -1324,7 +1324,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("IAG 1975")
-    public void test7049() throws FactoryException {
+    public void EPSG_7049() throws FactoryException {
         code              = 7049;
         name              = "IAG 1975";
         aliases           = new String[] {"Xian 1980"};
@@ -1353,7 +1353,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Indonesian National Spheroid")
-    public void test7021() throws FactoryException {
+    public void EPSG_7021() throws FactoryException {
         code              = 7021;
         name              = "Indonesian National Spheroid";
         aliases           = NONE;
@@ -1383,7 +1383,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("International 1924")
-    public void test7022() throws FactoryException {
+    public void EPSG_7022() throws FactoryException {
         code              = 7022;
         name              = "International 1924";
         aliases           = new String[] {"Hayford 1909"};
@@ -1412,7 +1412,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("International 1924 Authalic Sphere")
-    public void test7057() throws FactoryException {
+    public void EPSG_7057() throws FactoryException {
         code              = 7057;
         name              = "International 1924 Authalic Sphere";
         aliases           = NONE;
@@ -1440,7 +1440,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Krassowsky 1940")
-    public void test7024() throws FactoryException {
+    public void EPSG_7024() throws FactoryException {
         code              = 7024;
         name              = "Krassowsky 1940";
         aliases           = NONE;
@@ -1468,7 +1468,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("NWL 9D")
-    public void test7025() throws FactoryException {
+    public void EPSG_7025() throws FactoryException {
         code              = 7025;
         name              = "NWL 9D";
         aliases           = new String[] {"WGS 66"};
@@ -1497,7 +1497,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("OSU86F")
-    public void test7032() throws FactoryException {
+    public void EPSG_7032() throws FactoryException {
         code              = 7032;
         name              = "OSU86F";
         aliases           = NONE;
@@ -1526,7 +1526,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("OSU91A")
-    public void test7033() throws FactoryException {
+    public void EPSG_7033() throws FactoryException {
         code              = 7033;
         name              = "OSU91A";
         aliases           = NONE;
@@ -1555,7 +1555,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Plessis 1817")
-    public void test7027() throws FactoryException {
+    public void EPSG_7027() throws FactoryException {
         code              = 7027;
         name              = "Plessis 1817";
         aliases           = NONE;
@@ -1583,7 +1583,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Popular Visualisation Sphere")
-    public void test7059() throws FactoryException {
+    public void EPSG_7059() throws FactoryException {
         code              = 7059;
         name              = "Popular Visualisation Sphere";
         aliases           = NONE;
@@ -1612,7 +1612,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("PZ-90")
-    public void test7054() throws FactoryException {
+    public void EPSG_7054() throws FactoryException {
         code              = 7054;
         name              = "PZ-90";
         aliases           = NONE;
@@ -1641,7 +1641,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Struve 1860")
-    public void test7028() throws FactoryException {
+    public void EPSG_7028() throws FactoryException {
         code              = 7028;
         name              = "Struve 1860";
         aliases           = NONE;
@@ -1674,7 +1674,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("War Office")
-    public void test7029() throws FactoryException {
+    public void EPSG_7029() throws FactoryException {
         code              = 7029;
         name              = "War Office";
         aliases           = new String[] {"McCaw 1924"};
@@ -1702,7 +1702,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("WGS 72")
-    public void test7043() throws FactoryException {
+    public void EPSG_7043() throws FactoryException {
         code              = 7043;
         name              = "WGS 72";
         aliases           = new String[] {"NWL 10D"};
@@ -1730,7 +1730,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("WGS 84")
-    public void test7030() throws FactoryException {
+    public void EPSG_7030() throws FactoryException {
         code              = 7030;
         name              = "WGS 84";
         aliases           = new String[] {"WGS84"};
