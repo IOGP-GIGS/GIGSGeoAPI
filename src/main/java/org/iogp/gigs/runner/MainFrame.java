@@ -51,7 +51,7 @@ import javax.swing.JButton;
 import javax.swing.SwingWorker;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
@@ -161,16 +161,20 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
                 specVersion   = new JLabel(),
                 specVendor    = new JLabel()), BorderLayout.NORTH);
         /*
-         * The main panel, which will contain many tabs. The first (and most important)
-         * tab show the test result. Next tabs show more information on test failures or
-         * on features supported by the application being tested.
+         * The main panel, which will contain many tabs. The first pane shows the test results.
+         * Next pane shows more information on test failures or on features supported by the
+         * application being tested.
          */
-        final JTabbedPane tabs = new JTabbedPane();
-        add(tabs, BorderLayout.CENTER);
+        final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+        splitPane.setOneTouchExpandable(true);
+        splitPane.setContinuousLayout(true);
+        splitPane.setDividerLocation(250);
+        splitPane.setResizeWeight(1);
+        add(splitPane, BorderLayout.CENTER);
         /*
          * The main tab, showing the JUnit test results in a table.
          */
-        if (true) {
+        {   // For keeping variables in a local scope.
             final JTable table = new JTable(results);
             table.setDefaultRenderer(String.class, new ResultCellRenderer());
             table.setAutoCreateRowSorter(true);
@@ -180,18 +184,18 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
             columns.getColumn(ResultTableModel.TEST_COLUMN)   .setPreferredWidth(175);
             columns.getColumn(ResultTableModel.RESULT_COLUMN) .setPreferredWidth( 40);
             columns.getColumn(ResultTableModel.MESSAGE_COLUMN).setPreferredWidth(250);      // Take all remaining space.
-            tabs.addTab("Tests", new JScrollPane(table));
+            splitPane.setTopComponent(new JScrollPane(table));
         }
         /*
          * A tab showing more information about a failed tests (for example the stack trace),
          * together with some information about the configuration.
          */
-        if (true) {
-            final JButton viewJavadoc = new JButton("info");
+        {   // For keeping variables in a local scope.
+            final JButton viewJavadoc = new JButton("Online documentation");
             viewJavadoc.setEnabled(desktop != null && desktop.isSupported(Desktop.Action.BROWSE));
             viewJavadoc.setToolTipText("View javadoc for this test");
             viewJavadoc.addActionListener(this);
-            tabs.addTab("Details", new SwingPanelBuilder().createDetailsPane(
+            splitPane.setBottomComponent(new SwingPanelBuilder().createDetailsPane(
                     testName = new JLabel(), viewJavadoc,
                     new JTable(factories = new FactoryTableModel()),
                     new JTable(configuration = new ConfigurationTableModel()),
@@ -222,6 +226,8 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
     /**
      * Sets the implementation identification.
      * This method is invoked in the Swing thread.
+     *
+     * @param  manifest  information about the library being tested.
      */
     private void setManifest(final ImplementationManifest manifest) {
         title        .setText(manifest != null ? manifest.title         : null);
@@ -237,6 +243,8 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
     /**
      * Updates the content of the "Details" pane with information relative to the given entry.
      * A {@code null} entry clears the "Details" pane.
+     *
+     * @param  entry  description of test result.
      */
     private void setDetails(final ResultEntry entry) {
         String className  = null;
@@ -272,7 +280,6 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
         configuration.fireTableDataChanged();
         testName     .setText(className + '.' + methodName);
         exception    .setText(stacktrace);
-        exception    .setEnabled(stacktrace != null);
         exception    .setCaretPosition(0);
         currentReport = entry;
     }
@@ -281,6 +288,8 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
      * Invoked when the user clicked on a new row in the table showing test results.
      * This method updates the "Details" tab with information relative to the test
      * in the selected row.
+     *
+     * @param  event  the event that characterizes the change.
      */
     @Override
     public void valueChanged(final ListSelectionEvent event) {
@@ -294,6 +303,8 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
 
     /**
      * Invoked when the user pressed the "View javadoc" button.
+     *
+     * @param  event  ignored.
      */
     @Override
     public void actionPerformed(final ActionEvent event) {
@@ -319,6 +330,8 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
 
         /**
          * Creates a new worker which will loads the given JAR files.
+         *
+         * @param  files  the JAR files.
          */
         Loader(final File[] files) {
             this.files = files;
@@ -326,6 +339,8 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
 
         /**
          * Loads the given JAR files and creates a class loader for running the tests.
+         *
+         * @return {@code null} (ignored).
          */
         @Override
         protected Object doInBackground() throws IOException {
