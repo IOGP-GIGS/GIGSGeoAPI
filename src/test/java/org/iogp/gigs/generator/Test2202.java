@@ -24,7 +24,6 @@
  */
 package org.iogp.gigs.generator;
 
-import java.util.Map;
 import java.io.IOException;
 
 
@@ -38,33 +37,6 @@ import java.io.IOException;
  * @since   1.0
  */
 public final class Test2202 extends TestMethodGenerator {
-    /**
-     * The mapping from a few GIGS test names to method names.
-     * We put an entry in this map only when a name different
-     * than the automatically generated name is desired.
-     */
-    private final Map<String,String> METHOD_NAMES = map(
-        "Airy Modified 1849",             "testAiryModified",
-        "Bessel 1841",                    "testBessel",
-        "Clarke 1880 (Benoit)",           "testClarkeBenoit",
-        "Clarke 1880 (IGN)",              "testClarkeIGN",
-        "Clarke 1880 (RGS)",              "testClarkeRGS",
-        "Clarke 1880 (Arc)",              "testClarkeArc",
-        "Clarke 1880 (SGA 1922)",         "testClarkeSGA",
-        "Clarke 1866 Authalic Sphere",    "testClarkeAuthalicSphere",
-        "Everest (1830 Definition)",      "testEverest1830",
-        "Everest 1830 (1937 Adjustment)", "testEverest1937",
-        "Everest 1830 (1962 Definition)", "testEverest1962",
-        "Everest 1830 (1967 Definition)", "testEverest1967",
-        "Everest 1830 (1975 Definition)", "testEverest1975",
-        "Everest 1830 Modified",          "testEverestModified",
-        "Everest 1830 (RSO 1969)",        "testEverestRSO",
-        "Helmert 1906",                   "testHelmert",
-        "Indonesian National Spheroid",   "testIndonesianNational",
-        "Danish 1876",                    "testDanish",
-        "Plessis 1817",                   "testPlessis",
-        "Struve 1860",                    "testStruve");
-
     /**
      * Launcher.
      *
@@ -124,7 +96,7 @@ public final class Test2202 extends TestMethodGenerator {
                                   "EPSG Usage Extent", extent);
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the ellipsoid from the EPSG code.");
-            printTestMethodSignature(METHOD_NAMES, name);
+            printTestMethodSignature(code, name);
             printFieldAssignments("code",              code,
                                   "name",              name,
                                   "aliases",           aliases,

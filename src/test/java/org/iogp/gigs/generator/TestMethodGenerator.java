@@ -96,21 +96,6 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Creates a map from the given (key, value) tuples.
-     *
-     * @param  entries  the (key, value) tuples.
-     * @return map with the given entries.
-     */
-    static Map<String,String> map(final String... entries) {
-        assertTrue((entries.length & 1) == 0);
-        final Map<String,String> map = new HashMap<>(1 + (int) (entries.length * 2./3));
-        for (int i=0; i<entries.length;) {
-            assertNull(map.put(entries[i++], entries[i++]));
-        }
-        return map;
-    }
-
-    /**
      * Retrieves the unit of the given name.
      *
      * @param  name  the unit name.
@@ -403,53 +388,22 @@ public abstract class TestMethodGenerator {
      * Closes the javadoc comment block, then prints the test method signature.
      * The signature includes the {@code throws FactoryException} declaration.
      *
-     * @param nameToMethod  a map of test method names to use for the given {@code name}.
-     *        If this map does not contain an entry for the given {@code name}, then this method
-     *        will generate a new name by trimming illegal characters from the given {@code name}.
-     * @param name  the name to use for generating a method name.
-     *              Spaces will be replaced by camel-cases.
+     * @param code  the EPSG or GIGS code to use in method signature.
+     * @param name  the name to use for generating a method name. Used for sorting.
      */
-    final void printTestMethodSignature(final Map<String,String> nameToMethod, final String name) {
+    final void printTestMethodSignature(final int code, final String name) {
         indent(1); out.append(" */\n");
         indent(1); out.append("@Test\n");
         indent(1); out.append("@DisplayName(\"").append(name).append("\")\n");
-        indent(1); out.append("public void ");
-        methodName = nameToMethod.get(name);
-        if (methodName != null) {
-            out.append(methodName);
-        } else {
-            final int start = out.length();
-            out.append("test");
-            boolean toUpperCase = true;
-            for (int i=0; i<name.length(); i++) {
-                char c = name.charAt(i);
-                if (Character.isJavaIdentifierPart(c)) {
-                    if (toUpperCase) {
-                        toUpperCase = false;
-                        c = Character.toUpperCase(c);
-                    }
-                    out.append(c);
-                } else {
-                    if (c == '(' || c == ')') {
-                        if (i+1 < name.length()) {
-                            out.append('_');
-                            toUpperCase = false;
-                        }
-                    } else {
-                        toUpperCase = true;
-                    }
-                    /*
-                     * For name like “Clarke's foot”, skip also the "s" after the single quote.
-                     * The result will be “ClarkeFoot”.
-                     */
-                    if (c == '\'' && i+1 < name.length() && name.charAt(i+1) == 's') {
-                        i++;
-                    }
-                }
+        indent(1); out.append("public void test").append(code).append("() throws FactoryException {\n");
+        final StringBuilder buffer = new StringBuilder(name.length());
+        for (int c, i=0; i<name.length(); i += Character.charCount(c)) {
+            c = name.codePointAt(i);
+            if (Character.isLetterOrDigit(c) || !Character.isSpaceChar(c)) {
+                buffer.appendCodePoint(Character.toLowerCase(c));
             }
-            methodName = out.substring(start, out.length());
         }
-        out.append("() throws FactoryException {\n");
+        methodName = buffer.toString();
     }
 
     /**

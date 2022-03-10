@@ -213,7 +213,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Athens")
-    public void testAthens() throws FactoryException {
+    public void test8912() throws FactoryException {
         code               = 8912;
         name               = "Athens";
         aliases            = NONE;
@@ -240,7 +240,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Bern")
-    public void testBern() throws FactoryException {
+    public void test8907() throws FactoryException {
         code               = 8907;
         name               = "Bern";
         aliases            = NONE;
@@ -260,12 +260,10 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
-     *
-     * @see Test3003#testBogota()
      */
     @Test
     @DisplayName("Bogota")
-    public void testBogota() throws FactoryException {
+    public void test8904() throws FactoryException {
         code               = 8904;
         name               = "Bogota";
         aliases            = NONE;
@@ -288,7 +286,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Brussels")
-    public void testBrussels() throws FactoryException {
+    public void test8910() throws FactoryException {
         code               = 8910;
         name               = "Brussels";
         aliases            = NONE;
@@ -312,7 +310,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Ferro")
-    public void testFerro() throws FactoryException {
+    public void test8909() throws FactoryException {
         code               = 8909;
         name               = "Ferro";
         aliases            = new String[] {"El Hierro"};
@@ -335,12 +333,10 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      * Remarks: International reference meridian as defined by IERS.
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
-     *
-     * @see Test3003#testGreenwich()
      */
     @Test
     @DisplayName("Greenwich")
-    public void testGreenwich() throws FactoryException {
+    public void test8901() throws FactoryException {
         code               = 8901;
         name               = "Greenwich";
         aliases            = NONE;
@@ -364,12 +360,10 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      * Supersedes 1910 value of 106°48′37.05″E of Greenwich.
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
-     *
-     * @see Test3003#testJakarta()
      */
     @Test
     @DisplayName("Jakarta")
-    public void testJakarta() throws FactoryException {
+    public void test8908() throws FactoryException {
         code               = 8908;
         name               = "Jakarta";
         aliases            = NONE;
@@ -392,7 +386,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Lisbon")
-    public void testLisbon() throws FactoryException {
+    public void test8902() throws FactoryException {
         code               = 8902;
         name               = "Lisbon";
         aliases            = NONE;
@@ -418,7 +412,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Madrid")
-    public void testMadrid() throws FactoryException {
+    public void test8905() throws FactoryException {
         code               = 8905;
         name               = "Madrid";
         aliases            = NONE;
@@ -442,7 +436,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Oslo")
-    public void testOslo() throws FactoryException {
+    public void test8913() throws FactoryException {
         code               = 8913;
         name               = "Oslo";
         aliases            = new String[] {"Kristiania", "Christiana"};
@@ -470,7 +464,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Paris")
-    public void testParis() throws FactoryException {
+    public void test8903() throws FactoryException {
         code               = 8903;
         name               = "Paris";
         aliases            = NONE;
@@ -496,7 +490,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Paris RGS")
-    public void testParisRGS() throws FactoryException {
+    public void test8914() throws FactoryException {
         code               = 8914;
         name               = "Paris RGS";
         aliases            = NONE;
@@ -519,7 +513,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Rome")
-    public void testRome() throws FactoryException {
+    public void test8906() throws FactoryException {
         code               = 8906;
         name               = "Rome";
         aliases            = NONE;
@@ -542,7 +536,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      */
     @Test
     @DisplayName("Stockholm")
-    public void testStockholm() throws FactoryException {
+    public void test8911() throws FactoryException {
         code               = 8911;
         name               = "Stockholm";
         aliases            = NONE;

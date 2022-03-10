@@ -299,12 +299,10 @@ public class Test2202 extends Series2000<Ellipsoid> {
      * For the 1936 retriangulation OSGB defines the relationship of 10 feet of 1796 to the International metre through ([10^0.48401603]/10) exactly = 0.3048007491.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
-     *
-     * @see Test3002#testAiry()
      */
     @Test
     @DisplayName("Airy 1830")
-    public void testAiry1830() throws FactoryException {
+    public void test7001() throws FactoryException {
         code              = 7001;
         name              = "Airy 1830";
         aliases           = NONE;
@@ -333,7 +331,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Airy Modified 1849")
-    public void testAiryModified() throws FactoryException {
+    public void test7002() throws FactoryException {
         code              = 7002;
         name              = "Airy Modified 1849";
         aliases           = NONE;
@@ -364,7 +362,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Australian National Spheroid")
-    public void testAustralianNationalSpheroid() throws FactoryException {
+    public void test7003() throws FactoryException {
         code              = 7003;
         name              = "Australian National Spheroid";
         aliases           = new String[] {"ANS"};
@@ -391,7 +389,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Average Terrestrial System 1977")
-    public void testAverageTerrestrialSystem1977() throws FactoryException {
+    public void test7041() throws FactoryException {
         code              = 7041;
         name              = "Average Terrestrial System 1977";
         aliases           = NONE;
@@ -419,12 +417,10 @@ public class Test2202 extends Series2000<Ellipsoid> {
      * in the length of the various toise: the Bessel toise is therefore of uncertain length.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
-     *
-     * @see Test3002#testBessel()
      */
     @Test
     @DisplayName("Bessel 1841")
-    public void testBessel() throws FactoryException {
+    public void test7004() throws FactoryException {
         code              = 7004;
         name              = "Bessel 1841";
         aliases           = NONE;
@@ -453,7 +449,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Bessel Modified")
-    public void testBesselModified() throws FactoryException {
+    public void test7005() throws FactoryException {
         code              = 7005;
         name              = "Bessel Modified";
         aliases           = NONE;
@@ -484,7 +480,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Bessel Namibia (GLM)")
-    public void testBesselNamibia_GLM() throws FactoryException {
+    public void test7046() throws FactoryException {
         code              = 7046;
         name              = "Bessel Namibia (GLM)";
         aliases           = NONE;
@@ -516,7 +512,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1858")
-    public void testClarke1858() throws FactoryException {
+    public void test7007() throws FactoryException {
         code              = 7007;
         name              = "Clarke 1858";
         aliases           = NONE;
@@ -544,12 +540,10 @@ public class Test2202 extends Series2000<Ellipsoid> {
      * (Metric value then converted to US survey feet for use in the US and international feet for use in Cayman Islands).
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
-     *
-     * @see Test3002#testClarke1866()
      */
     @Test
     @DisplayName("Clarke 1866")
-    public void testClarke1866() throws FactoryException {
+    public void test7008() throws FactoryException {
         code              = 7008;
         name              = "Clarke 1866";
         aliases           = NONE;
@@ -558,6 +552,36 @@ public class Test2202 extends Series2000<Ellipsoid> {
         semiMajorAxis     = 6378206.4;
         semiMinorAxis     = 6356583.8;
         inverseFlattening = Double.NaN;
+        verifyEllipsoid();
+    }
+
+    /**
+     * Tests “Clarke 1866 Authalic Sphere” spheroid creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG ellipsoid code: <b>7052</b></li>
+     *   <li>EPSG ellipsoid name: <b>Clarke 1866 Authalic Sphere</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6370997.0 metre</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>6370997.0 metre</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
+     * </ul>
+     *
+     * Remarks: Authalic sphere derived from Clarke 1866 ellipsoid (code 7008).
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     */
+    @Test
+    @DisplayName("Clarke 1866 Authalic Sphere")
+    public void test7052() throws FactoryException {
+        code              = 7052;
+        name              = "Clarke 1866 Authalic Sphere";
+        aliases           = NONE;
+        toMetres          = 1.0;
+        semiMajorInMetres = 6370997.0;
+        semiMajorAxis     = 6370997.0;
+        semiMinorAxis     = 6370997.0;
+        inverseFlattening = Double.NaN;
+        isSphere          = true;
         verifyEllipsoid();
     }
 
@@ -578,43 +602,12 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1880")
-    public void testClarke1880() throws FactoryException {
+    public void test7034() throws FactoryException {
         code              = 7034;
         name              = "Clarke 1880";
         aliases           = NONE;
         toMetres          = 0.3047972654;
         semiMajorInMetres = 6378249.14480801;
-        semiMajorAxis     = 20926202.0;
-        semiMinorAxis     = 20854895.0;
-        inverseFlattening = Double.NaN;
-        verifyEllipsoid();
-    }
-
-    /**
-     * Tests “Clarke 1880 (international foot)” ellipsoid creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG ellipsoid code: <b>7055</b></li>
-     *   <li>EPSG ellipsoid name: <b>Clarke 1880 (international foot)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>20926202 foot</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>20854895 foot</b></li>
-     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
-     * </ul>
-     *
-     * Remarks: Clarke's 1880 definition in feet assumed for the purposes of metric conversion to be international foot.
-     * A = 6378306.370 metres.
-     * 1/f derived from a and b = 293.4663077.
-     *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
-     */
-    @Test
-    @DisplayName("Clarke 1880 (international foot)")
-    public void testClarke1880_internationalFoot() throws FactoryException {
-        code              = 7055;
-        name              = "Clarke 1880 (international foot)";
-        aliases           = NONE;
-        toMetres          = 0.3048;
-        semiMajorInMetres = 6378306.3696;
         semiMajorAxis     = 20926202.0;
         semiMinorAxis     = 20854895.0;
         inverseFlattening = Double.NaN;
@@ -640,7 +633,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1880 (Arc)")
-    public void testClarkeArc() throws FactoryException {
+    public void test7013() throws FactoryException {
         code              = 7013;
         name              = "Clarke 1880 (Arc)";
         aliases           = new String[] {"Modified Clarke 1880 (South Africa)", "Clarke 1880 (Cape)"};
@@ -649,36 +642,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
         semiMajorAxis     = 6378249.145;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 293.4663077;
-        verifyEllipsoid();
-    }
-
-    /**
-     * Tests “Clarke 1866 Authalic Sphere” spheroid creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG ellipsoid code: <b>7052</b></li>
-     *   <li>EPSG ellipsoid name: <b>Clarke 1866 Authalic Sphere</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6370997.0 metre</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>6370997.0 metre</b></li>
-     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
-     * </ul>
-     *
-     * Remarks: Authalic sphere derived from Clarke 1866 ellipsoid (code 7008).
-     *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
-     */
-    @Test
-    @DisplayName("Clarke 1866 Authalic Sphere")
-    public void testClarkeAuthalicSphere() throws FactoryException {
-        code              = 7052;
-        name              = "Clarke 1866 Authalic Sphere";
-        aliases           = NONE;
-        toMetres          = 1.0;
-        semiMajorInMetres = 6370997.0;
-        semiMajorAxis     = 6370997.0;
-        semiMinorAxis     = 6370997.0;
-        inverseFlattening = Double.NaN;
-        isSphere          = true;
         verifyEllipsoid();
     }
 
@@ -700,7 +663,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1880 (Benoit)")
-    public void testClarkeBenoit() throws FactoryException {
+    public void test7010() throws FactoryException {
         code              = 7010;
         name              = "Clarke 1880 (Benoit)";
         aliases           = NONE;
@@ -727,12 +690,10 @@ public class Test2202 extends Series2000<Ellipsoid> {
      * of 39.370432 inches per metre to convert axes to metres.
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
-     *
-     * @see Test3002#testClarkeIGN()
      */
     @Test
     @DisplayName("Clarke 1880 (IGN)")
-    public void testClarkeIGN() throws FactoryException {
+    public void test7011() throws FactoryException {
         code              = 7011;
         name              = "Clarke 1880 (IGN)";
         aliases           = NONE;
@@ -740,6 +701,37 @@ public class Test2202 extends Series2000<Ellipsoid> {
         semiMajorInMetres = 6378249.2;
         semiMajorAxis     = 6378249.2;
         semiMinorAxis     = 6356515.0;
+        inverseFlattening = Double.NaN;
+        verifyEllipsoid();
+    }
+
+    /**
+     * Tests “Clarke 1880 (international foot)” ellipsoid creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG ellipsoid code: <b>7055</b></li>
+     *   <li>EPSG ellipsoid name: <b>Clarke 1880 (international foot)</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>20926202 foot</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>20854895 foot</b></li>
+     *   <li>EPSG Usage Extent: <b>Numerous</b></li>
+     * </ul>
+     *
+     * Remarks: Clarke's 1880 definition in feet assumed for the purposes of metric conversion to be international foot.
+     * A = 6378306.370 metres.
+     * 1/f derived from a and b = 293.4663077.
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     */
+    @Test
+    @DisplayName("Clarke 1880 (international foot)")
+    public void test7055() throws FactoryException {
+        code              = 7055;
+        name              = "Clarke 1880 (international foot)";
+        aliases           = NONE;
+        toMetres          = 0.3048;
+        semiMajorInMetres = 6378306.3696;
+        semiMajorAxis     = 20926202.0;
+        semiMinorAxis     = 20854895.0;
         inverseFlattening = Double.NaN;
         verifyEllipsoid();
     }
@@ -760,7 +752,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1866 Michigan")
-    public void testClarkeMichigan() throws FactoryException {
+    public void test7009() throws FactoryException {
         important         = true;
         code              = 7009;
         name              = "Clarke 1866 Michigan";
@@ -793,7 +785,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1880 (RGS)")
-    public void testClarkeRGS() throws FactoryException {
+    public void test7012() throws FactoryException {
         code              = 7012;
         name              = "Clarke 1880 (RGS)";
         aliases           = new String[] {"Clarke Modified 1880"};
@@ -823,7 +815,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Clarke 1880 (SGA 1922)")
-    public void testClarkeSGA() throws FactoryException {
+    public void test7014() throws FactoryException {
         code              = 7014;
         name              = "Clarke 1880 (SGA 1922)";
         aliases           = NONE;
@@ -853,7 +845,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Danish 1876")
-    public void testDanish() throws FactoryException {
+    public void test7051() throws FactoryException {
         code              = 7051;
         name              = "Danish 1876";
         aliases           = NONE;
@@ -882,7 +874,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest (1830 Definition)")
-    public void testEverest1830() throws FactoryException {
+    public void test7042() throws FactoryException {
         code              = 7042;
         name              = "Everest (1830 Definition)";
         aliases           = NONE;
@@ -913,7 +905,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest 1830 (1937 Adjustment)")
-    public void testEverest1937() throws FactoryException {
+    public void test7015() throws FactoryException {
         code              = 7015;
         name              = "Everest 1830 (1937 Adjustment)";
         aliases           = NONE;
@@ -944,7 +936,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest 1830 (1962 Definition)")
-    public void testEverest1962() throws FactoryException {
+    public void test7044() throws FactoryException {
         code              = 7044;
         name              = "Everest 1830 (1962 Definition)";
         aliases           = NONE;
@@ -974,7 +966,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest 1830 (1967 Definition)")
-    public void testEverest1967() throws FactoryException {
+    public void test7016() throws FactoryException {
         code              = 7016;
         name              = "Everest 1830 (1967 Definition)";
         aliases           = NONE;
@@ -1005,7 +997,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest 1830 (1975 Definition)")
-    public void testEverest1975() throws FactoryException {
+    public void test7045() throws FactoryException {
         code              = 7045;
         name              = "Everest 1830 (1975 Definition)";
         aliases           = NONE;
@@ -1014,36 +1006,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
         semiMajorAxis     = 6377299.151;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017255;
-        verifyEllipsoid();
-    }
-
-    /**
-     * Tests “Everest 1830 Modified” ellipsoid creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG ellipsoid code: <b>7018</b></li>
-     *   <li>EPSG ellipsoid name: <b>Everest 1830 Modified</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>6377304.063 metre</b></li>
-     *   <li>Inverse flattening (1/<var>f</var>): <b>300.8017</b></li>
-     *   <li>EPSG Usage Extent: <b>West Malaysia</b></li>
-     * </ul>
-     *
-     * Remarks: Applies Benoit 1898 inch-metre ratio of 39.370113 to Everest 1830 original
-     * definition of a and 1/f but with a taken to be in British rather than Indian feet.
-     *
-     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
-     */
-    @Test
-    @DisplayName("Everest 1830 Modified")
-    public void testEverestModified() throws FactoryException {
-        code              = 7018;
-        name              = "Everest 1830 Modified";
-        aliases           = NONE;
-        toMetres          = 1.0;
-        semiMajorInMetres = 6377304.063;
-        semiMajorAxis     = 6377304.063;
-        semiMinorAxis     = Double.NaN;
-        inverseFlattening = 300.8017;
         verifyEllipsoid();
     }
 
@@ -1067,13 +1029,43 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Everest 1830 (RSO 1969)")
-    public void testEverestRSO() throws FactoryException {
+    public void test7056() throws FactoryException {
         code              = 7056;
         name              = "Everest 1830 (RSO 1969)";
         aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6377295.664;
         semiMajorAxis     = 6377295.664;
+        semiMinorAxis     = Double.NaN;
+        inverseFlattening = 300.8017;
+        verifyEllipsoid();
+    }
+
+    /**
+     * Tests “Everest 1830 Modified” ellipsoid creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG ellipsoid code: <b>7018</b></li>
+     *   <li>EPSG ellipsoid name: <b>Everest 1830 Modified</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>6377304.063 metre</b></li>
+     *   <li>Inverse flattening (1/<var>f</var>): <b>300.8017</b></li>
+     *   <li>EPSG Usage Extent: <b>West Malaysia</b></li>
+     * </ul>
+     *
+     * Remarks: Applies Benoit 1898 inch-metre ratio of 39.370113 to Everest 1830 original
+     * definition of a and 1/f but with a taken to be in British rather than Indian feet.
+     *
+     * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     */
+    @Test
+    @DisplayName("Everest 1830 Modified")
+    public void test7018() throws FactoryException {
+        code              = 7018;
+        name              = "Everest 1830 Modified";
+        aliases           = NONE;
+        toMetres          = 1.0;
+        semiMajorInMetres = 6377304.063;
+        semiMajorAxis     = 6377304.063;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017;
         verifyEllipsoid();
@@ -1096,7 +1088,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("GEM 10C")
-    public void testGEM10C() throws FactoryException {
+    public void test7031() throws FactoryException {
         code              = 7031;
         name              = "GEM 10C";
         aliases           = NONE;
@@ -1121,12 +1113,10 @@ public class Test2202 extends Series2000<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
-     *
-     * @see Test3002#testGRS1967()
      */
     @Test
     @DisplayName("GRS 1967")
-    public void testGRS1967() throws FactoryException {
+    public void test7036() throws FactoryException {
         code              = 7036;
         name              = "GRS 1967";
         aliases           = new String[] {"International 1967"};
@@ -1158,7 +1148,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("GRS 1967 Modified")
-    public void testGRS1967Modified() throws FactoryException {
+    public void test7050() throws FactoryException {
         code              = 7050;
         name              = "GRS 1967 Modified";
         aliases           = new String[] {"GRS 1967"};
@@ -1188,7 +1178,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("GRS 1980")
-    public void testGRS1980() throws FactoryException {
+    public void test7019() throws FactoryException {
         code              = 7019;
         name              = "GRS 1980";
         aliases           = new String[] {"International 1979"};
@@ -1218,7 +1208,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("GRS 1980 Authalic Sphere")
-    public void testGRS1980AuthalicSphere() throws FactoryException {
+    public void test7048() throws FactoryException {
         code              = 7048;
         name              = "GRS 1980 Authalic Sphere";
         aliases           = NONE;
@@ -1248,7 +1238,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Helmert 1906")
-    public void testHelmert() throws FactoryException {
+    public void test7020() throws FactoryException {
         code              = 7020;
         name              = "Helmert 1906";
         aliases           = NONE;
@@ -1275,7 +1265,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Hough 1960")
-    public void testHough1960() throws FactoryException {
+    public void test7053() throws FactoryException {
         code              = 7053;
         name              = "Hough 1960";
         aliases           = NONE;
@@ -1306,7 +1296,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Hughes 1980")
-    public void testHughes1980() throws FactoryException {
+    public void test7058() throws FactoryException {
         code              = 7058;
         name              = "Hughes 1980";
         aliases           = NONE;
@@ -1334,7 +1324,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("IAG 1975")
-    public void testIAG1975() throws FactoryException {
+    public void test7049() throws FactoryException {
         code              = 7049;
         name              = "IAG 1975";
         aliases           = new String[] {"Xian 1980"};
@@ -1363,7 +1353,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Indonesian National Spheroid")
-    public void testIndonesianNational() throws FactoryException {
+    public void test7021() throws FactoryException {
         code              = 7021;
         name              = "Indonesian National Spheroid";
         aliases           = NONE;
@@ -1393,7 +1383,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("International 1924")
-    public void testInternational1924() throws FactoryException {
+    public void test7022() throws FactoryException {
         code              = 7022;
         name              = "International 1924";
         aliases           = new String[] {"Hayford 1909"};
@@ -1422,7 +1412,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("International 1924 Authalic Sphere")
-    public void testInternational1924AuthalicSphere() throws FactoryException {
+    public void test7057() throws FactoryException {
         code              = 7057;
         name              = "International 1924 Authalic Sphere";
         aliases           = NONE;
@@ -1450,7 +1440,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Krassowsky 1940")
-    public void testKrassowsky1940() throws FactoryException {
+    public void test7024() throws FactoryException {
         code              = 7024;
         name              = "Krassowsky 1940";
         aliases           = NONE;
@@ -1478,7 +1468,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("NWL 9D")
-    public void testNWL9D() throws FactoryException {
+    public void test7025() throws FactoryException {
         code              = 7025;
         name              = "NWL 9D";
         aliases           = new String[] {"WGS 66"};
@@ -1507,7 +1497,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("OSU86F")
-    public void testOSU86F() throws FactoryException {
+    public void test7032() throws FactoryException {
         code              = 7032;
         name              = "OSU86F";
         aliases           = NONE;
@@ -1536,7 +1526,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("OSU91A")
-    public void testOSU91A() throws FactoryException {
+    public void test7033() throws FactoryException {
         code              = 7033;
         name              = "OSU91A";
         aliases           = NONE;
@@ -1565,7 +1555,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Plessis 1817")
-    public void testPlessis() throws FactoryException {
+    public void test7027() throws FactoryException {
         code              = 7027;
         name              = "Plessis 1817";
         aliases           = NONE;
@@ -1593,7 +1583,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Popular Visualisation Sphere")
-    public void testPopularVisualisationSphere() throws FactoryException {
+    public void test7059() throws FactoryException {
         code              = 7059;
         name              = "Popular Visualisation Sphere";
         aliases           = NONE;
@@ -1622,7 +1612,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("PZ-90")
-    public void testPZ90() throws FactoryException {
+    public void test7054() throws FactoryException {
         code              = 7054;
         name              = "PZ-90";
         aliases           = NONE;
@@ -1651,7 +1641,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("Struve 1860")
-    public void testStruve() throws FactoryException {
+    public void test7028() throws FactoryException {
         code              = 7028;
         name              = "Struve 1860";
         aliases           = NONE;
@@ -1684,7 +1674,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("War Office")
-    public void testWarOffice() throws FactoryException {
+    public void test7029() throws FactoryException {
         code              = 7029;
         name              = "War Office";
         aliases           = new String[] {"McCaw 1924"};
@@ -1712,7 +1702,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("WGS 72")
-    public void testWGS72() throws FactoryException {
+    public void test7043() throws FactoryException {
         code              = 7043;
         name              = "WGS 72";
         aliases           = new String[] {"NWL 10D"};
@@ -1740,7 +1730,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      */
     @Test
     @DisplayName("WGS 84")
-    public void testWGS84() throws FactoryException {
+    public void test7030() throws FactoryException {
         code              = 7030;
         name              = "WGS 84";
         aliases           = new String[] {"WGS84"};

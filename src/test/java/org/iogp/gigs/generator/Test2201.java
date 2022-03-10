@@ -24,7 +24,6 @@
  */
 package org.iogp.gigs.generator;
 
-import java.util.Map;
 import java.io.IOException;
 import javax.measure.Unit;
 
@@ -39,17 +38,6 @@ import javax.measure.Unit;
  * @since   1.0
  */
 public final class Test2201 extends TestMethodGenerator {
-    /**
-     * The mapping from a few GIGS test names to method names.
-     * We put an entry in this map only when a name different
-     * than the automatically generated name is desired.
-     */
-    private final Map<String,String> METHOD_NAMES = map(
-        "British chain (Sears 1922)",           "testBritishChain",
-        "British foot (Sears 1922)",            "testBritishFoot",
-        "British yard (Sears 1922)",            "testBritishYard",
-        "British chain (Sears 1922 truncated)", "testBritishChainTruncated");
-
     /**
      * Launcher.
      *
@@ -104,7 +92,7 @@ public final class Test2201 extends TestMethodGenerator {
                                   "EPSG Usage Extent", extent);
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the unit from the EPSG code.");
-            printTestMethodSignature(METHOD_NAMES, name);
+            printTestMethodSignature(code, name);
             printFieldAssignments("code",       code,
                                   "name",       name,
                                   "aliases",    aliases,
