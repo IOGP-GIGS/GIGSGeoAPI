@@ -35,7 +35,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 
 /**
@@ -171,39 +170,18 @@ public class Test2204 extends Series2000<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum.
      */
     private void verifyDatum() throws FactoryException {
-        assumeTrue(datumAuthorityFactory != null);
-        if (datumAuthorityFactory != null) {
-            final GeodeticDatum datum = getIdentifiedObject();
-            assertNotNull(datum, "GeodeticDatum");
-            validators.validate(datum);
-            verifyGeodeticDatum(datum);
-        }
-    }
+        final GeodeticDatum datum = getIdentifiedObject();
+        assertNotNull(datum, "GeodeticDatum");
+        validators.validate(datum);
 
-    /**
-     * Verifies the name, ellipsoid and prime meridian of the given datum.
-     *
-     * @param  toVerify  the instance to verify.
-     */
-    private void verifyGeodeticDatum(final GeodeticDatum toVerify) {
-        /*
-         * If the datum has been obtained directly from the datum factory (toVerify == datum), test its
-         * identifier unconditionally. Otherwise (for all datum obtained indirectly from a CRS), verify
-         * the identifier only if the implementation supports identification of associated objects.
-         */
-        if (isDependencyIdentificationSupported || (toVerify == datum)) {
-            configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertContainsCode("GeodeticDatum.getIdentifiers()", "EPSG", code, toVerify.getIdentifiers());
-
-            if (isStandardNameSupported) {
-                configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(name, getVerifiableName(toVerify), "GeodeticDatum.getName()");
-            }
-            configurationTip = null;
+        assertContainsCode("GeodeticDatum.getIdentifiers()", "EPSG", code, datum.getIdentifiers());
+        if (isStandardNameSupported) {
+            configurationTip = Configuration.Key.isStandardNameSupported;
+            assertEquals(name, getVerifiableName(datum), "GeodeticDatum.getName()");
         }
 
         // Geodetic datum ellipsoid.
-        final Ellipsoid e = toVerify.getEllipsoid();
+        final Ellipsoid e = datum.getEllipsoid();
         assertNotNull(e, "GeodeticDatum.getEllipsoid()");
 
         // Ellipsoid name.
@@ -214,7 +192,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         }
 
         // Geodetic datum prime meridian.
-        final PrimeMeridian pm = toVerify.getPrimeMeridian();
+        final PrimeMeridian pm = datum.getPrimeMeridian();
         assertNotNull(pm, "GeodeticDatum.getPrimeMeridian()");
 
         // Prime meridian name.

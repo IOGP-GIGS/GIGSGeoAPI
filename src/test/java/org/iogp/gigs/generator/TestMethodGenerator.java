@@ -26,7 +26,6 @@ package org.iogp.gigs.generator;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.TreeMap;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
@@ -82,10 +81,10 @@ public abstract class TestMethodGenerator {
     private final Map<String,String> methods;
 
     /**
-     * Name of the generated test method.
-     * This is updated when {@link #printTestMethodSignature(Map, String)} is invoked.
+     * Display name of the test method, possibly modified for sorting purpose.
+     * This is used for adding entries in the {@link #methods} map.
      */
-    private String methodName;
+    private String methodSortKey;
 
     /**
      * Creates a new test generator.
@@ -403,7 +402,7 @@ public abstract class TestMethodGenerator {
                 buffer.appendCodePoint(Character.toLowerCase(c));
             }
         }
-        methodName = buffer.toString();
+        methodSortKey = buffer.toString();
     }
 
     /**
@@ -535,7 +534,12 @@ public abstract class TestMethodGenerator {
                 i += lineSeparator.length();
             }
         }
-        assertNull(methods.put(methodName.toLowerCase(Locale.US), out.toString()), methodName);
+        int    count = 0;
+        String key   = methodSortKey;
+        String value = out.toString();
+        while (methods.putIfAbsent(key, value) != null) {
+            key = methodSortKey + (++count);
+        }
         out.setLength(0);
     }
 
