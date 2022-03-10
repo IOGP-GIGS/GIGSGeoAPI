@@ -87,6 +87,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
  * @version 1.0
  * @since   1.0
  */
+@DisplayName("Ellipsoid")
 public class Test2202 extends Series2000<Ellipsoid> {
     /**
      * The conversion factor from the unit of {@link #semiMajorAxis} to metres.

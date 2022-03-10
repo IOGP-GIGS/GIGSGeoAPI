@@ -79,6 +79,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 1.0
  * @since   1.0
  */
+@DisplayName("Geodetic datum")
 public class Test2204 extends Series2000<GeodeticDatum> {
     /**
      * The name of the expected ellipsoid.

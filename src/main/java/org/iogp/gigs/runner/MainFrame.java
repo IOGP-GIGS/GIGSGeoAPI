@@ -177,8 +177,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
             table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
             table.getSelectionModel().addListSelectionListener(this);
             final TableColumnModel columns = table.getColumnModel();
-            columns.getColumn(ResultTableModel.CLASS_COLUMN)  .setPreferredWidth(125);
-            columns.getColumn(ResultTableModel.METHOD_COLUMN) .setPreferredWidth(175);
+            columns.getColumn(ResultTableModel.TEST_COLUMN)   .setPreferredWidth(175);
             columns.getColumn(ResultTableModel.RESULT_COLUMN) .setPreferredWidth( 40);
             columns.getColumn(ResultTableModel.MESSAGE_COLUMN).setPreferredWidth(250);      // Take all remaining space.
             tabs.addTab("Tests", new JScrollPane(table));

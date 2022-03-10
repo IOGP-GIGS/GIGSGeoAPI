@@ -47,6 +47,7 @@ import static org.iogp.gigs.internal.geoapi.Assert.assertAxisDirectionsEqual;
  * @version 1.0
  * @since   1.0
  */
+@DisplayName("Geodetic CRS")
 public class Test2205 extends Series2000<GeodeticCRS> {
     /**
      * The expected axis directions of two-dimensional geographic CRS with longitude first.

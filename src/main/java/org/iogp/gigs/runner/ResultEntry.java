@@ -48,6 +48,7 @@ import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.TestSuite;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.platform.launcher.TestIdentifier;
 import org.junit.platform.engine.TestExecutionResult;
 import org.junit.platform.engine.TestSource;
@@ -76,28 +77,9 @@ final class ResultEntry {
     private static final String JAVADOC_BASEURL = "http://www.geoapi.org/conformance/java/";
 
     /**
-     * Typical suffix of test class name. This suffix is not mandatory. But if the suffix
-     * is found, it will be omitted from the {@linkplain #simpleClassName simple class name}
-     * since it does not provide useful information.
-     */
-    private static final String CLASSNAME_SUFFIX = "Test";
-
-    /**
-     * Typical prefix of test method name. This prefix is not mandatory. But if the prefix
-     * is found, it will be omitted from the {@linkplain #simpleMethodName simple method name}
-     * since it does not provide useful information.
-     */
-    private static final String METHODNAME_PREFIX = "test";
-
-    /**
      * Identification of the test.
      */
     final TestIdentifier identifier;
-
-    /**
-     * The simplified class name of the test method being run.
-     */
-    final String simpleClassName;
 
     /**
      * The human-readable name for the test method.
@@ -145,23 +127,22 @@ final class ResultEntry {
     ResultEntry(final TestIdentifier identifier, final TestExecutionResult result) {
         this.identifier  = identifier;
         this.result      = result;
-        this.displayName = identifier.getDisplayName();
         result.getThrowable().ifPresent(ResultEntry::trimStackTrace);
         final TestSource source = identifier.getSource().orElse(null);
         if (source instanceof MethodSource) {
             final MethodSource ms = (MethodSource) source;
-            String name = ms.getClassName();
-            int length = name.length();
-            if (name.endsWith(CLASSNAME_SUFFIX)) {
-                length -= CLASSNAME_SUFFIX.length();
+            String className;
+            final Class<?> c = ms.getJavaClass();
+            if (c != null) {
+                final DisplayName dn = c.getAnnotation(DisplayName.class);
+                className = (dn != null) ? dn.value() : c.getSimpleName();
+            } else {
+                className = ms.getClassName();
+                className = className.substring(className.lastIndexOf('.') + 1);
             }
-            simpleClassName = separateWords(name.substring(name.lastIndexOf('.', length)+1, length), false);
-            name = ((MethodSource) source).getMethodName();
-            if (name.startsWith(METHODNAME_PREFIX)) {
-                name = name.substring(METHODNAME_PREFIX.length());
-            }
+            displayName = className + " ❱ " + identifier.getDisplayName();
         } else {
-            simpleClassName = "(unnamed)";
+            displayName = identifier.getDisplayName();
         }
         /*
          * Extract information from the configuration:
@@ -370,6 +351,6 @@ final class ResultEntry {
      */
     @Override
     public String toString() {
-        return simpleClassName + ": " + displayName + ": " + result.getStatus();
+        return displayName + ": " + result.getStatus();
     }
 }

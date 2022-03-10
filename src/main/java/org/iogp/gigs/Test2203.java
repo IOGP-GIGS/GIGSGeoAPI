@@ -76,6 +76,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 1.0
  * @since   1.0
  */
+@DisplayName("Prime meridian")
 public class Test2203 extends Series2000<PrimeMeridian> {
     /**
      * The expected Greenwich longitude in decimal degrees.

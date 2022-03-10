@@ -50,19 +50,17 @@ final class ResultTableModel extends AbstractTableModel implements ChangeListene
     /**
      * Index of columns handled by this model.
      */
-    static final int CLASS_COLUMN   = 0,
-                     METHOD_COLUMN  = 1,
-                     RESULT_COLUMN  = 2,
-                     MESSAGE_COLUMN = 3;
+    static final int TEST_COLUMN    = 0,
+                     RESULT_COLUMN  = 1,
+                     MESSAGE_COLUMN = 2;
 
     /**
      * The titles of all columns.
      */
     private static final String[] COLUMN_TITLES;
     static {
-        COLUMN_TITLES = new String[4];
-        COLUMN_TITLES[CLASS_COLUMN]   = "Class";
-        COLUMN_TITLES[METHOD_COLUMN]  = "Method";
+        COLUMN_TITLES = new String[3];
+        COLUMN_TITLES[TEST_COLUMN]    = "Test";
         COLUMN_TITLES[RESULT_COLUMN]  = "Result";
         COLUMN_TITLES[MESSAGE_COLUMN] = "Message";
     };
@@ -133,8 +131,7 @@ final class ResultTableModel extends AbstractTableModel implements ChangeListene
     public String getValueAt(final int row, final int column) {
         final ResultEntry entry = entries[row];
         switch (column) {
-            case CLASS_COLUMN:  return entry.simpleClassName;
-            case METHOD_COLUMN: return entry.displayName;
+            case TEST_COLUMN: return entry.displayName;
             case RESULT_COLUMN: switch (entry.result.getStatus()) {
                 case SUCCESSFUL: return "success";
                 case FAILED:     return "failure";
