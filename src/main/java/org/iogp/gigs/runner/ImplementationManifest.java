@@ -71,10 +71,10 @@ final class ImplementationManifest {
     private final int priority;
 
     /**
-     * The implementation title, version, vendor or URL.
+     * The implementation title, version, or vendor.
      * Any of those attributes accept the title may be null.
      */
-    final String title, version, vendor, vendorID, url, specification, specVersion, specVendor;
+    final String title, version, vendor, specification, specVersion, specVendor;
 
     /**
      * The set of dependencies built from the {@linkplain #classpath}, or {@code null}.
@@ -89,8 +89,6 @@ final class ImplementationManifest {
         this.title    = title;
         version       = (String) attributes.get(Attributes.Name.IMPLEMENTATION_VERSION);
         vendor        = (String) attributes.get(Attributes.Name.IMPLEMENTATION_VENDOR);
-        vendorID      = (String) attributes.get(Attributes.Name.IMPLEMENTATION_VENDOR_ID);
-        url           = (String) attributes.get(Attributes.Name.IMPLEMENTATION_URL);
         specification = (String) attributes.get(Attributes.Name.SPECIFICATION_TITLE);
         specVersion   = (String) attributes.get(Attributes.Name.SPECIFICATION_VERSION);
         specVendor    = (String) attributes.get(Attributes.Name.SPECIFICATION_VENDOR);
@@ -196,11 +194,9 @@ scan:       while (entries.hasMoreElements()) {
     public String toString() {
         final String lineSeparator = System.lineSeparator();
         final StringBuilder buffer = new StringBuilder();
-        if (title    != null) buffer.append("Title:     ").append(title   ).append(lineSeparator);
-        if (version  != null) buffer.append("Version:   ").append(version ).append(lineSeparator);
-        if (vendor   != null) buffer.append("Vendor:    ").append(vendor  ).append(lineSeparator);
-        if (vendorID != null) buffer.append("Vendor ID: ").append(vendorID).append(lineSeparator);
-        if (url      != null) buffer.append("URL:       ").append(url     ).append(lineSeparator);
+        if (title   != null) buffer.append("Title:   ").append(title  ).append(lineSeparator);
+        if (version != null) buffer.append("Version: ").append(version).append(lineSeparator);
+        if (vendor  != null) buffer.append("Vendor:  ").append(vendor ).append(lineSeparator);
         return buffer.toString();
     }
 }

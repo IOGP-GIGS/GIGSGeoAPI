@@ -67,25 +67,28 @@ final class SwingPanelBuilder extends GridBagConstraints {
 
     /**
      * Creates the panel where to display {@link ImplementationManifest} information.
+     *
+     * @param  title          where to write title of the library to test.
+     * @param  version        where to write version of the library to test.
+     * @param  vendor         where to write implementer of the library to test.
+     * @param  specification  where to write GeoAPI title.
+     * @param  specVersion    where to write GeoAPI version.
+     * @param  specVendor     where to write GeoAPI vendor (which is OGC).
+     * @return panel with information about tested library.
      */
     JPanel createManifestPane(final JLabel title, final JLabel version, final JLabel vendor,
-            final JLabel vendorID, final JLabel url, final JLabel specification,
-            final JLabel specVersion, final JLabel specVendor)
+            final JLabel specification, final JLabel specVersion, final JLabel specVendor)
     {
         final JPanel panel = new JPanel(new GridBagLayout());
         final JLabel implementsLabel;
         gridx=0; weightx=0; anchor=WEST; insets.left = 12;
-        gridy=0; panel.add(createLabel("Title:",     title),    this);
-        gridy++; panel.add(createLabel("Version:",   version),  this);
-        gridy++; panel.add(createLabel("Vendor:",    vendor),   this);
-        gridy++; panel.add(createLabel("Vendor ID:", vendorID), this);
-        gridy++; panel.add(createLabel("URL:",       url),      this);
+        gridy=0; panel.add(createLabel("Title:",   title),   this);
+        gridy++; panel.add(createLabel("Version:", version), this);
+        gridy++; panel.add(createLabel("Vendor:",  vendor),  this);
         gridx=1; weightx=1;
-        gridy=0; panel.add(title,    this);
-        gridy++; panel.add(version,  this);
-        gridy++; panel.add(vendor,   this);
-        gridy++; panel.add(vendorID, this);
-        gridy++; panel.add(url,      this);
+        gridy=0; panel.add(title,   this);
+        gridy++; panel.add(version, this);
+        gridy++; panel.add(vendor,  this);
         gridx=2; weightx=0;
         gridy=0; panel.add(implementsLabel = createLabel("implements:", specification), this);
         gridx=3; weightx=1;
@@ -106,8 +109,16 @@ final class SwingPanelBuilder extends GridBagConstraints {
 
     /**
      * Creates the panel where to display details about a particular test.
+     *
+     * @param  testName       where to write the test method name.
+     * @param  testResult     where to write the test result.
+     * @param  viewJavadoc    button for showing test javadoc.
+     * @param  factories      table showing available factories.
+     * @param  configuration  configuration at the time the test was executed.
+     * @param  exception      the exception if the test failed, or {@code null} otherwise.
+     * @return the panel showing details about selected test.
      */
-    JPanel createDetailsPane(final JLabel testName, final JButton viewJavadoc,
+    JPanel createDetailsPane(final JLabel testName, final JLabel testResult, final JButton viewJavadoc,
             final JTable factories, final JTable configuration, final JTextArea exception)
     {
         final Font monospaced = Font.decode("Monospaced");
@@ -118,15 +129,18 @@ final class SwingPanelBuilder extends GridBagConstraints {
         gridx=0; weightx=0; panel.add(createLabel("Test method:", testName), this);
         gridx++; weightx=1; panel.add(testName, this);
         gridx++; weightx=0; panel.add(viewJavadoc, this);
-        gridx=0; gridy++; gridwidth=3; weightx=1; weighty=1; insets.top = 12;
+        gridx=0; gridy++;   panel.add(createLabel("Result:", testResult), this);
+        gridx++; weightx=1; gridwidth=3; panel.add(testResult, this);
+        gridx=0; gridy++; weighty=1; insets.top = 12;
         final JTabbedPane tabs = new JTabbedPane();
         panel.add(tabs, this);
-
-        // If new tabs are added below, make sure that the index of the "Exception"
-        // tab match the index given to 'tabs.setEnabledAt(…)' in the listener.
-        tabs.addTab("Factories",     createScrollPane(factories));
-        tabs.addTab("Configuration", createScrollPane(configuration));
-        tabs.addTab("Exception",     createScrollPane(exception));
+        /*
+         * If new tabs are added below, make sure that the index of the "Exception"
+         * tab match the index given to 'tabs.setEnabledAt(…)' in the listener.
+         */
+        tabs.addTab("Factories",     new JScrollPane(factories));
+        tabs.addTab("Configuration", new JScrollPane(configuration));
+        tabs.addTab("Exception",     new JScrollPane(exception));
         exception.addPropertyChangeListener("enabled", new PropertyChangeListener() {
             @Override public void propertyChange(final PropertyChangeEvent event) {
                 tabs.setEnabledAt(2, (Boolean) event.getNewValue());
@@ -142,6 +156,10 @@ final class SwingPanelBuilder extends GridBagConstraints {
     /**
      * Creates a new label with the given text. The created label will be a header
      * for the given component.
+     *
+     * @param  title     text of the label to create.
+     * @param  labelFor  the component for which to create a label.
+     * @return the label for the given component.
      */
     private static JLabel createLabel(final String title, final JComponent labelFor) {
         final JLabel label = new JLabel(title);
@@ -150,18 +168,9 @@ final class SwingPanelBuilder extends GridBagConstraints {
     }
 
     /**
-     * Creates a transparent scroll pane for the given component with the given title.
-     */
-    private static JScrollPane createScrollPane(final JComponent component) {
-        final JScrollPane scroll = new JScrollPane(component);
-        component.setOpaque(false);
-        scroll.getViewport().setOpaque(false);
-        scroll.setOpaque(false);
-        return scroll;
-    }
-
-    /**
      * Invoked by the layout manager when a component is added.
+     *
+     * @return a copy of this builder.
      */
     @Override
     @SuppressWarnings("CloneDoesntCallSuperClone")          // Okay because this class is final.

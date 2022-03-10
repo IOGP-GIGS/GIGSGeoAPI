@@ -74,7 +74,7 @@ final class ResultEntry {
     /**
      * The base URL of {@code geoapi-conformance} javadoc. The trailing slash is mandatory.
      */
-    private static final String JAVADOC_BASEURL = "http://www.geoapi.org/conformance/java/";
+    private static final String JAVADOC_BASEURL = "https://iogp-gigs.github.io/GIGSGeoAPI/";
 
     /**
      * Identification of the test.
@@ -308,6 +308,25 @@ final class ResultEntry {
                 method = method.substring(0, s);
             }
             return URI.create(JAVADOC_BASEURL + ms.getClassName().replace('.', '/') + ".html#" + method + "()");
+        }
+        return null;
+    }
+
+    /**
+     * Returns a string representation of the result.
+     *
+     * @return the result, or {@code null} if none.
+     */
+    String result() {
+        if (result != null) {
+            final Throwable exception = result.getThrowable().orElse(null);
+            if (exception != null) {
+                final String message = exception.getLocalizedMessage();
+                if (message != null) {
+                    return message;
+                }
+            }
+            return result.getStatus().name();
         }
         return null;
     }

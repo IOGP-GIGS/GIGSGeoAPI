@@ -88,7 +88,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
      *
      * @see #setManifest(ImplementationManifest)
      */
-    private final JLabel title, vendor, version, vendorID, url, specification, specVersion, specVendor;
+    private final JLabel title, vendor, version, specification, specVersion, specVendor;
 
     /**
      * The table showing the results.
@@ -101,6 +101,11 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
      * @see #setDetails(ResultEntry)
      */
     private final JLabel testName;
+
+    /**
+     * Labels used for rendering details about the test result.
+     */
+    private final JLabel testResult;
 
     /**
      * The factories used for the test case, to be reported in the "details" tab.
@@ -141,7 +146,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
     MainFrame() {
         super("GIGS tests");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(800, 600);                          // If width is modified, please adjust column preferred widths below.
+        setSize(800, 800);                          // If width is modified, please adjust column preferred widths below.
         setLocationByPlatform(true);
         runner       = new Runner();
         results      = new ResultTableModel(runner);
@@ -155,8 +160,6 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
                 title         = new JLabel(),
                 version       = new JLabel(),
                 vendor        = new JLabel(),
-                vendorID      = new JLabel(),
-                url           = new JLabel(),
                 specification = new JLabel(),
                 specVersion   = new JLabel(),
                 specVendor    = new JLabel()), BorderLayout.NORTH);
@@ -168,7 +171,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
         final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
         splitPane.setOneTouchExpandable(true);
         splitPane.setContinuousLayout(true);
-        splitPane.setDividerLocation(250);
+        splitPane.setDividerLocation(300);
         splitPane.setResizeWeight(1);
         add(splitPane, BorderLayout.CENTER);
         /*
@@ -196,7 +199,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
             viewJavadoc.setToolTipText("View javadoc for this test");
             viewJavadoc.addActionListener(this);
             splitPane.setBottomComponent(new SwingPanelBuilder().createDetailsPane(
-                    testName = new JLabel(), viewJavadoc,
+                    testName = new JLabel(), testResult = new JLabel(), viewJavadoc,
                     new JTable(factories = new FactoryTableModel()),
                     new JTable(configuration = new ConfigurationTableModel()),
                     exception = new JTextArea()));
@@ -233,8 +236,6 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
         title        .setText(manifest != null ? manifest.title         : null);
         version      .setText(manifest != null ? manifest.version       : null);
         vendor       .setText(manifest != null ? manifest.vendor        : null);
-        vendorID     .setText(manifest != null ? manifest.vendorID      : null);
-        url          .setText(manifest != null ? manifest.url           : null);
         specification.setText(manifest != null ? manifest.specification : null);
         specVersion  .setText(manifest != null ? manifest.specVersion   : null);
         specVendor   .setText(manifest != null ? manifest.specVendor    : null);
@@ -279,6 +280,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
         factories    .fireTableDataChanged();
         configuration.fireTableDataChanged();
         testName     .setText(className + '.' + methodName);
+        testResult   .setText(entry.result());
         exception    .setText(stacktrace);
         exception    .setCaretPosition(0);
         currentReport = entry;
