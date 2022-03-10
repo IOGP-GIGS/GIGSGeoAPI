@@ -24,17 +24,16 @@
  */
 package org.iogp.gigs;
 
-import org.opengis.util.FactoryException;
-import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.iogp.gigs.internal.geoapi.Configuration;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.PrimeMeridian;
-import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.opengis.util.FactoryException;
 
 
 /**
@@ -48,7 +47,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *   <td>Compare geodetic datum definitions included in the geoscience software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_2004_libGeodeticDatumCRS.csv">{@code GIGS_2004_libGeodeticDatumCRS.csv}</a>
+ *   <td><a href="doc-files/GIGS_lib_2204_GeodeticDatum.txt">{@code GIGS_lib_2204_GeodeticDatum.txt}</a>
  *       and EPSG Dataset.
  *       Tests for component logical consistency: for example, if a higher-level library-defined component
  *       such as ED50 datum is selected it should then not be possible to change any of its lower-level
@@ -67,10 +66,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * in order to specify their factories and run the tests in a JUnit framework,
  * implementers can define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test2004 {
+ * <blockquote><pre>public class MyTest extends Test2204 {
  *    public MyTest() {
- *        super(new MyDatumAuthorityFactory(),
- *              new MyCRSAuthorityFactory());
+ *        super(new MyDatumAuthorityFactory());
  *    }
  *}</pre></blockquote>
  *

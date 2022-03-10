@@ -26,16 +26,15 @@ package org.iogp.gigs;
 
 import javax.measure.Unit;
 import javax.measure.quantity.Length;
-import org.opengis.util.FactoryException;
-import org.opengis.referencing.datum.DatumAuthorityFactory;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
-import org.opengis.referencing.datum.Ellipsoid;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.referencing.datum.Ellipsoid;
+import org.opengis.util.FactoryException;
 
 
 /**
@@ -48,7 +47,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
  *   <td>Compare ellipsoid definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_2002_libEllipsoid.csv">{@code GIGS_2002_libEllipsoid.csv}</a>
+ *   <td><a href="doc-files/GIGS_lib_2202_Ellipsoid.txt">{@code GIGS_lib_2202_Ellipsoid.txt}</a>
  *   and EPSG Dataset.
  *   Contains EPSG {@linkplain #code code} and {@linkplain #name name} for the ellipsoid,
  *   commonly encountered {@linkplain #aliases alternative name(s)} for the same object,
@@ -76,7 +75,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
  * in order to specify their factories and run the tests in a JUnit framework,
  * implementers can define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test2002 {
+ * <blockquote><pre>public class MyTest extends Test2202 {
  *    public MyTest() {
  *        super(new MyDatumAuthorityFactory());
  *    }

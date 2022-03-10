@@ -26,15 +26,14 @@ package org.iogp.gigs;
 
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
-import org.opengis.util.FactoryException;
-import org.opengis.referencing.datum.DatumAuthorityFactory;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
-import org.opengis.referencing.datum.PrimeMeridian;
 import org.iogp.gigs.internal.geoapi.Configuration;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.referencing.datum.PrimeMeridian;
+import org.opengis.util.FactoryException;
 
 
 /**
@@ -47,7 +46,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *   <td>Compare prime meridian definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_2003_libPrimeMeridian.csv">{@code GIGS_2003_libPrimeMeridian.csv}</a>
+ *   <td><a href="doc-files/GIGS_lib_2203_PrimeMeridian.txt">{@code GIGS_lib_2203_PrimeMeridian.txt}</a>
  *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
@@ -65,7 +64,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * in order to specify their factories and run the tests in a JUnit framework,
  * implementers can define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test2003 {
+ * <blockquote><pre>public class MyTest extends Test2203 {
  *    public MyTest() {
  *        super(new MyDatumAuthorityFactory());
  *    }
