@@ -117,7 +117,7 @@ final class DataParser {
             String line;
             while ((line = reader.readLine()) != null) {
                 line = trim(line, 0, line.length());
-                if (!line.isEmpty() && line.charAt(0) != '#') {
+                if (!line.isBlank() && line.charAt(0) != '#') {
                     content.add(parseRow(line, columnTypes));
                 }
             }
