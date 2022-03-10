@@ -48,6 +48,12 @@ public final class Test2205 extends TestMethodGenerator {
     }
 
     /**
+     * Creates a new generator.
+     */
+    private Test2205() {
+    }
+
+    /**
      * The geodetic CRS types. The name of each enumeration value shall match the name
      * of a {@code AxisDirection[]} constant in {@code org.iogp.gigs.Test2205} class.
      */

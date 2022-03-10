@@ -48,6 +48,12 @@ public final class Test2202 extends TestMethodGenerator {
     }
 
     /**
+     * Creates a new generator.
+     */
+    private Test2202() {
+    }
+
+    /**
      * Generates the code.
      *
      * @throws IOException if an error occurred while reading the test data.
