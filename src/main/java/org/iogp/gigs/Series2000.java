@@ -50,7 +50,7 @@ public abstract class Series2000<T> extends IntegrityTest {
     /**
      * The value to give to the {@link #aliases} field for meaning "no alias".
      */
-    static final String[] NONE = new String[0];
+    private static final String[] NONE = new String[0];
 
     /**
      * The EPSG code of the {@code T} instance to test.
@@ -126,6 +126,7 @@ public abstract class Series2000<T> extends IntegrityTest {
         isStandardAliasSupported            = isEnabled[1];
         isDependencyIdentificationSupported = isEnabled[2];
         isDeprecatedObjectCreationSupported = isEnabled[3];
+        aliases = NONE;
     }
 
     /**

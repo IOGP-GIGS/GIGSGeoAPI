@@ -464,7 +464,6 @@ public class Test2201 extends Series2000<Unit<?>> {
     public void EPSG_9203() throws FactoryException {
         code       = 9203;
         name       = "coefficient";
-        aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = units.one();
         verifyLinearConversions(createConverter());

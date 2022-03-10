@@ -227,9 +227,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Abidjan 1987")
     public void EPSG_4143() throws FactoryException {
-        code  = 4143;
-        name  = "Abidjan 1987";
-        datum = 6143;
+        code         = 4143;
+        name         = "Abidjan 1987";
+        aliases      = new String[] {"Côte d'Ivoire"};
+        datum        = 6143;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -249,9 +250,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Accra")
     public void EPSG_4168() throws FactoryException {
-        code  = 4168;
-        name  = "Accra";
-        datum = 6168;
+        code         = 4168;
+        name         = "Accra";
+        datum        = 6168;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -272,9 +273,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Adindan")
     public void EPSG_4201() throws FactoryException {
-        code  = 4201;
-        name  = "Adindan";
-        datum = 6201;
+        code         = 4201;
+        name         = "Adindan";
+        aliases      = new String[] {"Blue Nile 1958"};
+        datum        = 6201;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -294,9 +296,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Afgooye")
     public void EPSG_4205() throws FactoryException {
-        code  = 4205;
-        name  = "Afgooye";
-        datum = 6205;
+        code         = 4205;
+        name         = "Afgooye";
+        datum        = 6205;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -316,9 +318,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Agadez")
     public void EPSG_4206() throws FactoryException {
-        code  = 4206;
-        name  = "Agadez";
-        datum = 6206;
+        code         = 4206;
+        name         = "Agadez";
+        datum        = 6206;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -338,9 +340,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("AGD66")
     public void EPSG_4202() throws FactoryException {
-        code  = 4202;
-        name  = "AGD66";
-        datum = 6202;
+        code         = 4202;
+        name         = "AGD66";
+        datum        = 6202;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -360,9 +362,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("AGD84")
     public void EPSG_4203() throws FactoryException {
-        code  = 4203;
-        name  = "AGD84";
-        datum = 6203;
+        code         = 4203;
+        name         = "AGD84";
+        datum        = 6203;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -382,9 +384,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Ain el Abd")
     public void EPSG_4204() throws FactoryException {
-        code  = 4204;
-        name  = "Ain el Abd";
-        datum = 6204;
+        code         = 4204;
+        name         = "Ain el Abd";
+        datum        = 6204;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -405,9 +407,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Albanian 1987")
     public void EPSG_4191() throws FactoryException {
-        code  = 4191;
-        name  = "Albanian 1987";
-        datum = 6191;
+        code         = 4191;
+        name         = "Albanian 1987";
+        aliases      = new String[] {"ALB86"};
+        datum        = 6191;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -427,9 +430,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("American Samoa 1962")
     public void EPSG_4169() throws FactoryException {
-        code  = 4169;
-        name  = "American Samoa 1962";
-        datum = 6169;
+        code         = 4169;
+        name         = "American Samoa 1962";
+        datum        = 6169;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -450,9 +453,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Amersfoort")
     public void EPSG_4289() throws FactoryException {
-        code  = 4289;
-        name  = "Amersfoort";
-        datum = 6289;
+        code         = 4289;
+        name         = "Amersfoort";
+        aliases      = new String[] {"RD Bessel"};
+        datum        = 6289;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -472,9 +476,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Ammassalik 1958")
     public void EPSG_4196() throws FactoryException {
-        code  = 4196;
-        name  = "Ammassalik 1958";
-        datum = 6196;
+        code         = 4196;
+        name         = "Ammassalik 1958";
+        datum        = 6196;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -494,9 +498,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Anguilla 1957")
     public void EPSG_4600() throws FactoryException {
-        code  = 4600;
-        name  = "Anguilla 1957";
-        datum = 6600;
+        code         = 4600;
+        name         = "Anguilla 1957";
+        datum        = 6600;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -516,9 +520,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Antigua 1943")
     public void EPSG_4601() throws FactoryException {
-        code  = 4601;
-        name  = "Antigua 1943";
-        datum = 6601;
+        code         = 4601;
+        name         = "Antigua 1943";
+        datum        = 6601;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -538,9 +542,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Aratu")
     public void EPSG_4208() throws FactoryException {
-        code  = 4208;
-        name  = "Aratu";
-        datum = 6208;
+        code         = 4208;
+        name         = "Aratu";
+        datum        = 6208;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -560,9 +564,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Arc 1950")
     public void EPSG_4209() throws FactoryException {
-        code  = 4209;
-        name  = "Arc 1950";
-        datum = 6209;
+        code         = 4209;
+        name         = "Arc 1950";
+        datum        = 6209;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -582,9 +586,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Arc 1960")
     public void EPSG_4210() throws FactoryException {
-        code  = 4210;
-        name  = "Arc 1960";
-        datum = 6210;
+        code         = 4210;
+        name         = "Arc 1960";
+        datum        = 6210;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -604,9 +608,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Ascension Island 1958")
     public void EPSG_4712() throws FactoryException {
-        code  = 4712;
-        name  = "Ascension Island 1958";
-        datum = 6712;
+        code         = 4712;
+        name         = "Ascension Island 1958";
+        datum        = 6712;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -627,9 +631,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Astro DOS 71")
     public void EPSG_4710() throws FactoryException {
-        code  = 4710;
-        name  = "Astro DOS 71";
-        datum = 6710;
+        code         = 4710;
+        name         = "Astro DOS 71";
+        aliases      = new String[] {"ASTRO DOS 71/4"};
+        datum        = 6710;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -649,9 +654,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ATF (Paris)")
     public void EPSG_4901() throws FactoryException {
-        code  = 4901;
-        name  = "ATF (Paris)";
-        datum = 6901;
+        code         = 4901;
+        name         = "ATF (Paris)";
+        datum        = 6901;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -671,9 +676,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ATS77")
     public void EPSG_4122() throws FactoryException {
-        code  = 4122;
-        name  = "ATS77";
-        datum = 6122;
+        code         = 4122;
+        name         = "ATS77";
+        datum        = 6122;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -694,9 +699,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Australian Antarctic")
     public void EPSG_4176() throws FactoryException {
-        code  = 4176;
-        name  = "Australian Antarctic";
-        datum = 6176;
+        code         = 4176;
+        name         = "Australian Antarctic";
+        aliases      = new String[] {"AAD98"};
+        datum        = 6176;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -717,9 +723,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Australian Antarctic")
     public void EPSG_4931() throws FactoryException {
-        code  = 4931;
-        name  = "Australian Antarctic";
-        datum = 6176;
+        code         = 4931;
+        name         = "Australian Antarctic";
+        aliases      = new String[] {"AAD98"};
+        datum        = 6176;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -740,9 +747,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Australian Antarctic")
     public void EPSG_4930() throws FactoryException {
-        code  = 4930;
-        name  = "Australian Antarctic";
-        datum = 6176;
+        code         = 4930;
+        name         = "Australian Antarctic";
+        aliases      = new String[] {"AAD98"};
+        datum        = 6176;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
     }
@@ -763,9 +771,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Ayabelle Lighthouse")
     public void EPSG_4713() throws FactoryException {
-        code  = 4713;
-        name  = "Ayabelle Lighthouse";
-        datum = 6713;
+        code         = 4713;
+        name         = "Ayabelle Lighthouse";
+        datum        = 6713;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -786,9 +794,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Azores Central 1948")
     public void EPSG_4183() throws FactoryException {
-        code  = 4183;
-        name  = "Azores Central 1948";
-        datum = 6183;
+        code         = 4183;
+        name         = "Azores Central 1948";
+        aliases      = new String[] {"Graciosa"};
+        datum        = 6183;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -809,9 +818,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Azores Central 1995")
     public void EPSG_4665() throws FactoryException {
-        code  = 4665;
-        name  = "Azores Central 1995";
-        datum = 6665;
+        code         = 4665;
+        name         = "Azores Central 1995";
+        aliases      = new String[] {"Base SW"};
+        datum        = 6665;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -831,9 +841,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Azores Occidental 1939")
     public void EPSG_4182() throws FactoryException {
-        code  = 4182;
-        name  = "Azores Occidental 1939";
-        datum = 6182;
+        code         = 4182;
+        name         = "Azores Occidental 1939";
+        datum        = 6182;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -854,9 +864,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Azores Oriental 1940")
     public void EPSG_4184() throws FactoryException {
-        code  = 4184;
-        name  = "Azores Oriental 1940";
-        datum = 6184;
+        code         = 4184;
+        name         = "Azores Oriental 1940";
+        aliases      = new String[] {"Sao Braz"};
+        datum        = 6184;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -877,9 +888,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Azores Oriental 1995")
     public void EPSG_4664() throws FactoryException {
-        code  = 4664;
-        name  = "Azores Oriental 1995";
-        datum = 6664;
+        code         = 4664;
+        name         = "Azores Oriental 1995";
+        aliases      = new String[] {"Sao Braz"};
+        datum        = 6664;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -899,9 +911,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Barbados 1938")
     public void EPSG_4212() throws FactoryException {
-        code  = 4212;
-        name  = "Barbados 1938";
-        datum = 6212;
+        code         = 4212;
+        name         = "Barbados 1938";
+        datum        = 6212;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -922,9 +934,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Batavia")
     public void EPSG_4211() throws FactoryException {
-        code  = 4211;
-        name  = "Batavia";
-        datum = 6211;
+        code         = 4211;
+        name         = "Batavia";
+        aliases      = new String[] {"Genuk"};
+        datum        = 6211;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -945,9 +958,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Batavia (Jakarta)")
     public void EPSG_4813() throws FactoryException {
-        code  = 4813;
-        name  = "Batavia (Jakarta)";
-        datum = 6813;
+        code         = 4813;
+        name         = "Batavia (Jakarta)";
+        aliases      = new String[] {"Genuk (Jakarta)"};
+        datum        = 6813;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -967,9 +981,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("BDA2000")
     public void EPSG_4762() throws FactoryException {
-        code  = 4762;
-        name  = "BDA2000";
-        datum = 6762;
+        code         = 4762;
+        name         = "BDA2000";
+        datum        = 6762;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -989,9 +1003,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("BDA2000")
     public void EPSG_4887() throws FactoryException {
-        code  = 4887;
-        name  = "BDA2000";
-        datum = 6762;
+        code         = 4887;
+        name         = "BDA2000";
+        datum        = 6762;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -1011,9 +1025,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("BDA2000")
     public void EPSG_4886() throws FactoryException {
-        code  = 4886;
-        name  = "BDA2000";
-        datum = 6762;
+        code         = 4886;
+        name         = "BDA2000";
+        datum        = 6762;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
     }
@@ -1034,9 +1048,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Beduaram")
     public void EPSG_4213() throws FactoryException {
-        code  = 4213;
-        name  = "Beduaram";
-        datum = 6213;
+        code         = 4213;
+        name         = "Beduaram";
+        datum        = 6213;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1056,9 +1070,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Beijing 1954")
     public void EPSG_4214() throws FactoryException {
-        code  = 4214;
-        name  = "Beijing 1954";
-        datum = 6214;
+        code         = 4214;
+        name         = "Beijing 1954";
+        datum        = 6214;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1079,9 +1093,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Belge 1950")
     public void EPSG_4215() throws FactoryException {
-        code  = 4215;
-        name  = "Belge 1950";
-        datum = 6215;
+        code         = 4215;
+        name         = "Belge 1950";
+        aliases      = new String[] {"BD 50"};
+        datum        = 6215;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1102,9 +1117,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Belge 1950 (Brussels)")
     public void EPSG_4809() throws FactoryException {
-        code  = 4809;
-        name  = "Belge 1950 (Brussels)";
-        datum = 6809;
+        code         = 4809;
+        name         = "Belge 1950 (Brussels)";
+        aliases      = new String[] {"BD 50 (Brussels)"};
+        datum        = 6809;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1125,9 +1141,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Belge 1972")
     public void EPSG_4313() throws FactoryException {
-        code  = 4313;
-        name  = "Belge 1972";
-        datum = 6313;
+        code         = 4313;
+        name         = "Belge 1972";
+        aliases      = new String[] {"BD 72"};
+        datum        = 6313;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1148,9 +1165,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Bellevue")
     public void EPSG_4714() throws FactoryException {
-        code  = 4714;
-        name  = "Bellevue";
-        datum = 6714;
+        code         = 4714;
+        name         = "Bellevue";
+        aliases      = new String[] {"Bellevue (IGN)"};
+        datum        = 6714;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1170,9 +1188,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Bermuda 1957")
     public void EPSG_4216() throws FactoryException {
-        code  = 4216;
-        name  = "Bermuda 1957";
-        datum = 6216;
+        code         = 4216;
+        name         = "Bermuda 1957";
+        datum        = 6216;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1192,9 +1210,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Bern 1898 (Bern)")
     public void EPSG_4801() throws FactoryException {
-        code  = 4801;
-        name  = "Bern 1898 (Bern)";
-        datum = 6801;
+        code         = 4801;
+        name         = "Bern 1898 (Bern)";
+        datum        = 6801;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1214,9 +1232,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Bern 1938")
     public void EPSG_4306() throws FactoryException {
-        code  = 4306;
-        name  = "Bern 1938";
-        datum = 6306;
+        code         = 4306;
+        name         = "Bern 1938";
+        datum        = 6306;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1236,9 +1254,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Bissau")
     public void EPSG_4165() throws FactoryException {
-        code  = 4165;
-        name  = "Bissau";
-        datum = 6165;
+        code         = 4165;
+        name         = "Bissau";
+        datum        = 6165;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1259,9 +1277,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Bogota 1975")
     public void EPSG_4218() throws FactoryException {
-        code  = 4218;
-        name  = "Bogota 1975";
-        datum = 6218;
+        code         = 4218;
+        name         = "Bogota 1975";
+        aliases      = new String[] {"Bogota"};
+        datum        = 6218;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1281,9 +1300,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Bogota 1975 (Bogota)")
     public void EPSG_4802() throws FactoryException {
-        code  = 4802;
-        name  = "Bogota 1975 (Bogota)";
-        datum = 6802;
+        code         = 4802;
+        name         = "Bogota 1975 (Bogota)";
+        datum        = 6802;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1303,9 +1322,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Bukit Rimpah")
     public void EPSG_4219() throws FactoryException {
-        code  = 4219;
-        name  = "Bukit Rimpah";
-        datum = 6219;
+        code         = 4219;
+        name         = "Bukit Rimpah";
+        datum        = 6219;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1326,9 +1345,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Camacupa 1948")
     public void EPSG_4220() throws FactoryException {
-        code  = 4220;
-        name  = "Camacupa 1948";
-        datum = 6220;
+        code         = 4220;
+        name         = "Camacupa 1948";
+        aliases      = new String[] {"Camacupa"};
+        datum        = 6220;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1348,9 +1368,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Camp Area Astro")
     public void EPSG_4715() throws FactoryException {
-        code  = 4715;
-        name  = "Camp Area Astro";
-        datum = 6715;
+        code         = 4715;
+        name         = "Camp Area Astro";
+        datum        = 6715;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1370,9 +1390,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Campo Inchauspe")
     public void EPSG_4221() throws FactoryException {
-        code  = 4221;
-        name  = "Campo Inchauspe";
-        datum = 6221;
+        code         = 4221;
+        name         = "Campo Inchauspe";
+        datum        = 6221;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1392,9 +1412,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Cape")
     public void EPSG_4222() throws FactoryException {
-        code  = 4222;
-        name  = "Cape";
-        datum = 6222;
+        code         = 4222;
+        name         = "Cape";
+        datum        = 6222;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1414,9 +1434,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Cape Canaveral")
     public void EPSG_4717() throws FactoryException {
-        code  = 4717;
-        name  = "Cape Canaveral";
-        datum = 6717;
+        code         = 4717;
+        name         = "Cape Canaveral";
+        datum        = 6717;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1436,9 +1456,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Carthage")
     public void EPSG_4223() throws FactoryException {
-        code  = 4223;
-        name  = "Carthage";
-        datum = 6223;
+        code         = 4223;
+        name         = "Carthage";
+        datum        = 6223;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1458,9 +1478,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Carthage (Paris)")
     public void EPSG_4816() throws FactoryException {
-        code  = 4816;
-        name  = "Carthage (Paris)";
-        datum = 6816;
+        code         = 4816;
+        name         = "Carthage (Paris)";
+        datum        = 6816;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1480,9 +1500,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("CH1903")
     public void EPSG_4149() throws FactoryException {
-        code  = 4149;
-        name  = "CH1903";
-        datum = 6149;
+        code         = 4149;
+        name         = "CH1903";
+        datum        = 6149;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1502,9 +1522,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("CH1903+")
     public void EPSG_4150() throws FactoryException {
-        code  = 4150;
-        name  = "CH1903+";
-        datum = 6150;
+        code         = 4150;
+        name         = "CH1903+";
+        datum        = 6150;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1525,9 +1545,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Chatham Islands 1971")
     public void EPSG_4672() throws FactoryException {
-        code  = 4672;
-        name  = "Chatham Islands 1971";
-        datum = 6672;
+        code         = 4672;
+        name         = "Chatham Islands 1971";
+        aliases      = new String[] {"CI1971"};
+        datum        = 6672;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1548,9 +1569,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Chatham Islands 1979")
     public void EPSG_4673() throws FactoryException {
-        code  = 4673;
-        name  = "Chatham Islands 1979";
-        datum = 6673;
+        code         = 4673;
+        name         = "Chatham Islands 1979";
+        aliases      = new String[] {"CI1979"};
+        datum        = 6673;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1571,9 +1593,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Chos Malal 1914")
     public void EPSG_4160() throws FactoryException {
-        code  = 4160;
-        name  = "Chos Malal 1914";
-        datum = 6160;
+        code         = 4160;
+        name         = "Chos Malal 1914";
+        aliases      = new String[] {"Quini-Huao"};
+        datum        = 6160;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1593,9 +1616,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("CHTRF95")
     public void EPSG_4151() throws FactoryException {
-        code  = 4151;
-        name  = "CHTRF95";
-        datum = 6151;
+        code         = 4151;
+        name         = "CHTRF95";
+        datum        = 6151;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1615,9 +1638,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("CHTRF96")
     public void EPSG_4933() throws FactoryException {
-        code  = 4933;
-        name  = "CHTRF96";
-        datum = 6151;
+        code         = 4933;
+        name         = "CHTRF96";
+        datum        = 6151;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -1637,9 +1660,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("CHTRF97")
     public void EPSG_4932() throws FactoryException {
-        code  = 4932;
-        name  = "CHTRF97";
-        datum = 6151;
+        code         = 4932;
+        name         = "CHTRF97";
+        datum        = 6151;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
     }
@@ -1660,9 +1683,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Chua")
     public void EPSG_4224() throws FactoryException {
-        code  = 4224;
-        name  = "Chua";
-        datum = 6224;
+        code         = 4224;
+        name         = "Chua";
+        datum        = 6224;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1682,9 +1705,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Cocos Islands 1965")
     public void EPSG_4708() throws FactoryException {
-        code  = 4708;
-        name  = "Cocos Islands 1965";
-        datum = 6708;
+        code         = 4708;
+        name         = "Cocos Islands 1965";
+        datum        = 6708;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1704,9 +1727,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Combani 1950")
     public void EPSG_4632() throws FactoryException {
-        code  = 4632;
-        name  = "Combani 1950";
-        datum = 6632;
+        code         = 4632;
+        name         = "Combani 1950";
+        datum        = 6632;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1726,9 +1749,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Conakry 1905")
     public void EPSG_4315() throws FactoryException {
-        code  = 4315;
-        name  = "Conakry 1905";
-        datum = 6315;
+        code         = 4315;
+        name         = "Conakry 1905";
+        datum        = 6315;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1749,9 +1772,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Corrego Alegre 1970-72")
     public void EPSG_4225() throws FactoryException {
-        code  = 4225;
-        name  = "Corrego Alegre 1970-72";
-        datum = 6225;
+        code         = 4225;
+        name         = "Corrego Alegre 1970-72";
+        aliases      = new String[] {"Corrego Alegre"};
+        datum        = 6225;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1771,9 +1795,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("CSG67")
     public void EPSG_4623() throws FactoryException {
-        code  = 4623;
-        name  = "CSG67";
-        datum = 6623;
+        code         = 4623;
+        name         = "CSG67";
+        datum        = 6623;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1793,9 +1817,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Dabola 1981")
     public void EPSG_4155() throws FactoryException {
-        code  = 4155;
-        name  = "Dabola 1981";
-        datum = 6155;
+        code         = 4155;
+        name         = "Dabola 1981";
+        datum        = 6155;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1816,9 +1840,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Datum 73")
     public void EPSG_4274() throws FactoryException {
-        code  = 4274;
-        name  = "Datum 73";
-        datum = 6274;
+        code         = 4274;
+        name         = "Datum 73";
+        aliases      = new String[] {"D73"};
+        datum        = 6274;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1839,9 +1864,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Dealul Piscului 1930")
     public void EPSG_4316() throws FactoryException {
-        code  = 4316;
-        name  = "Dealul Piscului 1930";
-        datum = 6316;
+        code         = 4316;
+        name         = "Dealul Piscului 1930";
+        aliases      = new String[] {"Dealul Piscului 1933"};
+        datum        = 6316;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1861,9 +1887,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Deception Island")
     public void EPSG_4736() throws FactoryException {
-        code  = 4736;
-        name  = "Deception Island";
-        datum = 6736;
+        code         = 4736;
+        name         = "Deception Island";
+        datum        = 6736;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1884,9 +1910,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Deir ez Zor")
     public void EPSG_4227() throws FactoryException {
-        code  = 4227;
-        name  = "Deir ez Zor";
-        datum = 6227;
+        code         = 4227;
+        name         = "Deir ez Zor";
+        aliases      = new String[] {"Levant"};
+        datum        = 6227;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1907,9 +1934,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("DGN95")
     public void EPSG_4755() throws FactoryException {
-        code  = 4755;
-        name  = "DGN95";
-        datum = 6755;
+        code         = 4755;
+        name         = "DGN95";
+        aliases      = new String[] {"IGD95"};
+        datum        = 6755;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1930,9 +1958,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("DGN95")
     public void EPSG_4898() throws FactoryException {
-        code  = 4898;
-        name  = "DGN95";
-        datum = 6755;
+        code         = 4898;
+        name         = "DGN95";
+        aliases      = new String[] {"IGD95"};
+        datum        = 6755;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -1953,9 +1982,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("DGN95")
     public void EPSG_4897() throws FactoryException {
-        code  = 4897;
-        name  = "DGN95";
-        datum = 6755;
+        code         = 4897;
+        name         = "DGN95";
+        aliases      = new String[] {"IGD95"};
+        datum        = 6755;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
     }
@@ -1976,9 +2006,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("DHDN")
     public void EPSG_4314() throws FactoryException {
-        code  = 4314;
-        name  = "DHDN";
-        datum = 6314;
+        code         = 4314;
+        name         = "DHDN";
+        datum        = 6314;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -1998,9 +2028,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Diego Garcia 1969")
     public void EPSG_4724() throws FactoryException {
-        code  = 4724;
-        name  = "Diego Garcia 1969";
-        datum = 6724;
+        code         = 4724;
+        name         = "Diego Garcia 1969";
+        datum        = 6724;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2020,9 +2050,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Dominica 1945")
     public void EPSG_4602() throws FactoryException {
-        code  = 4602;
-        name  = "Dominica 1945";
-        datum = 6602;
+        code         = 4602;
+        name         = "Dominica 1945";
+        datum        = 6602;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2042,9 +2072,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Douala 1948")
     public void EPSG_4192() throws FactoryException {
-        code  = 4192;
-        name  = "Douala 1948";
-        datum = 6192;
+        code         = 4192;
+        name         = "Douala 1948";
+        datum        = 6192;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2064,9 +2094,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Easter Island 1967")
     public void EPSG_4719() throws FactoryException {
-        code  = 4719;
-        name  = "Easter Island 1967";
-        datum = 6719;
+        code         = 4719;
+        name         = "Easter Island 1967";
+        datum        = 6719;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2086,9 +2116,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ED50")
     public void EPSG_4230() throws FactoryException {
-        code  = 4230;
-        name  = "ED50";
-        datum = 6230;
+        code         = 4230;
+        name         = "ED50";
+        datum        = 6230;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2108,9 +2138,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ED50(ED77)")
     public void EPSG_4154() throws FactoryException {
-        code  = 4154;
-        name  = "ED50(ED77)";
-        datum = 6154;
+        code         = 4154;
+        name         = "ED50(ED77)";
+        datum        = 6154;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2130,9 +2160,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ED79")
     public void EPSG_4668() throws FactoryException {
-        code  = 4668;
-        name  = "ED79";
-        datum = 6668;
+        code         = 4668;
+        name         = "ED79";
+        datum        = 6668;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2152,9 +2182,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ED87")
     public void EPSG_4231() throws FactoryException {
-        code  = 4231;
-        name  = "ED87";
-        datum = 6231;
+        code         = 4231;
+        name         = "ED87";
+        datum        = 6231;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2175,9 +2205,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Egypt 1907")
     public void EPSG_4229() throws FactoryException {
-        code  = 4229;
-        name  = "Egypt 1907";
-        datum = 6229;
+        code         = 4229;
+        name         = "Egypt 1907";
+        aliases      = new String[] {"Old Egyptian"};
+        datum        = 6229;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2198,9 +2229,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Egypt 1930")
     public void EPSG_4199() throws FactoryException {
-        code  = 4199;
-        name  = "Egypt 1930";
-        datum = 6199;
+        code         = 4199;
+        name         = "Egypt 1930";
+        aliases      = new String[] {"New Egyptian"};
+        datum        = 6199;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2221,9 +2253,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Egypt Gulf of Suez S-650 TL")
     public void EPSG_4706() throws FactoryException {
-        code  = 4706;
-        name  = "Egypt Gulf of Suez S-650 TL";
-        datum = 6706;
+        code         = 4706;
+        name         = "Egypt Gulf of Suez S-650 TL";
+        aliases      = new String[] {"S-650 TL"};
+        datum        = 6706;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2243,9 +2276,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ELD79")
     public void EPSG_4159() throws FactoryException {
-        code  = 4159;
-        name  = "ELD79";
-        datum = 6159;
+        code         = 4159;
+        name         = "ELD79";
+        datum        = 6159;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2265,9 +2298,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("EST92")
     public void EPSG_4133() throws FactoryException {
-        code  = 4133;
-        name  = "EST92";
-        datum = 6133;
+        code         = 4133;
+        name         = "EST92";
+        datum        = 6133;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2287,9 +2320,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("EST97")
     public void EPSG_4180() throws FactoryException {
-        code  = 4180;
-        name  = "EST97";
-        datum = 6180;
+        code         = 4180;
+        name         = "EST97";
+        datum        = 6180;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2309,9 +2342,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("EST98")
     public void EPSG_4935() throws FactoryException {
-        code  = 4935;
-        name  = "EST98";
-        datum = 6180;
+        code         = 4935;
+        name         = "EST98";
+        datum        = 6180;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -2331,9 +2364,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("EST99")
     public void EPSG_4834() throws FactoryException {
-        code  = 4834;
-        name  = "EST99";
-        datum = 6180;
+        code         = 4834;
+        name         = "EST99";
+        datum        = 6180;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
     }
@@ -2355,9 +2388,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ETRS89")
     public void EPSG_4258() throws FactoryException {
-        code  = 4258;
-        name  = "ETRS89";
-        datum = 6258;
+        code         = 4258;
+        name         = "ETRS89";
+        aliases      = new String[] {"ETRS89-GRS80"};
+        datum        = 6258;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2378,9 +2412,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ETRS89")
     public void EPSG_4937() throws FactoryException {
-        code  = 4937;
-        name  = "ETRS89";
-        datum = 6258;
+        code         = 4937;
+        name         = "ETRS89";
+        aliases      = new String[] {"ETRS89"};
+        datum        = 6258;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -2401,10 +2436,11 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ETRS89")
     public void EPSG_4936() throws FactoryException {
-        code  = 4936;
-        name  = "ETRS89";
+        code         = 4936;
+        name         = "ETRS89";
+        aliases      = new String[] {"ETRS89 / (X Y Z)"};
+        datum        = 6258;
         isGeocentric = true;
-        datum = 6258;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -2424,9 +2460,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Fahud")
     public void EPSG_4232() throws FactoryException {
-        code  = 4232;
-        name  = "Fahud";
-        datum = 6232;
+        code         = 4232;
+        name         = "Fahud";
+        datum        = 6232;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2447,9 +2483,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Fatu Iva 72")
     public void EPSG_4688() throws FactoryException {
-        code  = 4688;
-        name  = "Fatu Iva 72";
-        datum = 6688;
+        code         = 4688;
+        name         = "Fatu Iva 72";
+        aliases      = new String[] {"MHEFO 55"};
+        datum        = 6688;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2469,9 +2506,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("FD54")
     public void EPSG_4741() throws FactoryException {
-        code  = 4741;
-        name  = "FD54";
-        datum = 6741;
+        code         = 4741;
+        name         = "FD54";
+        datum        = 6741;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2492,9 +2529,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("FD58")
     public void EPSG_4132() throws FactoryException {
-        code  = 4132;
-        name  = "FD58";
-        datum = 6132;
+        code         = 4132;
+        name         = "FD58";
+        aliases      = new String[] {"Final Datum 1958 (Iran)"};
+        datum        = 6132;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2514,9 +2552,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Fiji 1956")
     public void EPSG_4721() throws FactoryException {
-        code  = 4721;
-        name  = "Fiji 1956";
-        datum = 6721;
+        code         = 4721;
+        name         = "Fiji 1956";
+        datum        = 6721;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2537,9 +2575,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Fiji 1986")
     public void EPSG_4720() throws FactoryException {
-        code  = 4720;
-        name  = "Fiji 1986";
-        datum = 6720;
+        code         = 4720;
+        name         = "Fiji 1986";
+        aliases      = new String[] {"FGD 1986"};
+        datum        = 6720;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2560,9 +2599,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("fk89")
     public void EPSG_4753() throws FactoryException {
-        code  = 4753;
-        name  = "fk89";
-        datum = 6753;
+        code         = 4753;
+        name         = "fk89";
+        aliases      = new String[] {"FD54a"};
+        datum        = 6753;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2582,9 +2622,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Fort Marigot")
     public void EPSG_4621() throws FactoryException {
-        code  = 4621;
-        name  = "Fort Marigot";
-        datum = 6621;
+        code         = 4621;
+        name         = "Fort Marigot";
+        datum        = 6621;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2606,9 +2646,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Gan 1970")
     public void EPSG_4684() throws FactoryException {
-        code  = 4684;
-        name  = "Gan 1970";
-        datum = 6684;
+        code         = 4684;
+        name         = "Gan 1970";
+        datum        = 6684;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2628,9 +2668,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Garoua")
     public void EPSG_4197() throws FactoryException {
-        code  = 4197;
-        name  = "Garoua";
-        datum = 6197;
+        code         = 4197;
+        name         = "Garoua";
+        datum        = 6197;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2650,9 +2690,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("GDA94")
     public void EPSG_4283() throws FactoryException {
-        code  = 4283;
-        name  = "GDA94";
-        datum = 6283;
+        code         = 4283;
+        name         = "GDA94";
+        datum        = 6283;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2672,9 +2712,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("GDA95")
     public void EPSG_4939() throws FactoryException {
-        code  = 4939;
-        name  = "GDA95";
-        datum = 6283;
+        code         = 4939;
+        name         = "GDA95";
+        datum        = 6283;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -2694,10 +2734,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("GDA96")
     public void EPSG_4938() throws FactoryException {
-        code  = 4938;
-        name  = "GDA96";
+        code         = 4938;
+        name         = "GDA96";
+        datum        = 6283;
         isGeocentric = true;
-        datum = 6283;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -2717,9 +2757,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("GDM2000")
     public void EPSG_4742() throws FactoryException {
-        code  = 4742;
-        name  = "GDM2000";
-        datum = 6742;
+        code         = 4742;
+        name         = "GDM2000";
+        datum        = 6742;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2739,9 +2779,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("GDM2000")
     public void EPSG_4921() throws FactoryException {
-        code  = 4921;
-        name  = "GDM2000";
-        datum = 6742;
+        code         = 4921;
+        name         = "GDM2000";
+        datum        = 6742;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -2761,10 +2801,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("GDM2000")
     public void EPSG_4920() throws FactoryException {
-        code  = 4920;
-        name  = "GDM2000";
+        code         = 4920;
+        name         = "GDM2000";
+        datum        = 6742;
         isGeocentric = true;
-        datum = 6742;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -2784,9 +2824,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("GGRS87")
     public void EPSG_4121() throws FactoryException {
-        code  = 4121;
-        name  = "GGRS87";
-        datum = 6121;
+        code         = 4121;
+        name         = "GGRS87";
+        datum        = 6121;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2806,9 +2846,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("GR96")
     public void EPSG_4747() throws FactoryException {
-        code  = 4747;
-        name  = "GR96";
-        datum = 6747;
+        code         = 4747;
+        name         = "GR96";
+        datum        = 6747;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2828,9 +2868,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("GR96")
     public void EPSG_4909() throws FactoryException {
-        code  = 4909;
-        name  = "GR96";
-        datum = 6747;
+        code         = 4909;
+        name         = "GR96";
+        datum        = 6747;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -2850,10 +2890,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("GR96")
     public void EPSG_4908() throws FactoryException {
-        code  = 4908;
-        name  = "GR96";
+        code         = 4908;
+        name         = "GR96";
+        datum        = 6747;
         isGeocentric = true;
-        datum = 6747;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -2874,9 +2914,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Grand Cayman 1959")
     public void EPSG_4723() throws FactoryException {
-        code  = 4723;
-        name  = "Grand Cayman 1959";
-        datum = 6723;
+        code         = 4723;
+        name         = "Grand Cayman 1959";
+        aliases      = new String[] {"Grand Cayman 1959"};
+        datum        = 6723;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2897,9 +2938,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Grand Comoros")
     public void EPSG_4646() throws FactoryException {
-        code  = 4646;
-        name  = "Grand Comoros";
-        datum = 6646;
+        code         = 4646;
+        name         = "Grand Comoros";
+        aliases      = new String[] {"IGN50"};
+        datum        = 6646;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2919,9 +2961,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Greek")
     public void EPSG_4120() throws FactoryException {
-        code  = 4120;
-        name  = "Greek";
-        datum = 6120;
+        code         = 4120;
+        name         = "Greek";
+        datum        = 6120;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2941,9 +2983,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Greek (Athens)")
     public void EPSG_4815() throws FactoryException {
-        code  = 4815;
-        name  = "Greek (Athens)";
-        datum = 6815;
+        code         = 4815;
+        name         = "Greek (Athens)";
+        datum        = 6815;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2963,9 +3005,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Grenada 1953")
     public void EPSG_4603() throws FactoryException {
-        code  = 4603;
-        name  = "Grenada 1953";
-        datum = 6603;
+        code         = 4603;
+        name         = "Grenada 1953";
+        datum        = 6603;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -2986,9 +3028,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Guadeloupe 1948")
     public void EPSG_4622() throws FactoryException {
-        code  = 4622;
-        name  = "Guadeloupe 1948";
-        datum = 6622;
+        code         = 4622;
+        name         = "Guadeloupe 1948";
+        aliases      = new String[] {"Sainte Anne"};
+        datum        = 6622;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3008,9 +3051,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Guam 1963")
     public void EPSG_4675() throws FactoryException {
-        code  = 4675;
-        name  = "Guam 1963";
-        datum = 6675;
+        code         = 4675;
+        name         = "Guam 1963";
+        datum        = 6675;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3030,9 +3073,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Gulshan 303")
     public void EPSG_4682() throws FactoryException {
-        code  = 4682;
-        name  = "Gulshan 303";
-        datum = 6682;
+        code         = 4682;
+        name         = "Gulshan 303";
+        datum        = 6682;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3052,9 +3095,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Hanoi 1972")
     public void EPSG_4147() throws FactoryException {
-        code  = 4147;
-        name  = "Hanoi 1972";
-        datum = 6147;
+        code         = 4147;
+        name         = "Hanoi 1972";
+        datum        = 6147;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3074,9 +3117,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Hartebeesthoek94")
     public void EPSG_4148() throws FactoryException {
-        code  = 4148;
-        name  = "Hartebeesthoek94";
-        datum = 6148;
+        code         = 4148;
+        name         = "Hartebeesthoek94";
+        datum        = 6148;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3096,9 +3139,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Hartebeesthoek94")
     public void EPSG_4941() throws FactoryException {
-        code  = 4941;
-        name  = "Hartebeesthoek94";
-        datum = 6148;
+        code         = 4941;
+        name         = "Hartebeesthoek94";
+        datum        = 6148;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -3118,10 +3161,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Hartebeesthoek94")
     public void EPSG_4940() throws FactoryException {
-        code  = 4940;
-        name  = "Hartebeesthoek94";
+        code         = 4940;
+        name         = "Hartebeesthoek94";
+        datum        = 6148;
         isGeocentric = true;
-        datum = 6148;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -3141,9 +3184,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("HD1909")
     public void EPSG_3819() throws FactoryException {
-        code  = 3819;
-        name  = "HD1909";
-        datum = 1024;
+        code         = 3819;
+        name         = "HD1909";
+        datum        = 1024;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3163,9 +3206,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("HD72")
     public void EPSG_4237() throws FactoryException {
-        code  = 4237;
-        name  = "HD72";
-        datum = 6237;
+        code         = 4237;
+        name         = "HD72";
+        datum        = 6237;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3185,9 +3228,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Helle 1954")
     public void EPSG_4660() throws FactoryException {
-        code  = 4660;
-        name  = "Helle 1954";
-        datum = 6660;
+        code         = 4660;
+        name         = "Helle 1954";
+        datum        = 6660;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3207,9 +3250,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Herat North")
     public void EPSG_4255() throws FactoryException {
-        code  = 4255;
-        name  = "Herat North";
-        datum = 6255;
+        code         = 4255;
+        name         = "Herat North";
+        datum        = 6255;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3230,9 +3273,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Hito XVIII 1963")
     public void EPSG_4254() throws FactoryException {
-        code  = 4254;
-        name  = "Hito XVIII 1963";
-        datum = 6254;
+        code         = 4254;
+        name         = "Hito XVIII 1963";
+        aliases      = new String[] {"Hito XVIII"};
+        datum        = 6254;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3252,9 +3296,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Hjorsey 1955")
     public void EPSG_4658() throws FactoryException {
-        code  = 4658;
-        name  = "Hjorsey 1955";
-        datum = 6658;
+        code         = 4658;
+        name         = "Hjorsey 1955";
+        datum        = 6658;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3275,9 +3319,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Hong Kong 1963")
     public void EPSG_4738() throws FactoryException {
-        code  = 4738;
-        name  = "Hong Kong 1963";
-        datum = 6738;
+        code         = 4738;
+        name         = "Hong Kong 1963";
+        aliases      = new String[] {"HK63"};
+        datum        = 6738;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3298,9 +3343,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Hong Kong 1963(67)")
     public void EPSG_4739() throws FactoryException {
-        code  = 4739;
-        name  = "Hong Kong 1963(67)";
-        datum = 6739;
+        code         = 4739;
+        name         = "Hong Kong 1963(67)";
+        aliases      = new String[] {"HK63(67)"};
+        datum        = 6739;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3321,9 +3367,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Hong Kong 1980")
     public void EPSG_4611() throws FactoryException {
-        code  = 4611;
-        name  = "Hong Kong 1980";
-        datum = 6611;
+        code         = 4611;
+        name         = "Hong Kong 1980";
+        aliases      = new String[] {"HK1980"};
+        datum        = 6611;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3343,9 +3390,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("HTRS96")
     public void EPSG_4761() throws FactoryException {
-        code  = 4761;
-        name  = "HTRS96";
-        datum = 6761;
+        code         = 4761;
+        name         = "HTRS96";
+        datum        = 6761;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3365,9 +3412,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("HTRS96")
     public void EPSG_4889() throws FactoryException {
-        code  = 4889;
-        name  = "HTRS96";
-        datum = 6761;
+        code         = 4889;
+        name         = "HTRS96";
+        datum        = 6761;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -3387,10 +3434,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("HTRS96")
     public void EPSG_4888() throws FactoryException {
-        code  = 4888;
-        name  = "HTRS96";
+        code         = 4888;
+        name         = "HTRS96";
+        datum        = 6761;
         isGeocentric = true;
-        datum = 6761;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -3411,9 +3458,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Hu Tzu Shan 1950")
     public void EPSG_4236() throws FactoryException {
-        code  = 4236;
-        name  = "Hu Tzu Shan 1950";
-        datum = 6236;
+        code         = 4236;
+        name         = "Hu Tzu Shan 1950";
+        aliases      = new String[] {"Hu Tzu Shan"};
+        datum        = 6236;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3433,9 +3481,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ID74")
     public void EPSG_4238() throws FactoryException {
-        code  = 4238;
-        name  = "ID74";
-        datum = 6238;
+        code         = 4238;
+        name         = "ID74";
+        datum        = 6238;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3456,9 +3504,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IGC 1962 6th Parallel South")
     public void EPSG_4697() throws FactoryException {
-        code  = 4697;
-        name  = "IGC 1962 6th Parallel South";
-        datum = 6697;
+        code         = 4697;
+        name         = "IGC 1962 6th Parallel South";
+        aliases      = new String[] {"IGC 1962"};
+        datum        = 6697;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3479,9 +3528,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IGCB 1955")
     public void EPSG_4701() throws FactoryException {
-        code  = 4701;
-        name  = "IGCB 1955";
-        datum = 6701;
+        code         = 4701;
+        name         = "IGCB 1955";
+        aliases      = new String[] {"Bas Congo 1955"};
+        datum        = 6701;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3501,9 +3551,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IGM95")
     public void EPSG_4670() throws FactoryException {
-        code  = 4670;
-        name  = "IGM95";
-        datum = 6670;
+        code         = 4670;
+        name         = "IGM95";
+        datum        = 6670;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3523,9 +3573,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IGM95")
     public void EPSG_4983() throws FactoryException {
-        code  = 4983;
-        name  = "IGM95";
-        datum = 6670;
+        code         = 4983;
+        name         = "IGM95";
+        datum        = 6670;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -3545,10 +3595,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IGM95")
     public void EPSG_4982() throws FactoryException {
-        code  = 4982;
-        name  = "IGM95";
+        code         = 4982;
+        name         = "IGM95";
+        datum        = 6670;
         isGeocentric = true;
-        datum = 6670;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -3568,9 +3618,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IGN 1962 Kerguelen")
     public void EPSG_4698() throws FactoryException {
-        code  = 4698;
-        name  = "IGN 1962 Kerguelen";
-        datum = 6698;
+        code         = 4698;
+        name         = "IGN 1962 Kerguelen";
+        datum        = 6698;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3590,9 +3640,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IGN53 Mare")
     public void EPSG_4641() throws FactoryException {
-        code  = 4641;
-        name  = "IGN53 Mare";
-        datum = 6641;
+        code         = 4641;
+        name         = "IGN53 Mare";
+        datum        = 6641;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3612,9 +3662,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IGN56 Lifou")
     public void EPSG_4633() throws FactoryException {
-        code  = 4633;
-        name  = "IGN56 Lifou";
-        datum = 6633;
+        code         = 4633;
+        name         = "IGN56 Lifou";
+        datum        = 6633;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3634,9 +3684,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IGN63 Hiva Oa")
     public void EPSG_4689() throws FactoryException {
-        code  = 4689;
-        name  = "IGN63 Hiva Oa";
-        datum = 6689;
+        code         = 4689;
+        name         = "IGN63 Hiva Oa";
+        datum        = 6689;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3656,9 +3706,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IGN72 Grande Terre")
     public void EPSG_4662() throws FactoryException {
-        code  = 4662;
-        name  = "IGN72 Grande Terre";
-        datum = 6634;
+        code         = 4662;
+        name         = "IGN72 Grande Terre";
+        datum        = 6634;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3678,9 +3728,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IGN72 Nuku Hiva")
     public void EPSG_4630() throws FactoryException {
-        code  = 4630;
-        name  = "IGN72 Nuku Hiva";
-        datum = 6630;
+        code         = 4630;
+        name         = "IGN72 Nuku Hiva";
+        datum        = 6630;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3701,9 +3751,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IGN Astro 1960")
     public void EPSG_4700() throws FactoryException {
-        code  = 4700;
-        name  = "IGN Astro 1960";
-        datum = 6700;
+        code         = 4700;
+        name         = "IGN Astro 1960";
+        aliases      = new String[] {"Mauritanian Mining Cadastre 1999"};
+        datum        = 6700;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3723,9 +3774,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IKBD-92")
     public void EPSG_4667() throws FactoryException {
-        code  = 4667;
-        name  = "IKBD-92";
-        datum = 6667;
+        code         = 4667;
+        name         = "IKBD-92";
+        datum        = 6667;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3745,9 +3796,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Indian 1954")
     public void EPSG_4239() throws FactoryException {
-        code  = 4239;
-        name  = "Indian 1954";
-        datum = 6239;
+        code         = 4239;
+        name         = "Indian 1954";
+        datum        = 6239;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3768,9 +3819,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Indian 1960")
     public void EPSG_4131() throws FactoryException {
-        code  = 4131;
-        name  = "Indian 1960";
-        datum = 6131;
+        code         = 4131;
+        name         = "Indian 1960";
+        aliases      = new String[] {"Indian (DMA Reduced)"};
+        datum        = 6131;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3790,9 +3842,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Indian 1975")
     public void EPSG_4240() throws FactoryException {
-        code  = 4240;
-        name  = "Indian 1975";
-        datum = 6240;
+        code         = 4240;
+        name         = "Indian 1975";
+        datum        = 6240;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3813,9 +3865,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IRENET95")
     public void EPSG_4173() throws FactoryException {
-        code  = 4173;
-        name  = "IRENET95";
-        datum = 6173;
+        code         = 4173;
+        name         = "IRENET95";
+        aliases      = new String[] {"ETRS89"};
+        datum        = 6173;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3836,9 +3889,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IRENET96")
     public void EPSG_4943() throws FactoryException {
-        code  = 4943;
-        name  = "IRENET96";
-        datum = 6173;
+        code         = 4943;
+        name         = "IRENET96";
+        aliases      = new String[] {"ETRS89"};
+        datum        = 6173;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -3859,10 +3913,11 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("IRENET97")
     public void EPSG_4942() throws FactoryException {
-        code  = 4942;
-        name  = "IRENET97";
+        code         = 4942;
+        name         = "IRENET97";
+        aliases      = new String[] {"ETRS89"};
+        datum        = 6173;
         isGeocentric = true;
-        datum = 6173;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -3882,9 +3937,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ISN93")
     public void EPSG_4659() throws FactoryException {
-        code  = 4659;
-        name  = "ISN93";
-        datum = 6659;
+        code         = 4659;
+        name         = "ISN93";
+        datum        = 6659;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3904,9 +3959,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ISN93")
     public void EPSG_4945() throws FactoryException {
-        code  = 4945;
-        name  = "ISN93";
-        datum = 6659;
+        code         = 4945;
+        name         = "ISN93";
+        datum        = 6659;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -3926,10 +3981,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ISN93")
     public void EPSG_4944() throws FactoryException {
-        code  = 4944;
-        name  = "ISN93";
+        code         = 4944;
+        name         = "ISN93";
+        datum        = 6659;
         isGeocentric = true;
-        datum = 6659;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -3950,9 +4005,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Israel 1993")
     public void EPSG_4141() throws FactoryException {
-        code  = 4141;
-        name  = "Israel 1993";
-        datum = 6141;
+        code         = 4141;
+        name         = "Israel 1993";
+        aliases      = new String[] {"Israel"};
+        datum        = 6141;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3972,9 +4028,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Iwo Jima 1945")
     public void EPSG_4709() throws FactoryException {
-        code  = 4709;
-        name  = "Iwo Jima 1945";
-        datum = 6709;
+        code         = 4709;
+        name         = "Iwo Jima 1945";
+        datum        = 6709;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -3994,9 +4050,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("JAD2001")
     public void EPSG_4758() throws FactoryException {
-        code  = 4758;
-        name  = "JAD2001";
-        datum = 6758;
+        code         = 4758;
+        name         = "JAD2001";
+        datum        = 6758;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4016,9 +4072,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("JAD2001")
     public void EPSG_4895() throws FactoryException {
-        code  = 4895;
-        name  = "JAD2001";
-        datum = 6758;
+        code         = 4895;
+        name         = "JAD2001";
+        datum        = 6758;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -4038,10 +4094,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("JAD2001")
     public void EPSG_4894() throws FactoryException {
-        code  = 4894;
-        name  = "JAD2001";
+        code         = 4894;
+        name         = "JAD2001";
+        datum        = 6758;
         isGeocentric = true;
-        datum = 6758;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -4061,9 +4117,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("JAD69")
     public void EPSG_4242() throws FactoryException {
-        code  = 4242;
-        name  = "JAD69";
-        datum = 6242;
+        code         = 4242;
+        name         = "JAD69";
+        datum        = 6242;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4083,9 +4139,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Jamaica 1875")
     public void EPSG_4241() throws FactoryException {
-        code  = 4241;
-        name  = "Jamaica 1875";
-        datum = 6241;
+        code         = 4241;
+        name         = "Jamaica 1875";
+        datum        = 6241;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4105,9 +4161,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("JGD2000")
     public void EPSG_4612() throws FactoryException {
-        code  = 4612;
-        name  = "JGD2000";
-        datum = 6612;
+        code         = 4612;
+        name         = "JGD2000";
+        datum        = 6612;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4127,9 +4183,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("JGD2001")
     public void EPSG_4947() throws FactoryException {
-        code  = 4947;
-        name  = "JGD2001";
-        datum = 6612;
+        code         = 4947;
+        name         = "JGD2001";
+        datum        = 6612;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -4149,10 +4205,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("JGD2002")
     public void EPSG_4946() throws FactoryException {
-        code  = 4946;
-        name  = "JGD2002";
+        code         = 4946;
+        name         = "JGD2002";
+        datum        = 6612;
         isGeocentric = true;
-        datum = 6612;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -4173,9 +4229,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Johnston Island 1961")
     public void EPSG_4725() throws FactoryException {
-        code  = 4725;
-        name  = "Johnston Island 1961";
-        datum = 6725;
+        code         = 4725;
+        name         = "Johnston Island 1961";
+        aliases      = new String[] {"Johnston Atoll 1961"};
+        datum        = 6725;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4195,9 +4252,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Jouik 1961")
     public void EPSG_4679() throws FactoryException {
-        code  = 4679;
-        name  = "Jouik 1961";
-        datum = 6679;
+        code         = 4679;
+        name         = "Jouik 1961";
+        datum        = 6679;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4217,9 +4274,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Kalianpur 1880")
     public void EPSG_4243() throws FactoryException {
-        code  = 4243;
-        name  = "Kalianpur 1880";
-        datum = 6243;
+        code         = 4243;
+        name         = "Kalianpur 1880";
+        datum        = 6243;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4239,9 +4296,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Kalianpur 1937")
     public void EPSG_4144() throws FactoryException {
-        code  = 4144;
-        name  = "Kalianpur 1937";
-        datum = 6144;
+        code         = 4144;
+        name         = "Kalianpur 1937";
+        datum        = 6144;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4261,9 +4318,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Kalianpur 1962")
     public void EPSG_4145() throws FactoryException {
-        code  = 4145;
-        name  = "Kalianpur 1962";
-        datum = 6145;
+        code         = 4145;
+        name         = "Kalianpur 1962";
+        datum        = 6145;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4283,9 +4340,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Kalianpur 1975")
     public void EPSG_4146() throws FactoryException {
-        code  = 4146;
-        name  = "Kalianpur 1975";
-        datum = 6146;
+        code         = 4146;
+        name         = "Kalianpur 1975";
+        datum        = 6146;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4305,9 +4362,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Kandawala")
     public void EPSG_4244() throws FactoryException {
-        code  = 4244;
-        name  = "Kandawala";
-        datum = 6244;
+        code         = 4244;
+        name         = "Kandawala";
+        datum        = 6244;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4328,9 +4385,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Karbala 1979")
     public void EPSG_4743() throws FactoryException {
-        code  = 4743;
-        name  = "Karbala 1979";
-        datum = 6743;
+        code         = 4743;
+        name         = "Karbala 1979";
+        aliases      = new String[] {"Karbala 1979 (Polservice)"};
+        datum        = 6743;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4350,9 +4408,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Kasai 1953")
     public void EPSG_4696() throws FactoryException {
-        code  = 4696;
-        name  = "Kasai 1953";
-        datum = 6696;
+        code         = 4696;
+        name         = "Kasai 1953";
+        datum        = 6696;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4372,9 +4430,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Katanga 1955")
     public void EPSG_4695() throws FactoryException {
-        code  = 4695;
-        name  = "Katanga 1955";
-        datum = 6695;
+        code         = 4695;
+        name         = "Katanga 1955";
+        datum        = 6695;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4394,9 +4452,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Kertau (RSO)")
     public void EPSG_4751() throws FactoryException {
-        code  = 4751;
-        name  = "Kertau (RSO)";
-        datum = 6751;
+        code         = 4751;
+        name         = "Kertau (RSO)";
+        datum        = 6751;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4417,9 +4475,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Kertau 1968")
     public void EPSG_4245() throws FactoryException {
-        code  = 4245;
-        name  = "Kertau 1968";
-        datum = 6245;
+        code         = 4245;
+        name         = "Kertau 1968";
+        aliases      = new String[] {"MRT68"};
+        datum        = 6245;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4439,9 +4498,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("KKJ")
     public void EPSG_4123() throws FactoryException {
-        code  = 4123;
-        name  = "KKJ";
-        datum = 6123;
+        code         = 4123;
+        name         = "KKJ";
+        datum        = 6123;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4461,9 +4520,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("KOC")
     public void EPSG_4246() throws FactoryException {
-        code  = 4246;
-        name  = "KOC";
-        datum = 6246;
+        code         = 4246;
+        name         = "KOC";
+        datum        = 6246;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4483,9 +4542,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Korea 2000")
     public void EPSG_4737() throws FactoryException {
-        code  = 4737;
-        name  = "Korea 2000";
-        datum = 6737;
+        code         = 4737;
+        name         = "Korea 2000";
+        datum        = 6737;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4505,9 +4564,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Korea 2000")
     public void EPSG_4927() throws FactoryException {
-        code  = 4927;
-        name  = "Korea 2000";
-        datum = 6737;
+        code         = 4927;
+        name         = "Korea 2000";
+        datum        = 6737;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -4527,10 +4586,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Korea 2000")
     public void EPSG_4926() throws FactoryException {
-        code  = 4926;
-        name  = "Korea 2000";
+        code         = 4926;
+        name         = "Korea 2000";
+        datum        = 6737;
         isGeocentric = true;
-        datum = 6737;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -4550,9 +4609,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Korean 1985")
     public void EPSG_4162() throws FactoryException {
-        code  = 4162;
-        name  = "Korean 1985";
-        datum = 6162;
+        code         = 4162;
+        name         = "Korean 1985";
+        datum        = 6162;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4572,9 +4631,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Korean 1995")
     public void EPSG_4166() throws FactoryException {
-        code  = 4166;
-        name  = "Korean 1995";
-        datum = 6166;
+        code         = 4166;
+        name         = "Korean 1995";
+        datum        = 6166;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4594,9 +4653,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Kousseri")
     public void EPSG_4198() throws FactoryException {
-        code  = 4198;
-        name  = "Kousseri";
-        datum = 6198;
+        code         = 4198;
+        name         = "Kousseri";
+        datum        = 6198;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4616,9 +4675,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("KUDAMS")
     public void EPSG_4319() throws FactoryException {
-        code  = 4319;
-        name  = "KUDAMS";
-        datum = 6319;
+        code         = 4319;
+        name         = "KUDAMS";
+        datum        = 6319;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4638,9 +4697,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Kusaie 1951")
     public void EPSG_4735() throws FactoryException {
-        code  = 4735;
-        name  = "Kusaie 1951";
-        datum = 6735;
+        code         = 4735;
+        name         = "Kusaie 1951";
+        datum        = 6735;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4660,9 +4719,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("La Canoa")
     public void EPSG_4247() throws FactoryException {
-        code  = 4247;
-        name  = "La Canoa";
-        datum = 6247;
+        code         = 4247;
+        name         = "La Canoa";
+        datum        = 6247;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4682,9 +4741,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Lake")
     public void EPSG_4249() throws FactoryException {
-        code  = 4249;
-        name  = "Lake";
-        datum = 6249;
+        code         = 4249;
+        name         = "Lake";
+        datum        = 6249;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4704,9 +4763,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Lao 1993")
     public void EPSG_4677() throws FactoryException {
-        code  = 4677;
-        name  = "Lao 1993";
-        datum = 6677;
+        code         = 4677;
+        name         = "Lao 1993";
+        datum        = 6677;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4726,9 +4785,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Lao 1993")
     public void EPSG_4991() throws FactoryException {
-        code  = 4991;
-        name  = "Lao 1993";
-        datum = 6677;
+        code         = 4991;
+        name         = "Lao 1993";
+        datum        = 6677;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -4748,10 +4807,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Lao 1993")
     public void EPSG_4990() throws FactoryException {
-        code  = 4990;
-        name  = "Lao 1993";
+        code         = 4990;
+        name         = "Lao 1993";
+        datum        = 6677;
         isGeocentric = true;
-        datum = 6677;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -4771,9 +4830,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Lao 1997")
     public void EPSG_4678() throws FactoryException {
-        code  = 4678;
-        name  = "Lao 1997";
-        datum = 6678;
+        code         = 4678;
+        name         = "Lao 1997";
+        datum        = 6678;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4793,9 +4852,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Lao 1997")
     public void EPSG_4993() throws FactoryException {
-        code  = 4993;
-        name  = "Lao 1997";
-        datum = 6678;
+        code         = 4993;
+        name         = "Lao 1997";
+        datum        = 6678;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -4815,10 +4874,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Lao 1997")
     public void EPSG_4992() throws FactoryException {
-        code  = 4992;
-        name  = "Lao 1997";
+        code         = 4992;
+        name         = "Lao 1997";
+        datum        = 6678;
         isGeocentric = true;
-        datum = 6678;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -4838,9 +4897,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Leigon")
     public void EPSG_4250() throws FactoryException {
-        code  = 4250;
-        name  = "Leigon";
-        datum = 6250;
+        code         = 4250;
+        name         = "Leigon";
+        datum        = 6250;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4861,9 +4920,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Le Pouce 1934")
     public void EPSG_4699() throws FactoryException {
-        code  = 4699;
-        name  = "Le Pouce 1934";
-        datum = 6699;
+        code         = 4699;
+        name         = "Le Pouce 1934";
+        aliases      = new String[] {"Le Pouce (Mauritius 94)"};
+        datum        = 6699;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4883,9 +4943,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("LGD2006")
     public void EPSG_4754() throws FactoryException {
-        code  = 4754;
-        name  = "LGD2006";
-        datum = 6754;
+        code         = 4754;
+        name         = "LGD2006";
+        datum        = 6754;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4905,9 +4965,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("LGD2006")
     public void EPSG_4900() throws FactoryException {
-        code  = 4900;
-        name  = "LGD2006";
-        datum = 6754;
+        code         = 4900;
+        name         = "LGD2006";
+        datum        = 6754;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -4927,10 +4987,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("LGD2006")
     public void EPSG_4899() throws FactoryException {
-        code  = 4899;
-        name  = "LGD2006";
+        code         = 4899;
+        name         = "LGD2006";
+        datum        = 6754;
         isGeocentric = true;
-        datum = 6754;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -4950,9 +5010,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Liberia 1964")
     public void EPSG_4251() throws FactoryException {
-        code  = 4251;
-        name  = "Liberia 1964";
-        datum = 6251;
+        code         = 4251;
+        name         = "Liberia 1964";
+        datum        = 6251;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4973,9 +5033,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Lisbon")
     public void EPSG_4207() throws FactoryException {
-        code  = 4207;
-        name  = "Lisbon";
-        datum = 6207;
+        code         = 4207;
+        name         = "Lisbon";
+        aliases      = new String[] {"Lisbon 1937"};
+        datum        = 6207;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -4996,9 +5057,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Lisbon (Lisbon)")
     public void EPSG_4803() throws FactoryException {
-        code  = 4803;
-        name  = "Lisbon (Lisbon)";
-        datum = 6803;
+        code         = 4803;
+        name         = "Lisbon (Lisbon)";
+        aliases      = new String[] {"Lisbon 1937 (Lisbon)"};
+        datum        = 6803;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5018,9 +5080,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Lisbon 1890")
     public void EPSG_4666() throws FactoryException {
-        code  = 4666;
-        name  = "Lisbon 1890";
-        datum = 6666;
+        code         = 4666;
+        name         = "Lisbon 1890";
+        datum        = 6666;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5040,9 +5102,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Lisbon 1890 (Lisbon)")
     public void EPSG_4904() throws FactoryException {
-        code  = 4904;
-        name  = "Lisbon 1890 (Lisbon)";
-        datum = 6904;
+        code         = 4904;
+        name         = "Lisbon 1890 (Lisbon)";
+        datum        = 6904;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5062,9 +5124,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("LKS92")
     public void EPSG_4661() throws FactoryException {
-        code  = 4661;
-        name  = "LKS92";
-        datum = 6661;
+        code         = 4661;
+        name         = "LKS92";
+        datum        = 6661;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5084,9 +5146,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("LKS92")
     public void EPSG_4949() throws FactoryException {
-        code  = 4949;
-        name  = "LKS92";
-        datum = 6661;
+        code         = 4949;
+        name         = "LKS92";
+        datum        = 6661;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -5106,10 +5168,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("LKS92")
     public void EPSG_4948() throws FactoryException {
-        code  = 4948;
-        name  = "LKS92";
+        code         = 4948;
+        name         = "LKS92";
+        datum        = 6661;
         isGeocentric = true;
-        datum = 6661;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -5130,9 +5192,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("LKS94")
     public void EPSG_4669() throws FactoryException {
-        code  = 4669;
-        name  = "LKS94";
-        datum = 6126;
+        code         = 4669;
+        name         = "LKS94";
+        aliases      = new String[] {"LKS94 (ETRS89)"};
+        datum        = 6126;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5153,9 +5216,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("LKS95")
     public void EPSG_4951() throws FactoryException {
-        code  = 4951;
-        name  = "LKS95";
-        datum = 6126;
+        code         = 4951;
+        name         = "LKS95";
+        aliases      = new String[] {"LKS94 (ETRS89)"};
+        datum        = 6126;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -5176,10 +5240,11 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("LKS96")
     public void EPSG_4950() throws FactoryException {
-        code  = 4950;
-        name  = "LKS96";
+        code         = 4950;
+        name         = "LKS96";
+        aliases      = new String[] {"LKS94 (ETRS89)"};
+        datum        = 6126;
         isGeocentric = true;
-        datum = 6126;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -5200,9 +5265,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Locodjo 1965")
     public void EPSG_4142() throws FactoryException {
-        code  = 4142;
-        name  = "Locodjo 1965";
-        datum = 6142;
+        code         = 4142;
+        name         = "Locodjo 1965";
+        aliases      = new String[] {"Port Bouet"};
+        datum        = 6142;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5222,9 +5288,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Loma Quintana")
     public void EPSG_4288() throws FactoryException {
-        code  = 4288;
-        name  = "Loma Quintana";
-        datum = 6288;
+        code         = 4288;
+        name         = "Loma Quintana";
+        datum        = 6288;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5244,9 +5310,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Lome")
     public void EPSG_4252() throws FactoryException {
-        code  = 4252;
-        name  = "Lome";
-        datum = 6252;
+        code         = 4252;
+        name         = "Lome";
+        datum        = 6252;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5267,9 +5333,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Luxembourg 1930")
     public void EPSG_4181() throws FactoryException {
-        code  = 4181;
-        name  = "Luxembourg 1930";
-        datum = 6181;
+        code         = 4181;
+        name         = "Luxembourg 1930";
+        aliases      = new String[] {"LUREF"};
+        datum        = 6181;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5289,9 +5356,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Luzon 1911")
     public void EPSG_4253() throws FactoryException {
-        code  = 4253;
-        name  = "Luzon 1911";
-        datum = 6253;
+        code         = 4253;
+        name         = "Luzon 1911";
+        datum        = 6253;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5311,9 +5378,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("M'poraloko")
     public void EPSG_4266() throws FactoryException {
-        code  = 4266;
-        name  = "M'poraloko";
-        datum = 6266;
+        code         = 4266;
+        name         = "M'poraloko";
+        datum        = 6266;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5334,9 +5401,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Madrid 1870 (Madrid)")
     public void EPSG_4903() throws FactoryException {
-        code  = 4903;
-        name  = "Madrid 1870 (Madrid)";
-        datum = 6903;
+        code         = 4903;
+        name         = "Madrid 1870 (Madrid)";
+        aliases      = new String[] {"Madrid"};
+        datum        = 6903;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5356,9 +5424,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Madzansua")
     public void EPSG_4128() throws FactoryException {
-        code  = 4128;
-        name  = "Madzansua";
-        datum = 6128;
+        code         = 4128;
+        name         = "Madzansua";
+        datum        = 6128;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5378,9 +5446,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("MAGNA-SIRGAS")
     public void EPSG_4686() throws FactoryException {
-        code  = 4686;
-        name  = "MAGNA-SIRGAS";
-        datum = 6686;
+        code         = 4686;
+        name         = "MAGNA-SIRGAS";
+        datum        = 6686;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5400,9 +5468,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("MAGNA-SIRGAS")
     public void EPSG_4997() throws FactoryException {
-        code  = 4997;
-        name  = "MAGNA-SIRGAS";
-        datum = 6686;
+        code         = 4997;
+        name         = "MAGNA-SIRGAS";
+        datum        = 6686;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -5422,10 +5490,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("MAGNA-SIRGAS")
     public void EPSG_4996() throws FactoryException {
-        code  = 4996;
-        name  = "MAGNA-SIRGAS";
+        code         = 4996;
+        name         = "MAGNA-SIRGAS";
+        datum        = 6686;
         isGeocentric = true;
-        datum = 6686;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -5445,9 +5513,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Mahe 1971")
     public void EPSG_4256() throws FactoryException {
-        code  = 4256;
-        name  = "Mahe 1971";
-        datum = 6256;
+        code         = 4256;
+        name         = "Mahe 1971";
+        datum        = 6256;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5467,9 +5535,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Makassar")
     public void EPSG_4257() throws FactoryException {
-        code  = 4257;
-        name  = "Makassar";
-        datum = 6257;
+        code         = 4257;
+        name         = "Makassar";
+        datum        = 6257;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5489,9 +5557,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Makassar (Jakarta)")
     public void EPSG_4804() throws FactoryException {
-        code  = 4804;
-        name  = "Makassar (Jakarta)";
-        datum = 6804;
+        code         = 4804;
+        name         = "Makassar (Jakarta)";
+        datum        = 6804;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5512,9 +5580,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Malongo 1987")
     public void EPSG_4259() throws FactoryException {
-        code  = 4259;
-        name  = "Malongo 1987";
-        datum = 6259;
+        code         = 4259;
+        name         = "Malongo 1987";
+        aliases      = new String[] {"Mhast"};
+        datum        = 6259;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5534,9 +5603,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Manoca 1962")
     public void EPSG_4193() throws FactoryException {
-        code  = 4193;
-        name  = "Manoca 1962";
-        datum = 6193;
+        code         = 4193;
+        name         = "Manoca 1962";
+        datum        = 6193;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5556,9 +5625,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Marcus Island 1952")
     public void EPSG_4711() throws FactoryException {
-        code  = 4711;
-        name  = "Marcus Island 1952";
-        datum = 6711;
+        code         = 4711;
+        name         = "Marcus Island 1952";
+        datum        = 6711;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5578,9 +5647,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Marshall Islands 1960")
     public void EPSG_4732() throws FactoryException {
-        code  = 4732;
-        name  = "Marshall Islands 1960";
-        datum = 6732;
+        code         = 4732;
+        name         = "Marshall Islands 1960";
+        datum        = 6732;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5601,9 +5670,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Martinique 1938")
     public void EPSG_4625() throws FactoryException {
-        code  = 4625;
-        name  = "Martinique 1938";
-        datum = 6625;
+        code         = 4625;
+        name         = "Martinique 1938";
+        aliases      = new String[] {"Fort Desaix"};
+        datum        = 6625;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5623,9 +5693,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Massawa")
     public void EPSG_4262() throws FactoryException {
-        code  = 4262;
-        name  = "Massawa";
-        datum = 6262;
+        code         = 4262;
+        name         = "Massawa";
+        datum        = 6262;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5646,9 +5716,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Maupiti 83")
     public void EPSG_4692() throws FactoryException {
-        code  = 4692;
-        name  = "Maupiti 83";
-        datum = 6692;
+        code         = 4692;
+        name         = "Maupiti 83";
+        aliases      = new String[] {"MOP 1983"};
+        datum        = 6692;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5668,9 +5739,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Mauritania 1999")
     public void EPSG_4702() throws FactoryException {
-        code  = 4702;
-        name  = "Mauritania 1999";
-        datum = 6702;
+        code         = 4702;
+        name         = "Mauritania 1999";
+        datum        = 6702;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5690,9 +5761,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Mauritania 1999")
     public void EPSG_4925() throws FactoryException {
-        code  = 4925;
-        name  = "Mauritania 1999";
-        datum = 6702;
+        code         = 4925;
+        name         = "Mauritania 1999";
+        datum        = 6702;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -5712,10 +5783,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Mauritania 1999")
     public void EPSG_4924() throws FactoryException {
-        code  = 4924;
-        name  = "Mauritania 1999";
+        code         = 4924;
+        name         = "Mauritania 1999";
+        datum        = 6702;
         isGeocentric = true;
-        datum = 6702;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -5735,9 +5806,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Merchich")
     public void EPSG_4261() throws FactoryException {
-        code  = 4261;
-        name  = "Merchich";
-        datum = 6261;
+        code         = 4261;
+        name         = "Merchich";
+        datum        = 6261;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5757,9 +5828,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("MGI")
     public void EPSG_4312() throws FactoryException {
-        code  = 4312;
-        name  = "MGI";
-        datum = 6312;
+        code         = 4312;
+        name         = "MGI";
+        datum        = 6312;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5779,9 +5850,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("MGI (Ferro)")
     public void EPSG_4805() throws FactoryException {
-        code  = 4805;
-        name  = "MGI (Ferro)";
-        datum = 6805;
+        code         = 4805;
+        name         = "MGI (Ferro)";
+        datum        = 6805;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5802,9 +5873,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Mhast (offshore)")
     public void EPSG_4705() throws FactoryException {
-        code  = 4705;
-        name  = "Mhast (offshore)";
-        datum = 6705;
+        code         = 4705;
+        name         = "Mhast (offshore)";
+        aliases      = new String[] {"Mhast"};
+        datum        = 6705;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5825,9 +5897,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Mhast (onshore)")
     public void EPSG_4704() throws FactoryException {
-        code  = 4704;
-        name  = "Mhast (onshore)";
-        datum = 6704;
+        code         = 4704;
+        name         = "Mhast (onshore)";
+        aliases      = new String[] {"Mhast"};
+        datum        = 6704;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5847,9 +5920,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Mhast 1951")
     public void EPSG_4703() throws FactoryException {
-        code  = 4703;
-        name  = "Mhast 1951";
-        datum = 6703;
+        code         = 4703;
+        name         = "Mhast 1951";
+        datum        = 6703;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5869,9 +5942,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Midway 1961")
     public void EPSG_4727() throws FactoryException {
-        code  = 4727;
-        name  = "Midway 1961";
-        datum = 6727;
+        code         = 4727;
+        name         = "Midway 1961";
+        datum        = 6727;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5891,9 +5964,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Minna")
     public void EPSG_4263() throws FactoryException {
-        code  = 4263;
-        name  = "Minna";
-        datum = 6263;
+        code         = 4263;
+        name         = "Minna";
+        datum        = 6263;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5914,9 +5987,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Monte Mario")
     public void EPSG_4265() throws FactoryException {
-        code  = 4265;
-        name  = "Monte Mario";
-        datum = 6265;
+        code         = 4265;
+        name         = "Monte Mario";
+        aliases      = new String[] {"Rome 1940"};
+        datum        = 6265;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5937,9 +6011,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Monte Mario (Rome)")
     public void EPSG_4806() throws FactoryException {
-        code  = 4806;
-        name  = "Monte Mario (Rome)";
-        datum = 6806;
+        code         = 4806;
+        name         = "Monte Mario (Rome)";
+        aliases      = new String[] {"Rome 1940 (Rome)"};
+        datum        = 6806;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5960,9 +6035,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Montserrat 1958")
     public void EPSG_4604() throws FactoryException {
-        code  = 4604;
-        name  = "Montserrat 1958";
-        datum = 6604;
+        code         = 4604;
+        name         = "Montserrat 1958";
+        aliases      = new String[] {"Montserrat 58"};
+        datum        = 6604;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -5982,9 +6058,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Moorea 87")
     public void EPSG_4691() throws FactoryException {
-        code  = 4691;
-        name  = "Moorea 87";
-        datum = 6691;
+        code         = 4691;
+        name         = "Moorea 87";
+        datum        = 6691;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6005,9 +6081,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("MOP78")
     public void EPSG_4639() throws FactoryException {
-        code  = 4639;
-        name  = "MOP78";
-        datum = 6639;
+        code         = 4639;
+        name         = "MOP78";
+        aliases      = new String[] {"Uvea SHOM 1978"};
+        datum        = 6639;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6027,9 +6104,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Mount Dillon")
     public void EPSG_4157() throws FactoryException {
-        code  = 4157;
-        name  = "Mount Dillon";
-        datum = 6157;
+        code         = 4157;
+        name         = "Mount Dillon";
+        datum        = 6157;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6049,9 +6126,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Moznet")
     public void EPSG_4130() throws FactoryException {
-        code  = 4130;
-        name  = "Moznet";
-        datum = 6130;
+        code         = 4130;
+        name         = "Moznet";
+        datum        = 6130;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6071,9 +6148,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Moznet")
     public void EPSG_4953() throws FactoryException {
-        code  = 4953;
-        name  = "Moznet";
-        datum = 6130;
+        code         = 4953;
+        name         = "Moznet";
+        datum        = 6130;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -6093,10 +6170,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Moznet")
     public void EPSG_4952() throws FactoryException {
-        code  = 4952;
-        name  = "Moznet";
+        code         = 4952;
+        name         = "Moznet";
+        datum        = 6130;
         isGeocentric = true;
-        datum = 6130;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -6116,9 +6193,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD27")
     public void EPSG_4267() throws FactoryException {
-        code  = 4267;
-        name  = "NAD27";
-        datum = 6267;
+        code         = 4267;
+        name         = "NAD27";
+        datum        = 6267;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6138,9 +6215,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD27(76)")
     public void EPSG_4608() throws FactoryException {
-        code  = 4608;
-        name  = "NAD27(76)";
-        datum = 6608;
+        code         = 4608;
+        name         = "NAD27(76)";
+        datum        = 6608;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6161,9 +6238,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD27(CGQ77)")
     public void EPSG_4609() throws FactoryException {
-        code  = 4609;
-        name  = "NAD27(CGQ77)";
-        datum = 6609;
+        code         = 4609;
+        name         = "NAD27(CGQ77)";
+        aliases      = new String[] {"CGQ77"};
+        datum        = 6609;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6184,9 +6262,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD83")
     public void EPSG_4269() throws FactoryException {
-        code  = 4269;
-        name  = "NAD83";
-        datum = 6269;
+        code         = 4269;
+        name         = "NAD83";
+        aliases      = new String[] {"NAD83(1986)"};
+        datum        = 6269;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6206,9 +6285,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD83(CSRS)")
     public void EPSG_4617() throws FactoryException {
-        code  = 4617;
-        name  = "NAD83(CSRS)";
-        datum = 6140;
+        code         = 4617;
+        name         = "NAD83(CSRS)";
+        datum        = 6140;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6228,9 +6307,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD83(CSRS)")
     public void EPSG_4955() throws FactoryException {
-        code  = 4955;
-        name  = "NAD83(CSRS)";
-        datum = 6140;
+        code         = 4955;
+        name         = "NAD83(CSRS)";
+        datum        = 6140;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -6250,10 +6329,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD83(CSRS)")
     public void EPSG_4954() throws FactoryException {
-        code  = 4954;
-        name  = "NAD83(CSRS)";
+        code         = 4954;
+        name         = "NAD83(CSRS)";
+        datum        = 6140;
         isGeocentric = true;
-        datum = 6140;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -6274,9 +6353,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD83(HARN)")
     public void EPSG_4152() throws FactoryException {
-        code  = 4152;
-        name  = "NAD83(HARN)";
-        datum = 6152;
+        code         = 4152;
+        name         = "NAD83(HARN)";
+        aliases      = new String[] {"NAD83(HPGN)"};
+        datum        = 6152;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6297,9 +6377,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD83(HARN)")
     public void EPSG_4957() throws FactoryException {
-        code  = 4957;
-        name  = "NAD83(HARN)";
-        datum = 6152;
+        code         = 4957;
+        name         = "NAD83(HARN)";
+        aliases      = new String[] {"NAD83(HPGN)"};
+        datum        = 6152;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -6320,10 +6401,11 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD83(HARN)")
     public void EPSG_4956() throws FactoryException {
-        code  = 4956;
-        name  = "NAD83(HARN)";
+        code         = 4956;
+        name         = "NAD83(HARN)";
+        aliases      = new String[] {"NAD83(HPGN)"};
+        datum        = 6152;
         isGeocentric = true;
-        datum = 6152;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -6343,9 +6425,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD83(NSRS2007)")
     public void EPSG_4759() throws FactoryException {
-        code  = 4759;
-        name  = "NAD83(NSRS2007)";
-        datum = 6759;
+        code         = 4759;
+        name         = "NAD83(NSRS2007)";
+        datum        = 6759;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6365,9 +6447,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD83(NSRS2007)")
     public void EPSG_4893() throws FactoryException {
-        code  = 4893;
-        name  = "NAD83(NSRS2007)";
-        datum = 6759;
+        code         = 4893;
+        name         = "NAD83(NSRS2007)";
+        datum        = 6759;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -6387,10 +6469,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NAD83(NSRS2007)")
     public void EPSG_4892() throws FactoryException {
-        code  = 4892;
-        name  = "NAD83(NSRS2007)";
+        code         = 4892;
+        name         = "NAD83(NSRS2007)";
+        datum        = 6759;
         isGeocentric = true;
-        datum = 6759;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -6410,9 +6492,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Nahrwan 1934")
     public void EPSG_4744() throws FactoryException {
-        code  = 4744;
-        name  = "Nahrwan 1934";
-        datum = 6744;
+        code         = 4744;
+        name         = "Nahrwan 1934";
+        datum        = 6744;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6432,9 +6514,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Nahrwan 1967")
     public void EPSG_4270() throws FactoryException {
-        code  = 4270;
-        name  = "Nahrwan 1967";
-        datum = 6270;
+        code         = 4270;
+        name         = "Nahrwan 1967";
+        datum        = 6270;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6454,9 +6536,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Nakhl-e Ghanem")
     public void EPSG_4693() throws FactoryException {
-        code  = 4693;
-        name  = "Nakhl-e Ghanem";
-        datum = 6693;
+        code         = 4693;
+        name         = "Nakhl-e Ghanem";
+        datum        = 6693;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6476,9 +6558,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Naparima 1955")
     public void EPSG_4158() throws FactoryException {
-        code  = 4158;
-        name  = "Naparima 1955";
-        datum = 6158;
+        code         = 4158;
+        name         = "Naparima 1955";
+        datum        = 6158;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6500,9 +6582,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Naparima 1972")
     public void EPSG_4271() throws FactoryException {
-        code  = 4271;
-        name  = "Naparima 1972";
-        datum = 6271;
+        code         = 4271;
+        name         = "Naparima 1972";
+        datum        = 6271;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6522,9 +6604,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NEA74 Noumea")
     public void EPSG_4644() throws FactoryException {
-        code  = 4644;
-        name  = "NEA74 Noumea";
-        datum = 6644;
+        code         = 4644;
+        name         = "NEA74 Noumea";
+        datum        = 6644;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6544,9 +6626,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NGN")
     public void EPSG_4318() throws FactoryException {
-        code  = 4318;
-        name  = "NGN";
-        datum = 6318;
+        code         = 4318;
+        name         = "NGN";
+        datum        = 6318;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6566,9 +6648,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NGO 1948")
     public void EPSG_4273() throws FactoryException {
-        code  = 4273;
-        name  = "NGO 1948";
-        datum = 6273;
+        code         = 4273;
+        name         = "NGO 1948";
+        datum        = 6273;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6588,9 +6670,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NGO 1948 (Oslo)")
     public void EPSG_4817() throws FactoryException {
-        code  = 4817;
-        name  = "NGO 1948 (Oslo)";
-        datum = 6817;
+        code         = 4817;
+        name         = "NGO 1948 (Oslo)";
+        datum        = 6817;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6610,9 +6692,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Nord Sahara 1959")
     public void EPSG_4307() throws FactoryException {
-        code  = 4307;
-        name  = "Nord Sahara 1959";
-        datum = 6307;
+        code         = 4307;
+        name         = "Nord Sahara 1959";
+        datum        = 6307;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6632,9 +6714,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Nouakchott 1965")
     public void EPSG_4680() throws FactoryException {
-        code  = 4680;
-        name  = "Nouakchott 1965";
-        datum = 6680;
+        code         = 4680;
+        name         = "Nouakchott 1965";
+        datum        = 6680;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6654,9 +6736,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NSWC 9Z-2")
     public void EPSG_4276() throws FactoryException {
-        code  = 4276;
-        name  = "NSWC 9Z-2";
-        datum = 6276;
+        code         = 4276;
+        name         = "NSWC 9Z-2";
+        datum        = 6276;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6676,9 +6758,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NTF")
     public void EPSG_4275() throws FactoryException {
-        code  = 4275;
-        name  = "NTF";
-        datum = 6275;
+        code         = 4275;
+        name         = "NTF";
+        datum        = 6275;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6698,9 +6780,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NTF (Paris)")
     public void EPSG_4807() throws FactoryException {
-        code  = 4807;
-        name  = "NTF (Paris)";
-        datum = 6807;
+        code         = 4807;
+        name         = "NTF (Paris)";
+        datum        = 6807;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6720,9 +6802,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NZGD2000")
     public void EPSG_4167() throws FactoryException {
-        code  = 4167;
-        name  = "NZGD2000";
-        datum = 6167;
+        code         = 4167;
+        name         = "NZGD2000";
+        datum        = 6167;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6742,9 +6824,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NZGD2000")
     public void EPSG_4959() throws FactoryException {
-        code  = 4959;
-        name  = "NZGD2000";
-        datum = 6167;
+        code         = 4959;
+        name         = "NZGD2000";
+        datum        = 6167;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -6764,10 +6846,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NZGD2000")
     public void EPSG_4958() throws FactoryException {
-        code  = 4958;
-        name  = "NZGD2000";
+        code         = 4958;
+        name         = "NZGD2000";
+        datum        = 6167;
         isGeocentric = true;
-        datum = 6167;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -6788,9 +6870,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("NZGD49")
     public void EPSG_4272() throws FactoryException {
-        code  = 4272;
-        name  = "NZGD49";
-        datum = 6272;
+        code         = 4272;
+        name         = "NZGD49";
+        aliases      = new String[] {"GD49"};
+        datum        = 6272;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6811,9 +6894,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Observatario")
     public void EPSG_4129() throws FactoryException {
-        code  = 4129;
-        name  = "Observatario";
-        datum = 6129;
+        code         = 4129;
+        name         = "Observatario";
+        aliases      = new String[] {"Observatario Campos Rodrigues 1907"};
+        datum        = 6129;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6833,9 +6917,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Old Hawaiian")
     public void EPSG_4135() throws FactoryException {
-        code  = 4135;
-        name  = "Old Hawaiian";
-        datum = 6135;
+        code         = 4135;
+        name         = "Old Hawaiian";
+        datum        = 6135;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6855,9 +6939,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("OS(SN)80")
     public void EPSG_4279() throws FactoryException {
-        code  = 4279;
-        name  = "OS(SN)80";
-        datum = 6279;
+        code         = 4279;
+        name         = "OS(SN)80";
+        datum        = 6279;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6877,9 +6961,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("OSGB36")
     public void EPSG_4277() throws FactoryException {
-        code  = 4277;
-        name  = "OSGB36";
-        datum = 6277;
+        code         = 4277;
+        name         = "OSGB36";
+        datum        = 6277;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6899,9 +6983,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("OSGB70")
     public void EPSG_4278() throws FactoryException {
-        code  = 4278;
-        name  = "OSGB70";
-        datum = 6278;
+        code         = 4278;
+        name         = "OSGB70";
+        datum        = 6278;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6921,9 +7005,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("OSNI 1952")
     public void EPSG_4188() throws FactoryException {
-        code  = 4188;
-        name  = "OSNI 1952";
-        datum = 6188;
+        code         = 4188;
+        name         = "OSNI 1952";
+        datum        = 6188;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6943,9 +7027,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Palestine 1923")
     public void EPSG_4281() throws FactoryException {
-        code  = 4281;
-        name  = "Palestine 1923";
-        datum = 6281;
+        code         = 4281;
+        name         = "Palestine 1923";
+        datum        = 6281;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6966,9 +7050,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Pampa del Castillo")
     public void EPSG_4161() throws FactoryException {
-        code  = 4161;
-        name  = "Pampa del Castillo";
-        datum = 6161;
+        code         = 4161;
+        name         = "Pampa del Castillo";
+        aliases      = new String[] {"Pampa Cas"};
+        datum        = 6161;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -6989,9 +7074,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("PD/83")
     public void EPSG_4746() throws FactoryException {
-        code  = 4746;
-        name  = "PD/83";
-        datum = 6746;
+        code         = 4746;
+        name         = "PD/83";
+        aliases      = new String[] {"DHDN"};
+        datum        = 6746;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7011,9 +7097,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Perroud 1950")
     public void EPSG_4637() throws FactoryException {
-        code  = 4637;
-        name  = "Perroud 1950";
-        datum = 6637;
+        code         = 4637;
+        name         = "Perroud 1950";
+        datum        = 6637;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7033,9 +7119,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Petrels 1972")
     public void EPSG_4636() throws FactoryException {
-        code  = 4636;
-        name  = "Petrels 1972";
-        datum = 6636;
+        code         = 4636;
+        name         = "Petrels 1972";
+        datum        = 6636;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7055,9 +7141,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Phoenix Islands 1966")
     public void EPSG_4716() throws FactoryException {
-        code  = 4716;
-        name  = "Phoenix Islands 1966";
-        datum = 6716;
+        code         = 4716;
+        name         = "Phoenix Islands 1966";
+        datum        = 6716;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7077,9 +7163,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Pitcairn 1967")
     public void EPSG_4729() throws FactoryException {
-        code  = 4729;
-        name  = "Pitcairn 1967";
-        datum = 6729;
+        code         = 4729;
+        name         = "Pitcairn 1967";
+        datum        = 6729;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7099,9 +7185,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Pitcairn 2006")
     public void EPSG_4763() throws FactoryException {
-        code  = 4763;
-        name  = "Pitcairn 2006";
-        datum = 6763;
+        code         = 4763;
+        name         = "Pitcairn 2006";
+        datum        = 6763;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7122,9 +7208,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("PN84")
     public void EPSG_4728() throws FactoryException {
-        code  = 4728;
-        name  = "PN84";
-        datum = 6728;
+        code         = 4728;
+        name         = "PN84";
+        aliases      = new String[] {"Pico de las Nieves 1984"};
+        datum        = 6728;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7145,9 +7232,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Point 58")
     public void EPSG_4620() throws FactoryException {
-        code  = 4620;
-        name  = "Point 58";
-        datum = 6620;
+        code         = 4620;
+        name         = "Point 58";
+        aliases      = new String[] {"12th Parallel traverse"};
+        datum        = 6620;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7168,9 +7256,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Pointe Noire")
     public void EPSG_4282() throws FactoryException {
-        code  = 4282;
-        name  = "Pointe Noire";
-        datum = 6282;
+        code         = 4282;
+        name         = "Pointe Noire";
+        aliases      = new String[] {"Congo 1960 Pointe Noire"};
+        datum        = 6282;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7191,9 +7280,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Porto Santo")
     public void EPSG_4615() throws FactoryException {
-        code  = 4615;
-        name  = "Porto Santo";
-        datum = 6615;
+        code         = 4615;
+        name         = "Porto Santo";
+        aliases      = new String[] {"Porto Santo 1936"};
+        datum        = 6615;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7214,9 +7304,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Porto Santo 1995")
     public void EPSG_4663() throws FactoryException {
-        code  = 4663;
-        name  = "Porto Santo 1995";
-        datum = 6663;
+        code         = 4663;
+        name         = "Porto Santo 1995";
+        aliases      = new String[] {"Base SE"};
+        datum        = 6663;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7236,9 +7327,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("POSGAR 94")
     public void EPSG_4694() throws FactoryException {
-        code  = 4694;
-        name  = "POSGAR 94";
-        datum = 6694;
+        code         = 4694;
+        name         = "POSGAR 94";
+        datum        = 6694;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7258,9 +7349,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("POSGAR 94")
     public void EPSG_4929() throws FactoryException {
-        code  = 4929;
-        name  = "POSGAR 94";
-        datum = 6694;
+        code         = 4929;
+        name         = "POSGAR 94";
+        datum        = 6694;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -7280,10 +7371,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("POSGAR 94")
     public void EPSG_4928() throws FactoryException {
-        code  = 4928;
-        name  = "POSGAR 94";
+        code         = 4928;
+        name         = "POSGAR 94";
+        datum        = 6694;
         isGeocentric = true;
-        datum = 6694;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -7304,9 +7395,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("POSGAR 98")
     public void EPSG_4190() throws FactoryException {
-        code  = 4190;
-        name  = "POSGAR 98";
-        datum = 6190;
+        code         = 4190;
+        name         = "POSGAR 98";
+        aliases      = new String[] {"National Geodetic System [Argentina]"};
+        datum        = 6190;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7326,9 +7418,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("POSGAR 98")
     public void EPSG_4961() throws FactoryException {
-        code  = 4961;
-        name  = "POSGAR 98";
-        datum = 6190;
+        code         = 4961;
+        name         = "POSGAR 98";
+        datum        = 6190;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -7348,10 +7440,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("POSGAR 98")
     public void EPSG_4960() throws FactoryException {
-        code  = 4960;
-        name  = "POSGAR 98";
+        code         = 4960;
+        name         = "POSGAR 98";
+        datum        = 6190;
         isGeocentric = true;
-        datum = 6190;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -7372,9 +7464,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("PRS92")
     public void EPSG_4683() throws FactoryException {
-        code  = 4683;
-        name  = "PRS92";
-        datum = 6683;
+        code         = 4683;
+        name         = "PRS92";
+        aliases      = new String[] {"New Luzon"};
+        datum        = 6683;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7395,9 +7488,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("PRS92")
     public void EPSG_4995() throws FactoryException {
-        code  = 4995;
-        name  = "PRS92";
-        datum = 6683;
+        code         = 4995;
+        name         = "PRS92";
+        aliases      = new String[] {"New Luzon"};
+        datum        = 6683;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -7418,10 +7512,11 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("PRS92")
     public void EPSG_4994() throws FactoryException {
-        code  = 4994;
-        name  = "PRS92";
+        code         = 4994;
+        name         = "PRS92";
+        aliases      = new String[] {"New Luzon"};
+        datum        = 6683;
         isGeocentric = true;
-        datum = 6683;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -7444,9 +7539,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("PSAD56")
     public void EPSG_4248() throws FactoryException {
-        code  = 4248;
-        name  = "PSAD56";
-        datum = 6248;
+        code         = 4248;
+        name         = "PSAD56";
+        aliases      = new String[] {"La Canoa"};
+        datum        = 6248;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7467,9 +7563,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("PSD93")
     public void EPSG_4134() throws FactoryException {
-        code  = 4134;
-        name  = "PSD93";
-        datum = 6134;
+        code         = 4134;
+        name         = "PSD93";
+        aliases      = new String[] {"PDO Survey Datum 1993"};
+        datum        = 6134;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7489,9 +7586,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Puerto Rico")
     public void EPSG_4139() throws FactoryException {
-        code  = 4139;
-        name  = "Puerto Rico";
-        datum = 6139;
+        code         = 4139;
+        name         = "Puerto Rico";
+        datum        = 6139;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7512,9 +7609,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Pulkovo 1942")
     public void EPSG_4284() throws FactoryException {
-        code  = 4284;
-        name  = "Pulkovo 1942";
-        datum = 6284;
+        code         = 4284;
+        name         = "Pulkovo 1942";
+        aliases      = new String[] {"S-42"};
+        datum        = 6284;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7535,9 +7633,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Pulkovo 1942(58)")
     public void EPSG_4179() throws FactoryException {
-        code  = 4179;
-        name  = "Pulkovo 1942(58)";
-        datum = 6179;
+        code         = 4179;
+        name         = "Pulkovo 1942(58)";
+        aliases      = new String[] {"Pulkovo 1942(56)"};
+        datum        = 6179;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7558,9 +7657,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Pulkovo 1942(83)")
     public void EPSG_4178() throws FactoryException {
-        code  = 4178;
-        name  = "Pulkovo 1942(83)";
-        datum = 6178;
+        code         = 4178;
+        name         = "Pulkovo 1942(83)";
+        aliases      = new String[] {"42/83"};
+        datum        = 6178;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7581,9 +7681,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Pulkovo 1995")
     public void EPSG_4200() throws FactoryException {
-        code  = 4200;
-        name  = "Pulkovo 1995";
-        datum = 6200;
+        code         = 4200;
+        name         = "Pulkovo 1995";
+        aliases      = new String[] {"S-95"};
+        datum        = 6200;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7603,9 +7704,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("PZ-90")
     public void EPSG_4740() throws FactoryException {
-        code  = 4740;
-        name  = "PZ-90";
-        datum = 6740;
+        code         = 4740;
+        name         = "PZ-90";
+        datum        = 6740;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7625,9 +7726,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("PZ-90")
     public void EPSG_4923() throws FactoryException {
-        code  = 4923;
-        name  = "PZ-90";
-        datum = 6740;
+        code         = 4923;
+        name         = "PZ-90";
+        datum        = 6740;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -7647,10 +7748,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("PZ-90")
     public void EPSG_4922() throws FactoryException {
-        code  = 4922;
-        name  = "PZ-90";
+        code         = 4922;
+        name         = "PZ-90";
+        datum        = 6740;
         isGeocentric = true;
-        datum = 6740;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -7670,9 +7771,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Qatar 1948")
     public void EPSG_4286() throws FactoryException {
-        code  = 4286;
-        name  = "Qatar 1948";
-        datum = 6286;
+        code         = 4286;
+        name         = "Qatar 1948";
+        datum        = 6286;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7692,9 +7793,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Qatar 1974")
     public void EPSG_4285() throws FactoryException {
-        code  = 4285;
-        name  = "Qatar 1974";
-        datum = 6285;
+        code         = 4285;
+        name         = "Qatar 1974";
+        datum        = 6285;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7714,9 +7815,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("QND95")
     public void EPSG_4614() throws FactoryException {
-        code  = 4614;
-        name  = "QND95";
-        datum = 6614;
+        code         = 4614;
+        name         = "QND95";
+        datum        = 6614;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7736,9 +7837,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Qornoq 1927")
     public void EPSG_4194() throws FactoryException {
-        code  = 4194;
-        name  = "Qornoq 1927";
-        datum = 6194;
+        code         = 4194;
+        name         = "Qornoq 1927";
+        datum        = 6194;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7758,9 +7859,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Rassadiran")
     public void EPSG_4153() throws FactoryException {
-        code  = 4153;
-        name  = "Rassadiran";
-        datum = 6153;
+        code         = 4153;
+        name         = "Rassadiran";
+        datum        = 6153;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7781,9 +7882,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RD/83")
     public void EPSG_4745() throws FactoryException {
-        code  = 4745;
-        name  = "RD/83";
-        datum = 6745;
+        code         = 4745;
+        name         = "RD/83";
+        aliases      = new String[] {"DHDN"};
+        datum        = 6745;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7803,9 +7905,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("REGVEN")
     public void EPSG_4189() throws FactoryException {
-        code  = 4189;
-        name  = "REGVEN";
-        datum = 6189;
+        code         = 4189;
+        name         = "REGVEN";
+        datum        = 6189;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7825,9 +7927,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("REGVEN")
     public void EPSG_4963() throws FactoryException {
-        code  = 4963;
-        name  = "REGVEN";
-        datum = 6189;
+        code         = 4963;
+        name         = "REGVEN";
+        datum        = 6189;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -7847,10 +7949,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("REGVEN")
     public void EPSG_4962() throws FactoryException {
-        code  = 4962;
-        name  = "REGVEN";
+        code         = 4962;
+        name         = "REGVEN";
+        datum        = 6189;
         isGeocentric = true;
-        datum = 6189;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -7871,9 +7973,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Reunion 1947")
     public void EPSG_4626() throws FactoryException {
-        code  = 4626;
-        name  = "Reunion 1947";
-        datum = 6626;
+        code         = 4626;
+        name         = "Reunion 1947";
+        aliases      = new String[] {"Piton des Neiges"};
+        datum        = 6626;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7893,9 +7996,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Reykjavik 1900")
     public void EPSG_4657() throws FactoryException {
-        code  = 4657;
-        name  = "Reykjavik 1900";
-        datum = 6657;
+        code         = 4657;
+        name         = "Reykjavik 1900";
+        datum        = 6657;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7916,9 +8019,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGF93")
     public void EPSG_4171() throws FactoryException {
-        code  = 4171;
-        name  = "RGF93";
-        datum = 6171;
+        code         = 4171;
+        name         = "RGF93";
+        aliases      = new String[] {"RGF93 (lat-lon)"};
+        datum        = 6171;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -7939,9 +8043,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGF94")
     public void EPSG_4965() throws FactoryException {
-        code  = 4965;
-        name  = "RGF94";
-        datum = 6171;
+        code         = 4965;
+        name         = "RGF94";
+        aliases      = new String[] {"RGF93 (lat-lon)"};
+        datum        = 6171;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -7961,10 +8066,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGF95")
     public void EPSG_4964() throws FactoryException {
-        code  = 4964;
-        name  = "RGF95";
+        code         = 4964;
+        name         = "RGF95";
+        datum        = 6171;
         isGeocentric = true;
-        datum = 6171;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -7985,9 +8090,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGFG95")
     public void EPSG_4624() throws FactoryException {
-        code  = 4624;
-        name  = "RGFG95";
-        datum = 6624;
+        code         = 4624;
+        name         = "RGFG95";
+        aliases      = new String[] {"RGFG95 (lat-lon)"};
+        datum        = 6624;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8008,9 +8114,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGFG95")
     public void EPSG_4967() throws FactoryException {
-        code  = 4967;
-        name  = "RGFG95";
-        datum = 6624;
+        code         = 4967;
+        name         = "RGFG95";
+        aliases      = new String[] {"RGFG95 (lat-lon)"};
+        datum        = 6624;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -8030,10 +8137,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGFG95")
     public void EPSG_4966() throws FactoryException {
-        code  = 4966;
-        name  = "RGFG95";
+        code         = 4966;
+        name         = "RGFG95";
+        datum        = 6624;
         isGeocentric = true;
-        datum = 6624;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -8053,9 +8160,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGNC91-93")
     public void EPSG_4749() throws FactoryException {
-        code  = 4749;
-        name  = "RGNC91-93";
-        datum = 6749;
+        code         = 4749;
+        name         = "RGNC91-93";
+        datum        = 6749;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8075,9 +8182,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGNC91-93")
     public void EPSG_4907() throws FactoryException {
-        code  = 4907;
-        name  = "RGNC91-93";
-        datum = 6749;
+        code         = 4907;
+        name         = "RGNC91-93";
+        datum        = 6749;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -8097,10 +8204,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGNC91-93")
     public void EPSG_4906() throws FactoryException {
-        code  = 4906;
-        name  = "RGNC91-93";
+        code         = 4906;
+        name         = "RGNC91-93";
+        datum        = 6749;
         isGeocentric = true;
-        datum = 6749;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -8120,9 +8227,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGPF")
     public void EPSG_4687() throws FactoryException {
-        code  = 4687;
-        name  = "RGPF";
-        datum = 6687;
+        code         = 4687;
+        name         = "RGPF";
+        datum        = 6687;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8142,9 +8249,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGPF")
     public void EPSG_4999() throws FactoryException {
-        code  = 4999;
-        name  = "RGPF";
-        datum = 6687;
+        code         = 4999;
+        name         = "RGPF";
+        datum        = 6687;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -8164,10 +8271,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGPF")
     public void EPSG_4998() throws FactoryException {
-        code  = 4998;
-        name  = "RGPF";
+        code         = 4998;
+        name         = "RGPF";
+        datum        = 6687;
         isGeocentric = true;
-        datum = 6687;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -8188,9 +8295,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGR92")
     public void EPSG_4627() throws FactoryException {
-        code  = 4627;
-        name  = "RGR92";
-        datum = 6627;
+        code         = 4627;
+        name         = "RGR92";
+        aliases      = new String[] {"RGR92 (lat-lon)"};
+        datum        = 6627;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8211,9 +8319,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGR92")
     public void EPSG_4971() throws FactoryException {
-        code  = 4971;
-        name  = "RGR92";
-        datum = 6627;
+        code         = 4971;
+        name         = "RGR92";
+        aliases      = new String[] {"RGR92 (lat-lon)"};
+        datum        = 6627;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -8233,10 +8342,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RGR92")
     public void EPSG_4970() throws FactoryException {
-        code  = 4970;
-        name  = "RGR92";
+        code         = 4970;
+        name         = "RGR92";
+        datum        = 6627;
         isGeocentric = true;
-        datum = 6627;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -8256,9 +8365,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RRAF 1991")
     public void EPSG_4558() throws FactoryException {
-        code  = 4558;
-        name  = "RRAF 1991";
-        datum = 1047;
+        code         = 4558;
+        name         = "RRAF 1991";
+        datum        = 1047;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8278,9 +8387,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RSRGD2000")
     public void EPSG_4764() throws FactoryException {
-        code  = 4764;
-        name  = "RSRGD2000";
-        datum = 6764;
+        code         = 4764;
+        name         = "RSRGD2000";
+        datum        = 6764;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8300,9 +8409,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RSRGD2000")
     public void EPSG_4885() throws FactoryException {
-        code  = 4885;
-        name  = "RSRGD2000";
-        datum = 6764;
+        code         = 4885;
+        name         = "RSRGD2000";
+        datum        = 6764;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -8322,10 +8431,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RSRGD2000")
     public void EPSG_4884() throws FactoryException {
-        code  = 4884;
-        name  = "RSRGD2000";
+        code         = 4884;
+        name         = "RSRGD2000";
+        datum        = 6764;
         isGeocentric = true;
-        datum = 6764;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -8345,9 +8454,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RT38")
     public void EPSG_4308() throws FactoryException {
-        code  = 4308;
-        name  = "RT38";
-        datum = 6308;
+        code         = 4308;
+        name         = "RT38";
+        datum        = 6308;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8367,9 +8476,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RT38 (Stockholm)")
     public void EPSG_4814() throws FactoryException {
-        code  = 4814;
-        name  = "RT38 (Stockholm)";
-        datum = 6814;
+        code         = 4814;
+        name         = "RT38 (Stockholm)";
+        datum        = 6814;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8389,9 +8498,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("RT90")
     public void EPSG_4124() throws FactoryException {
-        code  = 4124;
-        name  = "RT90";
-        datum = 6124;
+        code         = 4124;
+        name         = "RT90";
+        datum        = 6124;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8411,9 +8520,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("S-JTSK")
     public void EPSG_4156() throws FactoryException {
-        code  = 4156;
-        name  = "S-JTSK";
-        datum = 6156;
+        code         = 4156;
+        name         = "S-JTSK";
+        datum        = 6156;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8433,9 +8542,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("S-JTSK (Ferro)")
     public void EPSG_4818() throws FactoryException {
-        code  = 4818;
-        name  = "S-JTSK (Ferro)";
-        datum = 6818;
+        code         = 4818;
+        name         = "S-JTSK (Ferro)";
+        datum        = 6818;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8455,9 +8564,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("SAD69")
     public void EPSG_4618() throws FactoryException {
-        code  = 4618;
-        name  = "SAD69";
-        datum = 6618;
+        code         = 4618;
+        name         = "SAD69";
+        datum        = 6618;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8478,9 +8587,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Saint Pierre et Miquelon 1950")
     public void EPSG_4638() throws FactoryException {
-        code  = 4638;
-        name  = "Saint Pierre et Miquelon 1950";
-        datum = 6638;
+        code         = 4638;
+        name         = "Saint Pierre et Miquelon 1950";
+        aliases      = new String[] {"St Pierre Miquelon 1950"};
+        datum        = 6638;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8501,9 +8611,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Santo 1965")
     public void EPSG_4730() throws FactoryException {
-        code  = 4730;
-        name  = "Santo 1965";
-        datum = 6730;
+        code         = 4730;
+        name         = "Santo 1965";
+        aliases      = new String[] {"Santo (DOS)"};
+        datum        = 6730;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8523,9 +8634,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Sapper Hill 1943")
     public void EPSG_4292() throws FactoryException {
-        code  = 4292;
-        name  = "Sapper Hill 1943";
-        datum = 6292;
+        code         = 4292;
+        name         = "Sapper Hill 1943";
+        datum        = 6292;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8545,9 +8656,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Schwarzeck")
     public void EPSG_4293() throws FactoryException {
-        code  = 4293;
-        name  = "Schwarzeck";
-        datum = 6293;
+        code         = 4293;
+        name         = "Schwarzeck";
+        datum        = 6293;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8567,9 +8678,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Scoresbysund 1952")
     public void EPSG_4195() throws FactoryException {
-        code  = 4195;
-        name  = "Scoresbysund 1952";
-        datum = 6195;
+        code         = 4195;
+        name         = "Scoresbysund 1952";
+        datum        = 6195;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8590,9 +8701,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Segara")
     public void EPSG_4613() throws FactoryException {
-        code  = 4613;
-        name  = "Segara";
-        datum = 6613;
+        code         = 4613;
+        name         = "Segara";
+        aliases      = new String[] {"Samboja"};
+        datum        = 6613;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8613,9 +8725,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Segara (Jakarta)")
     public void EPSG_4820() throws FactoryException {
-        code  = 4820;
-        name  = "Segara (Jakarta)";
-        datum = 6820;
+        code         = 4820;
+        name         = "Segara (Jakarta)";
+        aliases      = new String[] {"Samboja (Jakarta)"};
+        datum        = 6820;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8636,9 +8749,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Selvagem Grande")
     public void EPSG_4616() throws FactoryException {
-        code  = 4616;
-        name  = "Selvagem Grande";
-        datum = 6616;
+        code         = 4616;
+        name         = "Selvagem Grande";
+        aliases      = new String[] {"Marco Astro"};
+        datum        = 6616;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8658,9 +8772,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Serindung")
     public void EPSG_4295() throws FactoryException {
-        code  = 4295;
-        name  = "Serindung";
-        datum = 6295;
+        code         = 4295;
+        name         = "Serindung";
+        datum        = 6295;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8680,9 +8794,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Sierra Leone 1924")
     public void EPSG_4174() throws FactoryException {
-        code  = 4174;
-        name  = "Sierra Leone 1924";
-        datum = 6174;
+        code         = 4174;
+        name         = "Sierra Leone 1924";
+        datum        = 6174;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8702,9 +8816,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Sierra Leone 1968")
     public void EPSG_4175() throws FactoryException {
-        code  = 4175;
-        name  = "Sierra Leone 1968";
-        datum = 6175;
+        code         = 4175;
+        name         = "Sierra Leone 1968";
+        datum        = 6175;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8725,9 +8839,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("SIGD61")
     public void EPSG_4726() throws FactoryException {
-        code  = 4726;
-        name  = "SIGD61";
-        datum = 6726;
+        code         = 4726;
+        name         = "SIGD61";
+        aliases      = new String[] {"Little Cayman 1961"};
+        datum        = 6726;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8748,9 +8863,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("SIRGAS 1995")
     public void EPSG_4170() throws FactoryException {
-        code  = 4170;
-        name  = "SIRGAS 1995";
-        datum = 6170;
+        code         = 4170;
+        name         = "SIRGAS 1995";
+        aliases      = new String[] {"SIRGAS"};
+        datum        = 6170;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8771,9 +8887,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("SIRGAS 1995")
     public void EPSG_4975() throws FactoryException {
-        code  = 4975;
-        name  = "SIRGAS 1995";
-        datum = 6170;
+        code         = 4975;
+        name         = "SIRGAS 1995";
+        aliases      = new String[] {"SIRGAS"};
+        datum        = 6170;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -8794,10 +8911,11 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("SIRGAS 1995")
     public void EPSG_4974() throws FactoryException {
-        code  = 4974;
-        name  = "SIRGAS 1995";
+        code         = 4974;
+        name         = "SIRGAS 1995";
+        aliases      = new String[] {"SIRGAS"};
+        datum        = 6170;
         isGeocentric = true;
-        datum = 6170;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -8817,9 +8935,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("SIRGAS 2000")
     public void EPSG_4674() throws FactoryException {
-        code  = 4674;
-        name  = "SIRGAS 2000";
-        datum = 6674;
+        code         = 4674;
+        name         = "SIRGAS 2000";
+        datum        = 6674;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8839,9 +8957,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("SIRGAS 2000")
     public void EPSG_4989() throws FactoryException {
-        code  = 4989;
-        name  = "SIRGAS 2000";
-        datum = 6674;
+        code         = 4989;
+        name         = "SIRGAS 2000";
+        datum        = 6674;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -8861,10 +8979,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("SIRGAS 2000")
     public void EPSG_4988() throws FactoryException {
-        code  = 4988;
-        name  = "SIRGAS 2000";
+        code         = 4988;
+        name         = "SIRGAS 2000";
+        datum        = 6674;
         isGeocentric = true;
-        datum = 6674;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -8885,9 +9003,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Slovenia 1996")
     public void EPSG_4765() throws FactoryException {
-        code  = 4765;
-        name  = "Slovenia 1996";
-        datum = 6765;
+        code         = 4765;
+        name         = "Slovenia 1996";
+        aliases      = new String[] {"D96"};
+        datum        = 6765;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8908,9 +9027,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Slovenia 1996")
     public void EPSG_4883() throws FactoryException {
-        code  = 4883;
-        name  = "Slovenia 1996";
-        datum = 6765;
+        code         = 4883;
+        name         = "Slovenia 1996";
+        aliases      = new String[] {"D96"};
+        datum        = 6765;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -8931,10 +9051,11 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Slovenia 1996")
     public void EPSG_4882() throws FactoryException {
-        code  = 4882;
-        name  = "Slovenia 1996";
+        code         = 4882;
+        name         = "Slovenia 1996";
+        aliases      = new String[] {"D96"};
+        datum        = 6765;
         isGeocentric = true;
-        datum = 6765;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -8954,9 +9075,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Solomon 1968")
     public void EPSG_4718() throws FactoryException {
-        code  = 4718;
-        name  = "Solomon 1968";
-        datum = 6718;
+        code         = 4718;
+        name         = "Solomon 1968";
+        datum        = 6718;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8976,9 +9097,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("South Georgia 1968")
     public void EPSG_4722() throws FactoryException {
-        code  = 4722;
-        name  = "South Georgia 1968";
-        datum = 6722;
+        code         = 4722;
+        name         = "South Georgia 1968";
+        datum        = 6722;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -8998,9 +9119,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("South Yemen")
     public void EPSG_4164() throws FactoryException {
-        code  = 4164;
-        name  = "South Yemen";
-        datum = 6164;
+        code         = 4164;
+        name         = "South Yemen";
+        datum        = 6164;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9020,9 +9141,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("St. George Island")
     public void EPSG_4138() throws FactoryException {
-        code  = 4138;
-        name  = "St. George Island";
-        datum = 6138;
+        code         = 4138;
+        name         = "St. George Island";
+        datum        = 6138;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9042,9 +9163,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("St. Kitts 1955")
     public void EPSG_4605() throws FactoryException {
-        code  = 4605;
-        name  = "St. Kitts 1955";
-        datum = 6605;
+        code         = 4605;
+        name         = "St. Kitts 1955";
+        datum        = 6605;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9064,9 +9185,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("St. Lawrence Island")
     public void EPSG_4136() throws FactoryException {
-        code  = 4136;
-        name  = "St. Lawrence Island";
-        datum = 6136;
+        code         = 4136;
+        name         = "St. Lawrence Island";
+        datum        = 6136;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9086,9 +9207,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("St. Lucia 1955")
     public void EPSG_4606() throws FactoryException {
-        code  = 4606;
-        name  = "St. Lucia 1955";
-        datum = 6606;
+        code         = 4606;
+        name         = "St. Lucia 1955";
+        datum        = 6606;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9108,9 +9229,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("St. Paul Island")
     public void EPSG_4137() throws FactoryException {
-        code  = 4137;
-        name  = "St. Paul Island";
-        datum = 6137;
+        code         = 4137;
+        name         = "St. Paul Island";
+        datum        = 6137;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9130,9 +9251,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("St. Vincent 1945")
     public void EPSG_4607() throws FactoryException {
-        code  = 4607;
-        name  = "St. Vincent 1945";
-        datum = 6607;
+        code         = 4607;
+        name         = "St. Vincent 1945";
+        datum        = 6607;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9152,9 +9273,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ST71 Belep")
     public void EPSG_4643() throws FactoryException {
-        code  = 4643;
-        name  = "ST71 Belep";
-        datum = 6643;
+        code         = 4643;
+        name         = "ST71 Belep";
+        datum        = 6643;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9174,9 +9295,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ST84 Ile des Pins")
     public void EPSG_4642() throws FactoryException {
-        code  = 4642;
-        name  = "ST84 Ile des Pins";
-        datum = 6642;
+        code         = 4642;
+        name         = "ST84 Ile des Pins";
+        datum        = 6642;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9196,9 +9317,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("ST87 Ouvea")
     public void EPSG_4750() throws FactoryException {
-        code  = 4750;
-        name  = "ST87 Ouvea";
-        datum = 6750;
+        code         = 4750;
+        name         = "ST87 Ouvea";
+        datum        = 6750;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9218,9 +9339,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("SVY21")
     public void EPSG_4757() throws FactoryException {
-        code  = 4757;
-        name  = "SVY21";
-        datum = 6757;
+        code         = 4757;
+        name         = "SVY21";
+        datum        = 6757;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9240,9 +9361,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("SWEREF99")
     public void EPSG_4619() throws FactoryException {
-        code  = 4619;
-        name  = "SWEREF99";
-        datum = 6619;
+        code         = 4619;
+        name         = "SWEREF99";
+        datum        = 6619;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9262,9 +9383,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("SWEREF99")
     public void EPSG_4977() throws FactoryException {
-        code  = 4977;
-        name  = "SWEREF99";
-        datum = 6619;
+        code         = 4977;
+        name         = "SWEREF99";
+        datum        = 6619;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -9284,10 +9405,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("SWEREF99")
     public void EPSG_4976() throws FactoryException {
-        code  = 4976;
-        name  = "SWEREF99";
+        code         = 4976;
+        name         = "SWEREF99";
+        datum        = 6619;
         isGeocentric = true;
-        datum = 6619;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -9308,9 +9429,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Tahaa 54")
     public void EPSG_4629() throws FactoryException {
-        code  = 4629;
-        name  = "Tahaa 54";
-        datum = 6629;
+        code         = 4629;
+        name         = "Tahaa 54";
+        aliases      = new String[] {"Tahaa"};
+        datum        = 6629;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9331,9 +9453,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Tahiti 52")
     public void EPSG_4628() throws FactoryException {
-        code  = 4628;
-        name  = "Tahiti 52";
-        datum = 6628;
+        code         = 4628;
+        name         = "Tahiti 52";
+        aliases      = new String[] {"Tahiti"};
+        datum        = 6628;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9354,9 +9477,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Tahiti 79")
     public void EPSG_4690() throws FactoryException {
-        code  = 4690;
-        name  = "Tahiti 79";
-        datum = 6690;
+        code         = 4690;
+        name         = "Tahiti 79";
+        aliases      = new String[] {"IGN79 Tahiti"};
+        datum        = 6690;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9376,9 +9500,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Tananarive")
     public void EPSG_4297() throws FactoryException {
-        code  = 4297;
-        name  = "Tananarive";
-        datum = 6297;
+        code         = 4297;
+        name         = "Tananarive";
+        datum        = 6297;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9398,9 +9522,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Tananarive (Paris)")
     public void EPSG_4810() throws FactoryException {
-        code  = 4810;
-        name  = "Tananarive (Paris)";
-        datum = 6810;
+        code         = 4810;
+        name         = "Tananarive (Paris)";
+        datum        = 6810;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9420,9 +9544,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("TC(1948)")
     public void EPSG_4303() throws FactoryException {
-        code  = 4303;
-        name  = "TC(1948)";
-        datum = 6303;
+        code         = 4303;
+        name         = "TC(1948)";
+        datum        = 6303;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9442,9 +9566,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Tern Island 1961")
     public void EPSG_4707() throws FactoryException {
-        code  = 4707;
-        name  = "Tern Island 1961";
-        datum = 6707;
+        code         = 4707;
+        name         = "Tern Island 1961";
+        datum        = 6707;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9464,9 +9588,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Tete")
     public void EPSG_4127() throws FactoryException {
-        code  = 4127;
-        name  = "Tete";
-        datum = 6127;
+        code         = 4127;
+        name         = "Tete";
+        datum        = 6127;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9487,9 +9611,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Timbalai 1948")
     public void EPSG_4298() throws FactoryException {
-        code  = 4298;
-        name  = "Timbalai 1948";
-        datum = 6298;
+        code         = 4298;
+        name         = "Timbalai 1948";
+        aliases      = new String[] {"Timbalai 1968"};
+        datum        = 6298;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9509,9 +9634,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("TM65")
     public void EPSG_4299() throws FactoryException {
-        code  = 4299;
-        name  = "TM65";
-        datum = 6299;
+        code         = 4299;
+        name         = "TM65";
+        datum        = 6299;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9532,9 +9657,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("TM75")
     public void EPSG_4300() throws FactoryException {
-        code  = 4300;
-        name  = "TM75";
-        datum = 6300;
+        code         = 4300;
+        name         = "TM75";
+        aliases      = new String[] {"1975 Mapping Adjustment"};
+        datum        = 6300;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9555,9 +9681,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Tokyo")
     public void EPSG_4301() throws FactoryException {
-        code  = 4301;
-        name  = "Tokyo";
-        datum = 6301;
+        code         = 4301;
+        name         = "Tokyo";
+        aliases      = new String[] {"Tokyo 1918"};
+        datum        = 6301;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9577,9 +9704,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Trinidad 1903")
     public void EPSG_4302() throws FactoryException {
-        code  = 4302;
-        name  = "Trinidad 1903";
-        datum = 6302;
+        code         = 4302;
+        name         = "Trinidad 1903";
+        datum        = 6302;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9599,9 +9726,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Tristan 1968")
     public void EPSG_4734() throws FactoryException {
-        code  = 4734;
-        name  = "Tristan 1968";
-        datum = 6734;
+        code         = 4734;
+        name         = "Tristan 1968";
+        datum        = 6734;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9621,9 +9748,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("TWD67")
     public void EPSG_3821() throws FactoryException {
-        code  = 3821;
-        name  = "TWD67";
-        datum = 1025;
+        code         = 3821;
+        name         = "TWD67";
+        datum        = 1025;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9643,9 +9770,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("TWD97")
     public void EPSG_3824() throws FactoryException {
-        code  = 3824;
-        name  = "TWD97";
-        datum = 1026;
+        code         = 3824;
+        name         = "TWD97";
+        datum        = 1026;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9665,9 +9792,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("TWD97")
     public void EPSG_3823() throws FactoryException {
-        code  = 3823;
-        name  = "TWD97";
-        datum = 1026;
+        code         = 3823;
+        name         = "TWD97";
+        datum        = 1026;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -9687,10 +9814,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("TWD97")
     public void EPSG_3822() throws FactoryException {
-        code  = 3822;
-        name  = "TWD97";
+        code         = 3822;
+        name         = "TWD97";
+        datum        = 1026;
         isGeocentric = true;
-        datum = 1026;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -9711,9 +9838,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Vanua Levu 1915")
     public void EPSG_4748() throws FactoryException {
-        code  = 4748;
-        name  = "Vanua Levu 1915";
-        datum = 6748;
+        code         = 4748;
+        name         = "Vanua Levu 1915";
+        aliases      = new String[] {"Vanua Levu 1917"};
+        datum        = 6748;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9733,9 +9861,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Vientiane 1982")
     public void EPSG_4676() throws FactoryException {
-        code  = 4676;
-        name  = "Vientiane 1982";
-        datum = 6676;
+        code         = 4676;
+        name         = "Vientiane 1982";
+        datum        = 6676;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9756,9 +9884,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Viti Levu 1912")
     public void EPSG_4752() throws FactoryException {
-        code  = 4752;
-        name  = "Viti Levu 1912";
-        datum = 6752;
+        code         = 4752;
+        name         = "Viti Levu 1912";
+        aliases      = new String[] {"Viti Levu 1916"};
+        datum        = 6752;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9778,9 +9907,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("VN-2000")
     public void EPSG_4756() throws FactoryException {
-        code  = 4756;
-        name  = "VN-2000";
-        datum = 6756;
+        code         = 4756;
+        name         = "VN-2000";
+        datum        = 6756;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9800,9 +9929,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Voirol 1875")
     public void EPSG_4304() throws FactoryException {
-        code  = 4304;
-        name  = "Voirol 1875";
-        datum = 6304;
+        code         = 4304;
+        name         = "Voirol 1875";
+        datum        = 6304;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9822,9 +9951,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Voirol 1875 (Paris)")
     public void EPSG_4811() throws FactoryException {
-        code  = 4811;
-        name  = "Voirol 1875 (Paris)";
-        datum = 6811;
+        code         = 4811;
+        name         = "Voirol 1875 (Paris)";
+        datum        = 6811;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9844,9 +9973,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Voirol 1879")
     public void EPSG_4671() throws FactoryException {
-        code  = 4671;
-        name  = "Voirol 1879";
-        datum = 6671;
+        code         = 4671;
+        name         = "Voirol 1879";
+        datum        = 6671;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9866,9 +9995,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Voirol 1879 (Paris)")
     public void EPSG_4821() throws FactoryException {
-        code  = 4821;
-        name  = "Voirol 1879 (Paris)";
-        datum = 6821;
+        code         = 4821;
+        name         = "Voirol 1879 (Paris)";
+        datum        = 6821;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9888,9 +10017,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Wake Island 1952")
     public void EPSG_4733() throws FactoryException {
-        code  = 4733;
-        name  = "Wake Island 1952";
-        datum = 6733;
+        code         = 4733;
+        name         = "Wake Island 1952";
+        datum        = 6733;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9910,9 +10039,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("WGS 66")
     public void EPSG_4760() throws FactoryException {
-        code  = 4760;
-        name  = "WGS 66";
-        datum = 6760;
+        code         = 4760;
+        name         = "WGS 66";
+        datum        = 6760;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -9932,9 +10061,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("WGS 66")
     public void EPSG_4891() throws FactoryException {
-        code  = 4891;
-        name  = "WGS 66";
-        datum = 6760;
+        code         = 4891;
+        name         = "WGS 66";
+        datum        = 6760;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -9954,10 +10083,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("WGS 66")
     public void EPSG_4890() throws FactoryException {
-        code  = 4890;
-        name  = "WGS 66";
+        code         = 4890;
+        name         = "WGS 66";
+        datum        = 6760;
         isGeocentric = true;
-        datum = 6760;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -9979,9 +10108,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("WGS 72")
     public void EPSG_4322() throws FactoryException {
-        code  = 4322;
-        name  = "WGS 72";
-        datum = 6322;
+        code         = 4322;
+        name         = "WGS 72";
+        datum        = 6322;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -10001,9 +10130,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("WGS 72")
     public void EPSG_4985() throws FactoryException {
-        code  = 4985;
-        name  = "WGS 72";
-        datum = 6322;
+        code         = 4985;
+        name         = "WGS 72";
+        datum        = 6322;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -10023,10 +10152,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("WGS 72")
     public void EPSG_4984() throws FactoryException {
-        code  = 4984;
-        name  = "WGS 72";
+        code         = 4984;
+        name         = "WGS 72";
+        datum        = 6322;
         isGeocentric = true;
-        datum = 6322;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -10046,9 +10175,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("WGS 72BE")
     public void EPSG_4324() throws FactoryException {
-        code  = 4324;
-        name  = "WGS 72BE";
-        datum = 6324;
+        code         = 4324;
+        name         = "WGS 72BE";
+        datum        = 6324;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -10068,9 +10197,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("WGS 72BE")
     public void EPSG_4987() throws FactoryException {
-        code  = 4987;
-        name  = "WGS 72BE";
-        datum = 6324;
+        code         = 4987;
+        name         = "WGS 72BE";
+        datum        = 6324;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -10090,10 +10219,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("WGS 72BE")
     public void EPSG_4986() throws FactoryException {
-        code  = 4986;
-        name  = "WGS 72BE";
+        code         = 4986;
+        name         = "WGS 72BE";
+        datum        = 6324;
         isGeocentric = true;
-        datum = 6324;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -10113,9 +10242,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("WGS 84")
     public void EPSG_4326() throws FactoryException {
-        code  = 4326;
-        name  = "WGS 84";
-        datum = 6326;
+        code         = 4326;
+        name         = "WGS 84";
+        datum        = 6326;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -10135,9 +10264,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("WGS 84")
     public void EPSG_4979() throws FactoryException {
-        code  = 4979;
-        name  = "WGS 84";
-        datum = 6326;
+        code         = 4979;
+        name         = "WGS 84";
+        datum        = 6326;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -10157,10 +10286,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("WGS 84")
     public void EPSG_4978() throws FactoryException {
-        code  = 4978;
-        name  = "WGS 84";
+        code         = 4978;
+        name         = "WGS 84";
+        datum        = 6326;
         isGeocentric = true;
-        datum = 6326;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -10180,9 +10309,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Xian 1980")
     public void EPSG_4610() throws FactoryException {
-        code  = 4610;
-        name  = "Xian 1980";
-        datum = 6610;
+        code         = 4610;
+        name         = "Xian 1980";
+        datum        = 6610;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -10203,9 +10332,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Yacare")
     public void EPSG_4309() throws FactoryException {
-        code  = 4309;
-        name  = "Yacare";
-        datum = 6309;
+        code         = 4309;
+        name         = "Yacare";
+        aliases      = new String[] {"ROU-USAMS"};
+        datum        = 6309;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -10225,9 +10355,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Yemen NGN96")
     public void EPSG_4163() throws FactoryException {
-        code  = 4163;
-        name  = "Yemen NGN96";
-        datum = 6163;
+        code         = 4163;
+        name         = "Yemen NGN96";
+        datum        = 6163;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -10247,9 +10377,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Yemen NGN96")
     public void EPSG_4981() throws FactoryException {
-        code  = 4981;
-        name  = "Yemen NGN96";
-        datum = 6163;
+        code         = 4981;
+        name         = "Yemen NGN96";
+        datum        = 6163;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
     }
 
@@ -10269,10 +10399,10 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Yemen NGN96")
     public void EPSG_4980() throws FactoryException {
-        code  = 4980;
-        name  = "Yemen NGN96";
+        code         = 4980;
+        name         = "Yemen NGN96";
+        datum        = 6163;
         isGeocentric = true;
-        datum = 6163;
         verifyGeodeticCRS(GEOCENTRIC);
     }
 
@@ -10292,9 +10422,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Yoff")
     public void EPSG_4310() throws FactoryException {
-        code  = 4310;
-        name  = "Yoff";
-        datum = 6310;
+        code         = 4310;
+        name         = "Yoff";
+        datum        = 6310;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 
@@ -10314,9 +10444,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     @Test
     @DisplayName("Zanderij")
     public void EPSG_4311() throws FactoryException {
-        code  = 4311;
-        name  = "Zanderij";
-        datum = 6311;
+        code         = 4311;
+        name         = "Zanderij";
+        datum        = 6311;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
     }
 }

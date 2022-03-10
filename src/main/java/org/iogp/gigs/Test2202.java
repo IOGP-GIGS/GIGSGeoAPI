@@ -305,7 +305,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7001() throws FactoryException {
         code              = 7001;
         name              = "Airy 1830";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6377563.396;
         semiMajorAxis     = 6377563.396;
@@ -334,7 +333,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7002() throws FactoryException {
         code              = 7002;
         name              = "Airy Modified 1849";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6377340.189;
         semiMajorAxis     = 6377340.189;
@@ -392,7 +390,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7041() throws FactoryException {
         code              = 7041;
         name              = "Average Terrestrial System 1977";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378135.0;
         semiMajorAxis     = 6378135.0;
@@ -423,7 +420,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7004() throws FactoryException {
         code              = 7004;
         name              = "Bessel 1841";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6377397.155;
         semiMajorAxis     = 6377397.155;
@@ -452,7 +448,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7005() throws FactoryException {
         code              = 7005;
         name              = "Bessel Modified";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6377492.018;
         semiMajorAxis     = 6377492.018;
@@ -483,7 +478,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7046() throws FactoryException {
         code              = 7046;
         name              = "Bessel Namibia (GLM)";
-        aliases           = NONE;
         toMetres          = 1.0000135965;
         semiMajorInMetres = 6377483.86528042;
         semiMajorAxis     = 6377397.155;
@@ -515,7 +509,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7007() throws FactoryException {
         code              = 7007;
         name              = "Clarke 1858";
-        aliases           = NONE;
         toMetres          = 0.3047972654;
         semiMajorInMetres = 6378293.64520876;
         semiMajorAxis     = 20926348.0;
@@ -546,7 +539,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7008() throws FactoryException {
         code              = 7008;
         name              = "Clarke 1866";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378206.4;
         semiMajorAxis     = 6378206.4;
@@ -575,7 +567,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7052() throws FactoryException {
         code              = 7052;
         name              = "Clarke 1866 Authalic Sphere";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6370997.0;
         semiMajorAxis     = 6370997.0;
@@ -605,7 +596,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7034() throws FactoryException {
         code              = 7034;
         name              = "Clarke 1880";
-        aliases           = NONE;
         toMetres          = 0.3047972654;
         semiMajorInMetres = 6378249.14480801;
         semiMajorAxis     = 20926202.0;
@@ -666,7 +656,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7010() throws FactoryException {
         code              = 7010;
         name              = "Clarke 1880 (Benoit)";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378300.789;
         semiMajorAxis     = 6378300.789;
@@ -696,7 +685,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7011() throws FactoryException {
         code              = 7011;
         name              = "Clarke 1880 (IGN)";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378249.2;
         semiMajorAxis     = 6378249.2;
@@ -727,7 +715,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7055() throws FactoryException {
         code              = 7055;
         name              = "Clarke 1880 (international foot)";
-        aliases           = NONE;
         toMetres          = 0.3048;
         semiMajorInMetres = 6378306.3696;
         semiMajorAxis     = 20926202.0;
@@ -756,7 +743,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
         important         = true;
         code              = 7009;
         name              = "Clarke 1866 Michigan";
-        aliases           = NONE;
         toMetres          = 0.30480061;
         semiMajorInMetres = 6378450.048;
         semiMajorAxis     = 20926631.531;
@@ -818,7 +804,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7014() throws FactoryException {
         code              = 7014;
         name              = "Clarke 1880 (SGA 1922)";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378249.2;
         semiMajorAxis     = 6378249.2;
@@ -848,7 +833,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7051() throws FactoryException {
         code              = 7051;
         name              = "Danish 1876";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6377019.27;
         semiMajorAxis     = 6377019.27;
@@ -877,7 +861,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7042() throws FactoryException {
         code              = 7042;
         name              = "Everest (1830 Definition)";
-        aliases           = NONE;
         toMetres          = 0.304799510248147;
         semiMajorInMetres = 6377299.36559538;
         semiMajorAxis     = 20922931.8;
@@ -908,7 +891,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7015() throws FactoryException {
         code              = 7015;
         name              = "Everest 1830 (1937 Adjustment)";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6377276.345;
         semiMajorAxis     = 6377276.345;
@@ -939,7 +921,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7044() throws FactoryException {
         code              = 7044;
         name              = "Everest 1830 (1962 Definition)";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6377301.243;
         semiMajorAxis     = 6377301.243;
@@ -969,7 +950,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7016() throws FactoryException {
         code              = 7016;
         name              = "Everest 1830 (1967 Definition)";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6377298.556;
         semiMajorAxis     = 6377298.556;
@@ -1000,7 +980,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7045() throws FactoryException {
         code              = 7045;
         name              = "Everest 1830 (1975 Definition)";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6377299.151;
         semiMajorAxis     = 6377299.151;
@@ -1032,7 +1011,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7056() throws FactoryException {
         code              = 7056;
         name              = "Everest 1830 (RSO 1969)";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6377295.664;
         semiMajorAxis     = 6377295.664;
@@ -1062,7 +1040,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7018() throws FactoryException {
         code              = 7018;
         name              = "Everest 1830 Modified";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6377304.063;
         semiMajorAxis     = 6377304.063;
@@ -1091,7 +1068,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7031() throws FactoryException {
         code              = 7031;
         name              = "GEM 10C";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378137.0;
         semiMajorAxis     = 6378137.0;
@@ -1211,7 +1187,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7048() throws FactoryException {
         code              = 7048;
         name              = "GRS 1980 Authalic Sphere";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6371007.0;
         semiMajorAxis     = 6371007.0;
@@ -1241,7 +1216,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7020() throws FactoryException {
         code              = 7020;
         name              = "Helmert 1906";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378200.0;
         semiMajorAxis     = 6378200.0;
@@ -1268,7 +1242,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7053() throws FactoryException {
         code              = 7053;
         name              = "Hough 1960";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378270.0;
         semiMajorAxis     = 6378270.0;
@@ -1299,7 +1272,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7058() throws FactoryException {
         code              = 7058;
         name              = "Hughes 1980";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378273.0;
         semiMajorAxis     = 6378273.0;
@@ -1356,7 +1328,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7021() throws FactoryException {
         code              = 7021;
         name              = "Indonesian National Spheroid";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378160.0;
         semiMajorAxis     = 6378160.0;
@@ -1415,7 +1386,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7057() throws FactoryException {
         code              = 7057;
         name              = "International 1924 Authalic Sphere";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6371228.0;
         semiMajorAxis     = 6371228.0;
@@ -1443,7 +1413,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7024() throws FactoryException {
         code              = 7024;
         name              = "Krassowsky 1940";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378245.0;
         semiMajorAxis     = 6378245.0;
@@ -1500,7 +1469,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7032() throws FactoryException {
         code              = 7032;
         name              = "OSU86F";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378136.2;
         semiMajorAxis     = 6378136.2;
@@ -1529,7 +1497,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7033() throws FactoryException {
         code              = 7033;
         name              = "OSU91A";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378136.3;
         semiMajorAxis     = 6378136.3;
@@ -1558,7 +1525,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7027() throws FactoryException {
         code              = 7027;
         name              = "Plessis 1817";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6376523.0;
         semiMajorAxis     = 6376523.0;
@@ -1586,7 +1552,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7059() throws FactoryException {
         code              = 7059;
         name              = "Popular Visualisation Sphere";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378137.0;
         semiMajorAxis     = 6378137.0;
@@ -1615,7 +1580,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7054() throws FactoryException {
         code              = 7054;
         name              = "PZ-90";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378136.0;
         semiMajorAxis     = 6378136.0;
@@ -1644,7 +1608,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     public void EPSG_7028() throws FactoryException {
         code              = 7028;
         name              = "Struve 1860";
-        aliases           = NONE;
         toMetres          = 1.0;
         semiMajorInMetres = 6378298.3;
         semiMajorAxis     = 6378298.3;

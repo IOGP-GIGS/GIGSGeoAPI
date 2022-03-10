@@ -216,7 +216,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     public void EPSG_8912() throws FactoryException {
         code               = 8912;
         name               = "Athens";
-        aliases            = NONE;
         greenwichLongitude = 23.7163375;
         verifyPrimeMeridian();
     }
@@ -243,7 +242,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     public void EPSG_8907() throws FactoryException {
         code               = 8907;
         name               = "Bern";
-        aliases            = NONE;
         greenwichLongitude = 7.439583333333333;
         verifyPrimeMeridian();
     }
@@ -266,7 +264,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     public void EPSG_8904() throws FactoryException {
         code               = 8904;
         name               = "Bogota";
-        aliases            = NONE;
         greenwichLongitude = -74.08091666666667;
         verifyPrimeMeridian();
     }
@@ -289,7 +286,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     public void EPSG_8910() throws FactoryException {
         code               = 8910;
         name               = "Brussels";
-        aliases            = NONE;
         greenwichLongitude = 4.367975;
         verifyPrimeMeridian();
     }
@@ -339,7 +335,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     public void EPSG_8901() throws FactoryException {
         code               = 8901;
         name               = "Greenwich";
-        aliases            = NONE;
         greenwichLongitude = 0.0;
         verifyPrimeMeridian();
     }
@@ -366,7 +361,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     public void EPSG_8908() throws FactoryException {
         code               = 8908;
         name               = "Jakarta";
-        aliases            = NONE;
         greenwichLongitude = 106.80771944444444;
         verifyPrimeMeridian();
     }
@@ -389,7 +383,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     public void EPSG_8902() throws FactoryException {
         code               = 8902;
         name               = "Lisbon";
-        aliases            = NONE;
         greenwichLongitude = -9.13190611111111;
         verifyPrimeMeridian();
     }
@@ -415,7 +408,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     public void EPSG_8905() throws FactoryException {
         code               = 8905;
         name               = "Madrid";
-        aliases            = NONE;
         greenwichLongitude = -3.687375;
         verifyPrimeMeridian();
     }
@@ -467,7 +459,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     public void EPSG_8903() throws FactoryException {
         code               = 8903;
         name               = "Paris";
-        aliases            = NONE;
         greenwichLongitude = 2.33722917;
         verifyPrimeMeridian();
     }
@@ -493,7 +484,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     public void EPSG_8914() throws FactoryException {
         code               = 8914;
         name               = "Paris RGS";
-        aliases            = NONE;
         greenwichLongitude = 2.3372083333333333;
         verifyPrimeMeridian();
     }
@@ -516,7 +506,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     public void EPSG_8906() throws FactoryException {
         code               = 8906;
         name               = "Rome";
-        aliases            = NONE;
         greenwichLongitude = 12.452333333333334;
         verifyPrimeMeridian();
     }
@@ -539,7 +528,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     public void EPSG_8911() throws FactoryException {
         code               = 8911;
         name               = "Stockholm";
-        aliases            = NONE;
         greenwichLongitude = 18.05827777777778;
         verifyPrimeMeridian();
     }

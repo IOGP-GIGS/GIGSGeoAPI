@@ -129,6 +129,7 @@ public final class Test2205 extends TestMethodGenerator {
             printTestMethodSignature(code, name);
             printFieldAssignments("code",         code,
                                   "name",         name,
+                                  "aliases",      aliases,
                                   "datum",        datum,
                                   "isGeocentric", type == Type.GEOCENTRIC);
             indent(2); out.append("verifyGeodeticCRS(").append(type.name()).append(");\n");

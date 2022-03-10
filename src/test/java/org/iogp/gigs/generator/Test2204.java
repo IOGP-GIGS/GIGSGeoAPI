@@ -86,6 +86,7 @@ public final class Test2204 extends TestMethodGenerator {
             printTestMethodSignature(code, name);
             printFieldAssignments("code",              code,
                                   "name",              name,
+                                  "aliases",           aliases,
                                   "ellipsoidName",     ellipsoidName,
                                   "primeMeridianName", primeMeridianName);
             indent(2); out.append("verifyDatum();\n");

@@ -420,7 +420,7 @@ public abstract class TestMethodGenerator {
         for (int i=0; i<pairs.length; i += 2) {
             final String name  = (String) pairs[i];
             final Object value = pairs[i+1];
-            if (!(value instanceof Boolean) || (Boolean) value) {
+            if (accept(value)) {
                 indent(2);
                 out.append(name);
                 for (int j = length - name.length(); --j >= 0;) {
@@ -430,16 +430,12 @@ public abstract class TestMethodGenerator {
                 if (value instanceof Unit<?>) {
                     printProgrammaticName((Unit<?>) value);
                 } else if (value instanceof String[]) {
-                    if (((String[]) value).length == 0) {
-                        out.append("NONE");
-                    } else {
-                        String separator = "new String[] {\"";
-                        for (final String e : (String[]) value) {
-                            out.append(separator).append(e);
-                            separator = "\", \"";
-                        }
-                        out.append("\"}");
+                    String separator = "new String[] {\"";
+                    for (final String e : (String[]) value) {
+                        out.append(separator).append(e);
+                        separator = "\", \"";
                     }
+                    out.append("\"}");
                 } else if (value instanceof Double && ((Double) value).isNaN()) {
                     out.append("Double.NaN");
                 } else {
@@ -455,6 +451,21 @@ public abstract class TestMethodGenerator {
                 out.append(";\n");
             }
         }
+    }
+
+    /**
+     * Returns {@code true} if the given value should be included in the code.
+     * This method should return {@code false} when the given value is equal
+     * to a default value.
+     *
+     * @param  value  the value to test.
+     * @return whether the given value should be added to the code.
+     */
+    private static boolean accept(final Object value) {
+        if (value == null) return false;
+        if (value instanceof Boolean)  return (Boolean) value;
+        if (value instanceof String[]) return ((String[]) value).length != 0;
+        return true;
     }
 
     /**

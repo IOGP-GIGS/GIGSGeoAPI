@@ -221,6 +221,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6143() throws FactoryException {
         code              = 6143;
         name              = "Abidjan 1987";
+        aliases           = new String[] {"Côte d'Ivoire (Ivory Coast)"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -268,6 +269,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6201() throws FactoryException {
         code              = 6201;
         name              = "Adindan";
+        aliases           = new String[] {"Blue Nile 1958"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -338,6 +340,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6204() throws FactoryException {
         code              = 6204;
         name              = "Ain el Abd 1970";
+        aliases           = new String[] {"Ain el Abd"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -362,6 +365,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6191() throws FactoryException {
         code              = 6191;
         name              = "Albanian 1987";
+        aliases           = new String[] {"ALB86"};
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -455,6 +459,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6901() throws FactoryException {
         code              = 6901;
         name              = "Ancienne Triangulation Francaise (Paris)";
+        aliases           = new String[] {"ATF (Paris)"};
         ellipsoidName     = "Plessis 1817";
         primeMeridianName = "Paris RGS";
         verifyDatum();
@@ -617,6 +622,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6710() throws FactoryException {
         code              = 6710;
         name              = "Astro DOS 71";
+        aliases           = new String[] {"ASTRO DOS 71/4", "St. Helena 1971"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -641,6 +647,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6176() throws FactoryException {
         code              = 6176;
         name              = "Australian Antarctic Datum 1998";
+        aliases           = new String[] {"AAD98"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -665,6 +672,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6202() throws FactoryException {
         code              = 6202;
         name              = "Australian Geodetic Datum 1966";
+        aliases           = new String[] {"AGD66"};
         ellipsoidName     = "Australian National Spheroid";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -689,6 +697,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6203() throws FactoryException {
         code              = 6203;
         name              = "Australian Geodetic Datum 1984";
+        aliases           = new String[] {"AGD84"};
         ellipsoidName     = "Australian National Spheroid";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -713,6 +722,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6122() throws FactoryException {
         code              = 6122;
         name              = "Average Terrestrial System 1977";
+        aliases           = new String[] {"ATS77"};
         ellipsoidName     = "Average Terrestrial System 1977";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -760,6 +770,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6183() throws FactoryException {
         code              = 6183;
         name              = "Azores Central Islands 1948";
+        aliases           = new String[] {"Graciosa", "Azores Central 1948", "Base SW"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -784,6 +795,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6665() throws FactoryException {
         code              = 6665;
         name              = "Azores Central Islands 1995";
+        aliases           = new String[] {"Graciosa", "Azores Central 1995", "Base SW"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -808,6 +820,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6182() throws FactoryException {
         code              = 6182;
         name              = "Azores Occidental Islands 1939";
+        aliases           = new String[] {"Observatario Flores", "Azores Occidental 1939", "Observatorio Meteorologico 1939", "Observatorio 1966"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -832,6 +845,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6184() throws FactoryException {
         code              = 6184;
         name              = "Azores Oriental Islands 1940";
+        aliases           = new String[] {"Sao Bras", "Azores Oriental 1940"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -856,6 +870,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6664() throws FactoryException {
         code              = 6664;
         name              = "Azores Oriental Islands 1995";
+        aliases           = new String[] {"Sao Bras", "Azores Oriental 1995"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -903,6 +918,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6211() throws FactoryException {
         code              = 6211;
         name              = "Batavia";
+        aliases           = new String[] {"Genuk"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -996,6 +1012,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6714() throws FactoryException {
         code              = 6714;
         name              = "Bellevue";
+        aliases           = new String[] {"Bellevue (IGN)"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1043,6 +1060,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6762() throws FactoryException {
         code              = 6762;
         name              = "Bermuda 2000";
+        aliases           = new String[] {"BDA2000"};
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1113,6 +1131,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6218() throws FactoryException {
         code              = 6218;
         name              = "Bogota 1975";
+        aliases           = new String[] {"Bogota"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1183,6 +1202,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6220() throws FactoryException {
         code              = 6220;
         name              = "Camacupa 1948";
+        aliases           = new String[] {"Camacupa"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1253,6 +1273,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6222() throws FactoryException {
         code              = 6222;
         name              = "Cape";
+        aliases           = new String[] {"South Africa"};
         ellipsoidName     = "Clarke 1880 (Arc)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1346,6 +1367,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6623() throws FactoryException {
         code              = 6623;
         name              = "Centre Spatial Guyanais 1967";
+        aliases           = new String[] {"CSG67", "Guyane Francaise"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1462,6 +1484,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6673() throws FactoryException {
         code              = 6673;
         name              = "Chatham Islands Datum 1979";
+        aliases           = new String[] {"CI1979"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1486,6 +1509,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6160() throws FactoryException {
         code              = 6160;
         name              = "Chos Malal 1914";
+        aliases           = new String[] {"Quini-Huao", "Quiñi-Huao"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1625,6 +1649,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6225() throws FactoryException {
         code              = 6225;
         name              = "Corrego Alegre 1970-72";
+        aliases           = new String[] {"Corrego Alegre"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1649,6 +1674,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6761() throws FactoryException {
         code              = 6761;
         name              = "Croatian Terrestrial Reference System";
+        aliases           = new String[] {"HTRS96"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1719,6 +1745,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6755() throws FactoryException {
         code              = 6755;
         name              = "Datum Geodesi Nasional 1995";
+        aliases           = new String[] {"DGN95", "Indonesian Geodetic Datum 1995", "IGD95"};
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1743,6 +1770,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6316() throws FactoryException {
         code              = 6316;
         name              = "Dealul Piscului 1930";
+        aliases           = new String[] {"Dealul Piscului 1933"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1790,6 +1818,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6227() throws FactoryException {
         code              = 6227;
         name              = "Deir ez Zor";
+        aliases           = new String[] {"Levant"};
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1814,6 +1843,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6314() throws FactoryException {
         code              = 6314;
         name              = "Deutsches Hauptdreiecksnetz";
+        aliases           = new String[] {"DHDN"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1930,6 +1960,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6229() throws FactoryException {
         code              = 6229;
         name              = "Egypt 1907";
+        aliases           = new String[] {"Old Egyptian"};
         ellipsoidName     = "Helmert 1906";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1954,6 +1985,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6199() throws FactoryException {
         code              = 6199;
         name              = "Egypt 1930";
+        aliases           = new String[] {"New Egyptian"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -1978,6 +2010,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6706() throws FactoryException {
         code              = 6706;
         name              = "Egypt Gulf of Suez S-650 TL";
+        aliases           = new String[] {"S-650 TL"};
         ellipsoidName     = "Helmert 1906";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2002,6 +2035,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6133() throws FactoryException {
         code              = 6133;
         name              = "Estonia 1992";
+        aliases           = new String[] {"EST92"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2026,6 +2060,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6180() throws FactoryException {
         code              = 6180;
         name              = "Estonia 1997";
+        aliases           = new String[] {"EST97"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2050,6 +2085,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6230() throws FactoryException {
         code              = 6230;
         name              = "European Datum 1950";
+        aliases           = new String[] {"ED50"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2074,6 +2110,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6154() throws FactoryException {
         code              = 6154;
         name              = "European Datum 1950(1977)";
+        aliases           = new String[] {"ED50(ED77)"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2098,6 +2135,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6668() throws FactoryException {
         code              = 6668;
         name              = "European Datum 1979";
+        aliases           = new String[] {"ED79"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2122,6 +2160,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6231() throws FactoryException {
         code              = 6231;
         name              = "European Datum 1987";
+        aliases           = new String[] {"ED87"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2146,6 +2185,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6159() throws FactoryException {
         code              = 6159;
         name              = "European Libyan Datum 1979";
+        aliases           = new String[] {"ELD79"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2170,6 +2210,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6258() throws FactoryException {
         code              = 6258;
         name              = "European Terrestrial Reference System 1989";
+        aliases           = new String[] {"ETRS89", "European Terrestrial Reference System 1989"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2217,6 +2258,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6741() throws FactoryException {
         code              = 6741;
         name              = "Faroe Datum 1954";
+        aliases           = new String[] {"FD54"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2241,6 +2283,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6688() throws FactoryException {
         code              = 6688;
         name              = "Fatu Iva 72";
+        aliases           = new String[] {"MHEFO 55"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2288,6 +2331,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6720() throws FactoryException {
         code              = 6720;
         name              = "Fiji Geodetic Datum 1986";
+        aliases           = new String[] {"FGD 1986", "Fiji 1986"};
         ellipsoidName     = "WGS 72";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2312,6 +2356,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6132() throws FactoryException {
         code              = 6132;
         name              = "Final Datum 1958";
+        aliases           = new String[] {"FD58"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2336,6 +2381,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6753() throws FactoryException {
         code              = 6753;
         name              = "fk89";
+        aliases           = new String[] {"FD54a"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2429,6 +2475,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6283() throws FactoryException {
         code              = 6283;
         name              = "Geocentric Datum of Australia 1994";
+        aliases           = new String[] {"GDA94"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2453,6 +2500,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6737() throws FactoryException {
         code              = 6737;
         name              = "Geocentric datum of Korea";
+        aliases           = new String[] {"Korea 2000"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2477,6 +2525,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6300() throws FactoryException {
         code              = 6300;
         name              = "Geodetic Datum of 1965";
+        aliases           = new String[] {"TM75", "1975 Mapping Adjustment"};
         ellipsoidName     = "Airy Modified 1849";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2501,6 +2550,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6742() throws FactoryException {
         code              = 6742;
         name              = "Geodetic Datum of Malaysia 2000";
+        aliases           = new String[] {"GDM2000"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2525,6 +2575,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6723() throws FactoryException {
         code              = 6723;
         name              = "Grand Cayman Geodetic Datum 1959";
+        aliases           = new String[] {"GCGD59", "Grand Cayman 1959"};
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2618,6 +2669,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6121() throws FactoryException {
         code              = 6121;
         name              = "Greek Geodetic Reference System 1987";
+        aliases           = new String[] {"GGRS87"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2642,6 +2694,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6747() throws FactoryException {
         code              = 6747;
         name              = "Greenland 1996";
+        aliases           = new String[] {"GR96"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2689,6 +2742,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6622() throws FactoryException {
         code              = 6622;
         name              = "Guadeloupe 1948";
+        aliases           = new String[] {"Sainte Anne"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2759,6 +2813,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6613() throws FactoryException {
         code              = 6613;
         name              = "Gunung Segara";
+        aliases           = new String[] {"Segara", "Samboja", "P2 Exc", "P2 Exc-T9"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2783,6 +2838,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6820() throws FactoryException {
         code              = 6820;
         name              = "Gunung Segara (Jakarta)";
+        aliases           = new String[] {"Segara (Jakarta)"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Jakarta";
         verifyDatum();
@@ -2945,6 +3001,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6738() throws FactoryException {
         code              = 6738;
         name              = "Hong Kong 1963";
+        aliases           = new String[] {"HK63"};
         ellipsoidName     = "Clarke 1858";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2969,6 +3026,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6739() throws FactoryException {
         code              = 6739;
         name              = "Hong Kong 1963(67)";
+        aliases           = new String[] {"HK63(67)"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2993,6 +3051,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6611() throws FactoryException {
         code              = 6611;
         name              = "Hong Kong 1980";
+        aliases           = new String[] {"HK80"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3017,6 +3076,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_1024() throws FactoryException {
         code              = 1024;
         name              = "Hungarian Datum 1909";
+        aliases           = new String[] {"HD1909"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3041,6 +3101,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6237() throws FactoryException {
         code              = 6237;
         name              = "Hungarian Datum 1972";
+        aliases           = new String[] {"HD72"};
         ellipsoidName     = "GRS 1967";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3065,6 +3126,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6236() throws FactoryException {
         code              = 6236;
         name              = "Hu Tzu Shan 1950";
+        aliases           = new String[] {"Hu Tzu Shan"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3089,6 +3151,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6697() throws FactoryException {
         code              = 6697;
         name              = "IGC 1962 Arc of the 6th Parallel South";
+        aliases           = new String[] {"IGC 1962 6th Parallel South"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3205,6 +3268,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6634() throws FactoryException {
         code              = 6634;
         name              = "IGN72 Grande Terre";
+        aliases           = new String[] {"MHNC72"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3298,6 +3362,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6131() throws FactoryException {
         code              = 6131;
         name              = "Indian 1960";
+        aliases           = new String[] {"Indian (DMA Reduced)"};
         ellipsoidName     = "Everest 1830 (1937 Adjustment)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3345,6 +3410,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6238() throws FactoryException {
         code              = 6238;
         name              = "Indonesian Datum 1974";
+        aliases           = new String[] {"ID74"};
         ellipsoidName     = "Indonesian National Spheroid";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3369,6 +3435,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6701() throws FactoryException {
         code              = 6701;
         name              = "Institut Geographique du Congo Belge 1955";
+        aliases           = new String[] {"IGCB 1955", "Bas Congo 1955"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3393,6 +3460,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6667() throws FactoryException {
         code              = 6667;
         name              = "Iraq-Kuwait Boundary Datum 1992";
+        aliases           = new String[] {"IKBD-92"};
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3417,6 +3485,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6173() throws FactoryException {
         code              = 6173;
         name              = "IRENET95";
+        aliases           = new String[] {"ETRS89"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3441,6 +3510,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6659() throws FactoryException {
         code              = 6659;
         name              = "Islands Network 1993";
+        aliases           = new String[] {"ISN93"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3488,6 +3558,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6670() throws FactoryException {
         code              = 6670;
         name              = "Istituto Geografico Militaire 1995";
+        aliases           = new String[] {"IGM95"};
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3558,6 +3629,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6242() throws FactoryException {
         code              = 6242;
         name              = "Jamaica 1969";
+        aliases           = new String[] {"JAD69"};
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3582,6 +3654,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6758() throws FactoryException {
         code              = 6758;
         name              = "Jamaica 2001";
+        aliases           = new String[] {"JAD2001"};
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3606,6 +3679,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6612() throws FactoryException {
         code              = 6612;
         name              = "Japanese Geodetic Datum 2000";
+        aliases           = new String[] {"JGD2000"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3630,6 +3704,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6725() throws FactoryException {
         code              = 6725;
         name              = "Johnston Island 1961";
+        aliases           = new String[] {"Johnston Atoll 1961"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3792,6 +3867,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6743() throws FactoryException {
         code              = 6743;
         name              = "Karbala 1979";
+        aliases           = new String[] {"Karbala 1979 (Polservice)"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3816,6 +3892,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6123() throws FactoryException {
         code              = 6123;
         name              = "Kartastokoordinaattijarjestelma (1966)";
+        aliases           = new String[] {"KKJ", "Kartastokoordinaattijärjestelmä (1966)"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -3909,6 +3986,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6245() throws FactoryException {
         code              = 6245;
         name              = "Kertau 1968";
+        aliases           = new String[] {"Malaysia Revised Triangulation 1968", "MRT68"};
         ellipsoidName     = "Everest 1830 Modified";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4025,6 +4103,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6246() throws FactoryException {
         code              = 6246;
         name              = "Kuwait Oil Company";
+        aliases           = new String[] {"KOC"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4049,6 +4128,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6319() throws FactoryException {
         code              = 6319;
         name              = "Kuwait Utility";
+        aliases           = new String[] {"KUDAMS"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4142,6 +4222,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6678() throws FactoryException {
         code              = 6678;
         name              = "Lao National Datum 1997";
+        aliases           = new String[] {"Lao 1997"};
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4166,6 +4247,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6661() throws FactoryException {
         code              = 6661;
         name              = "Latvia 1992";
+        aliases           = new String[] {"LKS92"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4213,6 +4295,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6699() throws FactoryException {
         code              = 6699;
         name              = "Le Pouce 1934";
+        aliases           = new String[] {"Le Pouce (Mauritius 94)", "Le Pouce (Mauritius PN 94)"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4260,6 +4343,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6754() throws FactoryException {
         code              = 6754;
         name              = "Libyan Geodetic Datum 2006";
+        aliases           = new String[] {"LGD2006"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4376,6 +4460,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6126() throws FactoryException {
         code              = 6126;
         name              = "Lithuania 1994 (ETRS89)";
+        aliases           = new String[] {"LKS94 (ETRS89)"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4400,6 +4485,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6142() throws FactoryException {
         code              = 6142;
         name              = "Locodjo 1965";
+        aliases           = new String[] {"Côte d'Ivoire (Ivory Coast)"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4470,6 +4556,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6181() throws FactoryException {
         code              = 6181;
         name              = "Luxembourg 1930";
+        aliases           = new String[] {"LUREF"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4540,6 +4627,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6903() throws FactoryException {
         code              = 6903;
         name              = "Madrid 1870 (Madrid)";
+        aliases           = new String[] {"Madrid"};
         ellipsoidName     = "Struve 1860";
         primeMeridianName = "Madrid";
         verifyDatum();
@@ -4656,6 +4744,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6259() throws FactoryException {
         code              = 6259;
         name              = "Malongo 1987";
+        aliases           = new String[] {"Mhast"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4703,6 +4792,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6686() throws FactoryException {
         code              = 6686;
         name              = "Marco Geocentrico Nacional de Referencia";
+        aliases           = new String[] {"MAGNA-SIRGAS"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4773,6 +4863,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6625() throws FactoryException {
         code              = 6625;
         name              = "Martinique 1938";
+        aliases           = new String[] {"Fort Desaix"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4820,6 +4911,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6692() throws FactoryException {
         code              = 6692;
         name              = "Maupiti 83";
+        aliases           = new String[] {"MOP 1983"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4890,6 +4982,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6705() throws FactoryException {
         code              = 6705;
         name              = "Mhast (offshore)";
+        aliases           = new String[] {"Mhast"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4914,6 +5007,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6704() throws FactoryException {
         code              = 6704;
         name              = "Mhast (onshore)";
+        aliases           = new String[] {"Mhast"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4961,6 +5055,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6312() throws FactoryException {
         code              = 6312;
         name              = "Militar-Geographische Institut";
+        aliases           = new String[] {"MGI"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -4985,6 +5080,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6805() throws FactoryException {
         code              = 6805;
         name              = "Militar-Geographische Institut (Ferro)";
+        aliases           = new String[] {"MGI (Ferro)"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Ferro";
         verifyDatum();
@@ -5032,6 +5128,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6703() throws FactoryException {
         code              = 6703;
         name              = "Missao Hidrografico Angola y Sao Tome 1951";
+        aliases           = new String[] {"Mhast 1951"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5056,6 +5153,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6265() throws FactoryException {
         code              = 6265;
         name              = "Monte Mario";
+        aliases           = new String[] {"Rome 1940"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5080,6 +5178,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6806() throws FactoryException {
         code              = 6806;
         name              = "Monte Mario (Rome)";
+        aliases           = new String[] {"Rome 1940 (Rome)"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Rome";
         verifyDatum();
@@ -5150,6 +5249,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6639() throws FactoryException {
         code              = 6639;
         name              = "MOP78";
+        aliases           = new String[] {"Uvea SHOM 1978"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5197,6 +5297,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6130() throws FactoryException {
         code              = 6130;
         name              = "Moznet (ITRF94)";
+        aliases           = new String[] {"Moznet"};
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5221,6 +5322,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6152() throws FactoryException {
         code              = 6152;
         name              = "NAD83 (High Accuracy Regional Network)";
+        aliases           = new String[] {"NAD83(HARN)", "NAD83 (High Precision Geodetic Network)", "NAD83(HPGN)", "Guam Geodetic Network 1993", "NAD83"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5268,6 +5370,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6140() throws FactoryException {
         code              = 6140;
         name              = "NAD83 Canadian Spatial Reference System";
+        aliases           = new String[] {"NAD83(CSRS)"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5407,6 +5510,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6318() throws FactoryException {
         code              = 6318;
         name              = "National Geodetic Network";
+        aliases           = new String[] {"NGN"};
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5454,6 +5558,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6272() throws FactoryException {
         code              = 6272;
         name              = "New Zealand Geodetic Datum 1949";
+        aliases           = new String[] {"GD49", "NZGD49"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5478,6 +5583,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6167() throws FactoryException {
         code              = 6167;
         name              = "New Zealand Geodetic Datum 2000";
+        aliases           = new String[] {"NZGD2000"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5571,6 +5677,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6267() throws FactoryException {
         code              = 6267;
         name              = "North American Datum 1927";
+        aliases           = new String[] {"NAD27"};
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5595,6 +5702,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6608() throws FactoryException {
         code              = 6608;
         name              = "North American Datum 1927 (1976)";
+        aliases           = new String[] {"NAD27(76)"};
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5619,6 +5727,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6609() throws FactoryException {
         code              = 6609;
         name              = "North American Datum 1927 (CGQ77)";
+        aliases           = new String[] {"CGQ77"};
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5643,6 +5752,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6269() throws FactoryException {
         code              = 6269;
         name              = "North American Datum 1983";
+        aliases           = new String[] {"NAD83(1986)", "NAD83", "NAD83(Original)"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5690,6 +5800,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6275() throws FactoryException {
         code              = 6275;
         name              = "Nouvelle Triangulation Francaise";
+        aliases           = new String[] {"NTF"};
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5829,6 +5940,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6279() throws FactoryException {
         code              = 6279;
         name              = "OS (SN) 1980";
+        aliases           = new String[] {"OS(SN)80"};
         ellipsoidName     = "Airy 1830";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5853,6 +5965,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6278() throws FactoryException {
         code              = 6278;
         name              = "OSGB 1970 (SN)";
+        aliases           = new String[] {"OSGB70"};
         ellipsoidName     = "Airy 1830";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5900,6 +6013,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6281() throws FactoryException {
         code              = 6281;
         name              = "Palestine 1923";
+        aliases           = new String[] {"Old Israeli Datum", "OID"};
         ellipsoidName     = "Clarke 1880 (Benoit)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5947,6 +6061,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6740() throws FactoryException {
         code              = 6740;
         name              = "Parametrop Zemp 1990";
+        aliases           = new String[] {"PZ-90"};
         ellipsoidName     = "PZ-90";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5971,6 +6086,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6134() throws FactoryException {
         code              = 6134;
         name              = "PDO Survey Datum 1993";
+        aliases           = new String[] {"PSD93"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6018,6 +6134,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6683() throws FactoryException {
         code              = 6683;
         name              = "Philippine Reference System 1992";
+        aliases           = new String[] {"PRS92", "Modified Luzon Datum"};
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6065,6 +6182,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6728() throws FactoryException {
         code              = 6728;
         name              = "Pico de la Nieves 1984";
+        aliases           = new String[] {"PN84"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6135,6 +6253,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6620() throws FactoryException {
         code              = 6620;
         name              = "Point 58";
+        aliases           = new String[] {"12th Parallel traverse"};
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6159,6 +6278,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6637() throws FactoryException {
         code              = 6637;
         name              = "Pointe Geologie Perroud 1950";
+        aliases           = new String[] {"Perroud 1950"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6183,6 +6303,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6615() throws FactoryException {
         code              = 6615;
         name              = "Porto Santo 1936";
+        aliases           = new String[] {"Madeira SE Base", "Base SE", "Porto Santo"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6207,6 +6328,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6663() throws FactoryException {
         code              = 6663;
         name              = "Porto Santo 1995";
+        aliases           = new String[] {"Base SE", "Madeira SE Base 1995"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6231,6 +6353,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6694() throws FactoryException {
         code              = 6694;
         name              = "Posiciones Geodesicas Argentinas 1994";
+        aliases           = new String[] {"POSGAR 94", "POSGAR", "Posiciones Geodésicas Argentinas 1994"};
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6255,6 +6378,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6190() throws FactoryException {
         code              = 6190;
         name              = "Posiciones Geodesicas Argentinas 1998";
+        aliases           = new String[] {"POSGAR 98", "Posiciones Geodésicas Argentinas 1998", "POSGAR"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6279,6 +6403,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6746() throws FactoryException {
         code              = 6746;
         name              = "Potsdam Datum/83";
+        aliases           = new String[] {"PD/83"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6303,6 +6428,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6248() throws FactoryException {
         code              = 6248;
         name              = "Provisional South American Datum 1956";
+        aliases           = new String[] {"PSAD56"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6373,6 +6499,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6179() throws FactoryException {
         code              = 6179;
         name              = "Pulkovo 1942(58)";
+        aliases           = new String[] {"42/58"};
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6397,6 +6524,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6178() throws FactoryException {
         code              = 6178;
         name              = "Pulkovo 1942(83)";
+        aliases           = new String[] {"42/83"};
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6490,6 +6618,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6614() throws FactoryException {
         code              = 6614;
         name              = "Qatar National Datum 1995";
+        aliases           = new String[] {"QND95"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6560,6 +6689,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6745() throws FactoryException {
         code              = 6745;
         name              = "Rauenberg Datum/83";
+        aliases           = new String[] {"RD/83"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6584,6 +6714,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6189() throws FactoryException {
         code              = 6189;
         name              = "Red Geodesica Venezolana";
+        aliases           = new String[] {"SIRGAS-REGVEN", "REGVEN"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6608,6 +6739,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_1047() throws FactoryException {
         code              = 1047;
         name              = "Reseau de Reference des Antilles Francaises 1991";
+        aliases           = new String[] {"RRAF91"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6632,6 +6764,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6687() throws FactoryException {
         code              = 6687;
         name              = "Reseau Geodesique de la Polynesie Francaise";
+        aliases           = new String[] {"RGPF"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6656,6 +6789,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6627() throws FactoryException {
         code              = 6627;
         name              = "Reseau Geodesique de la Reunion 1992";
+        aliases           = new String[] {"RGR92"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6680,6 +6814,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6749() throws FactoryException {
         code              = 6749;
         name              = "Reseau Geodesique de Nouvelle Caledonie 91-93";
+        aliases           = new String[] {"RGNC91-93", "RGNC"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6704,6 +6839,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6171() throws FactoryException {
         code              = 6171;
         name              = "Reseau Geodesique Francais 1993";
+        aliases           = new String[] {"RGF93", "Réseau Géodésique Français 1993"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6728,6 +6864,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6624() throws FactoryException {
         code              = 6624;
         name              = "Reseau Geodesique Francais Guyane 1995";
+        aliases           = new String[] {"RGFG95"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6752,6 +6889,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6215() throws FactoryException {
         code              = 6215;
         name              = "Reseau National Belge 1950";
+        aliases           = new String[] {"Belge 1950"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6799,6 +6937,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6313() throws FactoryException {
         code              = 6313;
         name              = "Reseau National Belge 1972";
+        aliases           = new String[] {"Belge 1972"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6823,6 +6962,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6626() throws FactoryException {
         code              = 6626;
         name              = "Reunion 1947";
+        aliases           = new String[] {"Piton des Neiges"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6870,6 +7010,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6124() throws FactoryException {
         code              = 6124;
         name              = "Rikets koordinatsystem 1990";
+        aliases           = new String[] {"RT90"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6894,6 +7035,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6764() throws FactoryException {
         code              = 6764;
         name              = "Ross Sea Region Geodetic Datum 2000";
+        aliases           = new String[] {"RSRGD2000"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6918,6 +7060,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6638() throws FactoryException {
         code              = 6638;
         name              = "Saint Pierre et Miquelon 1950";
+        aliases           = new String[] {"St. Pierre et Miquelon 1950"};
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6942,6 +7085,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6730() throws FactoryException {
         code              = 6730;
         name              = "Santo 1965";
+        aliases           = new String[] {"Santo (DOS)"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7035,6 +7179,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6616() throws FactoryException {
         code              = 6616;
         name              = "Selvagem Grande";
+        aliases           = new String[] {"Selvagem Grande 1938", "Marco Astro"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7105,6 +7250,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6174() throws FactoryException {
         code              = 6174;
         name              = "Sierra Leone Colony 1924";
+        aliases           = new String[] {"Sierra Leone Peninsular 1924"};
         ellipsoidName     = "War Office";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7129,6 +7275,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6170() throws FactoryException {
         code              = 6170;
         name              = "Sistema de Referencia Geocentrico para America del Sur 1995";
+        aliases           = new String[] {"SIRGAS 1995"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7153,6 +7300,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6674() throws FactoryException {
         code              = 6674;
         name              = "Sistema de Referencia Geocentrico para America del Sur 2000";
+        aliases           = new String[] {"SIRGAS 2000", "Sistema de Referencia Geocentrico para America del Sur 2000", "SIRGAS2000"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7177,6 +7325,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6726() throws FactoryException {
         code              = 6726;
         name              = "Sister Islands Geodetic Datum 1961";
+        aliases           = new String[] {"SIGD61", "Little Cayman Geodetic Datum 1961"};
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7201,6 +7350,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6765() throws FactoryException {
         code              = 6765;
         name              = "Slovenia Geodetic Datum 1996";
+        aliases           = new String[] {"D96", "Slovenia 1996"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7524,6 +7674,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6308() throws FactoryException {
         code              = 6308;
         name              = "Stockholm 1938";
+        aliases           = new String[] {"Rikets koordinatsystem 1938", "RT38"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7617,6 +7768,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6151() throws FactoryException {
         code              = 6151;
         name              = "Swiss Terrestrial Reference Frame 1995";
+        aliases           = new String[] {"CHTRF95"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7641,6 +7793,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6156() throws FactoryException {
         code              = 6156;
         name              = "System of the Unified Trigonometrical Cadastral Network";
+        aliases           = new String[] {"S-JTSK", "Systém Jednotné trigonometrické sít? katastrální", "Systém Jednotnej trigonometrickej siete katastrálnej"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7665,6 +7818,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6818() throws FactoryException {
         code              = 6818;
         name              = "System of the Unified Trigonometrical Cadastral Network (Ferro)";
+        aliases           = new String[] {"Systém Jednotné trigonometrické sít? katastrální (Ferro)", "Systém Jednotnej trigonometrickej siete katastrálnej (Ferro)", "S-JTSK (Ferro)"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Ferro";
         verifyDatum();
@@ -7689,6 +7843,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6629() throws FactoryException {
         code              = 6629;
         name              = "Tahaa 54";
+        aliases           = new String[] {"Tahaa"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7713,6 +7868,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6628() throws FactoryException {
         code              = 6628;
         name              = "Tahiti 52";
+        aliases           = new String[] {"IGN 1952", "Tahiti"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7737,6 +7893,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6690() throws FactoryException {
         code              = 6690;
         name              = "Tahiti 79";
+        aliases           = new String[] {"IGN79 Tahiti"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7761,6 +7918,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_1025() throws FactoryException {
         code              = 1025;
         name              = "Taiwan Datum 1967";
+        aliases           = new String[] {"TWD67"};
         ellipsoidName     = "GRS 1967 Modified";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7785,6 +7943,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_1026() throws FactoryException {
         code              = 1026;
         name              = "Taiwan Datum 1997";
+        aliases           = new String[] {"TWD97"};
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7809,6 +7968,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6297() throws FactoryException {
         code              = 6297;
         name              = "Tananarive 1925";
+        aliases           = new String[] {"Tananarive"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7879,6 +8039,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6127() throws FactoryException {
         code              = 6127;
         name              = "Tete";
+        aliases           = new String[] {"Tete 1960"};
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7903,6 +8064,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6298() throws FactoryException {
         code              = 6298;
         name              = "Timbalai 1948";
+        aliases           = new String[] {"Timbalai 1968", "Borneo Triangulation of 1968", "BT68"};
         ellipsoidName     = "Everest 1830 (1967 Definition)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7950,6 +8112,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6301() throws FactoryException {
         code              = 6301;
         name              = "Tokyo";
+        aliases           = new String[] {"Tokyo 1918"};
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -8020,6 +8183,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6303() throws FactoryException {
         code              = 6303;
         name              = "Trucial Coast 1948";
+        aliases           = new String[] {"TC(1948)"};
         ellipsoidName     = "Helmert 1906";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -8044,6 +8208,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6748() throws FactoryException {
         code              = 6748;
         name              = "Vanua Levu 1915";
+        aliases           = new String[] {"Vanua Levu 1917"};
         ellipsoidName     = "Clarke 1880 (international foot)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -8091,6 +8256,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6756() throws FactoryException {
         code              = 6756;
         name              = "Vietnam 2000";
+        aliases           = new String[] {"VN-2000"};
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -8115,6 +8281,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6752() throws FactoryException {
         code              = 6752;
         name              = "Viti Levu 1912";
+        aliases           = new String[] {"Viti Levu 1916"};
         ellipsoidName     = "Clarke 1880 (international foot)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -8254,6 +8421,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6324() throws FactoryException {
         code              = 6324;
         name              = "WGS 72 Transit Broadcast Ephemeris";
+        aliases           = new String[] {"WGS 72BE"};
         ellipsoidName     = "WGS 72";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -8278,6 +8446,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6760() throws FactoryException {
         code              = 6760;
         name              = "World Geodetic System 1966";
+        aliases           = new String[] {"WGS 66"};
         ellipsoidName     = "NWL 9D";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -8302,6 +8471,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6322() throws FactoryException {
         code              = 6322;
         name              = "World Geodetic System 1972";
+        aliases           = new String[] {"WGS 72"};
         ellipsoidName     = "WGS 72";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -8326,6 +8496,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6326() throws FactoryException {
         code              = 6326;
         name              = "World Geodetic System 1984";
+        aliases           = new String[] {"WGS 84", "World Geodetic System 1984"};
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -8373,6 +8544,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6309() throws FactoryException {
         code              = 6309;
         name              = "Yacare";
+        aliases           = new String[] {"ROU-USAMS"};
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -8397,6 +8569,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     public void EPSG_6163() throws FactoryException {
         code              = 6163;
         name              = "Yemen National Geodetic Network 1996";
+        aliases           = new String[] {"YNGN96"};
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
