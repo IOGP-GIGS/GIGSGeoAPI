@@ -35,6 +35,7 @@ import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.regex.Pattern;
 
 
 /**
@@ -99,13 +100,13 @@ final class DataParser {
     /**
      * Loads the data from the given file.
      *
-     * @param series  the series to which the test belong.
-     * @param file    the file name, without path.
-     * @param types   the type of each column. The only legal values at this time are
-     *                {@link String}, {@link Integer}, {@link Double} and {@link Boolean}.
+     * @param series        the series to which the test belong.
+     * @param file          the file name, without path.
+     * @param columnTypes   the type of each column. The only legal values at this time are
+     *                      {@link String}, {@link Integer}, {@link Double} and {@link Boolean}.
      * @throws IOException if an error occurred while reading the test data.
      */
-    DataParser(final Series series, final String file, final Class<?>... columnTypes) throws IOException {
+    public DataParser(final Series series, final String file, final Class<?>... columnTypes) throws IOException {
         if (PATH_TO_DATA == null) {
             throw new IllegalStateException("The GIGS_DATA environment variable "
                     + "must be set to the root directory of GIGSTestDataset.");
@@ -122,6 +123,16 @@ final class DataParser {
                 }
             }
         }
+    }
+
+    /**
+     * Creates a parser with the given content.
+     * Used for testing purpose only.
+     *
+     * @param  content  the rows.
+     */
+    DataParser(final List<Object[]> content) {
+        this.content = content;
     }
 
     /**
@@ -296,12 +307,22 @@ final class DataParser {
     }
 
     /**
-     * Returns the value in the given column as a sequence of integers. The original data is
-     * assumed to be a semi-colon separated list of values or range of values. Example:
+     * Returns the value in the given column as a sequence of integers.
+     * If the original data is a string, then it is assumed to be a semi-colon
+     * separated list of values or range of values. Example:
      *
      * <pre>16261-16299; 16070-16089; 16099</pre>
      */
     public int[] getInts(final int column) {
+        {   // For keeping variable in local scope.
+            final Object value = getValue(column);
+            if (value instanceof int[]) {
+                return (int[]) value;
+            }
+            if (value instanceof Integer) {
+                return new int[] {(Integer) value};
+            }
+        }
         final String[] strings = getStrings(column);
         int[] values = new int[strings.length];
         int count = 0;
@@ -363,6 +384,61 @@ final class DataParser {
      */
     public boolean getBoolean(final int column) {
         return (Boolean) getValue(column);
+    }
+
+    /**
+     * Groups together records having similar properties. The EPSG or GIGS code is replaced by an array of codes.
+     * The criteria for grouping lines are:
+     *
+     * <ul>
+     *   <li>Must be consecutive lines.</li>
+     *   <li>Lines must not have been grouped in a previous iteration.</li>
+     *   <li>The value in the column identifier by {@code columnOfConstant} must be equal in all lines.</li>
+     *   <li>Splitting the value in the column identified by {@code columnOfName} must result equals arrays.</li>
+     * </ul>
+     *
+     * @param columnOfCode      the column of EPSG or GIGS codes to replace by arrays of codes.
+     * @param columnOfConstant  the column of the property which must be constant in a group.
+     * @param columnOfName      the column of names which must match a given pattern.
+     * @param namePatterns      patterns to use for splitting a name in parts: a base name and a suffix.
+     */
+    final void regroup(final int columnOfCode, final int columnOfConstant, final int columnOfName, final String... namePatterns) {
+        for (final String namePattern : namePatterns) {
+            final Pattern pattern = Pattern.compile(namePattern);
+            for (int start = 0; start < content.size(); start++) {
+                final Object[] row = content.get(start);
+                if (row[columnOfCode] instanceof Integer) {
+                    final String[] parts = pattern.split(row[columnOfName].toString());
+                    final String nameBase = parts[0];
+                    final Object constant = row[columnOfConstant];
+                    int end = start;
+                    while (++end < content.size()) {
+                        final Object[] nextRow = content.get(end);
+                        if (!(nextRow[columnOfCode] instanceof Integer)) {
+                            break;
+                        }
+                        if (!constant.equals(nextRow[columnOfConstant])) {
+                            break;
+                        }
+                        if (!Arrays.equals(parts, pattern.split(nextRow[columnOfName].toString()))) {
+                            break;
+                        }
+                    }
+                    final int count = end - start;
+                    if (count > 1) {
+                        final int[] codes = new int[count];
+                        for (int i=0; i<count; i++) {
+                            codes[i] = (Integer) content.get(start + i)[columnOfCode];
+                        }
+                        Arrays.fill(row, null);
+                        row[columnOfCode]     = codes;
+                        row[columnOfName]     = nameBase.trim();
+                        row[columnOfConstant] = constant;
+                        content.subList(start+1, end).clear();
+                    }
+                }
+            }
+        }
     }
 
     /**

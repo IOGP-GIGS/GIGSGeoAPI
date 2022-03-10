@@ -218,14 +218,13 @@ public abstract class TestMethodGenerator {
                     } else if (value instanceof int[]) {
                         String separator = "";
                         final int length = ((int[]) value).length;
-                        final int stopAt = StrictMath.min(length, 10);
-                        for (int j=0; j<stopAt; j++) {
-                            out.append(separator).append(((int[]) value)[j]);
-                            separator = "</b>, <b>";
-                        }
-                        if (stopAt != length) {
-                            out.append("</b>, <i>…").append(length - stopAt).append(" more</i></li>\n");
-                            continue;                   // Because we already wrote the closing </li>.
+                        if (length <= 10) {
+                            for (int j=0; j<length; j++) {
+                                out.append(separator).append(((int[]) value)[j]);
+                                separator = "</b>, <b>";
+                            }
+                        } else {
+                            out.append("various");
                         }
                     } else if (value instanceof Double) {
                         final double asDouble = (Double) value;
@@ -296,6 +295,43 @@ public abstract class TestMethodGenerator {
     }
 
     /**
+     * Appends a Java identified inferred from a sentence.
+     * The sentence can contain spaces and punctuations.
+     *
+     * @param  prefix  the identifier prefix (e.g. {@code "test"}).
+     * @param  name    the name as a sentence, possibly with spaces and punctuations.
+     */
+    private void appendJavaIdentifier(final String name) {
+        boolean toUpperCase = true;
+        for (int i=0; i<name.length(); i++) {
+            char c = name.charAt(i);
+            if (Character.isJavaIdentifierPart(c)) {
+                if (toUpperCase) {
+                    toUpperCase = false;
+                    c = Character.toUpperCase(c);
+                }
+                out.append(c);
+            } else {
+                if (c == '(' || c == ')') {
+                    if (i+1 < name.length()) {
+                        out.append('_');
+                        toUpperCase = false;
+                    }
+                } else {
+                    toUpperCase = true;
+                }
+                /*
+                 * For name like “Clarke's foot”, skip also the "s" after the single quote.
+                 * The result will be “ClarkeFoot”.
+                 */
+                if (c == '\'' && i+1 < name.length() && name.charAt(i+1) == 's') {
+                    i++;
+                }
+            }
+        }
+    }
+
+    /**
      * Prints the first lines for the table of parameters in Javadoc.
      *
      * @param caption The table caption (e.g. "Conversion parameters").
@@ -316,7 +352,7 @@ public abstract class TestMethodGenerator {
             if (unit.equals("degree")) {
                 out.append('°');
             } else {
-                if (StrictMath.abs(Double.valueOf(value)) > 1) {
+                if (Math.abs(Double.valueOf(value)) > 1) {
                     unit += 's';
                 }
                 out.append(' ').append(unit);
@@ -387,14 +423,21 @@ public abstract class TestMethodGenerator {
      * Closes the javadoc comment block, then prints the test method signature.
      * The signature includes the {@code throws FactoryException} declaration.
      *
-     * @param code  the EPSG or GIGS code to use in method signature.
+     * @param code  the EPSG or GIGS code to use in method signature, or -1 for using the name.
      * @param name  the name to use for generating a method name. Used for sorting.
      */
     final void printTestMethodSignature(final int code, final String name) {
         indent(1); out.append(" */\n");
         indent(1); out.append("@Test\n");
         indent(1); out.append("@DisplayName(\"").append(name).append("\")\n");
-        indent(1); out.append("public void EPSG_").append(code).append("() throws FactoryException {\n");
+        indent(1); out.append("public void ");
+        if (code >= 0) {
+            out.append("EPSG_").append(code);
+        } else {
+            out.append("test");
+            appendJavaIdentifier(name);
+        }
+        out.append("() throws FactoryException {\n");
         final StringBuilder buffer = new StringBuilder(name.length());
         for (int c, i=0; i<name.length(); i += Character.charCount(c)) {
             c = name.codePointAt(i);
@@ -415,13 +458,13 @@ public abstract class TestMethodGenerator {
         assertTrue((pairs.length & 1) == 0, "Array length shall be even");
         int length = 0;
         for (int i=0; i<pairs.length; i += 2) {
-            length = StrictMath.max(length, ((String) pairs[i]).length());
+            length = Math.max(length, ((CharSequence) pairs[i]).length());
         }
         for (int i=0; i<pairs.length; i += 2) {
-            final String name  = (String) pairs[i];
             final Object value = pairs[i+1];
             if (accept(value)) {
                 indent(2);
+                final CharSequence name  = (CharSequence) pairs[i];
                 out.append(name);
                 for (int j = length - name.length(); --j >= 0;) {
                     out.append(' ');
