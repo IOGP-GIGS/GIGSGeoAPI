@@ -198,11 +198,11 @@ public class Test3004 extends Series3000<GeodeticDatum> {
              * Those properties are inferred from the coordinate system code.
              */
             Unit<Angle> angularUnit = units.degree();
-            AxisDirection[] directions = Test2004.GEOGRAPHIC_2D;
+            AxisDirection[] directions = Test2205.GEOGRAPHIC_2D;
             switch (csCode) {
                 case 6403: angularUnit = units.grad(); break;
-                case 6423: directions = Test2004.GEOGRAPHIC_3D; break;
-                case 6424: directions = Test2004.GEOGRAPHIC_XY; break;
+                case 6423: directions = Test2205.GEOGRAPHIC_3D; break;
+                case 6424: directions = Test2205.GEOGRAPHIC_XY; break;
             }
             verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
                     directions, angularUnit, angularUnit, units.metre());
@@ -226,7 +226,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
             assertNotNull(crs, "CRSFactory.createGeocentricCRS(…) shall not return null.");
             validators.validate(crs);
             verifyIdentification(crs, crsName, String.valueOf(crsCode));
-            verifyCoordinateSystem(crs.getCoordinateSystem(), CartesianCS.class, Test2004.GEOCENTRIC, units.metre());
+            verifyCoordinateSystem(crs.getCoordinateSystem(), CartesianCS.class, Test2205.GEOCENTRIC, units.metre());
         }
     }
 

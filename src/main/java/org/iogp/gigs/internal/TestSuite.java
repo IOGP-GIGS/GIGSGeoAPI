@@ -128,7 +128,7 @@ public final class TestSuite implements ParameterResolver {
          * not yet the class loader for the factories to be tested.
          */
         final Class<?>[] tests = {
-            Test2201.class, Test2202.class, Test2203.class, Test2004.class, Test2005.class,
+            Test2201.class, Test2202.class, Test2203.class, Test2204.class, Test2005.class,
             Test2006.class, Test2007.class, Test2008.class, Test2009.class,
             Test3002.class, Test3003.class, Test3004.class, Test3005.class
         };

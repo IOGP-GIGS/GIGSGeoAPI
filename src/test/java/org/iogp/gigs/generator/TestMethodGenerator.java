@@ -535,7 +535,7 @@ public abstract class TestMethodGenerator {
                 i += lineSeparator.length();
             }
         }
-        assertNull(methods.put(methodName.toLowerCase(Locale.US), out.toString()));
+        assertNull(methods.put(methodName.toLowerCase(Locale.US), out.toString()), methodName);
         out.setLength(0);
     }
 
