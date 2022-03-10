@@ -298,7 +298,6 @@ public abstract class TestMethodGenerator {
      * Appends a Java identified inferred from a sentence.
      * The sentence can contain spaces and punctuations.
      *
-     * @param  prefix  the identifier prefix (e.g. {@code "test"}).
      * @param  name    the name as a sentence, possibly with spaces and punctuations.
      */
     private void appendJavaIdentifier(final String name) {
@@ -434,7 +433,7 @@ public abstract class TestMethodGenerator {
         if (code >= 0) {
             out.append("EPSG_").append(code);
         } else {
-            out.append("test");
+            out.append("various");
             appendJavaIdentifier(name);
         }
         out.append("() throws FactoryException {\n");

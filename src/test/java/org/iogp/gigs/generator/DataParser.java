@@ -29,13 +29,14 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.NoSuchElementException;
+import java.util.regex.Pattern;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.regex.Pattern;
 
 
 /**
@@ -397,12 +398,12 @@ final class DataParser {
      *   <li>Splitting the value in the column identified by {@code columnOfName} must result equals arrays.</li>
      * </ul>
      *
-     * @param columnOfCode      the column of EPSG or GIGS codes to replace by arrays of codes.
-     * @param columnOfConstant  the column of the property which must be constant in a group.
-     * @param columnOfName      the column of names which must match a given pattern.
-     * @param namePatterns      patterns to use for splitting a name in parts: a base name and a suffix.
+     * @param columnOfCode       the column of EPSG or GIGS codes to replace by arrays of codes.
+     * @param columnOfConstants  the column of the properties which must be constant in a group.
+     * @param columnOfName       the column of names which must match a given pattern.
+     * @param namePatterns       patterns to use for splitting a name in parts: a base name and a suffix.
      */
-    final void regroup(final int columnOfCode, final int columnOfConstant, final int columnOfName, final String... namePatterns) {
+    final void regroup(final int columnOfCode, final int[] columnOfConstants, final int columnOfName, final String... namePatterns) {
         for (final String namePattern : namePatterns) {
             final Pattern pattern = Pattern.compile(namePattern);
             for (int start = 0; start < content.size(); start++) {
@@ -410,15 +411,16 @@ final class DataParser {
                 if (row[columnOfCode] instanceof Integer) {
                     final String[] parts = pattern.split(row[columnOfName].toString());
                     final String nameBase = parts[0];
-                    final Object constant = row[columnOfConstant];
                     int end = start;
-                    while (++end < content.size()) {
+compare:            while (++end < content.size()) {
                         final Object[] nextRow = content.get(end);
                         if (!(nextRow[columnOfCode] instanceof Integer)) {
                             break;
                         }
-                        if (!constant.equals(nextRow[columnOfConstant])) {
-                            break;
+                        for (final int i : columnOfConstants) {
+                            if (!Objects.equals(row[i], nextRow[i])) {
+                                break compare;
+                            }
                         }
                         if (!Arrays.equals(parts, pattern.split(nextRow[columnOfName].toString()))) {
                             break;
@@ -430,10 +432,13 @@ final class DataParser {
                         for (int i=0; i<count; i++) {
                             codes[i] = (Integer) content.get(start + i)[columnOfCode];
                         }
+                        final Object[] copy = row.clone();
                         Arrays.fill(row, null);
-                        row[columnOfCode]     = codes;
-                        row[columnOfName]     = nameBase.trim();
-                        row[columnOfConstant] = constant;
+                        row[columnOfCode] = codes;
+                        row[columnOfName] = nameBase.trim();
+                        for (final int i : columnOfConstants) {
+                            row[i] = copy[i];
+                        }
                         content.subList(start+1, end).clear();
                     }
                 }

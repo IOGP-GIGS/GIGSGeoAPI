@@ -67,7 +67,7 @@ public final class Test2206 extends TestMethodGenerator {
                 String .class,      // [4]: EPSG Usage Extent
                 String .class);     // [5]: GIGS Remarks
 
-        data.regroup(0, 3, 1, "\\s+zone\\s+\\w+", "\\s+CM\\s+\\w+");
+        data.regroup(0, new int[] {2, 3}, 1, "\\s+zone\\s+\\w+", "\\s+CM\\s+\\w+");
 
         while (data.next()) {
             final int[]    codes      = data.getInts   (0);

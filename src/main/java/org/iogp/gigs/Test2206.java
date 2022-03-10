@@ -207,7 +207,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("3-degree Gauss-Kruger")
-    public void test3DegreeGaussKruger() throws FactoryException {
+    public void various3DegreeGaussKruger() throws FactoryException {
         name       = "3-degree Gauss-Kruger";
         methodName = "Transverse Mercator";
         for (int code = 16070; code <= 16089; code++) {         // Loop over 20 codes
@@ -220,12 +220,487 @@ public class Test2206 extends Series2000<Conversion> {
         for (int code = 16170; code <= 16194; code += 2) {      // Loop over 13 codes
             createAndVerifyProjection(code);
         }
-        for (int code = 16261; code <= 16299; code++) {         // Loop over 39 codes
+        for (int code = 16276; code <= 16299; code++) {         // Loop over 24 codes
             createAndVerifyProjection(code);
         }
-        for (int code = 16362; code <= 16398; code += 2) {      // Loop over 19 codes
+        for (int code = 16370; code <= 16398; code += 2) {      // Loop over 15 codes
             createAndVerifyProjection(code);
         }
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger CM 12E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16364</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger CM 12E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-deg Gauss-Kruger 12E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 012°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger CM 12E")
+    public void EPSG_16364() throws FactoryException {
+        name       = "3-degree Gauss-Kruger CM 12E";
+        aliases    = new String[] {"3-deg Gauss-Kruger 12E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16364);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger CM 18E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16366</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger CM 18E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-deg Gauss-Kruger 18E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 018°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger CM 18E")
+    public void EPSG_16366() throws FactoryException {
+        name       = "3-degree Gauss-Kruger CM 18E";
+        aliases    = new String[] {"3-deg Gauss-Kruger 18E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16366);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger CM 24E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16368</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger CM 24E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-deg Gauss-Kruger 24E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 024°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger CM 24E")
+    public void EPSG_16368() throws FactoryException {
+        name       = "3-degree Gauss-Kruger CM 24E";
+        aliases    = new String[] {"3-deg Gauss-Kruger 24E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16368);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger CM 6E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16362</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger CM 6E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-deg Gauss-Kruger 6E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 006°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger CM 6E")
+    public void EPSG_16362() throws FactoryException {
+        name       = "3-degree Gauss-Kruger CM 6E";
+        aliases    = new String[] {"3-deg Gauss-Kruger 6E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16362);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 1” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16261</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 1</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 1</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 003°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 1")
+    public void EPSG_16261() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 1";
+        aliases    = new String[] {"3-degree Gauss zone 1"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16261);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 10” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16270</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 10</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 10</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 030°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 10")
+    public void EPSG_16270() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 10";
+        aliases    = new String[] {"3-degree Gauss zone 10"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16270);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 11” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16271</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 11</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 11</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 033°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 11")
+    public void EPSG_16271() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 11";
+        aliases    = new String[] {"3-degree Gauss zone 11"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16271);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 12” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16272</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 12</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 12</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 036°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 12")
+    public void EPSG_16272() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 12";
+        aliases    = new String[] {"3-degree Gauss zone 12"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16272);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 13” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16273</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 13</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 13</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 039°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 13")
+    public void EPSG_16273() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 13";
+        aliases    = new String[] {"3-degree Gauss zone 13"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16273);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 14” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16274</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 14</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 14</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 042°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 14")
+    public void EPSG_16274() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 14";
+        aliases    = new String[] {"3-degree Gauss zone 14"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16274);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 15” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16275</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 15</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 15</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 045°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 15")
+    public void EPSG_16275() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 15";
+        aliases    = new String[] {"3-degree Gauss zone 15"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16275);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 2” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16262</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 2</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 2</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 006°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 2")
+    public void EPSG_16262() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 2";
+        aliases    = new String[] {"3-degree Gauss zone 2"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16262);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 3” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16263</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 3</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 3</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 009°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 3")
+    public void EPSG_16263() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 3";
+        aliases    = new String[] {"3-degree Gauss zone 3"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16263);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 4” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16264</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 4</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 4</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 012°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 4")
+    public void EPSG_16264() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 4";
+        aliases    = new String[] {"3-degree Gauss zone 4"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16264);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 5” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16265</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 5</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 5</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 015°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 5")
+    public void EPSG_16265() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 5";
+        aliases    = new String[] {"3-degree Gauss zone 5"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16265);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 6” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16266</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 6</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 6</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 018°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 6")
+    public void EPSG_16266() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 6";
+        aliases    = new String[] {"3-degree Gauss zone 6"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16266);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 7” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16267</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 7</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 7</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 021°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 7")
+    public void EPSG_16267() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 7";
+        aliases    = new String[] {"3-degree Gauss zone 7"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16267);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 8” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16268</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 8</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 8</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 024°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 8")
+    public void EPSG_16268() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 8";
+        aliases    = new String[] {"3-degree Gauss zone 8"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16268);
+    }
+
+    /**
+     * Tests “3-degree Gauss-Kruger zone 9” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16269</b></li>
+     *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 9</b></li>
+     *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 9</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 027°E</b></li>
+     * </ul>
+     *
+     * Remarks: With zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("3-degree Gauss-Kruger zone 9")
+    public void EPSG_16269() throws FactoryException {
+        name       = "3-degree Gauss-Kruger zone 9";
+        aliases    = new String[] {"3-degree Gauss zone 9"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16269);
     }
 
     /**
@@ -241,7 +716,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("6-degree Gauss-Kruger")
-    public void test6DegreeGaussKruger() throws FactoryException {
+    public void various6DegreeGaussKruger() throws FactoryException {
         name       = "6-degree Gauss-Kruger";
         methodName = "Transverse Mercator";
         for (int code = 16201; code <= 16260; code++) {    // Loop over 60 codes
@@ -250,25 +725,179 @@ public class Test2206 extends Series2000<Conversion> {
     }
 
     /**
-     * Tests “Alaska CS27” coordinate operation creation from the factory.
+     * Tests “Alaska CS27 zone 2” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15002</b>, <b>15003</b>, <b>15004</b>,
-     *       <b>15005</b>, <b>15006</b>, <b>15007</b>, <b>15008</b>, <b>15009</b></li>
-     *   <li>EPSG coordinate operation name: <b>Alaska CS27</b></li>
+     *   <li>EPSG coordinate operation codes: <b>15002</b></li>
+     *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 2</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 2</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - 144°W to 141°W</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
-    @DisplayName("Alaska CS27")
-    public void testAlaskaCS27() throws FactoryException {
-        name       = "Alaska CS27";
+    @DisplayName("Alaska CS27 zone 2")
+    public void EPSG_15002() throws FactoryException {
+        name       = "Alaska CS27 zone 2";
+        aliases    = new String[] {"Alaska zone 2"};
         methodName = "Transverse Mercator";
-        for (int code = 15002; code <= 15009; code++) {    // Loop over 8 codes
-            createAndVerifyProjection(code);
-        }
+        createAndVerifyProjection(15002);
+    }
+
+    /**
+     * Tests “Alaska CS27 zone 3” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15003</b></li>
+     *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 3</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 3</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - 148°W to 144°W</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Alaska CS27 zone 3")
+    public void EPSG_15003() throws FactoryException {
+        name       = "Alaska CS27 zone 3";
+        aliases    = new String[] {"Alaska zone 3"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15003);
+    }
+
+    /**
+     * Tests “Alaska CS27 zone 4” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15004</b></li>
+     *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 4</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 4</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - 152°W to 148°W</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Alaska CS27 zone 4")
+    public void EPSG_15004() throws FactoryException {
+        name       = "Alaska CS27 zone 4";
+        aliases    = new String[] {"Alaska zone 4"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15004);
+    }
+
+    /**
+     * Tests “Alaska CS27 zone 5” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15005</b></li>
+     *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 5</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 5</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - 156°W to 152°W</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Alaska CS27 zone 5")
+    public void EPSG_15005() throws FactoryException {
+        name       = "Alaska CS27 zone 5";
+        aliases    = new String[] {"Alaska zone 5"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15005);
+    }
+
+    /**
+     * Tests “Alaska CS27 zone 6” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15006</b></li>
+     *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 6</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 6</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - 160°W to 156°W</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Alaska CS27 zone 6")
+    public void EPSG_15006() throws FactoryException {
+        name       = "Alaska CS27 zone 6";
+        aliases    = new String[] {"Alaska zone 6"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15006);
+    }
+
+    /**
+     * Tests “Alaska CS27 zone 7” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15007</b></li>
+     *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 7</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 7</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - 164°W to 160°W</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Alaska CS27 zone 7")
+    public void EPSG_15007() throws FactoryException {
+        name       = "Alaska CS27 zone 7";
+        aliases    = new String[] {"Alaska zone 7"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15007);
+    }
+
+    /**
+     * Tests “Alaska CS27 zone 8” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15008</b></li>
+     *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 8</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 8</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - north of 54.5°N; 168°W to 164°W</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Alaska CS27 zone 8")
+    public void EPSG_15008() throws FactoryException {
+        name       = "Alaska CS27 zone 8";
+        aliases    = new String[] {"Alaska zone 8"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15008);
+    }
+
+    /**
+     * Tests “Alaska CS27 zone 9” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15009</b></li>
+     *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 9</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 9</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - north of 54.5°N; west of 168°W</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Alaska CS27 zone 9")
+    public void EPSG_15009() throws FactoryException {
+        name       = "Alaska CS27 zone 9";
+        aliases    = new String[] {"Alaska zone 9"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15009);
     }
 
     /**
@@ -292,67 +921,499 @@ public class Test2206 extends Series2000<Conversion> {
     }
 
     /**
-     * Tests “Argentina” coordinate operation creation from the factory.
+     * Tests “Argentina zone 1” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18031</b>, <b>18032</b>, <b>18033</b>,
-     *       <b>18034</b>, <b>18035</b>, <b>18036</b>, <b>18037</b></li>
-     *   <li>EPSG coordinate operation name: <b>Argentina</b></li>
+     *   <li>EPSG coordinate operation codes: <b>18031</b></li>
+     *   <li>EPSG coordinate operation name: <b>Argentina zone 1</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Argentina 1</b>, <b>Gauss-Kruger zone 1</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Argentina - west of 70.5°W</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
-    @DisplayName("Argentina")
-    public void testArgentina() throws FactoryException {
-        name       = "Argentina";
+    @DisplayName("Argentina zone 1")
+    public void EPSG_18031() throws FactoryException {
+        name       = "Argentina zone 1";
+        aliases    = new String[] {"Argentina 1", "Gauss-Kruger zone 1"};
         methodName = "Transverse Mercator";
-        for (int code = 18031; code <= 18037; code++) {    // Loop over 7 codes
-            createAndVerifyProjection(code);
-        }
+        createAndVerifyProjection(18031);
     }
 
     /**
-     * Tests “Australian Map Grid” coordinate operation creation from the factory.
+     * Tests “Argentina zone 2” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>various</b></li>
-     *   <li>EPSG coordinate operation name: <b>Australian Map Grid</b></li>
+     *   <li>EPSG coordinate operation codes: <b>18032</b></li>
+     *   <li>EPSG coordinate operation name: <b>Argentina zone 2</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Argentina 2</b>, <b>Gauss-Kruger zone 2</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Argentina - 70.5°W to 67.5°W onshore</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
-    @DisplayName("Australian Map Grid")
-    public void testAustralianMapGrid() throws FactoryException {
-        name       = "Australian Map Grid";
+    @DisplayName("Argentina zone 2")
+    public void EPSG_18032() throws FactoryException {
+        name       = "Argentina zone 2";
+        aliases    = new String[] {"Argentina 2", "Gauss-Kruger zone 2"};
         methodName = "Transverse Mercator";
-        for (int code = 17448; code <= 17458; code++) {    // Loop over 11 codes
-            createAndVerifyProjection(code);
-        }
+        createAndVerifyProjection(18032);
     }
 
     /**
-     * Tests “BLM” coordinate operation creation from the factory.
+     * Tests “Argentina zone 3” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15914</b>, <b>15915</b>, <b>15916</b>, <b>15917</b></li>
-     *   <li>EPSG coordinate operation name: <b>BLM</b></li>
+     *   <li>EPSG coordinate operation codes: <b>18033</b></li>
+     *   <li>EPSG coordinate operation name: <b>Argentina zone 3</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Argentina 3</b>, <b>Gauss-Kruger zone 3</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Argentina - 67.5°W to 64.5°W onshore</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
-    @DisplayName("BLM")
-    public void testBLM() throws FactoryException {
-        name       = "BLM";
+    @DisplayName("Argentina zone 3")
+    public void EPSG_18033() throws FactoryException {
+        name       = "Argentina zone 3";
+        aliases    = new String[] {"Argentina 3", "Gauss-Kruger zone 3"};
         methodName = "Transverse Mercator";
-        for (int code = 15914; code <= 15917; code++) {    // Loop over 4 codes
-            createAndVerifyProjection(code);
-        }
+        createAndVerifyProjection(18033);
+    }
+
+    /**
+     * Tests “Argentina zone 4” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18034</b></li>
+     *   <li>EPSG coordinate operation name: <b>Argentina zone 4</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Argentina 4</b>, <b>Gauss-Kruger zone 4</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Argentina - 64.5°W to 61.5°W onshore</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Argentina zone 4")
+    public void EPSG_18034() throws FactoryException {
+        name       = "Argentina zone 4";
+        aliases    = new String[] {"Argentina 4", "Gauss-Kruger zone 4"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(18034);
+    }
+
+    /**
+     * Tests “Argentina zone 5” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18035</b></li>
+     *   <li>EPSG coordinate operation name: <b>Argentina zone 5</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Argentina 5</b>, <b>Gauss-Kruger zone 5</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Argentina - 61.5°W to 58.5°W onshore</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Argentina zone 5")
+    public void EPSG_18035() throws FactoryException {
+        name       = "Argentina zone 5";
+        aliases    = new String[] {"Argentina 5", "Gauss-Kruger zone 5"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(18035);
+    }
+
+    /**
+     * Tests “Argentina zone 6” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18036</b></li>
+     *   <li>EPSG coordinate operation name: <b>Argentina zone 6</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Argentina 6</b>, <b>Gauss-Kruger zone 6</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Argentina - 58.5°W to 55.5°W onshore</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Argentina zone 6")
+    public void EPSG_18036() throws FactoryException {
+        name       = "Argentina zone 6";
+        aliases    = new String[] {"Argentina 6", "Gauss-Kruger zone 6"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(18036);
+    }
+
+    /**
+     * Tests “Argentina zone 7” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18037</b></li>
+     *   <li>EPSG coordinate operation name: <b>Argentina zone 7</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Argentina 7</b>, <b>Gauss-Kruger zone 7</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Argentina - east of 55.5°W onshore</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Argentina zone 7")
+    public void EPSG_18037() throws FactoryException {
+        name       = "Argentina zone 7";
+        aliases    = new String[] {"Argentina 7", "Gauss-Kruger zone 7"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(18037);
+    }
+
+    /**
+     * Tests “Australian Map Grid zone 48” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17448</b></li>
+     *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 48</b></li>
+     *   <li>Alias(es) given by EPSG: <b>AMG zone 48</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia - 102°E to 108°E</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Australian Map Grid zone 48")
+    public void EPSG_17448() throws FactoryException {
+        name       = "Australian Map Grid zone 48";
+        aliases    = new String[] {"AMG zone 48"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(17448);
+    }
+
+    /**
+     * Tests “Australian Map Grid zone 49” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17449</b></li>
+     *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 49</b></li>
+     *   <li>Alias(es) given by EPSG: <b>AMG zone 49</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia - 108°E to 114°E (EEZ)</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Australian Map Grid zone 49")
+    public void EPSG_17449() throws FactoryException {
+        name       = "Australian Map Grid zone 49";
+        aliases    = new String[] {"AMG zone 49"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(17449);
+    }
+
+    /**
+     * Tests “Australian Map Grid zone 50” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17450</b></li>
+     *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 50</b></li>
+     *   <li>Alias(es) given by EPSG: <b>AMG zone 50</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia - 114°E to 120°E (EEZ)</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Australian Map Grid zone 50")
+    public void EPSG_17450() throws FactoryException {
+        name       = "Australian Map Grid zone 50";
+        aliases    = new String[] {"AMG zone 50"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(17450);
+    }
+
+    /**
+     * Tests “Australian Map Grid zone 51” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17451</b></li>
+     *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 51</b></li>
+     *   <li>Alias(es) given by EPSG: <b>AMG zone 51</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia - 120°E to 126°E</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Australian Map Grid zone 51")
+    public void EPSG_17451() throws FactoryException {
+        name       = "Australian Map Grid zone 51";
+        aliases    = new String[] {"AMG zone 51"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(17451);
+    }
+
+    /**
+     * Tests “Australian Map Grid zone 52” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17452</b></li>
+     *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 52</b></li>
+     *   <li>Alias(es) given by EPSG: <b>AMG zone 52</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia - 126°E to 132°E</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Australian Map Grid zone 52")
+    public void EPSG_17452() throws FactoryException {
+        name       = "Australian Map Grid zone 52";
+        aliases    = new String[] {"AMG zone 52"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(17452);
+    }
+
+    /**
+     * Tests “Australian Map Grid zone 53” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17453</b></li>
+     *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 53</b></li>
+     *   <li>Alias(es) given by EPSG: <b>AMG zone 53</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia - 132°E to 138°E</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Australian Map Grid zone 53")
+    public void EPSG_17453() throws FactoryException {
+        name       = "Australian Map Grid zone 53";
+        aliases    = new String[] {"AMG zone 53"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(17453);
+    }
+
+    /**
+     * Tests “Australian Map Grid zone 54” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17454</b></li>
+     *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 54</b></li>
+     *   <li>Alias(es) given by EPSG: <b>AMG zone 54</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Australasia - Australia and PNG - 138°E to 144°E</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Australian Map Grid zone 54")
+    public void EPSG_17454() throws FactoryException {
+        name       = "Australian Map Grid zone 54";
+        aliases    = new String[] {"AMG zone 54"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(17454);
+    }
+
+    /**
+     * Tests “Australian Map Grid zone 55” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17455</b></li>
+     *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 55</b></li>
+     *   <li>Alias(es) given by EPSG: <b>AMG zone 55</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Australasia - Australia and PNG - 144°E to 150°E</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Australian Map Grid zone 55")
+    public void EPSG_17455() throws FactoryException {
+        name       = "Australian Map Grid zone 55";
+        aliases    = new String[] {"AMG zone 55"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(17455);
+    }
+
+    /**
+     * Tests “Australian Map Grid zone 56” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17456</b></li>
+     *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 56</b></li>
+     *   <li>Alias(es) given by EPSG: <b>AMG zone 56</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Australasia - Australia and PNG - 150°E to 156°E</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Australian Map Grid zone 56")
+    public void EPSG_17456() throws FactoryException {
+        name       = "Australian Map Grid zone 56";
+        aliases    = new String[] {"AMG zone 56"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(17456);
+    }
+
+    /**
+     * Tests “Australian Map Grid zone 57” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17457</b></li>
+     *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 57</b></li>
+     *   <li>Alias(es) given by EPSG: <b>AMG zone 57</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia - 156°E to 162°E</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Australian Map Grid zone 57")
+    public void EPSG_17457() throws FactoryException {
+        name       = "Australian Map Grid zone 57";
+        aliases    = new String[] {"AMG zone 57"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(17457);
+    }
+
+    /**
+     * Tests “Australian Map Grid zone 58” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>17458</b></li>
+     *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 58</b></li>
+     *   <li>Alias(es) given by EPSG: <b>AMG zone 58</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia - EEZ east of 162°E</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Australian Map Grid zone 58")
+    public void EPSG_17458() throws FactoryException {
+        name       = "Australian Map Grid zone 58";
+        aliases    = new String[] {"AMG zone 58"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(17458);
+    }
+
+    /**
+     * Tests “BLM zone 14N (US survey feet)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15914</b></li>
+     *   <li>EPSG coordinate operation name: <b>BLM zone 14N (US survey feet)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>BLM 14N (ftUS)</b>, <b>BLM zone 14N in feet</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>UTM in ftUS</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - 102°W to 96°W and GoM OCS</b></li>
+     * </ul>
+     *
+     * Remarks: UTM in ftUS.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("BLM zone 14N (US survey feet)")
+    public void EPSG_15914() throws FactoryException {
+        name       = "BLM zone 14N (US survey feet)";
+        aliases    = new String[] {"BLM 14N (ftUS)", "BLM zone 14N in feet"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15914);
+    }
+
+    /**
+     * Tests “BLM zone 15N (US survey feet)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15915</b></li>
+     *   <li>EPSG coordinate operation name: <b>BLM zone 15N (US survey feet)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>BLM 15N (ftUS)</b>, <b>BLM zone 15N in feet</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>UTM in ftUS</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - 96°W to 90°W and GoM OCS</b></li>
+     * </ul>
+     *
+     * Remarks: UTM in ftUS.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("BLM zone 15N (US survey feet)")
+    public void EPSG_15915() throws FactoryException {
+        name       = "BLM zone 15N (US survey feet)";
+        aliases    = new String[] {"BLM 15N (ftUS)", "BLM zone 15N in feet"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15915);
+    }
+
+    /**
+     * Tests “BLM zone 16N (US survey feet)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15916</b></li>
+     *   <li>EPSG coordinate operation name: <b>BLM zone 16N (US survey feet)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>BLM 16N (ftUS)</b>, <b>BLM zone 16N in feet</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>UTM in ftUS</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - 90°W to 84°W and GoM OCS</b></li>
+     * </ul>
+     *
+     * Remarks: UTM in ftUS.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("BLM zone 16N (US survey feet)")
+    public void EPSG_15916() throws FactoryException {
+        name       = "BLM zone 16N (US survey feet)";
+        aliases    = new String[] {"BLM 16N (ftUS)", "BLM zone 16N in feet"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15916);
+    }
+
+    /**
+     * Tests “BLM zone 17N (US survey feet)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15917</b></li>
+     *   <li>EPSG coordinate operation name: <b>BLM zone 17N (US survey feet)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>BLM 17N (ftUS)</b>, <b>BLM zone 17N in feet</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>UTM in ftUS</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - 84°W to 78°W and GoM OCS</b></li>
+     * </ul>
+     *
+     * Remarks: UTM in ftUS.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("BLM zone 17N (US survey feet)")
+    public void EPSG_15917() throws FactoryException {
+        name       = "BLM zone 17N (US survey feet)";
+        aliases    = new String[] {"BLM 17N (ftUS)", "BLM zone 17N in feet"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15917);
     }
 
     /**
@@ -418,24 +1479,88 @@ public class Test2206 extends Series2000<Conversion> {
     }
 
     /**
-     * Tests “California CS27” coordinate operation creation from the factory.
+     * Tests “California CS27 zone IV” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>10404</b>, <b>10405</b>, <b>10406</b>, <b>10408</b></li>
-     *   <li>EPSG coordinate operation name: <b>California CS27</b></li>
+     *   <li>EPSG coordinate operation codes: <b>10404</b></li>
+     *   <li>EPSG coordinate operation name: <b>California CS27 zone IV</b></li>
+     *   <li>Alias(es) given by EPSG: <b>California zone IV</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - California - SPCS - 4</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
-    @DisplayName("California CS27")
-    public void testCaliforniaCS27() throws FactoryException {
-        name       = "California CS27";
+    @DisplayName("California CS27 zone IV")
+    public void EPSG_10404() throws FactoryException {
+        name       = "California CS27 zone IV";
+        aliases    = new String[] {"California zone IV"};
         methodName = "Lambert Conic Conformal (2SP)";
         createAndVerifyProjection(10404);
+    }
+
+    /**
+     * Tests “California CS27 zone V” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>10405</b></li>
+     *   <li>EPSG coordinate operation name: <b>California CS27 zone V</b></li>
+     *   <li>Alias(es) given by EPSG: <b>California zone V</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - California - SPCS27 - 5</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("California CS27 zone V")
+    public void EPSG_10405() throws FactoryException {
+        name       = "California CS27 zone V";
+        aliases    = new String[] {"California zone V"};
+        methodName = "Lambert Conic Conformal (2SP)";
         createAndVerifyProjection(10405);
+    }
+
+    /**
+     * Tests “California CS27 zone VI” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>10406</b></li>
+     *   <li>EPSG coordinate operation name: <b>California CS27 zone VI</b></li>
+     *   <li>Alias(es) given by EPSG: <b>California zone VI</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - California - SPCS - 6</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("California CS27 zone VI")
+    public void EPSG_10406() throws FactoryException {
+        name       = "California CS27 zone VI";
+        aliases    = new String[] {"California zone VI"};
+        methodName = "Lambert Conic Conformal (2SP)";
         createAndVerifyProjection(10406);
+    }
+
+    /**
+     * Tests “California CS27 zone VII” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>10408</b></li>
+     *   <li>EPSG coordinate operation name: <b>California CS27 zone VII</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - California - SPCS27 - 7</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("California CS27 zone VII")
+    public void EPSG_10408() throws FactoryException {
+        name       = "California CS27 zone VII";
+        methodName = "Lambert Conic Conformal (2SP)";
         createAndVerifyProjection(10408);
     }
 
@@ -738,24 +1863,1503 @@ public class Test2206 extends Series2000<Conversion> {
     }
 
     /**
-     * Tests “Gauss-Kruger” coordinate operation creation from the factory.
+     * Tests “Gauss-Kruger CM 105E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>various</b></li>
-     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger</b></li>
+     *   <li>EPSG coordinate operation codes: <b>16318</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 105E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 105E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 102°E to 108°E</b></li>
      * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
-    @DisplayName("Gauss-Kruger")
-    public void testGaussKruger() throws FactoryException {
-        name       = "Gauss-Kruger";
+    @DisplayName("Gauss-Kruger CM 105E")
+    public void EPSG_16318() throws FactoryException {
+        name       = "Gauss-Kruger CM 105E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 105E"};
         methodName = "Transverse Mercator";
-        for (int code = 16301; code <= 16360; code++) {    // Loop over 60 codes
-            createAndVerifyProjection(code);
-        }
+        createAndVerifyProjection(16318);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 105W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16343</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 105W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 105W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 108°W to 102°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 105W")
+    public void EPSG_16343() throws FactoryException {
+        name       = "Gauss-Kruger CM 105W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 105W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16343);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 111E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16319</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 111E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 111E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 108°E to 114°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 111E")
+    public void EPSG_16319() throws FactoryException {
+        name       = "Gauss-Kruger CM 111E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 111E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16319);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 111W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16342</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 111W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 111W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 114°W to 108°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 111W")
+    public void EPSG_16342() throws FactoryException {
+        name       = "Gauss-Kruger CM 111W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 111W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16342);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 117E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16320</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 117E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 117E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 114°E to 120°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 117E")
+    public void EPSG_16320() throws FactoryException {
+        name       = "Gauss-Kruger CM 117E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 117E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16320);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 117W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16341</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 117W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 117W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 120°W to 114°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 117W")
+    public void EPSG_16341() throws FactoryException {
+        name       = "Gauss-Kruger CM 117W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 117W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16341);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 123E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16321</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 123E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 123E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 120°E to 126°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 123E")
+    public void EPSG_16321() throws FactoryException {
+        name       = "Gauss-Kruger CM 123E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 123E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16321);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 123W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16340</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 123W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 123W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 126°W to 120°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 123W")
+    public void EPSG_16340() throws FactoryException {
+        name       = "Gauss-Kruger CM 123W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 123W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16340);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 129E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16322</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 129E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 129E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 126°E to 132°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 129E")
+    public void EPSG_16322() throws FactoryException {
+        name       = "Gauss-Kruger CM 129E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 129E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16322);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 129W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16339</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 129W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 129W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 132°W to 126°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 129W")
+    public void EPSG_16339() throws FactoryException {
+        name       = "Gauss-Kruger CM 129W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 129W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16339);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 135E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16323</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 135E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 135E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 132°E to 138°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 135E")
+    public void EPSG_16323() throws FactoryException {
+        name       = "Gauss-Kruger CM 135E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 135E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16323);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 135W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16338</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 135W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 135W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 138°W to 132°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 135W")
+    public void EPSG_16338() throws FactoryException {
+        name       = "Gauss-Kruger CM 135W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 135W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16338);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 141E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16324</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 141E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 141E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 138°E to 144°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 141E")
+    public void EPSG_16324() throws FactoryException {
+        name       = "Gauss-Kruger CM 141E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 141E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16324);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 141W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16337</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 141W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 141W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 144°W to 138°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 141W")
+    public void EPSG_16337() throws FactoryException {
+        name       = "Gauss-Kruger CM 141W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 141W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16337);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 147E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16325</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 147E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 147E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 144°E to 150°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 147E")
+    public void EPSG_16325() throws FactoryException {
+        name       = "Gauss-Kruger CM 147E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 147E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16325);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 147W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16336</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 147W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 147W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 150°W to 144°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 147W")
+    public void EPSG_16336() throws FactoryException {
+        name       = "Gauss-Kruger CM 147W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 147W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16336);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 153E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16326</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 153E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 153E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 150°E to 156°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 153E")
+    public void EPSG_16326() throws FactoryException {
+        name       = "Gauss-Kruger CM 153E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 153E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16326);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 153W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16335</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 153W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 153W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 156°W to 150°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 153W")
+    public void EPSG_16335() throws FactoryException {
+        name       = "Gauss-Kruger CM 153W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 153W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16335);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 159E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16327</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 159E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 159E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 156°E to 162°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 159E")
+    public void EPSG_16327() throws FactoryException {
+        name       = "Gauss-Kruger CM 159E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 159E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16327);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 159W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16334</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 159W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 159W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 162°W to 156°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 159W")
+    public void EPSG_16334() throws FactoryException {
+        name       = "Gauss-Kruger CM 159W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 159W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16334);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 15E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16303</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 15E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 15E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 12°E to 18°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 15E")
+    public void EPSG_16303() throws FactoryException {
+        name       = "Gauss-Kruger CM 15E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 15E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16303);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 15W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16358</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 15W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 15W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 18°W to 12°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 15W")
+    public void EPSG_16358() throws FactoryException {
+        name       = "Gauss-Kruger CM 15W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 15W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16358);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 165E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16328</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 165E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 165E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 162°E to 168°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 165E")
+    public void EPSG_16328() throws FactoryException {
+        name       = "Gauss-Kruger CM 165E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 165E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16328);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 165W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16333</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 165W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 165W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 168°W to 162°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 165W")
+    public void EPSG_16333() throws FactoryException {
+        name       = "Gauss-Kruger CM 165W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 165W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16333);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 171E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16329</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 171E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 171E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 168°E to 174°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 171E")
+    public void EPSG_16329() throws FactoryException {
+        name       = "Gauss-Kruger CM 171E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 171E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16329);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 171W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16332</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 171W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 171W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 174°W to 168°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 171W")
+    public void EPSG_16332() throws FactoryException {
+        name       = "Gauss-Kruger CM 171W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 171W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16332);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 177E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16330</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 177E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 177E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 174°E to 180°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 177E")
+    public void EPSG_16330() throws FactoryException {
+        name       = "Gauss-Kruger CM 177E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 177E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16330);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 177W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16331</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 177W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 177W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 180°W to 174°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 177W")
+    public void EPSG_16331() throws FactoryException {
+        name       = "Gauss-Kruger CM 177W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 177W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16331);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 21E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16304</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 21E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 21E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 18°E to 24°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 21E")
+    public void EPSG_16304() throws FactoryException {
+        name       = "Gauss-Kruger CM 21E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 21E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16304);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 21W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16357</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 21W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 21W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 24°W to 18°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 21W")
+    public void EPSG_16357() throws FactoryException {
+        name       = "Gauss-Kruger CM 21W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 21W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16357);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 27E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16305</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 27E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 27E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 24°E to 30°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 27E")
+    public void EPSG_16305() throws FactoryException {
+        name       = "Gauss-Kruger CM 27E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 27E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16305);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 27W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16356</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 27W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 27W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 30°W to 24°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 27W")
+    public void EPSG_16356() throws FactoryException {
+        name       = "Gauss-Kruger CM 27W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 27W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16356);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 33E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16306</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 33E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 33E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 30°E to 36°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 33E")
+    public void EPSG_16306() throws FactoryException {
+        name       = "Gauss-Kruger CM 33E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 33E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16306);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 33W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16355</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 33W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 33W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 36°W to 30°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 33W")
+    public void EPSG_16355() throws FactoryException {
+        name       = "Gauss-Kruger CM 33W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 33W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16355);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 39E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16307</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 39E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 39E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 36°E to 42°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 39E")
+    public void EPSG_16307() throws FactoryException {
+        name       = "Gauss-Kruger CM 39E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 39E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16307);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 39W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16354</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 39W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 39W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 42°W to 36°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 39W")
+    public void EPSG_16354() throws FactoryException {
+        name       = "Gauss-Kruger CM 39W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 39W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16354);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 3E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16301</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 3E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 3E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 0°E to 6°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 3E")
+    public void EPSG_16301() throws FactoryException {
+        name       = "Gauss-Kruger CM 3E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 3E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16301);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 3W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16360</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 3W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 3W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 6°W to 0°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 3W")
+    public void EPSG_16360() throws FactoryException {
+        name       = "Gauss-Kruger CM 3W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 3W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16360);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 45E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16308</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 45E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 45E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 42°E to 48°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 45E")
+    public void EPSG_16308() throws FactoryException {
+        name       = "Gauss-Kruger CM 45E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 45E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16308);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 45W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16353</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 45W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 45W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 48°W to 42°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 45W")
+    public void EPSG_16353() throws FactoryException {
+        name       = "Gauss-Kruger CM 45W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 45W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16353);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 51E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16309</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 51E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 51E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 48°E to 54°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 51E")
+    public void EPSG_16309() throws FactoryException {
+        name       = "Gauss-Kruger CM 51E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 51E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16309);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 51W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16352</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 51W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 51W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 54°W to 48°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 51W")
+    public void EPSG_16352() throws FactoryException {
+        name       = "Gauss-Kruger CM 51W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 51W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16352);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 57E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16310</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 57E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 57E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 54°E to 60°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 57E")
+    public void EPSG_16310() throws FactoryException {
+        name       = "Gauss-Kruger CM 57E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 57E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16310);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 57W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16351</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 57W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 57W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 60°W to 54°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 57W")
+    public void EPSG_16351() throws FactoryException {
+        name       = "Gauss-Kruger CM 57W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 57W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16351);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 63E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16311</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 63E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 63E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 60°E to 66°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 63E")
+    public void EPSG_16311() throws FactoryException {
+        name       = "Gauss-Kruger CM 63E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 63E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16311);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 63W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16350</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 63W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 63W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 66°W to 60°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 63W")
+    public void EPSG_16350() throws FactoryException {
+        name       = "Gauss-Kruger CM 63W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 63W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16350);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 69E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16312</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 69E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 69E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 66°E to 72°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 69E")
+    public void EPSG_16312() throws FactoryException {
+        name       = "Gauss-Kruger CM 69E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 69E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16312);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 69W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16349</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 69W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 69W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 72°W to 66°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 69W")
+    public void EPSG_16349() throws FactoryException {
+        name       = "Gauss-Kruger CM 69W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 69W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16349);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 75E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16313</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 75E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 75E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 72°E to 78°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 75E")
+    public void EPSG_16313() throws FactoryException {
+        name       = "Gauss-Kruger CM 75E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 75E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16313);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 75W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16348</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 75W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 75W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 78°W to 72°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 75W")
+    public void EPSG_16348() throws FactoryException {
+        name       = "Gauss-Kruger CM 75W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 75W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16348);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 81E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16314</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 81E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 81E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 78°E to 84°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 81E")
+    public void EPSG_16314() throws FactoryException {
+        name       = "Gauss-Kruger CM 81E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 81E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16314);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 81W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16347</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 81W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 81W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 84°W to 78°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 81W")
+    public void EPSG_16347() throws FactoryException {
+        name       = "Gauss-Kruger CM 81W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 81W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16347);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 87E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16315</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 87E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 87E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 84°E to 90°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 87E")
+    public void EPSG_16315() throws FactoryException {
+        name       = "Gauss-Kruger CM 87E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 87E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16315);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 87W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16346</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 87W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 87W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 90°W to 84°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 87W")
+    public void EPSG_16346() throws FactoryException {
+        name       = "Gauss-Kruger CM 87W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 87W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16346);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 93E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16316</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 93E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 93E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 90°E to 96°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 93E")
+    public void EPSG_16316() throws FactoryException {
+        name       = "Gauss-Kruger CM 93E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 93E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16316);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 93W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16345</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 93W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 93W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 96°W to 90°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 93W")
+    public void EPSG_16345() throws FactoryException {
+        name       = "Gauss-Kruger CM 93W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 93W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16345);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 99E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16317</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 99E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 99E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 96°E to 102°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 99E")
+    public void EPSG_16317() throws FactoryException {
+        name       = "Gauss-Kruger CM 99E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 99E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16317);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 99W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16344</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 99W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 99W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 102°W to 96°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 99W")
+    public void EPSG_16344() throws FactoryException {
+        name       = "Gauss-Kruger CM 99W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 99W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16344);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 9E” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16302</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 9E</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 9E</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 6°E to 12°E</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 9E")
+    public void EPSG_16302() throws FactoryException {
+        name       = "Gauss-Kruger CM 9E";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 9E"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16302);
+    }
+
+    /**
+     * Tests “Gauss-Kruger CM 9W” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>16359</b></li>
+     *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 9W</b></li>
+     *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 9W</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
+     *   <li>EPSG Usage Extent: <b>World - N hemisphere - 12°W to 6°W</b></li>
+     * </ul>
+     *
+     * Remarks: Without zone prefix in easting.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Gauss-Kruger CM 9W")
+    public void EPSG_16359() throws FactoryException {
+        name       = "Gauss-Kruger CM 9W";
+        aliases    = new String[] {"6-degree Gauss-Kruger CM 9W"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(16359);
     }
 
     /**
@@ -781,26 +3385,91 @@ public class Test2206 extends Series2000<Conversion> {
     }
 
     /**
-     * Tests “India” coordinate operation creation from the factory.
+     * Tests “India zone I (1962 metres)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18231</b>, <b>18232</b>, <b>18233</b>, <b>18234</b>, <b>18235</b></li>
-     *   <li>EPSG coordinate operation name: <b>India</b></li>
+     *   <li>EPSG coordinate operation codes: <b>18236</b></li>
+     *   <li>EPSG coordinate operation name: <b>India zone I (1962 metres)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>India zone I</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>Pakistan - 28°N to 35°35'N</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
-    @DisplayName("India")
-    public void testIndia() throws FactoryException {
-        name       = "India";
+    @DisplayName("India zone I (1962 metres)")
+    public void EPSG_18236() throws FactoryException {
+        name       = "India zone I (1962 metres)";
+        aliases    = new String[] {"India zone I"};
         methodName = "Lambert Conic Conformal (1SP)";
-        for (int code = 18231; code <= 18235; code++) {    // Loop over 5 codes
-            createAndVerifyProjection(code);
-        }
         createAndVerifyProjection(18236);
+    }
+
+    /**
+     * Tests “India zone I (1975 metres)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18231</b></li>
+     *   <li>EPSG coordinate operation name: <b>India zone I (1975 metres)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>India zone I</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>India - north of 28°N</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("India zone I (1975 metres)")
+    public void EPSG_18231() throws FactoryException {
+        name       = "India zone I (1975 metres)";
+        aliases    = new String[] {"India zone I"};
+        methodName = "Lambert Conic Conformal (1SP)";
+        createAndVerifyProjection(18231);
+    }
+
+    /**
+     * Tests “India zone IIa (1962 metres)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18237</b></li>
+     *   <li>EPSG coordinate operation name: <b>India zone IIa (1962 metres)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>India zone IIa</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>Pakistan - onshore south of 28°N</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("India zone IIa (1962 metres)")
+    public void EPSG_18237() throws FactoryException {
+        name       = "India zone IIa (1962 metres)";
+        aliases    = new String[] {"India zone IIa"};
+        methodName = "Lambert Conic Conformal (1SP)";
         createAndVerifyProjection(18237);
+    }
+
+    /**
+     * Tests “India zone IIa (1975 metres)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18232</b></li>
+     *   <li>EPSG coordinate operation name: <b>India zone IIa (1975 metres)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>India zone IIa</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>India - onshore 21°N to 28°N and west of 82°E</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("India zone IIa (1975 metres)")
+    public void EPSG_18232() throws FactoryException {
+        name       = "India zone IIa (1975 metres)";
+        aliases    = new String[] {"India zone IIa"};
+        methodName = "Lambert Conic Conformal (1SP)";
+        createAndVerifyProjection(18232);
     }
 
     /**
@@ -823,6 +3492,72 @@ public class Test2206 extends Series2000<Conversion> {
         aliases    = new String[] {"India zone IIb"};
         methodName = "Lambert Conic Conformal (1SP)";
         createAndVerifyProjection(18238);
+    }
+
+    /**
+     * Tests “India zone IIb (1975 metres)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18235</b></li>
+     *   <li>EPSG coordinate operation name: <b>India zone IIb (1975 metres)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>India zone IIb</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>India - onshore north of 21°N and east of 82°E</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("India zone IIb (1975 metres)")
+    public void EPSG_18235() throws FactoryException {
+        name       = "India zone IIb (1975 metres)";
+        aliases    = new String[] {"India zone IIb"};
+        methodName = "Lambert Conic Conformal (1SP)";
+        createAndVerifyProjection(18235);
+    }
+
+    /**
+     * Tests “India zone IIIa (1975 metres)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18233</b></li>
+     *   <li>EPSG coordinate operation name: <b>India zone IIIa (1975 metres)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>India zone IIIa</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>India - onshore 15°N to 21°N</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("India zone IIIa (1975 metres)")
+    public void EPSG_18233() throws FactoryException {
+        name       = "India zone IIIa (1975 metres)";
+        aliases    = new String[] {"India zone IIIa"};
+        methodName = "Lambert Conic Conformal (1SP)";
+        createAndVerifyProjection(18233);
+    }
+
+    /**
+     * Tests “India zone IVa (1975 metres)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18234</b></li>
+     *   <li>EPSG coordinate operation name: <b>India zone IVa (1975 metres)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>India zone IVa</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>India - mainland south of 15°N</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("India zone IVa (1975 metres)")
+    public void EPSG_18234() throws FactoryException {
+        name       = "India zone IVa (1975 metres)";
+        aliases    = new String[] {"India zone IVa"};
+        methodName = "Lambert Conic Conformal (1SP)";
+        createAndVerifyProjection(18234);
     }
 
     /**
@@ -860,7 +3595,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("Italy")
-    public void testItaly() throws FactoryException {
+    public void variousItaly() throws FactoryException {
         name       = "Italy";
         methodName = "Transverse Mercator";
         createAndVerifyProjection(18121);
@@ -910,27 +3645,6 @@ public class Test2206 extends Series2000<Conversion> {
     }
 
     /**
-     * Tests “Lambert” coordinate operation creation from the factory.
-     *
-     * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18081</b>, <b>18082</b>, <b>18083</b></li>
-     *   <li>EPSG coordinate operation name: <b>Lambert</b></li>
-     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
-     */
-    @Test
-    @DisplayName("Lambert")
-    public void testLambert() throws FactoryException {
-        name       = "Lambert";
-        methodName = "Lambert Conic Conformal (1SP)";
-        createAndVerifyProjection(18081);
-        createAndVerifyProjection(18082);
-        createAndVerifyProjection(18083);
-    }
-
-    /**
      * Tests “Lambert-93” coordinate operation creation from the factory.
      *
      * <ul>
@@ -951,6 +3665,81 @@ public class Test2206 extends Series2000<Conversion> {
         name       = "Lambert-93";
         methodName = "Lambert Conic Conformal (2SP)";
         createAndVerifyProjection(18085);
+    }
+
+    /**
+     * Tests “Lambert zone I” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18081</b></li>
+     *   <li>EPSG coordinate operation name: <b>Lambert zone I</b></li>
+     *   <li>Alias(es) given by EPSG: <b>France zone I</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
+     *   <li>Specific usage / Remarks: <b>Use grads</b></li>
+     *   <li>EPSG Usage Extent: <b>France - mainland north of 48.15°N</b></li>
+     * </ul>
+     *
+     * Remarks: Use grads.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Lambert zone I")
+    public void EPSG_18081() throws FactoryException {
+        name       = "Lambert zone I";
+        aliases    = new String[] {"France zone I"};
+        methodName = "Lambert Conic Conformal (1SP)";
+        createAndVerifyProjection(18081);
+    }
+
+    /**
+     * Tests “Lambert zone II” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18082</b></li>
+     *   <li>EPSG coordinate operation name: <b>Lambert zone II</b></li>
+     *   <li>Alias(es) given by EPSG: <b>France zone II</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
+     *   <li>Specific usage / Remarks: <b>Use grads</b></li>
+     *   <li>EPSG Usage Extent: <b>France - mainland 45.45°N to 48.15°N. Also all mainland.</b></li>
+     * </ul>
+     *
+     * Remarks: Use grads.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Lambert zone II")
+    public void EPSG_18082() throws FactoryException {
+        name       = "Lambert zone II";
+        aliases    = new String[] {"France zone II"};
+        methodName = "Lambert Conic Conformal (1SP)";
+        createAndVerifyProjection(18082);
+    }
+
+    /**
+     * Tests “Lambert zone III” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>18083</b></li>
+     *   <li>EPSG coordinate operation name: <b>Lambert zone III</b></li>
+     *   <li>Alias(es) given by EPSG: <b>France zone III</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
+     *   <li>Specific usage / Remarks: <b>Use grads</b></li>
+     *   <li>EPSG Usage Extent: <b>France - mainland south of 45.45°N</b></li>
+     * </ul>
+     *
+     * Remarks: Use grads.
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("Lambert zone III")
+    public void EPSG_18083() throws FactoryException {
+        name       = "Lambert zone III";
+        aliases    = new String[] {"France zone III"};
+        methodName = "Lambert Conic Conformal (1SP)";
+        createAndVerifyProjection(18083);
     }
 
     /**
@@ -987,7 +3776,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("Libya")
-    public void testLibya() throws FactoryException {
+    public void variousLibya() throws FactoryException {
         name       = "Libya";
         methodName = "Transverse Mercator";
         for (int code = 18240; code <= 18248; code++) {    // Loop over 9 codes
@@ -1009,7 +3798,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("Libya TM")
-    public void testLibyaTM() throws FactoryException {
+    public void variousLibyaTM() throws FactoryException {
         name       = "Libya TM";
         methodName = "Transverse Mercator";
         for (int code = 18310; code <= 18319; code++) {    // Loop over 10 codes
@@ -1477,7 +4266,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("Philippines")
-    public void testPhilippines() throws FactoryException {
+    public void variousPhilippines() throws FactoryException {
         name       = "Philippines";
         methodName = "Transverse Mercator";
         for (int code = 18171; code <= 18175; code++) {    // Loop over 5 codes
@@ -1678,50 +4467,288 @@ public class Test2206 extends Series2000<Conversion> {
     }
 
     /**
-     * Tests “SPCS83 Alaska” coordinate operation creation from the factory.
+     * Tests “SPCS83 Alaska zone 2 (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15032</b>, <b>15034</b>, <b>15035</b>,
-     *       <b>15036</b>, <b>15037</b>, <b>15038</b>, <b>15039</b></li>
-     *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska</b></li>
+     *   <li>EPSG coordinate operation codes: <b>15032</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 2 (meters)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 2</b>, <b>Alaska CS83 zone 2</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - 144°W to 141°W</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
-    @DisplayName("SPCS83 Alaska")
-    public void testSPCS83Alaska() throws FactoryException {
-        name       = "SPCS83 Alaska";
+    @DisplayName("SPCS83 Alaska zone 2 (meters)")
+    public void EPSG_15032() throws FactoryException {
+        name       = "SPCS83 Alaska zone 2 (meters)";
+        aliases    = new String[] {"Alaska zone 2", "Alaska CS83 zone 2"};
         methodName = "Transverse Mercator";
         createAndVerifyProjection(15032);
-        for (int code = 15034; code <= 15039; code++) {    // Loop over 6 codes
-            createAndVerifyProjection(code);
-        }
     }
 
     /**
-     * Tests “SPCS83 California” coordinate operation creation from the factory.
+     * Tests “SPCS83 Alaska zone 4 (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>10434</b>, <b>10435</b>, <b>10436</b>,
-     *       <b>15310</b>, <b>15311</b>, <b>15312</b></li>
-     *   <li>EPSG coordinate operation name: <b>SPCS83 California</b></li>
-     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>EPSG coordinate operation codes: <b>15034</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 4 (meters)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 4</b>, <b>Alaska CS83 zone 4</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - 152°W to 148°W</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
-    @DisplayName("SPCS83 California")
-    public void testSPCS83California() throws FactoryException {
-        name       = "SPCS83 California";
+    @DisplayName("SPCS83 Alaska zone 4 (meters)")
+    public void EPSG_15034() throws FactoryException {
+        name       = "SPCS83 Alaska zone 4 (meters)";
+        aliases    = new String[] {"Alaska zone 4", "Alaska CS83 zone 4"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15034);
+    }
+
+    /**
+     * Tests “SPCS83 Alaska zone 5 (meters)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15035</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 5 (meters)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 5</b>, <b>Alaska CS83 zone 5</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - 156°W to 152°W</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("SPCS83 Alaska zone 5 (meters)")
+    public void EPSG_15035() throws FactoryException {
+        name       = "SPCS83 Alaska zone 5 (meters)";
+        aliases    = new String[] {"Alaska zone 5", "Alaska CS83 zone 5"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15035);
+    }
+
+    /**
+     * Tests “SPCS83 Alaska zone 6 (meters)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15036</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 6 (meters)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 6</b>, <b>Alaska CS83 zone 6</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - 160°W to 156°W</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("SPCS83 Alaska zone 6 (meters)")
+    public void EPSG_15036() throws FactoryException {
+        name       = "SPCS83 Alaska zone 6 (meters)";
+        aliases    = new String[] {"Alaska zone 6", "Alaska CS83 zone 6"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15036);
+    }
+
+    /**
+     * Tests “SPCS83 Alaska zone 7 (meters)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15037</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 7 (meters)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 7</b>, <b>Alaska CS83 zone 7</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - 164°W to 160°W</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("SPCS83 Alaska zone 7 (meters)")
+    public void EPSG_15037() throws FactoryException {
+        name       = "SPCS83 Alaska zone 7 (meters)";
+        aliases    = new String[] {"Alaska zone 7", "Alaska CS83 zone 7"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15037);
+    }
+
+    /**
+     * Tests “SPCS83 Alaska zone 8 (meters)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15038</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 8 (meters)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 8</b>, <b>Alaska CS83 zone 8</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - north of 54.5°N; 168°W to 164°W</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("SPCS83 Alaska zone 8 (meters)")
+    public void EPSG_15038() throws FactoryException {
+        name       = "SPCS83 Alaska zone 8 (meters)";
+        aliases    = new String[] {"Alaska zone 8", "Alaska CS83 zone 8"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15038);
+    }
+
+    /**
+     * Tests “SPCS83 Alaska zone 9 (meters)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15039</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 9 (meters)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Alaska zone 9</b>, <b>Alaska CS83 zone 9</b></li>
+     *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska - north of 54.5°N; west of 168°W</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("SPCS83 Alaska zone 9 (meters)")
+    public void EPSG_15039() throws FactoryException {
+        name       = "SPCS83 Alaska zone 9 (meters)";
+        aliases    = new String[] {"Alaska zone 9", "Alaska CS83 zone 9"};
+        methodName = "Transverse Mercator";
+        createAndVerifyProjection(15039);
+    }
+
+    /**
+     * Tests “SPCS83 California zone 4 (meters)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>10434</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 California zone 4 (meters)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>California zone 4</b>, <b>California CS83 zone 4</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - California - SPCS - 4</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("SPCS83 California zone 4 (meters)")
+    public void EPSG_10434() throws FactoryException {
+        name       = "SPCS83 California zone 4 (meters)";
+        aliases    = new String[] {"California zone 4", "California CS83 zone 4"};
         methodName = "Lambert Conic Conformal (2SP)";
         createAndVerifyProjection(10434);
-        createAndVerifyProjection(10435);
-        createAndVerifyProjection(10436);
+    }
+
+    /**
+     * Tests “SPCS83 California zone 4 (US Survey feet)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15310</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 California zone 4 (US Survey feet)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>California zone 4 (ftUS)</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - California - SPCS - 4</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("SPCS83 California zone 4 (US Survey feet)")
+    public void EPSG_15310() throws FactoryException {
+        name       = "SPCS83 California zone 4 (US Survey feet)";
+        aliases    = new String[] {"California zone 4 (ftUS)"};
+        methodName = "Lambert Conic Conformal (2SP)";
         createAndVerifyProjection(15310);
+    }
+
+    /**
+     * Tests “SPCS83 California zone 5 (meters)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>10435</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 California zone 5 (meters)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>California zone 5</b>, <b>California CS83 zone 5</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - California - SPCS83 - 5</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("SPCS83 California zone 5 (meters)")
+    public void EPSG_10435() throws FactoryException {
+        name       = "SPCS83 California zone 5 (meters)";
+        aliases    = new String[] {"California zone 5", "California CS83 zone 5"};
+        methodName = "Lambert Conic Conformal (2SP)";
+        createAndVerifyProjection(10435);
+    }
+
+    /**
+     * Tests “SPCS83 California zone 5 (US Survey feet)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15311</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 California zone 5 (US Survey feet)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>California zone 5 (ftUS)</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - California - SPCS83 - 5</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("SPCS83 California zone 5 (US Survey feet)")
+    public void EPSG_15311() throws FactoryException {
+        name       = "SPCS83 California zone 5 (US Survey feet)";
+        aliases    = new String[] {"California zone 5 (ftUS)"};
+        methodName = "Lambert Conic Conformal (2SP)";
         createAndVerifyProjection(15311);
+    }
+
+    /**
+     * Tests “SPCS83 California zone 6 (meters)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>10436</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 California zone 6 (meters)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>California zone 6</b>, <b>California CS83 zone 6</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - California - SPCS - 6</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("SPCS83 California zone 6 (meters)")
+    public void EPSG_10436() throws FactoryException {
+        name       = "SPCS83 California zone 6 (meters)";
+        aliases    = new String[] {"California zone 6", "California CS83 zone 6"};
+        methodName = "Lambert Conic Conformal (2SP)";
+        createAndVerifyProjection(10436);
+    }
+
+    /**
+     * Tests “SPCS83 California zone 6 (US Survey feet)” coordinate operation creation from the factory.
+     *
+     * <ul>
+     *   <li>EPSG coordinate operation codes: <b>15312</b></li>
+     *   <li>EPSG coordinate operation name: <b>SPCS83 California zone 6 (US Survey feet)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>California zone 6 (ftUS)</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - California - SPCS - 6</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
+     */
+    @Test
+    @DisplayName("SPCS83 California zone 6 (US Survey feet)")
+    public void EPSG_15312() throws FactoryException {
+        name       = "SPCS83 California zone 6 (US Survey feet)";
+        aliases    = new String[] {"California zone 6 (ftUS)"};
+        methodName = "Lambert Conic Conformal (2SP)";
         createAndVerifyProjection(15312);
     }
 
@@ -2683,7 +5710,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("UTM")
-    public void testUTM() throws FactoryException {
+    public void variousUTM() throws FactoryException {
         name       = "UTM";
         methodName = "Transverse Mercator";
         for (int code = 16001; code <= 16060; code++) {    // Loop over 60 codes
