@@ -167,14 +167,14 @@ public class ValidatorContainer implements Cloneable {
      * or to set their set {@link Validator#requireMandatoryAttributes requireMandatoryAttributes}
      * field to {@code false}.
      */
-    public final List<Validator> all = new AbstractList<Validator>() {
-        @Override
-        public int size() {
+    public final List<Validator> all = new AbstractList<>() {
+        /** Returns the number of elements in this list. */
+        @Override public int size() {
             return 11;
         }
 
-        @Override
-        public Validator get(int index) {
+        /** Returns the validator at the given index. */
+        @Override public Validator get(final int index) {
             switch (index) {
                 case  0: return naming;
                 case  1: return metadata;

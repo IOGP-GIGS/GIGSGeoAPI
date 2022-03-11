@@ -170,6 +170,10 @@ public class CRSValidator extends ReferencingValidator {
 
     /**
      * Implementation of {@link #validate(GeocentricCRS)} and {@link #validate(GeographicCRS)}.
+     *
+     * @param  object          the object to validate, or {@code null}.
+     * @param  skipGeographic  whether to skip axis verification of geographic CRS.
+     * @param  skipGeocentric  whether to skip axis verification of geocentric CRS.
      */
     private void validate(final GeodeticCRS object, final boolean skipGeographic, final boolean skipGeocentric) {
         if (object == null) {
@@ -418,6 +422,10 @@ public class CRSValidator extends ReferencingValidator {
 
     /**
      * Verifies that the given coordinate system uses the given standard names.
+     *
+     * @param type           the CRS type.
+     * @param cs             the coordinate system of the CRS to validate.
+     * @param standardNames  expected axis names.
      */
     private static void assertStandardNames(final String type, final CoordinateSystem cs, final String[] standardNames) {
         final int dimension = cs.getDimension();
@@ -443,6 +451,9 @@ public class CRSValidator extends ReferencingValidator {
      * Returns the given string in lower cases, except for the last letter if it is single.
      * The intent is to leave the trailing X, Y or Z case unchanged in "geocentric X",
      * "geocentric Y" and "geocentric Z" axis names.
+     *
+     * @param  name  the name in mixed case.
+     * @return the given string in lower case, except last letter if single.
      */
     static String toLowerCase(final String name) {
         int s = name.length();

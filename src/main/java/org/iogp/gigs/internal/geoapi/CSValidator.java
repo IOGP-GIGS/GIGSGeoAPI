@@ -322,6 +322,8 @@ public class CSValidator extends ReferencingValidator {
      * Unknown or incompatible directions (e.g. {@code NORTH} with {@code FUTURE}) are ignored.
      *
      * <p>The given collection will be modified; do not pass a valuable collection!</p>
+     *
+     * @param  directions  the axis directions to verify.
      */
     static void assertPerpendicularAxes(final Iterable<AxisDirection> directions) {
         Iterator<AxisDirection> it;

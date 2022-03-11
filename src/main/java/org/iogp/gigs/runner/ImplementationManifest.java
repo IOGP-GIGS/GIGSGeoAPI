@@ -65,8 +65,8 @@ final class ImplementationManifest {
     };
 
     /**
-     * The preference order of this manifest. Used only if more than one suitable
-     * manifest is found.
+     * The preference order of this manifest.
+     * Used only if more than one suitable manifest is found.
      */
     private final int priority;
 
@@ -83,6 +83,10 @@ final class ImplementationManifest {
 
     /**
      * Creates a new manifest for the given attributes.
+     *
+     * @param priority    the preference order of this manifest.
+     * @param title       the implementation title.
+     * @param attributes  attributes from which to get version, vendor, etc.
      */
     private ImplementationManifest(final int priority, final String title, final Attributes attributes) {
         this.priority = priority;
@@ -100,6 +104,7 @@ final class ImplementationManifest {
      *
      * @param  files  the JAR files to parse.
      * @return information about the implementation, or {@code null} if none.
+     * @throws IOException if an I/O error occurred when reading a file.
      */
     static ImplementationManifest parse(final File[] files) throws IOException {
         final Set<File> classpath = new LinkedHashSet<>();

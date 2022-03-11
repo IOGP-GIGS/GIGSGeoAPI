@@ -177,6 +177,11 @@ final class DataParser {
 
     /**
      * Parses a single row. The given line must be non-empty.
+     *
+     * @param  line          the line to parse.
+     * @param  columnTypes   the type of each column.
+     * @return values as objects of the types specified in {@code columnTypes}.
+     * @throws IOException if an error occurred while reading the test data.
      */
     static Object[] parseRow(String line, final Class<?>... columnTypes) throws IOException {
         final Object[] row = new Object[columnTypes.length];
@@ -235,6 +240,8 @@ final class DataParser {
     /**
      * Moves the cursor to the next row and returns {@code true} on success,
      * or {@code false} if there is no more row to iterate.
+     *
+     * @return {@code true} if this parser moved to next row, or {@code false} if there is no more rows.
      */
     public boolean next() {
         if (++cursor < content.size()) {
@@ -332,6 +339,11 @@ final class DataParser {
      * separated list of values or range of values. Example:
      *
      * <pre>16261-16299; 16070-16089; 16099</pre>
+     *
+     * @param  column  the column from which to get the values.
+     * @return the sequence of integer values in the given column.
+     * @throws NoSuchElementException if there is currently no active row.
+     * @throws ClassCastException if the value in the given column is not a sequence of integers.
      */
     public int[] getInts(final int column) {
         {   // For keeping variable in local scope.
@@ -473,6 +485,7 @@ compare:            while (++end < content.size()) {
      * <p>This method is used for fetching the dependencies of a test case, expressed as
      * the GIGS names of objects built by an other test.</p>
      *
+     * @param  <T>     type of values in the returned map.
      * @param  column  the column from which to get the string values.
      * @return a map whose keys are are all string values found in the given columns.
      */

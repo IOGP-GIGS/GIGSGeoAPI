@@ -68,7 +68,9 @@ final class ResultEntry {
      * The status (success, failure, disabled) of an optional test.
      */
     static enum StatusOptional {
-        ENABLED, DISABLED, FAILED
+        /** The test is enabled.  */ ENABLED,
+        /** The test is disabled. */ DISABLED,
+        /** The test is failed.   */ FAILED
     }
 
     /**
@@ -123,6 +125,9 @@ final class ResultEntry {
 
     /**
      * Creates a new entry for the given result.
+     *
+     * @param identifier  identification of the test provided by JUnit.
+     * @param result      result of the test (success, failure, aborted).
      */
     ResultEntry(final TestIdentifier identifier, final TestExecutionResult result) {
         this.identifier  = identifier;
@@ -208,6 +213,10 @@ final class ResultEntry {
     /**
      * Puts space between words in the given string.
      * The first letter is never modified.
+     *
+     * @param  name          camel-case name to separate into words.
+     * @param  toLowerCase   whether to put the first letter in lower case.
+     * @return the given name as a sentence.
      */
     static String separateWords(final String name, final boolean toLowerCase) {
         StringBuilder buffer = null;
@@ -238,7 +247,7 @@ final class ResultEntry {
                 }
                 if (toLowerCase && nc == 1) {
                     final int lowerCase = Character.toLowerCase(c);
-                    if (Character.charCount(lowerCase) == 1) { // Paranoiac check.
+                    if (Character.charCount(lowerCase) == 1) {                  // Paranoiac check.
                         buffer.setCharAt(i, (char) lowerCase);
                     }
                 }
@@ -252,6 +261,9 @@ final class ResultEntry {
      * Returns the first identifier of the given citation. If no identifier is found, returns
      * the title or {@code null} if none. We search for identifier first because they are
      * typically more compact than the title.
+     *
+     * @param  citation  the citation for which to get an identifier, or {@code null}.
+     * @return the first identifier of the given citation, or {@code null}.
      */
     private static String getIdentifier(final Citation citation) {
         if (citation != null) {
@@ -277,6 +289,8 @@ final class ResultEntry {
     /**
      * Trims the stack trace of the given exception and all its cause, removing everything
      * after the last {@code org.iogp.gigs} package which is not this runner package.
+     *
+     * @param  exception  the exception to trim in-place.
      */
     private static void trimStackTrace(Throwable exception) {
         final StackTraceElement[] stackTrace = exception.getStackTrace();
@@ -289,7 +303,6 @@ final class ResultEntry {
                 break;
             }
         }
-        exception = exception.getCause();
     }
 
     /**

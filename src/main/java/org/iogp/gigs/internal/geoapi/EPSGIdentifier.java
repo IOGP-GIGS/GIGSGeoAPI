@@ -44,7 +44,7 @@ import org.opengis.referencing.ReferenceIdentifier;
  * @version 1.0
  * @since   1.0
  */
-final strictfp class EPSGIdentifier implements ReferenceIdentifier {
+final class EPSGIdentifier implements ReferenceIdentifier {
     /**
      * The value to be returned by {@link #getCode()}.
      */
@@ -52,6 +52,8 @@ final strictfp class EPSGIdentifier implements ReferenceIdentifier {
 
     /**
      * Creates a new identifier for the "EPSG" namespace and the given code.
+     *
+     * @param  code  the EPSG code of this identifier.
      */
     EPSGIdentifier(final int code) {
         this.code = code;

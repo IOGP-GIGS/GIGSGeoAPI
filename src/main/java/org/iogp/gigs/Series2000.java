@@ -144,7 +144,7 @@ public abstract class Series2000<T> extends IntegrityTest {
      *
      * @param  parent  the test from which to inherit the configuration.
      */
-    final void configureAsDependency(final Series2000 parent) {
+    final void configureAsDependency(final Series2000<?> parent) {
         isDeprecatedObjectCreationSupported &= parent.isDeprecatedObjectCreationSupported;
         isDependencyIdentificationSupported &= parent.isDependencyIdentificationSupported;
         isStandardIdentifierSupported       &= parent.isStandardIdentifierSupported & isDependencyIdentificationSupported;
@@ -260,22 +260,24 @@ next:   for (final String search : expected) {
      * @param  expected     the expected identifier code.
      * @param  identifiers  the actual identifiers.
      */
-    static void assertContainsCode(final String message, final String codespace, final int expected,
+    final void assertContainsCode(final String message, final String codespace, final int expected,
             final Collection<? extends ReferenceIdentifier> identifiers)
     {
         assertNotNull(identifiers, message);
-        int found = 0;
-        for (final ReferenceIdentifier id : identifiers) {
-            if (codespace.equalsIgnoreCase(id.getCodeSpace().trim())) {
-                found++;
-                try {
-                    assertEquals(expected, Integer.parseInt(id.getCode()), message);
-                } catch (NumberFormatException e) {
-                    fail(message + ".getCode(): expected " + expected +
-                            " but got a non-numerical value: " + e);
+        if (isStandardIdentifierSupported) {
+            int found = 0;
+            for (final ReferenceIdentifier id : identifiers) {
+                if (codespace.equalsIgnoreCase(id.getCodeSpace().trim())) {
+                    found++;
+                    try {
+                        assertEquals(expected, Integer.parseInt(id.getCode()), message);
+                    } catch (NumberFormatException e) {
+                        fail(message + ".getCode(): expected " + expected +
+                                " but got a non-numerical value: " + e);
+                    }
                 }
             }
+            assertEquals(1, found, () -> message + ": occurrence of " + codespace + ':' + expected);
         }
-        assertEquals(1, found, () -> message + ": occurrence of " + codespace + ':' + expected);
     }
 }

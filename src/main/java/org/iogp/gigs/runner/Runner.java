@@ -79,6 +79,8 @@ final class Runner implements TestExecutionListener {
     /**
      * Returns all entries. This method returns a copy of the internal array.
      * Changes to this {@code ReportData} object will not be reflected in that array.
+     *
+     * @return all entries in this runner.
      */
     ResultEntry[] getEntries() {
         synchronized (entries) {
@@ -116,6 +118,8 @@ final class Runner implements TestExecutionListener {
      *
      * <p>Note that the listeners given to this method will <strong>not</strong> be notified from the
      * Swing thread. It is listener responsibility to be safe regarding the Swing events queue.</p>
+     *
+     * @param  listener  the change listener to add.
      */
     final void addChangeListener(final ChangeListener listener) {
         synchronized (entries) {

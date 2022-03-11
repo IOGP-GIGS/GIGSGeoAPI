@@ -175,6 +175,9 @@ public final class TestSuite implements ParameterResolver {
     /**
      * Tests whether the given citation is for an authority other than EPSG.
      * If not specified, conservatively assumes {@code false}.
+     *
+     * @param  citation  the citation to test.
+     * @return whether the given citation is for EPSG authority.
      */
     private static boolean isNotEPSG(final Citation citation) {
         if (citation == null || isEPSG(citation.getTitle())) {
@@ -190,13 +193,16 @@ public final class TestSuite implements ParameterResolver {
 
     /**
      * Returns {@code true} if the given title is "EPSG".
+     *
+     * @param  title  the title to check, or {@code null}.
+     * @return {@code true} if the given title is "EPSG".
      */
     private static boolean isEPSG(final InternationalString title) {
         return (title != null) && title.toString().contains("EPSG");
     }
 
     /**
-     * Determine if this resolver supports resolution of an argument.
+     * Determines if this resolver supports resolution of an argument.
      * This is used for dependency injection.
      *
      * @param  pc  the context for the parameter for which an argument should be resolved.

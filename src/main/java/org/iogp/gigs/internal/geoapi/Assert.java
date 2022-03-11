@@ -62,7 +62,11 @@ public final strictfp class Assert {
     }
 
     /**
-     * Returns the given message, or an empty string if the message is null.
+     * Returns the given message followed by a space,
+     * or an empty string if the message is null.
+     *
+     * @param  message  the message, or {@code null}.
+     * @return a non-null message.
      */
     private static String nonNull(final String message) {
         return (message != null) ? message.trim().concat(" ") : "";
@@ -89,6 +93,11 @@ public final strictfp class Assert {
 
     /**
      * Verifies if we expected a null value, then returns {@code true} if the value is null as expected.
+     *
+     * @param  message   the message to show in case of test failure, or {@code null}.
+     * @param  expected  the expected value (only its existence is checked).
+     * @param  actual    the actual value (only its existence is checked).
+     * @return whether the actual value is null.
      */
     private static boolean isNull(final String message, final Object expected, final Object actual) {
         final boolean isNull = (actual == null);
@@ -363,6 +372,10 @@ public final strictfp class Assert {
 
     /**
      * Returns {@code true} if the given codepoint is an unicode identifier start or part.
+     *
+     * @param  codepoint  the code point to test.
+     * @param  part       {@code false} for identifier start, or {@code true} for identifier part.
+     * @return whether the given code point is a Unicode identifier start or part.
      */
     private static boolean isUnicodeIdentifier(final int codepoint, final boolean part) {
         return part ? Character.isUnicodeIdentifierPart (codepoint)
@@ -370,8 +383,8 @@ public final strictfp class Assert {
     }
 
     /**
-     * Asserts that all axes in the given coordinate system are pointing toward the given
-     * directions, in the same order.
+     * Asserts that all axes in the given coordinate system are pointing toward the given directions,
+     * in the same order.
      *
      * @param message   header of the exception message in case of failure, or {@code null} if none.
      * @param cs        the coordinate system to test.

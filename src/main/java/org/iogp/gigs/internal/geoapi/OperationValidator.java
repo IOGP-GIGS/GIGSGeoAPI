@@ -372,7 +372,9 @@ public class OperationValidator extends ReferencingValidator {
     }
 
     /**
-     * Returns the dimension of the given CRS.
+     * {@return the dimension of the given CRS.}
+     *
+     * @param  crs  the coordinate reference system for which to get the dimension.
      */
     private static int dimension(final CoordinateReferenceSystem crs) {
         return crs.getCoordinateSystem().getDimension();

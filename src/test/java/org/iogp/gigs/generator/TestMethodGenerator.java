@@ -174,6 +174,8 @@ public abstract class TestMethodGenerator {
 
     /**
      * Prints the margin at the beginning of a new line.
+     *
+     * @param  n  indentation level (usually 1 or 2).
      */
     final void indent(int n) {
         do out.append("    ");
@@ -182,6 +184,9 @@ public abstract class TestMethodGenerator {
 
     /**
      * Returns {@code true} if the given value should be skipped from javadoc.
+     *
+     * @param  value  the value to potentially write in javadoc.
+     * @return whether the given value should be omitted from javadoc.
      */
     private static boolean isOmittedFromJavadoc(final Object value) {
         if (value instanceof Double)   return ((Double) value).isNaN();
@@ -247,6 +252,10 @@ public abstract class TestMethodGenerator {
     /**
      * Formats code and name on the same line, for inclusion in the list of argument given to
      * {@link #printJavadocKeyValues(Object[])}.
+     *
+     * @param  code  the authority code to format.
+     * @param  name  the name to format.
+     * @return the (authority, code) tuple.
      */
     static String codeAndName(final int code, final String name) {
         return code + " – " + name;
@@ -255,6 +264,10 @@ public abstract class TestMethodGenerator {
     /**
      * Formats codes and names on the same line, for inclusion in the list of argument given to
      * {@link #printJavadocKeyValues(Object[])}.
+     *
+     * @param  code  the authority codes to format.
+     * @param  name  the names to format.
+     * @return the (authority, code) tuples.
      */
     static String codeAndName(final int[] code, final String[] name) {
         final StringBuilder buffer = new StringBuilder();
@@ -271,6 +284,12 @@ public abstract class TestMethodGenerator {
      * Formats a value followed by its unit of measurement. If the given alternative value is different
      * but not NaN, then it will also be formatted. This is used for inclusion in the list of argument
      * given to {@link #printJavadocKeyValues(Object[])}.
+     *
+     * @param  value     the numerical value.
+     * @param  unit      unit of measurement associated to the value.
+     * @param  altValue  another value to write if different than the main value.
+     * @param  altUnit   unit of measurement associated to the alternative value.
+     * @return string representation of the quantities.
      */
     static String quantityAndAlternative(final Object value, final String unit, final double altValue, final String altUnit) {
         final StringBuilder buffer = new StringBuilder().append(value).append(' ').append(unit);
@@ -282,6 +301,9 @@ public abstract class TestMethodGenerator {
 
     /**
      * Replaces repetition of ASCII {@code '} character by the Unicode single, double or triple prime character.
+     *
+     * @param  text  the text with ASCII prime symbols.
+     * @return the text with Unicode prime symbols.
      */
     static String replaceAsciiPrimeByUnicode(String text) {
         if (text.endsWith("'''")) {
@@ -333,7 +355,7 @@ public abstract class TestMethodGenerator {
     /**
      * Prints the first lines for the table of parameters in Javadoc.
      *
-     * @param caption The table caption (e.g. "Conversion parameters").
+     * @param  caption  the table caption (e.g. "Conversion parameters").
      */
     final void printParameterTableHeader(final String caption) {
         indent(1); out.append(" * <table class=\"ogc\">\n");
@@ -343,6 +365,10 @@ public abstract class TestMethodGenerator {
 
     /**
      * Prints a parameter name, value and units in Javadoc.
+     *
+     * @param  name   the parameter name.
+     * @param  value  value to assign to the parameter.
+     * @param  unit   unit of measurement associated to the value.
      */
     final void printParameterTableRow(final String name, final String value, String unit) {
         indent(1);
@@ -395,6 +421,8 @@ public abstract class TestMethodGenerator {
 
     /**
      * Prints the javadoc {@code throws FactoryException} followed by the given explanatory text.
+     *
+     * @param  condition  text saying when the exception is thrown.
      */
     final void printJavadocThrows(final String condition) {
         indent(1); out.append(" *\n");
@@ -582,6 +610,9 @@ public abstract class TestMethodGenerator {
 
     /**
      * Prints a call to the {@link org.iogp.gigs.Series3000#setCodeAndName(int, String)} method.
+     *
+     * @param code  authority code.
+     * @param name  name of the identified object.
      */
     final void printCallToSetCodeAndName(final int code, final String name) {
         indent(2);

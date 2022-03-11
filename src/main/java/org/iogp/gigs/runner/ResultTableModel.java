@@ -77,6 +77,8 @@ final class ResultTableModel extends AbstractTableModel implements ChangeListene
 
     /**
      * Creates a table model for the given data.
+     *
+     * @param  data  the runner which will produce new results.
      */
     @SuppressWarnings("ThisEscapedInObjectConstruction")
     ResultTableModel(final Runner data) {
@@ -118,7 +120,9 @@ final class ResultTableModel extends AbstractTableModel implements ChangeListene
     }
 
     /**
-     * Returns the values in the given row.
+     * {@return the values in the given row.}
+     *
+     * @param  row  index of the row from which to get an entry.
      */
     final ResultEntry getValueAt(final int row) {
         return entries[row];

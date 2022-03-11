@@ -105,6 +105,9 @@ public final class Test2203 extends TestMethodGenerator {
 
     /**
      * Replaces the prime and double-prime quotes of the given angle by their Unicode symbol.
+     *
+     * @param  angle  the sexagesimal angle to format.
+     * @return the given angle with ASCII symbols replaced by Unicode symbols.
      */
     private static String reformatSexagesimalAngle(final String angle) {
         final StringBuilder buffer = new StringBuilder(angle);
