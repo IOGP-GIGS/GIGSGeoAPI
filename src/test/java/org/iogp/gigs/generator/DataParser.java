@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.NoSuchElementException;
+import java.util.function.IntFunction;
 import java.util.regex.Pattern;
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -235,6 +236,27 @@ final class DataParser {
             line = trim(line, end, line.length());
         }
         return row;
+    }
+
+    /**
+     * Appends columns computed using the given function. The functions will receive in argument the numerical value
+     * in the column identified by {@code columnOfCode}. This is usually column 0, which contains the EPSG code.
+     *
+     * @param columnOfCode  the column of the integer value to give to functions.
+     * @param functions     the functions computing values of new columns.
+     */
+    public void appendColumns(final int columnOfCode, final IntFunction<?>... functions) {
+        final int size = content.size();
+        for (int i=0; i<size; i++) {
+            Object[] row = content.get(i);
+            final int code = (Integer) row[columnOfCode];
+            int n = row.length;
+            row = Arrays.copyOf(row, n + functions.length);
+            for (final IntFunction<?> function : functions) {
+                row[n++] = function.apply(code);
+            }
+            content.set(i, row);
+        }
     }
 
     /**
