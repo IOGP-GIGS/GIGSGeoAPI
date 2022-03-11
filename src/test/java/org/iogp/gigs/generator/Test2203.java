@@ -88,7 +88,6 @@ public final class Test2203 extends TestMethodGenerator {
                                   "Alias(es) given by EPSG", aliases,
                                   "Greenwich longitude", reformatSexagesimalAngle(lonString),
                                   "Angular unit", unit,
-                                  "Specific usage / Remarks", remarks,
                                   "EPSG Usage Extent", extent);
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the prime meridian from the EPSG code.");

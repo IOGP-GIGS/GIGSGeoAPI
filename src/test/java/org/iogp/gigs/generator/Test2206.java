@@ -66,7 +66,18 @@ public final class Test2206 extends TestMethodGenerator {
                 String .class,      // [3]: Conversion Method
                 String .class,      // [4]: EPSG Usage Extent
                 String .class);     // [5]: GIGS Remarks
-
+        /*
+         * Group related projections in a single method. For example the following projections will be
+         * tested in a loop inside a single method instead of generating a method for each projection:
+         *
+         *   16001    UTM zone 1N    Transverse Mercator    World - N hemisphere - 180°W to 174°W
+         *   16002    UTM zone 2N    Transverse Mercator    World - N hemisphere - 174°W to 168°W
+         *   16003    UTM zone 3N    Transverse Mercator    World - N hemisphere - 168°W to 162°W
+         *   16004    UTM zone 4N    Transverse Mercator    World - N hemisphere - 162°W to 156°W
+         *   16005    UTM zone 5N    Transverse Mercator    World - N hemisphere - 156°W to 150°W
+         *
+         * Using loops for such group of projections save hundreds of methods.
+         */
         data.regroup(0, new int[] {2, 3}, 1, "\\s+zone\\s+\\w+", "\\s+CM\\s+\\w+");
 
         while (data.next()) {
@@ -81,11 +92,10 @@ public final class Test2206 extends TestMethodGenerator {
             indent(1); out.append("/**\n");
             indent(1); out.append(" * Tests “").append(name).append("” coordinate operation creation from the factory.\n");
             indent(1); out.append(" *\n");
-            printJavadocKeyValues("EPSG coordinate operation codes", codes,
+            printJavadocKeyValues("EPSG coordinate operation code", codes,
                                   "EPSG coordinate operation name", name,
                                   "Alias(es) given by EPSG", aliases,
                                   "Coordinate operation method", methodName,
-                                  "Specific usage / Remarks", remarks,
                                   "EPSG Usage Extent", extent);
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the coordinate operation from the EPSG code.");

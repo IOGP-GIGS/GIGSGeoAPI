@@ -216,7 +216,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian name: <b>Athens</b></li>
      *   <li>Greenwich longitude: <b>23°42′58.815″</b></li>
      *   <li>Angular unit: <b>sexagesimal DMS</b></li>
-     *   <li>Specific usage / Remarks: <b>Used in Greece for older mapping based on Hatt projection</b></li>
      *   <li>EPSG Usage Extent: <b>Greece</b></li>
      * </ul>
      *
@@ -241,7 +240,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian name: <b>Bern</b></li>
      *   <li>Greenwich longitude: <b>7°26′22.5″</b></li>
      *   <li>Angular unit: <b>sexagesimal DMS</b></li>
-     *   <li>Specific usage / Remarks: <b>1895 value; Newer value of 7°26′22.335″ determined in 1938</b></li>
      *   <li>EPSG Usage Extent: <b>Europe</b></li>
      * </ul>
      *
@@ -335,7 +333,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian name: <b>Greenwich</b></li>
      *   <li>Greenwich longitude: <b>0°</b></li>
      *   <li>Angular unit: <b>degree</b></li>
-     *   <li>Specific usage / Remarks: <b>International reference meridian as defined by IERS</b></li>
      *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
      *
@@ -360,7 +357,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian name: <b>Jakarta</b></li>
      *   <li>Greenwich longitude: <b>106°48′27.79″</b></li>
      *   <li>Angular unit: <b>sexagesimal DMS</b></li>
-     *   <li>Specific usage / Remarks: <b>1924 determination; Supersedes 1910 value of 106 48 37.05 E of Greenwich</b></li>
      *   <li>EPSG Usage Extent: <b>Southeast Asia</b></li>
      * </ul>
      *
@@ -408,7 +404,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian name: <b>Madrid</b></li>
      *   <li>Greenwich longitude: <b>-3°41′14.55″</b></li>
      *   <li>Angular unit: <b>sexagesimal DMS</b></li>
-     *   <li>Specific usage / Remarks: <b>Longitude has had various determinations</b></li>
      *   <li>EPSG Usage Extent: <b>Spain</b></li>
      * </ul>
      *
@@ -457,7 +452,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian name: <b>Paris</b></li>
      *   <li>Greenwich longitude: <b>2.5969213</b></li>
      *   <li>Angular unit: <b>grad</b></li>
-     *   <li>Specific usage / Remarks: <b>Value adopted by IGN (Paris) in 1936; Equivalent to 2 20 14.025; Preferred by EPSG to earlier value of 2 20 13.95 (2.596898 grads) used by RGS London</b></li>
      *   <li>EPSG Usage Extent: <b>Europe</b></li>
      * </ul>
      *
@@ -484,7 +478,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      *   <li>EPSG prime meridian name: <b>Paris RGS</b></li>
      *   <li>Greenwich longitude: <b>2°20′13.95″</b></li>
      *   <li>Angular unit: <b>sexagesimal DMS</b></li>
-     *   <li>Specific usage / Remarks: <b>Equivalent to 2.596898 grads</b></li>
      *   <li>EPSG Usage Extent: <b>Europe</b></li>
      * </ul>
      *

@@ -138,6 +138,7 @@ public abstract class Series2000<T> extends IntegrityTest {
         isDeprecatedObjectCreationSupported = parent.isDeprecatedObjectCreationSupported;
         isDependencyIdentificationSupported = parent.isDependencyIdentificationSupported;
         isStandardNameSupported             = parent.isStandardNameSupported & isDependencyIdentificationSupported;
+        // Do not verify aliases. We are more flexible because this instance is not for testing the primary object.
     }
 
     /**

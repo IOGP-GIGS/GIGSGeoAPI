@@ -198,7 +198,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>various</b></li>
+     *   <li>EPSG coordinate operation code: <b>various</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      * </ul>
@@ -232,11 +232,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger CM 12E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16364</b></li>
+     *   <li>EPSG coordinate operation code: <b>16364</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger CM 12E</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-deg Gauss-Kruger 12E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 012°E</b></li>
      * </ul>
      *
@@ -257,11 +256,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger CM 18E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16366</b></li>
+     *   <li>EPSG coordinate operation code: <b>16366</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger CM 18E</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-deg Gauss-Kruger 18E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 018°E</b></li>
      * </ul>
      *
@@ -282,11 +280,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger CM 24E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16368</b></li>
+     *   <li>EPSG coordinate operation code: <b>16368</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger CM 24E</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-deg Gauss-Kruger 24E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 024°E</b></li>
      * </ul>
      *
@@ -307,11 +304,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger CM 6E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16362</b></li>
+     *   <li>EPSG coordinate operation code: <b>16362</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger CM 6E</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-deg Gauss-Kruger 6E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 006°E</b></li>
      * </ul>
      *
@@ -332,11 +328,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 1” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16261</b></li>
+     *   <li>EPSG coordinate operation code: <b>16261</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 1</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 1</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 003°E</b></li>
      * </ul>
      *
@@ -357,11 +352,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 10” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16270</b></li>
+     *   <li>EPSG coordinate operation code: <b>16270</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 10</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 10</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 030°E</b></li>
      * </ul>
      *
@@ -382,11 +376,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 11” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16271</b></li>
+     *   <li>EPSG coordinate operation code: <b>16271</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 11</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 11</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 033°E</b></li>
      * </ul>
      *
@@ -407,11 +400,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 12” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16272</b></li>
+     *   <li>EPSG coordinate operation code: <b>16272</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 12</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 12</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 036°E</b></li>
      * </ul>
      *
@@ -432,11 +424,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 13” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16273</b></li>
+     *   <li>EPSG coordinate operation code: <b>16273</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 13</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 13</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 039°E</b></li>
      * </ul>
      *
@@ -457,11 +448,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 14” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16274</b></li>
+     *   <li>EPSG coordinate operation code: <b>16274</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 14</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 14</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 042°E</b></li>
      * </ul>
      *
@@ -482,11 +472,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 15” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16275</b></li>
+     *   <li>EPSG coordinate operation code: <b>16275</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 15</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 15</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 045°E</b></li>
      * </ul>
      *
@@ -507,11 +496,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 2” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16262</b></li>
+     *   <li>EPSG coordinate operation code: <b>16262</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 2</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 2</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 006°E</b></li>
      * </ul>
      *
@@ -532,11 +520,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 3” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16263</b></li>
+     *   <li>EPSG coordinate operation code: <b>16263</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 3</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 3</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 009°E</b></li>
      * </ul>
      *
@@ -557,11 +544,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 4” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16264</b></li>
+     *   <li>EPSG coordinate operation code: <b>16264</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 4</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 4</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 012°E</b></li>
      * </ul>
      *
@@ -582,11 +568,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 5” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16265</b></li>
+     *   <li>EPSG coordinate operation code: <b>16265</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 5</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 5</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 015°E</b></li>
      * </ul>
      *
@@ -607,11 +592,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 6” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16266</b></li>
+     *   <li>EPSG coordinate operation code: <b>16266</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 6</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 6</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 018°E</b></li>
      * </ul>
      *
@@ -632,11 +616,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 7” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16267</b></li>
+     *   <li>EPSG coordinate operation code: <b>16267</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 7</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 7</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 021°E</b></li>
      * </ul>
      *
@@ -657,11 +640,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 8” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16268</b></li>
+     *   <li>EPSG coordinate operation code: <b>16268</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 8</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 8</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 024°E</b></li>
      * </ul>
      *
@@ -682,11 +664,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “3-degree Gauss-Kruger zone 9” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16269</b></li>
+     *   <li>EPSG coordinate operation code: <b>16269</b></li>
      *   <li>EPSG coordinate operation name: <b>3-degree Gauss-Kruger zone 9</b></li>
      *   <li>Alias(es) given by EPSG: <b>3-degree Gauss zone 9</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>With zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 3-degree CM 027°E</b></li>
      * </ul>
      *
@@ -707,7 +688,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “6-degree Gauss-Kruger” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>various</b></li>
+     *   <li>EPSG coordinate operation code: <b>various</b></li>
      *   <li>EPSG coordinate operation name: <b>6-degree Gauss-Kruger</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      * </ul>
@@ -728,7 +709,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Alaska CS27 zone 2” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15002</b></li>
+     *   <li>EPSG coordinate operation code: <b>15002</b></li>
      *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 2</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 2</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -750,7 +731,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Alaska CS27 zone 3” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15003</b></li>
+     *   <li>EPSG coordinate operation code: <b>15003</b></li>
      *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 3</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 3</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -772,7 +753,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Alaska CS27 zone 4” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15004</b></li>
+     *   <li>EPSG coordinate operation code: <b>15004</b></li>
      *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 4</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 4</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -794,7 +775,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Alaska CS27 zone 5” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15005</b></li>
+     *   <li>EPSG coordinate operation code: <b>15005</b></li>
      *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 5</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 5</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -816,7 +797,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Alaska CS27 zone 6” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15006</b></li>
+     *   <li>EPSG coordinate operation code: <b>15006</b></li>
      *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 6</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 6</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -838,7 +819,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Alaska CS27 zone 7” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15007</b></li>
+     *   <li>EPSG coordinate operation code: <b>15007</b></li>
      *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 7</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 7</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -860,7 +841,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Alaska CS27 zone 8” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15008</b></li>
+     *   <li>EPSG coordinate operation code: <b>15008</b></li>
      *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 8</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 8</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -882,7 +863,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Alaska CS27 zone 9” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15009</b></li>
+     *   <li>EPSG coordinate operation code: <b>15009</b></li>
      *   <li>EPSG coordinate operation name: <b>Alaska CS27 zone 9</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 9</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -904,7 +885,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Aramco Lambert” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19977</b></li>
+     *   <li>EPSG coordinate operation code: <b>19977</b></li>
      *   <li>EPSG coordinate operation name: <b>Aramco Lambert</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
      *   <li>EPSG Usage Extent: <b>Saudi Arabia - onshore</b></li>
@@ -924,7 +905,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Argentina zone 1” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18031</b></li>
+     *   <li>EPSG coordinate operation code: <b>18031</b></li>
      *   <li>EPSG coordinate operation name: <b>Argentina zone 1</b></li>
      *   <li>Alias(es) given by EPSG: <b>Argentina 1</b>, <b>Gauss-Kruger zone 1</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -946,7 +927,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Argentina zone 2” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18032</b></li>
+     *   <li>EPSG coordinate operation code: <b>18032</b></li>
      *   <li>EPSG coordinate operation name: <b>Argentina zone 2</b></li>
      *   <li>Alias(es) given by EPSG: <b>Argentina 2</b>, <b>Gauss-Kruger zone 2</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -968,7 +949,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Argentina zone 3” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18033</b></li>
+     *   <li>EPSG coordinate operation code: <b>18033</b></li>
      *   <li>EPSG coordinate operation name: <b>Argentina zone 3</b></li>
      *   <li>Alias(es) given by EPSG: <b>Argentina 3</b>, <b>Gauss-Kruger zone 3</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -990,7 +971,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Argentina zone 4” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18034</b></li>
+     *   <li>EPSG coordinate operation code: <b>18034</b></li>
      *   <li>EPSG coordinate operation name: <b>Argentina zone 4</b></li>
      *   <li>Alias(es) given by EPSG: <b>Argentina 4</b>, <b>Gauss-Kruger zone 4</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1012,7 +993,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Argentina zone 5” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18035</b></li>
+     *   <li>EPSG coordinate operation code: <b>18035</b></li>
      *   <li>EPSG coordinate operation name: <b>Argentina zone 5</b></li>
      *   <li>Alias(es) given by EPSG: <b>Argentina 5</b>, <b>Gauss-Kruger zone 5</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1034,7 +1015,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Argentina zone 6” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18036</b></li>
+     *   <li>EPSG coordinate operation code: <b>18036</b></li>
      *   <li>EPSG coordinate operation name: <b>Argentina zone 6</b></li>
      *   <li>Alias(es) given by EPSG: <b>Argentina 6</b>, <b>Gauss-Kruger zone 6</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1056,7 +1037,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Argentina zone 7” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18037</b></li>
+     *   <li>EPSG coordinate operation code: <b>18037</b></li>
      *   <li>EPSG coordinate operation name: <b>Argentina zone 7</b></li>
      *   <li>Alias(es) given by EPSG: <b>Argentina 7</b>, <b>Gauss-Kruger zone 7</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1078,7 +1059,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Australian Map Grid zone 48” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17448</b></li>
+     *   <li>EPSG coordinate operation code: <b>17448</b></li>
      *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 48</b></li>
      *   <li>Alias(es) given by EPSG: <b>AMG zone 48</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1100,7 +1081,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Australian Map Grid zone 49” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17449</b></li>
+     *   <li>EPSG coordinate operation code: <b>17449</b></li>
      *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 49</b></li>
      *   <li>Alias(es) given by EPSG: <b>AMG zone 49</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1122,7 +1103,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Australian Map Grid zone 50” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17450</b></li>
+     *   <li>EPSG coordinate operation code: <b>17450</b></li>
      *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 50</b></li>
      *   <li>Alias(es) given by EPSG: <b>AMG zone 50</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1144,7 +1125,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Australian Map Grid zone 51” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17451</b></li>
+     *   <li>EPSG coordinate operation code: <b>17451</b></li>
      *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 51</b></li>
      *   <li>Alias(es) given by EPSG: <b>AMG zone 51</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1166,7 +1147,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Australian Map Grid zone 52” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17452</b></li>
+     *   <li>EPSG coordinate operation code: <b>17452</b></li>
      *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 52</b></li>
      *   <li>Alias(es) given by EPSG: <b>AMG zone 52</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1188,7 +1169,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Australian Map Grid zone 53” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17453</b></li>
+     *   <li>EPSG coordinate operation code: <b>17453</b></li>
      *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 53</b></li>
      *   <li>Alias(es) given by EPSG: <b>AMG zone 53</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1210,7 +1191,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Australian Map Grid zone 54” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17454</b></li>
+     *   <li>EPSG coordinate operation code: <b>17454</b></li>
      *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 54</b></li>
      *   <li>Alias(es) given by EPSG: <b>AMG zone 54</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1232,7 +1213,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Australian Map Grid zone 55” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17455</b></li>
+     *   <li>EPSG coordinate operation code: <b>17455</b></li>
      *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 55</b></li>
      *   <li>Alias(es) given by EPSG: <b>AMG zone 55</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1254,7 +1235,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Australian Map Grid zone 56” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17456</b></li>
+     *   <li>EPSG coordinate operation code: <b>17456</b></li>
      *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 56</b></li>
      *   <li>Alias(es) given by EPSG: <b>AMG zone 56</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1276,7 +1257,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Australian Map Grid zone 57” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17457</b></li>
+     *   <li>EPSG coordinate operation code: <b>17457</b></li>
      *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 57</b></li>
      *   <li>Alias(es) given by EPSG: <b>AMG zone 57</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1298,7 +1279,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Australian Map Grid zone 58” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17458</b></li>
+     *   <li>EPSG coordinate operation code: <b>17458</b></li>
      *   <li>EPSG coordinate operation name: <b>Australian Map Grid zone 58</b></li>
      *   <li>Alias(es) given by EPSG: <b>AMG zone 58</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1320,11 +1301,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “BLM zone 14N (US survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15914</b></li>
+     *   <li>EPSG coordinate operation code: <b>15914</b></li>
      *   <li>EPSG coordinate operation name: <b>BLM zone 14N (US survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>BLM 14N (ftUS)</b>, <b>BLM zone 14N in feet</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>UTM in ftUS</b></li>
      *   <li>EPSG Usage Extent: <b>USA - 102°W to 96°W and GoM OCS</b></li>
      * </ul>
      *
@@ -1345,11 +1325,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “BLM zone 15N (US survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15915</b></li>
+     *   <li>EPSG coordinate operation code: <b>15915</b></li>
      *   <li>EPSG coordinate operation name: <b>BLM zone 15N (US survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>BLM 15N (ftUS)</b>, <b>BLM zone 15N in feet</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>UTM in ftUS</b></li>
      *   <li>EPSG Usage Extent: <b>USA - 96°W to 90°W and GoM OCS</b></li>
      * </ul>
      *
@@ -1370,11 +1349,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “BLM zone 16N (US survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15916</b></li>
+     *   <li>EPSG coordinate operation code: <b>15916</b></li>
      *   <li>EPSG coordinate operation name: <b>BLM zone 16N (US survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>BLM 16N (ftUS)</b>, <b>BLM zone 16N in feet</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>UTM in ftUS</b></li>
      *   <li>EPSG Usage Extent: <b>USA - 90°W to 84°W and GoM OCS</b></li>
      * </ul>
      *
@@ -1395,11 +1373,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “BLM zone 17N (US survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15917</b></li>
+     *   <li>EPSG coordinate operation code: <b>15917</b></li>
      *   <li>EPSG coordinate operation name: <b>BLM zone 17N (US survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>BLM 17N (ftUS)</b>, <b>BLM zone 17N in feet</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>UTM in ftUS</b></li>
      *   <li>EPSG Usage Extent: <b>USA - 84°W to 78°W and GoM OCS</b></li>
      * </ul>
      *
@@ -1420,7 +1397,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Borneo RSO” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19894</b></li>
+     *   <li>EPSG coordinate operation code: <b>19894</b></li>
      *   <li>EPSG coordinate operation name: <b>Borneo RSO</b></li>
      *   <li>Alias(es) given by EPSG: <b>East Malaysia BRSO</b>, <b>Brunei BRSO</b></li>
      *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant A)</b></li>
@@ -1442,7 +1419,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Brazil Polyconic” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19941</b></li>
+     *   <li>EPSG coordinate operation code: <b>19941</b></li>
      *   <li>EPSG coordinate operation name: <b>Brazil Polyconic</b></li>
      *   <li>Coordinate operation method: <b>American Polyconic</b></li>
      *   <li>EPSG Usage Extent: <b>Brazil</b></li>
@@ -1462,7 +1439,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “British National Grid” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19916</b></li>
+     *   <li>EPSG coordinate operation code: <b>19916</b></li>
      *   <li>EPSG coordinate operation name: <b>British National Grid</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>UK - Britain and UKCS 49°45'N to 61°N; 9°W to 2°E</b></li>
@@ -1482,7 +1459,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “California CS27 zone IV” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>10404</b></li>
+     *   <li>EPSG coordinate operation code: <b>10404</b></li>
      *   <li>EPSG coordinate operation name: <b>California CS27 zone IV</b></li>
      *   <li>Alias(es) given by EPSG: <b>California zone IV</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -1504,7 +1481,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “California CS27 zone V” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>10405</b></li>
+     *   <li>EPSG coordinate operation code: <b>10405</b></li>
      *   <li>EPSG coordinate operation name: <b>California CS27 zone V</b></li>
      *   <li>Alias(es) given by EPSG: <b>California zone V</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -1526,7 +1503,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “California CS27 zone VI” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>10406</b></li>
+     *   <li>EPSG coordinate operation code: <b>10406</b></li>
      *   <li>EPSG coordinate operation name: <b>California CS27 zone VI</b></li>
      *   <li>Alias(es) given by EPSG: <b>California zone VI</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -1548,7 +1525,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “California CS27 zone VII” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>10408</b></li>
+     *   <li>EPSG coordinate operation code: <b>10408</b></li>
      *   <li>EPSG coordinate operation name: <b>California CS27 zone VII</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
      *   <li>EPSG Usage Extent: <b>USA - California - SPCS27 - 7</b></li>
@@ -1568,7 +1545,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Colombia Bogota zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18052</b></li>
+     *   <li>EPSG coordinate operation code: <b>18052</b></li>
      *   <li>EPSG coordinate operation name: <b>Colombia Bogota zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Colombia Bogota</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1590,7 +1567,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Colombia East Central zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18053</b></li>
+     *   <li>EPSG coordinate operation code: <b>18053</b></li>
      *   <li>EPSG coordinate operation name: <b>Colombia East Central zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Colombia 3E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1612,7 +1589,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Colombia East zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18054</b></li>
+     *   <li>EPSG coordinate operation code: <b>18054</b></li>
      *   <li>EPSG coordinate operation name: <b>Colombia East zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Colombia 6E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1634,7 +1611,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Colombia MAGNA Bogota zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18057</b></li>
+     *   <li>EPSG coordinate operation code: <b>18057</b></li>
      *   <li>EPSG coordinate operation name: <b>Colombia MAGNA Bogota zone</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Colombia - 75°35'W to 72°35'W</b></li>
@@ -1654,7 +1631,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Colombia MAGNA East Central zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18058</b></li>
+     *   <li>EPSG coordinate operation code: <b>18058</b></li>
      *   <li>EPSG coordinate operation name: <b>Colombia MAGNA East Central zone</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Colombia - 72°35'W to 69°35'W</b></li>
@@ -1674,7 +1651,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Colombia MAGNA East zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18059</b></li>
+     *   <li>EPSG coordinate operation code: <b>18059</b></li>
      *   <li>EPSG coordinate operation name: <b>Colombia MAGNA East zone</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Colombia - east of 69°35'W</b></li>
@@ -1694,7 +1671,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Colombia MAGNA Far West zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18055</b></li>
+     *   <li>EPSG coordinate operation code: <b>18055</b></li>
      *   <li>EPSG coordinate operation name: <b>Colombia MAGNA Far West zone</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Colombia - west of 78°35'W</b></li>
@@ -1714,7 +1691,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Colombia MAGNA West zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18056</b></li>
+     *   <li>EPSG coordinate operation code: <b>18056</b></li>
      *   <li>EPSG coordinate operation name: <b>Colombia MAGNA West zone</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Colombia - 78°35'W to 75°35'W</b></li>
@@ -1734,7 +1711,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Colombia West zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18051</b></li>
+     *   <li>EPSG coordinate operation code: <b>18051</b></li>
      *   <li>EPSG coordinate operation name: <b>Colombia West zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Colombia 3W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1756,7 +1733,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Egypt Blue Belt” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18071</b></li>
+     *   <li>EPSG coordinate operation code: <b>18071</b></li>
      *   <li>EPSG coordinate operation name: <b>Egypt Blue Belt</b></li>
      *   <li>Alias(es) given by EPSG: <b>Blue Belt</b>, <b>Green Belt</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1778,7 +1755,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Egypt Extended Purple Belt” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18074</b></li>
+     *   <li>EPSG coordinate operation code: <b>18074</b></li>
      *   <li>EPSG coordinate operation name: <b>Egypt Extended Purple Belt</b></li>
      *   <li>Alias(es) given by EPSG: <b>Extended Purple Belt</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1800,7 +1777,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Egypt Purple Belt” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18073</b></li>
+     *   <li>EPSG coordinate operation code: <b>18073</b></li>
      *   <li>EPSG coordinate operation name: <b>Egypt Purple Belt</b></li>
      *   <li>Alias(es) given by EPSG: <b>Purple Belt</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1822,7 +1799,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Egypt Red Belt” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18072</b></li>
+     *   <li>EPSG coordinate operation code: <b>18072</b></li>
      *   <li>EPSG coordinate operation name: <b>Egypt Red Belt</b></li>
      *   <li>Alias(es) given by EPSG: <b>Red Belt</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -1844,7 +1821,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Egyseges Orszagos Vetuleti” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19931</b></li>
+     *   <li>EPSG coordinate operation code: <b>19931</b></li>
      *   <li>EPSG coordinate operation name: <b>Egyseges Orszagos Vetuleti</b></li>
      *   <li>Alias(es) given by EPSG: <b>EOV</b></li>
      *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant B)</b></li>
@@ -1866,11 +1843,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 105E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16318</b></li>
+     *   <li>EPSG coordinate operation code: <b>16318</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 105E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 105E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 102°E to 108°E</b></li>
      * </ul>
      *
@@ -1891,11 +1867,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 105W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16343</b></li>
+     *   <li>EPSG coordinate operation code: <b>16343</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 105W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 105W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 108°W to 102°W</b></li>
      * </ul>
      *
@@ -1916,11 +1891,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 111E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16319</b></li>
+     *   <li>EPSG coordinate operation code: <b>16319</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 111E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 111E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 108°E to 114°E</b></li>
      * </ul>
      *
@@ -1941,11 +1915,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 111W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16342</b></li>
+     *   <li>EPSG coordinate operation code: <b>16342</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 111W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 111W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 114°W to 108°W</b></li>
      * </ul>
      *
@@ -1966,11 +1939,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 117E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16320</b></li>
+     *   <li>EPSG coordinate operation code: <b>16320</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 117E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 117E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 114°E to 120°E</b></li>
      * </ul>
      *
@@ -1991,11 +1963,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 117W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16341</b></li>
+     *   <li>EPSG coordinate operation code: <b>16341</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 117W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 117W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 120°W to 114°W</b></li>
      * </ul>
      *
@@ -2016,11 +1987,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 123E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16321</b></li>
+     *   <li>EPSG coordinate operation code: <b>16321</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 123E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 123E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 120°E to 126°E</b></li>
      * </ul>
      *
@@ -2041,11 +2011,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 123W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16340</b></li>
+     *   <li>EPSG coordinate operation code: <b>16340</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 123W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 123W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 126°W to 120°W</b></li>
      * </ul>
      *
@@ -2066,11 +2035,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 129E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16322</b></li>
+     *   <li>EPSG coordinate operation code: <b>16322</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 129E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 129E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 126°E to 132°E</b></li>
      * </ul>
      *
@@ -2091,11 +2059,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 129W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16339</b></li>
+     *   <li>EPSG coordinate operation code: <b>16339</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 129W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 129W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 132°W to 126°W</b></li>
      * </ul>
      *
@@ -2116,11 +2083,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 135E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16323</b></li>
+     *   <li>EPSG coordinate operation code: <b>16323</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 135E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 135E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 132°E to 138°E</b></li>
      * </ul>
      *
@@ -2141,11 +2107,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 135W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16338</b></li>
+     *   <li>EPSG coordinate operation code: <b>16338</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 135W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 135W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 138°W to 132°W</b></li>
      * </ul>
      *
@@ -2166,11 +2131,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 141E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16324</b></li>
+     *   <li>EPSG coordinate operation code: <b>16324</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 141E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 141E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 138°E to 144°E</b></li>
      * </ul>
      *
@@ -2191,11 +2155,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 141W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16337</b></li>
+     *   <li>EPSG coordinate operation code: <b>16337</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 141W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 141W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 144°W to 138°W</b></li>
      * </ul>
      *
@@ -2216,11 +2179,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 147E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16325</b></li>
+     *   <li>EPSG coordinate operation code: <b>16325</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 147E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 147E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 144°E to 150°E</b></li>
      * </ul>
      *
@@ -2241,11 +2203,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 147W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16336</b></li>
+     *   <li>EPSG coordinate operation code: <b>16336</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 147W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 147W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 150°W to 144°W</b></li>
      * </ul>
      *
@@ -2266,11 +2227,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 153E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16326</b></li>
+     *   <li>EPSG coordinate operation code: <b>16326</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 153E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 153E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 150°E to 156°E</b></li>
      * </ul>
      *
@@ -2291,11 +2251,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 153W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16335</b></li>
+     *   <li>EPSG coordinate operation code: <b>16335</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 153W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 153W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 156°W to 150°W</b></li>
      * </ul>
      *
@@ -2316,11 +2275,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 159E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16327</b></li>
+     *   <li>EPSG coordinate operation code: <b>16327</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 159E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 159E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 156°E to 162°E</b></li>
      * </ul>
      *
@@ -2341,11 +2299,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 159W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16334</b></li>
+     *   <li>EPSG coordinate operation code: <b>16334</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 159W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 159W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 162°W to 156°W</b></li>
      * </ul>
      *
@@ -2366,11 +2323,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 15E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16303</b></li>
+     *   <li>EPSG coordinate operation code: <b>16303</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 15E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 15E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 12°E to 18°E</b></li>
      * </ul>
      *
@@ -2391,11 +2347,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 15W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16358</b></li>
+     *   <li>EPSG coordinate operation code: <b>16358</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 15W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 15W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 18°W to 12°W</b></li>
      * </ul>
      *
@@ -2416,11 +2371,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 165E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16328</b></li>
+     *   <li>EPSG coordinate operation code: <b>16328</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 165E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 165E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 162°E to 168°E</b></li>
      * </ul>
      *
@@ -2441,11 +2395,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 165W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16333</b></li>
+     *   <li>EPSG coordinate operation code: <b>16333</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 165W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 165W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 168°W to 162°W</b></li>
      * </ul>
      *
@@ -2466,11 +2419,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 171E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16329</b></li>
+     *   <li>EPSG coordinate operation code: <b>16329</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 171E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 171E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 168°E to 174°E</b></li>
      * </ul>
      *
@@ -2491,11 +2443,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 171W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16332</b></li>
+     *   <li>EPSG coordinate operation code: <b>16332</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 171W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 171W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 174°W to 168°W</b></li>
      * </ul>
      *
@@ -2516,11 +2467,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 177E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16330</b></li>
+     *   <li>EPSG coordinate operation code: <b>16330</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 177E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 177E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 174°E to 180°E</b></li>
      * </ul>
      *
@@ -2541,11 +2491,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 177W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16331</b></li>
+     *   <li>EPSG coordinate operation code: <b>16331</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 177W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 177W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 180°W to 174°W</b></li>
      * </ul>
      *
@@ -2566,11 +2515,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 21E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16304</b></li>
+     *   <li>EPSG coordinate operation code: <b>16304</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 21E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 21E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 18°E to 24°E</b></li>
      * </ul>
      *
@@ -2591,11 +2539,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 21W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16357</b></li>
+     *   <li>EPSG coordinate operation code: <b>16357</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 21W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 21W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 24°W to 18°W</b></li>
      * </ul>
      *
@@ -2616,11 +2563,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 27E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16305</b></li>
+     *   <li>EPSG coordinate operation code: <b>16305</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 27E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 27E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 24°E to 30°E</b></li>
      * </ul>
      *
@@ -2641,11 +2587,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 27W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16356</b></li>
+     *   <li>EPSG coordinate operation code: <b>16356</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 27W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 27W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 30°W to 24°W</b></li>
      * </ul>
      *
@@ -2666,11 +2611,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 33E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16306</b></li>
+     *   <li>EPSG coordinate operation code: <b>16306</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 33E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 33E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 30°E to 36°E</b></li>
      * </ul>
      *
@@ -2691,11 +2635,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 33W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16355</b></li>
+     *   <li>EPSG coordinate operation code: <b>16355</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 33W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 33W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 36°W to 30°W</b></li>
      * </ul>
      *
@@ -2716,11 +2659,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 39E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16307</b></li>
+     *   <li>EPSG coordinate operation code: <b>16307</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 39E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 39E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 36°E to 42°E</b></li>
      * </ul>
      *
@@ -2741,11 +2683,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 39W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16354</b></li>
+     *   <li>EPSG coordinate operation code: <b>16354</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 39W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 39W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 42°W to 36°W</b></li>
      * </ul>
      *
@@ -2766,11 +2707,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 3E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16301</b></li>
+     *   <li>EPSG coordinate operation code: <b>16301</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 3E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 3E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 0°E to 6°E</b></li>
      * </ul>
      *
@@ -2791,11 +2731,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 3W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16360</b></li>
+     *   <li>EPSG coordinate operation code: <b>16360</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 3W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 3W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 6°W to 0°W</b></li>
      * </ul>
      *
@@ -2816,11 +2755,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 45E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16308</b></li>
+     *   <li>EPSG coordinate operation code: <b>16308</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 45E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 45E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 42°E to 48°E</b></li>
      * </ul>
      *
@@ -2841,11 +2779,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 45W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16353</b></li>
+     *   <li>EPSG coordinate operation code: <b>16353</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 45W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 45W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 48°W to 42°W</b></li>
      * </ul>
      *
@@ -2866,11 +2803,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 51E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16309</b></li>
+     *   <li>EPSG coordinate operation code: <b>16309</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 51E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 51E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 48°E to 54°E</b></li>
      * </ul>
      *
@@ -2891,11 +2827,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 51W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16352</b></li>
+     *   <li>EPSG coordinate operation code: <b>16352</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 51W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 51W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 54°W to 48°W</b></li>
      * </ul>
      *
@@ -2916,11 +2851,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 57E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16310</b></li>
+     *   <li>EPSG coordinate operation code: <b>16310</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 57E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 57E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 54°E to 60°E</b></li>
      * </ul>
      *
@@ -2941,11 +2875,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 57W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16351</b></li>
+     *   <li>EPSG coordinate operation code: <b>16351</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 57W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 57W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 60°W to 54°W</b></li>
      * </ul>
      *
@@ -2966,11 +2899,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 63E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16311</b></li>
+     *   <li>EPSG coordinate operation code: <b>16311</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 63E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 63E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 60°E to 66°E</b></li>
      * </ul>
      *
@@ -2991,11 +2923,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 63W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16350</b></li>
+     *   <li>EPSG coordinate operation code: <b>16350</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 63W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 63W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 66°W to 60°W</b></li>
      * </ul>
      *
@@ -3016,11 +2947,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 69E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16312</b></li>
+     *   <li>EPSG coordinate operation code: <b>16312</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 69E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 69E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 66°E to 72°E</b></li>
      * </ul>
      *
@@ -3041,11 +2971,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 69W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16349</b></li>
+     *   <li>EPSG coordinate operation code: <b>16349</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 69W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 69W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 72°W to 66°W</b></li>
      * </ul>
      *
@@ -3066,11 +2995,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 75E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16313</b></li>
+     *   <li>EPSG coordinate operation code: <b>16313</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 75E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 75E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 72°E to 78°E</b></li>
      * </ul>
      *
@@ -3091,11 +3019,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 75W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16348</b></li>
+     *   <li>EPSG coordinate operation code: <b>16348</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 75W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 75W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 78°W to 72°W</b></li>
      * </ul>
      *
@@ -3116,11 +3043,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 81E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16314</b></li>
+     *   <li>EPSG coordinate operation code: <b>16314</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 81E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 81E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 78°E to 84°E</b></li>
      * </ul>
      *
@@ -3141,11 +3067,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 81W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16347</b></li>
+     *   <li>EPSG coordinate operation code: <b>16347</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 81W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 81W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 84°W to 78°W</b></li>
      * </ul>
      *
@@ -3166,11 +3091,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 87E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16315</b></li>
+     *   <li>EPSG coordinate operation code: <b>16315</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 87E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 87E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 84°E to 90°E</b></li>
      * </ul>
      *
@@ -3191,11 +3115,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 87W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16346</b></li>
+     *   <li>EPSG coordinate operation code: <b>16346</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 87W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 87W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 90°W to 84°W</b></li>
      * </ul>
      *
@@ -3216,11 +3139,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 93E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16316</b></li>
+     *   <li>EPSG coordinate operation code: <b>16316</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 93E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 93E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 90°E to 96°E</b></li>
      * </ul>
      *
@@ -3241,11 +3163,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 93W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16345</b></li>
+     *   <li>EPSG coordinate operation code: <b>16345</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 93W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 93W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 96°W to 90°W</b></li>
      * </ul>
      *
@@ -3266,11 +3187,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 99E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16317</b></li>
+     *   <li>EPSG coordinate operation code: <b>16317</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 99E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 99E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 96°E to 102°E</b></li>
      * </ul>
      *
@@ -3291,11 +3211,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 99W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16344</b></li>
+     *   <li>EPSG coordinate operation code: <b>16344</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 99W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 99W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 102°W to 96°W</b></li>
      * </ul>
      *
@@ -3316,11 +3235,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 9E” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16302</b></li>
+     *   <li>EPSG coordinate operation code: <b>16302</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 9E</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 9E</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 6°E to 12°E</b></li>
      * </ul>
      *
@@ -3341,11 +3259,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Gauss-Kruger CM 9W” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16359</b></li>
+     *   <li>EPSG coordinate operation code: <b>16359</b></li>
      *   <li>EPSG coordinate operation name: <b>Gauss-Kruger CM 9W</b></li>
      *   <li>Alias(es) given by EPSG: <b>6-degree Gauss-Kruger CM 9W</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
-     *   <li>Specific usage / Remarks: <b>Without zone prefix in easting</b></li>
      *   <li>EPSG Usage Extent: <b>World - N hemisphere - 12°W to 6°W</b></li>
      * </ul>
      *
@@ -3366,7 +3283,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Ghana National Grid” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19959</b></li>
+     *   <li>EPSG coordinate operation code: <b>19959</b></li>
      *   <li>EPSG coordinate operation name: <b>Ghana National Grid</b></li>
      *   <li>Alias(es) given by EPSG: <b>Gold Coast Grid</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -3388,7 +3305,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “India zone I (1962 metres)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18236</b></li>
+     *   <li>EPSG coordinate operation code: <b>18236</b></li>
      *   <li>EPSG coordinate operation name: <b>India zone I (1962 metres)</b></li>
      *   <li>Alias(es) given by EPSG: <b>India zone I</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
@@ -3410,7 +3327,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “India zone I (1975 metres)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18231</b></li>
+     *   <li>EPSG coordinate operation code: <b>18231</b></li>
      *   <li>EPSG coordinate operation name: <b>India zone I (1975 metres)</b></li>
      *   <li>Alias(es) given by EPSG: <b>India zone I</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
@@ -3432,7 +3349,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “India zone IIa (1962 metres)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18237</b></li>
+     *   <li>EPSG coordinate operation code: <b>18237</b></li>
      *   <li>EPSG coordinate operation name: <b>India zone IIa (1962 metres)</b></li>
      *   <li>Alias(es) given by EPSG: <b>India zone IIa</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
@@ -3454,7 +3371,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “India zone IIa (1975 metres)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18232</b></li>
+     *   <li>EPSG coordinate operation code: <b>18232</b></li>
      *   <li>EPSG coordinate operation name: <b>India zone IIa (1975 metres)</b></li>
      *   <li>Alias(es) given by EPSG: <b>India zone IIa</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
@@ -3476,7 +3393,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “India zone IIb (1937 metres)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18238</b></li>
+     *   <li>EPSG coordinate operation code: <b>18238</b></li>
      *   <li>EPSG coordinate operation name: <b>India zone IIb (1937 metres)</b></li>
      *   <li>Alias(es) given by EPSG: <b>India zone IIb</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
@@ -3498,7 +3415,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “India zone IIb (1975 metres)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18235</b></li>
+     *   <li>EPSG coordinate operation code: <b>18235</b></li>
      *   <li>EPSG coordinate operation name: <b>India zone IIb (1975 metres)</b></li>
      *   <li>Alias(es) given by EPSG: <b>India zone IIb</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
@@ -3520,7 +3437,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “India zone IIIa (1975 metres)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18233</b></li>
+     *   <li>EPSG coordinate operation code: <b>18233</b></li>
      *   <li>EPSG coordinate operation name: <b>India zone IIIa (1975 metres)</b></li>
      *   <li>Alias(es) given by EPSG: <b>India zone IIIa</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
@@ -3542,7 +3459,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “India zone IVa (1975 metres)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18234</b></li>
+     *   <li>EPSG coordinate operation code: <b>18234</b></li>
      *   <li>EPSG coordinate operation name: <b>India zone IVa (1975 metres)</b></li>
      *   <li>Alias(es) given by EPSG: <b>India zone IVa</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
@@ -3564,7 +3481,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Iraq zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19906</b></li>
+     *   <li>EPSG coordinate operation code: <b>19906</b></li>
      *   <li>EPSG coordinate operation name: <b>Iraq zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>IOEPC Lambert</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
@@ -3586,7 +3503,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Italy” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18121</b>, <b>18122</b></li>
+     *   <li>EPSG coordinate operation code: <b>18121</b>, <b>18122</b></li>
      *   <li>EPSG coordinate operation name: <b>Italy</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      * </ul>
@@ -3606,7 +3523,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Laborde Grid” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19861</b></li>
+     *   <li>EPSG coordinate operation code: <b>19861</b></li>
      *   <li>EPSG coordinate operation name: <b>Laborde Grid</b></li>
      *   <li>Coordinate operation method: <b>Laborde Oblique Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Madagascar - onshore and nearshore</b></li>
@@ -3626,7 +3543,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Laborde Grid approximation” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19911</b></li>
+     *   <li>EPSG coordinate operation code: <b>19911</b></li>
      *   <li>EPSG coordinate operation name: <b>Laborde Grid approximation</b></li>
      *   <li>Alias(es) given by EPSG: <b>Laborde Grid</b></li>
      *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant B)</b></li>
@@ -3648,10 +3565,9 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Lambert-93” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18085</b></li>
+     *   <li>EPSG coordinate operation code: <b>18085</b></li>
      *   <li>EPSG coordinate operation name: <b>Lambert-93</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
-     *   <li>Specific usage / Remarks: <b>Use grads</b></li>
      *   <li>EPSG Usage Extent: <b>France - mainland onshore</b></li>
      * </ul>
      *
@@ -3671,11 +3587,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Lambert zone I” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18081</b></li>
+     *   <li>EPSG coordinate operation code: <b>18081</b></li>
      *   <li>EPSG coordinate operation name: <b>Lambert zone I</b></li>
      *   <li>Alias(es) given by EPSG: <b>France zone I</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
-     *   <li>Specific usage / Remarks: <b>Use grads</b></li>
      *   <li>EPSG Usage Extent: <b>France - mainland north of 48.15°N</b></li>
      * </ul>
      *
@@ -3696,11 +3611,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Lambert zone II” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18082</b></li>
+     *   <li>EPSG coordinate operation code: <b>18082</b></li>
      *   <li>EPSG coordinate operation name: <b>Lambert zone II</b></li>
      *   <li>Alias(es) given by EPSG: <b>France zone II</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
-     *   <li>Specific usage / Remarks: <b>Use grads</b></li>
      *   <li>EPSG Usage Extent: <b>France - mainland 45.45°N to 48.15°N. Also all mainland.</b></li>
      * </ul>
      *
@@ -3721,11 +3635,10 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Lambert zone III” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18083</b></li>
+     *   <li>EPSG coordinate operation code: <b>18083</b></li>
      *   <li>EPSG coordinate operation name: <b>Lambert zone III</b></li>
      *   <li>Alias(es) given by EPSG: <b>France zone III</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
-     *   <li>Specific usage / Remarks: <b>Use grads</b></li>
      *   <li>EPSG Usage Extent: <b>France - mainland south of 45.45°N</b></li>
      * </ul>
      *
@@ -3746,7 +3659,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Levant zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19940</b></li>
+     *   <li>EPSG coordinate operation code: <b>19940</b></li>
      *   <li>EPSG coordinate operation name: <b>Levant zone</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Near-Conformal</b></li>
      *   <li>EPSG Usage Extent: <b>Asia - Middle East - Lebanon and Syria onshore</b></li>
@@ -3766,7 +3679,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Libya” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18240</b>, <b>18241</b>, <b>18242</b>, <b>18243</b>,
+     *   <li>EPSG coordinate operation code: <b>18240</b>, <b>18241</b>, <b>18242</b>, <b>18243</b>,
      *       <b>18244</b>, <b>18245</b>, <b>18246</b>, <b>18247</b>, <b>18248</b></li>
      *   <li>EPSG coordinate operation name: <b>Libya</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -3788,7 +3701,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Libya TM” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18310</b>, <b>18311</b>, <b>18312</b>, <b>18313</b>,
+     *   <li>EPSG coordinate operation code: <b>18310</b>, <b>18311</b>, <b>18312</b>, <b>18313</b>,
      *       <b>18314</b>, <b>18315</b>, <b>18316</b>, <b>18317</b>, <b>18318</b>, <b>18319</b></li>
      *   <li>EPSG coordinate operation name: <b>Libya TM</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -3810,7 +3723,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Louisiana CS27 North zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>11701</b></li>
+     *   <li>EPSG coordinate operation code: <b>11701</b></li>
      *   <li>EPSG coordinate operation name: <b>Louisiana CS27 North zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Louisiana North</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -3832,7 +3745,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Louisiana CS27 South zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>11702</b></li>
+     *   <li>EPSG coordinate operation code: <b>11702</b></li>
      *   <li>EPSG coordinate operation name: <b>Louisiana CS27 South zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Louisiana South</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -3854,7 +3767,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Michigan CS27 Central zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>12112</b></li>
+     *   <li>EPSG coordinate operation code: <b>12112</b></li>
      *   <li>EPSG coordinate operation name: <b>Michigan CS27 Central zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Michigan Central</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -3876,7 +3789,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Michigan CS27 South zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>12113</b></li>
+     *   <li>EPSG coordinate operation code: <b>12113</b></li>
      *   <li>EPSG coordinate operation name: <b>Michigan CS27 South zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Michigan South</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -3898,7 +3811,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Netherlands East Indies Equatorial Zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19905</b></li>
+     *   <li>EPSG coordinate operation code: <b>19905</b></li>
      *   <li>EPSG coordinate operation name: <b>Netherlands East Indies Equatorial Zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>NEIEZ</b></li>
      *   <li>Coordinate operation method: <b>Mercator (variant A)</b></li>
@@ -3920,7 +3833,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “New Mexico CS27 East zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>13001</b></li>
+     *   <li>EPSG coordinate operation code: <b>13001</b></li>
      *   <li>EPSG coordinate operation name: <b>New Mexico CS27 East zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>New Mexico East</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -3942,7 +3855,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “New Zealand Map Grid” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19917</b></li>
+     *   <li>EPSG coordinate operation code: <b>19917</b></li>
      *   <li>EPSG coordinate operation name: <b>New Zealand Map Grid</b></li>
      *   <li>Alias(es) given by EPSG: <b>NZMG</b></li>
      *   <li>Coordinate operation method: <b>New Zealand Map Grid</b></li>
@@ -3964,7 +3877,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “New Zealand North Island National Grid” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18141</b></li>
+     *   <li>EPSG coordinate operation code: <b>18141</b></li>
      *   <li>EPSG coordinate operation name: <b>New Zealand North Island National Grid</b></li>
      *   <li>Alias(es) given by EPSG: <b>North Island Grid</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -3986,7 +3899,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “New Zealand South Island National Grid” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18142</b></li>
+     *   <li>EPSG coordinate operation code: <b>18142</b></li>
      *   <li>EPSG coordinate operation name: <b>New Zealand South Island National Grid</b></li>
      *   <li>Alias(es) given by EPSG: <b>South Island Grid</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -4008,7 +3921,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “New Zealand Transverse Mercator 2000” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19971</b></li>
+     *   <li>EPSG coordinate operation code: <b>19971</b></li>
      *   <li>EPSG coordinate operation name: <b>New Zealand Transverse Mercator 2000</b></li>
      *   <li>Alias(es) given by EPSG: <b>NZTM</b>, <b>New Zealand Transverse Mercator</b>, <b>NZTM2000</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -4030,7 +3943,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Nigeria East Belt” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18153</b></li>
+     *   <li>EPSG coordinate operation code: <b>18153</b></li>
      *   <li>EPSG coordinate operation name: <b>Nigeria East Belt</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Nigeria - east of 10.5°E</b></li>
@@ -4050,7 +3963,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Nigeria Mid Belt” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18152</b></li>
+     *   <li>EPSG coordinate operation code: <b>18152</b></li>
      *   <li>EPSG coordinate operation name: <b>Nigeria Mid Belt</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Nigeria - 6.5°E to 10.5°E</b></li>
@@ -4070,7 +3983,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Nigeria West Belt” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18151</b></li>
+     *   <li>EPSG coordinate operation code: <b>18151</b></li>
      *   <li>EPSG coordinate operation name: <b>Nigeria West Belt</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Nigeria - west of 6.5°E</b></li>
@@ -4090,10 +4003,9 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Nord Algerie” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18021</b></li>
+     *   <li>EPSG coordinate operation code: <b>18021</b></li>
      *   <li>EPSG coordinate operation name: <b>Nord Algerie</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
-     *   <li>Specific usage / Remarks: <b>Check not old parameters</b></li>
      *   <li>EPSG Usage Extent: <b>Algeria - north of 34°39'N</b></li>
      * </ul>
      *
@@ -4113,7 +4025,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Nord Tunisie” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18181</b></li>
+     *   <li>EPSG coordinate operation code: <b>18181</b></li>
      *   <li>EPSG coordinate operation name: <b>Nord Tunisie</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
      *   <li>EPSG Usage Extent: <b>Tunisia - north of 34°39'N</b></li>
@@ -4133,7 +4045,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Oklahoma CS27 North zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>13501</b></li>
+     *   <li>EPSG coordinate operation code: <b>13501</b></li>
      *   <li>EPSG coordinate operation name: <b>Oklahoma CS27 North zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Oklahoma North</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4155,7 +4067,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Oklahoma CS27 South zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>13502</b></li>
+     *   <li>EPSG coordinate operation code: <b>13502</b></li>
      *   <li>EPSG coordinate operation name: <b>Oklahoma CS27 South zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Oklahoma South</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4177,7 +4089,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Peninsular RSO” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19895</b></li>
+     *   <li>EPSG coordinate operation code: <b>19895</b></li>
      *   <li>EPSG coordinate operation name: <b>Peninsular RSO</b></li>
      *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant A)</b></li>
      *   <li>EPSG Usage Extent: <b>Malaysia - West Malaysia</b></li>
@@ -4197,7 +4109,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Peru central zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18162</b></li>
+     *   <li>EPSG coordinate operation code: <b>18162</b></li>
      *   <li>EPSG coordinate operation name: <b>Peru central zone</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Peru - 79°W to 73°W</b></li>
@@ -4217,7 +4129,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Peru east zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18163</b></li>
+     *   <li>EPSG coordinate operation code: <b>18163</b></li>
      *   <li>EPSG coordinate operation name: <b>Peru east zone</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Peru - east of 73°W</b></li>
@@ -4237,7 +4149,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Peru west zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18161</b></li>
+     *   <li>EPSG coordinate operation code: <b>18161</b></li>
      *   <li>EPSG coordinate operation name: <b>Peru west zone</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Peru - west of 79°W</b></li>
@@ -4257,7 +4169,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Philippines” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18171</b>, <b>18172</b>, <b>18173</b>, <b>18174</b>, <b>18175</b></li>
+     *   <li>EPSG coordinate operation code: <b>18171</b>, <b>18172</b>, <b>18173</b>, <b>18174</b>, <b>18175</b></li>
      *   <li>EPSG coordinate operation name: <b>Philippines</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      * </ul>
@@ -4278,7 +4190,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Qatar Grid” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19953</b></li>
+     *   <li>EPSG coordinate operation code: <b>19953</b></li>
      *   <li>EPSG coordinate operation name: <b>Qatar Grid</b></li>
      *   <li>Coordinate operation method: <b>Cassini-Soldner</b></li>
      *   <li>EPSG Usage Extent: <b>Qatar - onshore</b></li>
@@ -4298,7 +4210,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Qatar National Grid” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19919</b></li>
+     *   <li>EPSG coordinate operation code: <b>19919</b></li>
      *   <li>EPSG coordinate operation name: <b>Qatar National Grid</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Qatar</b></li>
@@ -4318,7 +4230,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “RD New” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19914</b></li>
+     *   <li>EPSG coordinate operation code: <b>19914</b></li>
      *   <li>EPSG coordinate operation name: <b>RD New</b></li>
      *   <li>Coordinate operation method: <b>Oblique Stereographic</b></li>
      *   <li>EPSG Usage Extent: <b>Netherlands - onshore</b></li>
@@ -4338,7 +4250,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Rectified Skew Orthomorphic Borneo Grid (chains)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19956</b></li>
+     *   <li>EPSG coordinate operation code: <b>19956</b></li>
      *   <li>EPSG coordinate operation name: <b>Rectified Skew Orthomorphic Borneo Grid (chains)</b></li>
      *   <li>Alias(es) given by EPSG: <b>RSO Borneo (chSe)</b></li>
      *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant B)</b></li>
@@ -4360,7 +4272,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Rectified Skew Orthomorphic Borneo Grid (feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19957</b></li>
+     *   <li>EPSG coordinate operation code: <b>19957</b></li>
      *   <li>EPSG coordinate operation name: <b>Rectified Skew Orthomorphic Borneo Grid (feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>RSO Borneo (ftSe)</b></li>
      *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant B)</b></li>
@@ -4382,7 +4294,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Rectified Skew Orthomorphic Borneo Grid (metres)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19958</b></li>
+     *   <li>EPSG coordinate operation code: <b>19958</b></li>
      *   <li>EPSG coordinate operation name: <b>Rectified Skew Orthomorphic Borneo Grid (metres)</b></li>
      *   <li>Alias(es) given by EPSG: <b>RSO Borneo (m)</b></li>
      *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant B)</b></li>
@@ -4404,7 +4316,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Rectified Skew Orthomorphic Malaya Grid (chains)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19871</b></li>
+     *   <li>EPSG coordinate operation code: <b>19871</b></li>
      *   <li>EPSG coordinate operation name: <b>Rectified Skew Orthomorphic Malaya Grid (chains)</b></li>
      *   <li>Alias(es) given by EPSG: <b>RSO Malaya (m)</b></li>
      *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant A)</b></li>
@@ -4426,7 +4338,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Rectified Skew Orthomorphic Malaya Grid (metres)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19872</b></li>
+     *   <li>EPSG coordinate operation code: <b>19872</b></li>
      *   <li>EPSG coordinate operation name: <b>Rectified Skew Orthomorphic Malaya Grid (metres)</b></li>
      *   <li>Alias(es) given by EPSG: <b>RSO Malaya (m)</b></li>
      *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant A)</b></li>
@@ -4448,7 +4360,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “South West African Survey Grid zone 11” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17611</b></li>
+     *   <li>EPSG coordinate operation code: <b>17611</b></li>
      *   <li>EPSG coordinate operation name: <b>South West African Survey Grid zone 11</b></li>
      *   <li>Alias(es) given by EPSG: <b>SW African Grid zone 11</b>, <b>Lo22/11</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator (South Orientated)</b></li>
@@ -4470,7 +4382,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Alaska zone 2 (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15032</b></li>
+     *   <li>EPSG coordinate operation code: <b>15032</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 2 (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 2</b>, <b>Alaska CS83 zone 2</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -4492,7 +4404,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Alaska zone 4 (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15034</b></li>
+     *   <li>EPSG coordinate operation code: <b>15034</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 4 (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 4</b>, <b>Alaska CS83 zone 4</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -4514,7 +4426,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Alaska zone 5 (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15035</b></li>
+     *   <li>EPSG coordinate operation code: <b>15035</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 5 (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 5</b>, <b>Alaska CS83 zone 5</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -4536,7 +4448,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Alaska zone 6 (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15036</b></li>
+     *   <li>EPSG coordinate operation code: <b>15036</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 6 (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 6</b>, <b>Alaska CS83 zone 6</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -4558,7 +4470,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Alaska zone 7 (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15037</b></li>
+     *   <li>EPSG coordinate operation code: <b>15037</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 7 (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 7</b>, <b>Alaska CS83 zone 7</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -4580,7 +4492,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Alaska zone 8 (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15038</b></li>
+     *   <li>EPSG coordinate operation code: <b>15038</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 8 (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 8</b>, <b>Alaska CS83 zone 8</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -4602,7 +4514,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Alaska zone 9 (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15039</b></li>
+     *   <li>EPSG coordinate operation code: <b>15039</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Alaska zone 9 (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Alaska zone 9</b>, <b>Alaska CS83 zone 9</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -4624,7 +4536,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 California zone 4 (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>10434</b></li>
+     *   <li>EPSG coordinate operation code: <b>10434</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 California zone 4 (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>California zone 4</b>, <b>California CS83 zone 4</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4646,7 +4558,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 California zone 4 (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15310</b></li>
+     *   <li>EPSG coordinate operation code: <b>15310</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 California zone 4 (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>California zone 4 (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4668,7 +4580,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 California zone 5 (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>10435</b></li>
+     *   <li>EPSG coordinate operation code: <b>10435</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 California zone 5 (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>California zone 5</b>, <b>California CS83 zone 5</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4690,7 +4602,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 California zone 5 (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15311</b></li>
+     *   <li>EPSG coordinate operation code: <b>15311</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 California zone 5 (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>California zone 5 (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4712,7 +4624,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 California zone 6 (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>10436</b></li>
+     *   <li>EPSG coordinate operation code: <b>10436</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 California zone 6 (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>California zone 6</b>, <b>California CS83 zone 6</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4734,7 +4646,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 California zone 6 (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15312</b></li>
+     *   <li>EPSG coordinate operation code: <b>15312</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 California zone 6 (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>California zone 6 (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4756,7 +4668,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Louisiana North zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>11731</b></li>
+     *   <li>EPSG coordinate operation code: <b>11731</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Louisiana North zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Louisiana North</b>, <b>Louisiana CS83 North zone</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4778,7 +4690,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Louisiana North zone (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15391</b></li>
+     *   <li>EPSG coordinate operation code: <b>15391</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Louisiana North zone (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Louisiana CS83 North zone (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4800,7 +4712,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Louisiana South zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>11732</b></li>
+     *   <li>EPSG coordinate operation code: <b>11732</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Louisiana South zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Louisiana South</b>, <b>Louisiana CS83 South zone</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4822,7 +4734,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Louisiana South zone (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15392</b></li>
+     *   <li>EPSG coordinate operation code: <b>15392</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Louisiana South zone (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Louisiana CS83 South zone (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4844,7 +4756,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Michigan Central zone (International feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15334</b></li>
+     *   <li>EPSG coordinate operation code: <b>15334</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Michigan Central zone (International feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Michigan Central (ft)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4866,7 +4778,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Michigan Central zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>12142</b></li>
+     *   <li>EPSG coordinate operation code: <b>12142</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Michigan Central zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Michigan Central</b>, <b>Michigan CS83 Central zone</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4888,7 +4800,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Michigan South zone (International feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15335</b></li>
+     *   <li>EPSG coordinate operation code: <b>15335</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Michigan South zone (International feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Michigan South (ft)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4910,7 +4822,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Michigan South zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>12143</b></li>
+     *   <li>EPSG coordinate operation code: <b>12143</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Michigan South zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Michigan South</b>, <b>Michigan CS83 South zone</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4932,7 +4844,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 New Mexico East zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>13031</b></li>
+     *   <li>EPSG coordinate operation code: <b>13031</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 New Mexico East zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>New Mexico East</b>, <b>New Mexico CS83 East zone</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -4954,7 +4866,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 New Mexico East zone (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15339</b></li>
+     *   <li>EPSG coordinate operation code: <b>15339</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 New Mexico East zone (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>New Mexico East (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -4976,7 +4888,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Oklahoma North zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>13531</b></li>
+     *   <li>EPSG coordinate operation code: <b>13531</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Oklahoma North zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Oklahoma North</b>, <b>Oklahoma CS83 North zone</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -4998,7 +4910,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Oklahoma North zone (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15349</b></li>
+     *   <li>EPSG coordinate operation code: <b>15349</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Oklahoma North zone (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Oklahoma North (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5020,7 +4932,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Oklahoma South zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>13532</b></li>
+     *   <li>EPSG coordinate operation code: <b>13532</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Oklahoma South zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Oklahoma South</b>, <b>Oklahoma CS83 South zone</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5042,7 +4954,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Oklahoma South zone (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15350</b></li>
+     *   <li>EPSG coordinate operation code: <b>15350</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Oklahoma South zone (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Oklahoma South (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5064,7 +4976,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Texas Central zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>14233</b></li>
+     *   <li>EPSG coordinate operation code: <b>14233</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Texas Central zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas Central</b>, <b>Texas CS83 Central zone</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5086,7 +4998,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Texas Central zone (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15359</b></li>
+     *   <li>EPSG coordinate operation code: <b>15359</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Texas Central zone (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas Central (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5108,7 +5020,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Texas North Central zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>14232</b></li>
+     *   <li>EPSG coordinate operation code: <b>14232</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Texas North Central zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas North Central</b>, <b>Texas CS83 North Central zone</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5130,7 +5042,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Texas North Central zone (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15358</b></li>
+     *   <li>EPSG coordinate operation code: <b>15358</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Texas North Central zone (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas North Central (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5152,7 +5064,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Texas North zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>14231</b></li>
+     *   <li>EPSG coordinate operation code: <b>14231</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Texas North zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas North</b>, <b>Texas CS83 North zone</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5174,7 +5086,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Texas North zone (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15357</b></li>
+     *   <li>EPSG coordinate operation code: <b>15357</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Texas North zone (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas North (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5196,7 +5108,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Texas South Central zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>14234</b></li>
+     *   <li>EPSG coordinate operation code: <b>14234</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Texas South Central zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas South Central</b>, <b>Texas CS83 South Central zone</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5218,7 +5130,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Texas South Central zone (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15360</b></li>
+     *   <li>EPSG coordinate operation code: <b>15360</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Texas South Central zone (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas South Central (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5240,7 +5152,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Texas South zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>14235</b></li>
+     *   <li>EPSG coordinate operation code: <b>14235</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Texas South zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas South</b>, <b>Texas CS83 South zone</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5262,7 +5174,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Texas South zone (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>15361</b></li>
+     *   <li>EPSG coordinate operation code: <b>15361</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Texas South zone (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas South (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5284,7 +5196,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Wyoming West Central zone (meters)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>14933</b></li>
+     *   <li>EPSG coordinate operation code: <b>14933</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Wyoming West Central zone (meters)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Wyoming West Central</b>, <b>Wyoming CS83 West Central zone</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -5306,7 +5218,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “SPCS83 Wyoming West Central zone (US Survey feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>14937</b></li>
+     *   <li>EPSG coordinate operation code: <b>14937</b></li>
      *   <li>EPSG coordinate operation name: <b>SPCS83 Wyoming West Central zone (US Survey feet)</b></li>
      *   <li>Alias(es) given by EPSG: <b>Wyoming CS83 West Central zone (ftUS)</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -5328,7 +5240,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Stereo 33” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19927</b></li>
+     *   <li>EPSG coordinate operation code: <b>19927</b></li>
      *   <li>EPSG coordinate operation name: <b>Stereo 33</b></li>
      *   <li>Coordinate operation method: <b>Oblique Stereographic</b></li>
      *   <li>EPSG Usage Extent: <b>Romania</b></li>
@@ -5348,7 +5260,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Stereo 70” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19926</b></li>
+     *   <li>EPSG coordinate operation code: <b>19926</b></li>
      *   <li>EPSG coordinate operation name: <b>Stereo 70</b></li>
      *   <li>Coordinate operation method: <b>Oblique Stereographic</b></li>
      *   <li>EPSG Usage Extent: <b>Romania</b></li>
@@ -5368,10 +5280,9 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Sud Algerie” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18022</b></li>
+     *   <li>EPSG coordinate operation code: <b>18022</b></li>
      *   <li>EPSG coordinate operation name: <b>Sud Algerie</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
-     *   <li>Specific usage / Remarks: <b>Check not old parameters</b></li>
      *   <li>EPSG Usage Extent: <b>Algeria - 31°30'N to 34°39'N</b></li>
      * </ul>
      *
@@ -5391,7 +5302,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Sud Tunisie” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>18182</b></li>
+     *   <li>EPSG coordinate operation code: <b>18182</b></li>
      *   <li>EPSG coordinate operation name: <b>Sud Tunisie</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
      *   <li>EPSG Usage Extent: <b>Tunisia - south of 34°39'N</b></li>
@@ -5411,7 +5322,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Syria Lambert” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19948</b></li>
+     *   <li>EPSG coordinate operation code: <b>19948</b></li>
      *   <li>EPSG coordinate operation name: <b>Syria Lambert</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (1SP)</b></li>
      *   <li>EPSG Usage Extent: <b>Asia - Middle East - Lebanon and Syria onshore</b></li>
@@ -5431,7 +5342,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Texas CS27 Central zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>14203</b></li>
+     *   <li>EPSG coordinate operation code: <b>14203</b></li>
      *   <li>EPSG coordinate operation name: <b>Texas CS27 Central zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas Central</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5453,7 +5364,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Texas CS27 North zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>14201</b></li>
+     *   <li>EPSG coordinate operation code: <b>14201</b></li>
      *   <li>EPSG coordinate operation name: <b>Texas CS27 North zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas North</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5475,7 +5386,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Texas CS27 South Central zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>14204</b></li>
+     *   <li>EPSG coordinate operation code: <b>14204</b></li>
      *   <li>EPSG coordinate operation name: <b>Texas CS27 South Central zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas South Central</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5497,7 +5408,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Texas CS27 South zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>14205</b></li>
+     *   <li>EPSG coordinate operation code: <b>14205</b></li>
      *   <li>EPSG coordinate operation name: <b>Texas CS27 South zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Texas South</b></li>
      *   <li>Coordinate operation method: <b>Lambert Conic Conformal (2SP)</b></li>
@@ -5519,7 +5430,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “TM 0 N” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16400</b></li>
+     *   <li>EPSG coordinate operation code: <b>16400</b></li>
      *   <li>EPSG coordinate operation name: <b>TM 0 N</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>UK - offshore - North Sea</b></li>
@@ -5539,7 +5450,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “TM 109 SE” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16709</b></li>
+     *   <li>EPSG coordinate operation code: <b>16709</b></li>
      *   <li>EPSG coordinate operation name: <b>TM 109 SE</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Indonesia - Java Sea - offshore northwest Java</b></li>
@@ -5559,7 +5470,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “TM 11.30 SE” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16611</b></li>
+     *   <li>EPSG coordinate operation code: <b>16611</b></li>
      *   <li>EPSG coordinate operation name: <b>TM 11.30 SE</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Angola - offshore block 15</b></li>
@@ -5579,7 +5490,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “TM 12 SE” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16612</b></li>
+     *   <li>EPSG coordinate operation code: <b>16612</b></li>
      *   <li>EPSG coordinate operation name: <b>TM 12 SE</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Angola - Angola proper - offshore</b></li>
@@ -5599,7 +5510,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “TM 1 NW” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17001</b></li>
+     *   <li>EPSG coordinate operation code: <b>17001</b></li>
      *   <li>EPSG coordinate operation name: <b>TM 1 NW</b></li>
      *   <li>Alias(es) given by EPSG: <b>Ghana TM</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
@@ -5621,7 +5532,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “TM 5 NE” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>16405</b></li>
+     *   <li>EPSG coordinate operation code: <b>16405</b></li>
      *   <li>EPSG coordinate operation name: <b>TM 5 NE</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Netherlands - offshore</b></li>
@@ -5641,7 +5552,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “TM 5 NW” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17005</b></li>
+     *   <li>EPSG coordinate operation code: <b>17005</b></li>
      *   <li>EPSG coordinate operation name: <b>TM 5 NW</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>EPSG Usage Extent: <b>Cote d'Ivoire (Ivory Coast) - offshore</b></li>
@@ -5661,7 +5572,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Trinidad Grid” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19925</b></li>
+     *   <li>EPSG coordinate operation code: <b>19925</b></li>
      *   <li>EPSG coordinate operation name: <b>Trinidad Grid</b></li>
      *   <li>Coordinate operation method: <b>Cassini-Soldner</b></li>
      *   <li>EPSG Usage Extent: <b>Trinidad and Tobago - Trinidad</b></li>
@@ -5681,7 +5592,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Trinidad Grid (Clarke's feet)” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>19975</b></li>
+     *   <li>EPSG coordinate operation code: <b>19975</b></li>
      *   <li>EPSG coordinate operation name: <b>Trinidad Grid (Clarke's feet)</b></li>
      *   <li>Coordinate operation method: <b>Cassini-Soldner</b></li>
      *   <li>EPSG Usage Extent: <b>Trinidad and Tobago - Trinidad</b></li>
@@ -5701,7 +5612,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “UTM” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>various</b></li>
+     *   <li>EPSG coordinate operation code: <b>various</b></li>
      *   <li>EPSG coordinate operation name: <b>UTM</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      * </ul>
@@ -5725,7 +5636,7 @@ public class Test2206 extends Series2000<Conversion> {
      * Tests “Wyoming CS27 West Central zone” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>14903</b></li>
+     *   <li>EPSG coordinate operation code: <b>14903</b></li>
      *   <li>EPSG coordinate operation name: <b>Wyoming CS27 West Central zone</b></li>
      *   <li>Alias(es) given by EPSG: <b>Wyoming West Central</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
