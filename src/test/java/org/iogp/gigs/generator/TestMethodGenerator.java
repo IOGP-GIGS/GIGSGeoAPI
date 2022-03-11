@@ -100,7 +100,7 @@ public abstract class TestMethodGenerator {
      * @param  name  the unit name.
      * @return the unit for the given name, or {@code null} if unknown.
      */
-    protected final Unit<?> parseUnit(final String name) {
+    protected static Unit<?> parseUnit(final String name) {
         Unit<?> unit = parseLinearUnit(name);
         if (unit == null) {
             unit = parseAngularUnit(name);
@@ -183,7 +183,7 @@ public abstract class TestMethodGenerator {
     /**
      * Returns {@code true} if the given value should be skipped from javadoc.
      */
-    private static boolean omitFromJavadoc(final Object value) {
+    private static boolean isOmittedFromJavadoc(final Object value) {
         if (value instanceof Double)   return ((Double) value).isNaN();
         if (value instanceof Object[]) return ((Object[]) value).length == 0;
         return false;
@@ -200,7 +200,7 @@ public abstract class TestMethodGenerator {
         indent(1); out.append(" * <ul>\n");
         for (int i=0; i<pairs.length; i += 2) {
             final Object value = pairs[i+1];
-            if (value != null && !omitFromJavadoc(value)) {
+            if (value != null && !isOmittedFromJavadoc(value)) {
                 if (value instanceof Boolean) {
                     if ((Boolean) value) {
                         indent(1);
@@ -235,7 +235,7 @@ public abstract class TestMethodGenerator {
                             out.append(asDouble);
                         }
                     } else {
-                        out.append(value);
+                        out.append(value.toString().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"));
                     }
                     out.append("</b></li>\n");
                 }
@@ -295,12 +295,12 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Appends a Java identified inferred from a sentence.
+     * Prints a Java identified inferred from a sentence.
      * The sentence can contain spaces and punctuations.
      *
      * @param  name    the name as a sentence, possibly with spaces and punctuations.
      */
-    private void appendJavaIdentifier(final String name) {
+    private void printJavaIdentifier(final String name) {
         boolean toUpperCase = true;
         for (int i=0; i<name.length(); i++) {
             char c = name.charAt(i);
@@ -434,7 +434,7 @@ public abstract class TestMethodGenerator {
             out.append("EPSG_").append(code);
         } else {
             out.append("various");
-            appendJavaIdentifier(name);
+            printJavaIdentifier(name);
         }
         out.append("() throws FactoryException {\n");
         final StringBuilder buffer = new StringBuilder(name.length());
@@ -567,7 +567,21 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Prints a call to the {@link UserObjectFactoryTestCase#setCodeAndName(String, int)} method.
+     * Prints a call to a test method from another test file.
+     * This is used for testing dependencies, for example ellipsoid in a geodetic datum.
+     *
+     * @param test  name of the method to call for obtaining an instance of the dependency test class.
+     * @param code  EPSG code which determine the test method to call, or {@code null} if not found.
+     */
+    final void printCallToDependencyTest(final String test, final Integer code) {
+        if (code != null) {
+            indent(2);
+            out.append(test).append("().EPSG_").append(code).append("();\n");
+        }
+    }
+
+    /**
+     * Prints a call to the {@link org.iogp.gigs.Series3000#setCodeAndName(int, String)} method.
      */
     final void printCallToSetCodeAndName(final int code, final String name) {
         indent(2);
@@ -600,7 +614,7 @@ public abstract class TestMethodGenerator {
      * Prints all saved methods to the standard output stream.
      */
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
-    final void printAllMethods() {
+    final void flushAllMethods() {
         methods.values().forEach(System.out::println);
     }
 }

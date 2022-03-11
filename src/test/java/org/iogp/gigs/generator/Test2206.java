@@ -97,6 +97,6 @@ public final class Test2206 extends TestMethodGenerator {
             indent(1); out.append('}');
             saveTestMethod();
         }
-        printAllMethods();
+        flushAllMethods();
     }
 }

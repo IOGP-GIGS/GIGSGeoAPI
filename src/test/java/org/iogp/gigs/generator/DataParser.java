@@ -38,6 +38,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 
 /**
  * Container for a {@code GIGSTestDataset} file, which is read from a CSV file.
@@ -134,6 +136,23 @@ final class DataParser {
      */
     DataParser(final List<Object[]> content) {
         this.content = content;
+    }
+
+    /**
+     * Loads (object name, EPSG code) mapping from the given file.
+     * Keys and values are the content of the second and first columns respectively.
+     *
+     * @param  file  the file to load.
+     * @return (object name, EPSG code) inferred from the two first columns in the given file.
+     * @throws IOException if an error occurred while reading the test data.
+     */
+    static Map<String,Integer> loadDependencies(final String file) throws IOException {
+        final DataParser data = new DataParser(Series.PREDEFINED, file, Integer.class, String.class);
+        final Map<String,Integer> dependencies = new HashMap<>();
+        for (final Object[] row : data.content) {
+            assertNull(dependencies.put((String) row[1], (Integer) row[0]));
+        }
+        return dependencies;
     }
 
     /**

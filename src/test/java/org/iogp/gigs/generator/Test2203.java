@@ -101,7 +101,7 @@ public final class Test2203 extends TestMethodGenerator {
             indent(1); out.append('}');
             saveTestMethod();
         }
-        printAllMethods();
+        flushAllMethods();
     }
 
     /**

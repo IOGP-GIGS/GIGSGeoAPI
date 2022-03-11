@@ -203,6 +203,24 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Returns an instance of the ellipsoid test class initialized to the ellipsoid of current datum.
+     *
+     * @return instance for testing a dependency of current datum.
+     */
+    private Test2202 ellipsoidTest() {
+        return new Test2202(this, datum.getEllipsoid());
+    }
+
+    /**
+     * Returns an instance of the prime meridian test class initialized to the prime meridian of current datum.
+     *
+     * @return instance for testing a dependency of current datum.
+     */
+    private Test2203 primeMeridianTest() {
+        return new Test2203(this, datum.getPrimeMeridian());
+    }
+
+    /**
      * Tests “Abidjan 1987” geodetic datum creation from the factory.
      *
      * <ul>
@@ -225,6 +243,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -248,6 +268,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "War Office";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7029();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -273,6 +295,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -296,6 +320,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7024();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -319,6 +345,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -344,6 +372,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -369,6 +399,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7024();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -392,6 +424,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -415,6 +449,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -438,6 +474,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -463,6 +501,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Plessis 1817";
         primeMeridianName = "Paris RGS";
         verifyDatum();
+        ellipsoidTest().EPSG_7027();
+        primeMeridianTest().EPSG_8914();
     }
 
     /**
@@ -486,6 +526,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -509,6 +551,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -532,6 +576,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -555,6 +601,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (Arc)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7013();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -578,6 +626,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -601,6 +651,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -626,6 +678,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -651,6 +705,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -676,6 +732,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Australian National Spheroid";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7003();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -701,6 +759,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Australian National Spheroid";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7003();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -726,6 +786,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Average Terrestrial System 1977";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7041();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -749,6 +811,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -774,6 +838,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -799,6 +865,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -824,6 +892,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -849,6 +919,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -874,6 +946,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -897,6 +971,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -922,6 +998,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -945,6 +1023,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Jakarta";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8908();
     }
 
     /**
@@ -968,6 +1048,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -991,6 +1073,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7024();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1016,6 +1100,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1039,6 +1125,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1064,6 +1152,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1087,6 +1177,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1110,6 +1202,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1135,6 +1229,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1158,6 +1254,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Bogota";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8904();
     }
 
     /**
@@ -1181,6 +1279,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1206,6 +1306,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1229,6 +1331,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1252,6 +1356,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1277,6 +1383,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (Arc)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7013();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1300,6 +1408,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1323,6 +1433,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1346,6 +1458,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Paris";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8903();
     }
 
     /**
@@ -1371,6 +1485,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1394,6 +1510,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1417,6 +1535,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Bern";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8907();
     }
 
     /**
@@ -1440,6 +1560,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1463,6 +1585,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1488,6 +1612,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1513,6 +1639,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1536,6 +1664,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1559,6 +1689,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Australian National Spheroid";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7003();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1582,6 +1714,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1605,6 +1739,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1628,6 +1764,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1653,6 +1791,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1678,6 +1818,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1701,6 +1843,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1724,6 +1868,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1749,6 +1895,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1774,6 +1922,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1797,6 +1947,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1822,6 +1974,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1847,6 +2001,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1870,6 +2026,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1893,6 +2051,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1916,6 +2076,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1939,6 +2101,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1964,6 +2128,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Helmert 1906";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7020();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -1989,6 +2155,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2014,6 +2182,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Helmert 1906";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7020();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2039,6 +2209,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2064,6 +2236,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2089,6 +2263,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2114,6 +2290,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2139,6 +2317,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2164,6 +2344,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2189,6 +2371,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2214,6 +2398,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2237,6 +2423,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2262,6 +2450,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2287,6 +2477,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2310,6 +2502,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2335,6 +2529,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 72";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7043();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2360,6 +2556,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2385,6 +2583,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2408,6 +2608,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2431,6 +2633,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2454,6 +2658,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2479,6 +2685,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2504,6 +2712,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2529,6 +2739,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Airy Modified 1849";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7002();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2554,6 +2766,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2579,6 +2793,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2602,6 +2818,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2625,6 +2843,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2648,6 +2868,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Athens";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8912();
     }
 
     /**
@@ -2673,6 +2895,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2698,6 +2922,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2721,6 +2947,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2746,6 +2974,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2769,6 +2999,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2792,6 +3024,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Everest 1830 (1937 Adjustment)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7015();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2817,6 +3051,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2842,6 +3078,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Jakarta";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8908();
     }
 
     /**
@@ -2865,6 +3103,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7024();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2888,6 +3128,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2911,6 +3153,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2934,6 +3178,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2957,6 +3203,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -2980,6 +3228,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3005,6 +3255,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1858";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7007();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3030,6 +3282,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3055,6 +3309,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3080,6 +3336,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3105,6 +3363,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1967";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7036();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3130,6 +3390,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3155,6 +3417,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3178,6 +3442,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3201,6 +3467,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3224,6 +3492,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3247,6 +3517,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3272,6 +3544,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3295,6 +3569,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3318,6 +3594,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3341,6 +3619,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Everest 1830 (1937 Adjustment)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7015();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3366,6 +3646,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Everest 1830 (1937 Adjustment)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7015();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3389,6 +3671,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Everest 1830 (1937 Adjustment)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7015();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3414,6 +3698,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Indonesian National Spheroid";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7021();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3439,6 +3725,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3464,6 +3752,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3489,6 +3779,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3514,6 +3806,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3537,6 +3831,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3562,6 +3858,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3585,6 +3883,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3608,6 +3908,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7034();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3633,6 +3935,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3658,6 +3962,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3683,6 +3989,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3708,6 +4016,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3731,6 +4041,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3754,6 +4066,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Everest (1830 Definition)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7042();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3777,6 +4091,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Everest 1830 (1937 Adjustment)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7015();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3800,6 +4116,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Everest 1830 (1962 Definition)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7044();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3823,6 +4141,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Everest 1830 (1975 Definition)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7045();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3846,6 +4166,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Everest 1830 (1937 Adjustment)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7015();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3871,6 +4193,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3896,6 +4220,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3919,6 +4245,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3942,6 +4270,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3965,6 +4295,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Everest 1830 (RSO 1969)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7056();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -3990,6 +4322,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Everest 1830 Modified";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7018();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4013,6 +4347,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4036,6 +4372,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4059,6 +4397,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4082,6 +4422,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4107,6 +4449,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4132,6 +4476,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4155,6 +4501,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4178,6 +4526,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4201,6 +4551,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7024();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4226,6 +4578,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7024();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4251,6 +4605,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4274,6 +4630,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4299,6 +4657,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4322,6 +4682,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4347,6 +4709,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4370,6 +4734,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4393,6 +4759,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Lisbon";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8902();
     }
 
     /**
@@ -4416,6 +4784,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4439,6 +4809,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Lisbon";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8902();
     }
 
     /**
@@ -4464,6 +4836,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4489,6 +4863,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4512,6 +4888,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4535,6 +4913,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4560,6 +4940,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4583,6 +4965,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4606,6 +4990,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4631,6 +5017,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Struve 1860";
         primeMeridianName = "Madrid";
         verifyDatum();
+        ellipsoidTest().EPSG_7028();
+        primeMeridianTest().EPSG_8905();
     }
 
     /**
@@ -4654,6 +5042,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4677,6 +5067,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4700,6 +5092,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4723,6 +5117,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Jakarta";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8908();
     }
 
     /**
@@ -4748,6 +5144,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4771,6 +5169,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4796,6 +5196,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4819,6 +5221,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4842,6 +5246,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Hough 1960";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7053();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4867,6 +5273,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4890,6 +5298,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4915,6 +5325,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4938,6 +5350,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4961,6 +5375,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -4986,6 +5402,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5011,6 +5429,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5034,6 +5454,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5059,6 +5481,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5084,6 +5508,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Ferro";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8909();
     }
 
     /**
@@ -5107,6 +5533,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5132,6 +5560,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5157,6 +5587,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5182,6 +5614,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Rome";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8906();
     }
 
     /**
@@ -5205,6 +5639,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5228,6 +5664,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5253,6 +5691,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5276,6 +5716,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1858";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7007();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5301,6 +5743,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5326,6 +5770,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5349,6 +5795,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5374,6 +5822,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5397,6 +5847,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5420,6 +5872,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5443,6 +5897,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5466,6 +5922,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5489,6 +5947,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5514,6 +5974,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5537,6 +5999,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5562,6 +6026,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5587,6 +6053,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5610,6 +6078,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel Modified";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7005();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5633,6 +6103,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel Modified";
         primeMeridianName = "Oslo";
         verifyDatum();
+        ellipsoidTest().EPSG_7005();
+        primeMeridianTest().EPSG_8913();
     }
 
     /**
@@ -5656,6 +6128,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5681,6 +6155,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5706,6 +6182,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5731,6 +6209,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5756,6 +6236,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5779,6 +6261,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5804,6 +6288,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5827,6 +6313,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Paris";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8903();
     }
 
     /**
@@ -5850,6 +6338,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "NWL 9D";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7025();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5873,6 +6363,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5896,6 +6388,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5919,6 +6413,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Airy 1830";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7001();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5944,6 +6440,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Airy 1830";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7001();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5969,6 +6467,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Airy 1830";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7001();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -5992,6 +6492,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Airy 1830";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7001();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6017,6 +6519,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (Benoit)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7010();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6040,6 +6544,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6065,6 +6571,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "PZ-90";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7054();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6090,6 +6598,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6113,6 +6623,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6138,6 +6650,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6161,6 +6675,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6186,6 +6702,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6209,6 +6727,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6232,6 +6752,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6257,6 +6779,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6282,6 +6806,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6307,6 +6833,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6332,6 +6860,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6357,6 +6887,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6382,6 +6914,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6407,6 +6941,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6432,6 +6968,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6455,6 +6993,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6478,6 +7018,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7024();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6503,6 +7045,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7024();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6528,6 +7072,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7024();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6551,6 +7097,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7024();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6574,6 +7122,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Helmert 1906";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7020();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6597,6 +7147,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6622,6 +7174,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6645,6 +7199,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6668,6 +7224,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6693,6 +7251,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6718,6 +7278,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6743,6 +7305,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6768,6 +7332,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6793,6 +7359,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6818,6 +7386,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6843,6 +7413,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6868,6 +7440,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6893,6 +7467,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6916,6 +7492,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Brussels";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8910();
     }
 
     /**
@@ -6941,6 +7519,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6966,6 +7546,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -6989,6 +7571,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Danish 1876";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7051();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7014,6 +7598,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7039,6 +7625,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7064,6 +7652,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7089,6 +7679,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7112,6 +7704,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7135,6 +7729,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel Namibia (GLM)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7046();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7158,6 +7754,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7183,6 +7781,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7206,6 +7806,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7229,6 +7831,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7254,6 +7858,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "War Office";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7029();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7279,6 +7885,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7304,6 +7912,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7329,6 +7939,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7354,6 +7966,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7377,6 +7991,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7400,6 +8016,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1967 Modified";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7050();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7423,6 +8041,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7446,6 +8066,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7024();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7469,6 +8091,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7492,6 +8116,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7515,6 +8141,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7538,6 +8166,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7561,6 +8191,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7584,6 +8216,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7012();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7607,6 +8241,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7630,6 +8266,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7653,6 +8291,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7678,6 +8318,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7701,6 +8343,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Stockholm";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8911();
     }
 
     /**
@@ -7724,6 +8368,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7747,6 +8393,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7772,6 +8420,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7797,6 +8447,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7822,6 +8474,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Ferro";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8909();
     }
 
     /**
@@ -7847,6 +8501,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7872,6 +8528,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7897,6 +8555,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7922,6 +8582,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1967 Modified";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7050();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7947,6 +8609,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7019();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7972,6 +8636,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -7995,6 +8661,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Paris";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8903();
     }
 
     /**
@@ -8018,6 +8686,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8043,6 +8713,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7008();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8068,6 +8740,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Everest 1830 (1967 Definition)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7016();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8091,6 +8765,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Airy Modified 1849";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7002();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8116,6 +8792,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7004();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8139,6 +8817,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1858";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7007();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8162,6 +8842,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8187,6 +8869,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Helmert 1906";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7020();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8212,6 +8896,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (international foot)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7055();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8235,6 +8921,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Krassowsky 1940";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7024();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8260,6 +8948,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8285,6 +8975,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (international foot)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7055();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8308,6 +9000,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8331,6 +9025,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Paris";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8903();
     }
 
     /**
@@ -8354,6 +9050,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8377,6 +9075,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Paris";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8903();
     }
 
     /**
@@ -8400,6 +9100,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8425,6 +9127,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 72";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7043();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8450,6 +9154,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "NWL 9D";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7025();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8475,6 +9181,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 72";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7043();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8500,6 +9208,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8523,6 +9233,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "IAG 1975";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7049();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8548,6 +9260,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8573,6 +9287,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "WGS 84";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7030();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8596,6 +9312,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "Clarke 1880 (IGN)";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7011();
+        primeMeridianTest().EPSG_8901();
     }
 
     /**
@@ -8619,5 +9337,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();
+        ellipsoidTest().EPSG_7022();
+        primeMeridianTest().EPSG_8901();
     }
 }

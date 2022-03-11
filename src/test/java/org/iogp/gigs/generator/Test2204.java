@@ -24,6 +24,7 @@
  */
 package org.iogp.gigs.generator;
 
+import java.util.Map;
 import java.io.IOException;
 
 
@@ -59,6 +60,8 @@ public final class Test2204 extends TestMethodGenerator {
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
+        final Map<String,Integer> ellipsoids     = DataParser.loadDependencies("GIGS_lib_2202_Ellipsoid.txt");
+        final Map<String,Integer> primeMeridians = DataParser.loadDependencies("GIGS_lib_2203_PrimeMeridian.txt");
         final DataParser data = new DataParser(Series.PREDEFINED, "GIGS_lib_2204_GeodeticDatum.txt",
                 Integer.class,      // [0]: EPSG Datum Code
                 String .class,      // [1]: EPSG Datum Name
@@ -96,9 +99,11 @@ public final class Test2204 extends TestMethodGenerator {
                                   "ellipsoidName",     ellipsoidName,
                                   "primeMeridianName", primeMeridianName);
             indent(2); out.append("verifyDatum();\n");
+            printCallToDependencyTest("ellipsoidTest", ellipsoids.get(ellipsoidName));
+            printCallToDependencyTest("primeMeridianTest", primeMeridians.get(primeMeridianName));
             indent(1); out.append('}');
             saveTestMethod();
         }
-        printAllMethods();
+        flushAllMethods();
     }
 }

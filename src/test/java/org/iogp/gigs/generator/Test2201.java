@@ -110,6 +110,6 @@ public final class Test2201 extends TestMethodGenerator {
             indent(1); out.append('}');
             saveTestMethod();
         }
-        printAllMethods();
+        flushAllMethods();
     }
 }
