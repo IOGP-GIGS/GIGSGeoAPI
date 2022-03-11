@@ -178,8 +178,8 @@ public class Test2203 extends Series2000<PrimeMeridian> {
         validators.validate(pm);
 
         // Prime meridian identifiers and name.
-        assertContainsCode("PrimeMeridian.getIdentifiers()", "EPSG", code, pm.getIdentifiers());
-        assertNameEquals(name, pm, "PrimeMeridian.getName()");
+        assertIdentifierEquals(code, pm, "PrimeMeridian");
+        assertNameEquals(true, name, pm, "PrimeMeridian");
 
         // Prime meridian alias.
         if (isStandardAliasSupported) {

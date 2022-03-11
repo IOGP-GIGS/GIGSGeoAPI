@@ -24,6 +24,7 @@
  */
 package org.iogp.gigs;
 
+import java.text.Normalizer;
 import java.util.Collection;
 import org.opengis.util.GenericName;
 import org.opengis.util.FactoryException;
@@ -228,6 +229,54 @@ public abstract class Series2000<T> extends IntegrityTest {
     }
 
     /**
+     * Replaces some Unicode characters by ASCII characters on a "best effort basis".
+     * For example the “ é ” character is replaced by  “ e ” (without accent),
+     * the  “ ″ ” symbol for minutes of angle is replaced by straight double quotes “ " ”,
+     * and combined characters like ㎏, ㎎, ㎝, ㎞, ㎢, ㎦, ㎖, ㎧, ㎩, ㎐, <i>etc.</i> are replaced
+     * by the corresponding sequences of characters.
+     *
+     * @param  buffer  the text to scan for Unicode characters to replace by ASCII characters.
+     */
+    private static String toASCII(final String text) {
+        final StringBuilder buffer = new StringBuilder(Normalizer.normalize(text, Normalizer.Form.NFKD));
+        int i = text.length();
+        while (i > 0) {
+            final int c = Character.codePointBefore(text, i);
+            final int n = Character.charCount(c);
+            i -= n;                                 // After this line, `i` is the index of character `c`.
+            final char r;                           // The character replacement.
+            switch (Character.getType(c)) {
+                case Character.FORMAT:
+                case Character.CONTROL:                   // Character.isIdentifierIgnorable
+                case Character.NON_SPACING_MARK:          buffer.delete(i, i + n); continue;
+                case Character.PARAGRAPH_SEPARATOR:       // Fall through
+                case Character.LINE_SEPARATOR:            r = '\n'; break;
+                case Character.SPACE_SEPARATOR:           r = ' '; break;
+                case Character.INITIAL_QUOTE_PUNCTUATION: r = (c == '‘') ? '\'' : '"'; break;
+                case Character.FINAL_QUOTE_PUNCTUATION:   r = (c == '’') ? '\'' : '"'; break;
+                case Character.OTHER_PUNCTUATION:
+                case Character.MATH_SYMBOL: {
+                    switch (c) {
+                        case '⋅': r = '*';  break;
+                        case '∕': r = '/';  break;
+                        case '′': r = '\''; break;
+                        case '″': r = '"';  break;
+                        default:  continue;
+                    }
+                    break;
+                }
+                default: continue;
+            }
+            if (n == 2) {
+                buffer.deleteCharAt(i + 1);         // Remove the low surrogate of a surrogate pair.
+            }
+            // Nothing special to do about codepoint here, because `r` is in the basic plane
+            buffer.setCharAt(i, r);
+        }
+        return buffer.toString();
+    }
+
+    /**
      * Compares the given generic names with the given set of expected aliases.
      * This method verifies that the given collection contains at least the expected aliases.
      * However the collection may contain additional aliases, which will be ignored.
@@ -252,34 +301,32 @@ next:   for (final String search : expected) {
     }
 
     /**
-     * Ensures that the given collection contains at least one identifier having the given
+     * Ensures that the given collection contains an identifier having the EPSG
      * codespace (ignoring case) and the given code value.
      *
-     * @param  message      the message to show in case of failure.
-     * @param  codespace    the code space of identifiers to search.
-     * @param  expected     the expected identifier code.
-     * @param  identifiers  the actual identifiers.
+     * @param  expected  the expected identifier code.
+     * @param  object    the object from which to test identifiers.
+     * @param  message   the Java expression used for getting the object. This is shown if the assertion fails.
      */
-    final void assertContainsCode(final String message, final String codespace, final int expected,
-            final Collection<? extends ReferenceIdentifier> identifiers)
-    {
+    final void assertIdentifierEquals(final int expected, final IdentifiedObject object, final String message) {
+        final Collection<? extends ReferenceIdentifier> identifiers = object.getIdentifiers();
         assertNotNull(identifiers, message);
         if (isStandardIdentifierSupported) {
             final Configuration.Key<Boolean> previous = configurationTip;
             configurationTip = Configuration.Key.isStandardIdentifierSupported;
             int found = 0;
             for (final ReferenceIdentifier id : identifiers) {
-                if (codespace.equalsIgnoreCase(id.getCodeSpace().trim())) {
+                if (EPSG.equalsIgnoreCase(id.getCodeSpace().trim())) {
                     found++;
                     try {
                         assertEquals(expected, Integer.parseInt(id.getCode()), message);
                     } catch (NumberFormatException e) {
-                        fail(message + ".getCode(): expected " + expected +
+                        fail(message + ".getIdentifiers(…).getCode(): expected " + expected +
                                 " but got a non-numerical value: " + e);
                     }
                 }
             }
-            assertEquals(1, found, () -> message + ": occurrence of " + codespace + ':' + expected);
+            assertEquals(1, found, () -> message + ".getIdentifiers(*): occurrence of " + EPSG + ':' + expected);
             configurationTip = previous;
         }
     }
@@ -287,32 +334,26 @@ next:   for (final String search : expected) {
     /**
      * Ensures that the name of the given object is equal to the value of the expected name.
      *
+     * @param  full      {@code true} for a full match, or {@code false} if the name only needs to start with expected value.
      * @param  expected  the expected name.
      * @param  object    the object for which to verify the name.
-     * @param  message   the message to show in case of failure.
+     * @param  message   the Java expression used for getting the object. This is shown if the assertion fails.
      */
-    final void assertNameEquals(final String expected, final IdentifiedObject object, final String message) {
+    final void assertNameEquals(final boolean full, final String expected, final IdentifiedObject object, final String message) {
         if (isStandardNameSupported) {
             final Configuration.Key<Boolean> previous = configurationTip;
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(expected, getVerifiableName(object), message);
-            configurationTip = previous;
-        }
-    }
-
-    /**
-     * Ensures that the name of the given object starts with the expected name.
-     *
-     * @param  expected  the expected name prefix.
-     * @param  object    the object for which to verify the name.
-     * @param  message   the message to show in case of failure.
-     */
-    final void assertNameStartsWith(final String expected, final IdentifiedObject object, final String message) {
-        if (isStandardNameSupported) {
-            final Configuration.Key<Boolean> previous = configurationTip;
-            configurationTip = Configuration.Key.isStandardNameSupported;
-            final String actual = getVerifiableName(object);
-            assertEquals(expected, actual.substring(0, Math.min(expected.length(), actual.length())), message);
+            final String name = getName(object);
+            final String actual = toASCII(name);
+            final boolean match;
+            if (full) {
+                match = expected.equals(actual);
+            } else {
+                match = (actual != null) && actual.startsWith(expected);
+            }
+            if (!match) {
+                assertEquals(expected, name, message + ".getName()");
+            }
             configurationTip = previous;
         }
     }

@@ -185,8 +185,8 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         validators.validate(crs);
 
         // Geodetic CRS identifier and name.
-        assertContainsCode("GeodeticCRS.getIdentifiers()", "EPSG", code, crs.getIdentifiers());
-        assertNameEquals(name, crs, "GeodeticCRS.getName()");
+        assertIdentifierEquals(code, crs, "GeodeticCRS");
+        assertNameEquals(true, name, crs, "GeodeticCRS");
 
         // Geodetic CRS datum.
         final GeodeticDatum crsDatum = crs.getDatum();
@@ -194,7 +194,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         validators.validate(crsDatum);
         if (isDependencyIdentificationSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertContainsCode("GeodeticCRS.getDatum().getIdentifiers()", "EPSG", datum, crsDatum.getIdentifiers());
+            assertIdentifierEquals(datum, crsDatum, "GeodeticCRS.getDatum()");
             configurationTip = null;
         }
 

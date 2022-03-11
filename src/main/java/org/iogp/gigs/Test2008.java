@@ -192,8 +192,8 @@ public class Test2008 extends Series2000<VerticalCRS> {
             validators.validate(datum);
 
             // Datum identifier. Important in order to distinguish datum.
-            assertContainsCode("VerticalDatum.getIdentifiers()", "EPSG", datumCode, datum.getIdentifiers());
-            assertNameEquals(datumName, datum, "VerticalDatum.getName()");
+            assertIdentifierEquals(datumCode, datum, "VerticalDatum");
+            assertNameEquals(true, datumName, datum, "VerticalDatum");
         }
     }
 
@@ -211,8 +211,8 @@ public class Test2008 extends Series2000<VerticalCRS> {
             validators.validate(crs);
 
             // CRS identifier and name.
-            assertContainsCode("VerticalCRS.getIdentifiers()", "EPSG", code, crs.getIdentifiers());
-            assertNameEquals(name, crs, "VerticalCRS.getName()");
+            assertIdentifierEquals(code, crs, "VerticalCRS");
+            assertNameEquals(true, name, crs, "VerticalCRS");
 
             // Datum associated to the CRS.
             final VerticalDatum datum = crs.getDatum();
@@ -221,8 +221,7 @@ public class Test2008 extends Series2000<VerticalCRS> {
             // Datum identification.
             if (isDependencyIdentificationSupported) {
                 configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-                assertContainsCode("VerticalCRS.getDatum().getIdentifiers()", "EPSG",
-                        datumCode, datum.getIdentifiers());
+                assertIdentifierEquals(datumCode, datum, "VerticalCRS.getDatum()");
 
                 assertEquals(datumName, getVerifiableName(datum), "VerticalCRS.getDatum().getName()");
                 configurationTip = null;

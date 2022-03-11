@@ -58,6 +58,11 @@ import static org.iogp.gigs.internal.geoapi.Assert.assertUnicodeIdentifierEquals
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public abstract class IntegrityTest extends ConformanceTest {
     /**
+     * Frequently used code space.
+     */
+    static final String EPSG = "EPSG";
+
+    /**
      * Relative tolerance factor from GIGS documentation.
      * This tolerance threshold is typically multiplied
      * by the magnitude of the value being compared.

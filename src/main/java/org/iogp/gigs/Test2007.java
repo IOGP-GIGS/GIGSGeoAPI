@@ -177,13 +177,13 @@ public class Test2007 extends Series2000<Transformation> {
         validators.validate(transformation);
 
         // Transformation identifier and name.
-        assertContainsCode("Transformation.getIdentifiers()", "EPSG", code, transformation.getIdentifiers());
-        assertNameEquals(name, transformation, "Transformation.getName()");
+        assertIdentifierEquals(code, transformation, "Transformation");
+        assertNameEquals(true, name, transformation, "Transformation");
 
         // Operation method.
         final OperationMethod m = transformation.getMethod();
         assertNotNull(m, "Transformation.getMethod()");
-        assertNameEquals(methodName, m, "Transformation.getMethod().getName()");
+        assertNameEquals(true, methodName, m, "Transformation.getMethod()");
     }
 
     /**

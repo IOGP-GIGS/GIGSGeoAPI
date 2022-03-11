@@ -203,16 +203,15 @@ public class Test2207 extends Series2000<ProjectedCRS> {
         validators.validate(crs);
 
         // Projected CRS identifier.
-        assertContainsCode("ProjectedCRS.getIdentifiers()", "EPSG", code, crs.getIdentifiers());
-        assertNameStartsWith(name, crs, "ProjectedCRS.getName()");
+        assertIdentifierEquals (code, crs, "ProjectedCRS");
+        assertNameEquals(false, name, crs, "ProjectedCRS");
 
         // Projected CRS components.
         if (isDependencyIdentificationSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
 
             // Geodetic datum name.
-            assertContainsCode("ProjectedCRS.getDatum().getIdentifiers()",
-                    "EPSG", datumCode, crs.getDatum().getIdentifiers());
+            assertIdentifierEquals(datumCode, crs.getDatum(), "ProjectedCRS.getDatum()");
 
             // Base geographic CRS name.
             if (isStandardNameSupported) {

@@ -185,8 +185,8 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         assertNotNull(datum, "GeodeticDatum");
         validators.validate(datum);
 
-        assertContainsCode("GeodeticDatum.getIdentifiers()", "EPSG", code, datum.getIdentifiers());
-        assertNameEquals(name, datum, "GeodeticDatum.getName()");
+        assertIdentifierEquals(code, datum, "GeodeticDatum");
+        assertNameEquals(true, name, datum, "GeodeticDatum");
 
         // Geodetic datum ellipsoid.
         final Ellipsoid e = datum.getEllipsoid();
