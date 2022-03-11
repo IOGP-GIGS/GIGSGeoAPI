@@ -234,6 +234,13 @@ public final class Configuration {
                 new Key<>(Boolean.class, "isMixedNameSyntaxSupported");
 
         /**
+         * Whether the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getIdentifiers()
+         * identifiers} matching the identifiers declared in the EPSG database.
+         */
+        public static final Key<Boolean> isStandardIdentifierSupported =
+                new Key<>(Boolean.class, "isStandardIdentifierSupported");
+
+        /**
          * Whether the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getName()
          * names} matching the names declared in the EPSG database.
          */

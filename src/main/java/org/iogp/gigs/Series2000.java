@@ -76,6 +76,14 @@ public abstract class Series2000<T> extends IntegrityTest {
     public String[] aliases = NONE;
 
     /**
+     * {@code true} if the tested factories support {@linkplain IdentifiedObject#getIdentifiers() identifiers}.
+     * If {@code true} (the default), then the test methods will ensure that the identified objects created by
+     * the factories declare the authority code used for fetching the object.
+     * If {@code false}, then the identifiers are ignored.
+     */
+    protected boolean isStandardIdentifierSupported;
+
+    /**
      * {@code true} if the tested factories support {@linkplain IdentifiedObject#getName() name}.
      * If {@code true} (the default), then the test methods will ensure that the identified objects
      * created by the factories declare the same name than the GIGS tests.
@@ -118,14 +126,16 @@ public abstract class Series2000<T> extends IntegrityTest {
     Series2000() {
         @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(
+                Configuration.Key.isStandardIdentifierSupported,
                 Configuration.Key.isStandardNameSupported,
                 Configuration.Key.isStandardAliasSupported,
                 Configuration.Key.isDependencyIdentificationSupported,
                 Configuration.Key.isDeprecatedObjectCreationSupported);
-        isStandardNameSupported             = isEnabled[0];
-        isStandardAliasSupported            = isEnabled[1];
-        isDependencyIdentificationSupported = isEnabled[2];
-        isDeprecatedObjectCreationSupported = isEnabled[3];
+        isStandardIdentifierSupported       = isEnabled[0];
+        isStandardNameSupported             = isEnabled[1];
+        isStandardAliasSupported            = isEnabled[2];
+        isDependencyIdentificationSupported = isEnabled[3];
+        isDeprecatedObjectCreationSupported = isEnabled[4];
     }
 
     /**
@@ -137,8 +147,9 @@ public abstract class Series2000<T> extends IntegrityTest {
     final void configureAsDependency(final Series2000 parent) {
         isDeprecatedObjectCreationSupported &= parent.isDeprecatedObjectCreationSupported;
         isDependencyIdentificationSupported &= parent.isDependencyIdentificationSupported;
-        isStandardNameSupported             &= parent.isStandardNameSupported  & isDependencyIdentificationSupported;
-        isStandardAliasSupported            &= parent.isStandardAliasSupported & isDependencyIdentificationSupported;
+        isStandardIdentifierSupported       &= parent.isStandardIdentifierSupported & isDependencyIdentificationSupported;
+        isStandardNameSupported             &= parent.isStandardNameSupported       & isDependencyIdentificationSupported;
+        isStandardAliasSupported            &= parent.isStandardAliasSupported      & isDependencyIdentificationSupported;
     }
 
     /**
@@ -148,9 +159,11 @@ public abstract class Series2000<T> extends IntegrityTest {
      * <ul>
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
+     *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
      *       <li>{@link #isStandardAliasSupported}</li>
      *       <li>{@link #isDependencyIdentificationSupported}</li>
+     *       <li>{@link #isDeprecatedObjectCreationSupported}</li>
      *       <li>The factories used by the test (provided by subclasses)</li>
      *     </ul>
      *   </li>
@@ -161,6 +174,7 @@ public abstract class Series2000<T> extends IntegrityTest {
     @Override
     Configuration configuration() {
         final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.isStandardIdentifierSupported,       isStandardIdentifierSupported));
         assertNull(op.put(Configuration.Key.isStandardNameSupported,             isStandardNameSupported));
         assertNull(op.put(Configuration.Key.isStandardAliasSupported,            isStandardAliasSupported));
         assertNull(op.put(Configuration.Key.isDependencyIdentificationSupported, isDependencyIdentificationSupported));

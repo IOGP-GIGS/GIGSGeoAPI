@@ -113,6 +113,7 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
+     *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
      *       <li>{@link #isStandardAliasSupported}</li>
      *       <li>{@link #isDependencyIdentificationSupported}</li>
