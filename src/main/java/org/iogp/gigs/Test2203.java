@@ -108,19 +108,6 @@ public class Test2203 extends Series2000<PrimeMeridian> {
     }
 
     /**
-     * Creates a new test which inherit its configuration from the specified test.
-     * This is used for testing dependent objects (prime meridian in a datum).
-     *
-     * @param  parent      the test from which to inherit the configuration.
-     * @param  dependency  the datum dependency to test.
-     */
-    Test2203(final Test2204 parent, final PrimeMeridian dependency) {
-        super(parent);
-        primeMeridian = dependency;
-        datumAuthorityFactory = parent.datumAuthorityFactory;
-    }
-
-    /**
      * Returns information about the configuration of the test which has been run.
      * This method returns a map containing:
      *
@@ -166,6 +153,17 @@ public class Test2203 extends Series2000<PrimeMeridian> {
             }
         }
         return primeMeridian;
+    }
+
+    /**
+     * Sets the prime meridian instance to be tested.
+     * This is used for testing datum dependencies.
+     *
+     * @param  dependency  the datum dependency to test.
+     */
+    final void setIdentifiedObject(final PrimeMeridian dependency) {
+        assertNull(primeMeridian);
+        primeMeridian = dependency;
     }
 
     /**

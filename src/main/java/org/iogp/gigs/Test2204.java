@@ -164,6 +164,17 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     }
 
     /**
+     * Sets the datum instance to be tested.
+     * This is used for testing geodetic CRS dependencies.
+     *
+     * @param  dependency  the CRS dependency to test.
+     */
+    final void setIdentifiedObject(final GeodeticDatum dependency) {
+        assertNull(datum);
+        datum = dependency;
+    }
+
+    /**
      * Verifies the properties of the geodetic datum given by {@link #getIdentifiedObject()}.
      *
      * @throws FactoryException if an error occurred while creating the datum.
@@ -208,7 +219,10 @@ public class Test2204 extends Series2000<GeodeticDatum> {
      * @return instance for testing a dependency of current datum.
      */
     private Test2202 ellipsoidTest() {
-        return new Test2202(this, datum.getEllipsoid());
+        final Test2202 test = new Test2202(datumAuthorityFactory);
+        test.configureAsDependency(this);
+        test.setIdentifiedObject(datum.getEllipsoid());
+        return test;
     }
 
     /**
@@ -217,7 +231,10 @@ public class Test2204 extends Series2000<GeodeticDatum> {
      * @return instance for testing a dependency of current datum.
      */
     private Test2203 primeMeridianTest() {
-        return new Test2203(this, datum.getPrimeMeridian());
+        final Test2203 test = new Test2203(datumAuthorityFactory);
+        test.configureAsDependency(this);
+        test.setIdentifiedObject(datum.getPrimeMeridian());
+        return test;
     }
 
     /**

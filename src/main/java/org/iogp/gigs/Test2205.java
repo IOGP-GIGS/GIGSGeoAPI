@@ -211,6 +211,18 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
+     * Returns an instance of the datum test class initialized to the datum of current CRS.
+     *
+     * @return instance for testing a dependency of current CRS.
+     */
+    private Test2204 datumTest() {
+        final Test2204 test = new Test2204(null);
+        test.configureAsDependency(this);
+        test.setIdentifiedObject(crs.getDatum());
+        return test;
+    }
+
+    /**
      * Tests “Abidjan 1987” geodetic CRS creation from the factory.
      *
      * <ul>
@@ -232,6 +244,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Côte d'Ivoire"};
         datum        = 6143;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6143();
     }
 
     /**
@@ -254,6 +267,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Accra";
         datum        = 6168;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6168();
     }
 
     /**
@@ -278,6 +292,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Blue Nile 1958"};
         datum        = 6201;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6201();
     }
 
     /**
@@ -300,6 +315,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Afgooye";
         datum        = 6205;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6205();
     }
 
     /**
@@ -322,6 +338,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Agadez";
         datum        = 6206;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6206();
     }
 
     /**
@@ -344,6 +361,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "AGD66";
         datum        = 6202;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6202();
     }
 
     /**
@@ -366,6 +384,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "AGD84";
         datum        = 6203;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6203();
     }
 
     /**
@@ -388,6 +407,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Ain el Abd";
         datum        = 6204;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6204();
     }
 
     /**
@@ -412,6 +432,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"ALB86"};
         datum        = 6191;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6191();
     }
 
     /**
@@ -434,6 +455,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "American Samoa 1962";
         datum        = 6169;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6169();
     }
 
     /**
@@ -458,6 +480,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"RD Bessel"};
         datum        = 6289;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6289();
     }
 
     /**
@@ -480,6 +503,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Ammassalik 1958";
         datum        = 6196;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6196();
     }
 
     /**
@@ -502,6 +526,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Anguilla 1957";
         datum        = 6600;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6600();
     }
 
     /**
@@ -524,6 +549,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Antigua 1943";
         datum        = 6601;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6601();
     }
 
     /**
@@ -546,6 +572,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Aratu";
         datum        = 6208;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6208();
     }
 
     /**
@@ -568,6 +595,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Arc 1950";
         datum        = 6209;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6209();
     }
 
     /**
@@ -590,6 +618,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Arc 1960";
         datum        = 6210;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6210();
     }
 
     /**
@@ -612,6 +641,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Ascension Island 1958";
         datum        = 6712;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6712();
     }
 
     /**
@@ -636,6 +666,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"ASTRO DOS 71/4"};
         datum        = 6710;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6710();
     }
 
     /**
@@ -658,6 +689,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ATF (Paris)";
         datum        = 6901;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6901();
     }
 
     /**
@@ -680,6 +712,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ATS77";
         datum        = 6122;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6122();
     }
 
     /**
@@ -704,6 +737,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"AAD98"};
         datum        = 6176;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6176();
     }
 
     /**
@@ -728,6 +762,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"AAD98"};
         datum        = 6176;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6176();
     }
 
     /**
@@ -753,6 +788,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6176;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6176();
     }
 
     /**
@@ -775,6 +811,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Ayabelle Lighthouse";
         datum        = 6713;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6713();
     }
 
     /**
@@ -799,6 +836,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Graciosa"};
         datum        = 6183;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6183();
     }
 
     /**
@@ -823,6 +861,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Base SW"};
         datum        = 6665;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6665();
     }
 
     /**
@@ -845,6 +884,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Azores Occidental 1939";
         datum        = 6182;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6182();
     }
 
     /**
@@ -869,6 +909,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Sao Braz"};
         datum        = 6184;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6184();
     }
 
     /**
@@ -893,6 +934,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Sao Braz"};
         datum        = 6664;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6664();
     }
 
     /**
@@ -915,6 +957,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Barbados 1938";
         datum        = 6212;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6212();
     }
 
     /**
@@ -939,6 +982,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Genuk"};
         datum        = 6211;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6211();
     }
 
     /**
@@ -963,6 +1007,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Genuk (Jakarta)"};
         datum        = 6813;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6813();
     }
 
     /**
@@ -985,6 +1030,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "BDA2000";
         datum        = 6762;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6762();
     }
 
     /**
@@ -1007,6 +1053,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "BDA2000";
         datum        = 6762;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6762();
     }
 
     /**
@@ -1030,6 +1077,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6762;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6762();
     }
 
     /**
@@ -1052,6 +1100,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Beduaram";
         datum        = 6213;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6213();
     }
 
     /**
@@ -1074,6 +1123,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Beijing 1954";
         datum        = 6214;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6214();
     }
 
     /**
@@ -1098,6 +1148,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"BD 50"};
         datum        = 6215;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6215();
     }
 
     /**
@@ -1122,6 +1173,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"BD 50 (Brussels)"};
         datum        = 6809;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6809();
     }
 
     /**
@@ -1146,6 +1198,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"BD 72"};
         datum        = 6313;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6313();
     }
 
     /**
@@ -1170,6 +1223,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Bellevue (IGN)"};
         datum        = 6714;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6714();
     }
 
     /**
@@ -1192,6 +1246,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Bermuda 1957";
         datum        = 6216;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6216();
     }
 
     /**
@@ -1214,6 +1269,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Bern 1898 (Bern)";
         datum        = 6801;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6801();
     }
 
     /**
@@ -1236,6 +1292,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Bern 1938";
         datum        = 6306;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6306();
     }
 
     /**
@@ -1258,6 +1315,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Bissau";
         datum        = 6165;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6165();
     }
 
     /**
@@ -1282,6 +1340,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Bogota"};
         datum        = 6218;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6218();
     }
 
     /**
@@ -1304,6 +1363,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Bogota 1975 (Bogota)";
         datum        = 6802;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6802();
     }
 
     /**
@@ -1326,6 +1386,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Bukit Rimpah";
         datum        = 6219;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6219();
     }
 
     /**
@@ -1350,6 +1411,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Camacupa"};
         datum        = 6220;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6220();
     }
 
     /**
@@ -1372,6 +1434,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Camp Area Astro";
         datum        = 6715;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6715();
     }
 
     /**
@@ -1394,6 +1457,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Campo Inchauspe";
         datum        = 6221;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6221();
     }
 
     /**
@@ -1416,6 +1480,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Cape";
         datum        = 6222;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6222();
     }
 
     /**
@@ -1438,6 +1503,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Cape Canaveral";
         datum        = 6717;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6717();
     }
 
     /**
@@ -1460,6 +1526,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Carthage";
         datum        = 6223;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6223();
     }
 
     /**
@@ -1482,6 +1549,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Carthage (Paris)";
         datum        = 6816;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6816();
     }
 
     /**
@@ -1504,6 +1572,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "CH1903";
         datum        = 6149;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6149();
     }
 
     /**
@@ -1526,6 +1595,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "CH1903+";
         datum        = 6150;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6150();
     }
 
     /**
@@ -1550,6 +1620,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"CI1971"};
         datum        = 6672;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6672();
     }
 
     /**
@@ -1574,6 +1645,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"CI1979"};
         datum        = 6673;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6673();
     }
 
     /**
@@ -1598,6 +1670,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Quini-Huao"};
         datum        = 6160;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6160();
     }
 
     /**
@@ -1620,6 +1693,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "CHTRF95";
         datum        = 6151;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6151();
     }
 
     /**
@@ -1642,6 +1716,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "CHTRF96";
         datum        = 6151;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6151();
     }
 
     /**
@@ -1665,6 +1740,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6151;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6151();
     }
 
     /**
@@ -1687,6 +1763,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Chua";
         datum        = 6224;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6224();
     }
 
     /**
@@ -1709,6 +1786,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Cocos Islands 1965";
         datum        = 6708;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6708();
     }
 
     /**
@@ -1731,6 +1809,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Combani 1950";
         datum        = 6632;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6632();
     }
 
     /**
@@ -1753,6 +1832,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Conakry 1905";
         datum        = 6315;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6315();
     }
 
     /**
@@ -1777,6 +1857,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Corrego Alegre"};
         datum        = 6225;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6225();
     }
 
     /**
@@ -1799,6 +1880,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "CSG67";
         datum        = 6623;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6623();
     }
 
     /**
@@ -1821,6 +1903,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Dabola 1981";
         datum        = 6155;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6155();
     }
 
     /**
@@ -1845,6 +1928,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"D73"};
         datum        = 6274;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6274();
     }
 
     /**
@@ -1869,6 +1953,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Dealul Piscului 1933"};
         datum        = 6316;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6316();
     }
 
     /**
@@ -1891,6 +1976,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Deception Island";
         datum        = 6736;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6736();
     }
 
     /**
@@ -1915,6 +2001,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Levant"};
         datum        = 6227;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6227();
     }
 
     /**
@@ -1939,6 +2026,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"IGD95"};
         datum        = 6755;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6755();
     }
 
     /**
@@ -1963,6 +2051,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"IGD95"};
         datum        = 6755;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6755();
     }
 
     /**
@@ -1988,6 +2077,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6755;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6755();
     }
 
     /**
@@ -2010,6 +2100,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "DHDN";
         datum        = 6314;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6314();
     }
 
     /**
@@ -2032,6 +2123,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Diego Garcia 1969";
         datum        = 6724;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6724();
     }
 
     /**
@@ -2054,6 +2146,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Dominica 1945";
         datum        = 6602;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6602();
     }
 
     /**
@@ -2076,6 +2169,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Douala 1948";
         datum        = 6192;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6192();
     }
 
     /**
@@ -2098,6 +2192,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Easter Island 1967";
         datum        = 6719;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6719();
     }
 
     /**
@@ -2120,6 +2215,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ED50";
         datum        = 6230;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6230();
     }
 
     /**
@@ -2142,6 +2238,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ED50(ED77)";
         datum        = 6154;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6154();
     }
 
     /**
@@ -2164,6 +2261,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ED79";
         datum        = 6668;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6668();
     }
 
     /**
@@ -2186,6 +2284,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ED87";
         datum        = 6231;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6231();
     }
 
     /**
@@ -2210,6 +2309,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Old Egyptian"};
         datum        = 6229;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6229();
     }
 
     /**
@@ -2234,6 +2334,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"New Egyptian"};
         datum        = 6199;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6199();
     }
 
     /**
@@ -2258,6 +2359,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"S-650 TL"};
         datum        = 6706;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6706();
     }
 
     /**
@@ -2280,6 +2382,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ELD79";
         datum        = 6159;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6159();
     }
 
     /**
@@ -2302,6 +2405,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "EST92";
         datum        = 6133;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6133();
     }
 
     /**
@@ -2324,6 +2428,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "EST97";
         datum        = 6180;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6180();
     }
 
     /**
@@ -2346,6 +2451,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "EST98";
         datum        = 6180;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6180();
     }
 
     /**
@@ -2369,6 +2475,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6180;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6180();
     }
 
     /**
@@ -2393,6 +2500,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"ETRS89-GRS80"};
         datum        = 6258;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6258();
     }
 
     /**
@@ -2417,6 +2525,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"ETRS89"};
         datum        = 6258;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6258();
     }
 
     /**
@@ -2442,6 +2551,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6258;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6258();
     }
 
     /**
@@ -2464,6 +2574,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Fahud";
         datum        = 6232;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6232();
     }
 
     /**
@@ -2488,6 +2599,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"MHEFO 55"};
         datum        = 6688;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6688();
     }
 
     /**
@@ -2510,6 +2622,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "FD54";
         datum        = 6741;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6741();
     }
 
     /**
@@ -2534,6 +2647,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Final Datum 1958 (Iran)"};
         datum        = 6132;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6132();
     }
 
     /**
@@ -2556,6 +2670,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Fiji 1956";
         datum        = 6721;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6721();
     }
 
     /**
@@ -2580,6 +2695,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"FGD 1986"};
         datum        = 6720;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6720();
     }
 
     /**
@@ -2604,6 +2720,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"FD54a"};
         datum        = 6753;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6753();
     }
 
     /**
@@ -2626,6 +2743,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Fort Marigot";
         datum        = 6621;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6621();
     }
 
     /**
@@ -2650,6 +2768,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Gan 1970";
         datum        = 6684;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6684();
     }
 
     /**
@@ -2672,6 +2791,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Garoua";
         datum        = 6197;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6197();
     }
 
     /**
@@ -2694,6 +2814,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "GDA94";
         datum        = 6283;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6283();
     }
 
     /**
@@ -2716,6 +2837,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "GDA95";
         datum        = 6283;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6283();
     }
 
     /**
@@ -2739,6 +2861,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6283;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6283();
     }
 
     /**
@@ -2761,6 +2884,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "GDM2000";
         datum        = 6742;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6742();
     }
 
     /**
@@ -2783,6 +2907,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "GDM2000";
         datum        = 6742;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6742();
     }
 
     /**
@@ -2806,6 +2931,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6742;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6742();
     }
 
     /**
@@ -2828,6 +2954,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "GGRS87";
         datum        = 6121;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6121();
     }
 
     /**
@@ -2850,6 +2977,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "GR96";
         datum        = 6747;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6747();
     }
 
     /**
@@ -2872,6 +3000,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "GR96";
         datum        = 6747;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6747();
     }
 
     /**
@@ -2895,6 +3024,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6747;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6747();
     }
 
     /**
@@ -2919,6 +3049,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Grand Cayman 1959"};
         datum        = 6723;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6723();
     }
 
     /**
@@ -2943,6 +3074,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"IGN50"};
         datum        = 6646;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6646();
     }
 
     /**
@@ -2965,6 +3097,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Greek";
         datum        = 6120;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6120();
     }
 
     /**
@@ -2987,6 +3120,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Greek (Athens)";
         datum        = 6815;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6815();
     }
 
     /**
@@ -3009,6 +3143,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Grenada 1953";
         datum        = 6603;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6603();
     }
 
     /**
@@ -3033,6 +3168,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Sainte Anne"};
         datum        = 6622;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6622();
     }
 
     /**
@@ -3055,6 +3191,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Guam 1963";
         datum        = 6675;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6675();
     }
 
     /**
@@ -3077,6 +3214,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Gulshan 303";
         datum        = 6682;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6682();
     }
 
     /**
@@ -3099,6 +3237,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Hanoi 1972";
         datum        = 6147;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6147();
     }
 
     /**
@@ -3121,6 +3260,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Hartebeesthoek94";
         datum        = 6148;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6148();
     }
 
     /**
@@ -3143,6 +3283,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Hartebeesthoek94";
         datum        = 6148;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6148();
     }
 
     /**
@@ -3166,6 +3307,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6148;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6148();
     }
 
     /**
@@ -3188,6 +3330,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "HD1909";
         datum        = 1024;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_1024();
     }
 
     /**
@@ -3210,6 +3353,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "HD72";
         datum        = 6237;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6237();
     }
 
     /**
@@ -3232,6 +3376,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Helle 1954";
         datum        = 6660;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6660();
     }
 
     /**
@@ -3254,6 +3399,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Herat North";
         datum        = 6255;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6255();
     }
 
     /**
@@ -3278,6 +3424,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Hito XVIII"};
         datum        = 6254;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6254();
     }
 
     /**
@@ -3300,6 +3447,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Hjorsey 1955";
         datum        = 6658;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6658();
     }
 
     /**
@@ -3324,6 +3472,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"HK63"};
         datum        = 6738;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6738();
     }
 
     /**
@@ -3348,6 +3497,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"HK63(67)"};
         datum        = 6739;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6739();
     }
 
     /**
@@ -3372,6 +3522,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"HK1980"};
         datum        = 6611;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6611();
     }
 
     /**
@@ -3394,6 +3545,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "HTRS96";
         datum        = 6761;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6761();
     }
 
     /**
@@ -3416,6 +3568,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "HTRS96";
         datum        = 6761;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6761();
     }
 
     /**
@@ -3439,6 +3592,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6761;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6761();
     }
 
     /**
@@ -3463,6 +3617,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Hu Tzu Shan"};
         datum        = 6236;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6236();
     }
 
     /**
@@ -3485,6 +3640,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ID74";
         datum        = 6238;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6238();
     }
 
     /**
@@ -3509,6 +3665,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"IGC 1962"};
         datum        = 6697;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6697();
     }
 
     /**
@@ -3533,6 +3690,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Bas Congo 1955"};
         datum        = 6701;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6701();
     }
 
     /**
@@ -3555,6 +3713,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "IGM95";
         datum        = 6670;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6670();
     }
 
     /**
@@ -3577,6 +3736,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "IGM95";
         datum        = 6670;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6670();
     }
 
     /**
@@ -3600,6 +3760,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6670;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6670();
     }
 
     /**
@@ -3622,6 +3783,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "IGN 1962 Kerguelen";
         datum        = 6698;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6698();
     }
 
     /**
@@ -3644,6 +3806,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "IGN53 Mare";
         datum        = 6641;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6641();
     }
 
     /**
@@ -3666,6 +3829,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "IGN56 Lifou";
         datum        = 6633;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6633();
     }
 
     /**
@@ -3688,6 +3852,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "IGN63 Hiva Oa";
         datum        = 6689;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6689();
     }
 
     /**
@@ -3710,6 +3875,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "IGN72 Grande Terre";
         datum        = 6634;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6634();
     }
 
     /**
@@ -3732,6 +3898,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "IGN72 Nuku Hiva";
         datum        = 6630;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6630();
     }
 
     /**
@@ -3756,6 +3923,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Mauritanian Mining Cadastre 1999"};
         datum        = 6700;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6700();
     }
 
     /**
@@ -3778,6 +3946,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "IKBD-92";
         datum        = 6667;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6667();
     }
 
     /**
@@ -3800,6 +3969,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Indian 1954";
         datum        = 6239;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6239();
     }
 
     /**
@@ -3824,6 +3994,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Indian (DMA Reduced)"};
         datum        = 6131;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6131();
     }
 
     /**
@@ -3846,6 +4017,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Indian 1975";
         datum        = 6240;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6240();
     }
 
     /**
@@ -3870,6 +4042,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"ETRS89"};
         datum        = 6173;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6173();
     }
 
     /**
@@ -3894,6 +4067,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"ETRS89"};
         datum        = 6173;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6173();
     }
 
     /**
@@ -3919,6 +4093,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6173;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6173();
     }
 
     /**
@@ -3941,6 +4116,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ISN93";
         datum        = 6659;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6659();
     }
 
     /**
@@ -3963,6 +4139,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ISN93";
         datum        = 6659;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6659();
     }
 
     /**
@@ -3986,6 +4163,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6659;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6659();
     }
 
     /**
@@ -4010,6 +4188,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Israel"};
         datum        = 6141;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6141();
     }
 
     /**
@@ -4032,6 +4211,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Iwo Jima 1945";
         datum        = 6709;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6709();
     }
 
     /**
@@ -4054,6 +4234,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "JAD2001";
         datum        = 6758;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6758();
     }
 
     /**
@@ -4076,6 +4257,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "JAD2001";
         datum        = 6758;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6758();
     }
 
     /**
@@ -4099,6 +4281,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6758;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6758();
     }
 
     /**
@@ -4121,6 +4304,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "JAD69";
         datum        = 6242;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6242();
     }
 
     /**
@@ -4143,6 +4327,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Jamaica 1875";
         datum        = 6241;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6241();
     }
 
     /**
@@ -4165,6 +4350,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "JGD2000";
         datum        = 6612;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6612();
     }
 
     /**
@@ -4187,6 +4373,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "JGD2001";
         datum        = 6612;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6612();
     }
 
     /**
@@ -4210,6 +4397,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6612;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6612();
     }
 
     /**
@@ -4234,6 +4422,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Johnston Atoll 1961"};
         datum        = 6725;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6725();
     }
 
     /**
@@ -4256,6 +4445,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Jouik 1961";
         datum        = 6679;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6679();
     }
 
     /**
@@ -4278,6 +4468,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Kalianpur 1880";
         datum        = 6243;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6243();
     }
 
     /**
@@ -4300,6 +4491,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Kalianpur 1937";
         datum        = 6144;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6144();
     }
 
     /**
@@ -4322,6 +4514,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Kalianpur 1962";
         datum        = 6145;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6145();
     }
 
     /**
@@ -4344,6 +4537,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Kalianpur 1975";
         datum        = 6146;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6146();
     }
 
     /**
@@ -4366,6 +4560,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Kandawala";
         datum        = 6244;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6244();
     }
 
     /**
@@ -4390,6 +4585,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Karbala 1979 (Polservice)"};
         datum        = 6743;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6743();
     }
 
     /**
@@ -4412,6 +4608,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Kasai 1953";
         datum        = 6696;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6696();
     }
 
     /**
@@ -4434,6 +4631,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Katanga 1955";
         datum        = 6695;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6695();
     }
 
     /**
@@ -4456,6 +4654,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Kertau (RSO)";
         datum        = 6751;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6751();
     }
 
     /**
@@ -4480,6 +4679,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"MRT68"};
         datum        = 6245;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6245();
     }
 
     /**
@@ -4502,6 +4702,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "KKJ";
         datum        = 6123;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6123();
     }
 
     /**
@@ -4524,6 +4725,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "KOC";
         datum        = 6246;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6246();
     }
 
     /**
@@ -4546,6 +4748,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Korea 2000";
         datum        = 6737;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6737();
     }
 
     /**
@@ -4568,6 +4771,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Korea 2000";
         datum        = 6737;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6737();
     }
 
     /**
@@ -4591,6 +4795,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6737;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6737();
     }
 
     /**
@@ -4613,6 +4818,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Korean 1985";
         datum        = 6162;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6162();
     }
 
     /**
@@ -4635,6 +4841,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Korean 1995";
         datum        = 6166;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6166();
     }
 
     /**
@@ -4657,6 +4864,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Kousseri";
         datum        = 6198;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6198();
     }
 
     /**
@@ -4679,6 +4887,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "KUDAMS";
         datum        = 6319;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6319();
     }
 
     /**
@@ -4701,6 +4910,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Kusaie 1951";
         datum        = 6735;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6735();
     }
 
     /**
@@ -4723,6 +4933,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "La Canoa";
         datum        = 6247;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6247();
     }
 
     /**
@@ -4745,6 +4956,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Lake";
         datum        = 6249;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6249();
     }
 
     /**
@@ -4767,6 +4979,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Lao 1993";
         datum        = 6677;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6677();
     }
 
     /**
@@ -4789,6 +5002,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Lao 1993";
         datum        = 6677;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6677();
     }
 
     /**
@@ -4812,6 +5026,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6677;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6677();
     }
 
     /**
@@ -4834,6 +5049,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Lao 1997";
         datum        = 6678;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6678();
     }
 
     /**
@@ -4856,6 +5072,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Lao 1997";
         datum        = 6678;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6678();
     }
 
     /**
@@ -4879,6 +5096,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6678;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6678();
     }
 
     /**
@@ -4901,6 +5119,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Leigon";
         datum        = 6250;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6250();
     }
 
     /**
@@ -4925,6 +5144,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Le Pouce (Mauritius 94)"};
         datum        = 6699;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6699();
     }
 
     /**
@@ -4947,6 +5167,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "LGD2006";
         datum        = 6754;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6754();
     }
 
     /**
@@ -4969,6 +5190,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "LGD2006";
         datum        = 6754;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6754();
     }
 
     /**
@@ -4992,6 +5214,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6754;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6754();
     }
 
     /**
@@ -5014,6 +5237,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Liberia 1964";
         datum        = 6251;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6251();
     }
 
     /**
@@ -5038,6 +5262,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Lisbon 1937"};
         datum        = 6207;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6207();
     }
 
     /**
@@ -5062,6 +5287,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Lisbon 1937 (Lisbon)"};
         datum        = 6803;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6803();
     }
 
     /**
@@ -5084,6 +5310,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Lisbon 1890";
         datum        = 6666;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6666();
     }
 
     /**
@@ -5106,6 +5333,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Lisbon 1890 (Lisbon)";
         datum        = 6904;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6904();
     }
 
     /**
@@ -5128,6 +5356,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "LKS92";
         datum        = 6661;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6661();
     }
 
     /**
@@ -5150,6 +5379,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "LKS92";
         datum        = 6661;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6661();
     }
 
     /**
@@ -5173,6 +5403,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6661;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6661();
     }
 
     /**
@@ -5197,6 +5428,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"LKS94 (ETRS89)"};
         datum        = 6126;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6126();
     }
 
     /**
@@ -5221,6 +5453,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"LKS94 (ETRS89)"};
         datum        = 6126;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6126();
     }
 
     /**
@@ -5246,6 +5479,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6126;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6126();
     }
 
     /**
@@ -5270,6 +5504,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Port Bouet"};
         datum        = 6142;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6142();
     }
 
     /**
@@ -5292,6 +5527,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Loma Quintana";
         datum        = 6288;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6288();
     }
 
     /**
@@ -5314,6 +5550,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Lome";
         datum        = 6252;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6252();
     }
 
     /**
@@ -5338,6 +5575,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"LUREF"};
         datum        = 6181;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6181();
     }
 
     /**
@@ -5360,6 +5598,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Luzon 1911";
         datum        = 6253;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6253();
     }
 
     /**
@@ -5382,6 +5621,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "M'poraloko";
         datum        = 6266;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6266();
     }
 
     /**
@@ -5406,6 +5646,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Madrid"};
         datum        = 6903;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6903();
     }
 
     /**
@@ -5428,6 +5669,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Madzansua";
         datum        = 6128;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6128();
     }
 
     /**
@@ -5450,6 +5692,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "MAGNA-SIRGAS";
         datum        = 6686;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6686();
     }
 
     /**
@@ -5472,6 +5715,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "MAGNA-SIRGAS";
         datum        = 6686;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6686();
     }
 
     /**
@@ -5495,6 +5739,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6686;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6686();
     }
 
     /**
@@ -5517,6 +5762,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Mahe 1971";
         datum        = 6256;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6256();
     }
 
     /**
@@ -5539,6 +5785,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Makassar";
         datum        = 6257;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6257();
     }
 
     /**
@@ -5561,6 +5808,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Makassar (Jakarta)";
         datum        = 6804;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6804();
     }
 
     /**
@@ -5585,6 +5833,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Mhast"};
         datum        = 6259;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6259();
     }
 
     /**
@@ -5607,6 +5856,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Manoca 1962";
         datum        = 6193;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6193();
     }
 
     /**
@@ -5629,6 +5879,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Marcus Island 1952";
         datum        = 6711;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6711();
     }
 
     /**
@@ -5651,6 +5902,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Marshall Islands 1960";
         datum        = 6732;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6732();
     }
 
     /**
@@ -5675,6 +5927,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Fort Desaix"};
         datum        = 6625;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6625();
     }
 
     /**
@@ -5697,6 +5950,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Massawa";
         datum        = 6262;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6262();
     }
 
     /**
@@ -5721,6 +5975,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"MOP 1983"};
         datum        = 6692;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6692();
     }
 
     /**
@@ -5743,6 +5998,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Mauritania 1999";
         datum        = 6702;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6702();
     }
 
     /**
@@ -5765,6 +6021,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Mauritania 1999";
         datum        = 6702;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6702();
     }
 
     /**
@@ -5788,6 +6045,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6702;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6702();
     }
 
     /**
@@ -5810,6 +6068,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Merchich";
         datum        = 6261;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6261();
     }
 
     /**
@@ -5832,6 +6091,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "MGI";
         datum        = 6312;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6312();
     }
 
     /**
@@ -5854,6 +6114,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "MGI (Ferro)";
         datum        = 6805;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6805();
     }
 
     /**
@@ -5878,6 +6139,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Mhast"};
         datum        = 6705;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6705();
     }
 
     /**
@@ -5902,6 +6164,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Mhast"};
         datum        = 6704;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6704();
     }
 
     /**
@@ -5924,6 +6187,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Mhast 1951";
         datum        = 6703;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6703();
     }
 
     /**
@@ -5946,6 +6210,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Midway 1961";
         datum        = 6727;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6727();
     }
 
     /**
@@ -5968,6 +6233,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Minna";
         datum        = 6263;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6263();
     }
 
     /**
@@ -5992,6 +6258,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Rome 1940"};
         datum        = 6265;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6265();
     }
 
     /**
@@ -6016,6 +6283,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Rome 1940 (Rome)"};
         datum        = 6806;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6806();
     }
 
     /**
@@ -6040,6 +6308,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Montserrat 58"};
         datum        = 6604;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6604();
     }
 
     /**
@@ -6062,6 +6331,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Moorea 87";
         datum        = 6691;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6691();
     }
 
     /**
@@ -6086,6 +6356,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Uvea SHOM 1978"};
         datum        = 6639;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6639();
     }
 
     /**
@@ -6108,6 +6379,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Mount Dillon";
         datum        = 6157;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6157();
     }
 
     /**
@@ -6130,6 +6402,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Moznet";
         datum        = 6130;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6130();
     }
 
     /**
@@ -6152,6 +6425,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Moznet";
         datum        = 6130;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6130();
     }
 
     /**
@@ -6175,6 +6449,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6130;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6130();
     }
 
     /**
@@ -6197,6 +6472,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NAD27";
         datum        = 6267;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6267();
     }
 
     /**
@@ -6219,6 +6495,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NAD27(76)";
         datum        = 6608;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6608();
     }
 
     /**
@@ -6243,6 +6520,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"CGQ77"};
         datum        = 6609;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6609();
     }
 
     /**
@@ -6267,6 +6545,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"NAD83(1986)"};
         datum        = 6269;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6269();
     }
 
     /**
@@ -6289,6 +6568,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NAD83(CSRS)";
         datum        = 6140;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6140();
     }
 
     /**
@@ -6311,6 +6591,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NAD83(CSRS)";
         datum        = 6140;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6140();
     }
 
     /**
@@ -6334,6 +6615,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6140;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6140();
     }
 
     /**
@@ -6358,6 +6640,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"NAD83(HPGN)"};
         datum        = 6152;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6152();
     }
 
     /**
@@ -6382,6 +6665,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"NAD83(HPGN)"};
         datum        = 6152;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6152();
     }
 
     /**
@@ -6407,6 +6691,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6152;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6152();
     }
 
     /**
@@ -6429,6 +6714,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NAD83(NSRS2007)";
         datum        = 6759;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6759();
     }
 
     /**
@@ -6451,6 +6737,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NAD83(NSRS2007)";
         datum        = 6759;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6759();
     }
 
     /**
@@ -6474,6 +6761,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6759;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6759();
     }
 
     /**
@@ -6496,6 +6784,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Nahrwan 1934";
         datum        = 6744;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6744();
     }
 
     /**
@@ -6518,6 +6807,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Nahrwan 1967";
         datum        = 6270;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6270();
     }
 
     /**
@@ -6540,6 +6830,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Nakhl-e Ghanem";
         datum        = 6693;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6693();
     }
 
     /**
@@ -6562,6 +6853,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Naparima 1955";
         datum        = 6158;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6158();
     }
 
     /**
@@ -6586,6 +6878,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Naparima 1972";
         datum        = 6271;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6271();
     }
 
     /**
@@ -6608,6 +6901,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NEA74 Noumea";
         datum        = 6644;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6644();
     }
 
     /**
@@ -6630,6 +6924,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NGN";
         datum        = 6318;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6318();
     }
 
     /**
@@ -6652,6 +6947,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NGO 1948";
         datum        = 6273;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6273();
     }
 
     /**
@@ -6674,6 +6970,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NGO 1948 (Oslo)";
         datum        = 6817;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6817();
     }
 
     /**
@@ -6696,6 +6993,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Nord Sahara 1959";
         datum        = 6307;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6307();
     }
 
     /**
@@ -6718,6 +7016,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Nouakchott 1965";
         datum        = 6680;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6680();
     }
 
     /**
@@ -6740,6 +7039,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NSWC 9Z-2";
         datum        = 6276;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6276();
     }
 
     /**
@@ -6762,6 +7062,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NTF";
         datum        = 6275;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6275();
     }
 
     /**
@@ -6784,6 +7085,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NTF (Paris)";
         datum        = 6807;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6807();
     }
 
     /**
@@ -6806,6 +7108,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NZGD2000";
         datum        = 6167;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6167();
     }
 
     /**
@@ -6828,6 +7131,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "NZGD2000";
         datum        = 6167;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6167();
     }
 
     /**
@@ -6851,6 +7155,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6167;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6167();
     }
 
     /**
@@ -6875,6 +7180,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"GD49"};
         datum        = 6272;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6272();
     }
 
     /**
@@ -6899,6 +7205,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Observatario Campos Rodrigues 1907"};
         datum        = 6129;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6129();
     }
 
     /**
@@ -6921,6 +7228,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Old Hawaiian";
         datum        = 6135;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6135();
     }
 
     /**
@@ -6943,6 +7251,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "OS(SN)80";
         datum        = 6279;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6279();
     }
 
     /**
@@ -6965,6 +7274,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "OSGB36";
         datum        = 6277;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6277();
     }
 
     /**
@@ -6987,6 +7297,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "OSGB70";
         datum        = 6278;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6278();
     }
 
     /**
@@ -7009,6 +7320,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "OSNI 1952";
         datum        = 6188;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6188();
     }
 
     /**
@@ -7031,6 +7343,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Palestine 1923";
         datum        = 6281;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6281();
     }
 
     /**
@@ -7055,6 +7368,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Pampa Cas"};
         datum        = 6161;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6161();
     }
 
     /**
@@ -7079,6 +7393,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"DHDN"};
         datum        = 6746;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6746();
     }
 
     /**
@@ -7101,6 +7416,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Perroud 1950";
         datum        = 6637;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6637();
     }
 
     /**
@@ -7123,6 +7439,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Petrels 1972";
         datum        = 6636;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6636();
     }
 
     /**
@@ -7145,6 +7462,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Phoenix Islands 1966";
         datum        = 6716;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6716();
     }
 
     /**
@@ -7167,6 +7485,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Pitcairn 1967";
         datum        = 6729;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6729();
     }
 
     /**
@@ -7189,6 +7508,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Pitcairn 2006";
         datum        = 6763;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6763();
     }
 
     /**
@@ -7213,6 +7533,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Pico de las Nieves 1984"};
         datum        = 6728;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6728();
     }
 
     /**
@@ -7237,6 +7558,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"12th Parallel traverse"};
         datum        = 6620;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6620();
     }
 
     /**
@@ -7261,6 +7583,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Congo 1960 Pointe Noire"};
         datum        = 6282;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6282();
     }
 
     /**
@@ -7285,6 +7608,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Porto Santo 1936"};
         datum        = 6615;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6615();
     }
 
     /**
@@ -7309,6 +7633,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Base SE"};
         datum        = 6663;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6663();
     }
 
     /**
@@ -7331,6 +7656,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "POSGAR 94";
         datum        = 6694;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6694();
     }
 
     /**
@@ -7353,6 +7679,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "POSGAR 94";
         datum        = 6694;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6694();
     }
 
     /**
@@ -7376,6 +7703,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6694;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6694();
     }
 
     /**
@@ -7400,6 +7728,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"National Geodetic System [Argentina]"};
         datum        = 6190;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6190();
     }
 
     /**
@@ -7422,6 +7751,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "POSGAR 98";
         datum        = 6190;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6190();
     }
 
     /**
@@ -7445,6 +7775,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6190;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6190();
     }
 
     /**
@@ -7469,6 +7800,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"New Luzon"};
         datum        = 6683;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6683();
     }
 
     /**
@@ -7493,6 +7825,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"New Luzon"};
         datum        = 6683;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6683();
     }
 
     /**
@@ -7518,6 +7851,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6683;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6683();
     }
 
     /**
@@ -7544,6 +7878,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"La Canoa"};
         datum        = 6248;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6248();
     }
 
     /**
@@ -7568,6 +7903,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"PDO Survey Datum 1993"};
         datum        = 6134;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6134();
     }
 
     /**
@@ -7590,6 +7926,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Puerto Rico";
         datum        = 6139;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6139();
     }
 
     /**
@@ -7614,6 +7951,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"S-42"};
         datum        = 6284;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6284();
     }
 
     /**
@@ -7638,6 +7976,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Pulkovo 1942(56)"};
         datum        = 6179;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6179();
     }
 
     /**
@@ -7662,6 +8001,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"42/83"};
         datum        = 6178;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6178();
     }
 
     /**
@@ -7686,6 +8026,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"S-95"};
         datum        = 6200;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6200();
     }
 
     /**
@@ -7708,6 +8049,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "PZ-90";
         datum        = 6740;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6740();
     }
 
     /**
@@ -7730,6 +8072,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "PZ-90";
         datum        = 6740;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6740();
     }
 
     /**
@@ -7753,6 +8096,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6740;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6740();
     }
 
     /**
@@ -7775,6 +8119,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Qatar 1948";
         datum        = 6286;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6286();
     }
 
     /**
@@ -7797,6 +8142,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Qatar 1974";
         datum        = 6285;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6285();
     }
 
     /**
@@ -7819,6 +8165,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "QND95";
         datum        = 6614;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6614();
     }
 
     /**
@@ -7841,6 +8188,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Qornoq 1927";
         datum        = 6194;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6194();
     }
 
     /**
@@ -7863,6 +8211,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Rassadiran";
         datum        = 6153;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6153();
     }
 
     /**
@@ -7887,6 +8236,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"DHDN"};
         datum        = 6745;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6745();
     }
 
     /**
@@ -7909,6 +8259,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "REGVEN";
         datum        = 6189;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6189();
     }
 
     /**
@@ -7931,6 +8282,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "REGVEN";
         datum        = 6189;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6189();
     }
 
     /**
@@ -7954,6 +8306,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6189;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6189();
     }
 
     /**
@@ -7978,6 +8331,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Piton des Neiges"};
         datum        = 6626;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6626();
     }
 
     /**
@@ -8000,6 +8354,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Reykjavik 1900";
         datum        = 6657;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6657();
     }
 
     /**
@@ -8024,6 +8379,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"RGF93 (lat-lon)"};
         datum        = 6171;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6171();
     }
 
     /**
@@ -8048,6 +8404,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"RGF93 (lat-lon)"};
         datum        = 6171;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6171();
     }
 
     /**
@@ -8071,6 +8428,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6171;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6171();
     }
 
     /**
@@ -8095,6 +8453,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"RGFG95 (lat-lon)"};
         datum        = 6624;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6624();
     }
 
     /**
@@ -8119,6 +8478,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"RGFG95 (lat-lon)"};
         datum        = 6624;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6624();
     }
 
     /**
@@ -8142,6 +8502,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6624;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6624();
     }
 
     /**
@@ -8164,6 +8525,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "RGNC91-93";
         datum        = 6749;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6749();
     }
 
     /**
@@ -8186,6 +8548,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "RGNC91-93";
         datum        = 6749;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6749();
     }
 
     /**
@@ -8209,6 +8572,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6749;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6749();
     }
 
     /**
@@ -8231,6 +8595,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "RGPF";
         datum        = 6687;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6687();
     }
 
     /**
@@ -8253,6 +8618,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "RGPF";
         datum        = 6687;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6687();
     }
 
     /**
@@ -8276,6 +8642,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6687;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6687();
     }
 
     /**
@@ -8300,6 +8667,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"RGR92 (lat-lon)"};
         datum        = 6627;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6627();
     }
 
     /**
@@ -8324,6 +8692,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"RGR92 (lat-lon)"};
         datum        = 6627;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6627();
     }
 
     /**
@@ -8347,6 +8716,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6627;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6627();
     }
 
     /**
@@ -8369,6 +8739,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "RRAF 1991";
         datum        = 1047;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_1047();
     }
 
     /**
@@ -8391,6 +8762,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "RSRGD2000";
         datum        = 6764;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6764();
     }
 
     /**
@@ -8413,6 +8785,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "RSRGD2000";
         datum        = 6764;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6764();
     }
 
     /**
@@ -8436,6 +8809,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6764;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6764();
     }
 
     /**
@@ -8458,6 +8832,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "RT38";
         datum        = 6308;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6308();
     }
 
     /**
@@ -8480,6 +8855,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "RT38 (Stockholm)";
         datum        = 6814;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6814();
     }
 
     /**
@@ -8502,6 +8878,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "RT90";
         datum        = 6124;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6124();
     }
 
     /**
@@ -8524,6 +8901,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "S-JTSK";
         datum        = 6156;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6156();
     }
 
     /**
@@ -8546,6 +8924,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "S-JTSK (Ferro)";
         datum        = 6818;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6818();
     }
 
     /**
@@ -8568,6 +8947,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "SAD69";
         datum        = 6618;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6618();
     }
 
     /**
@@ -8592,6 +8972,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"St Pierre Miquelon 1950"};
         datum        = 6638;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6638();
     }
 
     /**
@@ -8616,6 +8997,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Santo (DOS)"};
         datum        = 6730;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6730();
     }
 
     /**
@@ -8638,6 +9020,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Sapper Hill 1943";
         datum        = 6292;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6292();
     }
 
     /**
@@ -8660,6 +9043,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Schwarzeck";
         datum        = 6293;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6293();
     }
 
     /**
@@ -8682,6 +9066,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Scoresbysund 1952";
         datum        = 6195;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6195();
     }
 
     /**
@@ -8706,6 +9091,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Samboja"};
         datum        = 6613;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6613();
     }
 
     /**
@@ -8730,6 +9116,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Samboja (Jakarta)"};
         datum        = 6820;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6820();
     }
 
     /**
@@ -8754,6 +9141,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Marco Astro"};
         datum        = 6616;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6616();
     }
 
     /**
@@ -8776,6 +9164,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Serindung";
         datum        = 6295;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6295();
     }
 
     /**
@@ -8798,6 +9187,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Sierra Leone 1924";
         datum        = 6174;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6174();
     }
 
     /**
@@ -8820,6 +9210,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Sierra Leone 1968";
         datum        = 6175;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6175();
     }
 
     /**
@@ -8844,6 +9235,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Little Cayman 1961"};
         datum        = 6726;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6726();
     }
 
     /**
@@ -8868,6 +9260,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"SIRGAS"};
         datum        = 6170;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6170();
     }
 
     /**
@@ -8892,6 +9285,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"SIRGAS"};
         datum        = 6170;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6170();
     }
 
     /**
@@ -8917,6 +9311,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6170;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6170();
     }
 
     /**
@@ -8939,6 +9334,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "SIRGAS 2000";
         datum        = 6674;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6674();
     }
 
     /**
@@ -8961,6 +9357,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "SIRGAS 2000";
         datum        = 6674;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6674();
     }
 
     /**
@@ -8984,6 +9381,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6674;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6674();
     }
 
     /**
@@ -9008,6 +9406,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"D96"};
         datum        = 6765;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6765();
     }
 
     /**
@@ -9032,6 +9431,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"D96"};
         datum        = 6765;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6765();
     }
 
     /**
@@ -9057,6 +9457,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6765;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6765();
     }
 
     /**
@@ -9079,6 +9480,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Solomon 1968";
         datum        = 6718;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6718();
     }
 
     /**
@@ -9101,6 +9503,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "South Georgia 1968";
         datum        = 6722;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6722();
     }
 
     /**
@@ -9123,6 +9526,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "South Yemen";
         datum        = 6164;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6164();
     }
 
     /**
@@ -9145,6 +9549,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "St. George Island";
         datum        = 6138;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6138();
     }
 
     /**
@@ -9167,6 +9572,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "St. Kitts 1955";
         datum        = 6605;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6605();
     }
 
     /**
@@ -9189,6 +9595,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "St. Lawrence Island";
         datum        = 6136;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6136();
     }
 
     /**
@@ -9211,6 +9618,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "St. Lucia 1955";
         datum        = 6606;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6606();
     }
 
     /**
@@ -9233,6 +9641,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "St. Paul Island";
         datum        = 6137;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6137();
     }
 
     /**
@@ -9255,6 +9664,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "St. Vincent 1945";
         datum        = 6607;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6607();
     }
 
     /**
@@ -9277,6 +9687,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ST71 Belep";
         datum        = 6643;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6643();
     }
 
     /**
@@ -9299,6 +9710,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ST84 Ile des Pins";
         datum        = 6642;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6642();
     }
 
     /**
@@ -9321,6 +9733,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "ST87 Ouvea";
         datum        = 6750;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6750();
     }
 
     /**
@@ -9343,6 +9756,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "SVY21";
         datum        = 6757;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6757();
     }
 
     /**
@@ -9365,6 +9779,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "SWEREF99";
         datum        = 6619;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6619();
     }
 
     /**
@@ -9387,6 +9802,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "SWEREF99";
         datum        = 6619;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6619();
     }
 
     /**
@@ -9410,6 +9826,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6619;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6619();
     }
 
     /**
@@ -9434,6 +9851,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Tahaa"};
         datum        = 6629;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6629();
     }
 
     /**
@@ -9458,6 +9876,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Tahiti"};
         datum        = 6628;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6628();
     }
 
     /**
@@ -9482,6 +9901,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"IGN79 Tahiti"};
         datum        = 6690;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6690();
     }
 
     /**
@@ -9504,6 +9924,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Tananarive";
         datum        = 6297;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6297();
     }
 
     /**
@@ -9526,6 +9947,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Tananarive (Paris)";
         datum        = 6810;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6810();
     }
 
     /**
@@ -9548,6 +9970,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "TC(1948)";
         datum        = 6303;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6303();
     }
 
     /**
@@ -9570,6 +9993,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Tern Island 1961";
         datum        = 6707;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6707();
     }
 
     /**
@@ -9592,6 +10016,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Tete";
         datum        = 6127;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6127();
     }
 
     /**
@@ -9616,6 +10041,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Timbalai 1968"};
         datum        = 6298;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6298();
     }
 
     /**
@@ -9638,6 +10064,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "TM65";
         datum        = 6299;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6299();
     }
 
     /**
@@ -9662,6 +10089,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"1975 Mapping Adjustment"};
         datum        = 6300;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6300();
     }
 
     /**
@@ -9686,6 +10114,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Tokyo 1918"};
         datum        = 6301;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6301();
     }
 
     /**
@@ -9708,6 +10137,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Trinidad 1903";
         datum        = 6302;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6302();
     }
 
     /**
@@ -9730,6 +10160,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Tristan 1968";
         datum        = 6734;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6734();
     }
 
     /**
@@ -9752,6 +10183,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "TWD67";
         datum        = 1025;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_1025();
     }
 
     /**
@@ -9774,6 +10206,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "TWD97";
         datum        = 1026;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_1026();
     }
 
     /**
@@ -9796,6 +10229,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "TWD97";
         datum        = 1026;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_1026();
     }
 
     /**
@@ -9819,6 +10253,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 1026;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_1026();
     }
 
     /**
@@ -9843,6 +10278,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Vanua Levu 1917"};
         datum        = 6748;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6748();
     }
 
     /**
@@ -9865,6 +10301,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Vientiane 1982";
         datum        = 6676;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6676();
     }
 
     /**
@@ -9889,6 +10326,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"Viti Levu 1916"};
         datum        = 6752;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6752();
     }
 
     /**
@@ -9911,6 +10349,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "VN-2000";
         datum        = 6756;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6756();
     }
 
     /**
@@ -9933,6 +10372,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Voirol 1875";
         datum        = 6304;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6304();
     }
 
     /**
@@ -9955,6 +10395,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Voirol 1875 (Paris)";
         datum        = 6811;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6811();
     }
 
     /**
@@ -9977,6 +10418,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Voirol 1879";
         datum        = 6671;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6671();
     }
 
     /**
@@ -9999,6 +10441,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Voirol 1879 (Paris)";
         datum        = 6821;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6821();
     }
 
     /**
@@ -10021,6 +10464,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Wake Island 1952";
         datum        = 6733;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6733();
     }
 
     /**
@@ -10043,6 +10487,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "WGS 66";
         datum        = 6760;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6760();
     }
 
     /**
@@ -10065,6 +10510,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "WGS 66";
         datum        = 6760;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6760();
     }
 
     /**
@@ -10088,6 +10534,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6760;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6760();
     }
 
     /**
@@ -10112,6 +10559,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "WGS 72";
         datum        = 6322;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6322();
     }
 
     /**
@@ -10134,6 +10582,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "WGS 72";
         datum        = 6322;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6322();
     }
 
     /**
@@ -10157,6 +10606,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6322;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6322();
     }
 
     /**
@@ -10179,6 +10629,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "WGS 72BE";
         datum        = 6324;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6324();
     }
 
     /**
@@ -10201,6 +10652,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "WGS 72BE";
         datum        = 6324;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6324();
     }
 
     /**
@@ -10224,6 +10676,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6324;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6324();
     }
 
     /**
@@ -10246,6 +10699,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "WGS 84";
         datum        = 6326;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6326();
     }
 
     /**
@@ -10268,6 +10722,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "WGS 84";
         datum        = 6326;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6326();
     }
 
     /**
@@ -10291,6 +10746,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6326;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6326();
     }
 
     /**
@@ -10313,6 +10769,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Xian 1980";
         datum        = 6610;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6610();
     }
 
     /**
@@ -10337,6 +10794,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         aliases      = new String[] {"ROU-USAMS"};
         datum        = 6309;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6309();
     }
 
     /**
@@ -10359,6 +10817,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Yemen NGN96";
         datum        = 6163;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6163();
     }
 
     /**
@@ -10381,6 +10840,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Yemen NGN96";
         datum        = 6163;
         verifyGeodeticCRS(GEOGRAPHIC_3D);
+        datumTest().EPSG_6163();
     }
 
     /**
@@ -10404,6 +10864,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         datum        = 6163;
         isGeocentric = true;
         verifyGeodeticCRS(GEOCENTRIC);
+        datumTest().EPSG_6163();
     }
 
     /**
@@ -10426,6 +10887,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Yoff";
         datum        = 6310;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6310();
     }
 
     /**
@@ -10448,5 +10910,6 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         name         = "Zanderij";
         datum        = 6311;
         verifyGeodeticCRS(GEOGRAPHIC_2D);
+        datumTest().EPSG_6311();
     }
 }

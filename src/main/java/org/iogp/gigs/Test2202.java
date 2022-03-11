@@ -154,19 +154,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     }
 
     /**
-     * Creates a new test which inherit its configuration from the specified test.
-     * This is used for testing dependent objects (ellipsoid in a datum).
-     *
-     * @param  parent      the test from which to inherit the configuration.
-     * @param  dependency  the datum dependency to test.
-     */
-    Test2202(final Test2204 parent, final Ellipsoid dependency) {
-        super(parent);
-        ellipsoid = dependency;
-        datumAuthorityFactory = parent.datumAuthorityFactory;
-    }
-
-    /**
      * Returns information about the configuration of the test which has been run.
      * This method returns a map containing:
      *
@@ -212,6 +199,17 @@ public class Test2202 extends Series2000<Ellipsoid> {
             }
         }
         return ellipsoid;
+    }
+
+    /**
+     * Sets the ellipsoid instance to be tested.
+     * This is used for testing datum dependencies.
+     *
+     * @param  dependency  the datum dependency to test.
+     */
+    final void setIdentifiedObject(final Ellipsoid dependency) {
+        assertNull(ellipsoid);
+        ellipsoid = dependency;
     }
 
     /**

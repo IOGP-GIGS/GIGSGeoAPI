@@ -129,16 +129,16 @@ public abstract class Series2000<T> extends IntegrityTest {
     }
 
     /**
-     * Creates a new test which inherit its configuration from the specified test.
-     * This is used for testing dependent objects (e.g. ellipsoid in a datum).
+     * Modifies the configuration for testing a dependency of the object tested by the given test.
+     * This is used for testing for example the ellipsoid in a datum.
      *
      * @param  parent  the test from which to inherit the configuration.
      */
-    Series2000(final Series2000 parent) {
-        isDeprecatedObjectCreationSupported = parent.isDeprecatedObjectCreationSupported;
-        isDependencyIdentificationSupported = parent.isDependencyIdentificationSupported;
-        isStandardNameSupported             = parent.isStandardNameSupported & isDependencyIdentificationSupported;
-        // Do not verify aliases. We are more flexible because this instance is not for testing the primary object.
+    final void configureAsDependency(final Series2000 parent) {
+        isDeprecatedObjectCreationSupported &= parent.isDeprecatedObjectCreationSupported;
+        isDependencyIdentificationSupported &= parent.isDependencyIdentificationSupported;
+        isStandardNameSupported             &= parent.isStandardNameSupported  & isDependencyIdentificationSupported;
+        isStandardAliasSupported            &= parent.isStandardAliasSupported & isDependencyIdentificationSupported;
     }
 
     /**
