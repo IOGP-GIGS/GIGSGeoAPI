@@ -265,6 +265,8 @@ next:   for (final String search : expected) {
     {
         assertNotNull(identifiers, message);
         if (isStandardIdentifierSupported) {
+            final Configuration.Key<Boolean> previous = configurationTip;
+            configurationTip = Configuration.Key.isStandardIdentifierSupported;
             int found = 0;
             for (final ReferenceIdentifier id : identifiers) {
                 if (codespace.equalsIgnoreCase(id.getCodeSpace().trim())) {
@@ -278,6 +280,40 @@ next:   for (final String search : expected) {
                 }
             }
             assertEquals(1, found, () -> message + ": occurrence of " + codespace + ':' + expected);
+            configurationTip = previous;
+        }
+    }
+
+    /**
+     * Ensures that the name of the given object is equal to the value of the expected name.
+     *
+     * @param  expected  the expected name.
+     * @param  object    the object for which to verify the name.
+     * @param  message   the message to show in case of failure.
+     */
+    final void assertNameEquals(final String expected, final IdentifiedObject object, final String message) {
+        if (isStandardNameSupported) {
+            final Configuration.Key<Boolean> previous = configurationTip;
+            configurationTip = Configuration.Key.isStandardNameSupported;
+            assertEquals(expected, getVerifiableName(object), message);
+            configurationTip = previous;
+        }
+    }
+
+    /**
+     * Ensures that the name of the given object starts with the expected name.
+     *
+     * @param  expected  the expected name prefix.
+     * @param  object    the object for which to verify the name.
+     * @param  message   the message to show in case of failure.
+     */
+    final void assertNameStartsWith(final String expected, final IdentifiedObject object, final String message) {
+        if (isStandardNameSupported) {
+            final Configuration.Key<Boolean> previous = configurationTip;
+            configurationTip = Configuration.Key.isStandardNameSupported;
+            final String actual = getVerifiableName(object);
+            assertEquals(expected, actual.substring(0, Math.min(expected.length(), actual.length())), message);
+            configurationTip = previous;
         }
     }
 }

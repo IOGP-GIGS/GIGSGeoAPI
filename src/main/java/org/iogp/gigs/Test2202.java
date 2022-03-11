@@ -254,15 +254,9 @@ public class Test2202 extends Series2000<Ellipsoid> {
         assertNotNull(ellipsoid, "Ellipsoid");
         validators.validate(ellipsoid);
 
-        // Ellipsoid identifier.
+        // Ellipsoid identifier and name.
         assertContainsCode("Ellipsoid.getIdentifiers()", "EPSG", code, ellipsoid.getIdentifiers());
-
-        // Ellipsoid name.
-        if (isStandardNameSupported) {
-            configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(name, getVerifiableName(ellipsoid), "Ellipsoid.getName()");
-            configurationTip = null;
-        }
+        assertNameEquals(name, ellipsoid, "Ellipsoid.getName()");
 
         // Ellipsoid alias.
         if (isStandardAliasSupported) {

@@ -176,26 +176,14 @@ public class Test2009 extends Series2000<Transformation> {
         assertNotNull(transformation, "Transformation");
         validators.validate(transformation);
 
-        // Transformation identifier.
+        // Transformation identifier and name.
         assertContainsCode("Transformation.getIdentifiers()", "EPSG", code, transformation.getIdentifiers());
-
-        // Transformation name.
-        if (isStandardNameSupported) {
-            configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(name, getVerifiableName(transformation), "Transformation.getName()");
-            configurationTip = null;
-        }
+        assertNameEquals(name, transformation, "Transformation.getName()");
 
         // Operation method.
         final OperationMethod m = transformation.getMethod();
         assertNotNull(m, "Transformation.getMethod()");
-
-        // Operation method name.
-        if (isStandardNameSupported) {
-            configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(methodName, getVerifiableName(m), "Transformation.getMethod().getName()");
-            configurationTip = null;
-        }
+        assertNameEquals(methodName, m, "Transformation.getMethod().getName()");
     }
 
     /**

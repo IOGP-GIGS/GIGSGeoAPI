@@ -177,15 +177,9 @@ public class Test2203 extends Series2000<PrimeMeridian> {
         assertNotNull(pm, "PrimeMeridian");
         validators.validate(pm);
 
-        // Prime meridian identifiers.
+        // Prime meridian identifiers and name.
         assertContainsCode("PrimeMeridian.getIdentifiers()", "EPSG", code, pm.getIdentifiers());
-
-        // Prime meridian name.
-        if (isStandardNameSupported) {
-            configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(name, getVerifiableName(pm), "PrimeMeridian.getName()");
-            configurationTip = null;
-        }
+        assertNameEquals(name, pm, "PrimeMeridian.getName()");
 
         // Prime meridian alias.
         if (isStandardAliasSupported) {

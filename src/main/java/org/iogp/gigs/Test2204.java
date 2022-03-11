@@ -186,10 +186,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         validators.validate(datum);
 
         assertContainsCode("GeodeticDatum.getIdentifiers()", "EPSG", code, datum.getIdentifiers());
-        if (isStandardNameSupported) {
-            configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(name, getVerifiableName(datum), "GeodeticDatum.getName()");
-        }
+        assertNameEquals(name, datum, "GeodeticDatum.getName()");
 
         // Geodetic datum ellipsoid.
         final Ellipsoid e = datum.getEllipsoid();

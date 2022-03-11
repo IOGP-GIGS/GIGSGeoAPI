@@ -181,18 +181,12 @@ public class Test2206 extends Series2000<Conversion> {
         assertNotNull(conversion, "Conversion");
         validators.validate(conversion);
 
-        // Map projection identifier.
+        // Map projection identifier and name.
         assertContainsCode("Conversion.getIdentifiers()", "EPSG", code, conversion.getIdentifiers());
+        assertNameStartsWith(name, conversion, "Conversion.getName()");
 
-        // Map projection and operation name.
-        if (isStandardNameSupported) {
-            configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(methodName, getVerifiableName(conversion.getMethod()), "Conversion.getMethod().getName()");
-
-            final String actual = getVerifiableName(conversion);
-            assertEquals(name, actual.substring(0, Math.min(name.length(), actual.length())), "Conversion.getName()");
-            configurationTip = null;
-        }
+        // Map projection name.
+        assertNameEquals(methodName, conversion.getMethod(), "Conversion.getMethod().getName()");
     }
 
     /**

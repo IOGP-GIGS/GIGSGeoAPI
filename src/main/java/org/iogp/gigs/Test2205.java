@@ -184,15 +184,9 @@ public class Test2205 extends Series2000<GeodeticCRS> {
         assertNotNull(crs, "GeodeticCRS");
         validators.validate(crs);
 
-        // Geodetic CRS identifier.
+        // Geodetic CRS identifier and name.
         assertContainsCode("GeodeticCRS.getIdentifiers()", "EPSG", code, crs.getIdentifiers());
-
-        // Geodetic CRS name.
-        if (isStandardNameSupported) {
-            configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(name, getVerifiableName(crs), "GeodeticCRS.getName()");
-            configurationTip = null;
-        }
+        assertNameEquals(name, crs, "GeodeticCRS.getName()");
 
         // Geodetic CRS datum.
         final GeodeticDatum crsDatum = crs.getDatum();
