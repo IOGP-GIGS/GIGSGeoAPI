@@ -62,10 +62,17 @@ public final class Launcher {
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public static void main(final String[] arguments) {
         if (arguments.length == 0) {
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (Exception e) {
-                // Ignore - keep the default L&F.
+            /*
+             * Use cross-platform look and feel (instead of system look and file)
+             * because `ResultCellRenderer` has some assumptions about sizes in pixels.
+             */
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) try {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                } catch (Exception e) {
+                    // Ignore - keep the default L&F.
+                }
             }
             startSwingApplication();
         } else {

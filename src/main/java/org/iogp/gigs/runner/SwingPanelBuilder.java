@@ -131,7 +131,7 @@ final class SwingPanelBuilder extends GridBagConstraints {
         gridx++; weightx=0; panel.add(viewJavadoc, this);
         gridx=0; gridy++;   panel.add(createLabel("Result:", testResult), this);
         gridx++; weightx=1; gridwidth=3; panel.add(testResult, this);
-        gridx=0; gridy++; weighty=1; insets.top = 12;
+        gridx=0; gridy++; weighty=1; insets.left = 0; insets.top = 12;
         final JTabbedPane tabs = new JTabbedPane();
         panel.add(tabs, this);
         /*

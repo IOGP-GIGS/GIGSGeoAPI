@@ -31,7 +31,6 @@
  */
 package org.iogp.gigs.runner;
 
-import java.net.URI;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -54,14 +53,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableColumnModel;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 
 import org.iogp.gigs.internal.TestSuite;
-import org.junit.platform.engine.TestSource;
-import org.junit.platform.engine.support.descriptor.MethodSource;
 
 
 /**
@@ -72,7 +69,7 @@ import org.junit.platform.engine.support.descriptor.MethodSource;
  * @since   1.0
  */
 @SuppressWarnings("serial")
-final class MainFrame extends JFrame implements Runnable, ActionListener, ListSelectionListener {
+final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSelectionListener {
     /**
      * The preference key for the directory in which to select JAR files.
      */
@@ -89,11 +86,6 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
      * @see #setManifest(ImplementationManifest)
      */
     private final JLabel title, vendor, version, specification, specVersion, specVendor;
-
-    /**
-     * The table showing the results.
-     */
-    private final ResultTableModel results;
 
     /**
      * Labels used for rendering information about the selected test.
@@ -142,16 +134,15 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
      * Creates a new frame, which contains all our JUnit runner tabs.
      * There is no menu for this application.
      */
-    @SuppressWarnings("OverridableMethodCallDuringObjectConstruction")      // Safe because this class if final.
+    @SuppressWarnings("ThisEscapedInObjectConstruction")
     MainFrame() {
         super("GIGS tests");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(800, 800);                          // If width is modified, please adjust column preferred widths below.
+        setSize(800, 800);
         setLocationByPlatform(true);
-        runner       = new Runner();
-        results      = new ResultTableModel(runner);
-        desktop      = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-        preferences  = Preferences.userNodeForPackage(org.iogp.gigs.IntegrityTest.class);
+        runner      = new Runner();
+        desktop     = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+        preferences = Preferences.userNodeForPackage(org.iogp.gigs.IntegrityTest.class);
         /*
          * The top panel, which show a description of the product being tested
          * (vendor name, URL, etc). This panel will be visible from every tabs.
@@ -164,9 +155,9 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
                 specVersion   = new JLabel(),
                 specVendor    = new JLabel()), BorderLayout.NORTH);
         /*
-         * The main panel, which will contain many tabs. The first pane shows the test results.
-         * Next pane shows more information on test failures or on features supported by the
-         * application being tested.
+         * The main panel, which will contain panes. The first pane shows the test results.
+         * Next pane shows more information about test failures or about features supported
+         * by the application being tested.
          */
         final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
         splitPane.setOneTouchExpandable(true);
@@ -175,35 +166,27 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
         splitPane.setResizeWeight(1);
         add(splitPane, BorderLayout.CENTER);
         /*
-         * The main tab, showing the JUnit test results in a table.
+         * The main tab, showing the JUnit test results in a tree.
          */
         {   // For keeping variables in a local scope.
-            final JTable table = new JTable(results);
-            table.setDefaultRenderer(String.class, new ResultCellRenderer());
-            table.setAutoCreateRowSorter(true);
-            table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-            table.getSelectionModel().addListSelectionListener(this);
-            final TableColumnModel columns = table.getColumnModel();
-            columns.getColumn(ResultTableModel.TEST_COLUMN)   .setPreferredWidth(175);
-            columns.getColumn(ResultTableModel.RESULT_COLUMN) .setPreferredWidth( 40);
-            columns.getColumn(ResultTableModel.MESSAGE_COLUMN).setPreferredWidth(250);      // Take all remaining space.
-            splitPane.setTopComponent(new JScrollPane(table));
+            final JScrollPane pane = new JScrollPane(runner.tree);
+            runner.tree.setCellRenderer(new ResultCellRenderer(pane));
+            runner.tree.getSelectionModel().addTreeSelectionListener(this);
+            splitPane.setTopComponent(pane);
         }
         /*
          * A tab showing more information about a failed tests (for example the stack trace),
          * together with some information about the configuration.
          */
-        {   // For keeping variables in a local scope.
-            final JButton viewJavadoc = new JButton("Online documentation");
-            viewJavadoc.setEnabled(desktop != null && desktop.isSupported(Desktop.Action.BROWSE));
-            viewJavadoc.setToolTipText("View javadoc for this test");
-            viewJavadoc.addActionListener(this);
-            splitPane.setBottomComponent(new SwingPanelBuilder().createDetailsPane(
-                    testName = new JLabel(), testResult = new JLabel(), viewJavadoc,
-                    new JTable(factories = new FactoryTableModel()),
-                    new JTable(configuration = new ConfigurationTableModel()),
-                    exception = new JTextArea()));
-        }
+        final JButton viewJavadoc = new JButton("Online documentation");
+        viewJavadoc.setEnabled(desktop != null && desktop.isSupported(Desktop.Action.BROWSE));
+        viewJavadoc.setToolTipText("View javadoc for this test");
+        viewJavadoc.addActionListener(this);
+        splitPane.setBottomComponent(new SwingPanelBuilder().createDetailsPane(
+                testName = new JLabel(), testResult = new JLabel(), viewJavadoc,
+                new JTable(factories = new FactoryTableModel()),
+                new JTable(configuration = new ConfigurationTableModel()),
+                exception = new JTextArea()));
     }
 
     /**
@@ -248,19 +231,15 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
      * @param  entry  description of test result.
      */
     private void setDetails(final ResultEntry entry) {
-        String className  = null;
-        String methodName = null;
+        String progName   = null;
         String stacktrace = null;
+        String result     = null;
         if (entry == null) {
             factories.entries     = Collections.emptyList();
             configuration.entries = Collections.emptyList();
         } else {
-            final TestSource source = entry.identifier.getSource().orElse(null);
-            if (source instanceof MethodSource) {
-                final MethodSource ms = (MethodSource) source;
-                className  = ms.getClassName();
-                methodName = ms.getMethodName();
-            }
+            result   = entry.result();
+            progName = entry.programmaticName();
             switch (entry.result.getStatus()) {
                 case FAILED: {
                     final Throwable exception = entry.result.getThrowable().orElse(null);
@@ -279,28 +258,32 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
         }
         factories    .fireTableDataChanged();
         configuration.fireTableDataChanged();
-        testName     .setText(className + '.' + methodName);
-        testResult   .setText(entry.result());
+        testName     .setText(progName);
+        testResult   .setText(result);
         exception    .setText(stacktrace);
         exception    .setCaretPosition(0);
         currentReport = entry;
     }
 
     /**
-     * Invoked when the user clicked on a new row in the table showing test results.
+     * Invoked when the user clicked on a new row in the tree showing test results.
      * This method updates the "Details" tab with information relative to the test
      * in the selected row.
      *
      * @param  event  the event that characterizes the change.
      */
     @Override
-    public void valueChanged(final ListSelectionEvent event) {
-        if (!event.getValueIsAdjusting()) {
-            final int row = ((ListSelectionModel) event.getSource()).getMinSelectionIndex();
-            if (row >= 0) {
-                setDetails(results.getValueAt(row));
+    public void valueChanged(final TreeSelectionEvent event) {
+        ResultEntry entry = null;
+        final TreePath path = event.getNewLeadSelectionPath();
+        if (path != null) {
+            final DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
+            final Object object = node.getUserObject();
+            if (object instanceof ResultEntry) {
+                entry = (ResultEntry) object;
             }
         }
+        setDetails(entry);
     }
 
     /**
@@ -310,14 +293,15 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
      */
     @Override
     public void actionPerformed(final ActionEvent event) {
-        if (currentReport != null) try {
-            final URI uri = currentReport.getJavadocURL();
-            if (uri != null) {
-                desktop.browse(uri);
-            }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(MainFrame.this, e.toString(),
-                    "Can not open the browser", JOptionPane.ERROR_MESSAGE);
+        if (currentReport != null) {
+            currentReport.getJavadocURL().ifPresent((uri) -> {
+                try {
+                    desktop.browse(uri);
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(MainFrame.this, e.toString(),
+                            "Can not open the browser", JOptionPane.ERROR_MESSAGE);
+                }
+            });
         }
     }
 

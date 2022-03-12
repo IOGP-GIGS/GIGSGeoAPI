@@ -130,14 +130,14 @@ final class ImplementationManifest {
                 file = file.substring(file.lastIndexOf(File.separator) + 1);
                 currentClasspath.add(file);
             }
-            for (final Iterator<File> it=classpath.iterator(); it.hasNext();) {
+            for (final Iterator<File> it = classpath.iterator(); it.hasNext();) {
                 if (currentClasspath.contains(it.next().getName())) {
                     it.remove();
                 }
             }
         }
         if (manifest != null) {
-            manifest.dependencies = classpath.toArray(new File[classpath.size()]);
+            manifest.dependencies = classpath.toArray(File[]::new);
         }
         return manifest;
     }

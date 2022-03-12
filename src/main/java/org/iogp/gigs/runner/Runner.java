@@ -31,11 +31,13 @@
  */
 package org.iogp.gigs.runner;
 
+import java.awt.EventQueue;
 import java.util.List;
-import java.util.Arrays;
 import java.util.ArrayList;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 import org.junit.platform.launcher.TestIdentifier;
 import org.junit.platform.engine.TestExecutionResult;
 import org.junit.platform.launcher.TestExecutionListener;
@@ -51,45 +53,27 @@ import org.junit.platform.engine.support.descriptor.MethodSource;
  */
 final class Runner implements TestExecutionListener {
     /**
-     * The result of each tests. All a access to this list must be synchronized.
+     * The result of each tests. All accesses to this list must be synchronized.
      */
     private final List<ResultEntry> entries;
 
     /**
-     * The listeners to inform of any new entry. Note that those listeners will
-     * <strong>not</strong> be notified from the Swing thread. It is listener
-     * responsibility to be safe regarding the Swing events queue.
+     * The tree where to show results.
+     * All changes in this tree must be done in the swing thread.
      */
-    private ChangeListener[] listeners;
-
-    /**
-     * The single change event to reuse every time an event is fired.
-     */
-    private final ChangeEvent event;
+    final JTree tree;
 
     /**
      * Creates a new, initially empty, runner.
      */
     Runner() {
-        entries   = new ArrayList<>();
-        listeners = new ChangeListener[0];
-        event     = new ChangeEvent(this);
+        entries = new ArrayList<>();
+        tree = new JTree(new DefaultTreeModel(new DefaultMutableTreeNode("GIGS")));
+        tree.setRootVisible(false);
     }
 
     /**
-     * Returns all entries. This method returns a copy of the internal array.
-     * Changes to this {@code ReportData} object will not be reflected in that array.
-     *
-     * @return all entries in this runner.
-     */
-    ResultEntry[] getEntries() {
-        synchronized (entries) {
-            return entries.toArray(new ResultEntry[entries.size()]);
-        }
-    }
-
-    /**
-     * Called when a test finished, successfully or not.
+     * Called in background thread when a test finished, successfully or not.
      * This method is invoked after each method, but also after each class.
      * We collect the results only for test methods.
      *
@@ -100,34 +84,47 @@ final class Runner implements TestExecutionListener {
     public void executionFinished​(final TestIdentifier identifier, final TestExecutionResult result) {
         if (identifier.getSource().orElse(null) instanceof MethodSource) {
             final ResultEntry entry = new ResultEntry(identifier, result);
-            final ChangeListener[] list;
             synchronized (entries) {
                 entries.add(entry);
-                list = listeners;
             }
-            for (final ChangeListener listener : list) {
-                listener.stateChanged(event);
-            }
+            EventQueue.invokeLater(() -> {
+                final DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+                final DefaultMutableTreeNode parent = series(model, entry.series);
+                final int index = parent.getChildCount();
+                parent.add(new DefaultMutableTreeNode(entry, false));
+                model.nodesWereInserted(parent, new int[] {index});
+            });
         }
     }
 
     /**
-     * Adds a change listener to be invoked when new entries are added.
-     * This is of interest mostly to swing widgets - we don't use this
-     * listener for collecting new information.
+     * Returns the node of the series of the given name, creating it if needed.
+     * This method must be invoked in Swing thread.
      *
-     * <p>Note that the listeners given to this method will <strong>not</strong> be notified from the
-     * Swing thread. It is listener responsibility to be safe regarding the Swing events queue.</p>
-     *
-     * @param  listener  the change listener to add.
+     * @param  model  value of {@code tree.getModel()}.
+     * @param  name   name of the series.
+     * @return node of the series of the given name.
      */
-    final void addChangeListener(final ChangeListener listener) {
-        synchronized (entries) {
-            ChangeListener[] list = listeners;
-            final int length = list.length;
-            list = Arrays.copyOf(list, length + 1);
-            list[length] = listener;
-            listeners = list;
+    private DefaultMutableTreeNode series(final DefaultTreeModel model, final String name) {
+        final DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+        DefaultMutableTreeNode series;
+        for (int i = root.getChildCount(); --i >= 0;) {
+            series = (DefaultMutableTreeNode) root.getChildAt(i);
+            if (name.equals(series.getUserObject())) {
+                return series;
+            }
         }
+        series = new DefaultMutableTreeNode(name);
+        final int index = root.getChildCount();
+        root.add(series);
+        model.nodesWereInserted(root, new int[] {index});
+        /*
+         * The tree stay hidden if we do not expand the root
+         * as soon as we can (after we got at least one child).
+         */
+        if (index == 0) {
+            tree.expandPath(new TreePath(model.getRoot()));
+        }
+        return series;
     }
 }

@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.AbstractMap;
+import java.util.Optional;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -51,7 +52,6 @@ import org.iogp.gigs.internal.TestSuite;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.platform.launcher.TestIdentifier;
 import org.junit.platform.engine.TestExecutionResult;
-import org.junit.platform.engine.TestSource;
 import org.junit.platform.engine.support.descriptor.MethodSource;
 
 
@@ -79,12 +79,19 @@ final class ResultEntry {
     private static final String JAVADOC_BASEURL = "https://iogp-gigs.github.io/GIGSGeoAPI/";
 
     /**
-     * Identification of the test.
+     * The Java method which is the source of the test for which we are providing a result.
      */
-    final TestIdentifier identifier;
+    private final MethodSource source;
+
+    /**
+     * The human-readable name of the series to which this test belong.
+     * Specified by the {@code DisplayName} annotation on the test class.
+     */
+    final String series;
 
     /**
      * The human-readable name for the test method.
+     * Specified by the {@code DisplayName} annotation on the test method.
      */
     final String displayName;
 
@@ -124,31 +131,27 @@ final class ResultEntry {
     private boolean isToleranceRelaxed;
 
     /**
-     * Creates a new entry for the given result.
+     * Creates a new entry for the given result. The {@linkplain TestIdentifier#getSource() source} of the test
+     * must be an instance of {@link MethodSource}; it is caller's responsibility to verify this condition.
      *
      * @param identifier  identification of the test provided by JUnit.
      * @param result      result of the test (success, failure, aborted).
      */
     ResultEntry(final TestIdentifier identifier, final TestExecutionResult result) {
-        this.identifier  = identifier;
-        this.result      = result;
+        this.result = result;
         result.getThrowable().ifPresent(ResultEntry::trimStackTrace);
-        final TestSource source = identifier.getSource().orElse(null);
-        if (source instanceof MethodSource) {
-            final MethodSource ms = (MethodSource) source;
-            String className;
-            final Class<?> c = ms.getJavaClass();
-            if (c != null) {
-                final DisplayName dn = c.getAnnotation(DisplayName.class);
-                className = (dn != null) ? dn.value() : c.getSimpleName();
-            } else {
-                className = ms.getClassName();
-                className = className.substring(className.lastIndexOf('.') + 1);
-            }
-            displayName = className + " ❱ " + identifier.getDisplayName();
+        source = (MethodSource) identifier.getSource().get();
+        final Class<?> c = source.getJavaClass();
+        String className;
+        if (c != null) {
+            final DisplayName dn = c.getAnnotation(DisplayName.class);
+            className = (dn != null) ? dn.value() : c.getSimpleName();
         } else {
-            displayName = identifier.getDisplayName();
+            className = source.getClassName();
+            className = className.substring(className.lastIndexOf('.') + 1);
         }
+        series = className;
+        displayName = identifier.getDisplayName();
         /*
          * Extract information from the configuration:
          *  - Computes an estimation of test coverage as a number between 0 and 1.
@@ -311,18 +314,22 @@ final class ResultEntry {
      *
      * @return the URI to the javadoc of the test method, or {@code null} if none.
      */
-    public URI getJavadocURL() {
-        final TestSource source = identifier.getSource().orElse(null);
-        if (source instanceof MethodSource) {
-            final MethodSource ms = (MethodSource) source;
-            String method = ms.getMethodName();
-            final int s = method.indexOf('[');
-            if (s >= 0) {
-                method = method.substring(0, s);
-            }
-            return URI.create(JAVADOC_BASEURL + ms.getClassName().replace('.', '/') + ".html#" + method + "()");
+    public Optional<URI> getJavadocURL() {
+        String method = source.getMethodName();
+        final int s = method.indexOf('[');
+        if (s >= 0) {
+            method = method.substring(0, s);
         }
-        return null;
+        return Optional.of(URI.create(JAVADOC_BASEURL + source.getClassName().replace('.', '/') + ".html#" + method + "()"));
+    }
+
+    /**
+     * Name of the Java class and test method.
+     *
+     * @return name of the test in Java source code
+     */
+    String programmaticName() {
+        return source.getClassName() + '.' + source.getMethodName();
     }
 
     /**

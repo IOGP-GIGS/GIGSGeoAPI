@@ -31,109 +31,130 @@
  */
 package org.iogp.gigs.runner;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.JScrollPane;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 
 
 /**
- * The cell renderer for the {@link ResultTableModel}. This cell renderer can display
- * cells in different color depending the test status.
+ * The cell renderer for the tree of results.
+ * This cell renderer can display cells in different color depending on the test status.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0
  */
 @SuppressWarnings("serial")
-final class ResultCellRenderer extends DefaultTableCellRenderer {
+final class ResultCellRenderer extends DefaultTreeCellRenderer {
     /**
-     * The default text and background color.
+     * With (in pixels) of the bar showing test coverage.
      */
-    private Color foreground, background;
+    private static final int COVERAGE_BAR_WIDTH = 60;
 
     /**
-     * The color to use for successful tests.
+     * Presumed width of vertical scroll bar + tree handlers (in pixels).
+     */
+    private static final int DECORATION_WIDTH = 64;
+
+    /**
+     * The color to use for aborted or failed tests.
      */
     private final Color ignoreColor, failureColor;
 
     /**
-     * The cell renderer for test coverage.
+     * A container for this label with the {@linkplain #coverage} bar.
+     * This is the renderer for a row in the tree.
+     */
+    private final JPanel renderer;
+
+    /**
+     * The renderer for test coverage.
      */
     private final Coverage coverage;
 
     /**
-     * Creates a default cell renderer for {@link ResultTableModel}.
+     * The scroll pane which contains the tree.
+     * Used for computing the width.
      */
-    ResultCellRenderer() {
-        super();
-        foreground   = super.getForeground();
-        background   = super.getBackground();
+    private final JScrollPane container;
+
+    /**
+     * Creates a default cell renderer for {@link ResultTableModel}.
+     *
+     * @param  pane  scroll pane which contains the tree.
+     */
+    @SuppressWarnings("ThisEscapedInObjectConstruction")
+    ResultCellRenderer(final JScrollPane pane) {
         ignoreColor  = Color.GRAY;
         failureColor = Color.RED;
+        container    = pane;
         coverage     = new Coverage();
+        renderer     = new JPanel(new BorderLayout());
+        renderer.add(this, BorderLayout.CENTER);
+        renderer.add(coverage, BorderLayout.EAST);
+        renderer.setOpaque(false);
     }
 
     /**
-     * Specifies the text color for valid coordinates.
+     * Configures the renderer based on the passed in components.
+     *
+     * @param  tree      the tree where to render.
+     * @param  value     the value to render.
+     * @param  selected  whether node is selected.
+     * @param  expanded  whether node is expanded.
+     * @param  leaf      whether node is a leaf node.
+     * @param  row       row index.
+     * @param  hasFocus  whether node has focus.
+     * @return the component for cell rendering.
      */
     @Override
-    public void setForeground(final Color c) {
-        this.foreground = c;
-        super.setForeground(c);
-    }
-
-    /**
-     * Specifies the background color for valid coordinates.
-     */
-    @Override
-    public void setBackground(final Color c) {
-        this.background = c;
-        super.setBackground(c);
-    }
-
-    /**
-     * Returns the component for cell rendering.
-     */
-    @Override
-    public Component getTableCellRendererComponent(final JTable table, final Object value,
-            final boolean isSelected, final boolean hasFocus, final int row, final int column)
+    public Component getTreeCellRendererComponent(final JTree tree, Object value,
+            final boolean selected, final boolean expanded, final boolean leaf,
+            final int row, final boolean hasFocus)
     {
-        final ResultTableModel model = (ResultTableModel) table.getModel();
-        final ResultEntry entry = model.getValueAt(row);
-        Color foreground = this.foreground;
-        Color background = this.background;
-        boolean isIgnore = false;
-        if (!isSelected) {
-            switch (entry.result.getStatus()) {
-                case ABORTED: {
-                    foreground = ignoreColor;
-                    isIgnore = true;
-                    break;
-                }
-                case FAILED: {
-                    foreground = failureColor;
-                    break;
+        ResultEntry report = null;
+        value = ((DefaultMutableTreeNode) value).getUserObject();
+        if (value instanceof ResultEntry) {
+            report = (ResultEntry) value;
+            value  = report.displayName;
+        }
+        super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
+        coverage.report = report;
+        if (report != null) {
+            if (!selected) {
+                switch (report.result.getStatus()) {
+                    case ABORTED: {
+                        setForeground(ignoreColor);
+                        break;
+                    }
+                    case FAILED: {
+                        setForeground(failureColor);
+                        break;
+                    }
                 }
             }
         }
-        if (!isIgnore && column == ResultTableModel.RESULT_COLUMN) {
-            coverage.report = entry;
-            return coverage;
-        }
-        super.setBackground(background);
-        super.setForeground(foreground);
-        return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        Dimension size = getPreferredSize();
+        size.width = container.getWidth() - DECORATION_WIDTH;
+        renderer.setPreferredSize(size);
+        return renderer;
     }
 
     /**
-     * The cell renderer for test coverage.
+     * A panel showing the test coverage as a bar.
      */
-    private static final class Coverage extends JPanel {
+    @SuppressWarnings("serial")
+    private static final class Coverage extends JComponent {
         /**
          * The space to keep between two cells.
          */
@@ -151,10 +172,13 @@ final class ResultCellRenderer extends DefaultTableCellRenderer {
          */
         Coverage() {
             setOpaque(false);
+            setPreferredSize(new Dimension(COVERAGE_BAR_WIDTH, 19));
         }
 
         /**
          * Paints the test coverage.
+         *
+         * @param  graphics  the graphics context to use for painting.
          */
         @Override
         protected void paintComponent(final Graphics graphics) {
