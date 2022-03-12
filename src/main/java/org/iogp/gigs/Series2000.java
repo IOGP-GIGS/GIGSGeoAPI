@@ -199,8 +199,9 @@ public abstract class Series2000<T> extends IntegrityTest {
 
     /**
      * Returns a name of the given object that can be compared against the expected name.
-     * The default implementation returns {@code object.getName().getCode()} or {@code null}
-     * if the given object, its name or its code is null.
+     * The current implementation returns {@code object.getName().getCode()} converted to
+     * ASCII characters on a best effort basis (e.g. "é" is replaced by "e"),
+     * or {@code null} if the given object, its name or its code is null.
      *
      * <p>Subclasses can override this method when testing an {@link AuthorityFactory} implementation
      * which is known to use slightly different name than the one used in the EPSG database, or if the
@@ -225,7 +226,25 @@ public abstract class Series2000<T> extends IntegrityTest {
      * @see #isStandardAliasSupported
      */
     protected String getVerifiableName(final IdentifiedObject object) {
-        return getName(object);
+        return toASCII(getName(object));
+    }
+
+    /**
+     * Returns {@code true} if the given text contains only ASCII character.
+     * This quick check allows us to avoid the costly {@link #toASCII(String)}
+     * conversion in the common case where the text is already in ASCII.
+     *
+     * @param  text  the text to verify.
+     * @return {@code true} if the given text contains only ASCII characters.
+     */
+    private static boolean isASCII(final String text) {
+        final int length = text.length();
+        for (int i=0; i<length; i++) {
+            if (text.charAt(i) >= 128) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -235,13 +254,17 @@ public abstract class Series2000<T> extends IntegrityTest {
      * and combined characters like ㎏, ㎎, ㎝, ㎞, ㎢, ㎦, ㎖, ㎧, ㎩, ㎐, <i>etc.</i> are replaced
      * by the corresponding sequences of characters.
      *
-     * @param  buffer  the text to scan for Unicode characters to replace by ASCII characters.
+     * @param  buffer  the text to scan for Unicode characters to replace by ASCII characters, or {@code null}.
+     * @return the text with only ASCII characters (best effort), or {@code null} if the given text was null.
      */
-    private static String toASCII(final String text) {
-        final StringBuilder buffer = new StringBuilder(Normalizer.normalize(text, Normalizer.Form.NFKD));
-        int i = text.length();
+    static String toASCII(final String text) {
+        if (text == null || isASCII(text)) {
+            return text;
+        }
+        final StringBuilder buffer = new StringBuilder(Normalizer.normalize(text, Normalizer.Form.NFD));
+        int i = buffer.length();
         while (i > 0) {
-            final int c = Character.codePointBefore(text, i);
+            final int c = Character.codePointBefore(buffer, i);
             final int n = Character.charCount(c);
             i -= n;                                 // After this line, `i` is the index of character `c`.
             final char r;                           // The character replacement.
@@ -277,43 +300,22 @@ public abstract class Series2000<T> extends IntegrityTest {
     }
 
     /**
-     * Compares the given generic names with the given set of expected aliases.
-     * This method verifies that the given collection contains at least the expected aliases.
-     * However the collection may contain additional aliases, which will be ignored.
+     * Ensures that the given collection contains exactly one identifier in the EPSG code space
+     * and that identifier has the given code value (ignoring case).
+     * Identifiers in other code spaces are ignored.
      *
-     * @param  message   the prefix of the message to show in case of failure.
-     * @param  expected  the expected aliases.
-     * @param  aliases   the actual aliases.
-     */
-    static void assertContainsAll(final String message, final String[] expected,
-            final Collection<GenericName> aliases)
-    {
-        assertNotNull(aliases, message);
-next:   for (final String search : expected) {
-            for (final GenericName alias : aliases) {
-                final String tip = alias.tip().toString();
-                if (search.equalsIgnoreCase(tip)) {
-                    continue next;
-                }
-            }
-            fail(message + ": alias not found: " + search);
-        }
-    }
-
-    /**
-     * Ensures that the given collection contains an identifier having the EPSG
-     * codespace (ignoring case) and the given code value.
-     *
-     * @param  expected  the expected identifier code.
+     * @param  expected  the expected identifier code (usually {@link #code}).
      * @param  object    the object from which to test identifiers.
      * @param  message   the Java expression used for getting the object. This is shown if the assertion fails.
      */
     final void assertIdentifierEquals(final int expected, final IdentifiedObject object, final String message) {
         final Collection<? extends ReferenceIdentifier> identifiers = object.getIdentifiers();
-        assertNotNull(identifiers, message);
+        assertNotNull(identifiers, () -> message + ".getIdentifiers()");
         if (isStandardIdentifierSupported) {
             final Configuration.Key<Boolean> previous = configurationTip;
-            configurationTip = Configuration.Key.isStandardIdentifierSupported;
+            if (previous != Configuration.Key.isDependencyIdentificationSupported) {
+                configurationTip = Configuration.Key.isStandardIdentifierSupported;
+            }
             int found = 0;
             for (final ReferenceIdentifier id : identifiers) {
                 if (EPSG.equalsIgnoreCase(id.getCodeSpace().trim())) {
@@ -321,7 +323,7 @@ next:   for (final String search : expected) {
                     try {
                         assertEquals(expected, Integer.parseInt(id.getCode()), message);
                     } catch (NumberFormatException e) {
-                        fail(message + ".getIdentifiers(…).getCode(): expected " + expected +
+                        fail(message + ".getIdentifiers().get(…).getCode(): expected " + expected +
                                 " but got a non-numerical value: " + e);
                     }
                 }
@@ -333,26 +335,55 @@ next:   for (final String search : expected) {
 
     /**
      * Ensures that the name of the given object is equal to the value of the expected name.
+     * The comparison ignores case and non-spacing marks (e.g. "é" is compared as "e").
+     * The way non-spacing marks are ignored can be modified if user overrides {@link #getVerifiableName(IdentifiedObject)}.
      *
      * @param  full      {@code true} for a full match, or {@code false} if the name only needs to start with expected value.
-     * @param  expected  the expected name.
+     * @param  expected  the expected name (usually {@link #name}).
      * @param  object    the object for which to verify the name.
      * @param  message   the Java expression used for getting the object. This is shown if the assertion fails.
      */
     final void assertNameEquals(final boolean full, final String expected, final IdentifiedObject object, final String message) {
         if (isStandardNameSupported) {
             final Configuration.Key<Boolean> previous = configurationTip;
-            configurationTip = Configuration.Key.isStandardNameSupported;
-            final String name = getName(object);
-            final String actual = toASCII(name);
-            final boolean match;
-            if (full) {
-                match = expected.equals(actual);
-            } else {
-                match = (actual != null) && actual.startsWith(expected);
+            if (previous != Configuration.Key.isDependencyIdentificationSupported) {
+                configurationTip = Configuration.Key.isStandardNameSupported;
             }
-            if (!match) {
-                assertEquals(expected, name, message + ".getName()");
+            final String actual = getVerifiableName(object);
+            int length = expected.length();
+            if (full) length = Math.max(length, actual.length());
+            if (actual == null || !actual.regionMatches(true, 0, expected, 0, length)) {
+                assertEquals(expected, getName(object), message + ".getName()");
+            }
+            configurationTip = previous;
+        }
+    }
+
+    /**
+     * Ensures that the aliases of the given object contains all expected aliases.
+     * This method verifies that the given collection contains at least the expected aliases.
+     * However the collection may contain additional aliases, which will be ignored.
+     *
+     * @param  expected  the expected aliases (usually {@link #aliases}).
+     * @param  object    the object for which to verify the aliases.
+     * @param  message   the Java expression used for getting the object. This is shown if the assertion fails.
+     */
+    final void assertAliasesEqual(final String[] expected, final IdentifiedObject object, final String message) {
+        if (isStandardAliasSupported) {
+            final Configuration.Key<Boolean> previous = configurationTip;
+            if (previous != Configuration.Key.isDependencyIdentificationSupported) {
+                configurationTip = Configuration.Key.isStandardAliasSupported;
+            }
+            final Collection<GenericName> aliases = object.getAlias();
+            assertNotNull(aliases, () -> message + ".getAlias()");
+next:       for (final String search : expected) {
+                for (final GenericName alias : aliases) {
+                    final String tip = alias.tip().toString();
+                    if (search.equalsIgnoreCase(toASCII(tip))) {
+                        continue next;
+                    }
+                }
+                fail(message + ".getAlias(): alias not found: " + search);
             }
             configurationTip = previous;
         }

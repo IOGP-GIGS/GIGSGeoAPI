@@ -176,42 +176,6 @@ public class Test2204 extends Series2000<GeodeticDatum> {
     }
 
     /**
-     * Verifies the properties of the geodetic datum given by {@link #getIdentifiedObject()}.
-     *
-     * @throws FactoryException if an error occurred while creating the datum.
-     */
-    private void verifyDatum() throws FactoryException {
-        final GeodeticDatum datum = getIdentifiedObject();
-        assertNotNull(datum, "GeodeticDatum");
-        validators.validate(datum);
-
-        assertIdentifierEquals(code, datum, "GeodeticDatum");
-        assertNameEquals(true, name, datum, "GeodeticDatum");
-
-        // Geodetic datum ellipsoid.
-        final Ellipsoid e = datum.getEllipsoid();
-        assertNotNull(e, "GeodeticDatum.getEllipsoid()");
-
-        // Ellipsoid name.
-        if (isDependencyIdentificationSupported && isStandardNameSupported) {
-            configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertEquals(ellipsoidName, getVerifiableName(e), "GeodeticDatum.getEllipsoid().getName()");
-            configurationTip = null;
-        }
-
-        // Geodetic datum prime meridian.
-        final PrimeMeridian pm = datum.getPrimeMeridian();
-        assertNotNull(pm, "GeodeticDatum.getPrimeMeridian()");
-
-        // Prime meridian name.
-        if (isDependencyIdentificationSupported && isStandardNameSupported) {
-            configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertEquals(primeMeridianName, getVerifiableName(pm), "GeodeticDatum.getPrimeMeridian().getName()");
-            configurationTip = null;
-        }
-    }
-
-    /**
      * Returns an instance of the ellipsoid test class initialized to the ellipsoid of current datum.
      *
      * @return instance for testing a dependency of current datum.
@@ -233,6 +197,40 @@ public class Test2204 extends Series2000<GeodeticDatum> {
         test.configureAsDependency(this);
         test.setIdentifiedObject(datum.getPrimeMeridian());
         return test;
+    }
+
+    /**
+     * Verifies the properties of the geodetic datum given by {@link #getIdentifiedObject()}.
+     *
+     * @throws FactoryException if an error occurred while creating the datum.
+     */
+    private void verifyDatum() throws FactoryException {
+        final GeodeticDatum datum = getIdentifiedObject();
+        assertNotNull(datum, "GeodeticDatum");
+        validators.validate(datum);
+
+        // Datum identification.
+        assertIdentifierEquals(code, datum, "GeodeticDatum");
+        assertNameEquals(true, name, datum, "GeodeticDatum");
+        assertAliasesEqual( aliases, datum, "GeodeticDatum");
+
+        // Datum ellipsoid.
+        final Ellipsoid e = datum.getEllipsoid();
+        assertNotNull(e, "GeodeticDatum.getEllipsoid()");
+        if (isDependencyIdentificationSupported) {
+            configurationTip = Configuration.Key.isDependencyIdentificationSupported;
+            assertNameEquals(true, ellipsoidName, e, "GeodeticDatum.getEllipsoid()");
+            configurationTip = null;
+        }
+
+        // Datum prime meridian.
+        final PrimeMeridian pm = datum.getPrimeMeridian();
+        assertNotNull(pm, "GeodeticDatum.getPrimeMeridian()");
+        if (isDependencyIdentificationSupported) {
+            configurationTip = Configuration.Key.isDependencyIdentificationSupported;
+            assertNameEquals(true, primeMeridianName, pm, "GeodeticDatum.getPrimeMeridian()");
+            configurationTip = null;
+        }
     }
 
     /**

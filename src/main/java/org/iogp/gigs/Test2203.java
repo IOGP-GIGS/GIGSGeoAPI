@@ -177,16 +177,10 @@ public class Test2203 extends Series2000<PrimeMeridian> {
         assertNotNull(pm, "PrimeMeridian");
         validators.validate(pm);
 
-        // Prime meridian identifiers and name.
+        // Prime meridian identification.
         assertIdentifierEquals(code, pm, "PrimeMeridian");
         assertNameEquals(true, name, pm, "PrimeMeridian");
-
-        // Prime meridian alias.
-        if (isStandardAliasSupported) {
-            configurationTip = Configuration.Key.isStandardAliasSupported;
-            assertContainsAll("PrimeMeridian.getAlias()", aliases, pm.getAlias());
-            configurationTip = null;
-        }
+        assertAliasesEqual (aliases, pm, "PrimeMeridian");
         /*
          * Before to compare the Greenwich longitude, convert the expected angular value from decimal degrees
          * to the units actually used by the implementation. We do the conversion that way rather than the

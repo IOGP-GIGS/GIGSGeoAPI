@@ -205,14 +205,13 @@ public class Test2008 extends Series2000<VerticalCRS> {
     private void verifyVerticalCRS() throws FactoryException {
         if (crsAuthorityFactory != null) {
             final VerticalCRS crs = getIdentifiedObject();
-
-            // CRS validation.
             assertNotNull(crs, "VerticalCRS");
             validators.validate(crs);
 
-            // CRS identifier and name.
+            // CRS identification.
             assertIdentifierEquals(code, crs, "VerticalCRS");
             assertNameEquals(true, name, crs, "VerticalCRS");
+            assertAliasesEqual (aliases, crs, "VerticalCRS");
 
             // Datum associated to the CRS.
             final VerticalDatum datum = crs.getDatum();
@@ -222,8 +221,7 @@ public class Test2008 extends Series2000<VerticalCRS> {
             if (isDependencyIdentificationSupported) {
                 configurationTip = Configuration.Key.isDependencyIdentificationSupported;
                 assertIdentifierEquals(datumCode, datum, "VerticalCRS.getDatum()");
-
-                assertEquals(datumName, getVerifiableName(datum), "VerticalCRS.getDatum().getName()");
+                assertNameEquals(true, datumName, datum, "VerticalCRS.getDatum().getName()");
                 configurationTip = null;
             }
         }

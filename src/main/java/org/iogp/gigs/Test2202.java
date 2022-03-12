@@ -254,16 +254,10 @@ public class Test2202 extends Series2000<Ellipsoid> {
         assertNotNull(ellipsoid, "Ellipsoid");
         validators.validate(ellipsoid);
 
-        // Ellipsoid identifier and name.
+        // Ellipsoid identification.
         assertIdentifierEquals(code, ellipsoid, "Ellipsoid");
         assertNameEquals(true, name, ellipsoid, "Ellipsoid");
-
-        // Ellipsoid alias.
-        if (isStandardAliasSupported) {
-            configurationTip = Configuration.Key.isStandardAliasSupported;
-            assertContainsAll("Ellipsoid.getAlias()", aliases, ellipsoid.getAlias());
-            configurationTip = null;
-        }
+        assertAliasesEqual (aliases, ellipsoid, "Ellipsoid");
         /*
          * Get the axis lengths and their unit. Null units are assumed to mean metres
          * (whether we accept null unit or not is determined by the validators).

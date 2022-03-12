@@ -202,21 +202,16 @@ public class Test2207 extends Series2000<ProjectedCRS> {
         assertNotNull(crs, "ProjectedCRS");
         validators.validate(crs);
 
-        // Projected CRS identifier.
+        // Projected CRS identification.
         assertIdentifierEquals (code, crs, "ProjectedCRS");
         assertNameEquals(false, name, crs, "ProjectedCRS");
+        assertAliasesEqual  (aliases, crs, "ProjectedCRS");
 
         // Projected CRS components.
         if (isDependencyIdentificationSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-
-            // Geodetic datum name.
             assertIdentifierEquals(datumCode, crs.getDatum(), "ProjectedCRS.getDatum()");
-
-            // Base geographic CRS name.
-            if (isStandardNameSupported) {
-                assertEquals(geographicCRS, getVerifiableName(crs.getBaseCRS()), "ProjectedCRS.getBaseCRS().getName()");
-            }
+            assertNameEquals(true, geographicCRS, crs.getBaseCRS(), "ProjectedCRS.getBaseCRS()");
             configurationTip = null;
         }
 

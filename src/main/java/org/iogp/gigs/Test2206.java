@@ -181,11 +181,12 @@ public class Test2206 extends Series2000<Conversion> {
         assertNotNull(conversion, "Conversion");
         validators.validate(conversion);
 
-        // Map projection identifier and name.
+        // Map projection identification.
         assertIdentifierEquals (code, conversion, "Conversion");
         assertNameEquals(false, name, conversion, "Conversion");
+        assertAliasesEqual  (aliases, conversion, "Conversion");
 
-        // Map projection name.
+        // Map projection name (considered mandatory).
         assertNameEquals(true, methodName, conversion.getMethod(), "Conversion.getMethod()");
     }
 

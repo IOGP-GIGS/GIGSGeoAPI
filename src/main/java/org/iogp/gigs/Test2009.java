@@ -176,9 +176,10 @@ public class Test2009 extends Series2000<Transformation> {
         assertNotNull(transformation, "Transformation");
         validators.validate(transformation);
 
-        // Transformation identifier and name.
+        // Transformation identification.
         assertIdentifierEquals(code, transformation, "Transformation");
         assertNameEquals(true, name, transformation, "Transformation");
+        assertAliasesEqual (aliases, transformation, "Transformation");
 
         // Operation method.
         final OperationMethod m = transformation.getMethod();
