@@ -34,6 +34,9 @@ package org.iogp.gigs.runner;
 import java.awt.EventQueue;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.AbstractList;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -90,8 +93,7 @@ final class Runner implements TestExecutionListener {
             EventQueue.invokeLater(() -> {
                 final DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
                 final DefaultMutableTreeNode parent = series(model, entry.series);
-                final int index = parent.getChildCount();
-                parent.add(new DefaultMutableTreeNode(entry, false));
+                final int index = new Children(parent).insert(entry);
                 model.nodesWereInserted(parent, new int[] {index});
             });
         }
@@ -126,5 +128,78 @@ final class Runner implements TestExecutionListener {
             tree.expandPath(new TreePath(model.getRoot()));
         }
         return series;
+    }
+
+    /**
+     * View of the nodes as a list. This class implements also the comparator used for keeping elements
+     * in the list in alphabetical order. This is used for finding where to insert a new node.
+     */
+    private static final class Children extends AbstractList<DefaultMutableTreeNode> implements Comparator<Object> {
+        /**
+         * The node of the test series.
+         * Children of this nodes are result of test methods in the series.
+         */
+        private final DefaultMutableTreeNode series;
+
+        /**
+         * Creates a new list of test results.
+         *
+         * @param  series  the node of the test series.
+         */
+        Children(final DefaultMutableTreeNode series) {
+            this.series = series;
+        }
+
+        /**
+         * {@return the child node at the given index.}
+         */
+        @Override public DefaultMutableTreeNode get(final int index) {
+            return (DefaultMutableTreeNode) series.getChildAt(index);
+        }
+
+        /**
+         * {@return the number of child nodes.}
+         */
+        @Override public int size() {
+            return series.getChildCount();
+        }
+
+        /**
+         * Returns the given object as an instance of {@code ResultEntry}.
+         *
+         * @param  obj  the {@code ResultEntry} or {@code DefaultMutableTreeNode} instance.
+         * @return the given object as a {@code ResultEntry} instance.
+         */
+        private static ResultEntry cast(Object obj) {
+            if (obj instanceof DefaultMutableTreeNode) {
+                obj = ((DefaultMutableTreeNode) obj).getUserObject();
+            }
+            return (ResultEntry) obj;
+        }
+
+        /**
+         * Compares two nodes for order.
+         *
+         * @param  o1  the first node to compare.
+         * @param  o2  the second node to compare.
+         * @return negative if {@code o1} should be sorted before {@code o2}, positive if the converse.
+         */
+        @Override
+        public int compare(final Object o1, final Object o2) {
+            return cast(o1).displayName.compareToIgnoreCase(cast(o2).displayName);
+        }
+
+        /**
+         * Inserts the given entry in the list of children.
+         *
+         * @param  entry  the entry to add.
+         * @return the position where the entry has been inserted.
+         */
+        final int insert(final ResultEntry entry) {
+            int i = Collections.binarySearch(this, entry, this);
+            if (i < 0) i = ~i;      // Tild operator, not minus.
+            series.insert(new DefaultMutableTreeNode(entry, false), i);
+            return i;
+        }
     }
 }
