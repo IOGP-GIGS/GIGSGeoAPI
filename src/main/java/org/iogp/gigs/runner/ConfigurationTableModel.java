@@ -34,7 +34,9 @@ package org.iogp.gigs.runner;
 import java.util.Map;
 import java.util.List;
 import java.util.Collections;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableColumnModel;
 
 import org.iogp.gigs.internal.geoapi.Configuration;
 
@@ -76,6 +78,21 @@ final class ConfigurationTableModel extends AbstractTableModel {
      */
     ConfigurationTableModel() {
         entries = Collections.emptyList();
+    }
+
+    /**
+     * Returns a new table view using this model. This method is defined as a convenient place
+     * where to configure the view (column width, <i>etc.</i>) if desired.
+     *
+     * @return the configured table view.
+     */
+    JTable createView() {
+        final JTable view = new JTable(this);
+        final TableColumnModel columns = view.getColumnModel();
+        columns.getColumn(KEY_COLUMN)  .setPreferredWidth(400);
+        columns.getColumn(VALUE_COLUMN).setPreferredWidth(100);
+        columns.getColumn(PASS_COLUMN) .setPreferredWidth(300);
+        return view;
     }
 
     /**
@@ -122,7 +139,7 @@ final class ConfigurationTableModel extends AbstractTableModel {
     public Object getValueAt(final int row, final int column) {
         final Map.Entry<Configuration.Key<?>, ResultEntry.StatusOptional> entry = entries.get(row);
         switch (column) {
-            case KEY_COLUMN:   return ResultEntry.separateWords(entry.getKey().name(), true);
+            case KEY_COLUMN:   return ResultEntry.separateWords(entry.getKey().name(), true, "");
             case VALUE_COLUMN: return entry.getValue() != ResultEntry.StatusOptional.DISABLED;
             case PASS_COLUMN:  return entry.getValue() == ResultEntry.StatusOptional.FAILED ? "Failed" : null;
             default: throw new IndexOutOfBoundsException(String.valueOf(column));

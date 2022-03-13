@@ -33,6 +33,7 @@ package org.iogp.gigs.runner;
 
 import java.util.List;
 import java.util.Collections;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 
@@ -76,6 +77,18 @@ final class FactoryTableModel extends AbstractTableModel {
      */
     FactoryTableModel() {
         entries = Collections.emptyList();
+    }
+
+    /**
+     * Returns a new table view using this model. This method is defined as a convenient place
+     * where to configure the view (column width, <i>etc.</i>) if desired.
+     *
+     * @return the configured table view.
+     */
+    JTable createView() {
+        final JTable view = new JTable(this);
+        // Configure here if desired.
+        return view;
     }
 
     /**

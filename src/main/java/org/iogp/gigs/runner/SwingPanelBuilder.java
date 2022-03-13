@@ -110,28 +110,34 @@ final class SwingPanelBuilder extends GridBagConstraints {
     /**
      * Creates the panel where to display details about a particular test.
      *
-     * @param  testName       where to write the test method name.
-     * @param  testResult     where to write the test result.
-     * @param  viewJavadoc    button for showing test javadoc.
-     * @param  factories      table showing available factories.
-     * @param  configuration  configuration at the time the test was executed.
-     * @param  exception      the exception if the test failed, or {@code null} otherwise.
+     * @param  testName          where to write the test method name.
+     * @param  testResult        where to write the test result.
+     * @param  configurationTip  where to write tip about configuration for allowing test to pass.
+     * @param  viewJavadoc       button for showing test javadoc.
+     * @param  factories         table showing available factories.
+     * @param  configuration     configuration at the time the test was executed.
+     * @param  exception         the exception if the test failed, or {@code null} otherwise.
      * @return the panel showing details about selected test.
      */
-    JPanel createDetailsPane(final JLabel testName, final JLabel testResult, final JButton viewJavadoc,
-            final JTable factories, final JTable configuration, final JTextArea exception)
+    JPanel createDetailsPane(final JLabel testName, final JLabel testResult, final JLabel configurationTip,
+            final JButton viewJavadoc, final JTable factories, final JTable configuration, final JTextArea exception)
     {
         final Font monospaced = Font.decode("Monospaced");
         testName.setFont(monospaced);
 
         final JPanel panel = new JPanel(new GridBagLayout());
-        gridy=0; anchor=WEST; fill=BOTH; insets.left = 12;
-        gridx=0; weightx=0; panel.add(createLabel("Test method:", testName), this);
-        gridx++; weightx=1; panel.add(testName, this);
-        gridx++; weightx=0; panel.add(viewJavadoc, this);
-        gridx=0; gridy++;   panel.add(createLabel("Result:", testResult), this);
-        gridx++; weightx=1; gridwidth=3; panel.add(testResult, this);
-        gridx=0; gridy++; weighty=1; insets.left = 0; insets.top = 12;
+        panel.setBorder(BorderFactory.createEmptyBorder(9, 0, 0, 0));
+        gridx=0; weightx=0; anchor=WEST; fill=BOTH; insets.left = 12;
+        gridy=0; panel.add(createLabel("Test method:", testName), this);
+        gridy++; panel.add(createLabel("Result:",    testResult), this);
+        gridy++; panel.add(createLabel("Tip:", configurationTip), this);
+        gridx++; weightx=1;
+        gridy=0; panel.add(testName,         this); gridwidth=2;        // "Javadoc" button will be on this line.
+        gridy++; panel.add(testResult,       this);
+        gridy++; panel.add(configurationTip, this);
+        gridx++; gridy=0; gridwidth=1; gridheight=3; weightx=0; fill=HORIZONTAL; anchor=NORTH; panel.add(viewJavadoc, this);
+        gridx=0; gridy=3; gridwidth=3; gridheight=1; weightx=1; fill=BOTH; anchor=CENTER;
+        weighty=1; insets.left = 0; insets.top = 12;
         final JTabbedPane tabs = new JTabbedPane();
         panel.add(tabs, this);
         /*
@@ -140,7 +146,7 @@ final class SwingPanelBuilder extends GridBagConstraints {
          */
         tabs.addTab("Factories",     new JScrollPane(factories));
         tabs.addTab("Configuration", new JScrollPane(configuration));
-        tabs.addTab("Exception",     new JScrollPane(exception));
+        tabs.addTab("Stack trace",   new JScrollPane(exception));
         exception.addPropertyChangeListener("enabled", new PropertyChangeListener() {
             @Override public void propertyChange(final PropertyChangeEvent event) {
                 tabs.setEnabledAt(2, (Boolean) event.getNewValue());
@@ -148,7 +154,6 @@ final class SwingPanelBuilder extends GridBagConstraints {
             }
         });
         exception.setEditable(false);
-        exception.setFont(monospaced);
         panel.setOpaque(false);
         return panel;
     }

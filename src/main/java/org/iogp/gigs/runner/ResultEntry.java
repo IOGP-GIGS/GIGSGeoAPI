@@ -40,6 +40,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.AbstractMap;
 import java.util.Optional;
+import java.util.Locale;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -117,6 +118,12 @@ final class ResultEntry {
     final List<Map.Entry<Configuration.Key<?>, StatusOptional>> configuration;
 
     /**
+     * If a test failure occurred in an optional test, the configuration key for disabling that test.
+     * Otherwise {@code null}.
+     */
+    private final Configuration.Key<Boolean> configurationTip;
+
+    /**
      * The test status, optionally with the exception.
      */
     final TestExecutionResult result;
@@ -159,7 +166,7 @@ final class ResultEntry {
          *  - Get the list of factories.
          */
         int numTests=1, numSupported=1;
-        final Configuration.Key<Boolean> configurationTip = TestSuite.INSTANCE.configurationTip;
+        configurationTip = TestSuite.INSTANCE.configurationTip;
         final List<String[]> factories = new ArrayList<>();
         final List<Map.Entry<Configuration.Key<?>, StatusOptional>> configuration = new ArrayList<>();
         for (Map.Entry<Configuration.Key<?>,Object> entry : TestSuite.INSTANCE.configuration().map().entrySet()) {
@@ -201,7 +208,7 @@ final class ResultEntry {
                     }
                 }
                 factories.add(new String[] {
-                    separateWords(type.getSimpleName(), false), impl,
+                    separateWords(type.getSimpleName(), false, ""), impl,
                     (value instanceof Factory) ?
                         getIdentifier(((Factory) value).getVendor()) : null,
                     (value instanceof AuthorityFactory) ?
@@ -209,8 +216,8 @@ final class ResultEntry {
                 });
             }
         }
-        coverage = numSupported / ((float) numTests);
-        this.factories = Collections.unmodifiableList(factories);
+        this.coverage      = numSupported / ((float) numTests);
+        this.factories     = Collections.unmodifiableList(factories);
         this.configuration = Collections.unmodifiableList(configuration);
     }
 
@@ -220,9 +227,10 @@ final class ResultEntry {
      *
      * @param  name          camel-case name to separate into words.
      * @param  toLowerCase   whether to put the first letter in lower case.
+     * @param  suffix        suffix to append, or an empty string if none.
      * @return the given name as a sentence.
      */
-    static String separateWords(final String name, final boolean toLowerCase) {
+    static String separateWords(final String name, final boolean toLowerCase, final String suffix) {
         StringBuilder buffer = null;
         for (int i = name.length(); i >= 2;) {
             final int c = name.codePointBefore(i);
@@ -258,7 +266,7 @@ final class ResultEntry {
                 buffer.insert(i, ' ');
             }
         }
-        return (buffer != null) ? buffer.toString() : name;
+        return (buffer != null) ? buffer.append(suffix).toString() : name.concat(suffix);
     }
 
     /**
@@ -325,7 +333,7 @@ final class ResultEntry {
     }
 
     /**
-     * Name of the Java class and test method.
+     * Returns the Java name of the test class and test method.
      *
      * @return name of the test in Java source code
      */
@@ -347,7 +355,19 @@ final class ResultEntry {
                     return message;
                 }
             }
-            return result.getStatus().name();
+            return result.getStatus().name().toLowerCase(Locale.US);
+        }
+        return null;
+    }
+
+    /**
+     * Returns a tip about a configuration change that may be done for avoiding test failure.
+     *
+     * @return configuration that may be disabled, or {@code null} if no failure.
+     */
+    String configurationTip() {
+        if (configurationTip != null) {
+            return separateWords(configurationTip.name(), true, "?");
         }
         return null;
     }

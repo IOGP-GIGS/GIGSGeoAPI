@@ -52,7 +52,6 @@ import javax.swing.SwingWorker;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
@@ -100,6 +99,12 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
      * Labels used for rendering details about the test result.
      */
     private final JLabel testResult;
+
+    /**
+     * Labels used for rendering a tip about a configuration that may be applied
+     * for allowing a failed test to pass.
+     */
+    private final JLabel configurationTip;
 
     /**
      * The factories used for the test case, to be reported in the "details" tab.
@@ -187,9 +192,12 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
         viewJavadoc.setToolTipText("View javadoc for this test");
         viewJavadoc.addActionListener(this);
         splitPane.setBottomComponent(new SwingPanelBuilder().createDetailsPane(
-                testName = new JLabel(), testResult = new JLabel(), viewJavadoc,
-                new JTable(factories = new FactoryTableModel()),
-                new JTable(configuration = new ConfigurationTableModel()),
+                testName         = new JLabel(),
+                testResult       = new JLabel(),
+                configurationTip = new JLabel(),
+                viewJavadoc,
+                (factories     = new FactoryTableModel()).createView(),
+                (configuration = new ConfigurationTableModel()).createView(),
                 exception = new JTextArea()));
     }
 
@@ -238,12 +246,14 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
         String progName   = null;
         String stacktrace = null;
         String result     = null;
+        String tip        = null;
         if (entry == null) {
             factories.entries     = Collections.emptyList();
             configuration.entries = Collections.emptyList();
         } else {
             result   = entry.result();
             progName = entry.programmaticName();
+            tip      = entry.configurationTip();
             switch (entry.result.getStatus()) {
                 case FAILED: {
                     final Throwable exception = entry.result.getThrowable().orElse(null);
@@ -260,12 +270,13 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
             factories.entries     = entry.factories;
             configuration.entries = entry.configuration;
         }
-        factories    .fireTableDataChanged();
-        configuration.fireTableDataChanged();
-        testName     .setText(progName);
-        testResult   .setText(result);
-        exception    .setText(stacktrace);
-        exception    .setCaretPosition(0);
+        factories       .fireTableDataChanged();
+        configuration   .fireTableDataChanged();
+        configurationTip.setText(tip);
+        testName        .setText(progName);
+        testResult      .setText(result);
+        exception       .setText(stacktrace);
+        exception       .setCaretPosition(0);
         currentReport = entry;
     }
 
