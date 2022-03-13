@@ -146,6 +146,17 @@ public class Test2209 extends Series2000<VerticalDatum> {
     }
 
     /**
+     * Sets the datum instance to be tested.
+     * This is used for testing vertical CRS dependencies.
+     *
+     * @param  dependency  the CRS dependency to test.
+     */
+    final void setIdentifiedObject(final VerticalDatum dependency) {
+        assertNull(datum);
+        datum = dependency;
+    }
+
+    /**
      * Creates a vertical datum for the current {@link #code}, then verifies its name and properties.
      *
      * @throws FactoryException if an error occurred while creating the vertical datum instance.
