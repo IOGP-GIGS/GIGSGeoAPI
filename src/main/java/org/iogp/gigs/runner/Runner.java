@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2022 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -68,7 +68,7 @@ final class Runner implements TestExecutionListener {
      */
     Runner() {
         entries = new ArrayList<>();
-        tree = new JTree(new DefaultTreeModel(new DefaultMutableTreeNode("GIGS")));
+        tree = new JTree(new DefaultTreeModel(new DefaultMutableTreeNode("Test results")));
         tree.setRootVisible(false);
     }
 

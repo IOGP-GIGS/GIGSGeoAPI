@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2022 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -140,10 +140,12 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
     /**
      * Creates a new frame, which contains all our JUnit runner tabs.
      * There is no menu for this application.
+     *
+     * @param  windowTitle  the window title.
      */
     @SuppressWarnings("ThisEscapedInObjectConstruction")
-    MainFrame() {
-        super("GIGS tests");
+    MainFrame(final String windowTitle) {
+        super(windowTitle);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setMinimumSize(new Dimension(400, 400));
         setSize(800, 800);
