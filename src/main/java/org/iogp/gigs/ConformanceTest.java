@@ -121,7 +121,7 @@ abstract class ConformanceTest {
      */
     Configuration configuration() {
         final Configuration configuration = new Configuration();
-        configuration.put(Configuration.Key.units,      units);
+        configuration.put(Configuration.Key.units,      units.system);
         configuration.put(Configuration.Key.validators, validators);
         return configuration;
     }

@@ -32,9 +32,15 @@
 package org.iogp.gigs.runner;
 
 import java.util.List;
+import java.util.Collection;
 import java.util.Collections;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.measure.spi.SystemOfUnits;
+import org.opengis.metadata.Identifier;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.referencing.AuthorityFactory;
+import org.opengis.util.Factory;
 
 
 /**
@@ -77,6 +83,75 @@ final class FactoryTableModel extends AbstractTableModel {
      */
     FactoryTableModel() {
         entries = Collections.emptyList();
+    }
+
+    /**
+     * Adds an entry for a factory in the {@link #entries} list.
+     *
+     * @param  type     interface implemented by the factory.
+     * @param  factory  the factory instance to add to the list.
+     * @param  entries  the list where to add a description for the given factory.
+     * @return whether an entry has been added.
+     */
+    static boolean addTo(final Class<?> type, final Object factory, final List<String[]> entries) {
+        if (!(Factory.class.isAssignableFrom(type) || SystemOfUnits.class.isAssignableFrom(type))) {
+            return false;
+        }
+        final String[] entry = new String[4];
+        if (factory != null) {
+            Class<?> implType = factory.getClass();
+            String impl = implType.getSimpleName();
+            while ((implType = implType.getEnclosingClass()) != null) {
+                impl = implType.getSimpleName() + '.' + impl;
+            }
+            entry[IMPLEMENTATION_COLUMN] = impl;
+        }
+        entry[CATEGORY_COLUMN]  = ResultEntry.separateWords(type.getSimpleName(), false, "");
+        entry[VENDOR_COLUMN]    = (factory instanceof Factory) ? getIdentifier(((Factory) factory).getVendor()) : defaultVendorName(factory);
+        entry[AUTHORITY_COLUMN] = (factory instanceof AuthorityFactory) ? getIdentifier(((AuthorityFactory) factory).getAuthority()) : null;
+        return entries.add(entry);
+    }
+
+    /**
+     * Returns the first identifier of the given citation. If no identifier is found, returns
+     * the title or {@code null} if none. We search for identifier first because they are
+     * typically more compact than the title.
+     *
+     * @param  citation  the citation for which to get an identifier, or {@code null}.
+     * @return the first identifier of the given citation, or {@code null}.
+     */
+    private static String getIdentifier(final Citation citation) {
+        if (citation != null) {
+            final Collection<? extends Identifier> identifiers = citation.getIdentifiers();
+            if (identifiers != null) {
+                for (final Identifier id : identifiers) {
+                    if (id != null) {
+                        final String code = id.getCode();
+                        if (code != null) {
+                            return code;
+                        }
+                    }
+                }
+            }
+            final CharSequence title = citation.getTitle();
+            if (title != null) {
+                return title.toString();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns a default vendor name for the given factory when no vendor is explicitly specified.
+     *
+     * @param  factory  the factory from which to get a default vendor name.
+     * @return default vendor name.
+     */
+    private static String defaultVendorName(final Object factory) {
+        if (factory != null) {
+            return factory.getClass().getPackageName();
+        }
+        return null;
     }
 
     /**

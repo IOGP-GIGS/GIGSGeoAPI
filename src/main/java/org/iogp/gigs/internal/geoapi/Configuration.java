@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Objects;
+import javax.measure.spi.SystemOfUnits;
 import org.opengis.util.CodeList;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
@@ -382,7 +383,7 @@ public final class Configuration {
          * The provider of {@linkplain Units units} to use for tests. If this configuration hint
          * is not specified, then the {@linkplain Units#getDefault() default instance} is used.
          */
-        public static final Key<Units> units = new Key<>(Units.class, "units");
+        public static final Key<SystemOfUnits> units = new Key<>(SystemOfUnits.class, "units");
 
         /**
          * The {@linkplain MathTransformFactory Math Transform factory} instance used for a test.

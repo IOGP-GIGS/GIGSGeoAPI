@@ -59,6 +59,12 @@ public class Units extends PseudoFactory {
     private static Units instance;
 
     /**
+     * The implementation-dependent system of units for creating base units.
+     * The Unit Of Measurement library is determined by the GeoAPI implementation being tested.
+     */
+    public final SystemOfUnits system;
+
+    /**
      * Linear units used in the tests.
      */
     private final Unit<Length> metre, kilometre, foot, footSurveyUS;
@@ -89,6 +95,7 @@ public class Units extends PseudoFactory {
      * @param  system  the system of units to use for creating base units.
      */
     public Units(final SystemOfUnits system) {
+        this.system  = system;
         metre        = system.getUnit(Length.class);
         radian       = system.getUnit(Angle.class);
         second       = system.getUnit(Time.class);

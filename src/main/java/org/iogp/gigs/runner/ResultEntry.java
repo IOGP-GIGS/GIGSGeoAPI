@@ -36,7 +36,6 @@ import java.util.Map;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.AbstractMap;
 import java.util.Optional;
@@ -45,10 +44,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Rectangle;
-import org.opengis.util.Factory;
-import org.opengis.referencing.AuthorityFactory;
-import org.opengis.metadata.Identifier;
-import org.opengis.metadata.citation.Citation;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.TestSuite;
 import org.junit.jupiter.api.DisplayName;
@@ -198,23 +193,7 @@ final class ResultEntry {
              * Check for factories. See the javadoc of the `factories` field
              * for the meaning of array elements.
              */
-            if (Factory.class.isAssignableFrom(type)) {
-                String impl = null;
-                if (value != null) {
-                    Class<?> implType = value.getClass();
-                    impl = implType.getSimpleName();
-                    while ((implType = implType.getEnclosingClass()) != null) {
-                        impl = implType.getSimpleName() + '.' + impl;
-                    }
-                }
-                factories.add(new String[] {
-                    separateWords(type.getSimpleName(), false, ""), impl,
-                    (value instanceof Factory) ?
-                        getIdentifier(((Factory) value).getVendor()) : null,
-                    (value instanceof AuthorityFactory) ?
-                        getIdentifier(((AuthorityFactory) value).getAuthority()) : null
-                });
-            }
+            FactoryTableModel.addTo(type, value, factories);
         }
         this.coverage      = numSupported / ((float) numTests);
         this.factories     = Collections.unmodifiableList(factories);
@@ -267,35 +246,6 @@ final class ResultEntry {
             }
         }
         return (buffer != null) ? buffer.append(suffix).toString() : name.concat(suffix);
-    }
-
-    /**
-     * Returns the first identifier of the given citation. If no identifier is found, returns
-     * the title or {@code null} if none. We search for identifier first because they are
-     * typically more compact than the title.
-     *
-     * @param  citation  the citation for which to get an identifier, or {@code null}.
-     * @return the first identifier of the given citation, or {@code null}.
-     */
-    private static String getIdentifier(final Citation citation) {
-        if (citation != null) {
-            final Collection<? extends Identifier> identifiers = citation.getIdentifiers();
-            if (identifiers != null) {
-                for (final Identifier id : identifiers) {
-                    if (id != null) {
-                        final String code = id.getCode();
-                        if (code != null) {
-                            return code;
-                        }
-                    }
-                }
-            }
-            final CharSequence title = citation.getTitle();
-            if (title != null) {
-                return title.toString();
-            }
-        }
-        return null;
     }
 
     /**
