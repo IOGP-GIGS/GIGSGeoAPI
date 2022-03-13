@@ -62,9 +62,9 @@ final class ResultCellRenderer extends DefaultTreeCellRenderer {
     private static final int COVERAGE_BAR_WIDTH = 60;
 
     /**
-     * Presumed width of vertical scroll bar + tree handlers (in pixels).
+     * Presumed width of vertical scroll bar + tree handlers + a margin (in pixels).
      */
-    private static final int DECORATION_WIDTH = 64;
+    private static final int DECORATION_WIDTH = 68;
 
     /**
      * The color to use for aborted or failed tests.
@@ -144,6 +144,13 @@ final class ResultCellRenderer extends DefaultTreeCellRenderer {
                 }
             }
         }
+        /*
+         * Compute a size which will make the coverage bars appear on the right side of the scroll area.
+         * We compute this size every time that a cell is renderer, but it seems to be effective only in
+         * the first case. All subsequent calls seem to have no effect, which leave the bars at a wrong
+         * location if the window is resized. I have not understood the reason yet (maybe because layout
+         * methods have been overridden by `DefaultTreeCellRenderer` as no-operation?).
+         */
         Dimension size = getPreferredSize();
         size.width = container.getWidth() - DECORATION_WIDTH;
         renderer.setPreferredSize(size);

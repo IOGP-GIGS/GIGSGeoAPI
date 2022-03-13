@@ -53,6 +53,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.event.TreeSelectionEvent;
@@ -169,9 +170,10 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
          * The main tab, showing the JUnit test results in a tree.
          */
         {   // For keeping variables in a local scope.
-            final JScrollPane pane = new JScrollPane(runner.tree);
-            runner.tree.setCellRenderer(new ResultCellRenderer(pane));
-            runner.tree.getSelectionModel().addTreeSelectionListener(this);
+            final JTree tree = runner.tree;
+            final JScrollPane pane = new JScrollPane(tree);
+            tree.setCellRenderer(new ResultCellRenderer(pane));
+            tree.getSelectionModel().addTreeSelectionListener(this);
             splitPane.setTopComponent(pane);
         }
         /*
