@@ -41,6 +41,7 @@ import java.util.concurrent.ExecutionException;
 
 import java.awt.Desktop;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -139,6 +140,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
     MainFrame() {
         super("GIGS tests");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setMinimumSize(new Dimension(400, 400));
         setSize(800, 800);
         setLocationByPlatform(true);
         runner      = new Runner();

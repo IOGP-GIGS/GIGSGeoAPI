@@ -42,6 +42,7 @@ import java.util.AbstractMap;
 import java.util.Optional;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Paint;
 import java.awt.Rectangle;
 import org.opengis.util.Factory;
 import org.opengis.referencing.AuthorityFactory;
@@ -378,11 +379,15 @@ final class ResultEntry {
                 return;                         // Do not paint anything.
             }
         }
-        graphics.setColor(color.darker());
-        graphics.draw(bounds);
-        bounds.width = Math.round(bounds.width * coverage);
+        final Paint p = graphics.getPaint();
+        final int width = bounds.width;
+        bounds.width = Math.round(width * coverage);
         graphics.setColor(color);
         graphics.fill(bounds);
+        bounds.width = width;
+        graphics.setColor(color.darker());
+        graphics.draw(bounds);
+        graphics.setPaint(p);                   // Restore previous color.
     }
 
     /**

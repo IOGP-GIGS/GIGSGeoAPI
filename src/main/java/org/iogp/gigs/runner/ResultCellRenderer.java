@@ -31,15 +31,12 @@
  */
 package org.iogp.gigs.runner;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
+import java.awt.Shape;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -67,26 +64,27 @@ final class ResultCellRenderer extends DefaultTreeCellRenderer {
     private static final int DECORATION_WIDTH = 68;
 
     /**
+     * The space to keep between two cells.
+     */
+    private static final int MARGIN = 2;
+
+    /**
      * The color to use for aborted or failed tests.
      */
     private final Color ignoreColor, failureColor;
-
-    /**
-     * A container for this label with the {@linkplain #coverage} bar.
-     * This is the renderer for a row in the tree.
-     */
-    private final JPanel renderer;
-
-    /**
-     * The renderer for test coverage.
-     */
-    private final Coverage coverage;
 
     /**
      * The scroll pane which contains the tree.
      * Used for computing the width.
      */
     private final JScrollPane container;
+
+    /**
+     * The test report to paint. This value shall be set by
+     * {@link ResultCellRenderer#getTableCellRendererComponent}
+     * before this component is rendered.
+     */
+    private ResultEntry report;
 
     /**
      * Creates a default cell renderer for {@link ResultTableModel}.
@@ -98,11 +96,6 @@ final class ResultCellRenderer extends DefaultTreeCellRenderer {
         ignoreColor  = Color.GRAY;
         failureColor = Color.RED;
         container    = pane;
-        coverage     = new Coverage();
-        renderer     = new JPanel(new BorderLayout());
-        renderer.add(this, BorderLayout.CENTER);
-        renderer.add(coverage, BorderLayout.EAST);
-        renderer.setOpaque(false);
     }
 
     /**
@@ -122,14 +115,13 @@ final class ResultCellRenderer extends DefaultTreeCellRenderer {
             final boolean selected, final boolean expanded, final boolean leaf,
             final int row, final boolean hasFocus)
     {
-        ResultEntry report = null;
+        report = null;
         value = ((DefaultMutableTreeNode) value).getUserObject();
         if (value instanceof ResultEntry) {
             report = (ResultEntry) value;
             value  = report.displayName;
         }
         super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
-        coverage.report = report;
         if (report != null) {
             if (!selected) {
                 switch (report.result.getStatus()) {
@@ -144,60 +136,32 @@ final class ResultCellRenderer extends DefaultTreeCellRenderer {
                 }
             }
         }
-        /*
-         * Compute a size which will make the coverage bars appear on the right side of the scroll area.
-         * We compute this size every time that a cell is renderer, but it seems to be effective only in
-         * the first case. All subsequent calls seem to have no effect, which leave the bars at a wrong
-         * location if the window is resized. I have not understood the reason yet (maybe because layout
-         * methods have been overridden by `DefaultTreeCellRenderer` as no-operation?).
-         */
-        Dimension size = getPreferredSize();
-        size.width = container.getWidth() - DECORATION_WIDTH;
-        renderer.setPreferredSize(size);
-        return renderer;
+        return this;
     }
 
     /**
-     * A panel showing the test coverage as a bar.
+     * Paints the tree label, then paints the bar showing test coverage.
+     *
+     * @param  graphics  the graphics context to use for painting.
      */
-    @SuppressWarnings("serial")
-    private static final class Coverage extends JComponent {
-        /**
-         * The space to keep between two cells.
-         */
-        private static final int MARGIN = 1;
-
-        /**
-         * The test report to paint. This value shall be set by
-         * {@link ResultCellRenderer#getTableCellRendererComponent}
-         * before this component is rendered.
-         */
-        ResultEntry report;
-
-        /**
-         * Creates a new instance.
-         */
-        Coverage() {
-            setOpaque(false);
-            setPreferredSize(new Dimension(COVERAGE_BAR_WIDTH, 19));
-        }
-
-        /**
-         * Paints the test coverage.
-         *
-         * @param  graphics  the graphics context to use for painting.
-         */
-        @Override
-        protected void paintComponent(final Graphics graphics) {
-            super.paintComponent(graphics);
-            if (report != null) {
-                final Rectangle bounds = getBounds();
-                bounds.x       = MARGIN;
-                bounds.y       = MARGIN;
-                bounds.width  -= MARGIN*2;
-                bounds.height -= MARGIN*2;
-                report.drawCoverage((Graphics2D) graphics, bounds);
-            }
+    @Override
+    protected void paintComponent(final Graphics graphics) {
+        super.paintComponent(graphics);
+        if (report != null) {
+            final Shape     clip    = graphics.getClip();
+            final Rectangle limit   = clip.getBounds();
+            final Rectangle bounds  = getBounds();
+            final int       textEnd = bounds.width;
+            limit .width   = container.getWidth() - DECORATION_WIDTH;
+            bounds.x       = limit.width - (COVERAGE_BAR_WIDTH + MARGIN);
+            bounds.y       = MARGIN;
+            bounds.height -= MARGIN*2;
+            bounds.width   = COVERAGE_BAR_WIDTH;
+            limit.x        = textEnd + MARGIN;
+            limit.width   -= limit.x;
+            graphics.setClip(limit);
+            report.drawCoverage((Graphics2D) graphics, bounds);
+            graphics.setClip(clip);
         }
     }
 }
