@@ -132,10 +132,10 @@ final class SwingPanelBuilder extends GridBagConstraints {
         gridy++; panel.add(createLabel("Result:",    testResult), this);
         gridy++; panel.add(createLabel("Tip:", configurationTip), this);
         gridx++; weightx=1;
-        gridy=0; panel.add(testName,         this); gridwidth=2;        // "Javadoc" button will be on this line.
-        gridy++; panel.add(testResult,       this);
+        gridy=0; panel.add(testName,         this);     // "Javadoc" button will be on the right side of this line.
+        gridy++; panel.add(testResult,       this); gridwidth=2;
         gridy++; panel.add(configurationTip, this);
-        gridx++; gridy=0; gridwidth=1; gridheight=3; weightx=0; fill=HORIZONTAL; anchor=NORTH; panel.add(viewJavadoc, this);
+        gridx++; gridy=0; gridwidth=1; gridheight=2; weightx=0; fill=HORIZONTAL; anchor=NORTH; panel.add(viewJavadoc, this);
         gridx=0; gridy=3; gridwidth=3; gridheight=1; weightx=1; fill=BOTH; anchor=CENTER;
         weighty=1; insets.left = 0; insets.top = 12;
         final JTabbedPane tabs = new JTabbedPane();
