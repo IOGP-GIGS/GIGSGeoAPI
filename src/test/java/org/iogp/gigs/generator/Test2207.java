@@ -1,33 +1,26 @@
 /*
- *    GeoAPI - Java interfaces for OGC/ISO standards
- *    http://www.geoapi.org
+ * GIGS - Geospatial Integrity of Geoscience Software
+ * https://gigs.iogp.org/
  *
- *    Copyright (C) 2011-2021 Open Geospatial Consortium, Inc.
- *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
+ * Copyright (C) 2022 International Association of Oil and Gas Producers.
  *
- *    Permission to use, copy, and modify this software and its documentation, with
- *    or without modification, for any purpose and without fee or royalty is hereby
- *    granted, provided that you include the following on ALL copies of the software
- *    and documentation or portions thereof, including modifications, that you make:
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
  *
- *    1. The full text of this NOTICE in a location viewable to users of the
- *       redistributed or derivative work.
- *    2. Notice of any changes or modifications to the OGC files, including the
- *       date changes were made.
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
  *
- *    THIS SOFTWARE AND DOCUMENTATION IS PROVIDED "AS IS," AND COPYRIGHT HOLDERS MAKE
- *    NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
- *    TO, WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT
- *    THE USE OF THE SOFTWARE OR DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY
- *    PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
- *
- *    COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR
- *    CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE SOFTWARE OR DOCUMENTATION.
- *
- *    The name and trademarks of copyright holders may NOT be used in advertising or
- *    publicity pertaining to the software without specific, written prior permission.
- *    Title to copyright in this software and any associated documentation will at all
- *    times remain with copyright holders.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
  */
 package org.iogp.gigs.generator;
 
@@ -133,13 +126,13 @@ public final class Test2207 extends TestMethodGenerator {
         data.regroup(0, new int[] {1, 2, 4, 7, 8, 9}, 3, "\\s+zone\\s+\\w+", "\\s+CM\\s+\\w+");
 
         while (data.next()) {
-            final int[]    codes      = data.getInts   (0);
-            final int      datumCode  = data.getInt    (1);
-            final String   geographicCRS   = data.getString (2);
-            final String   name       = data.getString (3);
-            final String[] aliases    = data.getStrings(4);
-            final String   extent     = data.getString (5);
-            final String   remarks    = data.getString (6);
+            final int[]    codes         = data.getInts   (0);
+            final int      datumCode     = data.getInt    (1);
+            final String   geographicCRS = data.getString (2);
+            final String   name          = data.getString (3);
+            final String[] aliases       = data.getStrings(4);
+            final String   extent        = data.getString (5);
+            final String   remarks       = data.getString (6);
 
             out.append('\n');
             indent(1); out.append("/**\n");
