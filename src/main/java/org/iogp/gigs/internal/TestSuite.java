@@ -129,7 +129,7 @@ public final class TestSuite implements ParameterResolver {
          */
         final Class<?>[] tests = {
             Test2201.class, Test2202.class, Test2203.class, Test2204.class, Test2205.class,
-            Test2206.class, Test2207.class, Test2007.class, Test2008.class, Test2009.class,
+            Test2206.class, Test2207.class, Test2208.class, Test2008.class, Test2009.class,
             Test3002.class, Test3003.class, Test3004.class, Test3005.class
         };
         final ClassSelector[] selectors = new ClassSelector[tests.length];

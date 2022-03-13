@@ -31,6 +31,7 @@ import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.opengis.referencing.operation.OperationMethod;
 import org.iogp.gigs.internal.geoapi.Configuration;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -64,23 +65,30 @@ import static org.junit.jupiter.api.Assertions.*;
  * in order to specify their factories and run the tests in a JUnit framework,
  * implementers can define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test2007 {
- *    public MyTest() {
- *        super(new MyCoordinateOperationAuthorityFactory());
- *    }
- *}</pre></blockquote>
+ * <blockquote><pre>public class MyTest extends Test2208 {
+    public MyTest() {
+        super(new MyCoordinateOperationAuthorityFactory());
+    }
+}</pre></blockquote>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Alexis Manin (Geomatys)
  * @version 1.0
  * @since   1.0
  */
-public class Test2007 extends Series2000<Transformation> {
+@DisplayName("Coordinate transformation")
+public class Test2208 extends Series2000<Transformation> {
     /**
      * Name of the expected transformation method.
      * This field is set by all test methods before to create and verify the {@link Transformation} instance.
      */
     public String methodName;
+
+    /**
+     * The transformation version.
+     * This field is set by all test methods before to create and verify the {@link Transformation} instance.
+     */
+    public String version;
 
     /**
      * The coordinate transformation created by the factory,
@@ -102,7 +110,7 @@ public class Test2007 extends Series2000<Transformation> {
      *
      * @param copFactory  factory for creating {@link Transformation} instances.
      */
-    public Test2007(final CoordinateOperationAuthorityFactory copFactory) {
+    public Test2208(final CoordinateOperationAuthorityFactory copFactory) {
         copAuthorityFactory = copFactory;
     }
 
@@ -118,6 +126,7 @@ public class Test2007 extends Series2000<Transformation> {
      *       <li>{@link #isStandardAliasSupported}</li>
      *       <li>{@link #isDependencyIdentificationSupported}</li>
      *       <li>{@link #isDeprecatedObjectCreationSupported}</li>
+     *       <li>{@link #isOperationVersionSupported}</li>
      *       <li>{@link #copAuthorityFactory}</li>
      *     </ul>
      *   </li>
@@ -128,6 +137,7 @@ public class Test2007 extends Series2000<Transformation> {
     @Override
     Configuration configuration() {
         final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.isOperationVersionSupported, isOperationVersionSupported));
         assertNull(op.put(Configuration.Key.copAuthorityFactory, copAuthorityFactory));
         return op;
     }
@@ -182,9 +192,13 @@ public class Test2007 extends Series2000<Transformation> {
         assertAliasesEqual( aliases, transformation, "Transformation");
 
         // Operation method.
-        final OperationMethod m = transformation.getMethod();
-        assertNotNull(m, "Transformation.getMethod()");
-        assertNameEquals(true, methodName, m, "Transformation.getMethod()");
+        final OperationMethod method = transformation.getMethod();
+        assertNotNull(method, "Transformation.getMethod()");
+        assertNameEquals(true, methodName, method, "Transformation.getMethod()");
+
+        if (isOperationVersionSupported) {
+            assertEquals(version, transformation.getOperationVersion(), "Transformation.getOperationVersion()");
+        }
     }
 
     /**
@@ -193,16 +207,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1803</b></li>
      *   <li>EPSG transformation name: <b>AGD66 to GDA94 (11)</b></li>
-     *   <li>Transformation method: <b>NTv2</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Alias(es) given by EPSG: <b>AGD66 to GDA94 [GA v2]</b></li>
+     *   <li>Transformation version: <b>ICSM-Aus 0.1m</b></li>
+     *   <li>Operation method name: <b>NTv2</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia - onshore</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testAGD66_to_GDA94() throws FactoryException {
-        important = true;
+    @DisplayName("AGD66 to GDA94 (11)")
+    public void EPSG_1803() throws FactoryException {
+        code       = 1803;
         name       = "AGD66 to GDA94 (11)";
+        aliases    = new String[] {"AGD66 to GDA94 [GA v2]"};
+        version    = "ICSM-Aus 0.1m";
         methodName = "NTv2";
         verifyTransformation();
     }
@@ -213,17 +232,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>15786</b></li>
      *   <li>EPSG transformation name: <b>AGD66 to WGS 84 (17)</b></li>
-     *   <li>Transformation method: <b>NTv2</b></li>
-     *   <li>Specific usage / Remarks: <b>EPSG copy of 1803.</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>OGP-Aus 0.1m</b></li>
+     *   <li>Operation method name: <b>NTv2</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia - onshore</b></li>
      * </ul>
+     *
+     * Remarks: EPSG copy of 1803.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testAGD66_to_WGS84() throws FactoryException {
-        important = true;
+    @DisplayName("AGD66 to WGS 84 (17)")
+    public void EPSG_15786() throws FactoryException {
+        code       = 15786;
         name       = "AGD66 to WGS 84 (17)";
+        version    = "OGP-Aus 0.1m";
         methodName = "NTv2";
         verifyTransformation();
     }
@@ -234,16 +257,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1804</b></li>
      *   <li>EPSG transformation name: <b>AGD84 to GDA94 (5)</b></li>
-     *   <li>Transformation method: <b>NTv2</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Alias(es) given by EPSG: <b>AGD84 to GDA94 [GA v2]</b></li>
+     *   <li>Transformation version: <b>Auslig-Aus 0.1m</b></li>
+     *   <li>Operation method name: <b>NTv2</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testAGD84_to_GDA94() throws FactoryException {
-        important = true;
+    @DisplayName("AGD84 to GDA94 (5)")
+    public void EPSG_1804() throws FactoryException {
+        code       = 1804;
         name       = "AGD84 to GDA94 (5)";
+        aliases    = new String[] {"AGD84 to GDA94 [GA v2]"};
+        version    = "Auslig-Aus 0.1m";
         methodName = "NTv2";
         verifyTransformation();
     }
@@ -254,17 +282,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>15785</b></li>
      *   <li>EPSG transformation name: <b>AGD84 to WGS 84 (9)</b></li>
-     *   <li>Transformation method: <b>NTv2</b></li>
-     *   <li>Specific usage / Remarks: <b>EPSG copy of 1804.</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>OGP-Aus 1m</b></li>
+     *   <li>Operation method name: <b>NTv2</b></li>
+     *   <li>EPSG Usage Extent: <b>Australia</b></li>
      * </ul>
+     *
+     * Remarks: EPSG copy of 1804.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testAGD84_to_WGS84() throws FactoryException {
-        important = true;
+    @DisplayName("AGD84 to WGS 84 (9)")
+    public void EPSG_15785() throws FactoryException {
+        code       = 15785;
         name       = "AGD84 to WGS 84 (9)";
+        version    = "OGP-Aus 1m";
         methodName = "NTv2";
         verifyTransformation();
     }
@@ -275,15 +307,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>15934</b></li>
      *   <li>EPSG transformation name: <b>Amersfoort to WGS 84 (3)</b></li>
-     *   <li>Transformation method: <b>Coordinate Frame rotation</b></li>
-     *   <li>Specific usage / Remarks: <b>Uses unusual unit (microradian) as rotation unit.</b></li>
+     *   <li>Transformation version: <b>OGP-Nld</b></li>
+     *   <li>Operation method name: <b>Coordinate Frame rotation</b></li>
+     *   <li>EPSG Usage Extent: <b>Netherlands - onshore</b></li>
      * </ul>
+     *
+     * Remarks: Uses unusual unit (microradian) as rotation unit.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testAmersfoort_to_WGS84() throws FactoryException {
+    @DisplayName("Amersfoort to WGS 84 (3)")
+    public void EPSG_15934() throws FactoryException {
+        code       = 15934;
         name       = "Amersfoort to WGS 84 (3)";
+        version    = "OGP-Nld";
         methodName = "Coordinate Frame rotation";
         verifyTransformation();
     }
@@ -294,15 +332,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>15730</b></li>
      *   <li>EPSG transformation name: <b>Bogota 1975 to MAGNA-SIRGAS (9)</b></li>
-     *   <li>Transformation method: <b>Molodensky-Badekas 10-parameter transformation</b></li>
-     *   <li>Specific usage / Remarks: <b>Uses unusual unit (radian) as rotation unit.</b></li>
+     *   <li>Transformation version: <b>IGAC-Col MB reg 1</b></li>
+     *   <li>Operation method name: <b>Molodensky-Badekas 10-parameter transformation</b></li>
+     *   <li>EPSG Usage Extent: <b>Colombia region 1</b></li>
      * </ul>
+     *
+     * Remarks: Uses unusual unit (radian) as rotation unit.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testBogota1975_to_MAGNASIRGAS() throws FactoryException {
+    @DisplayName("Bogota 1975 to MAGNA-SIRGAS (9)")
+    public void EPSG_15730() throws FactoryException {
+        code       = 15730;
         name       = "Bogota 1975 to MAGNA-SIRGAS (9)";
+        version    = "IGAC-Col MB reg 1";
         methodName = "Molodensky-Badekas 10-parameter transformation";
         verifyTransformation();
     }
@@ -313,37 +357,46 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>15715</b></li>
      *   <li>EPSG transformation name: <b>Bogota 1975 to WGS 84 (3)</b></li>
-     *   <li>Transformation method: <b>Coordinate Frame rotation</b></li>
-     *   <li>Specific usage / Remarks: <b>Uses unusual unit (radian) as rotation unit.</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>EPSG-Col reg 1</b></li>
+     *   <li>Operation method name: <b>Coordinate Frame rotation</b></li>
+     *   <li>EPSG Usage Extent: <b>Colombia region 1</b></li>
      * </ul>
+     *
+     * Remarks: Uses unusual unit (radian) as rotation unit.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testBogota1975_to_WGS84() throws FactoryException {
-        important = true;
+    @DisplayName("Bogota 1975 to WGS 84 (3)")
+    public void EPSG_15715() throws FactoryException {
+        code       = 15715;
         name       = "Bogota 1975 to WGS 84 (3)";
+        version    = "EPSG-Col reg 1";
         methodName = "Coordinate Frame rotation";
         verifyTransformation();
     }
 
     /**
-     * Tests “Camacupa to WGS 84 (10)” transformation creation from the factory.
+     * Tests “Camacupa 1948 to WGS 84 (10)” transformation creation from the factory.
      *
      * <ul>
      *   <li>EPSG transformation code: <b>1327</b></li>
-     *   <li>EPSG transformation name: <b>Camacupa to WGS 84 (10)</b></li>
-     *   <li>Transformation method: <b>Geocentric translations</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG transformation name: <b>Camacupa 1948 to WGS 84 (10)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>Camacupa to WGS 84 (10)</b></li>
+     *   <li>Transformation version: <b>ELF-Ago N</b></li>
+     *   <li>Operation method name: <b>Geocentric translations</b></li>
+     *   <li>EPSG Usage Extent: <b>Angola - offshore blocks 2 3 17-18 and 31-33</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testCamacupa_to_WGS84() throws FactoryException {
-        important = true;
-        name       = "Camacupa to WGS 84 (10)";
+    @DisplayName("Camacupa 1948 to WGS 84 (10)")
+    public void EPSG_1327() throws FactoryException {
+        code       = 1327;
+        name       = "Camacupa 1948 to WGS 84 (10)";
+        aliases    = new String[] {"Camacupa to WGS 84 (10)"};
+        version    = "ELF-Ago N";
         methodName = "Geocentric translations";
         verifyTransformation();
     }
@@ -354,15 +407,23 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1753</b></li>
      *   <li>EPSG transformation name: <b>CH1903 to WGS 84 (1)</b></li>
-     *   <li>Transformation method: <b>Coordinate Frame rotation</b></li>
-     *   <li>Specific usage / Remarks: <b>Uses unusual unit (centesimal second) as rotation unit.</b></li>
+     *   <li>Alias(es) given by EPSG: <b>GRANIT87-Parameters</b></li>
+     *   <li>Transformation version: <b>BfL-CH 1</b></li>
+     *   <li>Operation method name: <b>Coordinate Frame rotation</b></li>
+     *   <li>EPSG Usage Extent: <b>Europe - Liechtenstein and Switzerland</b></li>
      * </ul>
+     *
+     * Remarks: Uses unusual unit (centesimal second) as rotation unit.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testCH1903_to_WGS84() throws FactoryException {
+    @DisplayName("CH1903 to WGS 84 (1)")
+    public void EPSG_1753() throws FactoryException {
+        code       = 1753;
         name       = "CH1903 to WGS 84 (1)";
+        aliases    = new String[] {"GRANIT87-Parameters"};
+        version    = "BfL-CH 1";
         methodName = "Coordinate Frame rotation";
         verifyTransformation();
     }
@@ -373,16 +434,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1311</b></li>
      *   <li>EPSG transformation name: <b>ED50 to WGS 84 (18)</b></li>
-     *   <li>Transformation method: <b>Position Vector 7-param. transformation</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Alias(es) given by EPSG: <b>ED50 to WGS 84 (Common Offshore)</b></li>
+     *   <li>Transformation version: <b>UKOOA-CO</b></li>
+     *   <li>Operation method name: <b>Position Vector 7-param. transformation</b></li>
+     *   <li>EPSG Usage Extent: <b>Europe - common offshore</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testED50_to_WGS84_18() throws FactoryException {
-        important = true;
+    @DisplayName("ED50 to WGS 84 (18)")
+    public void EPSG_1311() throws FactoryException {
+        code       = 1311;
         name       = "ED50 to WGS 84 (18)";
+        aliases    = new String[] {"ED50 to WGS 84 (Common Offshore)"};
+        version    = "UKOOA-CO";
         methodName = "Position Vector 7-param. transformation";
         verifyTransformation();
     }
@@ -393,16 +459,19 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1612</b></li>
      *   <li>EPSG transformation name: <b>ED50 to WGS 84 (23)</b></li>
-     *   <li>Transformation method: <b>Position Vector 7-param. transformation</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>EPSG-Nor N62 2001</b></li>
+     *   <li>Operation method name: <b>Position Vector 7-param. transformation</b></li>
+     *   <li>EPSG Usage Extent: <b>Norway - offshore north of 62°N; Svalbard</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testED50_to_WGS84_23() throws FactoryException {
-        important = true;
+    @DisplayName("ED50 to WGS 84 (23)")
+    public void EPSG_1612() throws FactoryException {
+        code       = 1612;
         name       = "ED50 to WGS 84 (23)";
+        version    = "EPSG-Nor N62 2001";
         methodName = "Position Vector 7-param. transformation";
         verifyTransformation();
     }
@@ -413,16 +482,19 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1613</b></li>
      *   <li>EPSG transformation name: <b>ED50 to WGS 84 (24)</b></li>
-     *   <li>Transformation method: <b>Position Vector 7-param. transformation</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>EPSG-Nor S62 2001</b></li>
+     *   <li>Operation method name: <b>Position Vector 7-param. transformation</b></li>
+     *   <li>EPSG Usage Extent: <b>Norway - North Sea - offshore south of 62°N</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testED50_to_WGS84_24() throws FactoryException {
-        important = true;
+    @DisplayName("ED50 to WGS 84 (24)")
+    public void EPSG_1613() throws FactoryException {
+        code       = 1613;
         name       = "ED50 to WGS 84 (24)";
+        version    = "EPSG-Nor S62 2001";
         methodName = "Position Vector 7-param. transformation";
         verifyTransformation();
     }
@@ -433,16 +505,19 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1999</b></li>
      *   <li>EPSG transformation name: <b>ED50 to WGS 84 (32)</b></li>
-     *   <li>Transformation method: <b>Position Vector 7-param. transformation</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>NAM-Nld-Nsea</b></li>
+     *   <li>Operation method name: <b>Position Vector 7-param. transformation</b></li>
+     *   <li>EPSG Usage Extent: <b>Netherlands - offshore</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testED50_to_WGS84_32() throws FactoryException {
-        important = true;
+    @DisplayName("ED50 to WGS 84 (32)")
+    public void EPSG_1999() throws FactoryException {
+        code       = 1999;
         name       = "ED50 to WGS 84 (32)";
+        version    = "NAM-Nld-Nsea";
         methodName = "Position Vector 7-param. transformation";
         verifyTransformation();
     }
@@ -453,37 +528,44 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1998</b></li>
      *   <li>EPSG transformation name: <b>ED50 to WGS 84 (36)</b></li>
-     *   <li>Transformation method: <b>Position Vector 7-param. transformation</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>EPSG-Ger Nsea</b></li>
+     *   <li>Operation method name: <b>Position Vector 7-param. transformation</b></li>
+     *   <li>EPSG Usage Extent: <b>Germany - offshore North Sea</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testED50_to_WGS84_36() throws FactoryException {
-        important = true;
+    @DisplayName("ED50 to WGS 84 (36)")
+    public void EPSG_1998() throws FactoryException {
+        code       = 1998;
         name       = "ED50 to WGS 84 (36)";
+        version    = "EPSG-Ger Nsea";
         methodName = "Position Vector 7-param. transformation";
         verifyTransformation();
     }
 
     /**
-     * Tests “La Canoa to WGS 84 (2)” transformation creation from the factory.
+     * Tests “La Canoa to WGS 84 (13)” transformation creation from the factory.
      *
      * <ul>
      *   <li>EPSG transformation code: <b>1096</b></li>
-     *   <li>EPSG transformation name: <b>La Canoa to WGS 84 (2)</b></li>
-     *   <li>Transformation method: <b>Molodensky-Badekas 10-parameter transformation</b></li>
-     *   <li>Specific usage / Remarks: <b>Identify whether 1095 or 1096 or both are given.</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG transformation name: <b>La Canoa to WGS 84 (13)</b></li>
+     *   <li>Transformation version: <b>EPSG-Ven</b></li>
+     *   <li>Operation method name: <b>Molodensky-Badekas 10-parameter transformation</b></li>
+     *   <li>EPSG Usage Extent: <b>Venezuela - onshore</b></li>
      * </ul>
+     *
+     * Remarks: Identify whether 1095 or 1096 or both are given.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testLaCanoa_to_WGS84() throws FactoryException {
-        important = true;
-        name       = "La Canoa to WGS 84 (2)";
+    @DisplayName("La Canoa to WGS 84 (13)")
+    public void EPSG_1096() throws FactoryException {
+        code       = 1096;
+        name       = "La Canoa to WGS 84 (13)";
+        version    = "EPSG-Ven";
         methodName = "Molodensky-Badekas 10-parameter transformation";
         verifyTransformation();
     }
@@ -494,16 +576,19 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1241</b></li>
      *   <li>EPSG transformation name: <b>NAD27 to NAD83 (1)</b></li>
-     *   <li>Transformation method: <b>NADCON</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>NGS-Usa Conus</b></li>
+     *   <li>Operation method name: <b>NADCON</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - CONUS including EEZ</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testNAD27_to_NAD83_1() throws FactoryException {
-        important = true;
+    @DisplayName("NAD27 to NAD83 (1)")
+    public void EPSG_1241() throws FactoryException {
+        code       = 1241;
         name       = "NAD27 to NAD83 (1)";
+        version    = "NGS-Usa Conus";
         methodName = "NADCON";
         verifyTransformation();
     }
@@ -514,16 +599,19 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1243</b></li>
      *   <li>EPSG transformation name: <b>NAD27 to NAD83 (2)</b></li>
-     *   <li>Transformation method: <b>NADCON</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>NGS-Usa AK</b></li>
+     *   <li>Operation method name: <b>NADCON</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska including EEZ</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testNAD27_to_NAD83_2() throws FactoryException {
-        important = true;
+    @DisplayName("NAD27 to NAD83 (2)")
+    public void EPSG_1243() throws FactoryException {
+        code       = 1243;
         name       = "NAD27 to NAD83 (2)";
+        version    = "NGS-Usa AK";
         methodName = "NADCON";
         verifyTransformation();
     }
@@ -534,16 +622,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1313</b></li>
      *   <li>EPSG transformation name: <b>NAD27 to NAD83 (4)</b></li>
-     *   <li>Transformation method: <b>NTv2</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Alias(es) given by EPSG: <b>NAD27 to NAD83(Original) [CAv1]</b></li>
+     *   <li>Transformation version: <b>GC-Can NT2</b></li>
+     *   <li>Operation method name: <b>NTv2</b></li>
+     *   <li>EPSG Usage Extent: <b>Canada</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testNAD27_to_NAD83_4() throws FactoryException {
-        important = true;
+    @DisplayName("NAD27 to NAD83 (4)")
+    public void EPSG_1313() throws FactoryException {
+        code       = 1313;
         name       = "NAD27 to NAD83 (4)";
+        aliases    = new String[] {"NAD27 to NAD83(Original) [CAv1]"};
+        version    = "GC-Can NT2";
         methodName = "NTv2";
         verifyTransformation();
     }
@@ -554,17 +647,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1693</b></li>
      *   <li>EPSG transformation name: <b>NAD27 to WGS 84 (33)</b></li>
-     *   <li>Transformation method: <b>NTv2</b></li>
-     *   <li>Specific usage / Remarks: <b>EPSG copy of 1313.</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>EPSG-Can</b></li>
+     *   <li>Operation method name: <b>NTv2</b></li>
+     *   <li>EPSG Usage Extent: <b>Canada</b></li>
      * </ul>
+     *
+     * Remarks: EPSG copy of 1313.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testNAD27_to_WGS84() throws FactoryException {
-        important = true;
+    @DisplayName("NAD27 to WGS 84 (33)")
+    public void EPSG_1693() throws FactoryException {
+        code       = 1693;
         name       = "NAD27 to WGS 84 (33)";
+        version    = "EPSG-Can";
         methodName = "NTv2";
         verifyTransformation();
     }
@@ -575,17 +672,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>15851</b></li>
      *   <li>EPSG transformation name: <b>NAD27 to WGS 84 (79)</b></li>
-     *   <li>Transformation method: <b>NADCON</b></li>
-     *   <li>Specific usage / Remarks: <b>EPSG copy of 1241.</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>OGP-Usa Conus</b></li>
+     *   <li>Operation method name: <b>NADCON</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - CONUS including EEZ</b></li>
      * </ul>
+     *
+     * Remarks: EPSG copy of 1241.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testNAD27_to_WGS84_79() throws FactoryException {
-        important = true;
+    @DisplayName("NAD27 to WGS 84 (79)")
+    public void EPSG_15851() throws FactoryException {
+        code       = 15851;
         name       = "NAD27 to WGS 84 (79)";
+        version    = "OGP-Usa Conus";
         methodName = "NADCON";
         verifyTransformation();
     }
@@ -596,17 +697,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>15864</b></li>
      *   <li>EPSG transformation name: <b>NAD27 to WGS 84 (85)</b></li>
-     *   <li>Transformation method: <b>NADCON</b></li>
-     *   <li>Specific usage / Remarks: <b>EPSG copy of 1243.</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>OGP-Usa AK</b></li>
+     *   <li>Operation method name: <b>NADCON</b></li>
+     *   <li>EPSG Usage Extent: <b>USA - Alaska including EEZ</b></li>
      * </ul>
+     *
+     * Remarks: EPSG copy of 1243.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testNAD27_to_WGS84_85() throws FactoryException {
-        important = true;
+    @DisplayName("NAD27 to WGS 84 (85)")
+    public void EPSG_15864() throws FactoryException {
+        code       = 15864;
         name       = "NAD27 to WGS 84 (85)";
+        version    = "OGP-Usa AK";
         methodName = "NADCON";
         verifyTransformation();
     }
@@ -617,17 +722,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1763</b></li>
      *   <li>EPSG transformation name: <b>NTF (Paris) to NTF (1)</b></li>
-     *   <li>Transformation method: <b>Longitude rotation</b></li>
-     *   <li>Specific usage / Remarks: <b>Uses unusual unit (grad) as rotation unit.</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>IGN-Fra</b></li>
+     *   <li>Operation method name: <b>Longitude rotation</b></li>
+     *   <li>EPSG Usage Extent: <b>France - onshore - mainland and Corsica</b></li>
      * </ul>
+     *
+     * Remarks: Uses unusual unit (grad) as rotation unit.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testNTF_Paris__to_NTF() throws FactoryException {
-        important = true;
+    @DisplayName("NTF (Paris) to NTF (1)")
+    public void EPSG_1763() throws FactoryException {
+        code       = 1763;
         name       = "NTF (Paris) to NTF (1)";
+        version    = "IGN-Fra";
         methodName = "Longitude rotation";
         verifyTransformation();
     }
@@ -638,17 +747,21 @@ public class Test2007 extends Series2000<Transformation> {
      * <ul>
      *   <li>EPSG transformation code: <b>1095</b></li>
      *   <li>EPSG transformation name: <b>PSAD56 to WGS 84 (13)</b></li>
-     *   <li>Transformation method: <b>Molodensky-Badekas 10-parameter transformation</b></li>
-     *   <li>Specific usage / Remarks: <b>Identify whether 1095 or 1096 or both are given.</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>Transformation version: <b>EPSG-Ven</b></li>
+     *   <li>Operation method name: <b>Molodensky-Badekas 10-parameter transformation</b></li>
+     *   <li>EPSG Usage Extent: <b>Venezuela - onshore</b></li>
      * </ul>
+     *
+     * Remarks: Identify whether 1095 or 1096 or both are given.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testPSAD56_to_WGS84() throws FactoryException {
-        important = true;
+    @DisplayName("PSAD56 to WGS 84 (13)")
+    public void EPSG_1095() throws FactoryException {
+        code       = 1095;
         name       = "PSAD56 to WGS 84 (13)";
+        version    = "EPSG-Ven";
         methodName = "Molodensky-Badekas 10-parameter transformation";
         verifyTransformation();
     }

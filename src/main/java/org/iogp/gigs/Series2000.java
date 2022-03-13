@@ -31,6 +31,7 @@ import org.opengis.util.FactoryException;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ReferenceIdentifier;
+import org.opengis.referencing.operation.SingleOperation;
 import org.iogp.gigs.internal.geoapi.Configuration;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -116,6 +117,16 @@ public abstract class Series2000<T> extends IntegrityTest {
     protected boolean isDeprecatedObjectCreationSupported;
 
     /**
+     * {@code true} if the tested factories support {@linkplain SingleOperation#getOperationVersion()
+     * operation version}. If {@code true} (the default), then the test methods will ensure that the
+     * operations created by the factories declare the expected operation version.
+     * If {@code false}, then the operation version is ignored.
+     *
+     * <p>This flag is significant only for tests on coordinate transformations.</p>
+     */
+    protected boolean isOperationVersionSupported;
+
+    /**
      * {@code true} if the tested object is particularly important to E&amp;P industry.
      * This field is set at the beginning of test methods.
      */
@@ -131,12 +142,14 @@ public abstract class Series2000<T> extends IntegrityTest {
                 Configuration.Key.isStandardNameSupported,
                 Configuration.Key.isStandardAliasSupported,
                 Configuration.Key.isDependencyIdentificationSupported,
-                Configuration.Key.isDeprecatedObjectCreationSupported);
+                Configuration.Key.isDeprecatedObjectCreationSupported,
+                Configuration.Key.isOperationVersionSupported);
         isStandardIdentifierSupported       = isEnabled[0];
         isStandardNameSupported             = isEnabled[1];
         isStandardAliasSupported            = isEnabled[2];
         isDependencyIdentificationSupported = isEnabled[3];
         isDeprecatedObjectCreationSupported = isEnabled[4];
+        isOperationVersionSupported         = isEnabled[5];
     }
 
     /**
@@ -165,6 +178,7 @@ public abstract class Series2000<T> extends IntegrityTest {
      *       <li>{@link #isStandardAliasSupported}</li>
      *       <li>{@link #isDependencyIdentificationSupported}</li>
      *       <li>{@link #isDeprecatedObjectCreationSupported}</li>
+     *       <li>{@link #isOperationVersionSupported} (only in transformation tests)</li>
      *       <li>The factories used by the test (provided by subclasses)</li>
      *     </ul>
      *   </li>
@@ -180,6 +194,7 @@ public abstract class Series2000<T> extends IntegrityTest {
         assertNull(op.put(Configuration.Key.isStandardAliasSupported,            isStandardAliasSupported));
         assertNull(op.put(Configuration.Key.isDependencyIdentificationSupported, isDependencyIdentificationSupported));
         assertNull(op.put(Configuration.Key.isDeprecatedObjectCreationSupported, isDeprecatedObjectCreationSupported));
+        // isOperationVersionSupported not added here. Should be added only by subclasses that use it.
         return op;
     }
 

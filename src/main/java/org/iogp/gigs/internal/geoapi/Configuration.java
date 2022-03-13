@@ -54,6 +54,7 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
+import org.opengis.referencing.operation.SingleOperation;
 
 
 /**
@@ -267,6 +268,13 @@ public final class Configuration {
          */
         public static final Key<Boolean> isDeprecatedObjectCreationSupported =
                 new Key<>(Boolean.class, "isDeprecatedObjectCreationSupported");
+
+        /**
+         * Whether the factory have {@linkplain SingleOperation#getOperationVersion() operation version}
+         * matching the version declared in the EPSG database.
+         */
+        public static final Key<Boolean> isOperationVersionSupported =
+                new Key<>(Boolean.class, "isOperationVersionSupported");
 
         /**
          * Whether {@link MathTransform#transform(double[], int, double[], int, int)} is supported.

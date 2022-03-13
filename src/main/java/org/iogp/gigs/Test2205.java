@@ -93,7 +93,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     /**
      * EPSG code of the datum associated to the CRS.
      */
-    private int datumCode;
+    public int datumCode;
 
     /**
      * The CRS created by the factory,
