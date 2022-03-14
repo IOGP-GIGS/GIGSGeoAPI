@@ -127,12 +127,6 @@ public abstract class Series2000<T> extends IntegrityTest {
     protected boolean isOperationVersionSupported;
 
     /**
-     * {@code true} if the tested object is particularly important to E&amp;P industry.
-     * This field is set at the beginning of test methods.
-     */
-    boolean important;
-
-    /**
      * Creates a new test.
      */
     Series2000() {

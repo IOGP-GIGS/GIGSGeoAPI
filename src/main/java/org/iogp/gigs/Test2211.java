@@ -31,6 +31,7 @@ import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.opengis.referencing.operation.OperationMethod;
 import org.iogp.gigs.internal.geoapi.Configuration;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -64,23 +65,30 @@ import static org.junit.jupiter.api.Assertions.*;
  * in order to specify their factories and run the tests in a JUnit framework,
  * implementers can define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test2009 {
- *    public MyTest() {
- *        super(new MyCoordinateOperationAuthorityFactory());
- *    }
- *}</pre></blockquote>
+ * <blockquote><pre>public class MyTest extends Test2211 {
+    public MyTest() {
+        super(new MyCoordinateOperationAuthorityFactory());
+    }
+}</pre></blockquote>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Alexis Manin (Geomatys)
  * @version 1.0
  * @since   1.0
  */
-public class Test2009 extends Series2000<Transformation> {
+@DisplayName("Vertical transformation")
+public class Test2211 extends Series2000<Transformation> {
     /**
      * Name of the expected transformation method.
      * This field is set by all test methods before to create and verify the {@link Transformation} instance.
      */
     public String methodName;
+
+    /**
+     * The transformation version.
+     * This field is set by all test methods before to create and verify the {@link Transformation} instance.
+     */
+    public String version;
 
     /**
      * The coordinate transformation created by the factory,
@@ -102,7 +110,7 @@ public class Test2009 extends Series2000<Transformation> {
      *
      * @param copFactory  factory for creating {@link Transformation} instances.
      */
-    public Test2009(final CoordinateOperationAuthorityFactory copFactory) {
+    public Test2211(final CoordinateOperationAuthorityFactory copFactory) {
         copAuthorityFactory = copFactory;
     }
 
@@ -118,6 +126,7 @@ public class Test2009 extends Series2000<Transformation> {
      *       <li>{@link #isStandardAliasSupported}</li>
      *       <li>{@link #isDependencyIdentificationSupported}</li>
      *       <li>{@link #isDeprecatedObjectCreationSupported}</li>
+     *       <li>{@link #isOperationVersionSupported}</li>
      *       <li>{@link #copAuthorityFactory}</li>
      *     </ul>
      *   </li>
@@ -128,6 +137,7 @@ public class Test2009 extends Series2000<Transformation> {
     @Override
     Configuration configuration() {
         final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.isOperationVersionSupported, isOperationVersionSupported));
         assertNull(op.put(Configuration.Key.copAuthorityFactory, copAuthorityFactory));
         return op;
     }
@@ -185,65 +195,81 @@ public class Test2009 extends Series2000<Transformation> {
         final OperationMethod m = transformation.getMethod();
         assertNotNull(m, "Transformation.getMethod()");
         assertNameEquals(true, methodName, m, "Transformation.getMethod()");
+
+        if (isOperationVersionSupported) {
+            assertEquals(version, transformation.getOperationVersion(), "Transformation.getOperationVersion()");
+        }
     }
 
     /**
-     * Tests “Baltic depth to AIOC95 depth (1)” transformation creation from the factory.
+     * Tests “Baltic 1977 to AIOC95 depth (1)” transformation creation from the factory.
      *
      * <ul>
      *   <li>EPSG transformation code: <b>5445</b></li>
-     *   <li>EPSG transformation name: <b>Baltic depth to AIOC95 depth (1)</b></li>
-     *   <li>Transformation method: <b>Vertical Offset</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG transformation name: <b>Baltic 1977 to AIOC95 depth (1)</b></li>
+     *   <li>Transformation version: <b>AIOC95-Aze</b></li>
+     *   <li>Operation method name: <b>Vertical Offset</b></li>
+     *   <li>EPSG Usage Extent: <b>Azerbaijan - offshore and Sangachal¬†Open</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testBalticDepth_to_AIOC95() throws FactoryException {
-        important  = true;
-        name       = "Baltic depth to AIOC95 depth (1)";
+    @DisplayName("Baltic 1977 to AIOC95 depth (1)")
+    public void EPSG_5445() throws FactoryException {
+        code       = 5445;
+        name       = "Baltic 1977 to AIOC95 depth (1)";
+        version    = "AIOC95-Aze";
         methodName = "Vertical Offset";
         verifyTransformation();
     }
 
     /**
-     * Tests “Baltic height to AIOC95 height (1)” transformation creation from the factory.
+     * Tests “Baltic 1977 to AIOC95 height (1)” transformation creation from the factory.
      *
      * <ul>
      *   <li>EPSG transformation code: <b>5443</b></li>
-     *   <li>EPSG transformation name: <b>Baltic height to AIOC95 height (1)</b></li>
-     *   <li>Transformation method: <b>Vertical Offset</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG transformation name: <b>Baltic 1977 to AIOC95 height (1)</b></li>
+     *   <li>Transformation version: <b>AIOC95-Aze</b></li>
+     *   <li>Operation method name: <b>Vertical Offset</b></li>
+     *   <li>EPSG Usage Extent: <b>Azerbaijan - offshore and Sangachal¬†Open</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testBalticHeight_to_AIOC95() throws FactoryException {
-        important  = true;
-        name       = "Baltic height to AIOC95 height (1)";
+    @DisplayName("Baltic 1977 to AIOC95 height (1)")
+    public void EPSG_5443() throws FactoryException {
+        code       = 5443;
+        name       = "Baltic 1977 to AIOC95 height (1)";
+        version    = "AIOC95-Aze";
         methodName = "Vertical Offset";
         verifyTransformation();
     }
 
     /**
-     * Tests “WGS 84 to EGM96 Geoid height (1)” transformation creation from the factory.
+     * Tests “WGS 84 to EGM96 height (1)” transformation creation from the factory.
      *
      * <ul>
      *   <li>EPSG transformation code: <b>10084</b></li>
-     *   <li>EPSG transformation name: <b>WGS 84 to EGM96 Geoid height (1)</b></li>
-     *   <li>Transformation method: <b>Geographic3D to GravityRelatedHeight (EGM)</b></li>
-     *   <li>Specific usage / Remarks: <b>Geoid model.</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li>EPSG transformation name: <b>WGS 84 to EGM96 height (1)</b></li>
+     *   <li>Alias(es) given by EPSG: <b>WGS 84 (G1150) to WGS 84</b>, <b>WGS 84 (G1674) to WGS 84</b>, <b>EGM96 - OHt [1]</b></li>
+     *   <li>Transformation version: <b>NGA-World</b></li>
+     *   <li>Operation method name: <b>Geographic3D to GravityRelatedHeight (EGM)</b></li>
+     *   <li>EPSG Usage Extent: <b>World</b></li>
      * </ul>
+     *
+     * Remarks: Geoid model.
      *
      * @throws FactoryException if an error occurred while creating the transformation from the EPSG code.
      */
     @Test
-    public void testWGS84_to_EGM96() throws FactoryException {
-        important  = true;
-        name       = "WGS 84 to EGM96 Geoid height (1)";
+    @DisplayName("WGS 84 to EGM96 height (1)")
+    public void EPSG_10084() throws FactoryException {
+        code       = 10084;
+        name       = "WGS 84 to EGM96 height (1)";
+        aliases    = new String[] {"WGS 84 (G1150) to WGS 84", "WGS 84 (G1674) to WGS 84", "EGM96 - OHt [1]"};
+        version    = "NGA-World";
         methodName = "Geographic3D to GravityRelatedHeight (EGM)";
         verifyTransformation();
     }

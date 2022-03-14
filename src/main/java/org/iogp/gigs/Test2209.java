@@ -73,6 +73,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 1.0
  * @since   1.0
  */
+@DisplayName("Vertical datum")
 public class Test2209 extends Series2000<VerticalDatum> {
     /**
      * The vertical datum created by the factory, or {@code null} if not yet created or if datum creation failed.

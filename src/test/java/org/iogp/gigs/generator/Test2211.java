@@ -28,7 +28,7 @@ import java.io.IOException;
 
 
 /**
- * Code generator for {@link Test2210}. This generator needs to be executed only if the GIGS data changed.
+ * Code generator for {@link GIGS2009}. This generator needs to be executed only if the GIGS data changed.
  * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the
  * test class, but be aware that the original code may contain manual changes that need to be preserved.
  *
@@ -36,7 +36,7 @@ import java.io.IOException;
  * @version 1.0
  * @since   1.0
  */
-public final class Test2210 extends TestMethodGenerator {
+public final class Test2211 extends TestMethodGenerator {
     /**
      * Launcher.
      *
@@ -44,7 +44,7 @@ public final class Test2210 extends TestMethodGenerator {
      * @throws IOException if an error occurred while reading the test data.
      */
     public static void main(String[] args) throws IOException {
-        new Test2210().run();
+        new Test2211().run();
     }
 
     /**
@@ -53,40 +53,43 @@ public final class Test2210 extends TestMethodGenerator {
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
-        final DataParser data = new DataParser(Series.PREDEFINED, "GIGS_lib_2210_VerticalCRS.txt",
-                Integer.class,      // [0]: EPSG CRS Code
-                String .class,      // [1]: EPSG CRS Name
+        final DataParser data = new DataParser(Series.PREDEFINED, "GIGS_lib_2211_VertTfm.txt",
+                Integer.class,      // [0]: EPSG Coordinate Operation Code
+                String .class,      // [1]: EPSG Transformation Name
                 String .class,      // [2]: Alias(es)
-                Integer.class,      // [3]: Associated Vertical Datum
-                String .class,      // [4]: EPSG Usage Extent
-                String .class);     // [5]: GIGS Remarks
+                String .class,      // [3]: Transformation Version
+                String .class,      // [4]: Coordinate Operation Method
+                String .class,      // [5]: EPSG Usage Extent
+                String .class);     // [6]: GIGS Remarks
 
         while (data.next()) {
-            final int      code    = data.getInt    (0);
-            final String   name    = data.getString (1);
-            final String[] aliases = data.getStrings(2);
-            final int      datum   = data.getInt    (3);
-            final String   extent  = data.getString (4);
-            final String   remarks = data.getString (5);
+            final int      code       = data.getInt    (0);
+            final String   name       = data.getString (1);
+            final String[] aliases    = data.getStrings(2);
+            final String   version    = data.getString (3);
+            final String   methodName = data.getString (4);
+            final String   extent     = data.getString (5);
+            final String   remarks    = data.getString (6);
 
             out.append('\n');
             indent(1); out.append("/**\n");
-            indent(1); out.append(" * Tests “").append(name).append("” vertical CRS creation from the factory.\n");
+            indent(1); out.append(" * Tests “").append(name).append("” transformation creation from the factory.\n");
             indent(1); out.append(" *\n");
-            printJavadocKeyValues("EPSG CRS code", code,
-                                  "EPSG CRS name", name,
+            printJavadocKeyValues("EPSG transformation code", code,
+                                  "EPSG transformation name", name,
                                   "Alias(es) given by EPSG", aliases,
-                                  "EPSG datum code", datum,
+                                  "Transformation version", version,
+                                  "Operation method name", methodName,
                                   "EPSG Usage Extent", extent);
             printRemarks(remarks);
-            printJavadocThrows("if an error occurred while creating the vertical CRS from the EPSG code.");
+            printJavadocThrows("if an error occurred while creating the transformation from the EPSG code.");
             printTestMethodSignature(code, name);
-            printFieldAssignments("code",      code,
-                                  "name",      name,
-                                  "aliases",   aliases,
-                                  "datumCode", datum);
-            indent(2); out.append("verify();\n");
-            printCallToDependencyTest("datumTest", datum);
+            printFieldAssignments("code",       code,
+                                  "name",       name,
+                                  "aliases",    aliases,
+                                  "version",    version,
+                                  "methodName", methodName);
+            indent(2); out.append("verifyTransformation();\n");
             indent(1); out.append('}');
             saveTestMethod();
         }

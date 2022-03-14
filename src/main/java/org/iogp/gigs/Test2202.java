@@ -740,7 +740,6 @@ public class Test2202 extends Series2000<Ellipsoid> {
     @Test
     @DisplayName("Clarke 1866 Michigan")
     public void EPSG_7009() throws FactoryException {
-        important         = true;
         code              = 7009;
         name              = "Clarke 1866 Michigan";
         toMetres          = 0.30480061;
