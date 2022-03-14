@@ -30,6 +30,8 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.net.MalformedURLException;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Map;
 import java.util.ServiceLoader;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
@@ -239,13 +241,14 @@ public final class TestSuite implements ParameterResolver {
      *
      * @return configuration of last executed test.
      */
-    public Configuration configuration() {
-        try {
+    public Map<Configuration.Key<?>,Object> configuration() {
+        if (executing != null) try {
             Method m = IntegrityTest.class.getSuperclass().getDeclaredMethod("configuration");
             m.setAccessible(true);
-            return (Configuration) m.invoke(executing);
+            return ((Configuration) m.invoke(executing)).map();
         } catch (ReflectiveOperationException e) {
             throw new AssertionError(e);                    // Should never happen.
         }
+        return Collections.emptyMap();
     }
 }

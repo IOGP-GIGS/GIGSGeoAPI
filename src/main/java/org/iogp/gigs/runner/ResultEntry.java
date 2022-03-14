@@ -164,7 +164,7 @@ final class ResultEntry {
         configurationTip = TestSuite.INSTANCE.configurationTip;
         final List<String[]> factories = new ArrayList<>();
         final List<Map.Entry<Configuration.Key<?>, StatusOptional>> configuration = new ArrayList<>();
-        for (Map.Entry<Configuration.Key<?>,Object> entry : TestSuite.INSTANCE.configuration().map().entrySet()) {
+        for (Map.Entry<Configuration.Key<?>,Object> entry : TestSuite.INSTANCE.configuration().entrySet()) {
             final Configuration.Key<?> key = entry.getKey();
             final String   name  = key.name();
             final Class<?> type  = key.valueType();
