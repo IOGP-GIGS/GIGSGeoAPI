@@ -85,7 +85,7 @@ public final class Test2210 extends TestMethodGenerator {
                                   "name",      name,
                                   "aliases",   aliases,
                                   "datumCode", datum);
-            indent(2); out.append("verify();\n");
+            indent(2); out.append("verifyVerticalCRS();\n");
             printCallToDependencyTest("datumTest", datum);
             indent(1); out.append('}');
             saveTestMethod();

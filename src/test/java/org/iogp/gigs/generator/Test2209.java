@@ -81,7 +81,7 @@ public final class Test2209 extends TestMethodGenerator {
             printFieldAssignments("code",    code,
                                   "name",    name,
                                   "aliases", aliases);
-            indent(2); out.append("verify();\n");
+            indent(2); out.append("verifyVerticalDatum();\n");
             indent(1); out.append('}');
             saveTestMethod();
         }

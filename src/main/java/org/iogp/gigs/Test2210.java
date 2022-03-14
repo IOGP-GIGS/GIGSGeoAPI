@@ -172,7 +172,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS.
      */
-    private void verify() throws FactoryException {
+    private void verifyVerticalCRS() throws FactoryException {
         final VerticalCRS crs = getIdentifiedObject();
         assertNotNull(crs, "VerticalCRS");
         validators.validate(crs);
@@ -214,7 +214,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "AHD (Tasmania) height";
         aliases   = new String[] {"Australian Height Datum height"};
         datumCode = 5112;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5112();
     }
 
@@ -236,7 +236,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5711;
         name      = "AHD height";
         datumCode = 5111;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5111();
     }
 
@@ -260,7 +260,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "AIOC95 depth";
         aliases   = new String[] {"Australian Height Datum height"};
         datumCode = 5133;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5133();
     }
 
@@ -282,7 +282,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5797;
         name      = "AIOC95 height";
         datumCode = 5133;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5133();
     }
 
@@ -306,7 +306,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "Baltic 1977 depth";
         aliases   = new String[] {"Kronstadt 1977 height"};
         datumCode = 5105;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5105();
     }
 
@@ -328,7 +328,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5705;
         name      = "Baltic 1977 height";
         datumCode = 5105;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5105();
     }
 
@@ -352,7 +352,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "Baltic 1982 height";
         aliases   = new String[] {"Baltic 1982"};
         datumCode = 5184;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5184();
     }
 
@@ -374,7 +374,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5752;
         name      = "Bandar Abbas height";
         datumCode = 5150;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5150();
     }
 
@@ -398,7 +398,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "Caspian depth";
         aliases   = new String[] {"Canadian Geodetic Vertical Datum of 1928 height"};
         datumCode = 5106;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5106();
     }
 
@@ -420,7 +420,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5713;
         name      = "CGVD28 height";
         datumCode = 5114;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5114();
     }
 
@@ -442,7 +442,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5784;
         name      = "DHHN85 height";
         datumCode = 5182;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5182();
     }
 
@@ -464,7 +464,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5783;
         name      = "DHHN92 height";
         datumCode = 5181;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5181();
     }
 
@@ -486,7 +486,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5773;
         name      = "EGM96 height";
         datumCode = 5171;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5171();
     }
 
@@ -508,7 +508,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5730;
         name      = "EVRF2000 height";
         datumCode = 5129;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5129();
     }
 
@@ -532,7 +532,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "EVRF2007 height";
         aliases   = new String[] {"Fahud Height Datum height"};
         datumCode = 5215;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5215();
     }
 
@@ -554,7 +554,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5725;
         name      = "Fahud HD height";
         datumCode = 5124;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5124();
     }
 
@@ -576,7 +576,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5751;
         name      = "Fao height";
         datumCode = 5149;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5149();
     }
 
@@ -598,7 +598,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5790;
         name      = "KOC CD height";
         datumCode = 5188;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5188();
     }
 
@@ -620,7 +620,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5789;
         name      = "KOC WD depth";
         datumCode = 5187;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5187();
     }
 
@@ -644,7 +644,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "KOC WD depth (ft)";
         aliases   = new String[] {"PWD height"};
         datumCode = 5187;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5187();
     }
 
@@ -666,7 +666,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5788;
         name      = "Kuwait PWD height";
         datumCode = 5186;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5186();
     }
 
@@ -690,7 +690,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "Lagos 1955 height";
         aliases   = new String[] {"mean sea level depth"};
         datumCode = 5194;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5194();
     }
 
@@ -714,7 +714,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "MSL depth";
         aliases   = new String[] {"mean sea level height"};
         datumCode = 5100;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5100();
     }
 
@@ -738,7 +738,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "msl height";
         aliases   = new String[] {"Normaal Amsterdams Peil height"};
         datumCode = 5100;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5100();
     }
 
@@ -762,7 +762,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "NAP height";
         aliases   = new String[] {"North American Vertical Datum of 1988 height (m)"};
         datumCode = 5109;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5109();
     }
 
@@ -784,7 +784,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5703;
         name      = "NAVD88 height";
         datumCode = 5103;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5103();
     }
 
@@ -806,7 +806,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5720;
         name      = "NGF-IGN69 height";
         datumCode = 5119;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5119();
     }
 
@@ -830,7 +830,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "NGF Lallemand height";
         aliases   = new String[] {"National Geodetic Vertical Datum of 1929 height (ftUS)"};
         datumCode = 5118;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5118();
     }
 
@@ -854,7 +854,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "NGVD29 height (ftUS)";
         aliases   = new String[] {"Newlyn height"};
         datumCode = 5102;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5102();
     }
 
@@ -878,7 +878,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "ODN height";
         aliases   = new String[] {"PDO Height Datum 1993 height"};
         datumCode = 5101;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5101();
     }
 
@@ -902,7 +902,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "PHD93 height";
         aliases   = new String[] {"Huang Hai 1956 height"};
         datumCode = 5123;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5123();
     }
 
@@ -926,7 +926,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         name      = "Yellow Sea 1956 height";
         aliases   = new String[] {"Huang Hai 1985 height"};
         datumCode = 5104;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5104();
     }
 
@@ -948,7 +948,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
         code      = 5737;
         name      = "Yellow Sea 1985 height";
         datumCode = 5137;
-        verify();
+        verifyVerticalCRS();
         datumTest().EPSG_5137();
     }
 }

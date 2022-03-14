@@ -162,7 +162,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
      *
      * @throws FactoryException if an error occurred while creating the vertical datum instance.
      */
-    private void verify() throws FactoryException {
+    private void verifyVerticalDatum() throws FactoryException {
         final VerticalDatum datum = getIdentifiedObject();
         assertNotNull(datum, "VerticalDatum");
         validators.validate(datum);
@@ -191,7 +191,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5133;
         name    = "AIOC 1995";
         aliases = new String[] {"AIOC95"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -212,7 +212,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5111;
         name    = "Australian Height Datum";
         aliases = new String[] {"AHD", "AHD71", "AHD-TAS83"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -233,7 +233,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5112;
         name    = "Australian Height Datum (Tasmania)";
         aliases = new String[] {"AHD (Tasmania)"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -254,7 +254,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5105;
         name    = "Baltic 1977";
         aliases = new String[] {"Baltic", "Baltic Sea"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -273,7 +273,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
     public void EPSG_5184() throws FactoryException {
         code    = 5184;
         name    = "Baltic 1982";
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -292,7 +292,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
     public void EPSG_5150() throws FactoryException {
         code    = 5150;
         name    = "Bandar Abbas";
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -313,7 +313,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5114;
         name    = "Canadian Geodetic Vertical Datum of 1928";
         aliases = new String[] {"CVD28", "Canadian Vertical Datum of 1928", "CGVD28"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -334,7 +334,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5106;
         name    = "Caspian Sea";
         aliases = new String[] {"Caspian"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -355,7 +355,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5182;
         name    = "Deutches Haupthohennetz 1985";
         aliases = new String[] {"DHHN85", "Deutsches Haupth√∂hennetz 1985"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -376,7 +376,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5181;
         name    = "Deutches Haupthohennetz 1992";
         aliases = new String[] {"DHHN92", "Deutsches Haupth√∂hennetz 1992"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -397,7 +397,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5171;
         name    = "EGM96 geoid";
         aliases = new String[] {"EGM96"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -418,7 +418,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5129;
         name    = "European Vertical Reference Frame 2000";
         aliases = new String[] {"EVRF2000"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -439,7 +439,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5215;
         name    = "European Vertical Reference Frame 2007";
         aliases = new String[] {"EVRF2007"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -460,7 +460,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5124;
         name    = "Fahud Height Datum";
         aliases = new String[] {"Fahud HD"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -481,7 +481,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5149;
         name    = "Fao";
         aliases = new String[] {"British Vertical Datum"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -502,7 +502,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5188;
         name    = "KOC Construction Datum";
         aliases = new String[] {"CD"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -523,7 +523,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5187;
         name    = "KOC Well Datum";
         aliases = new String[] {"WD"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -544,7 +544,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5186;
         name    = "Kuwait PWD";
         aliases = new String[] {"PWD"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -563,7 +563,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
     public void EPSG_5194() throws FactoryException {
         code    = 5194;
         name    = "Lagos 1955";
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -584,7 +584,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5100;
         name    = "Mean Sea Level";
         aliases = new String[] {"MSL"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -605,7 +605,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5102;
         name    = "National Geodetic Vertical Datum 1929";
         aliases = new String[] {"NGVD29"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -626,7 +626,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5119;
         name    = "Nivellement General de la France - IGN69";
         aliases = new String[] {"NGF-IGN69", "Nivellement general de la France", "NGF"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -647,7 +647,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5118;
         name    = "Nivellement General de la France - Lallemand";
         aliases = new String[] {"NGF - Lallemand", "NGF", "Nivellement general de la France"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -668,7 +668,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5109;
         name    = "Normaal Amsterdams Peil";
         aliases = new String[] {"NAP"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -689,7 +689,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5103;
         name    = "North American Vertical Datum 1988";
         aliases = new String[] {"NAVD88"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -710,7 +710,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5101;
         name    = "Ordnance Datum Newlyn";
         aliases = new String[] {"ODN", "Newlyn"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -731,7 +731,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5123;
         name    = "PDO Height Datum 1993";
         aliases = new String[] {"PHD93"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -752,7 +752,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5104;
         name    = "Yellow Sea 1956";
         aliases = new String[] {"Huang Hai 1956", "Yellow Sea"};
-        verify();
+        verifyVerticalDatum();
     }
 
     /**
@@ -773,6 +773,6 @@ public class Test2209 extends Series2000<VerticalDatum> {
         code    = 5137;
         name    = "Yellow Sea 1985";
         aliases = new String[] {"Huang Hai 1985"};
-        verify();
+        verifyVerticalDatum();
     }
 }
