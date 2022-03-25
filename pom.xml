@@ -185,7 +185,7 @@
           <detectJavaApiLink>false</detectJavaApiLink>
           <links>
             <link>https://docs.oracle.com/en/java/javase/17/docs/api/</link>
-            <link>https://junit.org/junit4/javadoc/latest/</link>
+            <link>https://junit.org/junit5/docs/current/api/</link>
             <link>http://www.geoapi.org/3.0/javadoc/</link>
           </links>
           <excludePackageNames>org.iogp.gigs.internal:org.iogp.gigs.internal.*</excludePackageNames>
