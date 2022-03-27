@@ -46,7 +46,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *   <td>Compare map projection definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_2005_libProjection.csv">{@code GIGS_2005_libProjection.csv}</a>
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/tree/main/GIGSTestDatasetFiles/GIGS%202200%20Predefined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_lib_2206_Conversion.txt">{@code GIGS_lib_2206_Conversion.txt}</a>
  *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
@@ -61,10 +61,10 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  *
  * <h2>Usage example</h2>
- * in order to specify their factories and run the tests in a JUnit framework, implementers can
- * define a subclass in their own test suite as in the example below:
+ * in order to specify their factories and run the tests in a JUnit framework,
+ * implementers can define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test2005 {
+ * <blockquote><pre>public class MyTest extends Test2206 {
  *    public MyTest() {
  *        super(new MyCoordinateOperationAuthorityFactory());
  *    }

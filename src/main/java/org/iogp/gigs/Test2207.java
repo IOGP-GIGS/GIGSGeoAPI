@@ -48,7 +48,7 @@ import static org.iogp.gigs.internal.geoapi.Assert.assertAxisDirectionsEqual;
  *   <td>Compare projected CRS definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_2006_libProjectedCRS.csv">{@code GIGS_2006_libProjectedCRS.csv}</a>
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/tree/main/GIGSTestDatasetFiles/GIGS%202200%20Predefined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_lib_2207_ProjectedCRS.txt">{@code GIGS_lib_2207_ProjectedCRS.txt}</a>
  *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
@@ -66,10 +66,10 @@ import static org.iogp.gigs.internal.geoapi.Assert.assertAxisDirectionsEqual;
  * implementers can define a subclass in their own test suite as in the example below:
  *
  * <blockquote><pre>public class MyTest extends Test2207 {
-    public MyTest() {
-        super(new MyCRSAuthorityFactory());
-    }
-}</pre></blockquote>
+ *    public MyTest() {
+ *        super(new MyCRSAuthorityFactory());
+ *    }
+ *}</pre></blockquote>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Alexis Manin (Geomatys)

@@ -30,12 +30,13 @@ import javax.measure.Unit;
 import javax.measure.UnitConverter;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.geoapi.Units;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.cs.CSAuthorityFactory;
 import org.opengis.util.FactoryException;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -48,7 +49,7 @@ import org.opengis.util.FactoryException;
  *   <td>Compare unit definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_lib_2201_Unit.txt">{@code GIGS_lib_2201_Unit.txt}</a>
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/tree/main/GIGSTestDatasetFiles/GIGS%202200%20Predefined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_lib_2201_Unit.txt">{@code GIGS_lib_2201_Unit.txt}</a>
  *   and EPSG Dataset.
  *   Contains EPSG {@linkplain #code code} and {@linkplain #name name} for the unit of measure, together with the
  *   {@linkplain #unitToBase ratio} of the unit to the ISO {@linkplain #baseUnit base unit} for that unit type.
@@ -68,9 +69,7 @@ import org.opengis.util.FactoryException;
  * in order to specify their factories and run the tests in a JUnit framework,
  * implementers can define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>import org.iogp.gigs.Test2001;
- *
- *public class MyTest extends Test2201 {
+ * <blockquote><pre>public class MyTest extends Test2201 {
  *    public MyTest() {
  *        super(new MyCSAuthorityFactory());
  *    }

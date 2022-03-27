@@ -27,14 +27,15 @@ package org.iogp.gigs;
 import javax.measure.Unit;
 import javax.measure.quantity.Length;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.util.FactoryException;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 
 /**
@@ -47,7 +48,7 @@ import org.opengis.util.FactoryException;
  *   <td>Compare ellipsoid definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_lib_2202_Ellipsoid.txt">{@code GIGS_lib_2202_Ellipsoid.txt}</a>
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/tree/main/GIGSTestDatasetFiles/GIGS%202200%20Predefined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_lib_2202_Ellipsoid.txt">{@code GIGS_lib_2202_Ellipsoid.txt}</a>
  *   and EPSG Dataset.
  *   Contains EPSG {@linkplain #code code} and {@linkplain #name name} for the ellipsoid,
  *   commonly encountered {@linkplain #aliases alternative name(s)} for the same object,

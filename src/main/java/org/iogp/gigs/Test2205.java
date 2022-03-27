@@ -41,6 +41,37 @@ import static org.iogp.gigs.internal.geoapi.Assert.assertAxisDirectionsEqual;
 
 /**
  * Verifies geodetic reference systems bundled with the geoscience software.
+ * Each test method in this class instantiate exactly one {@link GeodeticCRS}.
+ *
+ * <table class="gigs">
+ * <caption>Test description</caption>
+ * <tr>
+ *   <th>Test method:</th>
+ *   <td>Compare geodetic datum definitions included in the geoscience software against the EPSG Dataset.</td>
+ * </tr><tr>
+ *   <th>Test data:</th>
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/tree/main/GIGSTestDatasetFiles/GIGS%202200%20Predefined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_lib_2205_GeodeticCRS.txt">{@code GIGS_lib_2205_GeodeticCRS.txt}</a>
+ *       and EPSG Dataset.</td>
+ * </tr><tr>
+ *   <th>Tested API:</th>
+ *   <td>{@link CRSAuthorityFactory#createGeographicCRS(String)} and<br>
+ *       {@link CRSAuthorityFactory#createGeocentricCRS(String)}.</td>
+ * </tr><tr>
+ *   <th>Expected result:</th>
+ *   <td>Definitions bundled with the software should have the same name and associated datum
+ *       as in the EPSG Dataset.</td>
+ * </tr></table>
+ *
+ *
+ * <h2>Usage example</h2>
+ * in order to specify their factories and run the tests in a JUnit framework,
+ * implementers can define a subclass in their own test suite as in the example below:
+ *
+ * <blockquote><pre>public class MyTest extends Test2205 {
+ *    public MyTest() {
+ *        super(new MyCRSAuthorityFactory());
+ *    }
+ *}</pre></blockquote>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Alexis Manin (Geomatys)
