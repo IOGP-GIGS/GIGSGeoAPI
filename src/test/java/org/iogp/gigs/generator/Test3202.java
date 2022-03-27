@@ -30,9 +30,9 @@ import javax.measure.quantity.Length;
 
 
 /**
- * Code generator for {@code Test3202}. This generator needs to be executed only if the GIGS data changed.
- * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the
- * test class, but be aware that the original code may contain manual changes that need to be preserved.
+ * Code generator for {@link org.iogp.gigs.Test3202}. This generator needs to be executed only if the GIGS data changed.
+ * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the test class,
+ * but be aware that the original code may contain manual changes that need to be preserved.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
@@ -138,7 +138,7 @@ public final class Test3202 extends TestMethodGenerator {
                                   "Inverse flattening (1/<var>f</var>)", inverseFlattening);
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the ellipsoid from the properties.");
-            printJavadocSee("Test2202", "EPSG_" + codeEPSG);
+            printJavadocSee(2202, EPSG + '_' + codeEPSG);
             /*
              * Write test method.
              */

@@ -138,8 +138,8 @@ public class Test3005 extends Series3000<Conversion> {
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
-     *       <li>{@linkplain #copFactory}</li>
-     *       <li>{@linkplain #mtFactory}</li>
+     *       <li>{@link #copFactory}</li>
+     *       <li>{@link #mtFactory}</li>
      *     </ul>
      *   </li>
      * </ul>

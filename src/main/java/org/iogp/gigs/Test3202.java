@@ -157,7 +157,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
-     *       <li>{@linkplain #datumFactory}</li>
+     *       <li>{@link #datumFactory}</li>
      *     </ul>
      *   </li>
      * </ul>

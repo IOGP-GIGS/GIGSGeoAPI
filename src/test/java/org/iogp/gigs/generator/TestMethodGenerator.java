@@ -62,9 +62,47 @@ public abstract class TestMethodGenerator {
     static final Units units = Units.getInstance();
 
     /**
-     * The {@value} unit name, which is handled specially.
+     * Enumeration values for sexagesimal units, which are handled specially.
      */
-    static final String SEXAGESIMAL_DEGREE = "sexagesimal degree";
+    enum SexagesimalUnit {
+        /** Sexagesimal degree. */ DEGREE(9110, "sexagesimal degree"),
+        /** Sexagesimal DMS.    */ DMS   (9110, "sexagesimal DMS");
+
+        /** The EPSG code for the unit. */
+        public final int code;
+
+        /** The unit name in data files. */
+        public final String text;
+
+        /**
+         * Creates a new enumeration value.
+         *
+         * @param code the EPSG code for the unit.
+         * @param text the unit name in data files.
+         */
+        private SexagesimalUnit(final int code, final String text) {
+            this.text = text;
+            this.code = code;
+        }
+
+        /**
+         * Retrieves the angular unit (compatible with degrees) of the given name.
+         * The returned value is an instance of {@link SexagesimalUnit} or {@code Unit<Angle>}.
+         *
+         * @param  name  the unit name.
+         * @return the angular unit for the given name (never {@code null}).
+         */
+        public static Object parse(final String text) {
+            for (final SexagesimalUnit c : values()) {
+                if (c.text.equalsIgnoreCase(text)) {
+                    return c;
+                }
+            }
+            final Unit<Angle> c = parseAngularUnit(text);
+            assertNotNull(c, text);
+            return c;
+        }
+    }
 
     /**
      * The value to give to the {@link org.iogp.gigs.Series2000#aliases} field for meaning "no alias".
@@ -378,7 +416,7 @@ public abstract class TestMethodGenerator {
     final void printParameterTableRow(final String name, final String value, String unit) {
         indent(1);
         out.append(" *   <tr><td>").append(name).append("</td><td>").append(value);
-        if (unit != null && !unit.equals("unity") && !unit.equals(SEXAGESIMAL_DEGREE)) {
+        if (unit != null && !unit.equals("unity")) {
             if (unit.equals("degree")) {
                 out.append('°');
             } else {
@@ -437,15 +475,15 @@ public abstract class TestMethodGenerator {
     /**
      * Prints a "see" annotation if the given {@code method} is non-null.
      *
-     * @param classe The class, or {@code null} for the current class.
-     * @param method The method, or {@code null} if unknown.
+     * @param classe the number class, or 0 for the current class.
+     * @param method the method name, or {@code null} if unknown.
      */
-    final void printJavadocSee(final String classe, final String method) {
+    final void printJavadocSee(final int classe, final String method) {
         if (method != null) {
             indent(1); out.append(" *\n");
             indent(1); out.append(" * @see ");
-            if (classe != null) {
-                out.append(classe);
+            if (classe != 0) {
+                out.append("Test").append(classe);
             }
             out.append('#').append(method).append("()\n");
         }
@@ -497,31 +535,36 @@ public abstract class TestMethodGenerator {
             final Object value = pairs[i+1];
             if (accept(value)) {
                 indent(2);
-                final CharSequence name  = (CharSequence) pairs[i];
-                out.append(name);
-                for (int j = length - name.length(); --j >= 0;) {
-                    out.append(' ');
-                }
-                out.append(" = ");
-                if (value instanceof Unit<?>) {
-                    printProgrammaticName((Unit<?>) value);
-                } else if (value instanceof String[]) {
-                    String separator = "new String[] {\"";
-                    for (final String e : (String[]) value) {
-                        out.append(separator).append(e);
-                        separator = "\", \"";
-                    }
-                    out.append("\"}");
-                } else if (value instanceof Double && ((Double) value).isNaN()) {
-                    out.append("Double.NaN");
+                if (value instanceof SexagesimalUnit) {
+                    out.append("setSexagesimalUnit(")
+                       .append(((SexagesimalUnit) value).code)
+                       .append(')');
                 } else {
-                    final boolean quote = (value instanceof CharSequence);
-                    if (quote) {
-                        out.append('"');
+                    final CharSequence name  = (CharSequence) pairs[i];
+                    out.append(name);
+                    for (int j = length - name.length(); --j >= 0;) {
+                        out.append(' ');
                     }
-                    out.append(value);
-                    if (quote) {
-                        out.append('"');
+                    out.append(" = ");
+                    if (value instanceof Unit<?>) {
+                        printProgrammaticName((Unit<?>) value);
+                    } else if (value instanceof String[]) {
+                        String separator = "new String[] {\"";
+                        for (final String e : (String[]) value) {
+                            out.append(separator).append(e);
+                            separator = "\", \"";
+                        }
+                        out.append("\"}");
+                    } else if (value instanceof Double) {
+                        final double v = (Double) value;
+                        if (Double.isNaN(v)) out.append("Double.NaN");
+                        else if (v == Double.POSITIVE_INFINITY) out.append("Double.POSITIVE_INFINITY");
+                        else if (v == Double.NEGATIVE_INFINITY) out.append("Double.NEGATIVE_INFINITY");
+                        else out.append(v);
+                    } else if (value instanceof CharSequence) {
+                        out.append('"').append(value).append('"');
+                    } else {
+                        out.append(value);
                     }
                 }
                 out.append(";\n");
