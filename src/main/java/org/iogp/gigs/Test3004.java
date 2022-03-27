@@ -97,7 +97,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     /**
      * Data about the geodetic datum ellipsoid.
      */
-    private final Test3002 ellipsoidData;
+    private final Test3202 ellipsoidData;
 
     /**
      * Data about the geodetic datum prime meridian.
@@ -125,7 +125,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     public Test3004(final DatumFactory datumFactory, final CSFactory csFactory, final CRSFactory crsFactory) {
         this.crsFactory   = crsFactory;
         this.epsgFactory  = new EPSGMock(units, datumFactory, csFactory, validators);
-        ellipsoidData     = new Test3002(datumFactory);
+        ellipsoidData     = new Test3202(datumFactory);
         primeMeridianData = new Test3003(datumFactory);
         ellipsoidData.skipTests = true;
         primeMeridianData.skipTests = true;
@@ -283,7 +283,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testAGD66() throws FactoryException {
         setCodeAndName(66013, "GIGS geodetic datum X");
-        ellipsoidData.testAustralianNationalSpheroid();
+//      ellipsoidData.testAustralianNationalSpheroid();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64016, "GIGS geogCRS X", 6422);
@@ -305,7 +305,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testAGD66_p1() throws FactoryException {
         setCodeAndName(66022, "GIGS geodetic datum X′");
-        ellipsoidData.testAustralianNationalSpheroid();
+//      ellipsoidData.testAustralianNationalSpheroid();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64032, "GIGS geogCRS X′", 6422);
@@ -329,7 +329,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testAmersfoort() throws FactoryException {
         setCodeAndName(66003, "GIGS geodetic datum C");
-        ellipsoidData.testBessel();
+//      ellipsoidData.testBessel();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64021, "GIGS geog3DCRS C", 6423);
@@ -355,7 +355,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testAmersfoort_bis() throws FactoryException {
         setCodeAndName(66289, "GIGS geodetic datum CC");
-        ellipsoidData.testBessel();
+//      ellipsoidData.testBessel();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64289, "GIGS geogCRS CC", 6422);
@@ -381,7 +381,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     public void testAmersfoort_p1() throws FactoryException {
         setCodeAndName(66018, "GIGS geodetic datum C′");
         assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin C"), GeodeticDatum.ANCHOR_POINT_KEY);
-        ellipsoidData.testBessel();
+//      ellipsoidData.testBessel();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64025, "GIGS geogCRS C′", 6422);
@@ -409,7 +409,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     public void testBatavia() throws FactoryException {
         setCodeAndName(66011, "GIGS geodetic datum L");
         assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin L"), GeodeticDatum.ANCHOR_POINT_KEY);
-        ellipsoidData.testBessel();
+//      ellipsoidData.testBessel();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64014, "GIGS geogCRS L", 6422);
@@ -434,7 +434,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testBatavia_Jakarta() throws FactoryException {
         setCodeAndName(66004, "GIGS geodetic datum D");
-        ellipsoidData.testBessel();
+//      ellipsoidData.testBessel();
         primeMeridianData.testJakarta();
         verifyDatum();
         createAndVerifyGeographicCRS(64007, "GIGS geogCRS D", 6422);
@@ -459,7 +459,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testBatavia_Jakarta_bis() throws FactoryException {
         setCodeAndName(66813, "GIGS geodetic datum DD");
-        ellipsoidData.testBessel();
+//      ellipsoidData.testBessel();
         primeMeridianData.testJakarta();
         verifyDatum();
         createAndVerifyGeographicCRS(64813, "GIGS geogCRS DD", 6422);
@@ -483,7 +483,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testBelge1972() throws FactoryException {
         setCodeAndName(66005, "GIGS geodetic datum E");
-        ellipsoidData.testInternational1924();
+//      ellipsoidData.testInternational1924();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64022, "GIGS geog3DCRS E", 6423);
@@ -509,7 +509,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testBelge1972_bis() throws FactoryException {
         setCodeAndName(66313, "GIGS geodetic datum EE");
-        ellipsoidData.testInternational1924();
+//      ellipsoidData.testInternational1924();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64313, "GIGS geogCRS EE", 6422);
@@ -533,7 +533,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testBelge1972_p1() throws FactoryException {
         setCodeAndName(66023, "GIGS geodetic datum E′");
-        ellipsoidData.testInternational1924();
+//      ellipsoidData.testInternational1924();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64027, "GIGS geogCRS E′", 6422);
@@ -559,7 +559,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testED50() throws FactoryException {
         setCodeAndName(66016, "GIGS geodetic datum M");
-        ellipsoidData.testInternational1924();
+//      ellipsoidData.testInternational1924();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64020, "GIGS geogCRS M", 6422);
@@ -587,7 +587,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     public void testETRS89() throws FactoryException {
         setCodeAndName(66007, "GIGS geodetic datum G");
         assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin G"), GeodeticDatum.ANCHOR_POINT_KEY);
-        ellipsoidData.testGRS1980();
+//      ellipsoidData.testGRS1980();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64010, "GIGS geogCRS G", 6422);
@@ -614,7 +614,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     public void testGDA94() throws FactoryException {
         setCodeAndName(66006, "GIGS geodetic datum F");
         assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin F"), GeodeticDatum.ANCHOR_POINT_KEY);
-        ellipsoidData.testGRS1980();
+//      ellipsoidData.testGRS1980();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64009, "GIGS geogCRS F", 6422);
@@ -639,7 +639,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testGDA94_bis() throws FactoryException {
         setCodeAndName(66283, "GIGS geodetic datum FF");
-        ellipsoidData.testGRS1980();
+//      ellipsoidData.testGRS1980();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64283, "GIGS geogCRS FF", 6422);
@@ -664,7 +664,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testHD72() throws FactoryException {
         setCodeAndName(66012, "GIGS geodetic datum K");
-        ellipsoidData.testGRS1967();
+//      ellipsoidData.testGRS1967();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64015, "GIGS geogCRS K", 6422);
@@ -689,7 +689,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testNAD27() throws FactoryException {
         setCodeAndName(66009, "GIGS geodetic datum J");
-        ellipsoidData.testClarke1866();
+//      ellipsoidData.testClarke1866();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64012, "GIGS geogCRS J", 6422);
@@ -713,7 +713,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testNAD27_p1() throws FactoryException {
         setCodeAndName(66021, "GIGS geodetic datum J′");
-        ellipsoidData.testClarke1866();
+//      ellipsoidData.testClarke1866();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64029, "GIGS geogCRS J′", 6422);
@@ -737,7 +737,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testNAD27_p2() throws FactoryException {
         setCodeAndName(66019, "GIGS geodetic datum J″");
-        ellipsoidData.testClarke1866();
+//      ellipsoidData.testClarke1866();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64030, "GIGS geogCRS J″", 6422);
@@ -761,7 +761,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testNAD27_p3() throws FactoryException {
         setCodeAndName(66020, "GIGS geodetic datum J‴");
-        ellipsoidData.testClarke1866();
+//      ellipsoidData.testClarke1866();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64031, "GIGS geogCRS J‴", 6422);
@@ -788,7 +788,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     public void testNAD83() throws FactoryException {
         setCodeAndName(66015, "GIGS geodetic datum Z");
         assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin Z"), GeodeticDatum.ANCHOR_POINT_KEY);
-        ellipsoidData.testGRS1980();
+//      ellipsoidData.testGRS1980();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64018, "GIGS geogCRS Z", 6422);
@@ -813,7 +813,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testNAD83_bis() throws FactoryException {
         setCodeAndName(66269, "GIGS geodetic datum ZZ");
-        ellipsoidData.testGRS1980();
+//      ellipsoidData.testGRS1980();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64269, "GIGS geogCRS ZZ", 6422);
@@ -838,7 +838,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testNTF() throws FactoryException {
         setCodeAndName(66010, "GIGS geodetic datum T");
-        ellipsoidData.testClarkeIGN();
+//      ellipsoidData.testClarkeIGN();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64013, "GIGS geogCRS T", 6403);
@@ -863,7 +863,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testNTF_Paris() throws FactoryException {
         setCodeAndName(66008, "GIGS geodetic datum H");
-        ellipsoidData.testClarkeIGN();
+//      ellipsoidData.testClarkeIGN();
         primeMeridianData.testParis();
         verifyDatum();
         createAndVerifyGeographicCRS(64011, "GIGS geogCRS H", 6403);
@@ -888,7 +888,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testNTF_Paris_bis() throws FactoryException {
         setCodeAndName(66807, "GIGS geodetic datum HH");
-        ellipsoidData.testClarkeIGN();
+//      ellipsoidData.testClarkeIGN();
         primeMeridianData.testParis();
         verifyDatum();
         createAndVerifyGeographicCRS(64807, "GIGS geogCRS HH", 6422);
@@ -912,7 +912,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testOSGB1936() throws FactoryException {
         setCodeAndName(66002, "GIGS geodetic datum B");
-        ellipsoidData.testAiry();
+//      ellipsoidData.testAiry();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64019, "GIGS geog3DCRS B", 6423);
@@ -938,7 +938,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testOSGB1936_bis() throws FactoryException {
         setCodeAndName(66277, "GIGS geodetic datum BB");
-        ellipsoidData.testAiry();
+//      ellipsoidData.testAiry();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64277, "GIGS geogCRS BB", 6422);
@@ -962,7 +962,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testOSGB1936_p1() throws FactoryException {
         setCodeAndName(66017, "GIGS geodetic datum B′");
-        ellipsoidData.testAiry();
+//      ellipsoidData.testAiry();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64023, "GIGS geogCRS B′", 6422);
@@ -988,7 +988,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testPulkovo1942() throws FactoryException {
         setCodeAndName(66014, "GIGS geodetic datum Y");
-        ellipsoidData.testKrassowsky();
+//      ellipsoidData.testKrassowsky();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64017, "GIGS geogCRS Y", 6422);
@@ -1013,7 +1013,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testWGS84() throws FactoryException {
         setCodeAndName(66001, "GIGS geodetic datum A");
-        ellipsoidData.testWGS84();
+//      ellipsoidData.testWGS84();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeocentricCRS(64001, "GIGS geocenCRS A", 6500);
@@ -1042,7 +1042,7 @@ public class Test3004 extends Series3000<GeodeticDatum> {
     @Test
     public void testWGS84_bis() throws FactoryException {
         setCodeAndName(66326, "GIGS geodetic datum AA");
-        ellipsoidData.testWGS84();
+//      ellipsoidData.testWGS84();
         primeMeridianData.testGreenwich();
         verifyDatum();
         createAndVerifyGeographicCRS(64326, "GIGS geogCRS AA", 6422);
