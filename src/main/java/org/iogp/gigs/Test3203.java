@@ -29,7 +29,9 @@ import javax.measure.quantity.Angle;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.cs.CSAuthorityFactory;
 import org.iogp.gigs.internal.geoapi.Configuration;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,7 +62,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * in order to specify their factories and run the tests in a JUnit framework,
  * implementers can define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test3003 {
+ * <blockquote><pre>public class MyTest extends Test3203 {
  *    public MyTest() {
  *        super(new MyDatumFactory());
  *    }
@@ -71,7 +73,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 1.0
  * @since   1.0
  */
-public class Test3003 extends Series3000<PrimeMeridian> {
+@DisplayName("User-defined prime meridian")
+public class Test3203 extends Series3000<PrimeMeridian> {
+    /**
+     * The prime meridian Greenwich longitude, in decimal degrees.
+     * This field is set by all test methods before to create and verify the {@link PrimeMeridian} instance.
+     */
+    public double longitudeInDegrees;
+
     /**
      * The prime meridian Greenwich longitude, in unit of {@link #angularUnit}.
      * This field is set by all test methods before to create and verify the {@link PrimeMeridian} instance.
@@ -99,13 +108,27 @@ public class Test3003 extends Series3000<PrimeMeridian> {
     protected final DatumFactory datumFactory;
 
     /**
+     * Factory to use for sexagesimal units, or {@code null} if none.
+     * This is used only if the test needs a sexagesimal unit.
+     *
+     * @see CSAuthorityFactory#createUnit(String)
+     */
+    protected final CSAuthorityFactory unitFactory;
+
+    /**
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
+     * <p>The coordinate system factory is used only if the test needs a sexagesimal unit,
+     * because the standard {@link javax.measure.spi.SystemOfUnits} API can not create them.
+     * If needed, the EPSG code used is 9110.</p>
+     *
      * @param datumFactory  factory for creating {@link PrimeMeridian} instances.
+     * @param unitFactory   the factory to use for sexagesimal units, or {@code null} if none.
      */
-    public Test3003(final DatumFactory datumFactory) {
+    public Test3203(final DatumFactory datumFactory, final CSAuthorityFactory unitFactory) {
         this.datumFactory = datumFactory;
+        this.unitFactory  = unitFactory;
     }
 
     /**
@@ -116,7 +139,8 @@ public class Test3003 extends Series3000<PrimeMeridian> {
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
-     *       <li>{@linkplain #datumFactory}</li>
+     *       <li>{@link #datumFactory}</li>
+     *       <li>{@link #unitFactory}</li>
      *     </ul>
      *   </li>
      * </ul>
@@ -127,6 +151,7 @@ public class Test3003 extends Series3000<PrimeMeridian> {
     Configuration configuration() {
         final Configuration op = super.configuration();
         assertNull(op.put(Configuration.Key.datumFactory, datumFactory));
+        assertNull(op.put(Configuration.Key.csAuthorityFactory, unitFactory));
         return op;
     }
 
@@ -160,6 +185,20 @@ public class Test3003 extends Series3000<PrimeMeridian> {
     }
 
     /**
+     * Sets {@link #angularUnit} to a sexagesimal units if supported, or use decimal degrees otherwise.
+     */
+    private void setSexagesimalUnit(final int code) {
+        if (unitFactory != null) try {
+            angularUnit = unitFactory.createUnit(String.valueOf(code)).asType(Angle.class);
+            return;
+        } catch (FactoryException e) {
+            // Ignore and fallback on decimal degrees.
+        }
+        greenwichLongitude = longitudeInDegrees;
+        angularUnit = units.degree();
+    }
+
+    /**
      * Verifies the properties of the prime meridian given by {@link #getIdentifiedObject()}.
      *
      * @throws FactoryException if an error occurred while creating the prime meridian.
@@ -185,44 +224,26 @@ public class Test3003 extends Series3000<PrimeMeridian> {
     }
 
     /**
-     * Tests “GIGS PM I” prime meridian creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS prime meridian code: <b>68904</b></li>
-     *   <li>GIGS prime meridian name: <b>GIGS PM I</b></li>
-     *   <li>EPSG equivalence: <b>8904 – Bogota</b></li>
-     *   <li>Greenwich longitude: <b>-74°04'51.3° (74.08091666666667°)</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the prime meridian from the properties.
-     *
-     * @see Test2003#testBogota()
-     */
-    @Test
-    public void testBogota() throws FactoryException {
-        setCodeAndName(68904, "GIGS PM I");
-        greenwichLongitude = 74.08091666666667;
-        angularUnit        = units.degree();
-        verifyPrimeMeridian();
-    }
-
-    /**
      * Tests “GIGS PM A” prime meridian creation from the factory.
      *
      * <ul>
      *   <li>GIGS prime meridian code: <b>68901</b></li>
      *   <li>GIGS prime meridian name: <b>GIGS PM A</b></li>
      *   <li>EPSG equivalence: <b>8901 – Greenwich</b></li>
-     *   <li>Greenwich longitude: <b>0°</b></li>
+     *   <li>Greenwich longitude: <b>0 degree</b></li>
      * </ul>
+     *
+     * Remarks: International reference meridian as defined by IERS.
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the properties.
      *
-     * @see Test2003#testGreenwich()
+     * @see Test2203#EPSG_8901()
      */
     @Test
-    public void testGreenwich() throws FactoryException {
+    @DisplayName("GIGS PM A")
+    public void GIGS_68901() throws FactoryException {
         setCodeAndName(68901, "GIGS PM A");
+        longitudeInDegrees = 0.0;
         greenwichLongitude = 0.0;
         angularUnit        = units.degree();
         verifyPrimeMeridian();
@@ -235,18 +256,22 @@ public class Test3003 extends Series3000<PrimeMeridian> {
      *   <li>GIGS prime meridian code: <b>68908</b></li>
      *   <li>GIGS prime meridian name: <b>GIGS PM D</b></li>
      *   <li>EPSG equivalence: <b>8908 – Jakarta</b></li>
-     *   <li>Greenwich longitude: <b>106°48'27.79° (106.80771944444444°)</b></li>
+     *   <li>Greenwich longitude: <b>106.482779 sexagesimal DMS (106.807719444444°)</b></li>
      * </ul>
+     *
+     * Remarks: 1924 determination. Supersedes 1910 value of 106 48 37.05 E of Greenwich.
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the properties.
      *
-     * @see Test2003#testJakarta()
+     * @see Test2203#EPSG_8908()
      */
     @Test
-    public void testJakarta() throws FactoryException {
+    @DisplayName("GIGS PM D")
+    public void GIGS_68908() throws FactoryException {
         setCodeAndName(68908, "GIGS PM D");
-        greenwichLongitude = 106.80771944444444;
-        angularUnit        = units.degree();
+        longitudeInDegrees = 106.807719444444;
+        greenwichLongitude = 106.482779;
+        setSexagesimalUnit(9110);
         verifyPrimeMeridian();
     }
 
@@ -258,18 +283,45 @@ public class Test3003 extends Series3000<PrimeMeridian> {
      *   <li>GIGS prime meridian name: <b>GIGS PM H</b></li>
      *   <li>EPSG equivalence: <b>8903 – Paris</b></li>
      *   <li>Greenwich longitude: <b>2.5969213 grad (2.33722917°)</b></li>
-     *   <li>Specific usage / Remarks: <b>Equivalent to 2°20'14.025.</b></li>
+     * </ul>
+     *
+     * Remarks: Equivalent to 2 20 14.025.
+     *
+     * @throws FactoryException if an error occurred while creating the prime meridian from the properties.
+     *
+     * @see Test2203#EPSG_8903()
+     */
+    @Test
+    @DisplayName("GIGS PM H")
+    public void GIGS_68903() throws FactoryException {
+        setCodeAndName(68903, "GIGS PM H");
+        longitudeInDegrees = 2.33722917;
+        greenwichLongitude = 2.5969213;
+        angularUnit        = units.grad();
+        verifyPrimeMeridian();
+    }
+
+    /**
+     * Tests “GIGS PM I” prime meridian creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS prime meridian code: <b>68904</b></li>
+     *   <li>GIGS prime meridian name: <b>GIGS PM I</b></li>
+     *   <li>EPSG equivalence: <b>8904 – Bogota</b></li>
+     *   <li>Greenwich longitude: <b>-74.04513 sexagesimal DMS (-74.08091666667°)</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the properties.
      *
-     * @see Test2003#testParis()
+     * @see Test2203#EPSG_8904()
      */
     @Test
-    public void testParis() throws FactoryException {
-        setCodeAndName(68903, "GIGS PM H");
-        greenwichLongitude = 2.5969213;
-        angularUnit        = units.grad();
+    @DisplayName("GIGS PM I")
+    public void GIGS_68904() throws FactoryException {
+        setCodeAndName(68904, "GIGS PM I");
+        longitudeInDegrees = -74.08091666667;
+        greenwichLongitude = -74.04513;
+        setSexagesimalUnit(9110);
         verifyPrimeMeridian();
     }
 }
