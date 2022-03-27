@@ -99,7 +99,7 @@ public final class Test2206 extends TestMethodGenerator {
                                   "EPSG Usage Extent", extent);
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the coordinate operation from the EPSG code.");
-            printTestMethodSignature(codes.length == 1 ? codes[0] : -1, name);
+            printTestMethodSignature(EPSG, codes.length == 1 ? codes[0] : -1, name);
             printFieldAssignments("name",       name,
                                   "aliases",    aliases,
                                   "methodName", methodName);

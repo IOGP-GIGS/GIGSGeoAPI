@@ -102,7 +102,7 @@ public final class Test2202 extends TestMethodGenerator {
                                   "EPSG Usage Extent", extent);
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the ellipsoid from the EPSG code.");
-            printTestMethodSignature(code, name);
+            printTestMethodSignature(EPSG, code, name);
             printFieldAssignments("code",              code,
                                   "name",              name,
                                   "aliases",           aliases,

@@ -36,7 +36,12 @@ enum Series {
     /**
      * GIGS 2200 Predefined Geodetic Data Objects test data.
      */
-    PREDEFINED("GIGS 2200 Predefined Geodetic Data Objects test data");
+    PREDEFINED("GIGS 2200 Predefined Geodetic Data Objects test data"),
+
+    /**
+     * GIGS 3200 User-defined Geodetic Data Objects test data.
+     */
+    USER_DEFINED("GIGS 3200 User-defined Geodetic Data Objects test data");
 
     /**
      * The directory where the series is located.

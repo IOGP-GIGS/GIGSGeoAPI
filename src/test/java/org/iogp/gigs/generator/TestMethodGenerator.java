@@ -52,6 +52,11 @@ public abstract class TestMethodGenerator {
     private static final int CALL_IN_LOOP_THRESHOLD = 4;
 
     /**
+     * Frequently-used authority name.
+     */
+    static final String EPSG = "EPSG", GIGS = "GIGS";
+
+    /**
      * Provider of unit implementations.
      */
     static final Units units = Units.getInstance();
@@ -450,16 +455,17 @@ public abstract class TestMethodGenerator {
      * Closes the javadoc comment block, then prints the test method signature.
      * The signature includes the {@code throws FactoryException} declaration.
      *
-     * @param code  the EPSG or GIGS code to use in method signature, or -1 for using the name.
-     * @param name  the name to use for generating a method name. Used for sorting.
+     * @param authority  {@link #EPSG} or {@link #GIGS}.
+     * @param code       the EPSG or GIGS code to use in method signature, or -1 for using the name.
+     * @param name       the name to use for generating a method name. Used for sorting.
      */
-    final void printTestMethodSignature(final int code, final String name) {
+    final void printTestMethodSignature(final String authority, final int code, final String name) {
         indent(1); out.append(" */\n");
         indent(1); out.append("@Test\n");
         indent(1); out.append("@DisplayName(\"").append(name).append("\")\n");
         indent(1); out.append("public void ");
         if (code >= 0) {
-            out.append("EPSG_").append(code);
+            out.append(authority).append('_').append(code);
         } else {
             out.append("various");
             printJavaIdentifier(name);
