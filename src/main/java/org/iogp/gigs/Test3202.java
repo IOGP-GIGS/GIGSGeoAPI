@@ -82,6 +82,12 @@ public class Test3202 extends Series3000<Ellipsoid> {
     private static final double IVF_TOLERANCE = 0.5E-9;
 
     /**
+     * The ellipsoid semi-major axis length, in metres.
+     * This field is set by all test methods before to create and verify the {@link Ellipsoid} instance.
+     */
+    public double semiMajorInMetres;
+
+    /**
      * The ellipsoid semi-major axis length, in unit of {@link #axisUnit}.
      * This field is set by all test methods before to create and verify the {@link Ellipsoid} instance.
      */
@@ -217,10 +223,6 @@ public class Test3202 extends Series3000<Ellipsoid> {
         final Ellipsoid ellipsoid = getIdentifiedObject();
         assertNotNull(ellipsoid, "Ellipsoid");
         validators.validate(ellipsoid);
-        if (isIvfDefinitive) {
-            verifyFlattenedSphere(ellipsoid, name, semiMajorAxis, inverseFlattening, axisUnit);
-        }
-        verifyIdentification(ellipsoid, name, code);
         if (isFactoryPreservingUserValues) {
             configurationTip = Configuration.Key.isFactoryPreservingUserValues;
             final double ivfTolerance = isIvfDefinitive ? IVF_TOLERANCE : 0.0005;
@@ -232,6 +234,16 @@ public class Test3202 extends Series3000<Ellipsoid> {
             assertEquals(isSphere,          ellipsoid.isSphere(),                            "Ellipsoid.isSphere()");
             configurationTip = null;
         }
+        verifyIdentification(ellipsoid, name, code);
+        /*
+         * Verify axis length value by applying conversion to a fixed unit of measurement.
+         * The value does not need to be in the unit of measurement specified by the test.
+         */
+        if (isIvfDefinitive) {
+            verifyFlattenedSphere(ellipsoid, name, semiMajorAxis, inverseFlattening, axisUnit);
+        }
+        assertEquals(semiMajorInMetres,
+                ellipsoid.getAxisUnit().getConverterTo(units.metre()).convert(ellipsoid.getSemiMajorAxis()), 0.1);
     }
 
     /**
@@ -256,6 +268,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
     @DisplayName("GIGS ellipsoid A")
     public void GIGS_67030() throws FactoryException {
         setCodeAndName(67030, "GIGS ellipsoid A");
+        semiMajorInMetres = 6378137.0;
         semiMajorAxis     = 6378137.0;
         semiMinorAxis     = 6356752.3;
         axisUnit          = units.metre();
@@ -287,6 +300,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
     @DisplayName("GIGS ellipsoid B")
     public void GIGS_67001() throws FactoryException {
         setCodeAndName(67001, "GIGS ellipsoid B");
+        semiMajorInMetres = 6377563.396;
         semiMajorAxis     = 6377563.396;
         semiMinorAxis     = 6356256.909;
         axisUnit          = units.metre();
@@ -318,6 +332,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
     @DisplayName("GIGS ellipsoid C")
     public void GIGS_67004() throws FactoryException {
         setCodeAndName(67004, "GIGS ellipsoid C");
+        semiMajorInMetres = 6377397.155;
         semiMajorAxis     = 6377397.155;
         semiMinorAxis     = 6356078.963;
         axisUnit          = units.metre();
@@ -349,6 +364,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
     @DisplayName("GIGS ellipsoid E")
     public void GIGS_67022() throws FactoryException {
         setCodeAndName(67022, "GIGS ellipsoid E");
+        semiMajorInMetres = 6378388.0;
         semiMajorAxis     = 6378388.0;
         semiMinorAxis     = 6356911.9;
         axisUnit          = units.metre();
@@ -381,6 +397,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
     @DisplayName("GIGS ellipsoid F")
     public void GIGS_67019() throws FactoryException {
         setCodeAndName(67019, "GIGS ellipsoid F");
+        semiMajorInMetres = 6378137.0;
         semiMajorAxis     = 6378.137;
         semiMinorAxis     = 6356.752;
         axisUnit          = units.kilometre();
@@ -413,6 +430,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
     @DisplayName("GIGS ellipsoid H")
     public void GIGS_67011() throws FactoryException {
         setCodeAndName(67011, "GIGS ellipsoid H");
+        semiMajorInMetres = 6378249.2;
         semiMajorAxis     = 6378249.2;
         semiMinorAxis     = 6356515.0;
         axisUnit          = units.metre();
@@ -443,6 +461,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
     @DisplayName("GIGS ellipsoid I")
     public void GIGS_67052() throws FactoryException {
         setCodeAndName(67052, "GIGS ellipsoid I");
+        semiMajorInMetres = 6370997.0;
         semiMajorAxis     = 6370997.0;
         semiMinorAxis     = 6370997.0;
         axisUnit          = units.metre();
@@ -460,7 +479,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
      *   <li>GIGS ellipsoid name: <b>GIGS ellipsoid J</b></li>
      *   <li>EPSG equivalence: <b>7008 – Clarke 1866</b></li>
      *   <li>Semi-major axis (<var>a</var>): <b>20925832.164 US survey foot (6378206.4 metres)</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>20854892.017 US survey foot (6356583.800000003 metres)</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>20854892.017 US survey foot (6356583.8 metres)</b></li>
      *   <li>Inverse flattening (1/<var>f</var>): <b>294.978698214</b></li>
      * </ul>
      *
@@ -474,6 +493,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
     @DisplayName("GIGS ellipsoid J")
     public void GIGS_67008() throws FactoryException {
         setCodeAndName(67008, "GIGS ellipsoid J");
+        semiMajorInMetres = 6378206.4;
         semiMajorAxis     = 20925832.164;
         semiMinorAxis     = 20854892.017;
         axisUnit          = units.footSurveyUS();
@@ -505,6 +525,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
     @DisplayName("GIGS ellipsoid K")
     public void GIGS_67036() throws FactoryException {
         setCodeAndName(67036, "GIGS ellipsoid K");
+        semiMajorInMetres = 6378160.0;
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = 6356774.5;
         axisUnit          = units.metre();
@@ -536,6 +557,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
     @DisplayName("GIGS ellipsoid X")
     public void GIGS_67003() throws FactoryException {
         setCodeAndName(67003, "GIGS ellipsoid X");
+        semiMajorInMetres = 6378160.0;
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = 6356774.7;
         axisUnit          = units.metre();
@@ -567,6 +589,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
     @DisplayName("GIGS ellipsoid Y")
     public void GIGS_67024() throws FactoryException {
         setCodeAndName(67024, "GIGS ellipsoid Y");
+        semiMajorInMetres = 6378245.0;
         semiMajorAxis     = 6378245.0;
         semiMinorAxis     = 6356863.0;
         axisUnit          = units.metre();

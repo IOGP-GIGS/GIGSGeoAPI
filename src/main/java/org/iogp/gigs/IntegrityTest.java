@@ -224,8 +224,10 @@ public abstract class IntegrityTest extends ConformanceTest {
             }
             final Unit<Angle> actualUnit = primeMeridian.getAngularUnit();
             assertNotNull(actualUnit, "PrimeMeridian.getAngularUnit()");
-            assertEquals(greenwichLongitude, actualUnit.getConverterTo(angularUnit).convert(primeMeridian.getGreenwichLongitude()),
-                         units.degree().getConverterTo(angularUnit).convert(5E-8), "PrimeMeridian.getGreenwichLongitude()");
+            assertEquals(greenwichLongitude,
+                         actualUnit.getConverterTo(angularUnit).convert(primeMeridian.getGreenwichLongitude()),
+                         units.degree().getConverterTo(angularUnit).convert(5E-8),
+                         "PrimeMeridian.getGreenwichLongitude()");
         }
     }
 

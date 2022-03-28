@@ -212,15 +212,24 @@ public class Test3203 extends Series3000<PrimeMeridian> {
         final PrimeMeridian primeMeridian = getIdentifiedObject();
         assertNotNull(primeMeridian, "PrimeMeridian");
         validators.validate(primeMeridian);
-
-        verifyPrimeMeridian(primeMeridian, name, greenwichLongitude, angularUnit);
-        verifyIdentification(primeMeridian, name, code);
+        /*
+         * If the implementation supports storing the value as specified by the test, check for an exact match.
+         */
         if (isFactoryPreservingUserValues) {
             configurationTip = Configuration.Key.isFactoryPreservingUserValues;
             assertEquals(angularUnit, primeMeridian.getAngularUnit(), "PrimeMeridian.getAngularUnit()");
             assertEquals(greenwichLongitude, primeMeridian.getGreenwichLongitude(), ANGULAR_TOLERANCE, "PrimeMeridian.getGreenwichLongitude()");
             configurationTip = null;
         }
+        /*
+         * Verify Greenwich value by applying conversion to a fixed unit of measurement.
+         * The value does not need to be in the unit of measurement specified by the test.
+         */
+        verifyIdentification(primeMeridian, name, code);
+        verifyPrimeMeridian(primeMeridian, name, greenwichLongitude, angularUnit);
+        assertEquals(longitudeInDegrees,
+                     primeMeridian.getAngularUnit().getConverterTo(units.degree()).convert(primeMeridian.getGreenwichLongitude()),
+                     ANGULAR_TOLERANCE);
     }
 
     /**

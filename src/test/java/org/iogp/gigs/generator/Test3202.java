@@ -145,7 +145,8 @@ public final class Test3202 extends TestMethodGenerator {
             final Unit<Length> axisUnit = parseLinearUnit(unitName);
             printTestMethodSignature(GIGS, code, name);
             printCallToSetCodeAndName(code, name);
-            printFieldAssignments("semiMajorAxis",     semiMajorAxis,
+            printFieldAssignments("semiMajorInMetres", semiMajorInMetres,
+                                  "semiMajorAxis",     semiMajorAxis,
                                   "semiMinorAxis",     semiMinorAxis,
                                   "axisUnit",          axisUnit,
                                   "axisTolerance",     axisTolerance,
