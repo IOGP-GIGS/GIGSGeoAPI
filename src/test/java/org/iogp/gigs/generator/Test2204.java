@@ -25,7 +25,9 @@
 package org.iogp.gigs.generator;
 
 import java.util.Map;
+import java.util.HashMap;
 import java.io.IOException;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 /**
@@ -60,8 +62,8 @@ public final class Test2204 extends TestMethodGenerator {
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
-        final Map<String,Integer> ellipsoids     = DataParser.loadDependencies("GIGS_lib_2202_Ellipsoid.txt");
-        final Map<String,Integer> primeMeridians = DataParser.loadDependencies("GIGS_lib_2203_PrimeMeridian.txt");
+        final Map<String,Integer> ellipsoids     = loadDependencies("GIGS_lib_2202_Ellipsoid.txt");
+        final Map<String,Integer> primeMeridians = loadDependencies("GIGS_lib_2203_PrimeMeridian.txt");
         final DataParser data = new DataParser(Series.PREDEFINED, "GIGS_lib_2204_GeodeticDatum.txt",
                 Integer.class,      // [0]: EPSG Datum Code
                 String .class,      // [1]: EPSG Datum Name
@@ -105,5 +107,22 @@ public final class Test2204 extends TestMethodGenerator {
             saveTestMethod();
         }
         flushAllMethods();
+    }
+
+    /**
+     * Loads (object name, EPSG code) mapping from the given file.
+     * Keys and values are the content of the second and first columns respectively.
+     *
+     * @param  file  the file to load.
+     * @return (object name, EPSG code) inferred from the two first columns in the given file.
+     * @throws IOException if an error occurred while reading the test data.
+     */
+    private static Map<String,Integer> loadDependencies(final String file) throws IOException {
+        final DataParser data = new DataParser(Series.PREDEFINED, file, Integer.class, String.class);
+        final Map<String,Integer> dependencies = new HashMap<>();
+        while (data.next()) {
+            assertNull(dependencies.put(data.getString(1), data.getInt(0)));
+        }
+        return dependencies;
     }
 }
