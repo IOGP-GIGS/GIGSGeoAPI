@@ -117,15 +117,14 @@ public abstract class Series3000<T> extends IntegrityTest {
     }
 
     /**
-     * Copies the configuration to the given test cases. This method is invoked when a test depends on other tests,
-     * in which case the other tests need to be run with the same configuration in order to get data.
+     * Copies the configuration from the given test class. This method is invoked when a test depends on other tests,
+     * in which case the tests need to be run with the same configuration in order to get data.
      *
-     * @param  destinations  the test cases to configure.
+     * @param  sous  the test class from which to copy the configuration.
      */
-    final void copyConfigurationTo(final Series3000<?>... destinations) {
-        for (final Series3000<?> destination : destinations) {
-            destination.isFactoryPreservingUserValues = isFactoryPreservingUserValues;
-        }
+    final void copyConfigurationFrom(final Series3000<?> source) {
+        isFactoryPreservingUserValues = source.isFactoryPreservingUserValues;
+        skipTests = false;
     }
 
     /**

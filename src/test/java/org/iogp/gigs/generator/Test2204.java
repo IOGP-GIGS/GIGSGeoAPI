@@ -117,7 +117,7 @@ public final class Test2204 extends TestMethodGenerator {
      * @return (object name, EPSG code) inferred from the two first columns in the given file.
      * @throws IOException if an error occurred while reading the test data.
      */
-    private static Map<String,Integer> loadDependencies(final String file) throws IOException {
+    static Map<String,Integer> loadDependencies(final String file) throws IOException {
         final DataParser data = new DataParser(Series.PREDEFINED, file, Integer.class, String.class);
         final Map<String,Integer> dependencies = new HashMap<>();
         while (data.next()) {

@@ -500,7 +500,7 @@ public abstract class TestMethodGenerator {
     final void printTestMethodSignature(final String authority, final int code, final String name) {
         indent(1); out.append(" */\n");
         indent(1); out.append("@Test\n");
-        indent(1); out.append("@DisplayName(\"").append(name).append("\")\n");
+        indent(1); out.append("@DisplayName(\"").append(replaceAsciiPrimeByUnicode(name)).append("\")\n");
         indent(1); out.append("public void ");
         if (code >= 0) {
             out.append(authority).append('_').append(code);

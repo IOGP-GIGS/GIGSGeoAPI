@@ -247,7 +247,8 @@ public class Test3004 extends Series3000<GeodeticDatum> {
         validators.validate(datum);
 
         verifyIdentification(datum, name, code);
-        copyConfigurationTo(ellipsoidData, primeMeridianData);
+        ellipsoidData.copyConfigurationFrom(this);
+        primeMeridianData.copyConfigurationFrom(this);
 
         ellipsoidData.skipTests = false;
         ellipsoidData.setIdentifiedObject(datum.getEllipsoid());
