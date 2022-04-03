@@ -47,7 +47,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *   <td>Create user-defined prime meridian for each of several different prime meridians.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_3003_userPrimeMeridian.csv">{@code GIGS_3003_userPrimeMeridian.csv}</a>.</td>
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/blob/main/GIGSTestDatasetFiles/GIGS%203200%20User-defined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_user_3203_PrimeMeridian.txt">{@code GIGS_user_3203_PrimeMeridian.txt}</a>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link DatumFactory#createPrimeMeridian(Map, double, Unit)}.</td>
