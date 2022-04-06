@@ -25,6 +25,10 @@
 
 /**
  * Swing widget for running the GIGS tests in a Graphical User Interface (GUI).
+ * Test classes are executed in order of increasing number
+ * ({@link org.iogp.gigs.Test2201}, {@link org.iogp.gigs.Test2202}, <i>etc.</i>).
+ * In each class, test methods are executed in random order but reported
+ * in alphabetical order of their display name.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0

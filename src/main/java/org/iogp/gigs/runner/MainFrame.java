@@ -146,7 +146,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
     @SuppressWarnings("ThisEscapedInObjectConstruction")
     MainFrame(final String windowTitle) {
         super(windowTitle);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(400, 400));
         setSize(800, 800);
         setLocationByPlatform(true);
