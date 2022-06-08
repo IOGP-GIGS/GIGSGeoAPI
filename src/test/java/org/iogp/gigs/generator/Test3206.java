@@ -141,8 +141,7 @@ public class Test3206 extends TestMethodGenerator {
             printCallToSetCodeAndName(code, name);
             printFieldAssignments("methodName", conversionName);
             indent(2);out.append("createDefaultParameters();\n");
-            printUnits(parameter1Unit, parameter2Unit, parameter3Unit, parameter4Unit);
-            printCallToSetCodeAndName(code, name);
+            printUnits(parameter1Unit, parameter2Unit, parameter3Unit, parameter4Unit, parameter5Unit, parameter6Unit, parameter7Unit);
 
 
             printParameterString(parameter1Name, parameter1Value, parameter1Unit, parameter1ValueInDegrees);
@@ -160,13 +159,6 @@ public class Test3206 extends TestMethodGenerator {
         flushAllMethods();
     }
 
-    private List<String> getJavadocParameterString(String parameterName, Double parameterValue, String parameterUnit, Double... parameterValueAsDec) {
-        if (parameterName == null || parameterName.equals("NULL")) {
-            return new ArrayList<>();
-        }
-
-        return new ArrayList<>();
-    }
     private void printParameterString(String parameterName, Double parameterValue, String parameterUnit, Double... parameterValueAsDec) {
         if (parameterName == null || parameterName.equals("NULL")) {
             return;
@@ -179,14 +171,14 @@ public class Test3206 extends TestMethodGenerator {
         }
 
         if (parameterUnit != null && parameterUnit.equals("sexagesimal DMS") && parameterValueAsDec != null) {
-            out.append(".setValue(").append(parameterValueAsDec).append(",degree);");
-        } else {
-            out.append(".setValue(").append(parameterValue);
-            if (parameterUnit != null) {
-                out.append(", ").append(parameterUnit);
-            }
-            out.append(");\n");
+            out.append(".setValue(").append(parameterValueAsDec[0]).append(",degree);\n");
+            return;
         }
+        out.append(".setValue(").append(parameterValue);
+        if (parameterUnit != null) {
+            out.append(", ").append(parameterUnit);
+        }
+        out.append(");\n");
     }
 
     private void printJavadocParameterString(String parameterName, Double parameterValue, String parameterUnit, Double... parameterValueAsDec) {
