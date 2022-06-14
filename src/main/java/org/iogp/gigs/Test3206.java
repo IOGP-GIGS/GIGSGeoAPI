@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
@@ -19,13 +20,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Verifies that the software allows correct definition of a user-defined map projection.
+ * Verifies that the software allows correct definition of a user-defined conversion.
  *
  * <table class="gigs">
  * <caption>Test description</caption>
  * <tr>
  *   <th>Test method:</th>
- *   <td>Create user-defined projection for each of several different map projections.</td>
+ *   <td>Create user-defined projection for each of several different conversions.</td>
  * </tr><tr>
  *   <th>Test data:</th>
  *   <td><a href="doc-files/GIGS_3005_userProjection.csv">{@code GIGS_user_3206_Conversion.txt}</a>.</td>
@@ -44,9 +45,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test3005 {
+ * <blockquote><pre>public class MyTest extends Test3006 {
  *    public MyTest() {
- *        super(new MyCoordinateOperationFactory());
+ *        super(new MyCoordinateOperationFactory(), new MyMathTransformFactory());
  *    }
  *}</pre></blockquote>
  *
@@ -204,6 +205,17 @@ public class Test3206 extends Series3000<Conversion> {
         }
         return conversion;
     }
+
+    /**
+     * Sets the conversion instance to verify. This method is invoked only by other test classes which need to
+     * verify the conversion contained in a CRS instead of the conversion immediately after creation.
+     *
+     * @param  instance  the instance to verify.
+     */
+    final void setIdentifiedObject(final Conversion instance) {
+        conversion = instance;
+    }
+
 
     /**
      * Verifies the properties of the conversion given by {@link #getIdentifiedObject()}.
