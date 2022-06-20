@@ -56,7 +56,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  * @since   1.0
  */
 @DisplayName("User-defined geographic 2D CRS")
-public class Test3205Geog2DCRSTemp extends Series3000<GeographicCRS> {
+public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
 
     /**
      * The CRS created by the factory,
@@ -107,8 +107,8 @@ public class Test3205Geog2DCRSTemp extends Series3000<GeographicCRS> {
      */
     private final EPSGMock epsgFactory;
 
-    public Test3205Geog2DCRSTemp(final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
-                                 final CSFactory csFactory, final CRSFactory crsFactory) {
+    public Test3205Geog2DCRS(final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
+                             final CSFactory csFactory, final CRSFactory crsFactory) {
         this.datumFactory = datumFactory;
         this.datumAuthorityFactory = datumAuthorityFactory;
         this.crsFactory   = crsFactory;
@@ -329,54 +329,6 @@ public class Test3205Geog2DCRSTemp extends Series3000<GeographicCRS> {
     }
 
     /**
-     * Tests “GIGS geogCRS B'”  geographic 2D CRS from the factory.
-     *
-     * <ul>
-     *   <li>GIGS geographic 2D CRS code: <b>64023</b></li>
-     *   <li>GIGS geographic 2D CRS name: <b>GIGS geogCRS B′</b></li>
-     *   <li>Coordinate System code: <b>6422</b></li>
-     *   <li>Geodetic CRS Type: <b>Geographic 2D</b></li>
-     *   <li>GIGS Datum code: <b>66017</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the CRS from the properties.
-     */
-            /*
-    Early bound datum not supported in Test3204 yet
-    @Test
-    @DisplayName("GIGS geogCRS B′")
-    public void GIGS_64023() throws FactoryException {
-        setCodeAndName(64023, "GIGS geogCRS B'");
-        createDatum(Test3204::GIGS_66017);
-        csCode=6422;
-        verifyGeographicCRS();
-    }*/
-
-    /**
-     * Tests “GIGS geogCRS BB”  geographic 2D CRS from the factory.
-     *
-     * <ul>
-     *   <li>GIGS geographic 2D CRS code: <b>64277</b></li>
-     *   <li>GIGS geographic 2D CRS name: <b>GIGS geogCRS BB</b></li>
-     *   <li>Coordinate System code: <b>6422</b></li>
-     *   <li>Geodetic CRS Type: <b>Geographic 2D</b></li>
-     *   <li>GIGS Datum code: <b>66277</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the CRS from the properties.
-     */
-        /*
-    Early bound datum not supported in Test3204 yet
-    @Test
-    @DisplayName("GIGS geogCRS BB")
-    public void GIGS_64277() throws FactoryException {
-        setCodeAndName(64277, "GIGS geogCRS BB");
-        createDatum(Test3204::GIGS_66277);
-        csCode=6422;
-        verifyGeographicCRS();
-    }*/
-
-    /**
      * Tests “GIGS geogCRS C”  geographic 2D CRS from the factory.
      *
      * <ul>
@@ -394,33 +346,9 @@ public class Test3205Geog2DCRSTemp extends Series3000<GeographicCRS> {
     public void GIGS_64006() throws FactoryException {
         setCodeAndName(64006, "GIGS geogCRS C");
         createDatum(Test3204::GIGS_66003);
-        csCode=6422;
+        csCode = 6422;
         verifyGeographicCRS();
     }
-
-    /**
-     * Tests “GIGS geogCRS C'”  geographic 2D CRS from the factory.
-     *
-     * <ul>
-     *   <li>GIGS geographic 2D CRS code: <b>64025</b></li>
-     *   <li>GIGS geographic 2D CRS name: <b>GIGS geogCRS C′</b></li>
-     *   <li>Coordinate System code: <b>6422</b></li>
-     *   <li>Geodetic CRS Type: <b>Geographic 2D</b></li>
-     *   <li>GIGS Datum code: <b>66018</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the CRS from the properties.
-     */
-            /*
-    Early bound datum not supported in Test3204 yet
-    @Test
-    @DisplayName("GIGS geogCRS C′")
-    public void GIGS_64025() throws FactoryException {
-        setCodeAndName(64025, "GIGS geogCRS C'");
-        createDatum(Test3204::GIGS_66018);
-        csCode=6422;
-        verifyGeographicCRS();
-    }*/
 
     /**
      * Tests “GIGS geogCRS CC”  geographic 2D CRS from the factory.
@@ -509,54 +437,6 @@ public class Test3205Geog2DCRSTemp extends Series3000<GeographicCRS> {
         csCode=6422;
         verifyGeographicCRS();
     }
-
-    /**
-     * Tests “GIGS geogCRS E'”  geographic 2D CRS from the factory.
-     *
-     * <ul>
-     *   <li>GIGS geographic 2D CRS code: <b>64027</b></li>
-     *   <li>GIGS geographic 2D CRS name: <b>GIGS geogCRS E′</b></li>
-     *   <li>Coordinate System code: <b>6422</b></li>
-     *   <li>Geodetic CRS Type: <b>Geographic 2D</b></li>
-     *   <li>GIGS Datum code: <b>66023</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the CRS from the properties.
-     */
-            /*
-    Early bound datum not supported in Test3204 yet
-    @Test
-    @DisplayName("GIGS geogCRS E′")
-    public void GIGS_64027() throws FactoryException {
-        setCodeAndName(64027, "GIGS geogCRS E'");
-        createDatum(Test3204::GIGS_66023);
-        csCode=6422;
-        verifyGeographicCRS();
-    }*/
-
-    /**
-     * Tests “GIGS geogCRS EE”  geographic 2D CRS from the factory.
-     *
-     * <ul>
-     *   <li>GIGS geographic 2D CRS code: <b>64313</b></li>
-     *   <li>GIGS geographic 2D CRS name: <b>GIGS geogCRS EE</b></li>
-     *   <li>Coordinate System code: <b>6422</b></li>
-     *   <li>Geodetic CRS Type: <b>Geographic 2D</b></li>
-     *   <li>GIGS Datum code: <b>66313</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the CRS from the properties.
-     */
-            /*
-    Early bound datum not supported in Test3204 yet
-    @Test
-    @DisplayName("GIGS geogCRS EE")
-    public void GIGS_64313() throws FactoryException {
-        setCodeAndName(64313, "GIGS geogCRS EE");
-        createDatum(Test3204::GIGS_66313);
-        csCode=6422;
-        verifyGeographicCRS();
-    }*/
 
     /**
      * Tests “GIGS geogCRS F”  geographic 2D CRS from the factory.
@@ -693,78 +573,6 @@ public class Test3205Geog2DCRSTemp extends Series3000<GeographicCRS> {
     }
 
     /**
-     * Tests “GIGS geogCRS J'”  geographic 2D CRS from the factory.
-     *
-     * <ul>
-     *   <li>GIGS geographic 2D CRS code: <b>64029</b></li>
-     *   <li>GIGS geographic 2D CRS name: <b>GIGS geogCRS J′</b></li>
-     *   <li>Coordinate System code: <b>6422</b></li>
-     *   <li>Geodetic CRS Type: <b>Geographic 2D</b></li>
-     *   <li>GIGS Datum code: <b>66021</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the CRS from the properties.
-     */
-            /*
-    Early bound datum not supported in Test3204 yet
-    @Test
-    @DisplayName("GIGS geogCRS J′")
-    public void GIGS_64029() throws FactoryException {
-        setCodeAndName(64029, "GIGS geogCRS J'");
-        createDatum(Test3204::GIGS_66021);
-        csCode=6422;
-        verifyGeographicCRS();
-    }*/
-
-    /**
-     * Tests “GIGS geogCRS J''”  geographic 2D CRS from the factory.
-     *
-     * <ul>
-     *   <li>GIGS geographic 2D CRS code: <b>64030</b></li>
-     *   <li>GIGS geographic 2D CRS name: <b>GIGS geogCRS J″</b></li>
-     *   <li>Coordinate System code: <b>6422</b></li>
-     *   <li>Geodetic CRS Type: <b>Geographic 2D</b></li>
-     *   <li>GIGS Datum code: <b>66019</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the CRS from the properties.
-     */
-        /*
-    Early bound datum not supported in Test3204 yet
-    @Test
-    @DisplayName("GIGS geogCRS J″")
-    public void GIGS_64030() throws FactoryException {
-        setCodeAndName(64030, "GIGS geogCRS J''");
-        createDatum(Test3204::GIGS_66019);
-        csCode=6422;
-        verifyGeographicCRS();
-    }*/
-
-    /**
-     * Tests “GIGS geogCRS J'''”  geographic 2D CRS from the factory.
-     *
-     * <ul>
-     *   <li>GIGS geographic 2D CRS code: <b>64031</b></li>
-     *   <li>GIGS geographic 2D CRS name: <b>GIGS geogCRS J‴</b></li>
-     *   <li>Coordinate System code: <b>6422</b></li>
-     *   <li>Geodetic CRS Type: <b>Geographic 2D</b></li>
-     *   <li>GIGS Datum code: <b>66020</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the CRS from the properties.
-     */
-        /*
-    Early bound datum not supported in Test3204 yet
-    @Test
-    @DisplayName("GIGS geogCRS J‴")
-    public void GIGS_64031() throws FactoryException {
-        setCodeAndName(64031, "GIGS geogCRS J'''");
-        createDatum(Test3204::GIGS_66020);
-        csCode=6422;
-        verifyGeographicCRS();
-    }*/
-
-    /**
      * Tests “GIGS geogCRS K”  geographic 2D CRS from the factory.
      *
      * <ul>
@@ -785,30 +593,6 @@ public class Test3205Geog2DCRSTemp extends Series3000<GeographicCRS> {
         csCode=6422;
         verifyGeographicCRS();
     }
-
-    /**
-     * Tests “GIGS geogCRS L”  geographic 2D CRS from the factory.
-     *
-     * <ul>
-     *   <li>GIGS geographic 2D CRS code: <b>64014</b></li>
-     *   <li>GIGS geographic 2D CRS name: <b>GIGS geogCRS L</b></li>
-     *   <li>Coordinate System code: <b>6422</b></li>
-     *   <li>Geodetic CRS Type: <b>Geographic 2D</b></li>
-     *   <li>GIGS Datum code: <b>66011</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the CRS from the properties.
-     */
-        /*
-    Early bound datum not supported in Test3204 yet
-    @Test
-    @DisplayName("GIGS geogCRS L")
-    public void GIGS_64014() throws FactoryException {
-        setCodeAndName(64014, "GIGS geogCRS L");
-        createDatum(Test3204::GIGS_66011);
-        csCode=6422;
-        verifyGeographicCRS();
-    }*/
 
     /**
      * Tests “GIGS geogCRS M”  geographic 2D CRS from the factory.
@@ -875,30 +659,6 @@ public class Test3205Geog2DCRSTemp extends Series3000<GeographicCRS> {
         csCode=6422;
         verifyGeographicCRS();
     }
-
-    /**
-     * Tests “GIGS geogCRS X'”  geographic 2D CRS from the factory.
-     *
-     * <ul>
-     *   <li>GIGS geographic 2D CRS code: <b>64032</b></li>
-     *   <li>GIGS geographic 2D CRS name: <b>GIGS geogCRS X′</b></li>
-     *   <li>Coordinate System code: <b>6422</b></li>
-     *   <li>Geodetic CRS Type: <b>Geographic 2D</b></li>
-     *   <li>GIGS Datum code: <b>66022</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the CRS from the properties.
-     */
-    /*
-    Early bound datum not supported in Test3204 yet
-    @Test
-    @DisplayName("GIGS geogCRS X′")
-    public void GIGS_64032() throws FactoryException {
-        setCodeAndName(64032, "GIGS geogCRS X'");
-        createDatum(Test3204::GIGS_66022);
-        csCode=6422;
-        verifyGeographicCRS();
-    }*/
 
     /**
      * Tests “GIGS geogCRS Y”  geographic 2D CRS from the factory.

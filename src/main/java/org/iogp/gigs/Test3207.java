@@ -7,10 +7,7 @@ import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
-import org.opengis.referencing.operation.Conversion;
-import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
-import org.opengis.referencing.operation.CoordinateOperationFactory;
-import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
 
 import javax.measure.Unit;
@@ -19,7 +16,46 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("User-defined Projected CRS")
+/**
+ * Verifies that the software allows correct definition of a user-defined projected CRS.
+ *
+ * <table class="gigs">
+ * <caption>Test description</caption>
+ * <tr>
+ *   <th>Test method:</th>
+ *   <td>Create user-defined projected CRS.</td>
+ * </tr><tr>
+ *   <th>Test data:</th>
+ *   <td><a href="doc-files/GIGS_3005_userProjection.csv">{@code GIGS_user_3207_ProjectedCRS.txt}</a>.</td>
+ * </tr><tr>
+ *   <th>Tested API:</th>
+ *   <td>{@link CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)} and<br>
+ *       {@link CSFactory#createCartesianCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)}.</td>
+ * </tr><tr>
+ *   <th>Expected result:</th>
+ *   <td>The geoscience software should accept the test data. The order in which the projection parameters
+ *       are entered is not critical, although that given in the test dataset is recommended.</td>
+ * </tr></table>
+ *
+ *
+ * <h2>Usage example</h2>
+ * in order to specify their factories and run the tests in a JUnit framework, implementers can
+ * define a subclass in their own test suite as in the example below:
+ *
+ * <blockquote><pre>public class MyTest extends Test3007 {
+ *    public MyTest() {
+ *        super(new MyDatumFactory(), new MyDatumAuthorityFactory(),
+ *          new MyCSFactory(), new MyCRSFactory(),
+ *          new MyCoordinateOperationFactory(), new MyMathTransformFactory(),
+ *          new MyCoordinateOperationAuthorityFactory());
+ *    }
+ *}</pre></blockquote>
+ *
+ * @author  Michael Arneson (INT)
+ * @version 1.0
+ * @since   1.0
+ */
+@DisplayName("User-defined projected CRS")
 public class Test3207 extends Series3000<ProjectedCRS> {
 
     /**
@@ -90,7 +126,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *
      * @see #setUserComponents(TestMethod, TestMethod)
      */
-    private Test3205Geog2DCRSTemp baseCRSTest;
+    private Test3205Geog2DCRS baseCRSTest;
 
     /**
      * Data about the conversion of the projected CRS.
@@ -159,8 +195,8 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         validators.validate(cartesianCS);
     }
 
-    private void createBaseCRS(final TestMethod<Test3205Geog2DCRSTemp> factory) throws FactoryException {
-        baseCRSTest = new Test3205Geog2DCRSTemp(datumFactory, datumAuthorityFactory, csFactory, crsFactory);
+    private void createBaseCRS(final TestMethod<Test3205Geog2DCRS> factory) throws FactoryException {
+        baseCRSTest = new Test3205Geog2DCRS(datumFactory, datumAuthorityFactory, csFactory, crsFactory);
         baseCRSTest.skipTests = true;
         factory.test(baseCRSTest);
         baseCRS = baseCRSTest.getIdentifiedObject();
@@ -220,7 +256,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("Example Test")
     public void sampleTest1() throws FactoryException {
         setCodeAndName(62001, "GIGS projCRS A1");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64003);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -254,7 +290,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS A1")
     public void GIGS_62001() throws FactoryException {
         setCodeAndName(62001, "GIGS projCRS A1");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64003);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -290,7 +326,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS A1-2")
     public void GIGS_62002() throws FactoryException {
         setCodeAndName(62002, "GIGS projCRS A1-2");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64003);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
@@ -326,7 +362,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS A1-3")
     public void GIGS_62003() throws FactoryException {
         setCodeAndName(62003, "GIGS projCRS A1-3");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64003);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
@@ -362,7 +398,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS A1-4")
     public void GIGS_62004() throws FactoryException {
         setCodeAndName(62004, "GIGS projCRS A1-4");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64003);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
@@ -398,7 +434,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS A1-5")
     public void GIGS_62005() throws FactoryException {
         setCodeAndName(62005, "GIGS projCRS A1-5");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64003);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
@@ -434,7 +470,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS A1-6")
     public void GIGS_62006() throws FactoryException {
         setCodeAndName(62006, "GIGS projCRS A1-6");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64003);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
@@ -470,7 +506,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS A2")
     public void GIGS_62007() throws FactoryException {
         setCodeAndName(62007, "GIGS projCRS A2");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64003);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65002);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -506,7 +542,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS A21")
     public void GIGS_62008() throws FactoryException {
         setCodeAndName(62008, "GIGS projCRS A21");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64003);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65021);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -542,7 +578,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS A23")
     public void GIGS_62027() throws FactoryException {
         setCodeAndName(62027, "GIGS projCRS A23");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64003);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65023);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.footSurveyUS());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.footSurveyUS());
@@ -576,7 +612,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS AA1")
     public void GIGS_62028() throws FactoryException {
         setCodeAndName(62028, "GIGS projCRS AA1");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64326);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64326);
         createConversion(16031);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -612,7 +648,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS B2")
     public void GIGS_62009() throws FactoryException {
         setCodeAndName(62009, "GIGS projCRS B2");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64005);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64005);
         createConversion(Test3206::GIGS_65002);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -648,7 +684,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS B22")
     public void GIGS_62010() throws FactoryException {
         setCodeAndName(62010, "GIGS projCRS B22");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64005);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64005);
         createConversion(Test3206::GIGS_65022);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -681,7 +717,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * @see Test2207#EPSG_27700()
      */
             /*
-    Early bound datum not supported in Test3204 yet
+    "User Early-Bound" Datum is not yet supported because we do not have the needed API in GeoAPI 3.0
     @Test
     @DisplayName("GIGS projCRS BB2")
     public void GIGS_62029() throws FactoryException {
@@ -722,7 +758,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS C4")
     public void GIGS_62011() throws FactoryException {
         setCodeAndName(62011, "GIGS projCRS C4");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64006);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64006);
         createConversion(Test3206::GIGS_65004);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
@@ -758,7 +794,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS CC4")
     public void GIGS_62030() throws FactoryException {
         setCodeAndName(62030, "GIGS projCRS CC4");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64289);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64289);
         createConversion(19914);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
@@ -795,7 +831,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS D5")
     public void GIGS_62012() throws FactoryException {
         setCodeAndName(62012, "GIGS projCRS D5");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64007);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64007);
         createConversion(Test3206::GIGS_65005);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
@@ -829,48 +865,12 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS E6")
     public void GIGS_62013() throws FactoryException {
         setCodeAndName(62013, "GIGS projCRS E6");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64008);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64008);
         createConversion(Test3206::GIGS_65006);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
         createAndVerifyCartesianCS(4499, axis1, axis2);
     }
-
-
-    /**
-     * Tests “GIGS projCRS EE6” projected CRS creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS projected CRS code: <b>62031</b></li>
-     *   <li>GIGS projectedCRS name: <b>GIGS projCRS EE6</b></li>
-     *   <li>EPSG equivalence: <b>31370 – Belge 1972 / Belgian Lambert 72</b></li>
-     *   <li>GIGS base CRS code: <b>64313</b></li>
-     *   <li>GIGS conversion code: <b>19961</b></li>
-     *   <li>EPSG coordinate system code: <b>4499</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
-     */
-        /*
-    Early bound datum not supported in Test3204 yet
-    @Test
-    @DisplayName("GIGS projCRS EE6")
-    public void GIGS_62031() throws FactoryException {
-        setCodeAndName(62031, "GIGS projCRS EE6");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64313);
-        createConversion(19961);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4499, axis1, axis2);
-    }*/
 
 
     /**
@@ -899,7 +899,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS F7")
     public void GIGS_62014() throws FactoryException {
         setCodeAndName(62014, "GIGS projCRS F7");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64009);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64009);
         createConversion(Test3206::GIGS_65007);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -933,7 +933,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS F8")
     public void GIGS_62015() throws FactoryException {
         setCodeAndName(62015, "GIGS projCRS F8");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64009);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64009);
         createConversion(Test3206::GIGS_65008);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -967,7 +967,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS F9")
     public void GIGS_62016() throws FactoryException {
         setCodeAndName(62016, "GIGS projCRS F9");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64009);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64009);
         createConversion(Test3206::GIGS_65009);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -1001,7 +1001,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS FF8")
     public void GIGS_62032() throws FactoryException {
         setCodeAndName(62032, "GIGS projCRS FF8");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64283);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64283);
         createConversion(17354);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -1037,7 +1037,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS G10")
     public void GIGS_62017() throws FactoryException {
         setCodeAndName(62017, "GIGS projCRS G10");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64010);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65010);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Westing", "Y", AxisDirection.WEST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Southing", "X", AxisDirection.SOUTH, units.metre());
@@ -1075,7 +1075,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS G11")
     public void GIGS_62018() throws FactoryException {
         setCodeAndName(62018, "GIGS projCRS G11");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64010);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65011);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
@@ -1109,7 +1109,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS G12")
     public void GIGS_62019() throws FactoryException {
         setCodeAndName(62019, "GIGS projCRS G12");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64010);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65012);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
@@ -1146,7 +1146,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS G13")
     public void GIGS_62020() throws FactoryException {
         setCodeAndName(62020, "GIGS projCRS G13");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64010);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65013);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -1184,7 +1184,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS G14")
     public void GIGS_62021() throws FactoryException {
         setCodeAndName(62021, "GIGS projCRS G14");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64010);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65014);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -1220,7 +1220,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS G15")
     public void GIGS_62022() throws FactoryException {
         setCodeAndName(62022, "GIGS projCRS G15");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64010);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65015);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
@@ -1256,7 +1256,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS G16")
     public void GIGS_62023() throws FactoryException {
         setCodeAndName(62023, "GIGS projCRS G16");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64010);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65016);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
@@ -1292,7 +1292,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS G17")
     public void GIGS_62024() throws FactoryException {
         setCodeAndName(62024, "GIGS projCRS G17");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64010);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65017);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.foot());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.foot());
@@ -1328,7 +1328,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS G18")
     public void GIGS_62025() throws FactoryException {
         setCodeAndName(62025, "GIGS projCRS G18");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64010);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65018);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.footSurveyUS());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.footSurveyUS());
@@ -1364,7 +1364,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS H19")
     public void GIGS_62026() throws FactoryException {
         setCodeAndName(62026, "GIGS projCRS H19");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64011);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64011);
         createConversion(Test3206::GIGS_65019);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
@@ -1400,7 +1400,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS HH19")
     public void GIGS_62033() throws FactoryException {
         setCodeAndName(62033, "GIGS projCRS HH19");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64807);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64807);
         createConversion(18082);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
@@ -1434,7 +1434,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS J28")
     public void GIGS_62038() throws FactoryException {
         setCodeAndName(62038, "GIGS projCRS J28");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64012);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64012);
         createConversion(Test3206::GIGS_65028);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
@@ -1470,51 +1470,12 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS K26")
     public void GIGS_62036() throws FactoryException {
         setCodeAndName(62036, "GIGS projCRS K26");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64015);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64015);
         createConversion(Test3206::GIGS_65026);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
         createAndVerifyCartesianCS(4498, axis1, axis2);
     }
-
-
-    /**
-     * Tests “GIGS projCRS L27” projected CRS creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS projected CRS code: <b>62037</b></li>
-     *   <li>GIGS projectedCRS name: <b>GIGS projCRS L27</b></li>
-     *   <li>EPSG equivalence: <b>3001 – Batavia / NEIEZ</b></li>
-     *   <li>GIGS base CRS code: <b>64014</b></li>
-     *   <li>GIGS conversion code: <b>65027</b></li>
-     *   <li>EPSG coordinate system code: <b>4499</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
-     *
-     * @see Test2207#EPSG_3001()
-     */
-        /*
-    Early bound datum not supported in Test3204 yet
-    @Test
-    @DisplayName("GIGS projCRS L27")
-    public void GIGS_62037() throws FactoryException {
-        setCodeAndName(62037, "GIGS projCRS L27");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64014);
-        createConversion(Test3206::GIGS_65027);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4499, axis1, axis2);
-    }*/
-
 
     /**
      * Tests “GIGS projCRS M25” projected CRS creation from the factory.
@@ -1546,7 +1507,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS M25")
     public void GIGS_62035() throws FactoryException {
         setCodeAndName(62035, "GIGS projCRS M25");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64003);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65025);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
@@ -1580,7 +1541,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS Y24")
     public void GIGS_62034() throws FactoryException {
         setCodeAndName(62034, "GIGS projCRS Y24");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64003);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65024);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "none", AxisDirection.NORTH, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "none", AxisDirection.EAST, units.metre());
@@ -1614,7 +1575,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     @DisplayName("GIGS projCRS Z28")
     public void GIGS_62039() throws FactoryException {
         setCodeAndName(62039, "GIGS projCRS Z28");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64012);
+        createBaseCRS(Test3205Geog2DCRS::GIGS_64012);
         createConversion(Test3206::GIGS_65028);
         CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
         CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());

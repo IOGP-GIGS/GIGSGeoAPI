@@ -10,12 +10,31 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalInt;
 
+/**
+ * Code generator for {@link org.iogp.gigs.Test3207}. This generator needs to be executed only if the GIGS data changed.
+ * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the test class,
+ * but be aware that the original code may contain manual changes that need to be preserved.
+ *
+ * @author  Michael Arneson (INT)
+ * @version 1.0
+ * @since   1.0
+ */
 public class Test3207 extends TestMethodGenerator {
-
+    /**
+     * Launcher.
+     *
+     * @param  args  ignored.
+     * @throws IOException if an error occurred while reading the test data.
+     */
     public static void main(String[] args) throws IOException {
         new Test3207().run();
     }
 
+    /**
+     * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
+     */
     private void run() throws IOException {
         final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3207_ProjectedCRS.txt",
                 Integer.class,      // [ 0]: GIGS Projected CRS Code

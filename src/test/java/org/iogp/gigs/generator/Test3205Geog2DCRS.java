@@ -4,17 +4,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Test3205Geog2DCRSTemp extends TestMethodGenerator {
-    //primeMeridianTest = new Test3203(datumFactory, null);
-    //setCodeAndName(66022, "GIGS geodetic datum X′");
-    //createAndVerifyGeographicCRS(64032, "GIGS geogCRS X′", 6422);
-    //
+/**
+ * Code generator for {@link org.iogp.gigs.Test3205Geog2DCRS}. This generator needs to be executed only if the GIGS data changed.
+ * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the test class,
+ * but be aware that the original code may contain manual changes that need to be preserved.
+ *
+ * @author  Michael Arneson (INT)
+ * @version 1.0
+ * @since   1.0
+ */
+public class Test3205Geog2DCRS extends TestMethodGenerator {
+    /**
+     * Launcher.
+     *
+     * @param  args  ignored.
+     * @throws IOException if an error occurred while reading the test data.
+     */
     public static void main(String[] args) throws IOException {
-        new Test3205Geog2DCRSTemp().run();
+        new Test3205Geog2DCRS().run();
     }
 
 
-    //1 need to set properties, datum, ellipsoid crs code
+    /**
+     * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
+     */
     private void run() throws IOException {
         final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3205_GeodeticCRS.txt",
                 Integer.class,      // [ 0]: GIGS Geodetic CRS Code
@@ -70,7 +85,6 @@ public class Test3205Geog2DCRSTemp extends TestMethodGenerator {
             out.append("verifyGeographicCRS();\n");
             indent(1); out.append('}');
             saveTestMethod();
-            //createAndVerifyGeographicCRS(64016, "GIGS geogCRS X", 6422);
         }
         flushAllMethods();
     }
