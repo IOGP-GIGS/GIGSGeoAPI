@@ -136,6 +136,18 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      */
     private Test3206 conversionTest;
 
+    /**
+     * Creates a new test using the given factory. If a given factory is {@code null},
+     * then the tests which depend on it will be skipped.
+     *
+     * @param datumFactory           factory for creating {@link GeodeticDatum} instances.
+     * @param datumAuthorityFactory  factory for creating {@link Ellipsoid} and {@link PrimeMeridian} components from EPSG codes.
+     * @param csFactory              factory for creating {@code CoordinateSystem} instances.
+     * @param crsFactory             factory for creating {@link GeodeticCRS} instances.
+     * @param copFactory             factory for creating {@link Transformation} instances.
+     * @param mtFactory              factory for creating {@link Transformation} instances.
+     * @param copAuthorityFactory    factory for creating {@link Transformation} instances.
+     */
     public Test3207(final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
                     final CSFactory csFactory, final CRSFactory crsFactory,
                     final CoordinateOperationFactory copFactory, final MathTransformFactory mtFactory,
@@ -157,11 +169,12 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
-     *       <li>{@link #datumFactory}</li>
-     *       <li>{@link #csFactory}</li>
-     *       <li>{@link #crsFactory}</li>
      *       <li>{@link #copFactory}</li>
      *       <li>{@link #mtFactory}</li>
+     *       <li>{@link #datumFactory}</li>
+     *       <li>{@link #datumAuthorityFactory}</li>
+     *       <li>{@link #csFactory}</li>
+     *       <li>{@link #crsFactory}</li>
      *       <li>{@link #copAuthorityFactory}</li>
      *     </ul>
      *   </li>
@@ -175,12 +188,22 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         assertNull(op.put(Configuration.Key.copFactory, copFactory));
         assertNull(op.put(Configuration.Key.mtFactory,  mtFactory));
         assertNull(op.put(Configuration.Key.datumFactory, datumFactory));
+        assertNull(op.put(Configuration.Key.datumAuthorityFactory, datumAuthorityFactory));
         assertNull(op.put(Configuration.Key.csFactory, csFactory));
         assertNull(op.put(Configuration.Key.crsFactory, crsFactory));
         assertNull(op.put(Configuration.Key.copAuthorityFactory, copAuthorityFactory));
         return op;
     }
 
+    /**
+     * Returns the projected CRS instance to be tested. When this method is invoked for the first time,
+     * it creates the projected CRS to test by invoking the corresponding method from {@link CRSFactory}
+     * with the current {@link #properties properties} map, base CRS, conversion, and Cartesian CS in the arguments.
+     * The created object is then cached and returned in all subsequent invocations of this method.
+     *
+     * @return the geodetic datum instance to test.
+     * @throws FactoryException if an error occurred while creating the geodetic datum instance.
+     */
     @Override
     public ProjectedCRS getIdentifiedObject() throws FactoryException {
         if (crs == null) {

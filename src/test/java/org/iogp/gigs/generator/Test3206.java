@@ -68,45 +68,39 @@ public class Test3206 extends TestMethodGenerator {
                 String .class);     // [30]: GIGS Remarks
 
         while (data.next()) {
-            int    code                     = data.getInt           ( 0);
-            String name                     = data.getString        ( 1);
-            String conversionName           = data.getString        ( 2);
+            int    code                     = data.getInt         ( 0);
+            String name                     = data.getString      ( 1);
+            String conversionName           = data.getString      ( 2);
 
-            String parameter1Name           = data.getString        (3);
-            Double parameter1Value          = data.getDouble        (4);
-            String parameter1Unit           = data.getString        (5);
-            Double parameter1ValueInDegrees = data.getDouble        (6);
+            String parameter1Name           = data.getString      (3);
+            Double parameter1Value          = data.getDouble      (4);
+            String parameter1Unit           = data.getString      (5);
+            Double parameter1ValueInDegrees = data.getDouble      (6);
+            String parameter2Name           = data.getString      (7);
+            Double parameter2Value          = data.getDouble      (8);
+            String parameter2Unit           = data.getString      (9);
+            Double parameter2ValueInDegrees = data.getDouble      (10);
+            String parameter3Name           = data.getString      (11);
+            Double parameter3Value          = data.getDouble      (12);
+            String parameter3Unit           = data.getString      (13);
+            Double parameter3ValueInDegrees = data.getDouble      (14);
+            String parameter4Name           = data.getString      (15);
+            Double parameter4Value          = data.getDouble      (16);
+            String parameter4Unit           = data.getString      (17);
+            Double parameter4ValueInDegrees = data.getDouble      (18);
+            String parameter5Name           = data.getString      (19);
+            Double parameter5Value          = data.getDouble      (20);
+            String parameter5Unit           = data.getString      (21);
+            String parameter6Name           = data.getString      (22);
+            Double parameter6Value          = data.getDouble      (23);
+            String parameter6Unit           = data.getString      (24);
+            String parameter7Name           = data.getString      (25);
+            Double parameter7Value          = data.getDouble      (26);
+            String parameter7Unit           = data.getString      (27);
 
-            String parameter2Name           = data.getString        (7);
-            Double parameter2Value          = data.getDouble        (8);
-            String parameter2Unit           = data.getString        (9);
-            Double parameter2ValueInDegrees = data.getDouble        (10);
-
-            String parameter3Name           = data.getString        (11);
-            Double parameter3Value          = data.getDouble        (12);
-            String parameter3Unit           = data.getString        (13);
-            Double parameter3ValueInDegrees = data.getDouble        (14);
-
-            String parameter4Name           = data.getString        (15);
-            Double parameter4Value          = data.getDouble        (16);
-            String parameter4Unit           = data.getString        (17);
-            Double parameter4ValueInDegrees = data.getDouble        (18);
-
-            String parameter5Name           = data.getString        (19);
-            Double parameter5Value          = data.getDouble        (20);
-            String parameter5Unit           = data.getString        (21);
-
-            String parameter6Name           = data.getString        (22);
-            Double parameter6Value          = data.getDouble        (23);
-            String parameter6Unit           = data.getString        (24);
-
-            String parameter7Name           = data.getString        (25);
-            Double parameter7Value          = data.getDouble        (26);
-            String parameter7Unit           = data.getString        (27);
-
-            OptionalInt codeEPSG            = data.getIntOptional   (28);
-            String nameEPSG                 = data.getString        (29);
-            String remarks                  = data.getString        (30);
+            OptionalInt codeEPSG            = data.getIntOptional (28);
+            String nameEPSG                 = data.getString      (29);
+            String remarks                  = data.getString      (30);
 
             /*
              * Write javadoc.
@@ -129,7 +123,6 @@ public class Test3206 extends TestMethodGenerator {
             printJavadocParameterString(parameter2Name, parameter2Value, parameter2Unit, parameter2ValueInDegrees);
             printJavadocParameterString(parameter3Name, parameter3Value, parameter3Unit, parameter3ValueInDegrees);
             printJavadocParameterString(parameter4Name, parameter4Value, parameter4Unit, parameter4ValueInDegrees);
-            printJavadocParameterString(parameter4Name, parameter4Value, parameter4Unit, parameter4ValueInDegrees);
             printJavadocParameterString(parameter5Name, parameter5Value, parameter5Unit);
             printJavadocParameterString(parameter6Name, parameter6Value, parameter6Unit);
             printJavadocParameterString(parameter7Name, parameter7Value, parameter7Unit);
@@ -148,7 +141,6 @@ public class Test3206 extends TestMethodGenerator {
             printParameterString(parameter2Name, parameter2Value, parameter2Unit, parameter2ValueInDegrees);
             printParameterString(parameter3Name, parameter3Value, parameter3Unit, parameter3ValueInDegrees);
             printParameterString(parameter4Name, parameter4Value, parameter4Unit, parameter4ValueInDegrees);
-            printParameterString(parameter4Name, parameter4Value, parameter4Unit, parameter4ValueInDegrees);
             printParameterString(parameter5Name, parameter5Value, parameter5Unit);
             printParameterString(parameter6Name, parameter6Value, parameter6Unit);
             printParameterString(parameter7Name, parameter7Value, parameter7Unit);
@@ -159,6 +151,7 @@ public class Test3206 extends TestMethodGenerator {
         flushAllMethods();
     }
 
+    //TODO: rewrite to declare the unit in the parameter instead of using a variable to reference it
     private void printParameterString(String parameterName, Double parameterValue, String parameterUnit, Double... parameterValueAsDec) {
         if (parameterName == null || parameterName.equals("NULL")) {
             return;

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;

@@ -4,10 +4,7 @@ import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.referencing.crs.CRSFactory;
-import org.opengis.referencing.crs.GeocentricCRS;
-import org.opengis.referencing.crs.GeodeticCRS;
-import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.crs.*;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CSFactory;
 import org.opengis.referencing.cs.CartesianCS;
@@ -16,6 +13,7 @@ import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.referencing.operation.OperationMethod;
+import org.opengis.referencing.operation.Transformation;
 import org.opengis.util.FactoryException;
 
 import javax.measure.Unit;
@@ -45,7 +43,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test3005 {
+ * <blockquote><pre>public class MyTest extends Test3205Geog2DCRS {
  *    public MyTest() {
  *        super(new MyCoordinateOperationFactory());
  *    }
@@ -107,6 +105,15 @@ public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
      */
     private final EPSGMock epsgFactory;
 
+    /**
+     * Creates a new test using the given factory. If a given factory is {@code null},
+     * then the tests which depend on it will be skipped.
+     *
+     * @param datumFactory           factory for creating {@link GeodeticDatum} instances.
+     * @param datumAuthorityFactory  factory for creating {@link Ellipsoid} and {@link PrimeMeridian} components from EPSG codes.
+     * @param csFactory              factory for creating {@code CoordinateSystem} instances.
+     * @param crsFactory             factory for creating {@link GeodeticCRS} instances.
+     */
     public Test3205Geog2DCRS(final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
                              final CSFactory csFactory, final CRSFactory crsFactory) {
         this.datumFactory = datumFactory;

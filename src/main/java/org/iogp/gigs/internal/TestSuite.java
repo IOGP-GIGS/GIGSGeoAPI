@@ -33,6 +33,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 import java.util.ServiceLoader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.iogp.gigs.internal.sis.TransformationFactory;
+import org.iogp.gigs.internal.sis.DefaultTransformationFactory;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.Factory;
@@ -84,7 +88,9 @@ public final class TestSuite implements ParameterResolver {
         DatumFactory.class,
         CoordinateOperationAuthorityFactory.class,
         CoordinateOperationFactory.class,
-        MathTransformFactory.class
+        MathTransformFactory.class,
+        //needed to call apache sis api
+        TransformationFactory.class
     };
 
     /**
@@ -132,8 +138,8 @@ public final class TestSuite implements ParameterResolver {
         final Class<?>[] tests = {
             Test2201.class, Test2202.class, Test2203.class, Test2204.class, Test2205.class, Test2206.class,
             Test2207.class, Test2208.class, Test2209.class, Test2210.class, Test2211.class, Test3201.class,
-            Test3202.class, Test3203.class, Test3204.class, Test3206.class, Test3207.class,
-                Test3004.class, Test3005.class
+            Test3202.class, Test3203.class, Test3204.class, Test3206.class, Test3207.class, Test3208.class,
+            Test3209.class, Test3004.class, Test3005.class
 
         };
         final ClassSelector[] selectors = new ClassSelector[tests.length];
@@ -167,7 +173,17 @@ public final class TestSuite implements ParameterResolver {
                     factories[i] = factory;
                     break;
                 }
+                //GeoAPI does not have required api to
+                if (FACTORY_TYPES[i].equals(TransformationFactory.class)) {
+                    try {
+                        factories[i] = new DefaultTransformationFactory(loader);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(TestSuite.class.getName()).log(Level.WARNING, "Can't create custom transformations with specified jars, " +
+                                "only Apache SIS supports GIGS Custom Transformation tests at this time");
+                    }
+                }
             }
+            //temporary
             Units.setInstance(loader);
             launcher.execute(request);
         } finally {
