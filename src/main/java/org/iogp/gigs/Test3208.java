@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * </tr><tr>
  *   <th>Test data:</th>
  *   <td><a href="doc-files/GIGS_3005_userProjection.csv">{@code GIGS_user_3208_CoordTfm.txt}</a>.</td>
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/blob/main/GIGSTestDatasetFiles/GIGS%203200%20User-defined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_user_3208_CoordTfm.txt">{@code GIGS_user_3208_CoordTfm.txt}</a>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link MathTransformFactory#getDefaultParameters(String)} and<br>

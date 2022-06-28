@@ -3,6 +3,7 @@ package org.iogp.gigs;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.opengis.referencing.crs.GeographicCRS;
 import org.opengis.referencing.datum.*;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
@@ -11,6 +12,42 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Verifies that the software allows correct definition of a user-defined vertical datum.
+ * Each test method in this class instantiate exactly one {@link VerticalDatum}.
+ *
+ * <table class="gigs">
+ * <caption>Test description</caption>
+ * <tr>
+ *   <th>Test method:</th>
+ *   <td>Create user-defined vertical datum for each of several different datums.</td>
+ * </tr><tr>
+ *   <th>Test data:</th>
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/blob/main/GIGSTestDatasetFiles/GIGS%203200%20User-defined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_user_3209_VerticalDatum.txt">{@code GIGS_user_3209_VerticalDatum.txt}</a>
+ * </tr><tr>
+ *   <th>Tested API:</th>
+ *   <td>{@link DatumFactory#createVerticalDatum(Map, VerticalDatumType)}.</td>
+ * </tr><tr>
+ *   <th>Expected result:</th>
+ *   <td>The software should accept the test data. The properties of the created objects will
+ *       be compared with the properties given to the factory method.</td>
+ * </tr></table>
+ *
+ *
+ * <h2>Usage example</h2>
+ * in order to specify their factories and run the tests in a JUnit framework,
+ * implementers can define a subclass in their own test suite as in the example below:
+ *
+ * <blockquote><pre>public class MyTest extends Test3209 {
+ *    public MyTest() {
+ *        super(new MyDatumFactory(), new MyDatumAuthorityFactory());
+ *    }
+ *}</pre></blockquote>
+ *
+ * @author  Michael Arneson (INT)
+ * @version 1.0
+ * @since   1.0
+ */
 @DisplayName("User-defined vertical datum")
 public class Test3209 extends Series3000<VerticalDatum> {
 
@@ -83,11 +120,21 @@ public class Test3209 extends Series3000<VerticalDatum> {
     }
 
     /**
+     * Sets the vertical datum instance to verify. This method is invoked only by other test classes which need to
+     * verify the vertical datum contained in a CRS instead of the vertical datum immediately after creation.
+     *
+     * @param  instance  the instance to verify.
+     */
+    final void setIdentifiedObject(final VerticalDatum instance) {
+        datum = instance;
+    }
+
+    /**
      * Verifies the properties of the vertical datum given by {@link #getIdentifiedObject()}.
      *
      * @throws FactoryException if an error occurred while creating the datum.
      */
-    private void verifyVerticalDatum() throws FactoryException {
+    final void verifyVerticalDatum() throws FactoryException {
         if (skipTests) {
             return;
         }

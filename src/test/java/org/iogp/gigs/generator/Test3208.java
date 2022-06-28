@@ -4,9 +4,10 @@ import org.iogp.gigs.internal.geoapi.Units;
 
 import javax.measure.Unit;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.OptionalInt;
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Code generator for {@link org.iogp.gigs.Test3208}. This generator needs to be executed only if the GIGS data changed.
@@ -34,6 +35,9 @@ public class Test3208 extends TestMethodGenerator {
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
+        // GIGS crs codes
+        final Set<Integer> crsCodes = loadDependencies("GIGS_user_3205_GeodeticCRS.txt");
+
         final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3208_CoordTfm.txt",
                 Integer.class,      // [ 0]: GIGS Transformation Code
                 String .class,      // [ 1]: GIGS Transformation Name
@@ -79,46 +83,46 @@ public class Test3208 extends TestMethodGenerator {
                 String .class);     // [41]: GIGS Remarks
 
         while (data.next()) {
-            int    code                     = data.getInt         ( 0);
-            String name                     = data.getString      ( 1);
-            int    sourceCRSCode            = data.getInt         ( 2);
-            int    targetCRSCode            = data.getInt         ( 4);
-            String methodName               = data.getString      ( 7);
+            final int    code                     = data.getInt         ( 0);
+            final String name                     = data.getString      ( 1);
+            final int    sourceCRSCode            = data.getInt         ( 2);
+            final int    targetCRSCode            = data.getInt         ( 4);
+            final String methodName               = data.getString      ( 7);
 
-            String parameter1Name           = data.getString      ( 8);
-            String parameter1Value          = data.getString      ( 9);
-            String parameter1Unit           = data.getString      (10);
-            String parameter1ValueInDegrees = data.getString      (11);
-            String parameter2Name           = data.getString      (12);
-            String parameter2Value          = data.getString      (13);
-            String parameter2Unit           = data.getString      (14);
-            String parameter3Name           = data.getString      (15);
-            String parameter3Value          = data.getString      (16);
-            String parameter3Unit           = data.getString      (17);
-            String parameter4Name           = data.getString      (18);
-            String parameter4Value          = data.getString      (19);
-            String parameter4Unit           = data.getString      (20);
-            String parameter5Name           = data.getString      (21);
-            String parameter5Value          = data.getString      (22);
-            String parameter5Unit           = data.getString      (23);
-            String parameter6Name           = data.getString      (24);
-            String parameter6Value          = data.getString      (25);
-            String parameter6Unit           = data.getString      (26);
-            String parameter7Name           = data.getString      (27);
-            String parameter7Value          = data.getString      (28);
-            String parameter7Unit           = data.getString      (29);
-            String parameter8Name           = data.getString      (30);
-            String parameter8Value          = data.getString      (31);
-            String parameter8Unit           = data.getString      (32);
-            String parameter9Name           = data.getString      (33);
-            String parameter9Value          = data.getString      (34);
-            String parameter9Unit           = data.getString      (35);
-            String parameter10Name          = data.getString      (36);
-            String parameter10Value         = data.getString      (37);
-            String parameter10Unit          = data.getString      (38);
-            OptionalInt codeEPSG            = data.getIntOptional (39);
-            String nameEPSG                 = data.getString      (40);
-            String remarks                  = data.getString      (41);
+            final String parameter1Name           = data.getString      ( 8);
+            final String parameter1Value          = data.getString      ( 9);
+            final String parameter1Unit           = data.getString      (10);
+            final String parameter1ValueInDegrees = data.getString      (11);
+            final String parameter2Name           = data.getString      (12);
+            final String parameter2Value          = data.getString      (13);
+            final String parameter2Unit           = data.getString      (14);
+            final String parameter3Name           = data.getString      (15);
+            final String parameter3Value          = data.getString      (16);
+            final String parameter3Unit           = data.getString      (17);
+            final String parameter4Name           = data.getString      (18);
+            final String parameter4Value          = data.getString      (19);
+            final String parameter4Unit           = data.getString      (20);
+            final String parameter5Name           = data.getString      (21);
+            final String parameter5Value          = data.getString      (22);
+            final String parameter5Unit           = data.getString      (23);
+            final String parameter6Name           = data.getString      (24);
+            final String parameter6Value          = data.getString      (25);
+            final String parameter6Unit           = data.getString      (26);
+            final String parameter7Name           = data.getString      (27);
+            final String parameter7Value          = data.getString      (28);
+            final String parameter7Unit           = data.getString      (29);
+            final String parameter8Name           = data.getString      (30);
+            final String parameter8Value          = data.getString      (31);
+            final String parameter8Unit           = data.getString      (32);
+            final String parameter9Name           = data.getString      (33);
+            final String parameter9Value          = data.getString      (34);
+            final String parameter9Unit           = data.getString      (35);
+            final String parameter10Name          = data.getString      (36);
+            final String parameter10Value         = data.getString      (37);
+            final String parameter10Unit          = data.getString      (38);
+            final OptionalInt codeEPSG            = data.getIntOptional (39);
+            final String nameEPSG                 = data.getString      (40);
+            final String remarks                  = data.getString      (41);
 
             /*
              * Write javadoc.
@@ -159,8 +163,26 @@ public class Test3208 extends TestMethodGenerator {
             indent(2); out.append("properties.put(CoordinateOperation.OPERATION_VERSION_KEY, \"GIGS Transformation\");\n");
             printTransformationMethodName(methodName);
             indent(2); out.append("createDefaultParameters();\n");
-            printCRSReference("createSourceCRS", sourceCRSCode);
-            printCRSReference("createTargetCRS", targetCRSCode);
+            //specify the source crs (either from gigs or epsg)
+            if (crsCodes.contains(sourceCRSCode)) {
+                indent(2);
+                out.append("createSourceCRS(Test3205Geog2DCRS::GIGS_")
+                        .append(sourceCRSCode).append(");\n");
+            } else {
+                indent(2);
+                out.append("createSourceCRS(")
+                        .append(sourceCRSCode).append(");\n");
+            }
+            //specify the target crs (either from gigs or epsg)
+            if (crsCodes.contains(targetCRSCode)) {
+                indent(2);
+                out.append("createTargetCRS(Test3205Geog2DCRS::GIGS_")
+                        .append(targetCRSCode).append(");\n");
+            } else {
+                indent(2);
+                out.append("createTargetCRS(")
+                        .append(targetCRSCode).append(");\n");
+            }
 
             printParameterString(parameter1Name, parameter1Value, parameter1Unit, parameter1ValueInDegrees);
             printParameterString(parameter2Name, parameter2Value, parameter2Unit);
@@ -233,9 +255,9 @@ public class Test3208 extends TestMethodGenerator {
         out.append(");\n");
     }
 
-    private void printTransformationMethodName(String transformationMethodName) {
+    private void printTransformationMethodName(String gigsTransformationMethodName) {
         indent(2);out.append("methodName = ");
-        switch(transformationMethodName) {
+        switch(gigsTransformationMethodName) {
             case "Geocentric translations":
                 out.append("\"Geocentric translations (geog2D domain)\";\n");
                 break;
@@ -249,18 +271,25 @@ public class Test3208 extends TestMethodGenerator {
                 out.append("\"Molodensky\";\n");
                 break;
             default:
-                out.append("\"").append(transformationMethodName).append("\";\n");
+                out.append("\"").append(gigsTransformationMethodName).append("\";\n");
         }
     }
 
-    private void printCRSReference(String functionName, int code) {
-        indent(2);out.append(functionName).append("(");
-        if (code > 64000 && code < 65000) {
-            out.append("Test3205Geog2DCRS::GIGS_").append(code);
-        } else {
-            out.append(code);
+    /**
+     * Loads set of GIGS codes from the given file.
+     * Keys are the content of the first column.
+     *
+     * @param  file  the file to load.
+     * @return GIGS codes inferred from the first columns in the given file.
+     * @throws IOException if an error occurred while reading the test data.
+     */
+    private static Set<Integer> loadDependencies(final String file) throws IOException {
+        final DataParser data = new DataParser(Series.USER_DEFINED, file, Integer.class);
+        final Set<Integer> dependencies = new HashSet<>();
+        while (data.next()) {
+            dependencies.add(data.getInt(0));
         }
-        out.append(");\n");
+        return dependencies;
     }
 
 }

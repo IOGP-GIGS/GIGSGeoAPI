@@ -5,19 +5,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.*;
-import org.opengis.referencing.cs.AxisDirection;
-import org.opengis.referencing.cs.CSFactory;
-import org.opengis.referencing.cs.CartesianCS;
-import org.opengis.referencing.cs.EllipsoidalCS;
+import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
-import org.opengis.referencing.operation.Conversion;
-import org.opengis.referencing.operation.CoordinateOperationFactory;
-import org.opengis.referencing.operation.OperationMethod;
-import org.opengis.referencing.operation.Transformation;
+import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
 
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
+
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -31,7 +27,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  *   <td>Create user-defined projection for each of several different geographic 2D CRSs.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_3005_userProjection.csv">{@code GIGS_user_3205_GeodeticCRS.txt}</a>.</td>
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/blob/main/GIGSTestDatasetFiles/GIGS%203200%20User-defined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_user_3205_GeodeticCRS.txt">{@code GIGS_user_3205_GeodeticCRS.txt}</a>
+ * </tr><tr>
+ *   <th>Tested API:</th>
+ *   <td>{@link CRSFactory#createGeographicCRS(Map, GeodeticDatum, EllipsoidalCS)} and<br>
+ *       {@link CSFactory#createEllipsoidalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)}.</td>
  * </tr><tr>
  *   <th>Expected result:</th>
  *   <td>The geoscience software should accept the test data. The order in which the projection parameters
@@ -45,7 +45,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  *
  * <blockquote><pre>public class MyTest extends Test3205Geog2DCRS {
  *    public MyTest() {
- *        super(new MyCoordinateOperationFactory());
+ *        super(new MyDatumFactory(), new MyDatumAuthorityFactory(),
+ *          new MyCSFactory(), MyCoordinateOperationFactory());
  *    }
  *}</pre></blockquote>
  *

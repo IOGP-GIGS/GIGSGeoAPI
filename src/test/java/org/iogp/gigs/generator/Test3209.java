@@ -40,12 +40,12 @@ public class Test3209 extends TestMethodGenerator {
                 String .class);     // [ 5]: GIGS Remarks
 
         while (data.next()) {
-            int    code          = data.getInt         ( 0);
-            String name          = data.getString      ( 1);
-            String origin        = data.getString      ( 2);
-            OptionalInt codeEPSG = data.getIntOptional ( 3);
-            String nameEPSG      = data.getString      ( 4);
-            String remarks       = data.getString      ( 5);
+            final int         code     = data.getInt         ( 0);
+            final String      name     = data.getString      ( 1);
+            final String      origin   = data.getString      ( 2);
+            final OptionalInt codeEPSG = data.getIntOptional ( 3);
+            final String      nameEPSG = data.getString      ( 4);
+            final String      remarks  = data.getString      ( 5);
 
             /*
              * Write javadoc.

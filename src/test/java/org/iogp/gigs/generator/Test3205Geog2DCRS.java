@@ -43,12 +43,12 @@ public class Test3205Geog2DCRS extends TestMethodGenerator {
                 Integer.class,      // [ 8]: Early-binding Transformation Code (see GIGS Test Procedure 3208 or 2208)
                 String .class);     // [ 9]: GIGS Remarks
         while (data.next()) {
-            int    code             = data.getInt           ( 0);
-            String name             = data.getString        ( 2);
-            String geodeticType     = data.getString        ( 3);
-            int    datumCode        = data.getInt           ( 4);
-            int    csCode           = data.getInt           ( 5);
-            String remarks          = data.getString        (9);
+            final int    code             = data.getInt           ( 0);
+            final String name             = data.getString        ( 2);
+            final String geodeticType     = data.getString        ( 3);
+            final int    datumCode        = data.getInt           ( 4);
+            final int    csCode           = data.getInt           ( 5);
+            final String remarks          = data.getString        (9);
 
             if (!geodeticType.equals("Geographic 2D")) {
                 continue;
@@ -73,14 +73,8 @@ public class Test3205Geog2DCRS extends TestMethodGenerator {
              */
             printTestMethodSignature(GIGS, code, name);
             printCallToSetCodeAndName(code, name);
-            indent(2);
-            out.append("createDatum(Test3204::GIGS_")
-                    .append(datumCode)
-                    .append(");\n");
-            indent(2);
-            out.append("csCode=")
-                    .append(csCode)
-                    .append(";\n");
+            indent(2);out.append("createDatum(Test3204::GIGS_").append(datumCode).append(");\n");
+            indent(2);out.append("csCode=").append(csCode).append(";\n");
             indent(2);
             out.append("verifyGeographicCRS();\n");
             indent(1); out.append('}');

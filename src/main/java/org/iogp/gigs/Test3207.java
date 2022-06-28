@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *   <td>Create user-defined projected CRS.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_3005_userProjection.csv">{@code GIGS_user_3207_ProjectedCRS.txt}</a>.</td>
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/blob/main/GIGSTestDatasetFiles/GIGS%203200%20User-defined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_user_3207_ProjectedCRS.txt">{@code GIGS_user_3207_ProjectedCRS.txt}</a>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)} and<br>
@@ -77,7 +77,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     private Conversion conversion;
 
     /**
-     * The cartesian coordinate System used for the projected CRS created by this factory.
+     * The cartesian coordinate system used for the projected CRS created by this factory.
      */
     private CartesianCS cartesianCS;
 
@@ -93,14 +93,14 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     protected final MathTransformFactory mtFactory;
 
     /**
-     * Factory to use for building {@link GeodeticCRS} instances, or {@code null} if none.
+     * Factory to use for building {@link ProjectedCRS} instances, or {@code null} if none.
      */
     protected final CRSFactory crsFactory;
 
     /**
      * The factory to use for creating coordinate system instances.
      */
-    private final CSFactory csFactory;
+    protected final CSFactory csFactory;
 
     /**
      * Factory to use for building {@link GeodeticDatum} instances, or {@code null} if none.
@@ -119,6 +119,11 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * This is the factory used by the {@link #getIdentifiedObject()} method.
      */
     protected final CoordinateOperationAuthorityFactory copAuthorityFactory;
+
+    /**
+     * The factory to use for creating coordinate system instances.
+     */
+    private final EPSGMock epsgFactory;
 
     /**
      * Data about the base CRS of the projected CRS.
@@ -159,6 +164,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         this.crsFactory   = crsFactory;
         this.csFactory  = csFactory;
         this.copAuthorityFactory = copAuthorityFactory;
+        this.epsgFactory  = new EPSGMock(units, datumFactory, csFactory, validators);
     }
 
     /**
@@ -198,11 +204,11 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     /**
      * Returns the projected CRS instance to be tested. When this method is invoked for the first time,
      * it creates the projected CRS to test by invoking the corresponding method from {@link CRSFactory}
-     * with the current {@link #properties properties} map, base CRS, conversion, and Cartesian CS in the arguments.
-     * The created object is then cached and returned in all subsequent invocations of this method.
+     * with the current {@link #properties properties} map, base CRS, conversion, and cartesian coordinate system in the
+     * arguments. The created object is then cached and returned in all subsequent invocations of this method.
      *
-     * @return the geodetic datum instance to test.
-     * @throws FactoryException if an error occurred while creating the geodetic datum instance.
+     * @return the projected CRS instance to test.
+     * @throws FactoryException if an error occurred while creating the projected CRS instance.
      */
     @Override
     public ProjectedCRS getIdentifiedObject() throws FactoryException {
@@ -210,12 +216,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
             crs = crsFactory.createProjectedCRS(properties, baseCRS, conversion, cartesianCS);
         }
         return crs;
-    }
-
-    private void createAndVerifyCartesianCS(int code, CoordinateSystemAxis axis1, CoordinateSystemAxis axis2) throws FactoryException {
-        Map<String, Object> properties = properties(code, "GIGS Cartesian CS");
-        cartesianCS = csFactory.createCartesianCS(properties, axis1, axis2);
-        validators.validate(cartesianCS);
     }
 
     private void createBaseCRS(final TestMethod<Test3205Geog2DCRS> factory) throws FactoryException {
@@ -234,12 +234,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
 
     private void createConversion(final int code) throws FactoryException {
         conversion = (Conversion) copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
-    }
-
-    private CoordinateSystemAxis createCoordinateSystemAxis(String name, String abbreviation, AxisDirection direction, Unit<?> unit) throws FactoryException {
-        final Map<String,Object> properties = new HashMap<>(4);
-        assertNull(properties.put(IdentifiedObject.NAME_KEY, name));
-        return csFactory.createCoordinateSystemAxis(properties, abbreviation, direction, unit);
     }
 
     /**
@@ -269,22 +263,12 @@ public class Test3207 extends Series3000<ProjectedCRS> {
             conversionTest.setIdentifiedObject(conversion);
             conversionTest.verifyConversion();
         }
+        //validate the cartesian cs.
+        validators.validate(cartesianCS);
         // Projected CRS coordinate system.
         final CartesianCS cs = crs.getCoordinateSystem();
         assertNotNull(crs, "ProjectedCRS.getCoordinateSystem()");
         assertEquals(2, cs.getDimension(), "ProjectedCRS.getCoordinateSystem().getDimension()");
-    }
-
-    @Test
-    @DisplayName("Example Test")
-    public void sampleTest1() throws FactoryException {
-        setCodeAndName(62001, "GIGS projCRS A1");
-        createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
-        createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
-        verifyProjectedCRS();
     }
 
     /**
@@ -315,9 +299,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62001, "GIGS projCRS A1");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -351,9 +336,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62002, "GIGS projCRS A1-2");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        createAndVerifyCartesianCS(4500, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4500", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -387,9 +373,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62003, "GIGS projCRS A1-3");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4499, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -423,9 +410,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62004, "GIGS projCRS A1-4");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        createAndVerifyCartesianCS(4532, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4532", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -459,9 +447,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62005, "GIGS projCRS A1-5");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4498, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4498", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -495,9 +484,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62006, "GIGS projCRS A1-6");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
-        createAndVerifyCartesianCS(4530, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4530", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -531,9 +521,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62007, "GIGS projCRS A2");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65002);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -557,7 +548,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * </ul>
      *
      * Remarks: No direct EPSG equivalent.
-     * Use as alternative to CRS 62007 only if in test 3005 it has not been possible to define proj code 61002 (The CRS A2 is required for Data Operations tests).
+     * Use as alternative to CRS 62007 only if in test 3005 it has not been possible to define proj code 65002 (The CRS A2 is required for Data Operations tests).
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -567,9 +558,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62008, "GIGS projCRS A21");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65021);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -603,9 +595,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62027, "GIGS projCRS A23");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65023);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.footSurveyUS());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.footSurveyUS());
-        createAndVerifyCartesianCS(4497, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.footSurveyUS());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.footSurveyUS());
+        cartesianCS = epsgFactory.createCartesianCS("4497", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -637,9 +630,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62028, "GIGS projCRS AA1");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64326);
         createConversion(16031);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -664,8 +658,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
-     *
-     * @see Test2207#EPSG_27700()
      */
     @Test
     @DisplayName("GIGS projCRS B2")
@@ -673,9 +665,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62009, "GIGS projCRS B2");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64005);
         createConversion(Test3206::GIGS_65002);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -686,7 +679,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projected CRS code: <b>62010</b></li>
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS B22</b></li>
      *   <li>GIGS base CRS code: <b>64005</b></li>
-     *   <li>GIGS conversion code: <b>65022</b></li>
+     *   <li>GIGS conversion code: <b>65002</b></li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      *   <li>Axis 1 name: <b>Easting</b></li>
      *   <li>Axis 1 abbreviation: <b>E</b></li>
@@ -699,7 +692,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * </ul>
      *
      * Remarks: No direct EPSG equivalent.
-     * Use as alternative to CRS 62009 only if in test 3005 it has not been possible to define proj code 61002 (The CRS B1 is required for Data Operations tests).
+     * Use as alternative to CRS 62009 only if in test 3005 it has not been possible to define proj code 65002 (The CRS B1 is required for Data Operations tests).
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -708,49 +701,12 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     public void GIGS_62010() throws FactoryException {
         setCodeAndName(62010, "GIGS projCRS B22");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64005);
-        createConversion(Test3206::GIGS_65022);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        createConversion(Test3206::GIGS_65002);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
-
-
-    /**
-     * Tests “GIGS projCRS BB2” projected CRS creation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS projected CRS code: <b>62029</b></li>
-     *   <li>GIGS projectedCRS name: <b>GIGS projCRS BB2</b></li>
-     *   <li>EPSG equivalence: <b>27700 – OSGB36 / British National Grid</b></li>
-     *   <li>GIGS base CRS code: <b>64277</b></li>
-     *   <li>GIGS conversion code: <b>19916</b></li>
-     *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
-     * </ul>
-     *
-     * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
-     *
-     * @see Test2207#EPSG_27700()
-     */
-            /*
-    "User Early-Bound" Datum is not yet supported because we do not have the needed API in GeoAPI 3.0
-    @Test
-    @DisplayName("GIGS projCRS BB2")
-    public void GIGS_62029() throws FactoryException {
-        setCodeAndName(62029, "GIGS projCRS BB2");
-        createBaseCRS(Test3205Geog2DCRSTemp::GIGS_64277);
-        createConversion(19916);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
-    }*/
 
 
     /**
@@ -774,8 +730,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
-     *
-     * @see Test2207#EPSG_28992()
      */
     @Test
     @DisplayName("GIGS projCRS C4")
@@ -783,9 +737,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62011, "GIGS projCRS C4");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64006);
         createConversion(Test3206::GIGS_65004);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4499, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -810,8 +765,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
-     *
-     * @see Test2207#EPSG_28992()
      */
     @Test
     @DisplayName("GIGS projCRS CC4")
@@ -819,9 +772,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62030, "GIGS projCRS CC4");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64289);
         createConversion(19914);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4499, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -856,9 +810,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62012, "GIGS projCRS D5");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64007);
         createConversion(Test3206::GIGS_65005);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4499, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -890,9 +845,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62013, "GIGS projCRS E6");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64008);
         createConversion(Test3206::GIGS_65006);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4499, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -924,9 +880,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62014, "GIGS projCRS F7");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64009);
         createConversion(Test3206::GIGS_65007);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -958,9 +915,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62015, "GIGS projCRS F8");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64009);
         createConversion(Test3206::GIGS_65008);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -992,9 +950,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62016, "GIGS projCRS F9");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64009);
         createConversion(Test3206::GIGS_65009);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1026,9 +985,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62032, "GIGS projCRS FF8");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64283);
         createConversion(17354);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1062,9 +1022,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62017, "GIGS projCRS G10");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65010);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Westing", "Y", AxisDirection.WEST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Southing", "X", AxisDirection.SOUTH, units.metre());
-        createAndVerifyCartesianCS(6503, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Westing", "Y", AxisDirection.WEST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Southing", "X", AxisDirection.SOUTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("6503", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1091,8 +1052,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * Remarks: Equivalence applies only to late-binding applications.
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
-     *
-     * @see Test2207#EPSG_22175()
      */
     @Test
     @DisplayName("GIGS projCRS G11")
@@ -1100,9 +1059,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62018, "GIGS projCRS G11");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65011);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
-        createAndVerifyCartesianCS(4530, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4530", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1134,9 +1094,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62019, "GIGS projCRS G12");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65012);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4499, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1171,9 +1132,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62020, "GIGS projCRS G13");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65013);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1200,8 +1162,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * Remarks: Equivalence applies only to late-binding applications.
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
-     *
-     * @see Test2207#EPSG_3376()
      */
     @Test
     @DisplayName("GIGS projCRS G14")
@@ -1209,9 +1169,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62021, "GIGS projCRS G14");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65014);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1245,9 +1206,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62022, "GIGS projCRS G15");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65015);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4499, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1281,9 +1243,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62023, "GIGS projCRS G16");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65016);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        createAndVerifyCartesianCS(4532, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4532", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1317,9 +1280,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62024, "GIGS projCRS G17");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65017);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.foot());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.foot());
-        createAndVerifyCartesianCS(4495, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.foot());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.foot());
+        cartesianCS = epsgFactory.createCartesianCS("4495", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1353,9 +1317,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62025, "GIGS projCRS G18");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64010);
         createConversion(Test3206::GIGS_65018);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.footSurveyUS());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.footSurveyUS());
-        createAndVerifyCartesianCS(4497, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.footSurveyUS());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.footSurveyUS());
+        cartesianCS = epsgFactory.createCartesianCS("4497", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1380,8 +1345,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
-     *
-     * @see Test2207#EPSG_27572()
      */
     @Test
     @DisplayName("GIGS projCRS H19")
@@ -1389,9 +1352,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62026, "GIGS projCRS H19");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64011);
         createConversion(Test3206::GIGS_65019);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4499, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1416,8 +1380,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
-     *
-     * @see Test2207#EPSG_27572()
      */
     @Test
     @DisplayName("GIGS projCRS HH19")
@@ -1425,9 +1387,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62033, "GIGS projCRS HH19");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64807);
         createConversion(18082);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4499, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1459,9 +1422,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62038, "GIGS projCRS J28");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64012);
         createConversion(Test3206::GIGS_65028);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1486,8 +1450,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
-     *
-     * @see Test2207#EPSG_23700()
      */
     @Test
     @DisplayName("GIGS projCRS K26")
@@ -1495,10 +1457,12 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62036, "GIGS projCRS K26");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64015);
         createConversion(Test3206::GIGS_65026);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4498, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4498", axis1, axis2);
+        verifyProjectedCRS();
     }
+
 
     /**
      * Tests “GIGS projCRS M25” projected CRS creation from the factory.
@@ -1532,9 +1496,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62035, "GIGS projCRS M25");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65025);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4499, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1566,9 +1531,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62034, "GIGS projCRS Y24");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64003);
         createConversion(Test3206::GIGS_65024);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "none", AxisDirection.NORTH, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "none", AxisDirection.EAST, units.metre());
-        createAndVerifyCartesianCS(4534, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Northing", "none", AxisDirection.NORTH, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Easting", "none", AxisDirection.EAST, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4534", axis1, axis2);
+        verifyProjectedCRS();
     }
 
 
@@ -1600,10 +1566,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62039, "GIGS projCRS Z28");
         createBaseCRS(Test3205Geog2DCRS::GIGS_64012);
         createConversion(Test3206::GIGS_65028);
-        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        createAndVerifyCartesianCS(4400, axis1, axis2);
+        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        verifyProjectedCRS();
     }
-
 
 }

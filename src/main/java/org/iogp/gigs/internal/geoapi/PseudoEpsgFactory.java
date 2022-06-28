@@ -546,6 +546,33 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
+     * Creates a cartesian coordinate system from the specified coordinate system code and axis.
+     * @param code the code of the coordinate system
+     * @param axis1 The first axis
+     * @param axis2 The second axis
+     * @throws FactoryException if an error occurred while creating the cartesian coordinate system
+     */
+    public CartesianCS createCartesianCS(final String code, CoordinateSystemAxis axis1, CoordinateSystemAxis axis2) throws FactoryException {
+        final int id = parseCode(code);
+        final String name;
+        switch(id) {
+            case 4400: name = "Cartesian 2D CS. Axes: easting, northing (E,N). Orientations: east, north. UoM: m."; break;
+            case 4495: name = "Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: ft."; break;
+            case 4497: name = "Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: ftUS."; break;
+            case 4498: name = "Cartesian 2D CS. Axes: easting, northing (Y,X). Orientations: east, north. UoM: m."; break;
+            case 4499: name = "Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: m."; break;
+            case 4500: name = "Cartesian 2D CS. Axes: northing, easting (N,E). Orientations: north, east. UoM: m."; break;
+            case 4530: name = "Cartesian 2D CS. Axes: northing, easting (X,Y). Orientations: north, east. UoM: m."; break;
+            case 4532: name = "Cartesian 2D CS. Axes: northing, easting (Y,X). Orientations: north, east. UoM: m."; break;
+            case 4534: name = "Cartesian 2D CS. Axes: northing, easting (no abbrev). Orientations: north, east. UoM: m."; break;
+            case 6503: name = "Cartesian 2D CS. Axes: westing, southing (Y,X). Orientations: west, south. UoM: m."; break;
+            default: name = "Cartesian 2D CS"; break;
+        }
+
+        return csFactory.createCartesianCS(createPropertiesMap(id, name), axis1, axis2);
+    }
+
+    /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
      * @throws FactoryException if this method can not provide the requested information.
@@ -729,6 +756,21 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 abbreviation, direction, createUnit(String.valueOf(unit)));
         validators.validate(object);
         return object;
+    }
+
+    /**
+     * Create a coordinate system axis that is used in the creation of a coordinate system.
+     * @param name the coordinate axis name.
+     * @param abbreviation The coordinate axis abbreviation.
+     * @param direction The axis direction.
+     * @param unit The coordinate axis unit.
+     * @return The axis for the given properties.
+     * @throws FactoryException if the object creation failed.
+     */
+    public CoordinateSystemAxis createCoordinateSystemAxis(String name, String abbreviation, AxisDirection direction, Unit<?> unit) throws FactoryException {
+        final Map<String,Object> properties = new HashMap<>(4);
+        assertNull(properties.put(IdentifiedObject.NAME_KEY, name));
+        return csFactory.createCoordinateSystemAxis(properties, abbreviation, direction, unit);
     }
 
     /**
@@ -925,6 +967,26 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         switch (id) {
             default:   throw noSuchAuthorityCode(id, code);
         }
+    }
+
+    /**
+     * Creates a vertical coordinate system from the specified coordinate system code and axis.
+     * @param code the code of the coordinate system
+     * @param axis The vertical coordinate system axis
+     * @throws FactoryException if an error occurred while creating the vertical coordinate system
+     */
+    public VerticalCS createVerticalCS(final String code, CoordinateSystemAxis axis) throws FactoryException {
+        final int id = parseCode(code);
+        final String name;
+        switch(id) {
+            case 1030: name = "Vertical CS. Axis: height (H). Orientation: up. UoM: ft."; break;
+            case 6495: name = "Vertical CS. Axis: depth (D). Orientation: down. UoM: ft."; break;
+            case 6497: name = "Vertical CS. Axis: height (H). Orientation: up. UoM: ftUS."; break;
+            case 6498: name = "Vertical CS. Axis: depth (D). Orientation: down. UoM: m."; break;
+            case 6499: name = "Vertical CS. Axis: height (H). Orientation: up. UoM: m."; break;
+            default: name = "Vertical CS"; break;
+        }
+        return csFactory.createVerticalCS(createPropertiesMap(id, name), axis);
     }
 
 
@@ -1254,4 +1316,6 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         }
         return parameters;
     }
+
+
 }

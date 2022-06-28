@@ -15,6 +15,8 @@ import javax.measure.quantity.Angle;
 import javax.measure.quantity.Dimensionless;
 import javax.measure.quantity.Length;
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -28,10 +30,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  *   <td>Create user-defined projection for each of several different conversions.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_3005_userProjection.csv">{@code GIGS_user_3206_Conversion.txt}</a>.</td>
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/blob/main/GIGSTestDatasetFiles/GIGS%203200%20User-defined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_user_3206_Conversion.txt">{@code GIGS_user_3206_Conversion.txt}</a>
  * </tr><tr>
  *   <th>Tested API:</th>
- *   <td>{@link CoordinateOperationFactory#getOperationMethod(String)} and<br>
+ *   <td>{@link MathTransformFactory#getAvailableMethods(Class)} and<br>
  *       {@link CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)}.</td>
  * </tr><tr>
  *   <th>Expected result:</th>
@@ -184,13 +186,13 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Returns the coordinate operation instance to be tested. When this method is invoked for the first time,
+     * Returns the conversion instance to be tested. When this method is invoked for the first time,
      * it creates the coordinate operation to test by invoking the corresponding method from
      * {@link CoordinateOperationFactory} with the current {@link #properties properties} map in argument.
      * The created object is then cached and returned in all subsequent invocations of this method.
      *
-     * @return the geodetic datum instance to test.
-     * @throws FactoryException if an error occurred while creating the coordinate operation instance.
+     * @return the conversion instance to test.
+     * @throws FactoryException if an error occurred while creating the conversion instance.
      */
     @Override
     public Conversion getIdentifiedObject() throws FactoryException {
@@ -277,7 +279,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>3.0°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.9996 Unity</td></tr>
      *   <tr><td>False easting</td><td>500000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>500000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>0.0 metre</td></tr>
      * </table>
      *
@@ -289,15 +290,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65001, "GIGS conversion 1");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(3.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, unity);
-        definition.parameter("False easting").setValue(500000.0, metre);
-        definition.parameter("False easting").setValue(500000.0, metre);
-        definition.parameter("False northing").setValue(0.0, metre);
+        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(3.0, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(500000.0, units.metre());
+        definition.parameter("False northing").setValue(0.0, units.metre());
         verifyConversion();
     }
 
@@ -316,7 +313,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>21.0°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>1.0 Unity</td></tr>
      *   <tr><td>False easting</td><td>0.0 metre</td></tr>
-     *   <tr><td>False easting</td><td>0.0 metre</td></tr>
      *   <tr><td>False northing</td><td>0.0 metre</td></tr>
      * </table>
      *
@@ -328,15 +324,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65010, "GIGS conversion 10");
         methodName = "Transverse Mercator (South Orientated)";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(21.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(1.0, unity);
-        definition.parameter("False easting").setValue(0.0, metre);
-        definition.parameter("False easting").setValue(0.0, metre);
-        definition.parameter("False northing").setValue(0.0, metre);
+        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(21.0, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(1.0, units.one());
+        definition.parameter("False easting").setValue(0.0, units.metre());
+        definition.parameter("False northing").setValue(0.0, units.metre());
         verifyConversion();
     }
 
@@ -355,7 +347,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>-60.0°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>1.0 Unity</td></tr>
      *   <tr><td>False easting</td><td>5500000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>5500000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>0.0 metre</td></tr>
      * </table>
      *
@@ -367,15 +358,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65011, "GIGS conversion 11");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(-90.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(-60.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(1.0, unity);
-        definition.parameter("False easting").setValue(5500000.0, metre);
-        definition.parameter("False easting").setValue(5500000.0, metre);
-        definition.parameter("False northing").setValue(0.0, metre);
+        definition.parameter("Latitude of natural origin").setValue(-90.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(-60.0, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(1.0, units.one());
+        definition.parameter("False easting").setValue(5500000.0, units.metre());
+        definition.parameter("False northing").setValue(0.0, units.metre());
         verifyConversion();
     }
 
@@ -394,7 +381,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>-54.0°</td></tr>
      *   <tr><td>False easting</td><td>5000000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>1.0E7 metres</td></tr>
-     *   <tr><td>False northing</td><td>1.0E7 metres</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -405,13 +391,10 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65012, "GIGS conversion 12");
         methodName = "American Polyconic";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(-54.0, degree);
-        definition.parameter("False easting").setValue(5000000.0, metre);
-        definition.parameter("False northing").setValue(1.0E7, metre);
-        definition.parameter("False northing").setValue(1.0E7, metre);
+        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(-54.0, units.degree());
+        definition.parameter("False easting").setValue(5000000.0, units.metre());
+        definition.parameter("False northing").setValue(1.0E7, units.metre());
         verifyConversion();
     }
 
@@ -429,7 +412,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of projection centre</td><td>115.0°</td></tr>
      *   <tr><td>Azimuth of initial line</td><td>53.31580994°</td></tr>
      *   <tr><td>Angle from Rectified to Skew Grid</td><td>53.13010236°</td></tr>
-     *   <tr><td>Angle from Rectified to Skew Grid</td><td>53.13010236°</td></tr>
      *   <tr><td>Scale factor on initial line</td><td>0.99984 Unity</td></tr>
      *   <tr><td>Easting at projection centre</td><td>590521.147 metres</td></tr>
      *   <tr><td>Northing at projection centre</td><td>442890.861 metres</td></tr>
@@ -446,17 +428,13 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65013, "GIGS conversion 13");
         methodName = "Hotine Oblique Mercator (variant B)";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of projection centre").setValue(4.0, degree);
-        definition.parameter("Longitude of projection centre").setValue(115.0, degree);
-        definition.parameter("Azimuth of initial line").setValue(53.31580994,degree);
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.13010236,degree);
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.13010236,degree);
-        definition.parameter("Scale factor on initial line").setValue(0.99984, unity);
-        definition.parameter("Easting at projection centre").setValue(590521.147, metre);
-        definition.parameter("Northing at projection centre").setValue(442890.861, metre);
+        definition.parameter("Latitude of projection centre").setValue(4.0, units.degree());
+        definition.parameter("Longitude of projection centre").setValue(115.0, units.degree());
+        definition.parameter("Azimuth of initial line").setValue(53.31580994, units.degree());
+        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.13010236, units.degree());
+        definition.parameter("Scale factor on initial line").setValue(0.99984, units.one());
+        definition.parameter("Easting at projection centre").setValue(590521.147, units.metre());
+        definition.parameter("Northing at projection centre").setValue(442890.861, units.metre());
         verifyConversion();
     }
 
@@ -475,7 +453,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of projection centre</td><td>115.0°</td></tr>
      *   <tr><td>Azimuth of initial line</td><td>53.31580994°</td></tr>
      *   <tr><td>Angle from Rectified to Skew Grid</td><td>53.13010236°</td></tr>
-     *   <tr><td>Angle from Rectified to Skew Grid</td><td>53.13010236°</td></tr>
      *   <tr><td>Scale factor on initial line</td><td>0.99984 Unity</td></tr>
      *   <tr><td>False easting</td><td>0.0 metre</td></tr>
      *   <tr><td>False northing</td><td>0.0 metre</td></tr>
@@ -489,17 +466,13 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65014, "GIGS conversion 14");
         methodName = "Hotine Oblique Mercator (variant A)";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of projection centre").setValue(4.0, degree);
-        definition.parameter("Longitude of projection centre").setValue(115.0, degree);
-        definition.parameter("Azimuth of initial line").setValue(53.31580994,degree);
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.13010236,degree);
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.13010236,degree);
-        definition.parameter("Scale factor on initial line").setValue(0.99984, unity);
-        definition.parameter("False easting").setValue(0.0, metre);
-        definition.parameter("False northing").setValue(0.0, metre);
+        definition.parameter("Latitude of projection centre").setValue(4.0, units.degree());
+        definition.parameter("Longitude of projection centre").setValue(115.0, units.degree());
+        definition.parameter("Azimuth of initial line").setValue(53.31580994, units.degree());
+        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.13010236, units.degree());
+        definition.parameter("Scale factor on initial line").setValue(0.99984, units.one());
+        definition.parameter("False easting").setValue(0.0, units.metre());
+        definition.parameter("False northing").setValue(0.0, units.metre());
         verifyConversion();
     }
 
@@ -518,7 +491,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>103.4279362°</td></tr>
      *   <tr><td>False easting</td><td>-14810.562 metres</td></tr>
      *   <tr><td>False northing</td><td>8758.32 metres</td></tr>
-     *   <tr><td>False northing</td><td>8758.32 metres</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -529,13 +501,10 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65015, "GIGS conversion 15");
         methodName = "Cassini-Soldner";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(2.121679722,degree);
-        definition.parameter("Longitude of natural origin").setValue(103.4279362,degree);
-        definition.parameter("False easting").setValue(-14810.562, metre);
-        definition.parameter("False northing").setValue(8758.32, metre);
-        definition.parameter("False northing").setValue(8758.32, metre);
+        definition.parameter("Latitude of natural origin").setValue(2.121679722, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(103.4279362, units.degree());
+        definition.parameter("False easting").setValue(-14810.562, units.metre());
+        definition.parameter("False northing").setValue(8758.32, units.metre());
         verifyConversion();
     }
 
@@ -554,7 +523,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>10.0°</td></tr>
      *   <tr><td>False easting</td><td>4321000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>3210000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>3210000.0 metres</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -565,13 +533,10 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65016, "GIGS conversion 16");
         methodName = "Lambert Azimuthal Equal Area";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(52.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(10.0, degree);
-        definition.parameter("False easting").setValue(4321000.0, metre);
-        definition.parameter("False northing").setValue(3210000.0, metre);
-        definition.parameter("False northing").setValue(3210000.0, metre);
+        definition.parameter("Latitude of natural origin").setValue(52.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(10.0, units.degree());
+        definition.parameter("False easting").setValue(4321000.0, units.metre());
+        definition.parameter("False northing").setValue(3210000.0, units.metre());
         verifyConversion();
     }
 
@@ -590,7 +555,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of false origin</td><td>-111.5°</td></tr>
      *   <tr><td>Latitude of 1st standard parallel</td><td>41.78333333°</td></tr>
      *   <tr><td>Latitude of 2nd standard parallel</td><td>40.71666667°</td></tr>
-     *   <tr><td>Latitude of 2nd standard parallel</td><td>40.71666667°</td></tr>
      *   <tr><td>Easting at false origin</td><td>1640419.948 foots</td></tr>
      *   <tr><td>Northing at false origin</td><td>3280839.895 foots</td></tr>
      * </table>
@@ -603,15 +567,12 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65017, "GIGS conversion 17");
         methodName = "Lambert Conic Conformal (2SP)";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> foot = units.foot();
-        definition.parameter("Latitude of false origin").setValue(40.33333333,degree);
-        definition.parameter("Longitude of false origin").setValue(-111.5,degree);
-        definition.parameter("Latitude of 1st standard parallel").setValue(41.78333333,degree);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(40.71666667,degree);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(40.71666667,degree);
-        definition.parameter("Easting at false origin").setValue(1640419.948, foot);
-        definition.parameter("Northing at false origin").setValue(3280839.895, foot);
+        definition.parameter("Latitude of false origin").setValue(40.33333333, units.degree());
+        definition.parameter("Longitude of false origin").setValue(-111.5, units.degree());
+        definition.parameter("Latitude of 1st standard parallel").setValue(41.78333333, units.degree());
+        definition.parameter("Latitude of 2nd standard parallel").setValue(40.71666667, units.degree());
+        definition.parameter("Easting at false origin").setValue(1640419.948, units.foot());
+        definition.parameter("Northing at false origin").setValue(3280839.895, units.foot());
         verifyConversion();
     }
 
@@ -630,7 +591,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of false origin</td><td>-111.5°</td></tr>
      *   <tr><td>Latitude of 1st standard parallel</td><td>41.78333333°</td></tr>
      *   <tr><td>Latitude of 2nd standard parallel</td><td>40.71666667°</td></tr>
-     *   <tr><td>Latitude of 2nd standard parallel</td><td>40.71666667°</td></tr>
      *   <tr><td>Easting at false origin</td><td>1640416.667 US survey foots</td></tr>
      *   <tr><td>Northing at false origin</td><td>3280833.333 US survey foots</td></tr>
      * </table>
@@ -643,15 +603,12 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65018, "GIGS conversion 18");
         methodName = "Lambert Conic Conformal (2SP)";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> footSurveyUS = units.footSurveyUS();
-        definition.parameter("Latitude of false origin").setValue(40.33333333,degree);
-        definition.parameter("Longitude of false origin").setValue(-111.5,degree);
-        definition.parameter("Latitude of 1st standard parallel").setValue(41.78333333,degree);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(40.71666667,degree);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(40.71666667,degree);
-        definition.parameter("Easting at false origin").setValue(1640416.667, footSurveyUS);
-        definition.parameter("Northing at false origin").setValue(3280833.333, footSurveyUS);
+        definition.parameter("Latitude of false origin").setValue(40.33333333, units.degree());
+        definition.parameter("Longitude of false origin").setValue(-111.5, units.degree());
+        definition.parameter("Latitude of 1st standard parallel").setValue(41.78333333, units.degree());
+        definition.parameter("Latitude of 2nd standard parallel").setValue(40.71666667, units.degree());
+        definition.parameter("Easting at false origin").setValue(1640416.667, units.footSurveyUS());
+        definition.parameter("Northing at false origin").setValue(3280833.333, units.footSurveyUS());
         verifyConversion();
     }
 
@@ -670,7 +627,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>0.0 grad</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.99987742 Unity</td></tr>
      *   <tr><td>False easting</td><td>600000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>600000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>2200000.0 metres</td></tr>
      * </table>
      *
@@ -684,15 +640,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65019, "GIGS conversion 19");
         methodName = "Lambert Conic Conformal (1SP)";
         createDefaultParameters();
-        final Unit<Angle> grad = units.grad();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(52.0, grad);
-        definition.parameter("Longitude of natural origin").setValue(0.0, grad);
-        definition.parameter("Scale factor at natural origin").setValue(0.99987742, unity);
-        definition.parameter("False easting").setValue(600000.0, metre);
-        definition.parameter("False easting").setValue(600000.0, metre);
-        definition.parameter("False northing").setValue(2200000.0, metre);
+        definition.parameter("Latitude of natural origin").setValue(52.0, units.grad());
+        definition.parameter("Longitude of natural origin").setValue(0.0, units.grad());
+        definition.parameter("Scale factor at natural origin").setValue(0.99987742, units.one());
+        definition.parameter("False easting").setValue(600000.0, units.metre());
+        definition.parameter("False northing").setValue(2200000.0, units.metre());
         verifyConversion();
     }
 
@@ -711,7 +663,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>-2.0°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.999601272 Unity</td></tr>
      *   <tr><td>False easting</td><td>400000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>400000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>-100000.0 metres</td></tr>
      * </table>
      *
@@ -725,15 +676,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65002, "GIGS conversion 2");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(49.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(-2.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.999601272, unity);
-        definition.parameter("False easting").setValue(400000.0, metre);
-        definition.parameter("False easting").setValue(400000.0, metre);
-        definition.parameter("False northing").setValue(-100000.0, metre);
+        definition.parameter("Latitude of natural origin").setValue(49.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(-2.0, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(0.999601272, units.one());
+        definition.parameter("False easting").setValue(400000.0, units.metre());
+        definition.parameter("False northing").setValue(-100000.0, units.metre());
         verifyConversion();
     }
 
@@ -751,7 +698,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>3.0°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.9996 Unity</td></tr>
      *   <tr><td>False easting</td><td>1640416.667 US survey foots</td></tr>
-     *   <tr><td>False easting</td><td>1640416.667 US survey foots</td></tr>
      *   <tr><td>False northing</td><td>0.0 US survey foot</td></tr>
      * </table>
      *
@@ -767,15 +713,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65023, "GIGS conversion 23");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Dimensionless> unity = units.one();
-        final Unit<Length> footSurveyUS = units.footSurveyUS();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(3.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, unity);
-        definition.parameter("False easting").setValue(1640416.667, footSurveyUS);
-        definition.parameter("False easting").setValue(1640416.667, footSurveyUS);
-        definition.parameter("False northing").setValue(0.0, footSurveyUS);
+        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(3.0, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(1640416.667, units.footSurveyUS());
+        definition.parameter("False northing").setValue(0.0, units.footSurveyUS());
         verifyConversion();
     }
 
@@ -794,7 +736,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>51.0°</td></tr>
      *   <tr><td>False easting</td><td>0.0 metre</td></tr>
      *   <tr><td>False northing</td><td>0.0 metre</td></tr>
-     *   <tr><td>False northing</td><td>0.0 metre</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -805,13 +746,10 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65024, "GIGS conversion 24");
         methodName = "Mercator (variant B)";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of 1st standard parallel").setValue(42.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(51.0, degree);
-        definition.parameter("False easting").setValue(0.0, metre);
-        definition.parameter("False northing").setValue(0.0, metre);
-        definition.parameter("False northing").setValue(0.0, metre);
+        definition.parameter("Latitude of 1st standard parallel").setValue(42.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(51.0, units.degree());
+        definition.parameter("False easting").setValue(0.0, units.metre());
+        definition.parameter("False northing").setValue(0.0, units.metre());
         verifyConversion();
     }
 
@@ -829,7 +767,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>2.337229167°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.99987742 Unity</td></tr>
      *   <tr><td>False easting</td><td>600000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>600000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>2200000.0 metres</td></tr>
      * </table>
      *
@@ -846,15 +783,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65025, "GIGS conversion 25");
         methodName = "Lambert Conic Conformal (1SP)";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(46.8,degree);
-        definition.parameter("Longitude of natural origin").setValue(2.337229167,degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.99987742, unity);
-        definition.parameter("False easting").setValue(600000.0, metre);
-        definition.parameter("False easting").setValue(600000.0, metre);
-        definition.parameter("False northing").setValue(2200000.0, metre);
+        definition.parameter("Latitude of natural origin").setValue(46.8, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(2.337229167, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(0.99987742, units.one());
+        definition.parameter("False easting").setValue(600000.0, units.metre());
+        definition.parameter("False northing").setValue(2200000.0, units.metre());
         verifyConversion();
     }
 
@@ -873,7 +806,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of projection centre</td><td>19.0485718°</td></tr>
      *   <tr><td>Azimuth of initial line</td><td>90.0°</td></tr>
      *   <tr><td>Angle from Rectified to Skew Grid</td><td>90.0°</td></tr>
-     *   <tr><td>Angle from Rectified to Skew Grid</td><td>90.0°</td></tr>
      *   <tr><td>Scale factor on initial line</td><td>0.99993 Unity</td></tr>
      *   <tr><td>Easting at projection centre</td><td>650000.0 metres</td></tr>
      *   <tr><td>Northing at projection centre</td><td>200000.0 metres</td></tr>
@@ -887,17 +819,13 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65026, "GIGS conversion 26");
         methodName = "Hotine Oblique Mercator (variant B)";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of projection centre").setValue(47.1443937,degree);
-        definition.parameter("Longitude of projection centre").setValue(19.0485718,degree);
-        definition.parameter("Azimuth of initial line").setValue(90.0,degree);
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(90.0,degree);
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(90.0,degree);
-        definition.parameter("Scale factor on initial line").setValue(0.99993, unity);
-        definition.parameter("Easting at projection centre").setValue(650000.0, metre);
-        definition.parameter("Northing at projection centre").setValue(200000.0, metre);
+        definition.parameter("Latitude of projection centre").setValue(47.1443937, units.degree());
+        definition.parameter("Longitude of projection centre").setValue(19.0485718, units.degree());
+        definition.parameter("Azimuth of initial line").setValue(90.0, units.degree());
+        definition.parameter("Angle from Rectified to Skew Grid").setValue(90.0, units.degree());
+        definition.parameter("Scale factor on initial line").setValue(0.99993, units.one());
+        definition.parameter("Easting at projection centre").setValue(650000.0, units.metre());
+        definition.parameter("Northing at projection centre").setValue(200000.0, units.metre());
         verifyConversion();
     }
 
@@ -916,7 +844,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>110.0°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.997 Unity</td></tr>
      *   <tr><td>False easting</td><td>3900000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>3900000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>900000.0 metres</td></tr>
      * </table>
      *
@@ -928,15 +855,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65027, "GIGS conversion 27");
         methodName = "Mercator (variant A)";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(110.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.997, unity);
-        definition.parameter("False easting").setValue(3900000.0, metre);
-        definition.parameter("False easting").setValue(3900000.0, metre);
-        definition.parameter("False northing").setValue(900000.0, metre);
+        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(110.0, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(0.997, units.one());
+        definition.parameter("False easting").setValue(3900000.0, units.metre());
+        definition.parameter("False northing").setValue(900000.0, units.metre());
         verifyConversion();
     }
 
@@ -955,7 +878,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>-135.0°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.9996 Unity</td></tr>
      *   <tr><td>False easting</td><td>500000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>500000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>0.0 metre</td></tr>
      * </table>
      *
@@ -967,15 +889,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65028, "GIGS conversion 28");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(-135.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, unity);
-        definition.parameter("False easting").setValue(500000.0, metre);
-        definition.parameter("False easting").setValue(500000.0, metre);
-        definition.parameter("False northing").setValue(0.0, metre);
+        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(-135.0, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(500000.0, units.metre());
+        definition.parameter("False northing").setValue(0.0, units.metre());
         verifyConversion();
     }
 
@@ -993,7 +911,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>-2.0°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.999601272 Unity</td></tr>
      *   <tr><td>False easting</td><td>400000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>400000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>-5527462.688 metres</td></tr>
      * </table>
      *
@@ -1009,15 +926,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65021, "GIGS conversion 2 alt A");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(-2.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.999601272, unity);
-        definition.parameter("False easting").setValue(400000.0, metre);
-        definition.parameter("False easting").setValue(400000.0, metre);
-        definition.parameter("False northing").setValue(-5527462.688, metre);
+        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(-2.0, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(0.999601272, units.one());
+        definition.parameter("False easting").setValue(400000.0, units.metre());
+        definition.parameter("False northing").setValue(-5527462.688, units.metre());
         verifyConversion();
     }
 
@@ -1035,7 +948,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>-2.0°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.999601272 Unity</td></tr>
      *   <tr><td>False easting</td><td>400000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>400000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>-5527063.816 metres</td></tr>
      * </table>
      *
@@ -1051,15 +963,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65022, "GIGS conversion 2 alt B");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(-2.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.999601272, unity);
-        definition.parameter("False easting").setValue(400000.0, metre);
-        definition.parameter("False easting").setValue(400000.0, metre);
-        definition.parameter("False northing").setValue(-5527063.816, metre);
+        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(-2.0, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(0.999601272, units.one());
+        definition.parameter("False easting").setValue(400000.0, units.metre());
+        definition.parameter("False northing").setValue(-5527063.816, units.metre());
         verifyConversion();
     }
 
@@ -1078,7 +986,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>5.387638889°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.9999079 metre</td></tr>
      *   <tr><td>False easting</td><td>155000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>155000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>463000.0 metres</td></tr>
      * </table>
      *
@@ -1090,14 +997,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65004, "GIGS conversion 4");
         methodName = "Oblique Stereographic";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of natural origin").setValue(52.15616056,degree);
-        definition.parameter("Longitude of natural origin").setValue(5.387638889,degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.9999079, metre);
-        definition.parameter("False easting").setValue(155000.0, metre);
-        definition.parameter("False easting").setValue(155000.0, metre);
-        definition.parameter("False northing").setValue(463000.0, metre);
+        definition.parameter("Latitude of natural origin").setValue(52.15616056, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(5.387638889, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(0.9999079, units.metre());
+        definition.parameter("False easting").setValue(155000.0, units.metre());
+        definition.parameter("False northing").setValue(463000.0, units.metre());
         verifyConversion();
     }
 
@@ -1116,7 +1020,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>3.192280556°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.997 Unity</td></tr>
      *   <tr><td>False easting</td><td>3900000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>3900000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>900000.0 metres</td></tr>
      * </table>
      *
@@ -1131,15 +1034,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65005, "GIGS conversion 5");
         methodName = "Mercator (variant A)";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(3.192280556,degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.997, unity);
-        definition.parameter("False easting").setValue(3900000.0, metre);
-        definition.parameter("False easting").setValue(3900000.0, metre);
-        definition.parameter("False northing").setValue(900000.0, metre);
+        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(3.192280556, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(0.997, units.one());
+        definition.parameter("False easting").setValue(3900000.0, units.metre());
+        definition.parameter("False northing").setValue(900000.0, units.metre());
         verifyConversion();
     }
 
@@ -1154,10 +1053,9 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of false origin</td><td>NaN°</td></tr>
+     *   <tr><td>Latitude of false origin</td><td>90.0°</td></tr>
      *   <tr><td>Longitude of false origin</td><td>4.367486667°</td></tr>
      *   <tr><td>Latitude of 1st standard parallel</td><td>51.16666723°</td></tr>
-     *   <tr><td>Latitude of 2nd standard parallel</td><td>49.8333339°</td></tr>
      *   <tr><td>Latitude of 2nd standard parallel</td><td>49.8333339°</td></tr>
      *   <tr><td>Easting at false origin</td><td>150000.013 metres</td></tr>
      *   <tr><td>Northing at false origin</td><td>5400088.438 metres</td></tr>
@@ -1171,15 +1069,12 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65006, "GIGS conversion 6");
         methodName = "Lambert Conic Conformal (2SP)";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of false origin").setValue(90,degree);
-        definition.parameter("Longitude of false origin").setValue(4.367486667,degree);
-        definition.parameter("Latitude of 1st standard parallel").setValue(51.16666723,degree);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(49.8333339,degree);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(49.8333339,degree);
-        definition.parameter("Easting at false origin").setValue(150000.013, metre);
-        definition.parameter("Northing at false origin").setValue(5400088.438, metre);
+        definition.parameter("Latitude of false origin").setValue(90.0, units.degree());
+        definition.parameter("Longitude of false origin").setValue(4.367486667, units.degree());
+        definition.parameter("Latitude of 1st standard parallel").setValue(51.16666723, units.degree());
+        definition.parameter("Latitude of 2nd standard parallel").setValue(49.8333339, units.degree());
+        definition.parameter("Easting at false origin").setValue(150000.013, units.metre());
+        definition.parameter("Northing at false origin").setValue(5400088.438, units.metre());
         verifyConversion();
     }
 
@@ -1198,7 +1093,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>141.0°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.9996 Unity</td></tr>
      *   <tr><td>False easting</td><td>500000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>500000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>1.0E7 metres</td></tr>
      * </table>
      *
@@ -1210,15 +1104,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65007, "GIGS conversion 7");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(141.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, unity);
-        definition.parameter("False easting").setValue(500000.0, metre);
-        definition.parameter("False easting").setValue(500000.0, metre);
-        definition.parameter("False northing").setValue(1.0E7, metre);
+        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(141.0, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(500000.0, units.metre());
+        definition.parameter("False northing").setValue(1.0E7, units.metre());
         verifyConversion();
     }
 
@@ -1237,7 +1127,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of natural origin</td><td>147.0°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.9996 Unity</td></tr>
      *   <tr><td>False easting</td><td>500000.0 metres</td></tr>
-     *   <tr><td>False easting</td><td>500000.0 metres</td></tr>
      *   <tr><td>False northing</td><td>1.0E7 metres</td></tr>
      * </table>
      *
@@ -1249,15 +1138,11 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65008, "GIGS conversion 8");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        final Unit<Dimensionless> unity = units.one();
-        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
-        definition.parameter("Longitude of natural origin").setValue(147.0, degree);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, unity);
-        definition.parameter("False easting").setValue(500000.0, metre);
-        definition.parameter("False easting").setValue(500000.0, metre);
-        definition.parameter("False northing").setValue(1.0E7, metre);
+        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
+        definition.parameter("Longitude of natural origin").setValue(147.0, units.degree());
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(500000.0, units.metre());
+        definition.parameter("False northing").setValue(1.0E7, units.metre());
         verifyConversion();
     }
 
@@ -1276,7 +1161,6 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><td>Longitude of false origin</td><td>132.0°</td></tr>
      *   <tr><td>Latitude of 1st standard parallel</td><td>-18.0°</td></tr>
      *   <tr><td>Latitude of 2nd standard parallel</td><td>-36.0°</td></tr>
-     *   <tr><td>Latitude of 2nd standard parallel</td><td>-36.0°</td></tr>
      *   <tr><td>Easting at false origin</td><td>0.0 metre</td></tr>
      *   <tr><td>Northing at false origin</td><td>0.0 metre</td></tr>
      * </table>
@@ -1289,15 +1173,12 @@ public class Test3206 extends Series3000<Conversion> {
         setCodeAndName(65009, "GIGS conversion 9");
         methodName = "Albers Equal Area";
         createDefaultParameters();
-        final Unit<Angle> degree = units.degree();
-        final Unit<Length> metre = units.metre();
-        definition.parameter("Latitude of false origin").setValue(0.0, degree);
-        definition.parameter("Longitude of false origin").setValue(132.0, degree);
-        definition.parameter("Latitude of 1st standard parallel").setValue(-18.0, degree);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(-36.0, degree);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(-36.0, degree);
-        definition.parameter("Easting at false origin").setValue(0.0, metre);
-        definition.parameter("Northing at false origin").setValue(0.0, metre);
+        definition.parameter("Latitude of false origin").setValue(0.0, units.degree());
+        definition.parameter("Longitude of false origin").setValue(132.0, units.degree());
+        definition.parameter("Latitude of 1st standard parallel").setValue(-18.0, units.degree());
+        definition.parameter("Latitude of 2nd standard parallel").setValue(-36.0, units.degree());
+        definition.parameter("Easting at false origin").setValue(0.0, units.metre());
+        definition.parameter("Northing at false origin").setValue(0.0, units.metre());
         verifyConversion();
     }
 }

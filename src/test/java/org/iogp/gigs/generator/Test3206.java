@@ -1,6 +1,7 @@
 package org.iogp.gigs.generator;
 
 
+import javax.measure.Unit;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,39 +69,37 @@ public class Test3206 extends TestMethodGenerator {
                 String .class);     // [30]: GIGS Remarks
 
         while (data.next()) {
-            int    code                     = data.getInt         ( 0);
-            String name                     = data.getString      ( 1);
-            String conversionName           = data.getString      ( 2);
-
-            String parameter1Name           = data.getString      (3);
-            Double parameter1Value          = data.getDouble      (4);
-            String parameter1Unit           = data.getString      (5);
-            Double parameter1ValueInDegrees = data.getDouble      (6);
-            String parameter2Name           = data.getString      (7);
-            Double parameter2Value          = data.getDouble      (8);
-            String parameter2Unit           = data.getString      (9);
-            Double parameter2ValueInDegrees = data.getDouble      (10);
-            String parameter3Name           = data.getString      (11);
-            Double parameter3Value          = data.getDouble      (12);
-            String parameter3Unit           = data.getString      (13);
-            Double parameter3ValueInDegrees = data.getDouble      (14);
-            String parameter4Name           = data.getString      (15);
-            Double parameter4Value          = data.getDouble      (16);
-            String parameter4Unit           = data.getString      (17);
-            Double parameter4ValueInDegrees = data.getDouble      (18);
-            String parameter5Name           = data.getString      (19);
-            Double parameter5Value          = data.getDouble      (20);
-            String parameter5Unit           = data.getString      (21);
-            String parameter6Name           = data.getString      (22);
-            Double parameter6Value          = data.getDouble      (23);
-            String parameter6Unit           = data.getString      (24);
-            String parameter7Name           = data.getString      (25);
-            Double parameter7Value          = data.getDouble      (26);
-            String parameter7Unit           = data.getString      (27);
-
-            OptionalInt codeEPSG            = data.getIntOptional (28);
-            String nameEPSG                 = data.getString      (29);
-            String remarks                  = data.getString      (30);
+            final int    code                     = data.getInt         ( 0);
+            final String name                     = data.getString      ( 1);
+            final String conversionName           = data.getString      ( 2);
+            final String parameter1Name           = data.getString      (3);
+            final Double parameter1Value          = data.getDouble      (4);
+            final String parameter1Unit           = data.getString      (5);
+            final Double parameter1ValueInDegrees = data.getDouble      (6);
+            final String parameter2Name           = data.getString      (7);
+            final Double parameter2Value          = data.getDouble      (8);
+            final String parameter2Unit           = data.getString      (9);
+            final Double parameter2ValueInDegrees = data.getDouble      (10);
+            final String parameter3Name           = data.getString      (11);
+            final Double parameter3Value          = data.getDouble      (12);
+            final String parameter3Unit           = data.getString      (13);
+            final Double parameter3ValueInDegrees = data.getDouble      (14);
+            final String parameter4Name           = data.getString      (15);
+            final Double parameter4Value          = data.getDouble      (16);
+            final String parameter4Unit           = data.getString      (17);
+            final Double parameter4ValueInDegrees = data.getDouble      (18);
+            final String parameter5Name           = data.getString      (19);
+            final Double parameter5Value          = data.getDouble      (20);
+            final String parameter5Unit           = data.getString      (21);
+            final String parameter6Name           = data.getString      (22);
+            final Double parameter6Value          = data.getDouble      (23);
+            final String parameter6Unit           = data.getString      (24);
+            final String parameter7Name           = data.getString      (25);
+            final Double parameter7Value          = data.getDouble      (26);
+            final String parameter7Unit           = data.getString      (27);
+            final OptionalInt codeEPSG            = data.getIntOptional (28);
+            final String nameEPSG                 = data.getString      (29);
+            final String remarks                  = data.getString      (30);
 
             /*
              * Write javadoc.
@@ -116,7 +115,6 @@ public class Test3206 extends TestMethodGenerator {
             if (codeEPSG.isPresent()) {
                 descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(codeEPSG.getAsInt(), nameEPSG)));
             }
-
             printJavadocKeyValues(descriptions.toArray());
             printParameterTableHeader("Conversion parameters");
             printJavadocParameterString(parameter1Name, parameter1Value, parameter1Unit, parameter1ValueInDegrees);
@@ -129,14 +127,13 @@ public class Test3206 extends TestMethodGenerator {
             printParameterTableFooter();
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the conversion from the properties.");
-
+            /*
+             * Write test method.
+             */
             printTestMethodSignature(GIGS, code, name);
             printCallToSetCodeAndName(code, name);
             printFieldAssignments("methodName", conversionName);
             indent(2);out.append("createDefaultParameters();\n");
-            printUnits(parameter1Unit, parameter2Unit, parameter3Unit, parameter4Unit, parameter5Unit, parameter6Unit, parameter7Unit);
-
-
             printParameterString(parameter1Name, parameter1Value, parameter1Unit, parameter1ValueInDegrees);
             printParameterString(parameter2Name, parameter2Value, parameter2Unit, parameter2ValueInDegrees);
             printParameterString(parameter3Name, parameter3Value, parameter3Unit, parameter3ValueInDegrees);
@@ -151,25 +148,26 @@ public class Test3206 extends TestMethodGenerator {
         flushAllMethods();
     }
 
-    //TODO: rewrite to declare the unit in the parameter instead of using a variable to reference it
     private void printParameterString(String parameterName, Double parameterValue, String parameterUnit, Double... parameterValueAsDec) {
         if (parameterName == null || parameterName.equals("NULL")) {
             return;
         }
         indent(2);out.append("definition.parameter(\"").append(parameterName).append("\")");
-        if (parameterUnit.equals("US survey foot")) {
-            parameterUnit = "footSurveyUS";
-        } else if (parameterUnit.equals("Unity")) {
-            parameterUnit = "unity";
-        }
-
         if (parameterUnit != null && parameterUnit.equals("sexagesimal DMS") && parameterValueAsDec != null) {
-            out.append(".setValue(").append(parameterValueAsDec[0]).append(",degree);\n");
-            return;
+            parameterUnit = "degree";
+            parameterValue =  parameterValueAsDec[0];
+        }
+        if (Double.isNaN(parameterValue) && parameterUnit.equals("degree") && parameterName.startsWith("Latitude")) {
+            parameterValue = 90.;
+        }
+        if (Double.isNaN(parameterValue) && parameterUnit.equals("degree") && parameterName.startsWith("Longitude")) {
+            parameterValue = 180.;
         }
         out.append(".setValue(").append(parameterValue);
         if (parameterUnit != null) {
-            out.append(", ").append(parameterUnit);
+            out.append(", ");
+            Unit<?> unit = parseUnit(parameterUnit);
+            printProgrammaticName(unit);
         }
         out.append(");\n");
     }
@@ -179,31 +177,15 @@ public class Test3206 extends TestMethodGenerator {
             return;
         }
         if (parameterUnit != null && parameterUnit.equals("sexagesimal DMS") && parameterValueAsDec != null && parameterValueAsDec.length > 0) {
-            printParameterTableRow(parameterName, String.valueOf(parameterValueAsDec[0]), "degree");
-            return;
+            parameterValue = parameterValueAsDec[0];
+            parameterUnit = "degree";
+        }
+        if (Double.isNaN(parameterValue) && parameterUnit.equals("degree") && parameterName.startsWith("Latitude")) {
+            parameterValue = 90.;
+        }
+        if (Double.isNaN(parameterValue) && parameterUnit.equals("degree") && parameterName.startsWith("Longitude")) {
+            parameterValue = 180.;
         }
         printParameterTableRow(parameterName, String.valueOf(parameterValue), parameterUnit);
-    }
-
-    private void printUnits(final String... parameterUnits) {
-        List<String> parameterUnitList = List.of(parameterUnits);
-        if (parameterUnitList.contains("degree") || parameterUnitList.contains("sexagesimal DMS")) {
-            indent(2);out.append("final Unit<Angle> degree = units.degree();\n");
-        }
-        if (parameterUnitList.contains("grad")) {
-            indent(2);out.append("final Unit<Angle> grad = units.grad();\n");
-        }
-        if (parameterUnitList.contains("metre")) {
-            indent(2);out.append("final Unit<Length> metre = units.metre();\n");
-        }
-        if (parameterUnitList.contains("Unity")) {
-            indent(2);out.append("final Unit<Dimensionless> unity = units.one();\n");
-        }
-        if (parameterUnitList.contains("US survey foot")) {
-            indent(2);out.append("final Unit<Length> footSurveyUS = units.footSurveyUS();\n");
-        }
-        if (parameterUnitList.contains("foot")) {
-            indent(2);out.append("final Unit<Length> foot = units.foot();\n");
-        }
     }
 }

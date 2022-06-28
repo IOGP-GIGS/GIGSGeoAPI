@@ -164,6 +164,7 @@ public abstract class TestMethodGenerator {
         if (name.equalsIgnoreCase("metre"))          return units.metre();
         if (name.equalsIgnoreCase("kilometre"))      return units.kilometre();
         if (name.equalsIgnoreCase("US survey foot")) return units.footSurveyUS();
+        if (name.equalsIgnoreCase("ftUS"))           return units.footSurveyUS();
         if (name.equalsIgnoreCase("ft(US)"))         return units.footSurveyUS();
         if (name.equalsIgnoreCase("foot"))           return units.foot();
         return null;
