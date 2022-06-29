@@ -34,8 +34,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  *       {@link CSFactory#createEllipsoidalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)}.</td>
  * </tr><tr>
  *   <th>Expected result:</th>
- *   <td>The geoscience software should accept the test data. The order in which the projection parameters
- *       are entered is not critical, although that given in the test dataset is recommended.</td>
+ *   <td>The geoscience software should accept the test data. The properties of the created objects will
+ *  *       be compared with the properties given to the factory method.</td>
  * </tr></table>
  *
  *
@@ -180,8 +180,8 @@ public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
     }
 
     /**
-     * Sets the Geographic 2D CRS instance to verify. This method is invoked only by other test classes which need to
-     * verify the Geographic 2D CRS contained in a CRS instead of the Geographic 2D CRS immediately after creation.
+     * Sets the geographic 2D CRS instance to verify. This method is invoked only by other test classes which need to
+     * verify the geographic 2D CRS contained in a CRS instead of the Geographic 2D CRS immediately after creation.
      *
      * @param  instance  the instance to verify.
      */
@@ -190,7 +190,7 @@ public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
     }
 
     /**
-     * Verifies a geographic CRS for the given properties and verify its properties after construction.
+     * Verifies a geographic 2D CRS for the given properties and verify its properties after construction.
      *
      * @throws FactoryException if an error occurred while creating the CRS instance.
      */

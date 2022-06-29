@@ -33,8 +33,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  *       {@link CSFactory#createVerticalCS(Map, CoordinateSystemAxis)}}.</td>
  * </tr><tr>
  *   <th>Expected result:</th>
- *   <td>The geoscience software should accept the test data. The order in which the projection parameters
- *       are entered is not critical, although that given in the test dataset is recommended.</td>
+ *   <td>The geoscience software should accept the test data. The properties of the created objects will
+ *  *       be compared with the properties given to the factory method.</td>
  * </tr></table>
  *
  *
@@ -44,10 +44,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  *
  * <blockquote><pre>public class MyTest extends Test3010 {
  *    public MyTest() {
- *        super(new MyDatumFactory(), new MyDatumAuthorityFactory(),
- *          new MyCSFactory(), new MyCRSFactory(),
- *          new MyCoordinateOperationFactory(), new MyMathTransformFactory(),
- *          new MyCoordinateOperationAuthorityFactory());
+ *        super(new MyCSFactory(), new MyCRSFactory(),
+ *          new MyDatumFactory());
  *    }
  *}</pre></blockquote>
  *
@@ -159,6 +157,16 @@ public class Test3210 extends Series3000<VerticalCRS> {
             crs = crsFactory.createVerticalCRS(properties, datum, verticalCS);
         }
         return crs;
+    }
+
+    /**
+     * Sets the vertical CRS instance to verify. This method is invoked only by other test classes which need to
+     * verify the vertical CRS contained in a CRS instead of the vertical CRS immediately after creation.
+     *
+     * @param  instance  the instance to verify.
+     */
+    final void setIdentifiedObject(final VerticalCRS instance) {
+        crs = instance;
     }
 
     /**

@@ -42,11 +42,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test3008 {
+ * <blockquote><pre>public class MyTest extends Test3208 {
  *    public MyTest() {
  *        super(new MyMathTransformFactory(), new MyTransformationFactory(),
- *          new MyDatumFactory(), new MyCRSFactory(),
- *          new MyCoordinateOperationFactory(), new MyDatumAuthorityFactory(),
+ *          new MyDatumFactory(), new MyDatumAuthorityFactory(),
  *          new MyCSFactory(), new MyCRSFactory(),
  *          new MyCRSAuthorityFactory());
  *    }
@@ -67,7 +66,7 @@ public class Test3208 extends Series3000<Transformation> {
 
     /**
      * The coordinate transformation created by the factory,
-     * or {@code null} if not yet created or if CRS creation failed.
+     * or {@code null} if not yet created or if the transformation creation failed.
      */
     private Transformation transformation;
 
@@ -155,7 +154,7 @@ public class Test3208 extends Series3000<Transformation> {
     public Test3208(final MathTransformFactory mtFactory, TransformationFactory transformationFactory,
                     final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
                     final CSFactory csFactory, final CRSFactory crsFactory,
-                    CRSAuthorityFactory crsAuthorityFactory) {
+                    final CRSAuthorityFactory crsAuthorityFactory) {
         this.mtFactory = mtFactory;
         this.transformationFactory = transformationFactory;
         this.datumFactory = datumFactory;
@@ -223,11 +222,22 @@ public class Test3208 extends Series3000<Transformation> {
     }
 
     /**
+     * Sets the transformation instance to verify. This method is invoked only by other test classes which need to
+     * verify the transformation contained in a concatenated transformation instead of the transformation immediately
+     * after creation.
+     *
+     * @param  instance  the instance to verify.
+     */
+    final void setIdentifiedObject(final Transformation instance) {
+        transformation = instance;
+    }
+
+    /**
      * Verifies the properties of the transformation given by {@link #getIdentifiedObject()}.
      *
      * @throws FactoryException if an error occurred while creating the transformation.
      */
-    private void verifyTransformation() throws FactoryException {
+    final void verifyTransformation() throws FactoryException {
         if (skipTests) {
             return;
         }

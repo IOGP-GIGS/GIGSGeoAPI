@@ -40,7 +40,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * <blockquote><pre>public class MyTest extends Test3209 {
  *    public MyTest() {
- *        super(new MyDatumFactory(), new MyDatumAuthorityFactory());
+ *        super(new MyDatumFactory());
  *    }
  *}</pre></blockquote>
  *
@@ -52,7 +52,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Test3209 extends Series3000<VerticalDatum> {
 
     /**
-     * The vertical datum created by the factory, or {@code null} if not yet created or if datum creation failed.
+     * The vertical datum created by the factory, or {@code null} if not yet created or if the datum creation failed.
      *
      * @see #datumFactory
      */

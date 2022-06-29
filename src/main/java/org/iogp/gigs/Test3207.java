@@ -33,8 +33,8 @@ import static org.junit.jupiter.api.Assertions.*;
  *       {@link CSFactory#createCartesianCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)}.</td>
  * </tr><tr>
  *   <th>Expected result:</th>
- *   <td>The geoscience software should accept the test data. The order in which the projection parameters
- *       are entered is not critical, although that given in the test dataset is recommended.</td>
+ *   <td>The geoscience software should accept the test data. The properties of the created objects will
+ *  *       be compared with the properties given to the factory method.</td>
  * </tr></table>
  *
  *
@@ -60,7 +60,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
 
     /**
      * The projected CRS created by the factory,
-     * or {@code null} if not yet created or if CRS creation failed.
+     * or {@code null} if not yet created or if projected CRS creation failed.
      */
     private ProjectedCRS crs;
 
@@ -218,6 +218,12 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         return crs;
     }
 
+    /**
+     * Creates a user-defined base CRS by executing the specified method from the {@link Test3205Geog2DCRS} class.
+     *
+     * @param  factory           the test method to use for creating the base CRS.
+     * @throws FactoryException  if an error occurred while creating the base CRS.
+     */
     private void createBaseCRS(final TestMethod<Test3205Geog2DCRS> factory) throws FactoryException {
         baseCRSTest = new Test3205Geog2DCRS(datumFactory, datumAuthorityFactory, csFactory, crsFactory);
         baseCRSTest.skipTests = true;
@@ -225,6 +231,12 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         baseCRS = baseCRSTest.getIdentifiedObject();
     }
 
+    /**
+     * Creates a user-defined conversion by executing the specified method from the {@link Test3206} class.
+     *
+     * @param  factory           the test method to use for creating the conversion.
+     * @throws FactoryException  if an error occurred while creating the conversion.
+     */
     private void createConversion(final TestMethod<Test3206> factory) throws FactoryException {
         conversionTest = new Test3206(copFactory, mtFactory);
         conversionTest.skipTests = true;
@@ -232,6 +244,12 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         conversion = conversionTest.getIdentifiedObject();
     }
 
+    /**
+     * Creates a conversion from the EPSG factory
+     *
+     * @param  code  EPSG code of the conversion to create.
+     * @throws FactoryException  if an error occurred while creating the conversion.
+     */
     private void createConversion(final int code) throws FactoryException {
         conversion = (Conversion) copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
     }

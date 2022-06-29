@@ -217,6 +217,13 @@ public class Test3208 extends TestMethodGenerator {
         flushAllMethods();
     }
 
+    /**
+     * Prints the parameter entry (name, value, unit) for javadoc function header.
+     * @param parameterName the parameter name.
+     * @param parameterValue the parameter value.
+     * @param parameterUnit the unit.
+     * @param parameterValueAsDec the parameter value in decimal degrees if available.
+     */
     private void printJavadocParameterString(String parameterName, String parameterValue, String parameterUnit, String... parameterValueAsDec) {
         if (parameterName == null || parameterName.equals("NULL")) {
             return;
@@ -231,6 +238,13 @@ public class Test3208 extends TestMethodGenerator {
         printParameterTableRow(parameterName, parameterValue, parameterUnit);
     }
 
+    /**
+     * Prints the programmatic line that adds a parameter to a parameter group.
+     * @param parameterName the parameter name.
+     * @param parameterValue the parameter value.
+     * @param parameterUnit the unit.
+     * @param parameterValueAsDec the parameter value in decimal degrees if available.
+     */
     private void printParameterString(String parameterName, String parameterValue, String parameterUnit, String... parameterValueAsDec) {
         if (parameterName == null || parameterName.equals("NULL")) {
             return;
@@ -255,6 +269,11 @@ public class Test3208 extends TestMethodGenerator {
         out.append(");\n");
     }
 
+    /**
+     * Prints the programmatic line that specifies the trajectory method. The transform method name
+     * specified in the GIGS testing file is converted to method name used for GeoAPI.
+     * @param gigsTransformationMethodName the trajectory method as specified in the GIGS testing file
+     */
     private void printTransformationMethodName(String gigsTransformationMethodName) {
         indent(2);out.append("methodName = ");
         switch(gigsTransformationMethodName) {
