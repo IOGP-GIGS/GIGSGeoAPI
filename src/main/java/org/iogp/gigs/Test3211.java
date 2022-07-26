@@ -34,11 +34,10 @@ import org.opengis.referencing.cs.CSFactory;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
-
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Verifies that the software allows correct definition of a user-defined vertical transformations.
@@ -167,7 +166,8 @@ public class Test3211 extends Series3000<Transformation> {
      */
     public Test3211(final MathTransformFactory mtFactory, TransformationFactory transformationFactory,
                     final DatumFactory datumFactory, final CSFactory csFactory, final CRSFactory crsFactory,
-                    CRSAuthorityFactory crsAuthorityFactory) {
+                    CRSAuthorityFactory crsAuthorityFactory)
+    {
         this.mtFactory = mtFactory;
         this.transformationFactory = transformationFactory;
         this.datumFactory = datumFactory;

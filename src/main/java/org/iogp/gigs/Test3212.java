@@ -33,11 +33,10 @@ import org.opengis.referencing.cs.CSFactory;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
-
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Verifies that the software allows correct definition of a user-defined concatenated transformations.
@@ -57,7 +56,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  * </tr><tr>
  *   <th>Expected result:</th>
  *   <td>The geoscience software should accept the test data. The properties of the created objects will
- *  *       be compared with the properties given to the factory method.</td>
+ *       be compared with the properties given to the factory method.</td>
  * </tr></table>
  *
  *
@@ -80,7 +79,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 @DisplayName("User-defined concatenated transformations")
 public class Test3212 extends Series3000<ConcatenatedOperation> {
-
     /**
      * The concatenated transformation created by the factory,
      * or {@code null} if not yet created or if the concatenated transform creation failed.
@@ -172,7 +170,8 @@ public class Test3212 extends Series3000<ConcatenatedOperation> {
     public Test3212(final MathTransformFactory mtFactory, TransformationFactory transformationFactory,
                     final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
                     final CSFactory csFactory, final CRSFactory crsFactory,
-                    final CRSAuthorityFactory crsAuthorityFactory, final CoordinateOperationFactory copFactory) {
+                    final CRSAuthorityFactory crsAuthorityFactory, final CoordinateOperationFactory copFactory)
+    {
         this.mtFactory = mtFactory;
         this.transformationFactory = transformationFactory;
         this.datumFactory = datumFactory;

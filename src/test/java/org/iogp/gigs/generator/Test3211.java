@@ -26,7 +26,12 @@ package org.iogp.gigs.generator;
 
 import javax.measure.Unit;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.OptionalInt;
+import java.util.Set;
+
 
 /**
  * Code generator for {@link org.iogp.gigs.Test3211}. This generator needs to be executed only if the GIGS data changed.

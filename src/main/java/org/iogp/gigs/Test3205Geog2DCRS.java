@@ -27,20 +27,17 @@ package org.iogp.gigs;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
-import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
-
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
-
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+
+
 /**
  * Verifies that the software allows correct definition of a user-defined geographic 2D CRS.
  *
@@ -80,7 +77,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 @DisplayName("User-defined geographic 2D CRS")
 public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
-
     /**
      * The CRS created by the factory,
      * or {@code null} if not yet created or if CRS creation failed.
@@ -140,7 +136,8 @@ public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
      * @param crsFactory             factory for creating {@link GeodeticCRS} instances.
      */
     public Test3205Geog2DCRS(final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
-                             final CSFactory csFactory, final CRSFactory crsFactory) {
+                             final CSFactory csFactory, final CRSFactory crsFactory)
+    {
         this.datumFactory = datumFactory;
         this.datumAuthorityFactory = datumAuthorityFactory;
         this.crsFactory   = crsFactory;
@@ -757,5 +754,4 @@ public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
         csCode=6422;
         verifyGeographicCRS();
     }
-
 }

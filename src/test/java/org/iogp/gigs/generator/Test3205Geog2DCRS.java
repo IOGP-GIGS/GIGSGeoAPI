@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 /**
  * Code generator for {@link org.iogp.gigs.Test3205Geog2DCRS}. This generator needs to be executed only if the GIGS data changed.
  * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the test class,
@@ -47,7 +48,6 @@ public class Test3205Geog2DCRS extends TestMethodGenerator {
     public static void main(String[] args) throws IOException {
         new Test3205Geog2DCRS().run();
     }
-
 
     /**
      * Generates the code.
@@ -97,8 +97,8 @@ public class Test3205Geog2DCRS extends TestMethodGenerator {
              */
             printTestMethodSignature(GIGS, code, name);
             printCallToSetCodeAndName(code, name);
-            indent(2);out.append("createDatum(Test3204::GIGS_").append(datumCode).append(");\n");
-            indent(2);out.append("csCode=").append(csCode).append(";\n");
+            indent(2); out.append("createDatum(Test3204::GIGS_").append(datumCode).append(");\n");
+            indent(2); out.append("csCode=").append(csCode).append(";\n");
             indent(2);
             out.append("verifyGeographicCRS();\n");
             indent(1); out.append('}');
@@ -106,5 +106,4 @@ public class Test3205Geog2DCRS extends TestMethodGenerator {
         }
         flushAllMethods();
     }
-
 }

@@ -27,18 +27,14 @@ package org.iogp.gigs;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.util.FactoryException;
-
-import javax.measure.Unit;
-import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Verifies that the software allows correct definition of a user-defined vertical CRS.
@@ -79,7 +75,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 @DisplayName("User-defined vertical CRS")
 public class Test3210 extends Series3000<VerticalCRS> {
-
     /**
      * The vertical CRS created by the factory,
      * or {@code null} if not yet created or if CRS creation failed.
@@ -129,9 +124,9 @@ public class Test3210 extends Series3000<VerticalCRS> {
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param csFactory              factory for creating {@code CoordinateSystem} instances.
-     * @param crsFactory             factory for creating {@link GeodeticCRS} instances.
-     * @param datumFactory           factory for creating {@link VerticalDatum} instances.
+     * @param csFactory     factory for creating {@code CoordinateSystem} instances.
+     * @param crsFactory    factory for creating {@link GeodeticCRS} instances.
+     * @param datumFactory  factory for creating {@link VerticalDatum} instances.
      */
     public Test3210(final CSFactory csFactory, final CRSFactory crsFactory, DatumFactory datumFactory) {
         this.crsFactory = crsFactory;
@@ -256,7 +251,6 @@ public class Test3210 extends Series3000<VerticalCRS> {
         verifyVerticalCRS();
     }
 
-
     /**
      * Tests “GIGS vertCRS U1 height” projected CRS creation from the factory.
      *
@@ -282,7 +276,6 @@ public class Test3210 extends Series3000<VerticalCRS> {
         verticalCS = epsgFactory.createVerticalCS("6499", axis1);
         verifyVerticalCRS();
     }
-
 
     /**
      * Tests “GIGS vertCRS U2 depth” projected CRS creation from the factory.
@@ -312,7 +305,6 @@ public class Test3210 extends Series3000<VerticalCRS> {
         verifyVerticalCRS();
     }
 
-
     /**
      * Tests “GIGS vertCRS U2 height” projected CRS creation from the factory.
      *
@@ -341,7 +333,6 @@ public class Test3210 extends Series3000<VerticalCRS> {
         verifyVerticalCRS();
     }
 
-
     /**
      * Tests “GIGS vertCRS V1 depth” projected CRS creation from the factory.
      *
@@ -368,7 +359,6 @@ public class Test3210 extends Series3000<VerticalCRS> {
         verifyVerticalCRS();
     }
 
-
     /**
      * Tests “GIGS vertCRS V1 height” projected CRS creation from the factory.
      *
@@ -394,7 +384,6 @@ public class Test3210 extends Series3000<VerticalCRS> {
         verticalCS = epsgFactory.createVerticalCS("6499", axis1);
         verifyVerticalCRS();
     }
-
 
     /**
      * Tests “GIGS vertCRS V2 height” projected CRS creation from the factory.
@@ -424,7 +413,6 @@ public class Test3210 extends Series3000<VerticalCRS> {
         verifyVerticalCRS();
     }
 
-
     /**
      * Tests “GIGS vertCRS W1 depth” projected CRS creation from the factory.
      *
@@ -450,7 +438,6 @@ public class Test3210 extends Series3000<VerticalCRS> {
         verticalCS = epsgFactory.createVerticalCS("6498", axis1);
         verifyVerticalCRS();
     }
-
 
     /**
      * Tests “GIGS vertCRS W1 height” projected CRS creation from the factory.

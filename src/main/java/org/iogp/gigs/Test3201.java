@@ -24,27 +24,20 @@
  */
 package org.iogp.gigs;
 
-import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.geoapi.Units;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.datum.Ellipsoid;
-import org.opengis.referencing.datum.GeodeticDatum;
-import org.opengis.referencing.datum.PrimeMeridian;
 import org.opengis.util.FactoryException;
-
 import javax.measure.IncommensurableException;
-import javax.measure.Quantity;
 import javax.measure.Unit;
 import javax.measure.UnitConverter;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Dimensionless;
 import javax.measure.quantity.Length;
-
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Verifies that the software allows correct definition of a user-defined unit.
@@ -73,7 +66,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @DisplayName("User-defined unit")
 public class Test3201 extends Series3000<Unit<?>> {
-
     /**
      * Amount of {@link Unit#getSystemUnit()  base units} in one {@linkplain #getIdentifiedObject() tested unit}.
      * If this amount is not a constant (as in sexagesimal unit), then this factor is set to {@link Double#NaN}.
@@ -104,7 +96,6 @@ public class Test3201 extends Series3000<Unit<?>> {
      * @see #SystemOfUnits
      */
     private Unit<?> unit;
-
 
     /**
      * Creates a new test.
@@ -697,5 +688,4 @@ public class Test3201 extends Series3000<Unit<?>> {
         baseUnit   = units.system.getUnit(Dimensionless.class);
         verifyLinearConversions(createConverter());
     }
-
 }

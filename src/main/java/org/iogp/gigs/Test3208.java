@@ -34,10 +34,10 @@ import org.opengis.referencing.cs.CSFactory;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
-
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Verifies that the software allows correct definition of a user-defined transformations.
@@ -81,8 +81,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @DisplayName("User-defined coordinate transformations")
 public class Test3208 extends Series3000<Transformation> {
-
-
     /**
      * Name of the transformation method.
      */
@@ -178,7 +176,8 @@ public class Test3208 extends Series3000<Transformation> {
     public Test3208(final MathTransformFactory mtFactory, TransformationFactory transformationFactory,
                     final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
                     final CSFactory csFactory, final CRSFactory crsFactory,
-                    final CRSAuthorityFactory crsAuthorityFactory) {
+                    final CRSAuthorityFactory crsAuthorityFactory)
+    {
         this.mtFactory = mtFactory;
         this.transformationFactory = transformationFactory;
         this.datumFactory = datumFactory;

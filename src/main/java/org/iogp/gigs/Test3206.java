@@ -33,16 +33,10 @@ import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
-
-import javax.measure.Unit;
-import javax.measure.quantity.Angle;
-import javax.measure.quantity.Dimensionless;
-import javax.measure.quantity.Length;
-
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 /**
  * Verifies that the software allows correct definition of a user-defined conversion.
@@ -129,7 +123,6 @@ public class Test3206 extends Series3000<Conversion> {
         this.copFactory = copFactory;
         this.mtFactory = mtFactory;
     }
-
 
     /**
      * Returns information about the configuration of the test which has been run.
@@ -240,7 +233,6 @@ public class Test3206 extends Series3000<Conversion> {
     final void setIdentifiedObject(final Conversion instance) {
         conversion = instance;
     }
-
 
     /**
      * Verifies the properties of the conversion given by {@link #getIdentifiedObject()}.

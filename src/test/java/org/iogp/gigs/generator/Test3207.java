@@ -24,17 +24,10 @@
  */
 package org.iogp.gigs.generator;
 
-import org.iogp.gigs.Test3206;
-import org.opengis.referencing.cs.AxisDirection;
-
 import javax.measure.Unit;
 import java.io.IOException;
-import java.lang.module.FindException;
 import java.util.*;
 
-import static org.iogp.gigs.generator.Test2204.loadDependencies;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Code generator for {@link org.iogp.gigs.Test3207}. This generator needs to be executed only if the GIGS data changed.
@@ -84,7 +77,6 @@ public class Test3207 extends TestMethodGenerator {
                 String .class,      // [17]: Equivalent EPSG CRS Name
                 String .class);     // [18]: GIGS Remarks
         while (data.next()) {
-
             final int         code              = data.getInt        ( 0);
             final String      source            = data.getString     ( 1);
             final String      name              = data.getString     ( 2);

@@ -27,14 +27,13 @@ package org.iogp.gigs;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.crs.GeographicCRS;
 import org.opengis.referencing.datum.*;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
-
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Verifies that the software allows correct definition of a user-defined vertical datum.
@@ -74,7 +73,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @DisplayName("User-defined vertical datum")
 public class Test3209 extends Series3000<VerticalDatum> {
-
     /**
      * The vertical datum created by the factory, or {@code null} if not yet created or if the datum creation failed.
      *
@@ -239,5 +237,4 @@ public class Test3209 extends Series3000<VerticalDatum> {
         datumType = VerticalDatumType.GEOIDAL;
         verifyVerticalDatum();
     }
-
 }

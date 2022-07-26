@@ -24,14 +24,10 @@
  */
 package org.iogp.gigs.generator;
 
-import org.iogp.gigs.internal.geoapi.Units;
-
 import javax.measure.Unit;
 import java.io.IOException;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Code generator for {@link org.iogp.gigs.Test3208}. This generator needs to be executed only if the GIGS data changed.
@@ -243,9 +239,10 @@ public class Test3208 extends TestMethodGenerator {
 
     /**
      * Prints the parameter entry (name, value, unit) for javadoc function header.
-     * @param parameterName the parameter name.
-     * @param parameterValue the parameter value.
-     * @param parameterUnit the unit.
+     *
+     * @param parameterName   the parameter name.
+     * @param parameterValue  the parameter value.
+     * @param parameterUnit   the unit.
      * @param parameterValueAsDec the parameter value in decimal degrees if available.
      */
     private void printJavadocParameterString(String parameterName, String parameterValue, String parameterUnit, String... parameterValueAsDec) {
@@ -264,9 +261,10 @@ public class Test3208 extends TestMethodGenerator {
 
     /**
      * Prints the programmatic line that adds a parameter to a parameter group.
-     * @param parameterName the parameter name.
-     * @param parameterValue the parameter value.
-     * @param parameterUnit the unit.
+     *
+     * @param parameterName   the parameter name.
+     * @param parameterValue  the parameter value.
+     * @param parameterUnit   the unit.
      * @param parameterValueAsDec the parameter value in decimal degrees if available.
      */
     private void printParameterString(String parameterName, String parameterValue, String parameterUnit, String... parameterValueAsDec) {
@@ -296,7 +294,8 @@ public class Test3208 extends TestMethodGenerator {
     /**
      * Prints the programmatic line that specifies the trajectory method. The transform method name
      * specified in the GIGS testing file is converted to method name used for GeoAPI.
-     * @param gigsTransformationMethodName the trajectory method as specified in the GIGS testing file
+     *
+     * @param gigsTransformationMethodName  the trajectory method as specified in the GIGS testing file.
      */
     private void printTransformationMethodName(String gigsTransformationMethodName) {
         indent(2);out.append("methodName = ");
@@ -334,5 +333,4 @@ public class Test3208 extends TestMethodGenerator {
         }
         return dependencies;
     }
-
 }
