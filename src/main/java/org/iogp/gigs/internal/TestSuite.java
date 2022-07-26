@@ -70,6 +70,7 @@ import org.iogp.gigs.*;
  * This {@code TestSuite} class provides some static fields for specifying explicitly which factories to use.
  *
  * @author  Martin Desruisseaux (Geomatys)
+ * @author  Michael Arneson (INT)
  * @version 1.0
  * @since   1.0
  */

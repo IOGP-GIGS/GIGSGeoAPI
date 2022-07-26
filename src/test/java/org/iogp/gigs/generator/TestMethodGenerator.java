@@ -42,6 +42,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * test class, but be aware that the original code may contain manual changes that need to be preserved.
  *
  * @author  Martin Desruisseaux (Geomatys)
+ * @author  Michael Arneson (INT)
  * @version 1.0
  * @since   1.0
  */

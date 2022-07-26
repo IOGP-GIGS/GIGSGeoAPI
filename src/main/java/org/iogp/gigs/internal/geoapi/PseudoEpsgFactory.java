@@ -62,6 +62,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Johann Sorel (Geomatys)
+ * @author  Michael Arneson (INT)
  * @version 1.0
  * @since   1.0
  */
