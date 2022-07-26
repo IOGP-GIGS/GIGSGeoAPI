@@ -1,3 +1,27 @@
+/*
+ * GIGS - Geospatial Integrity of Geoscience Software
+ * https://gigs.iogp.org/
+ *
+ * Copyright (C) 2022 International Association of Oil and Gas Producers.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
 package org.iogp.gigs;
 
 import org.iogp.gigs.internal.geoapi.Configuration;
@@ -9,16 +33,10 @@ import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
-
-import javax.measure.Unit;
-import javax.measure.quantity.Angle;
-import javax.measure.quantity.Dimensionless;
-import javax.measure.quantity.Length;
-
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 /**
  * Verifies that the software allows correct definition of a user-defined conversion.
@@ -105,7 +123,6 @@ public class Test3206 extends Series3000<Conversion> {
         this.copFactory = copFactory;
         this.mtFactory = mtFactory;
     }
-
 
     /**
      * Returns information about the configuration of the test which has been run.
@@ -216,7 +233,6 @@ public class Test3206 extends Series3000<Conversion> {
     final void setIdentifiedObject(final Conversion instance) {
         conversion = instance;
     }
-
 
     /**
      * Verifies the properties of the conversion given by {@link #getIdentifiedObject()}.

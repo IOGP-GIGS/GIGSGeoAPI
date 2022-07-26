@@ -65,6 +65,7 @@ import org.opengis.referencing.operation.SingleOperation;
  * similar to those of the {@code java.util.Map} interface, with the addition of type-safety.
  *
  * @author  Martin Desruisseaux (Geomatys)
+ * @author  Michael Arneson (INT)
  * @version 1.0
  * @since   1.0
  */

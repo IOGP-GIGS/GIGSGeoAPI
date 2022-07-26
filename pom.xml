@@ -21,7 +21,16 @@
   </organization>
   <inceptionYear>2021</inceptionYear>
 
+  <!-- Alphabetical order of familly name. -->
   <developers>
+    <developer>
+      <name>Michael Arneson</name>
+      <organization>Interactive Network Technologies</organization>
+      <organizationUrl>https://www.int.com/</organizationUrl>
+      <roles>
+        <role>Java developer</role>
+      </roles>
+    </developer>
     <developer>
       <name>Martin Desruisseaux</name>
       <organization>Geomatys</organization>

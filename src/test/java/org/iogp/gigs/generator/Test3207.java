@@ -1,16 +1,33 @@
+/*
+ * GIGS - Geospatial Integrity of Geoscience Software
+ * https://gigs.iogp.org/
+ *
+ * Copyright (C) 2022 International Association of Oil and Gas Producers.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
 package org.iogp.gigs.generator;
-
-import org.iogp.gigs.Test3206;
-import org.opengis.referencing.cs.AxisDirection;
 
 import javax.measure.Unit;
 import java.io.IOException;
-import java.lang.module.FindException;
 import java.util.*;
 
-import static org.iogp.gigs.generator.Test2204.loadDependencies;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Code generator for {@link org.iogp.gigs.Test3207}. This generator needs to be executed only if the GIGS data changed.
@@ -60,7 +77,6 @@ public class Test3207 extends TestMethodGenerator {
                 String .class,      // [17]: Equivalent EPSG CRS Name
                 String .class);     // [18]: GIGS Remarks
         while (data.next()) {
-
             final int         code              = data.getInt        ( 0);
             final String      source            = data.getString     ( 1);
             final String      name              = data.getString     ( 2);

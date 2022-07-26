@@ -1,20 +1,41 @@
+/*
+ * GIGS - Geospatial Integrity of Geoscience Software
+ * https://gigs.iogp.org/
+ *
+ * Copyright (C) 2022 International Association of Oil and Gas Producers.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
 package org.iogp.gigs;
 
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
-
-import javax.measure.Unit;
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Verifies that the software allows correct definition of a user-defined projected CRS.
@@ -57,7 +78,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @DisplayName("User-defined projected CRS")
 public class Test3207 extends Series3000<ProjectedCRS> {
-
     /**
      * The projected CRS created by the factory,
      * or {@code null} if not yet created or if projected CRS creation failed.
@@ -156,7 +176,8 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     public Test3207(final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
                     final CSFactory csFactory, final CRSFactory crsFactory,
                     final CoordinateOperationFactory copFactory, final MathTransformFactory mtFactory,
-                    final CoordinateOperationAuthorityFactory copAuthorityFactory) {
+                    final CoordinateOperationAuthorityFactory copAuthorityFactory)
+    {
         this.copFactory = copFactory;
         this.mtFactory = mtFactory;
         this.datumFactory = datumFactory;
@@ -323,7 +344,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS A1-2” projected CRS creation from the factory.
      *
@@ -359,7 +379,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4500", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS A1-3” projected CRS creation from the factory.
@@ -397,7 +416,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS A1-4” projected CRS creation from the factory.
      *
@@ -433,7 +451,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4532", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS A1-5” projected CRS creation from the factory.
@@ -471,7 +488,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS A1-6” projected CRS creation from the factory.
      *
@@ -507,7 +523,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4530", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS A2” projected CRS creation from the factory.
@@ -545,7 +560,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS A21” projected CRS creation from the factory.
      *
@@ -581,7 +595,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS A23” projected CRS creation from the factory.
@@ -619,7 +632,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS AA1” projected CRS creation from the factory.
      *
@@ -654,7 +666,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS B2” projected CRS creation from the factory.
      *
@@ -688,7 +699,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS B22” projected CRS creation from the factory.
@@ -726,7 +736,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS C4” projected CRS creation from the factory.
      *
@@ -761,7 +770,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS CC4” projected CRS creation from the factory.
      *
@@ -795,7 +803,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS D5” projected CRS creation from the factory.
@@ -834,7 +841,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS E6” projected CRS creation from the factory.
      *
@@ -868,7 +874,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS F7” projected CRS creation from the factory.
@@ -904,7 +909,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS F8” projected CRS creation from the factory.
      *
@@ -938,7 +942,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS F9” projected CRS creation from the factory.
@@ -974,7 +977,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS FF8” projected CRS creation from the factory.
      *
@@ -1008,7 +1010,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS G10” projected CRS creation from the factory.
@@ -1046,7 +1047,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS G11” projected CRS creation from the factory.
      *
@@ -1083,7 +1083,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS G12” projected CRS creation from the factory.
      *
@@ -1117,7 +1116,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS G13” projected CRS creation from the factory.
@@ -1156,7 +1154,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS G14” projected CRS creation from the factory.
      *
@@ -1192,7 +1189,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS G15” projected CRS creation from the factory.
@@ -1230,7 +1226,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS G16” projected CRS creation from the factory.
      *
@@ -1266,7 +1261,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4532", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS G17” projected CRS creation from the factory.
@@ -1304,7 +1298,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS G18” projected CRS creation from the factory.
      *
@@ -1341,7 +1334,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS H19” projected CRS creation from the factory.
      *
@@ -1375,7 +1367,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS HH19” projected CRS creation from the factory.
@@ -1411,7 +1402,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS J28” projected CRS creation from the factory.
      *
@@ -1446,7 +1436,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS K26” projected CRS creation from the factory.
      *
@@ -1480,7 +1469,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4498", axis1, axis2);
         verifyProjectedCRS();
     }
-
 
     /**
      * Tests “GIGS projCRS M25” projected CRS creation from the factory.
@@ -1520,7 +1508,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS Y24” projected CRS creation from the factory.
      *
@@ -1555,7 +1542,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         verifyProjectedCRS();
     }
 
-
     /**
      * Tests “GIGS projCRS Z28” projected CRS creation from the factory.
      *
@@ -1589,5 +1575,4 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
         verifyProjectedCRS();
     }
-
 }

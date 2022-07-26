@@ -1,22 +1,43 @@
+/*
+ * GIGS - Geospatial Integrity of Geoscience Software
+ * https://gigs.iogp.org/
+ *
+ * Copyright (C) 2022 International Association of Oil and Gas Producers.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
 package org.iogp.gigs;
 
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
-import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
-
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
-
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+
+
 /**
  * Verifies that the software allows correct definition of a user-defined geographic 2D CRS.
  *
@@ -56,7 +77,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 @DisplayName("User-defined geographic 2D CRS")
 public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
-
     /**
      * The CRS created by the factory,
      * or {@code null} if not yet created or if CRS creation failed.
@@ -116,7 +136,8 @@ public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
      * @param crsFactory             factory for creating {@link GeodeticCRS} instances.
      */
     public Test3205Geog2DCRS(final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
-                             final CSFactory csFactory, final CRSFactory crsFactory) {
+                             final CSFactory csFactory, final CRSFactory crsFactory)
+    {
         this.datumFactory = datumFactory;
         this.datumAuthorityFactory = datumAuthorityFactory;
         this.crsFactory   = crsFactory;
@@ -733,5 +754,4 @@ public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
         csCode=6422;
         verifyGeographicCRS();
     }
-
 }

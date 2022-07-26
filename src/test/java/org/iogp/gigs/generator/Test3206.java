@@ -1,3 +1,27 @@
+/*
+ * GIGS - Geospatial Integrity of Geoscience Software
+ * https://gigs.iogp.org/
+ *
+ * Copyright (C) 2022 International Association of Oil and Gas Producers.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
 package org.iogp.gigs.generator;
 
 
@@ -5,8 +29,8 @@ import javax.measure.Unit;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.OptionalInt;
+
 
 /**
  * Code generator for {@link org.iogp.gigs.Test3206}. This generator needs to be executed only if the GIGS data changed.
@@ -18,7 +42,6 @@ import java.util.OptionalInt;
  * @since   1.0
  */
 public class Test3206 extends TestMethodGenerator {
-
     /**
      * Launcher.
      *
@@ -133,7 +156,7 @@ public class Test3206 extends TestMethodGenerator {
             printTestMethodSignature(GIGS, code, name);
             printCallToSetCodeAndName(code, name);
             printFieldAssignments("methodName", conversionName);
-            indent(2);out.append("createDefaultParameters();\n");
+            indent(2); out.append("createDefaultParameters();\n");
             printParameterString(parameter1Name, parameter1Value, parameter1Unit, parameter1ValueInDegrees);
             printParameterString(parameter2Name, parameter2Value, parameter2Unit, parameter2ValueInDegrees);
             printParameterString(parameter3Name, parameter3Value, parameter3Unit, parameter3ValueInDegrees);
@@ -141,7 +164,7 @@ public class Test3206 extends TestMethodGenerator {
             printParameterString(parameter5Name, parameter5Value, parameter5Unit);
             printParameterString(parameter6Name, parameter6Value, parameter6Unit);
             printParameterString(parameter7Name, parameter7Value, parameter7Unit);
-            indent(2);out.append("verifyConversion();\n");
+            indent(2); out.append("verifyConversion();\n");
             indent(1); out.append('}');
             saveTestMethod();
         }
@@ -152,7 +175,7 @@ public class Test3206 extends TestMethodGenerator {
         if (parameterName == null || parameterName.equals("NULL")) {
             return;
         }
-        indent(2);out.append("definition.parameter(\"").append(parameterName).append("\")");
+        indent(2); out.append("definition.parameter(\"").append(parameterName).append("\")");
         if (parameterUnit != null && parameterUnit.equals("sexagesimal DMS") && parameterValueAsDec != null) {
             parameterUnit = "degree";
             parameterValue =  parameterValueAsDec[0];
