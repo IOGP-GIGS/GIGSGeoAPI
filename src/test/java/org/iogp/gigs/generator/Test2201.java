@@ -67,8 +67,10 @@ public final class Test2201 extends TestMethodGenerator {
                 String .class,      // [3]: Alias(es)
                 Double .class,      // [4]: Base units per unit
                 String .class,      // [5]: Base units per unit description
-                String .class,      // [6]: EPSG Usage Extent
-                String .class);     // [7]: GIGS Remarks
+                Double .class,      // [6]: Factor b
+                Double .class,      // [7]: Factor c
+                String .class,      // [8]: EPSG Usage Extent
+                String .class);     // [9]: GIGS Remarks
 
         while (data.next()) {
             final int      code        = data.getInt    (0);
@@ -77,14 +79,22 @@ public final class Test2201 extends TestMethodGenerator {
             final String[] aliases     = data.getStrings(3);
             final double   unitToBase  = data.getDouble (4);
             final String   description = data.getString (5);
-            final String   extent      = data.getString (6);
-            final String   remarks     = data.getString (7);
+            final double   factorB     = data.getDouble (6);
+            final double   factorC     = data.getDouble (7);
+            final String   extent      = data.getString (8);
+            final String   remarks     = data.getString (9);
             final Unit<?> base;
             if      (type.equalsIgnoreCase("Linear")) base = units.metre();
             else if (type.equalsIgnoreCase("Angle" )) base = units.radian();
             else if (type.equalsIgnoreCase("Scale" )) base = units.one();
             else throw new IOException("Unknown type: " + type);
 
+            Object conversion;
+            if ((factorC == 1 && factorB == unitToBase) || !Double.isFinite(unitToBase)) {
+                conversion = unitToBase;
+            } else {
+                conversion = factorB + " / " + factorC + " ≈ " + unitToBase;
+            }
             out.append('\n');
             indent(1); out.append("/**\n");
             indent(1); out.append(" * Tests “").append(name).append("” unit creation from the factory.\n");
@@ -93,7 +103,7 @@ public final class Test2201 extends TestMethodGenerator {
                                   "Type", type,
                                   "Name of Units used in EPSG dataset", name,
                                   "Alias(es) given by EPSG", aliases,
-                                  "Base units per unit", unitToBase,
+                                  "Base units per unit", conversion,
                                   "Base units per unit description", description,
                                   "EPSG Usage Extent", extent);
             printRemarks(remarks);

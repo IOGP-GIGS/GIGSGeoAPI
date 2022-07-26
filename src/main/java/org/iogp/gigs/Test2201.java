@@ -221,7 +221,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Angle</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>arc-second</b></li>
      *   <li>Alias(es) given by EPSG: <b>sec</b>, <b>angular second</b></li>
-     *   <li>Base units per unit: <b>4.848136811095355E-6</b></li>
+     *   <li>Base units per unit: <b>3.14159265358979 / 648000 ≈ 4.8481368111E-6</b></li>
      *   <li>Base units per unit description: <b>radians per unit</b></li>
      *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
@@ -249,7 +249,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Linear</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>British chain (Sears 1922)</b></li>
      *   <li>Alias(es) given by EPSG: <b>chain</b>, <b>chSe</b></li>
-     *   <li>Base units per unit: <b>20.116765121552632</b></li>
+     *   <li>Base units per unit: <b>792 / 39.370147 ≈ 20.1167651215526</b></li>
      *   <li>Base units per unit description: <b>metres per unit</b></li>
      *   <li>EPSG Usage Extent: <b>East Malaysia; New Zealand</b></li>
      * </ul>
@@ -308,7 +308,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Linear</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>British foot (Sears 1922)</b></li>
      *   <li>Alias(es) given by EPSG: <b>foot</b>, <b>ftSe</b></li>
-     *   <li>Base units per unit: <b>0.3047994715386762</b></li>
+     *   <li>Base units per unit: <b>12 / 39.370147 ≈ 0.304799471538676</b></li>
      *   <li>Base units per unit description: <b>metres per unit</b></li>
      *   <li>EPSG Usage Extent: <b>East Malaysia; New Zealand</b></li>
      * </ul>
@@ -336,7 +336,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Linear</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>British yard (Sears 1922)</b></li>
      *   <li>Alias(es) given by EPSG: <b>yard</b>, <b>ydSe</b></li>
-     *   <li>Base units per unit: <b>0.9143984146160287</b></li>
+     *   <li>Base units per unit: <b>36 / 39.370147 ≈ 0.914398414616029</b></li>
      *   <li>Base units per unit description: <b>metres per unit</b></li>
      *   <li>EPSG Usage Extent: <b>East Malaysia; New Zealand</b></li>
      * </ul>
@@ -364,7 +364,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Angle</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>centesimal second</b></li>
      *   <li>Alias(es) given by EPSG: <b>cc</b>, <b>centesimal-second</b></li>
-     *   <li>Base units per unit: <b>1.570796326794895E-6</b></li>
+     *   <li>Base units per unit: <b>3.14159265358979 / 2000000 ≈ 1.5707963268E-6</b></li>
      *   <li>Base units per unit description: <b>radians per unit</b></li>
      *   <li>EPSG Usage Extent: <b>Switzerland</b></li>
      * </ul>
@@ -477,7 +477,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Angle</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>degree</b></li>
      *   <li>Alias(es) given by EPSG: <b>deg</b>, <b>angular degree</b></li>
-     *   <li>Base units per unit: <b>0.017453292519943278</b></li>
+     *   <li>Base units per unit: <b>3.14159265358979 / 180 ≈ 0.017453293</b></li>
      *   <li>Base units per unit description: <b>radians per unit</b></li>
      *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
@@ -558,7 +558,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Linear</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>Gold Coast foot</b></li>
      *   <li>Alias(es) given by EPSG: <b>foot</b>, <b>ftGC</b></li>
-     *   <li>Base units per unit: <b>0.3047997101815088</b></li>
+     *   <li>Base units per unit: <b>6378300 / 20926201 ≈ 0.304799710181509</b></li>
      *   <li>Base units per unit description: <b>metres per unit</b></li>
      *   <li>EPSG Usage Extent: <b>Ghana</b></li>
      * </ul>
@@ -587,7 +587,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Angle</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>grad</b></li>
      *   <li>Alias(es) given by EPSG: <b>gr</b>, <b>gon</b></li>
-     *   <li>Base units per unit: <b>0.01570796326794895</b></li>
+     *   <li>Base units per unit: <b>3.14159265358979 / 200 ≈ 0.0157079632679489</b></li>
      *   <li>Base units per unit description: <b>radians per unit</b></li>
      *   <li>EPSG Usage Extent: <b>France</b></li>
      * </ul>
@@ -615,7 +615,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Linear</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>Indian yard</b></li>
      *   <li>Alias(es) given by EPSG: <b>yard</b>, <b>ydInd</b></li>
-     *   <li>Base units per unit: <b>0.9143985307444408</b></li>
+     *   <li>Base units per unit: <b>36 / 39.370142 ≈ 0.914398530744441</b></li>
      *   <li>Base units per unit description: <b>metres per unit</b></li>
      *   <li>EPSG Usage Extent: <b>South Asia</b></li>
      * </ul>
@@ -670,7 +670,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Linear</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>link</b></li>
      *   <li>Alias(es) given by EPSG: <b>international link</b>, <b>lk</b></li>
-     *   <li>Base units per unit: <b>0.201168</b></li>
+     *   <li>Base units per unit: <b>20.1168 / 100 ≈ 0.201168</b></li>
      *   <li>Base units per unit description: <b>metres per unit</b></li>
      *   <li>EPSG Usage Extent: <b>Fiji</b></li>
      * </ul>
@@ -726,7 +726,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Angle</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>microradian</b></li>
      *   <li>Alias(es) given by EPSG: <b>µrad</b></li>
-     *   <li>Base units per unit: <b>1.0E-6</b></li>
+     *   <li>Base units per unit: <b>1 / 1000000 ≈ 1.0E-6</b></li>
      *   <li>Base units per unit description: <b>radians per unit</b></li>
      *   <li>EPSG Usage Extent: <b>Netherlands; Norway</b></li>
      * </ul>
@@ -754,7 +754,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Scale</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>parts per million</b></li>
      *   <li>Alias(es) given by EPSG: <b>ppm</b>, <b>µm/m</b></li>
-     *   <li>Base units per unit: <b>1.0E-6</b></li>
+     *   <li>Base units per unit: <b>1 / 1000000 ≈ 1.0E-6</b></li>
      *   <li>Base units per unit description: <b>parts per unit</b></li>
      *   <li>EPSG Usage Extent: <b>Numerous</b></li>
      * </ul>
@@ -880,7 +880,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>Type: <b>Linear</b></li>
      *   <li>Name of Units used in EPSG dataset: <b>US survey foot</b></li>
      *   <li>Alias(es) given by EPSG: <b>American foot</b>, <b>ftUS</b>, <b>ft(US)</b></li>
-     *   <li>Base units per unit: <b>0.30480060960121924</b></li>
+     *   <li>Base units per unit: <b>12 / 39.37 ≈ 0.304800609601219</b></li>
      *   <li>Base units per unit description: <b>metres per unit</b></li>
      *   <li>EPSG Usage Extent: <b>USA</b></li>
      * </ul>
