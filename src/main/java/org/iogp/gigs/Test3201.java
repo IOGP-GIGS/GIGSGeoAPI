@@ -27,7 +27,6 @@ package org.iogp.gigs;
 import org.iogp.gigs.internal.geoapi.Units;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.util.FactoryException;
 import javax.measure.IncommensurableException;
 import javax.measure.Unit;
 import javax.measure.UnitConverter;
@@ -49,10 +48,8 @@ import static org.junit.jupiter.api.Assertions.*;
  *   <td>Create user-defined unit for each of several different units.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/tree/main/GIGSTestDatasetFiles/GIGS%202200%20Predefined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_lib_3201_Unit.txt">{@code GIGS_lib_3201_Unit.txt}</a>
- *   and EPSG Dataset.
- *   Contains EPSG {@linkplain #code code} and {@linkplain #name name} for the unit of measure, together with the
- *   {@linkplain #unitToBase ratio} of the unit to the ISO {@linkplain #baseUnit base unit} for that unit type.
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/tree/main/GIGSTestDatasetFiles/GIGS%202200%20Predefined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_lib_3201_Unit.txt">{@code GIGS_lib_3201_Unit.txt}</a>.
+ *   Contains the {@linkplain #unitToBase ratio} of the unit to the ISO {@linkplain #baseUnit base unit} for that unit type.
  *   The test methods are separated in three blocks for linear units, angular units and scaling units.</td>
  * </tr><tr>
  *   <th>Expected result:</th>
@@ -61,17 +58,18 @@ import static org.junit.jupiter.api.Assertions.*;
  * </tr></table>
  *
  * @author  Michael Arneson (INT)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0
  */
 @DisplayName("User-defined unit")
 public class Test3201 extends Series3000<Unit<?>> {
     /**
-     * Amount of {@link Unit#getSystemUnit()  base units} in one {@linkplain #getIdentifiedObject() tested unit}.
+     * Amount of {@link Unit#getSystemUnit() base units} in one {@linkplain #getIdentifiedObject() tested unit}.
      * If this amount is not a constant (as in sexagesimal unit), then this factor is set to {@link Double#NaN}.
      * This field is set by all test methods before to create and verify the {@link Unit} instance.
      */
-    private double unitToBase;
+    public double unitToBase;
 
     /**
      * The base unit of the unit to create. This field will have one of the following values:
@@ -87,13 +85,13 @@ public class Test3201 extends Series3000<Unit<?>> {
      *
      * This field is set by all test methods before to create and verify the {@link Unit} instance.
      */
-    private Unit<?> baseUnit;
+    public Unit<?> baseUnit;
 
     /**
      * The unit of measurement created by the factory,
      * or {@code null} if not yet created or if the unit creation failed.
      *
-     * @see #SystemOfUnits
+     * @see javax.measure.spi.SystemOfUnits
      */
     private Unit<?> unit;
 
@@ -105,8 +103,7 @@ public class Test3201 extends Series3000<Unit<?>> {
 
     /**
      * Returns the unit instance to be tested. When this method is invoked for the first time, it creates the unit
-     * to test by invoking necessary call from {@link Unit#multiply(double)} the baseUnit using the baseToUnit
-     * parameter.
+     * to test by invoking {@link Unit#multiply(double)} on the {@code baseUnit} using the {@code unitToBase} parameter.
      * The created object is then cached and returned in all subsequent invocations of this method.
      *
      * @return the unit instance to test.
@@ -124,9 +121,8 @@ public class Test3201 extends Series3000<Unit<?>> {
      * then creates and returns the converter from that unit to the base unit.
      *
      * @return converter from the unit given by the identified object to test.
-     * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
-    private UnitConverter createConverter() throws FactoryException {
+    private UnitConverter createConverter() {
         final Unit<?> unit = getIdentifiedObject();
         assertNotNull(unit, "Unit");
         try {
@@ -144,14 +140,15 @@ public class Test3201 extends Series3000<Unit<?>> {
      * @param  converter  the converter from tested {@link #unit} to the base unit.
      */
     private void verifyLinearConversions(final UnitConverter converter) {
-        final Random random = new Random();
+        final String name      = getName();
+        final Random random    = new Random();
         final double tolerance = TOLERANCE * unitToBase;
-        assertEquals(0, converter.convert(0), tolerance, getName());
-        assertEquals( unitToBase, converter.convert( 1), tolerance, getName());
-        assertEquals(-unitToBase, converter.convert(-1), tolerance, getName());
+        assertEquals(          0, converter.convert( 0), tolerance, name);
+        assertEquals( unitToBase, converter.convert( 1), tolerance, name);
+        assertEquals(-unitToBase, converter.convert(-1), tolerance, name);
         for (double sample = -90; sample <= 90; sample += 4*random.nextDouble()) {
             final double expected = sample * unitToBase;
-            assertEquals(expected, converter.convert(sample), tolerance, getName());
+            assertEquals(expected, converter.convert(sample), tolerance, name);
         }
     }
 
@@ -168,17 +165,16 @@ public class Test3201 extends Series3000<Unit<?>> {
      *
      * Remarks: ISO/EPSG angle base unit.
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9101()
      */
     @Test
     @DisplayName("GIGS unit A0")
-    public void GIGS_69101() throws FactoryException {
+    public void GIGS_69101() {
         setCodeAndName(69101, "GIGS unit A0");
         unitToBase = 1.0;
         baseUnit   = units.system.getUnit(Angle.class);
         verifyLinearConversions(createConverter());
+        assertEquals(units.radian(), getIdentifiedObject());
     }
 
     /**
@@ -192,13 +188,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>1.0E-6</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9109()
      */
     @Test
     @DisplayName("GIGS unit A1")
-    public void GIGS_69109() throws FactoryException {
+    public void GIGS_69109() {
         setCodeAndName(69109, "GIGS unit A1");
         unitToBase = 1.0E-6;
         baseUnit   = units.system.getUnit(Angle.class);
@@ -216,13 +210,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>0.017453293</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9102()
      */
     @Test
     @DisplayName("GIGS unit A2")
-    public void GIGS_69102() throws FactoryException {
+    public void GIGS_69102() {
         setCodeAndName(69102, "GIGS unit A2");
         unitToBase = 0.017453293;
         baseUnit   = units.system.getUnit(Angle.class);
@@ -240,13 +232,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>4.84814E-6</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9104()
      */
     @Test
     @DisplayName("GIGS unit A3")
-    public void GIGS_69104() throws FactoryException {
+    public void GIGS_69104() {
         setCodeAndName(69104, "GIGS unit A3");
         unitToBase = 4.84814E-6;
         baseUnit   = units.system.getUnit(Angle.class);
@@ -264,13 +254,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>0.015707963</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9105()
      */
     @Test
     @DisplayName("GIGS unit A4")
-    public void GIGS_69105() throws FactoryException {
+    public void GIGS_69105() {
         setCodeAndName(69105, "GIGS unit A4");
         unitToBase = 0.015707963;
         baseUnit   = units.system.getUnit(Angle.class);
@@ -288,13 +276,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>1.5708E-6</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9113()
      */
     @Test
     @DisplayName("GIGS unit A5")
-    public void GIGS_69113() throws FactoryException {
+    public void GIGS_69113() {
         setCodeAndName(69113, "GIGS unit A5");
         unitToBase = 1.5708E-6;
         baseUnit   = units.system.getUnit(Angle.class);
@@ -313,18 +299,15 @@ public class Test3201 extends Series3000<Unit<?>> {
      * </ul>
      *
      * Remarks: ISO/EPSG length base unit.
-     *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
-     * @see Test2201#EPSG_9001()
      */
     @Test
     @DisplayName("GIGS unit L0")
-    public void GIGS_69001() throws FactoryException {
+    public void GIGS_69001() {
         setCodeAndName(69001, "GIGS unit L0");
         unitToBase = 1.0;
         baseUnit   = units.system.getUnit(Length.class);
         verifyLinearConversions(createConverter());
+        assertEquals(units.metre(), getIdentifiedObject());
     }
 
     /**
@@ -338,17 +321,16 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>1000</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9036()
      */
     @Test
     @DisplayName("GIGS unit L1")
-    public void GIGS_69036() throws FactoryException {
+    public void GIGS_69036() {
         setCodeAndName(69036, "GIGS unit L1");
         unitToBase = 1000.0;
         baseUnit   = units.system.getUnit(Length.class);
         verifyLinearConversions(createConverter());
+        assertEquals(units.kilometre(), getIdentifiedObject());
     }
 
     /**
@@ -362,13 +344,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>20.116756</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9301()
      */
     @Test
     @DisplayName("GIGS unit L10 (parts per million)")
-    public void GIGS_69301() throws FactoryException {
+    public void GIGS_69301() {
         setCodeAndName(69301, "GIGS unit L10 (parts per million)");
         unitToBase = 20.116756;
         baseUnit   = units.system.getUnit(Length.class);
@@ -386,13 +366,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>0.914398531</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9084()
      */
     @Test
     @DisplayName("GIGS unit L11")
-    public void GIGS_69084() throws FactoryException {
+    public void GIGS_69084() {
         setCodeAndName(69084, "GIGS unit L11");
         unitToBase = 0.914398531;
         baseUnit   = units.system.getUnit(Length.class);
@@ -410,13 +388,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>0.30479971</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9094()
      */
     @Test
     @DisplayName("GIGS unit L12")
-    public void GIGS_69094() throws FactoryException {
+    public void GIGS_69094() {
         setCodeAndName(69094, "GIGS unit L12");
         unitToBase = 0.30479971;
         baseUnit   = units.system.getUnit(Length.class);
@@ -434,13 +410,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>0.201168</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9098()
      */
     @Test
     @DisplayName("GIGS unit L13")
-    public void GIGS_69098() throws FactoryException {
+    public void GIGS_69098() {
         setCodeAndName(69098, "GIGS unit L13");
         unitToBase = 0.201168;
         baseUnit   = units.system.getUnit(Length.class);
@@ -458,13 +432,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>0.3048</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9002()
      */
     @Test
     @DisplayName("GIGS unit L2")
-    public void GIGS_69002() throws FactoryException {
+    public void GIGS_69002() {
         setCodeAndName(69002, "GIGS unit L2");
         unitToBase = 0.3048;
         baseUnit   = units.system.getUnit(Length.class);
@@ -482,13 +454,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>0.30480061</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9003()
      */
     @Test
     @DisplayName("GIGS unit L3")
-    public void GIGS_69003() throws FactoryException {
+    public void GIGS_69003() {
         setCodeAndName(69003, "GIGS unit L3");
         unitToBase = 0.30480061;
         baseUnit   = units.system.getUnit(Length.class);
@@ -506,13 +476,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>1.000013597</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9031()
      */
     @Test
     @DisplayName("GIGS unit L4")
-    public void GIGS_69031() throws FactoryException {
+    public void GIGS_69031() {
         setCodeAndName(69031, "GIGS unit L4");
         unitToBase = 1.000013597;
         baseUnit   = units.system.getUnit(Length.class);
@@ -530,13 +498,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>0.304797265</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9005()
      */
     @Test
     @DisplayName("GIGS unit L5")
-    public void GIGS_69005() throws FactoryException {
+    public void GIGS_69005() {
         setCodeAndName(69005, "GIGS unit L5");
         unitToBase = 0.304797265;
         baseUnit   = units.system.getUnit(Length.class);
@@ -554,13 +520,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>0.201166195</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9039()
      */
     @Test
     @DisplayName("GIGS unit L6")
-    public void GIGS_69039() throws FactoryException {
+    public void GIGS_69039() {
         setCodeAndName(69039, "GIGS unit L6");
         unitToBase = 0.201166195;
         baseUnit   = units.system.getUnit(Length.class);
@@ -578,13 +542,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>20.11676512</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9042()
      */
     @Test
     @DisplayName("GIGS unit L7")
-    public void GIGS_69042() throws FactoryException {
+    public void GIGS_69042() {
         setCodeAndName(69042, "GIGS unit L7");
         unitToBase = 20.11676512;
         baseUnit   = units.system.getUnit(Length.class);
@@ -602,13 +564,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>0.304799472</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9041()
      */
     @Test
     @DisplayName("GIGS unit L8")
-    public void GIGS_69041() throws FactoryException {
+    public void GIGS_69041() {
         setCodeAndName(69041, "GIGS unit L8");
         unitToBase = 0.304799472;
         baseUnit   = units.system.getUnit(Length.class);
@@ -626,13 +586,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>0.914398415</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9040()
      */
     @Test
     @DisplayName("GIGS unit L9")
-    public void GIGS_69040() throws FactoryException {
+    public void GIGS_69040() {
         setCodeAndName(69040, "GIGS unit L9");
         unitToBase = 0.914398415;
         baseUnit   = units.system.getUnit(Length.class);
@@ -652,17 +610,16 @@ public class Test3201 extends Series3000<Unit<?>> {
      *
      * Remarks: ISO/EPSG scale base unit.
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9201()
      */
     @Test
     @DisplayName("GIGS unit U0")
-    public void GIGS_69201() throws FactoryException {
+    public void GIGS_69201() {
         setCodeAndName(69201, "GIGS unit U0");
         unitToBase = 1.0;
         baseUnit   = units.system.getUnit(Dimensionless.class);
         verifyLinearConversions(createConverter());
+        assertEquals(units.one(), getIdentifiedObject());
     }
 
     /**
@@ -676,13 +633,11 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>Base Units per Unit: <b>1.0E-6</b></li>
      * </ul>
      *
-     * @throws FactoryException if an error occurred while creating the unit from the properties.
-     *
      * @see Test2201#EPSG_9202()
      */
     @Test
     @DisplayName("GIGS unit U1")
-    public void GIGS_69202() throws FactoryException {
+    public void GIGS_69202() {
         setCodeAndName(69202, "GIGS unit U1");
         unitToBase = 1.0E-6;
         baseUnit   = units.system.getUnit(Dimensionless.class);

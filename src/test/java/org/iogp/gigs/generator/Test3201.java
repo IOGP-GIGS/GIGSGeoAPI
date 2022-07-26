@@ -64,14 +64,13 @@ public class Test3201 extends TestMethodGenerator {
                 String .class);     // [ 7]: GIGS Remarks
 
         while (data.next()) {
-            final int code = data.getInt(0);
-            final String name = data.getString(2);
-            final String unitType = data.getString(1);
+            final int    code           = data.getInt   (0);
+            final String name           = data.getString(2);
+            final String unitType       = data.getString(1);
             final double unitToBaseUnit = data.getDouble(3);
-            final int codeEPSG = data.getInt(5);
-            final String nameEPSG = data.getString(6);
-            final String remarks = data.getString(7);
-
+            final int    codeEPSG       = data.getInt   (5);
+            final String nameEPSG       = data.getString(6);
+            final String remarks        = data.getString(7);
             /*
              * Write javadoc.
              */
