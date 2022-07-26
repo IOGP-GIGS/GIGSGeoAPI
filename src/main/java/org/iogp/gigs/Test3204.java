@@ -116,7 +116,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      * Data about the geodetic datum {@linkplain #ellipsoid}.
      * This is used only for tests with user definitions for datum components.
      *
-     * @see #setUserComponents(TestMethod, TestMethod)
+     * @see #createEllipsoid(TestMethod)
      */
     private Test3202 ellipsoidTest;
 
@@ -124,7 +124,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      * Data about the geodetic datum {@linkplain #primeMeridian prime meridian}.
      * This is used only for tests with user definitions for datum components.
      *
-     * @see #setUserComponents(TestMethod, TestMethod)
+     * @see #createPrimeMeridian(TestMethod)
      */
     private Test3203 primeMeridianTest;
 

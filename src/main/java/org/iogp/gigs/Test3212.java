@@ -133,7 +133,7 @@ public class Test3212 extends Series3000<ConcatenatedOperation> {
      * Data about the first transformation in the concatenated transformation.
      * This is used only for tests with user definitions for CRS components.
      *
-     * @see #setUserComponents(TestMethod, TestMethod)
+     * @see #createStep1Transformation(TestMethod)
      */
     private Test3208 step1TransformationTest;
 
@@ -141,7 +141,7 @@ public class Test3212 extends Series3000<ConcatenatedOperation> {
      * Data about the second transformation in the concatenated transformation.
      * This is used only for tests with user definitions for CRS components.
      *
-     * @see #setUserComponents(TestMethod, TestMethod)
+     * @see #createStep2Transformation(TestMethod)
      */
     private Test3208 step2TransformationTest;
 

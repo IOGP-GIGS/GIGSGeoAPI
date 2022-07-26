@@ -149,7 +149,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * Data about the base CRS of the projected CRS.
      * This is used only for tests with user definitions for CRS components.
      *
-     * @see #setUserComponents(TestMethod, TestMethod)
+     * @see #createBaseCRS(TestMethod)
      */
     private Test3205Geog2DCRS baseCRSTest;
 
@@ -157,7 +157,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * Data about the conversion of the projected CRS.
      * This is used only for tests with user definitions for CRS components.
      *
-     * @see #setUserComponents(TestMethod, TestMethod)
+     * @see #createConversion(TestMethod)
      */
     private Test3206 conversionTest;
 

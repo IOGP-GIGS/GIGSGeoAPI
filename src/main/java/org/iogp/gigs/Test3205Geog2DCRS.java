@@ -117,7 +117,7 @@ public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
      * Data about the geodetic datum.
      * This is used only for tests with user definitions for CRS components.
      *
-     * @see #setUserComponents(TestMethod, TestMethod)
+     * @see #createDatum(TestMethod)
      */
     private Test3204 datumTest;
 
