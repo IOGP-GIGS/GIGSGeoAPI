@@ -141,7 +141,7 @@ public class Test3208 extends Series3000<Transformation> {
      *
      * @see #createSourceCRS(TestMethod)
      */
-    private Test3205Geog2DCRS sourceCRSTest;
+    private Test3205 sourceCRSTest;
 
     /**
      * Data about the target CRS of the transformation.
@@ -149,7 +149,7 @@ public class Test3208 extends Series3000<Transformation> {
      *
      * @see #createTargetCRS(TestMethod)
      */
-    private Test3205Geog2DCRS targetCRSTest;
+    private Test3205 targetCRSTest;
 
     /**
      * The source CRS of the transformation created by this factory.
@@ -296,13 +296,13 @@ public class Test3208 extends Series3000<Transformation> {
     }
 
     /**
-     * Creates a user-defined source CRS by executing the specified method from the {@link Test3205Geog2DCRS} class.
+     * Creates a user-defined source CRS by executing the specified method from the {@link Test3205} class.
      *
      * @param  factory           the test method to use for creating the source CRS.
      * @throws FactoryException  if an error occurred while creating the source CRS.
      */
-    private void createSourceCRS(final TestMethod<Test3205Geog2DCRS> factory) throws FactoryException {
-        sourceCRSTest = new Test3205Geog2DCRS(datumFactory, datumAuthorityFactory, csFactory, crsFactory);
+    private void createSourceCRS(final TestMethod<Test3205> factory) throws FactoryException {
+        sourceCRSTest = new Test3205(datumFactory, datumAuthorityFactory, csFactory, crsFactory);
         sourceCRSTest.skipTests = true;
         factory.test(sourceCRSTest);
         sourceCRS = sourceCRSTest.getIdentifiedObject();
@@ -319,13 +319,13 @@ public class Test3208 extends Series3000<Transformation> {
     }
 
     /**
-     * Creates a user-defined target CRS by executing the specified method from the {@link Test3205Geog2DCRS} class.
+     * Creates a user-defined target CRS by executing the specified method from the {@link Test3205} class.
      *
      * @param  factory           the test method to use for creating the target CRS.
      * @throws FactoryException  if an error occurred while creating the target CRS.
      */
-    private void createTargetCRS(final TestMethod<Test3205Geog2DCRS> factory) throws FactoryException {
-        targetCRSTest = new Test3205Geog2DCRS(datumFactory, datumAuthorityFactory, csFactory, crsFactory);
+    private void createTargetCRS(final TestMethod<Test3205> factory) throws FactoryException {
+        targetCRSTest = new Test3205(datumFactory, datumAuthorityFactory, csFactory, crsFactory);
         targetCRSTest.skipTests = true;
         factory.test(targetCRSTest);
         targetCRS = targetCRSTest.getIdentifiedObject();
@@ -368,7 +368,7 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64003);
         createTargetCRS(4326);
         parameterValueGroup.parameter("X-axis translation").setValue(0, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(0, units.metre());
@@ -408,8 +408,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64005);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64005);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(371, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(-112, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(434, units.metre());
@@ -452,8 +452,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Position Vector transformation (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64005);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64005);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(446.448, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(-125.157, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(542.06, units.metre());
@@ -497,8 +497,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64006);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64006);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(593, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(26, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(479, units.metre());
@@ -541,8 +541,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Coordinate Frame rotation (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64006);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64006);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(565.2369, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(50.0087, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(465.658, units.metre());
@@ -594,8 +594,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Molodensky";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64006);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64006);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(593.0297, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(26.0038, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(478.7534, units.metre());
@@ -641,8 +641,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64008);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64008);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(-125.8, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(79.9, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(-100.5, units.metre());
@@ -685,8 +685,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Coordinate Frame rotation (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64008);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64008);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(-106.8686, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(52.2978, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(-103.7239, units.metre());
@@ -729,8 +729,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64009);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64009);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(0, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(0, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(0, units.metre());
@@ -767,8 +767,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Longitude rotation";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64011);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64013);
+        createSourceCRS(Test3205::GIGS_64011);
+        createTargetCRS(Test3205::GIGS_64013);
         parameterValueGroup.parameter("Longitude offset").setValue(2.5969213, units.grad());
         verifyTransformation();
     }
@@ -799,8 +799,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64012);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64012);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(-8, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(160, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(176, units.metre());
@@ -840,8 +840,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "NADCON";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64012);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64012);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("Latitude difference file").setValue("n_slope.las");
         parameterValueGroup.parameter("Longitude difference file").setValue("n_slope.los");
         verifyTransformation();
@@ -873,8 +873,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "NTv2";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64012);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64012);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("Latitude and longitude difference file").setValue("QUE27-98.gsb");
         verifyTransformation();
     }
@@ -905,8 +905,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64015);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64015);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(52.17, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(-71.82, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(-14.9, units.metre());
@@ -945,8 +945,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64020);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64020);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(-84, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(-97, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(-117, units.metre());
@@ -985,8 +985,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64013);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64013);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(-168, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(-60, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(320, units.metre());
@@ -1025,8 +1025,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64016);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64016);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(-127.8, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(-52.3, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(152.9, units.metre());
@@ -1065,8 +1065,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64017);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64017);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(28, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(-130, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(-95, units.metre());
@@ -1105,8 +1105,8 @@ public class Test3208 extends Series3000<Transformation> {
         properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
-        createSourceCRS(Test3205Geog2DCRS::GIGS_64018);
-        createTargetCRS(Test3205Geog2DCRS::GIGS_64003);
+        createSourceCRS(Test3205::GIGS_64018);
+        createTargetCRS(Test3205::GIGS_64003);
         parameterValueGroup.parameter("X-axis translation").setValue(0, units.metre());
         parameterValueGroup.parameter("Y-axis translation").setValue(0, units.metre());
         parameterValueGroup.parameter("Z-axis translation").setValue(0, units.metre());

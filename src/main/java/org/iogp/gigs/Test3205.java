@@ -64,7 +64,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test3205Geog2DCRS {
+ * <blockquote><pre>public class MyTest extends Test3205 {
  *    public MyTest() {
  *        super(new MyDatumFactory(), new MyDatumAuthorityFactory(),
  *          new MyCSFactory(), MyCoordinateOperationFactory());
@@ -76,7 +76,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @since   1.0
  */
 @DisplayName("User-defined geographic 2D CRS")
-public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
+public class Test3205 extends Series3000<GeographicCRS> {
     /**
      * The CRS created by the factory,
      * or {@code null} if not yet created or if CRS creation failed.
@@ -135,7 +135,7 @@ public class Test3205Geog2DCRS extends Series3000<GeographicCRS> {
      * @param csFactory              factory for creating {@code CoordinateSystem} instances.
      * @param crsFactory             factory for creating {@link GeodeticCRS} instances.
      */
-    public Test3205Geog2DCRS(final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
+    public Test3205(final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
                              final CSFactory csFactory, final CRSFactory crsFactory)
     {
         this.datumFactory = datumFactory;

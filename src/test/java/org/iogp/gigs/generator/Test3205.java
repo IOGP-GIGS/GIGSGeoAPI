@@ -30,7 +30,7 @@ import java.util.Arrays;
 
 
 /**
- * Code generator for {@link org.iogp.gigs.Test3205Geog2DCRS}. This generator needs to be executed only if the GIGS data changed.
+ * Code generator for {@link org.iogp.gigs.Test3205}. This generator needs to be executed only if the GIGS data changed.
  * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the test class,
  * but be aware that the original code may contain manual changes that need to be preserved.
  *
@@ -38,7 +38,7 @@ import java.util.Arrays;
  * @version 1.0
  * @since   1.0
  */
-public class Test3205Geog2DCRS extends TestMethodGenerator {
+public class Test3205 extends TestMethodGenerator {
     /**
      * Launcher.
      *
@@ -46,7 +46,7 @@ public class Test3205Geog2DCRS extends TestMethodGenerator {
      * @throws IOException if an error occurred while reading the test data.
      */
     public static void main(String[] args) throws IOException {
-        new Test3205Geog2DCRS().run();
+        new Test3205().run();
     }
 
     /**

@@ -186,7 +186,7 @@ public class Test3208 extends TestMethodGenerator {
             //specify the source crs (either from gigs or epsg)
             if (crsCodes.contains(sourceCRSCode)) {
                 indent(2);
-                out.append("createSourceCRS(Test3205Geog2DCRS::GIGS_")
+                out.append("createSourceCRS(Test3205::GIGS_")
                         .append(sourceCRSCode).append(");\n");
             } else {
                 indent(2);
@@ -196,7 +196,7 @@ public class Test3208 extends TestMethodGenerator {
             //specify the target crs (either from gigs or epsg)
             if (crsCodes.contains(targetCRSCode)) {
                 indent(2);
-                out.append("createTargetCRS(Test3205Geog2DCRS::GIGS_")
+                out.append("createTargetCRS(Test3205::GIGS_")
                         .append(targetCRSCode).append(");\n");
             } else {
                 indent(2);

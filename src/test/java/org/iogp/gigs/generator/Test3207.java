@@ -134,7 +134,7 @@ public class Test3207 extends TestMethodGenerator {
             printTestMethodSignature(GIGS, code, name);
             printCallToSetCodeAndName(code, name);
 
-            indent(2); out.append("createBaseCRS(Test3205Geog2DCRS::GIGS_").append(baseCRSCode).append(");\n");
+            indent(2); out.append("createBaseCRS(Test3205::GIGS_").append(baseCRSCode).append(");\n");
             if (librarySource) {
                 indent(2);
                 out.append("createConversion(")
