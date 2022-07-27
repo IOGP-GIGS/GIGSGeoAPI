@@ -27,8 +27,6 @@ package org.iogp.gigs.generator;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.NoSuchElementException;
@@ -39,6 +37,7 @@ import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 
 
 /**
@@ -424,6 +423,19 @@ final class DataParser {
     }
 
     /**
+     * Returns the value in the given column as a definition source.
+     *
+     * @param  column  the column from which to get the value.
+     * @return the value in the given column.
+     * @throws NoSuchElementException if there is currently no active row.
+     * @throws IllegalArgumentException if the value in the given column is not a definition source.
+     * @throws NullPointerException if there is no value in the given column.
+     */
+    public DefinitionSource getSource(final int column) {
+        return DefinitionSource.parse(getString(column));
+    }
+
+    /**
      * Groups together records having similar properties. The EPSG or GIGS code is replaced by an array of codes.
      * The criteria for grouping lines are:
      *
@@ -480,31 +492,6 @@ compare:            while (++end < content.size()) {
                 }
             }
         }
-    }
-
-    /**
-     * Returns all non-null string values found in the given columns as keys in a map,
-     * from the current position to the end of the file. The value for each key will be
-     * {@code null}. The cursor position is not modified by this method call.
-     *
-     * <p>This method is used for fetching the dependencies of a test case, expressed as
-     * the GIGS names of objects built by an other test.</p>
-     *
-     * @param  <T>     type of values in the returned map.
-     * @param  column  the column from which to get the string values.
-     * @return a map whose keys are are all string values found in the given columns.
-     */
-    final <T> Map<String,T> getDependencies(final int column) {
-        final Map<String,T> dependencies = new HashMap<>();
-        final Object[] savedRow = currentRow;
-        final int savedPosition = cursor;
-        while (next()) {
-            dependencies.put(getString(column), null);
-        }
-        dependencies.remove(null);
-        cursor = savedPosition;
-        currentRow = savedRow;
-        return dependencies;
     }
 
     /**

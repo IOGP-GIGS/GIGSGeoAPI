@@ -25,8 +25,11 @@
 package org.iogp.gigs.generator;
 
 import java.util.Map;
-import java.util.HashMap;
 import java.io.IOException;
+import java.util.HashMap;
+import org.opengis.referencing.datum.Ellipsoid;
+import org.opengis.referencing.datum.PrimeMeridian;
+
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 
@@ -57,13 +60,39 @@ public final class Test2204 extends TestMethodGenerator {
     }
 
     /**
+     * Loads (object name, EPSG code) mapping from the ellipsoids or prime meridians test file.
+     * Keys and values are the content of the second and first columns respectively.
+     * The file is assumed a member of {@link Series#PREDEFINED}.
+     *
+     * @param  type of object for which to load the dependency map.
+     * @return (object name, EPSG code) inferred from the two first columns in the given file.
+     * @throws IOException if an error occurred while reading the test data.
+     */
+    static Map<String,Integer> loadDependencies(final Class<?> type) throws IOException {
+        final String file;
+        if (type == Ellipsoid.class) {
+            file = "GIGS_lib_2202_Ellipsoid.txt";
+        } else if (type == PrimeMeridian.class) {
+            file = "GIGS_lib_2203_PrimeMeridian.txt";
+        } else {
+            throw new IllegalArgumentException(String.valueOf(type));
+        }
+        final DataParser data = new DataParser(Series.PREDEFINED, file, Integer.class, String.class);
+        final Map<String,Integer> dependencies = new HashMap<>();
+        while (data.next()) {
+            assertNull(dependencies.put(data.getString(1), data.getInt(0)));
+        }
+        return dependencies;
+    }
+
+    /**
      * Generates the code.
      *
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
-        final Map<String,Integer> ellipsoids     = loadDependencies("GIGS_lib_2202_Ellipsoid.txt");
-        final Map<String,Integer> primeMeridians = loadDependencies("GIGS_lib_2203_PrimeMeridian.txt");
+        final Map<String,Integer> ellipsoids     = loadDependencies(Ellipsoid.class);
+        final Map<String,Integer> primeMeridians = loadDependencies(PrimeMeridian.class);
         final DataParser data = new DataParser(Series.PREDEFINED, "GIGS_lib_2204_GeodeticDatum.txt",
                 Integer.class,      // [0]: EPSG Datum Code
                 String .class,      // [1]: EPSG Datum Name
@@ -107,22 +136,5 @@ public final class Test2204 extends TestMethodGenerator {
             saveTestMethod();
         }
         flushAllMethods();
-    }
-
-    /**
-     * Loads (object name, EPSG code) mapping from the given file.
-     * Keys and values are the content of the second and first columns respectively.
-     *
-     * @param  file  the file to load.
-     * @return (object name, EPSG code) inferred from the two first columns in the given file.
-     * @throws IOException if an error occurred while reading the test data.
-     */
-    static Map<String,Integer> loadDependencies(final String file) throws IOException {
-        final DataParser data = new DataParser(Series.PREDEFINED, file, Integer.class, String.class);
-        final Map<String,Integer> dependencies = new HashMap<>();
-        while (data.next()) {
-            assertNull(dependencies.put(data.getString(1), data.getInt(0)));
-        }
-        return dependencies;
     }
 }

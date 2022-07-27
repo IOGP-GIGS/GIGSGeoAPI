@@ -26,11 +26,14 @@ package org.iogp.gigs.generator;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 import java.util.TreeMap;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import javax.measure.quantity.Dimensionless;
+import org.opengis.referencing.ObjectFactory;
+import org.opengis.referencing.AuthorityFactory;
 import org.iogp.gigs.internal.geoapi.Units;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -131,6 +134,20 @@ public abstract class TestMethodGenerator {
     private String methodSortKey;
 
     /**
+     * The type of factory for definitions provided by the library, or {@code null} if unknown.
+     * This field can be set by sub-class constructors if applicable. It is used for writing
+     * Javadoc with a more informative text about column such as "Datum Definition Source".
+     */
+    protected Class<? extends AuthorityFactory> libraryFactoryType;
+
+    /**
+     * The type of factory for definitions supplied by the user, or {@code null} if unknown.
+     * This field can be set by sub-class constructors if applicable. It is used for writing
+     * Javadoc with a more informative text about column such as "Datum Definition Source".
+     */
+    protected Class<? extends ObjectFactory> userFactoryType;
+
+    /**
      * Creates a new test generator.
      */
     protected TestMethodGenerator() {
@@ -199,6 +216,8 @@ public abstract class TestMethodGenerator {
 
     /**
      * The programmatic names of above units.
+     *
+     * @see #printProgrammaticName(Unit)
      */
     private static final Map<Unit<?>,String> UNIT_NAMES;
     static {
@@ -287,7 +306,11 @@ public abstract class TestMethodGenerator {
                     } else {
                         out.append(value.toString().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"));
                     }
-                    out.append("</b></li>\n");
+                    out.append("</b>");
+                    if (value instanceof DefinitionSource) {
+                        ((DefinitionSource) value).appendFactoryInformation(out, libraryFactoryType, userFactoryType);
+                    }
+                    out.append("</li>\n");
                 }
             }
         }
@@ -307,22 +330,21 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Formats codes and names on the same line, for inclusion in the list of argument given to
-     * {@link #printJavadocKeyValues(Object[])}.
+     * Adds "EPSG equivalence" pairs for an arbitrary amount of EPSG equivalences.
      *
-     * @param  code  the authority codes to format.
-     * @param  name  the names to format.
-     * @return the (authority, code) tuples.
+     * @param  addTo  where to add EPSG equivalence" pairs.
+     * @param  codes  equivalent EPSG codes.
+     * @param  names  equivalent EPSG names.
      */
-    static String codeAndName(final int[] code, final String[] name) {
-        final StringBuilder buffer = new StringBuilder();
-        for (int i=0; i<code.length; i++) {
-            if (buffer.length() != 0) {
-                buffer.append("</b>, <b>");
+    static void addCodesAndNames(final List<Object> addTo, final int[] codes, final String[] names) {
+        for (int i=0; i < codes.length; i++) {
+            String label = "EPSG equivalence";
+            if (codes.length != 1) {
+                label = label + " (" + (i+1) + " of " + codes.length + ')';
             }
-            buffer.append(code[i]).append(" – ").append(name[i]);
+            addTo.add(label);
+            addTo.add(codeAndName(codes[i], names[i]));
         }
-        return (buffer.length() != 0) ? buffer.toString() : null;
     }
 
     /**
