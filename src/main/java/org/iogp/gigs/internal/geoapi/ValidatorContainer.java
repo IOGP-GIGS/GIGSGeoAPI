@@ -60,14 +60,16 @@ import org.opengis.referencing.operation.*;
  * to override the validation of {@link org.opengis.referencing.crs.GeographicCRS} objects, one
  * can do:</p>
  *
- * <blockquote><pre>ValidatorContainer container = new ValidationContainer();
- *container.crs = new {@linkplain CRSValidator}(container) {
- *    &#64;Override
- *    public void validate(GeographicCRS object) {
- *        super.validate(object);
- *        // Perform additional validation here.
- *    }
- *};</pre></blockquote>
+ * {@snippet lang="java" :
+ *     ValidatorContainer container = new ValidationContainer();
+ *     container.crs = new CRSValidator(container) {
+ *         @Override
+ *         public void validate(GeographicCRS object) {
+ *             super.validate(object);
+ *             // Perform additional validation here.
+ *         }
+ *     }
+ * }
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
@@ -82,10 +84,12 @@ public class ValidatorContainer implements Cloneable {
      * <p>This field is not final in order to allow vendors to switch easily between
      * different configurations, for example:</p>
      *
-     * <blockquote><pre>ValidatorContainer original = ValidatorContainer.DEFAULT;
-     *ValidatorContainer.DEFAULT = myConfig;
-     *... do some tests ...
-     *ValidatorContainer.DEFAULT = original;</pre></blockquote>
+     * {@snippet lang="java" :
+     *     ValidatorContainer original = ValidatorContainer.DEFAULT;
+     *     ValidatorContainer.DEFAULT = myConfig;
+     *     // ... do some tests ...
+     *     ValidatorContainer.DEFAULT = original;
+     * }
      */
     public static ValidatorContainer DEFAULT = new ValidatorContainer();
 
@@ -207,9 +211,11 @@ public class ValidatorContainer implements Cloneable {
      * <p>This method is typically used in order to use the default configuration with a few
      * changes, as in the example below:</p>
      *
-     * <blockquote><pre> ValidatorContainer myContainer = ValidatorContainer.DEFAULT.clone();
-     * myContainer.crs = new CRSValidator();
-     * myContainer.crs.{@linkplain CRSValidator#enforceStandardNames enforceStandardNames} = false;</pre></blockquote>
+     * {@snippet lang="java" :
+     *     ValidatorContainer myContainer = ValidatorContainer.DEFAULT.clone();
+     *     myContainer.crs = new CRSValidator();
+     *     myContainer.crs.CRSValidator.enforceStandardNames = false;
+     * }
      *
      * @return a new {@code ValidatorContainer} instance using the same {@link Validator} instances.
      */

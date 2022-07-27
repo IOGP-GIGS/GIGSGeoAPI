@@ -63,14 +63,16 @@ import static org.junit.jupiter.api.Assertions.*;
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test3007 {
- *    public MyTest() {
- *        super(new MyDatumFactory(), new MyDatumAuthorityFactory(),
- *          new MyCSFactory(), new MyCRSFactory(),
- *          new MyCoordinateOperationFactory(), new MyMathTransformFactory(),
- *          new MyCoordinateOperationAuthorityFactory());
- *    }
- *}</pre></blockquote>
+ * {@snippet lang="java" :
+ * public class MyTest extends Test3207 {
+ *     public MyTest() {
+ *         super(new MyDatumFactory(), new MyDatumAuthorityFactory(),
+ *               new MyCSFactory(), new MyCRSFactory(),
+ *               new MyCoordinateOperationFactory(), new MyMathTransformFactory(),
+ *               new MyCoordinateOperationAuthorityFactory());
+ *     }
+ * }
+ * }
  *
  * @author  Michael Arneson (INT)
  * @version 1.0

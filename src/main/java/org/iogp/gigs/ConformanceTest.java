@@ -76,14 +76,16 @@ abstract class ConformanceTest {
      * {@link java.util.logging.Level#INFO} for giving some tips to the developer about how he can disable the test.
      *
      * <p><b>Example</b></p>
-     * <blockquote><pre>&#64;Test
-     *public void myTest() {
-     *    if (isDerivativeSupported) {
-     *        configurationTip = Configuration.Key.isDerivativeSupported;
-     *        // Do some tests the require support of math transform derivatives.
-     *    }
-     *    configurationTip = null;
-     *}</pre></blockquote>
+     * {@snippet lang="java" :
+     *     @Test
+     *     public void myTest() {
+     *         if (isDerivativeSupported) {
+     *             configurationTip = Configuration.Key.isDerivativeSupported;
+     *             // Do some tests the require support of math transform derivatives.
+     *         }
+     *         configurationTip = null;
+     *     }
+     * }
      */
     transient Configuration.Key<Boolean> configurationTip;
 

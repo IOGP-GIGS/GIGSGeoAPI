@@ -65,11 +65,13 @@ import static org.iogp.gigs.internal.geoapi.Assert.assertAxisDirectionsEqual;
  * in order to specify their factories and run the tests in a JUnit framework,
  * implementers can define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>public class MyTest extends Test2207 {
- *    public MyTest() {
- *        super(new MyCRSAuthorityFactory());
- *    }
- *}</pre></blockquote>
+ * {@snippet lang="java" :
+ * public class MyTest extends Test2207 {
+ *     public MyTest() {
+ *         super(new MyCRSAuthorityFactory());
+ *     }
+ * }
+ * }
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Alexis Manin (Geomatys)

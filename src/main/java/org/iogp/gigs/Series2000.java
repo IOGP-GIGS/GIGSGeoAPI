@@ -220,10 +220,13 @@ public abstract class Series2000<T> extends IntegrityTest {
      * <div class="note"><b>Example:</b> if an implementation replaces all spaces by underscores,
      * then a subclass testing that implementation could override this method as below:
      *
-     * <pre> &#64;Override
-     * protected String getVerifiableName(IdentifiedObject object) {
-     *    return super.getVerifiableName().replace(' ', '_');
-     * }</pre></div>
+     * {@snippet lang="java" :
+     *     @Override
+     *     protected String getVerifiableName(IdentifiedObject object) {
+     *         return super.getVerifiableName().replace(' ', '_');
+     *     }
+     * }
+     * </div>
      *
      * Note that if the object names are too different for being compared, then subclasses can also
      * disable name comparisons by setting {@link #isStandardNameSupported} to {@code false}.
