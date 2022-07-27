@@ -116,7 +116,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      * Data about the geodetic datum {@linkplain #ellipsoid}.
      * This is used only for tests with user definitions for datum components.
      *
-     * @see #setUserComponents(TestMethod, TestMethod)
+     * @see #createEllipsoid(TestMethod)
      */
     private Test3202 ellipsoidTest;
 
@@ -124,7 +124,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      * Data about the geodetic datum {@linkplain #primeMeridian prime meridian}.
      * This is used only for tests with user definitions for datum components.
      *
-     * @see #setUserComponents(TestMethod, TestMethod)
+     * @see #createPrimeMeridian(TestMethod)
      */
     private Test3203 primeMeridianTest;
 
@@ -165,7 +165,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
     }
 
     /**
-     * Creates an ellipsoid from the EPSG factory
+     * Creates an ellipsoid from the EPSG factory.
      *
      * @param  code  EPSG code of the ellipsoid to create.
      * @throws FactoryException  if an error occurred while creating the ellipsoid.
@@ -175,7 +175,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
     }
 
     /**
-     * Creates a prime meridian from the EPSG factory
+     * Creates a prime meridian from the EPSG factory.
      *
      * @param  code  EPSG code of the prime meridian to create.
      * @throws FactoryException  if an error occurred while creating the prime meridian.
@@ -229,6 +229,16 @@ public class Test3204 extends Series3000<GeodeticDatum> {
     }
 
     /**
+     * Sets the datum instance to verify. This method is invoked only by other test classes which need to
+     * verify the datum contained in a geodetic CRS instead of the datum immediately after creation.
+     *
+     * @param  instance  the instance to verify.
+     */
+    final void setIdentifiedObject(final GeodeticDatum instance) {
+        datum = instance;
+    }
+
+    /**
      * Sets the origin of the geodetic datum to create.
      *
      * @param  origin  the origin of the datum to create.
@@ -278,7 +288,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66001</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum A</b></li>
      *   <li>EPSG equivalence: <b>6326 – World Geodetic System 1984 ensemble</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid A</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      * </ul>
@@ -303,7 +313,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66326</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum AA</b></li>
      *   <li>EPSG equivalence: <b>6326 – World Geodetic System 1984 ensemble</b></li>
-     *   <li>Datum definition source: <b>Library</b></li>
+     *   <li>Ellipsoid definition source: <b>Fetched from EPSG dataset</b> (build with {@link DatumAuthorityFactory})</li>
      *   <li>Ellipsoid name: <b>WGS 84</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
      * </ul>
@@ -328,7 +338,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66002</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum B</b></li>
      *   <li>EPSG equivalence: <b>6277 – Ordnance Survey of Great Britain 1936</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid B</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      * </ul>
@@ -353,7 +363,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66277</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum BB</b></li>
      *   <li>EPSG equivalence: <b>6277 – Ordnance Survey of Great Britain 1936</b></li>
-     *   <li>Datum definition source: <b>Library</b></li>
+     *   <li>Ellipsoid definition source: <b>Fetched from EPSG dataset</b> (build with {@link DatumAuthorityFactory})</li>
      *   <li>Ellipsoid name: <b>Airy 1830</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
      * </ul>
@@ -378,7 +388,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66003</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum C</b></li>
      *   <li>EPSG equivalence: <b>6289 – Amersfoort</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid C</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      * </ul>
@@ -403,7 +413,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66289</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum CC</b></li>
      *   <li>EPSG equivalence: <b>6289 – Amersfoort</b></li>
-     *   <li>Datum definition source: <b>Library</b></li>
+     *   <li>Ellipsoid definition source: <b>Fetched from EPSG dataset</b> (build with {@link DatumAuthorityFactory})</li>
      *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
      * </ul>
@@ -428,7 +438,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66004</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum D</b></li>
      *   <li>EPSG equivalence: <b>6813 – Batavia (Jakarta)</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid C</b></li>
      *   <li>Prime meridian name: <b>GIGS PM D</b></li>
      * </ul>
@@ -453,7 +463,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66813</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum DD</b></li>
      *   <li>EPSG equivalence: <b>6813 – Batavia (Jakarta)</b></li>
-     *   <li>Datum definition source: <b>Library</b></li>
+     *   <li>Ellipsoid definition source: <b>Fetched from EPSG dataset</b> (build with {@link DatumAuthorityFactory})</li>
      *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
      *   <li>Prime meridian name: <b>Jakarta</b></li>
      * </ul>
@@ -478,7 +488,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66005</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum E</b></li>
      *   <li>EPSG equivalence: <b>6313 – Reseau National Belge 1972</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid E</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      * </ul>
@@ -503,7 +513,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66313</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum EE</b></li>
      *   <li>EPSG equivalence: <b>6313 – Reseau National Belge 1972</b></li>
-     *   <li>Datum definition source: <b>Library</b></li>
+     *   <li>Ellipsoid definition source: <b>Fetched from EPSG dataset</b> (build with {@link DatumAuthorityFactory})</li>
      *   <li>Ellipsoid name: <b>International 1924</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
      * </ul>
@@ -528,7 +538,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66006</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum F</b></li>
      *   <li>EPSG equivalence: <b>6283 – Geocentric Datum of Australia 1994</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid F</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      *   <li>Datum origin: <b>Origin F</b></li>
@@ -555,7 +565,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66283</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum FF</b></li>
      *   <li>EPSG equivalence: <b>6283 – Geocentric Datum of Australia 1994</b></li>
-     *   <li>Datum definition source: <b>Library</b></li>
+     *   <li>Ellipsoid definition source: <b>Fetched from EPSG dataset</b> (build with {@link DatumAuthorityFactory})</li>
      *   <li>Ellipsoid name: <b>GRS 1980</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
      * </ul>
@@ -584,7 +594,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>EPSG equivalence (3 of 5): <b>6152 – NAD83 (High Accuracy Reference Network)</b></li>
      *   <li>EPSG equivalence (4 of 5): <b>6190 – Posiciones Geodesicas Argentinas 1998</b></li>
      *   <li>EPSG equivalence (5 of 5): <b>6674 – Sistema de Referencia Geocentrico para las AmericaS 2000</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid F</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      *   <li>Datum origin: <b>Origin(s) G</b></li>
@@ -611,7 +621,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66008</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum H</b></li>
      *   <li>EPSG equivalence: <b>6807 – Nouvelle Triangulation Francaise (Paris)</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid H</b></li>
      *   <li>Prime meridian name: <b>GIGS PM H</b></li>
      * </ul>
@@ -636,7 +646,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66807</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum HH</b></li>
      *   <li>EPSG equivalence: <b>6807 – Nouvelle Triangulation Francaise (Paris)</b></li>
-     *   <li>Datum definition source: <b>Library</b></li>
+     *   <li>Ellipsoid definition source: <b>Fetched from EPSG dataset</b> (build with {@link DatumAuthorityFactory})</li>
      *   <li>Ellipsoid name: <b>Clarke 1880 (IGN)</b></li>
      *   <li>Prime meridian name: <b>Paris</b></li>
      * </ul>
@@ -661,7 +671,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66009</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum J</b></li>
      *   <li>EPSG equivalence: <b>6267 – North American Datum 1927</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid J</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      * </ul>
@@ -686,7 +696,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66012</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum K</b></li>
      *   <li>EPSG equivalence: <b>6237 – Hungarian Datum 1972</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid K</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      * </ul>
@@ -711,7 +721,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66011</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum L</b></li>
      *   <li>EPSG equivalence: <b>6211 – Batavia</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid C</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      *   <li>Datum origin: <b>Origin L</b></li>
@@ -738,7 +748,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66016</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum M</b></li>
      *   <li>EPSG equivalence: <b>6230 – European Datum 1950</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid E</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      * </ul>
@@ -763,7 +773,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66010</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum T</b></li>
      *   <li>EPSG equivalence: <b>6275 – Nouvelle Triangulation Francaise</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid H</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      * </ul>
@@ -788,7 +798,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66013</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum X</b></li>
      *   <li>EPSG equivalence: <b>6202 – Australian Geodetic Datum 1966</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid X</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      * </ul>
@@ -813,7 +823,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66014</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum Y</b></li>
      *   <li>EPSG equivalence: <b>6284 – Pulkovo 1942</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid Y</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      * </ul>
@@ -838,7 +848,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66015</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum Z</b></li>
      *   <li>EPSG equivalence: <b>6269 – North American Datum 1983</b></li>
-     *   <li>Datum definition source: <b>User</b></li>
+     *   <li>Ellipsoid definition source: <b>Described by user</b> (build with {@link DatumFactory})</li>
      *   <li>Ellipsoid name: <b>GIGS ellipsoid F</b></li>
      *   <li>Prime meridian name: <b>GIGS PM A</b></li>
      *   <li>Datum origin: <b>Origin Z</b></li>
@@ -865,7 +875,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      *   <li>GIGS datum code: <b>66269</b></li>
      *   <li>GIGS datum name: <b>GIGS geodetic datum ZZ</b></li>
      *   <li>EPSG equivalence: <b>6269 – North American Datum 1983</b></li>
-     *   <li>Datum definition source: <b>Library</b></li>
+     *   <li>Ellipsoid definition source: <b>Fetched from EPSG dataset</b> (build with {@link DatumAuthorityFactory})</li>
      *   <li>Ellipsoid name: <b>GRS 1980</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
      * </ul>

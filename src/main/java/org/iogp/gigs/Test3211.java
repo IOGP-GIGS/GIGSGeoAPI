@@ -131,7 +131,7 @@ public class Test3211 extends Series3000<Transformation> {
      * Data about the source CRS of the transformation.
      * This is used only for tests with user definitions for CRS components.
      *
-     * @see #setUserComponents(TestMethod, TestMethod)
+     * @see #createSourceCRS(TestMethod)
      */
     private Test3210 sourceCRSTest;
 
@@ -139,7 +139,7 @@ public class Test3211 extends Series3000<Transformation> {
      * Data about the target CRS of the transformation.
      * This is used only for tests with user definitions for CRS components.
      *
-     * @see #setUserComponents(TestMethod, TestMethod)
+     * @see #createTargetCRS(TestMethod)
      */
     private Test3210 targetCRSTest;
 

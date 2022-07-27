@@ -27,8 +27,6 @@ package org.iogp.gigs.generator;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.NoSuchElementException;
@@ -39,6 +37,7 @@ import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 
 
 /**
@@ -107,6 +106,7 @@ final class DataParser {
      * @param file          the file name, without path.
      * @param columnTypes   the type of each column. The only legal values at this time are
      *                      {@link String}, {@link Integer}, {@link Double} and {@link Boolean}.
+     *                      The {@code null} value means that a column will not be used.
      * @throws IOException if an error occurred while reading the test data.
      */
     public DataParser(final Series series, final String file, final Class<?>... columnTypes) throws IOException {
@@ -198,19 +198,21 @@ final class DataParser {
             }
             if (!part.isEmpty()) {
                 final Class<?> type = columnTypes[i];
-                final Object value;
-                if (type == String.class) {
-                    value = part;
-                } else if (type == Integer.class) {
-                    value = Integer.valueOf(part);
-                } else if (type == Double.class) {
-                    value = part.equalsIgnoreCase("NULL") ? Double.NaN : Double.valueOf(part);
-                } else if (type == Boolean.class) {
-                    value = Boolean.valueOf(part);
-                } else {
-                    throw new IOException("Unsupported column type: " + type);
+                if (type != null) {
+                    final Object value;
+                    if (type == String.class) {
+                        value = part;
+                    } else if (type == Integer.class) {
+                        value = Integer.valueOf(part);
+                    } else if (type == Double.class) {
+                        value = part.equalsIgnoreCase("NULL") ? Double.NaN : Double.valueOf(part);
+                    } else if (type == Boolean.class) {
+                        value = Boolean.valueOf(part);
+                    } else {
+                        throw new IOException("Unsupported column type: " + type);
+                    }
+                    row[i] = value;
                 }
-                row[i] = value;
             }
             if (++end >= line.length()) {
                 break;
@@ -424,6 +426,19 @@ final class DataParser {
     }
 
     /**
+     * Returns the value in the given column as a definition source.
+     *
+     * @param  column  the column from which to get the value.
+     * @return the value in the given column.
+     * @throws NoSuchElementException if there is currently no active row.
+     * @throws IllegalArgumentException if the value in the given column is not a definition source.
+     * @throws NullPointerException if there is no value in the given column.
+     */
+    public DefinitionSource getSource(final int column) {
+        return DefinitionSource.parse(getString(column));
+    }
+
+    /**
      * Groups together records having similar properties. The EPSG or GIGS code is replaced by an array of codes.
      * The criteria for grouping lines are:
      *
@@ -480,31 +495,6 @@ compare:            while (++end < content.size()) {
                 }
             }
         }
-    }
-
-    /**
-     * Returns all non-null string values found in the given columns as keys in a map,
-     * from the current position to the end of the file. The value for each key will be
-     * {@code null}. The cursor position is not modified by this method call.
-     *
-     * <p>This method is used for fetching the dependencies of a test case, expressed as
-     * the GIGS names of objects built by an other test.</p>
-     *
-     * @param  <T>     type of values in the returned map.
-     * @param  column  the column from which to get the string values.
-     * @return a map whose keys are are all string values found in the given columns.
-     */
-    final <T> Map<String,T> getDependencies(final int column) {
-        final Map<String,T> dependencies = new HashMap<>();
-        final Object[] savedRow = currentRow;
-        final int savedPosition = cursor;
-        while (next()) {
-            dependencies.put(getString(column), null);
-        }
-        dependencies.remove(null);
-        cursor = savedPosition;
-        currentRow = savedRow;
-        return dependencies;
     }
 
     /**

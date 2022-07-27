@@ -28,9 +28,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.OptionalInt;
+import org.opengis.referencing.datum.Ellipsoid;
+import org.opengis.referencing.datum.PrimeMeridian;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -55,14 +59,22 @@ public final class Test3204 extends TestMethodGenerator {
     }
 
     /**
+     * Creates a new test generator.
+     */
+    public Test3204() {
+        libraryFactoryType = DatumAuthorityFactory.class;
+        userFactoryType    = DatumFactory.class;
+    }
+
+    /**
      * Generates the code.
      *
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
         // EPSG definitions
-        final Map<String,Integer> ellipsoidsEPSG     = Test2204.loadDependencies("GIGS_lib_2202_Ellipsoid.txt");
-        final Map<String,Integer> primeMeridiansEPSG = Test2204.loadDependencies("GIGS_lib_2203_PrimeMeridian.txt");
+        final Map<String,Integer> ellipsoidsEPSG     = Test2204.loadDependencies(Ellipsoid.class);
+        final Map<String,Integer> primeMeridiansEPSG = Test2204.loadDependencies(PrimeMeridian.class);
 
         // GIGS definitions
         final Map<String,Integer> ellipsoids     = loadDependencies("GIGS_user_3202_Ellipsoid.txt");
@@ -80,28 +92,22 @@ public final class Test3204 extends TestMethodGenerator {
                 String .class);   // [9]: GIGS Remarks
 
         while (data.next()) {
-            final int         code              = data.getInt   (0);
-            final String      name              = data.getString(2);
-            final String      source            = data.getString(1);
-            final String      ellipsoidName     = data.getString(3);
-            final String      primeMeridianName = data.getString(4);
-            final String      origin            = data.getString(5);
-            final OptionalInt transformCode     = data.getIntOptional(6);
-            final int[]       codeEPSG          = data.getInts   (7);
-            final String[]    nameEPSG          = data.getStrings(8);
-            final String      remarks           = data.getString (9);
+            final int              code              = data.getInt   (0);
+            final String           name              = data.getString(2);
+            final DefinitionSource source            = data.getSource(1);
+            final String           ellipsoidName     = data.getString(3);
+            final String           primeMeridianName = data.getString(4);
+            final String           origin            = data.getString(5);
+            final OptionalInt      transformCode     = data.getIntOptional(6);
+            final int[]            codeEPSG          = data.getInts   (7);
+            final String[]         nameEPSG          = data.getStrings(8);
+            final String           remarks           = data.getString (9);
             /*
-             * Identify whether the components will be built from EPSG codes or user-supplied definitions.
-             *
              * TODO: "User Early-Bound" is not yet supported because we do not have the needed API in GeoAPI 3.0.
              */
-            final boolean librarySource = "Library".equalsIgnoreCase(source);
-            if (!librarySource) {
-                if ("User Early-Bound".equalsIgnoreCase(source)) {
-                    continue;       // TODO: not yet supported.
-                } else if (!"User".equalsIgnoreCase(source)) {
-                    fail(source);
-                }
+            if (source == DefinitionSource.USER_EARLY_BOUND) {
+                addUnsupportedTest(3204, code, name, "No method in GeoAPI for early-binding.");
+                continue;
             }
             /*
              * Write javadoc.
@@ -114,7 +120,7 @@ public final class Test3204 extends TestMethodGenerator {
             descriptions.addAll(Arrays.asList("GIGS datum code", code,
                                               "GIGS datum name", replaceAsciiPrimeByUnicode(name)));
             addCodesAndNames(descriptions, codeEPSG, nameEPSG);
-            descriptions.addAll(Arrays.asList("Datum definition source", source,
+            descriptions.addAll(Arrays.asList("Ellipsoid definition source", source,
                                               "Ellipsoid name", ellipsoidName,
                                               "Prime meridian name", primeMeridianName,
                                               "Datum origin", origin));
@@ -133,7 +139,7 @@ public final class Test3204 extends TestMethodGenerator {
                 indent(2);
                 out.append("setOrigin(\"").append(origin).append("\");\n");
             }
-            if (librarySource) {
+            if (source == DefinitionSource.LIBRARY) {
                 indent(2);
                 out.append("createEllipsoid(")
                    .append(getCodeForName(ellipsoidsEPSG, ellipsoidName)).append(");\n");
@@ -185,23 +191,5 @@ public final class Test3204 extends TestMethodGenerator {
         Integer code = codes.get(name);
         assertNotNull(code, name);
         return code;
-    }
-
-    /**
-     * Adds "EPSG equivalence" pairs for an arbitrary amount of EPSG equivalences.
-     *
-     * @param  addTo  where to add EPSG equivalence" pairs.
-     * @param  codes  equivalent EPSG codes.
-     * @param  names  equivalent EPSG names.
-     */
-    private static void addCodesAndNames(final List<Object> addTo, final int[] codes, final String[] names) {
-        for (int i=0; i < codes.length; i++) {
-            String label = "EPSG equivalence";
-            if (codes.length != 1) {
-                label = label + " (" + (i+1) + " of " + codes.length + ')';
-            }
-            addTo.add(label);
-            addTo.add(codeAndName(codes[i], names[i]));
-        }
     }
 }

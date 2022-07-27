@@ -124,6 +124,7 @@ public abstract class Series3000<T> extends IntegrityTest {
      */
     final void copyConfigurationFrom(final Series3000<?> source) {
         isFactoryPreservingUserValues = source.isFactoryPreservingUserValues;
+        skipIdentificationCheck |= source.skipIdentificationCheck;
         skipTests = false;
     }
 

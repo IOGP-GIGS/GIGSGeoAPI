@@ -95,7 +95,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      * Data about the vertical datum of the vertical CRS.
      * This is used only for tests with user definitions for CRS components.
      *
-     * @see #setUserComponents(TestMethod, TestMethod)
+     * @see #createDatum(TestMethod)
      */
     private Test3209 datumTest;
 

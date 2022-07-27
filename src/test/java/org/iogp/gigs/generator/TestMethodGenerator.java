@@ -24,13 +24,17 @@
  */
 package org.iogp.gigs.generator;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 import java.util.TreeMap;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import javax.measure.quantity.Dimensionless;
+import org.opengis.referencing.ObjectFactory;
+import org.opengis.referencing.AuthorityFactory;
 import org.iogp.gigs.internal.geoapi.Units;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -131,11 +135,34 @@ public abstract class TestMethodGenerator {
     private String methodSortKey;
 
     /**
+     * List of GIGS tests that we could not translate as JUnit tests.
+     * Each list of element is a row in the table to format.
+     *
+     * @see #addUnsupportedTest(int, int, String, String)
+     */
+    private final List<String[]> unsupportedTests;
+
+    /**
+     * The type of factory for definitions provided by the library, or {@code null} if unknown.
+     * This field can be set by sub-class constructors if applicable. It is used for writing
+     * Javadoc with a more informative text about column such as "Datum Definition Source".
+     */
+    protected Class<? extends AuthorityFactory> libraryFactoryType;
+
+    /**
+     * The type of factory for definitions supplied by the user, or {@code null} if unknown.
+     * This field can be set by sub-class constructors if applicable. It is used for writing
+     * Javadoc with a more informative text about column such as "Datum Definition Source".
+     */
+    protected Class<? extends ObjectFactory> userFactoryType;
+
+    /**
      * Creates a new test generator.
      */
     protected TestMethodGenerator() {
         out = new StringBuilder(8000);
         methods = new TreeMap<>();
+        unsupportedTests = new ArrayList<>();
     }
 
     /**
@@ -199,6 +226,8 @@ public abstract class TestMethodGenerator {
 
     /**
      * The programmatic names of above units.
+     *
+     * @see #printProgrammaticName(Unit)
      */
     private static final Map<Unit<?>,String> UNIT_NAMES;
     static {
@@ -287,7 +316,11 @@ public abstract class TestMethodGenerator {
                     } else {
                         out.append(value.toString().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"));
                     }
-                    out.append("</b></li>\n");
+                    out.append("</b>");
+                    if (value instanceof DefinitionSource) {
+                        ((DefinitionSource) value).appendFactoryInformation(out, libraryFactoryType, userFactoryType);
+                    }
+                    out.append("</li>\n");
                 }
             }
         }
@@ -307,22 +340,21 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Formats codes and names on the same line, for inclusion in the list of argument given to
-     * {@link #printJavadocKeyValues(Object[])}.
+     * Adds "EPSG equivalence" pairs for an arbitrary amount of EPSG equivalences.
      *
-     * @param  code  the authority codes to format.
-     * @param  name  the names to format.
-     * @return the (authority, code) tuples.
+     * @param  addTo  where to add EPSG equivalence" pairs.
+     * @param  codes  equivalent EPSG codes.
+     * @param  names  equivalent EPSG names.
      */
-    static String codeAndName(final int[] code, final String[] name) {
-        final StringBuilder buffer = new StringBuilder();
-        for (int i=0; i<code.length; i++) {
-            if (buffer.length() != 0) {
-                buffer.append("</b>, <b>");
+    static void addCodesAndNames(final List<Object> addTo, final int[] codes, final String[] names) {
+        for (int i=0; i < codes.length; i++) {
+            String label = "EPSG equivalence";
+            if (codes.length != 1) {
+                label = label + " (" + (i+1) + " of " + codes.length + ')';
             }
-            buffer.append(code[i]).append(" – ").append(name[i]);
+            addTo.add(label);
+            addTo.add(codeAndName(codes[i], names[i]));
         }
-        return (buffer.length() != 0) ? buffer.toString() : null;
     }
 
     /**
@@ -698,5 +730,45 @@ public abstract class TestMethodGenerator {
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
     final void flushAllMethods() {
         methods.values().forEach(System.out::println);
+        if (!unsupportedTests.isEmpty()) {
+            System.out.println();
+            System.out.println("Unsupported tests");
+            final int[] lengths = new int[4];
+            unsupportedTests.forEach((row) -> {
+                for (int i=0; i<row.length; i++) {
+                    final int length = row[i].length();
+                    if (length > lengths[i]) {
+                        lengths[i] = length;
+                    }
+                }
+            });
+            unsupportedTests.forEach((row) -> {
+                System.out.print("| ");
+                System.out.print(row[0]);
+                for (int i=1; i<row.length; i++) {
+                    final int length = row[i-1].length();
+                    System.out.print(" ".repeat(lengths[i-1] - length));
+                    System.out.print(" | ");
+                    System.out.print(row[i]);
+                }
+                System.out.println();
+            });
+        }
+    }
+
+    /**
+     * Declares that a test has been skipped because it can not be represented as a JUnit test.
+     *
+     * @param  series  the test series (e.g. 3204).
+     * @param  test    code of the GIGS object which can not be tested.
+     * @param  name    name of the GIGS object which can not be tested.
+     * @param  reason  reason why the test has been skipped.
+     */
+    final void addUnsupportedTest(final int series, final int test, final String name, final String reason) {
+        if (unsupportedTests.isEmpty()) {
+            unsupportedTests.add(new String[] {"Series", "Test", "GIGS object name", "Reason for skipping"});
+            unsupportedTests.add(new String[] {"----", "----", "----", "----"});
+        }
+        unsupportedTests.add(new String[] {String.valueOf(series), String.valueOf(test), name, reason});
     }
 }
