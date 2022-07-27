@@ -317,18 +317,6 @@ public class Test3211 extends Series3000<Transformation> {
         this.targetCRS = this.crsAuthorityFactory.createVerticalCRS(String.valueOf(code));
     }
 
-    @Test
-    public void simpleTest() throws FactoryException {
-        setCodeAndName(61001, "GIGS geogCRS A to WGS 84 (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Vertical offset";
-        createDefaultParameters();
-        createSourceCRS(Test3210::GIGS_64505);
-        createTargetCRS(5714);
-        parameterValueGroup.parameter("Vertical offset").setValue(0, units.metre());
-        verifyTransformation();
-    }
-
     /**
      * Tests “GIGS_61501”  transformation from the factory.
      *
