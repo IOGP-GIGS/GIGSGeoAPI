@@ -106,6 +106,7 @@ public final class Test3204 extends TestMethodGenerator {
              * TODO: "User Early-Bound" is not yet supported because we do not have the needed API in GeoAPI 3.0.
              */
             if (source == DefinitionSource.USER_EARLY_BOUND) {
+                addUnsupportedTest(3204, code, name, "No method in GeoAPI for early-binding.");
                 continue;
             }
             /*

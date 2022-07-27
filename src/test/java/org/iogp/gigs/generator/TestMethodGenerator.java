@@ -24,6 +24,7 @@
  */
 package org.iogp.gigs.generator;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -134,6 +135,14 @@ public abstract class TestMethodGenerator {
     private String methodSortKey;
 
     /**
+     * List of GIGS tests that we could not translate as JUnit tests.
+     * Each list of element is a row in the table to format.
+     *
+     * @see #addUnsupportedTest(int, int, String, String)
+     */
+    private final List<String[]> unsupportedTests;
+
+    /**
      * The type of factory for definitions provided by the library, or {@code null} if unknown.
      * This field can be set by sub-class constructors if applicable. It is used for writing
      * Javadoc with a more informative text about column such as "Datum Definition Source".
@@ -153,6 +162,7 @@ public abstract class TestMethodGenerator {
     protected TestMethodGenerator() {
         out = new StringBuilder(8000);
         methods = new TreeMap<>();
+        unsupportedTests = new ArrayList<>();
     }
 
     /**
@@ -720,5 +730,45 @@ public abstract class TestMethodGenerator {
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
     final void flushAllMethods() {
         methods.values().forEach(System.out::println);
+        if (!unsupportedTests.isEmpty()) {
+            System.out.println();
+            System.out.println("Unsupported tests");
+            final int[] lengths = new int[4];
+            unsupportedTests.forEach((row) -> {
+                for (int i=0; i<row.length; i++) {
+                    final int length = row[i].length();
+                    if (length > lengths[i]) {
+                        lengths[i] = length;
+                    }
+                }
+            });
+            unsupportedTests.forEach((row) -> {
+                System.out.print("| ");
+                System.out.print(row[0]);
+                for (int i=1; i<row.length; i++) {
+                    final int length = row[i-1].length();
+                    System.out.print(" ".repeat(lengths[i-1] - length));
+                    System.out.print(" | ");
+                    System.out.print(row[i]);
+                }
+                System.out.println();
+            });
+        }
+    }
+
+    /**
+     * Declares that a test has been skipped because it can not be represented as a JUnit test.
+     *
+     * @param  series  the test series (e.g. 3204).
+     * @param  test    code of the GIGS object which can not be tested.
+     * @param  name    name of the GIGS object which can not be tested.
+     * @param  reason  reason why the test has been skipped.
+     */
+    final void addUnsupportedTest(final int series, final int test, final String name, final String reason) {
+        if (unsupportedTests.isEmpty()) {
+            unsupportedTests.add(new String[] {"Series", "Test", "GIGS object name", "Reason for skipping"});
+            unsupportedTests.add(new String[] {"----", "----", "----", "----"});
+        }
+        unsupportedTests.add(new String[] {String.valueOf(series), String.valueOf(test), name, reason});
     }
 }
