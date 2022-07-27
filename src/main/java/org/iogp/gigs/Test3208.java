@@ -302,10 +302,10 @@ public class Test3208 extends Series3000<Transformation> {
      * @throws FactoryException  if an error occurred while creating the source CRS.
      */
     private void createSourceCRS(final TestMethod<Test3205> factory) throws FactoryException {
-        sourceCRSTest = new Test3205(datumFactory, datumAuthorityFactory, csFactory, crsFactory);
+        sourceCRSTest = new Test3205(crsFactory, csFactory, datumFactory, datumAuthorityFactory);
         sourceCRSTest.skipTests = true;
         factory.test(sourceCRSTest);
-        sourceCRS = sourceCRSTest.getIdentifiedObject();
+        sourceCRS = (GeographicCRS) sourceCRSTest.getIdentifiedObject();
     }
 
     /**
@@ -325,10 +325,10 @@ public class Test3208 extends Series3000<Transformation> {
      * @throws FactoryException  if an error occurred while creating the target CRS.
      */
     private void createTargetCRS(final TestMethod<Test3205> factory) throws FactoryException {
-        targetCRSTest = new Test3205(datumFactory, datumAuthorityFactory, csFactory, crsFactory);
+        targetCRSTest = new Test3205(crsFactory, csFactory, datumFactory, datumAuthorityFactory);
         targetCRSTest.skipTests = true;
         factory.test(targetCRSTest);
-        targetCRS = targetCRSTest.getIdentifiedObject();
+        targetCRS = (GeographicCRS) targetCRSTest.getIdentifiedObject();
     }
 
     /**

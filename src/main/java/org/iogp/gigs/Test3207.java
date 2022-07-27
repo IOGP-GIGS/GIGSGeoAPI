@@ -246,10 +246,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * @throws FactoryException  if an error occurred while creating the base CRS.
      */
     private void createBaseCRS(final TestMethod<Test3205> factory) throws FactoryException {
-        baseCRSTest = new Test3205(datumFactory, datumAuthorityFactory, csFactory, crsFactory);
+        baseCRSTest = new Test3205(crsFactory, csFactory, datumFactory, datumAuthorityFactory);
         baseCRSTest.skipTests = true;
         factory.test(baseCRSTest);
-        baseCRS = baseCRSTest.getIdentifiedObject();
+        baseCRS = (GeographicCRS) baseCRSTest.getIdentifiedObject();
     }
 
     /**

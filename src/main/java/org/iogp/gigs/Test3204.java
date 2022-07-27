@@ -165,7 +165,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
     }
 
     /**
-     * Creates an ellipsoid from the EPSG factory
+     * Creates an ellipsoid from the EPSG factory.
      *
      * @param  code  EPSG code of the ellipsoid to create.
      * @throws FactoryException  if an error occurred while creating the ellipsoid.
@@ -175,7 +175,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
     }
 
     /**
-     * Creates a prime meridian from the EPSG factory
+     * Creates a prime meridian from the EPSG factory.
      *
      * @param  code  EPSG code of the prime meridian to create.
      * @throws FactoryException  if an error occurred while creating the prime meridian.
@@ -226,6 +226,16 @@ public class Test3204 extends Series3000<GeodeticDatum> {
             datum = datumFactory.createGeodeticDatum(properties, ellipsoid, primeMeridian);
         }
         return datum;
+    }
+
+    /**
+     * Sets the datum instance to verify. This method is invoked only by other test classes which need to
+     * verify the datum contained in a geodetic CRS instead of the datum immediately after creation.
+     *
+     * @param  instance  the instance to verify.
+     */
+    final void setIdentifiedObject(final GeodeticDatum instance) {
+        datum = instance;
     }
 
     /**

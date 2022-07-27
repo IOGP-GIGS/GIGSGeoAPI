@@ -106,6 +106,7 @@ final class DataParser {
      * @param file          the file name, without path.
      * @param columnTypes   the type of each column. The only legal values at this time are
      *                      {@link String}, {@link Integer}, {@link Double} and {@link Boolean}.
+     *                      The {@code null} value means that a column will not be used.
      * @throws IOException if an error occurred while reading the test data.
      */
     public DataParser(final Series series, final String file, final Class<?>... columnTypes) throws IOException {
@@ -197,19 +198,21 @@ final class DataParser {
             }
             if (!part.isEmpty()) {
                 final Class<?> type = columnTypes[i];
-                final Object value;
-                if (type == String.class) {
-                    value = part;
-                } else if (type == Integer.class) {
-                    value = Integer.valueOf(part);
-                } else if (type == Double.class) {
-                    value = part.equalsIgnoreCase("NULL") ? Double.NaN : Double.valueOf(part);
-                } else if (type == Boolean.class) {
-                    value = Boolean.valueOf(part);
-                } else {
-                    throw new IOException("Unsupported column type: " + type);
+                if (type != null) {
+                    final Object value;
+                    if (type == String.class) {
+                        value = part;
+                    } else if (type == Integer.class) {
+                        value = Integer.valueOf(part);
+                    } else if (type == Double.class) {
+                        value = part.equalsIgnoreCase("NULL") ? Double.NaN : Double.valueOf(part);
+                    } else if (type == Boolean.class) {
+                        value = Boolean.valueOf(part);
+                    } else {
+                        throw new IOException("Unsupported column type: " + type);
+                    }
+                    row[i] = value;
                 }
-                row[i] = value;
             }
             if (++end >= line.length()) {
                 break;

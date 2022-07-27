@@ -27,6 +27,12 @@ package org.iogp.gigs.generator;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -35,6 +41,7 @@ import java.util.Arrays;
  * but be aware that the original code may contain manual changes that need to be preserved.
  *
  * @author  Michael Arneson (INT)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0
  */
@@ -50,11 +57,42 @@ public class Test3205 extends TestMethodGenerator {
     }
 
     /**
+     * Creates a new test generator.
+     */
+    public Test3205() {
+        libraryFactoryType = DatumAuthorityFactory.class;
+        userFactoryType    = DatumFactory.class;
+    }
+
+    /**
+     * Loads (GIGS code, EPSG code) mapping for datum.
+     *
+     * @return (GIGS code, EPSG code) of datum.
+     * @throws IOException if an error occurred while reading the test data.
+     */
+    private static Map<Integer,Integer> loadDependencies() throws IOException {
+        final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3204_GeodeticDatum.txt",
+                Integer.class, null, null, null, null, null, null, String.class);
+        final Map<Integer,Integer> dependencies = new HashMap<>();
+        while (data.next()) {
+            final int[] codes = data.getInts(7);
+            if (codes.length == 1) {
+                assertNull(dependencies.put(data.getInt(0), codes[0]));
+            }
+        }
+        return dependencies;
+    }
+
+    /**
      * Generates the code.
      *
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
+        // EPSG definitions
+        final Map<Integer,Integer> datumsEPSG = loadDependencies();
+
+        // GIGS definitions
         final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3205_GeodeticCRS.txt",
                 Integer.class,      // [ 0]: GIGS Geodetic CRS Code
                 String .class,      // [ 1]: GIGS Geodetic CRS Definition Source
@@ -66,29 +104,45 @@ public class Test3205 extends TestMethodGenerator {
                 String .class,      // [ 7]: Equivalent EPSG CRS Name(s)
                 Integer.class,      // [ 8]: Early-binding Transformation Code (see GIGS Test Procedure 3208 or 2208)
                 String .class);     // [ 9]: GIGS Remarks
-        while (data.next()) {
-            final int    code             = data.getInt           ( 0);
-            final String name             = data.getString        ( 2);
-            final String geodeticType     = data.getString        ( 3);
-            final int    datumCode        = data.getInt           ( 4);
-            final int    csCode           = data.getInt           ( 5);
-            final String remarks          = data.getString        (9);
 
-            if (!geodeticType.equals("Geographic 2D")) {
+        while (data.next()) {
+            final int              code         = data.getInt    (0);
+            final DefinitionSource source       = data.getSource (1);
+            final String           name         = data.getString (2);
+            final String           geodeticType = data.getString (3);
+            final int              datumCode    = data.getInt    (4);
+            final int              csCode       = data.getInt    (5);
+            final int[]            codeEPSG     = data.getInts   (6);
+            final String[]         nameEPSG     = data.getStrings(7);
+            final String           remarks      = data.getString (9);
+
+            final boolean isGeocentric;
+            if (geodeticType.startsWith("Geographic")) {
+                isGeocentric = false;
+            } else if (geodeticType.equals("Geocentric")) {
+                isGeocentric = true;
+            } else {
+                throw new AssertionError(geodeticType);
+            }
+            /*
+             * TODO: "User Early-Bound" is not yet supported because we do not have the needed API in GeoAPI 3.0.
+             */
+            if (source == DefinitionSource.USER_EARLY_BOUND) {
+                addUnsupportedTest(3205, code, name, "No method in GeoAPI for early-binding.");
                 continue;
             }
-
             out.append('\n');
             indent(1); out.append("/**\n");
-            indent(1); out.append(" * Tests “").append(name).append("” ")
-                    .append(" geographic 2D CRS from the factory.\n");
+            indent(1); out.append(" * Tests “").append(name).append("” ").append(geodeticType).append(" CRS from the factory.\n");
             indent(1); out.append(" *\n");
             final var descriptions = new ArrayList<>(20);
-            descriptions.addAll(Arrays.asList("GIGS geographic 2D CRS code", code,
-                    "GIGS geographic 2D CRS name", replaceAsciiPrimeByUnicode(name)));
-            descriptions.addAll(Arrays.asList("Coordinate System code", csCode,
-                    "Geodetic CRS Type", geodeticType,
-                    "GIGS Datum code", datumCode));
+            descriptions.addAll(Arrays.asList("GIGS CRS code", code,
+                                              "GIGS CRS name", replaceAsciiPrimeByUnicode(name)));
+            addCodesAndNames(descriptions, codeEPSG, nameEPSG);
+            descriptions.addAll(Arrays.asList("Datum definition source", source,
+                                              "Coordinate System code", csCode,
+                                              "Geodetic CRS Type", geodeticType,
+                                              "GIGS Datum code", datumCode));
             printJavadocKeyValues(descriptions.toArray());
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the CRS from the properties.");
@@ -97,13 +151,32 @@ public class Test3205 extends TestMethodGenerator {
              */
             printTestMethodSignature(GIGS, code, name);
             printCallToSetCodeAndName(code, name);
-            indent(2); out.append("createDatum(Test3204::GIGS_").append(datumCode).append(");\n");
-            indent(2); out.append("csCode=").append(csCode).append(";\n");
-            indent(2);
-            out.append("verifyGeographicCRS();\n");
+            indent(2); out.append("createDatum(");
+            if (source == DefinitionSource.LIBRARY) {
+                out.append(toEPSG(datumsEPSG, datumCode)).append(", ");
+            }
+            out.append("Test3204::GIGS_").append(datumCode).append(");\n");
+            indent(2); out.append("csCode = ").append(csCode).append(";\n");
+            if (isGeocentric) {
+                indent(2); out.append("isGeocentric = true;\n");
+            }
+            indent(2); out.append(isGeocentric ? "verifyGeocentricCRS" : "verifyGeographicCRS").append("();\n");
             indent(1); out.append('}');
             saveTestMethod();
         }
         flushAllMethods();
+    }
+
+    /**
+     * Returns the EPSG code associated to the given GIGS code in the map, making sure it is not null.
+     *
+     * @param  codes  the map from which to get the code.
+     * @param  code   GIGS code of the object for which to get the EPSG code.
+     * @return EPSG code for the named object.
+     */
+    private static int toEPSG(final Map<Integer,Integer> codes, final int code) {
+        Integer epsg = codes.get(code);
+        assertNotNull(epsg);
+        return epsg;
     }
 }

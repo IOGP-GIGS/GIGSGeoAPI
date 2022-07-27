@@ -84,6 +84,15 @@ public abstract class IntegrityTest extends ConformanceTest {
     static final TestSuite INJECTION = TestSuite.INSTANCE;
 
     /**
+     * Whether to skip {@link #verifyIdentification(IdentifiedObject, String, String)}.
+     * This flag is set when an object has been created from EPSG factory and we want to validate
+     * its properties using the test designed for a GIGS object. In such case the names do not match:
+     * one object has EPSG name while the other object has GIGS name.
+     * But we still want to compare other properties such as the axis lengths.
+     */
+    boolean skipIdentificationCheck;
+
+    /**
      * Creates a new test.
      */
     IntegrityTest() {
@@ -292,7 +301,7 @@ public abstract class IntegrityTest extends ConformanceTest {
      * @param identifier  the expected identifier code (ignoring code space), or {@code null} if unrestricted.
      */
     final void verifyIdentification(final IdentifiedObject object, final String name, final String identifier) {
-        if (object != null) {
+        if (object != null && !skipIdentificationCheck) {
             if (name != null) {
                 assertUnicodeIdentifierEquals("getName().getCode()", name, getName(object), true);
             }
