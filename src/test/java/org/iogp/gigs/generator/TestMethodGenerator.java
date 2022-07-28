@@ -94,7 +94,7 @@ public abstract class TestMethodGenerator {
          * Retrieves the angular unit (compatible with degrees) of the given name.
          * The returned value is an instance of {@link SexagesimalUnit} or {@code Unit<Angle>}.
          *
-         * @param  name  the unit name.
+         * @param  text  the unit name.
          * @return the angular unit for the given name (never {@code null}).
          */
         public static Object parse(final String text) {

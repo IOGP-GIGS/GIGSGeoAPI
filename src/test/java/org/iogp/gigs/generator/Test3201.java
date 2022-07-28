@@ -36,7 +36,7 @@ import java.io.IOException;
  * @version 1.0
  * @since   1.0
  */
-public class Test3201 extends TestMethodGenerator {
+public final class Test3201 extends TestMethodGenerator {
     /**
      * Launcher.
      *
@@ -45,6 +45,12 @@ public class Test3201 extends TestMethodGenerator {
      */
     public static void main(String[] args) throws IOException {
         new Test3201().run();
+    }
+
+    /**
+     * Creates a new test methods generator.
+     */
+    private Test3201() {
     }
 
     /**

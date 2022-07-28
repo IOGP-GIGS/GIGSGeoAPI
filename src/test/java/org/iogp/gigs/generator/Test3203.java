@@ -48,6 +48,12 @@ public final class Test3203 extends TestMethodGenerator {
     }
 
     /**
+     * Creates a new test methods generator.
+     */
+    private Test3203() {
+    }
+
+    /**
      * Generates the code.
      *
      * @throws IOException if an error occurred while reading the test data.

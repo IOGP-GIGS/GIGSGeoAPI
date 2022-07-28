@@ -39,7 +39,7 @@ import java.util.OptionalInt;
  * @version 1.0
  * @since   1.0
  */
-public class Test3209 extends TestMethodGenerator {
+public final class Test3209 extends TestMethodGenerator {
     /**
      * Launcher.
      *
@@ -48,6 +48,12 @@ public class Test3209 extends TestMethodGenerator {
      */
     public static void main(String[] args) throws IOException {
         new Test3209().run();
+    }
+
+    /**
+     * Creates a new test methods generator.
+     */
+    private Test3209() {
     }
 
     /**

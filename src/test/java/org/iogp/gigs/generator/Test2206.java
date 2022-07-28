@@ -48,7 +48,7 @@ public final class Test2206 extends TestMethodGenerator {
     }
 
     /**
-     * Creates a new generator.
+     * Creates a new test methods generator.
      */
     private Test2206() {
     }

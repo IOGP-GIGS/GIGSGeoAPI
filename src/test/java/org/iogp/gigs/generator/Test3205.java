@@ -45,7 +45,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 1.0
  * @since   1.0
  */
-public class Test3205 extends TestMethodGenerator {
+public final class Test3205 extends TestMethodGenerator {
     /**
      * Launcher.
      *
@@ -57,9 +57,9 @@ public class Test3205 extends TestMethodGenerator {
     }
 
     /**
-     * Creates a new test generator.
+     * Creates a new test methods generator.
      */
-    public Test3205() {
+    private Test3205() {
         libraryFactoryType = DatumAuthorityFactory.class;
         userFactoryType    = DatumFactory.class;
     }

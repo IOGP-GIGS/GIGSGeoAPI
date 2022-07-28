@@ -36,7 +36,13 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 1.0
  * @since   1.0
  */
-public class Series2000Test {
+public final class Series2000Test {
+    /**
+     * Creates a new test case.
+     */
+    public Series2000Test() {
+    }
+
     /**
      * Tests {@link Series2000#toASCII(String)}.
      */

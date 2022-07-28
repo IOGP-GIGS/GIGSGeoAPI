@@ -41,7 +41,7 @@ import java.util.OptionalInt;
  * @version 1.0
  * @since   1.0
  */
-public class Test3206 extends TestMethodGenerator {
+public final class Test3206 extends TestMethodGenerator {
     /**
      * Launcher.
      *
@@ -50,6 +50,12 @@ public class Test3206 extends TestMethodGenerator {
      */
     public static void main(String[] args) throws IOException {
         new Test3206().run();
+    }
+
+    /**
+     * Creates a new test methods generator.
+     */
+    private Test3206() {
     }
 
     /**

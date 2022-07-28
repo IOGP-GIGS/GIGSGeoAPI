@@ -40,6 +40,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public final class DataParserTest {
     /**
+     * Creates a new test case.
+     */
+    public DataParserTest() {
+    }
+
+    /**
      * Tests {@link DataParser#parseRow(String, Class[])}.
      *
      * @throws IOException if an error occurred while parsing the row.

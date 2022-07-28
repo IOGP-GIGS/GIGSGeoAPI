@@ -49,7 +49,7 @@ public final class Test2201 extends TestMethodGenerator {
     }
 
     /**
-     * Creates a new generator.
+     * Creates a new test methods generator.
      */
     private Test2201() {
     }

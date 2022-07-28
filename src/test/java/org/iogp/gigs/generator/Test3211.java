@@ -42,7 +42,7 @@ import java.util.Set;
  * @version 1.0
  * @since   1.0
  */
-public class Test3211 extends TestMethodGenerator {
+public final class Test3211 extends TestMethodGenerator {
     /**
      * Launcher.
      *
@@ -51,6 +51,12 @@ public class Test3211 extends TestMethodGenerator {
      */
     public static void main(String[] args) throws IOException {
         new Test3211().run();
+    }
+
+    /**
+     * Creates a new test methods generator.
+     */
+    private Test3211() {
     }
 
     /**

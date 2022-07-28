@@ -59,9 +59,9 @@ public final class Test3204 extends TestMethodGenerator {
     }
 
     /**
-     * Creates a new test generator.
+     * Creates a new test methods generator.
      */
-    public Test3204() {
+    private Test3204() {
         libraryFactoryType = DatumAuthorityFactory.class;
         userFactoryType    = DatumFactory.class;
     }

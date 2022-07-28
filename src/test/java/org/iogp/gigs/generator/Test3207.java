@@ -38,7 +38,7 @@ import java.util.*;
  * @version 1.0
  * @since   1.0
  */
-public class Test3207 extends TestMethodGenerator {
+public final class Test3207 extends TestMethodGenerator {
     /**
      * Launcher.
      *
@@ -47,6 +47,12 @@ public class Test3207 extends TestMethodGenerator {
      */
     public static void main(String[] args) throws IOException {
         new Test3207().run();
+    }
+
+    /**
+     * Creates a new test methods generator.
+     */
+    private Test3207() {
     }
 
     /**
