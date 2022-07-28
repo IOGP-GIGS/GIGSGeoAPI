@@ -139,13 +139,13 @@ public final class Test3211 extends TestMethodGenerator {
                 descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(codeEPSG.getAsInt(), nameEPSG)));
             }
             printJavadocKeyValues(descriptions.toArray());
-            printParameterTableHeader("Transformation parameters");
+            printJavadocParameterHeader("Transformation parameters");
             printJavadocParameterString(parameter1Name, parameter1Value, parameter1Unit);
             printJavadocParameterString(parameter2Name, parameter2Value, parameter2Unit);
             printJavadocParameterString(parameter3Name, parameter3Value, parameter3Unit);
             printJavadocParameterString(parameter4Name, parameter4Value, parameter4Unit);
             printJavadocParameterString(parameter5Name, parameter5Value, parameter5Unit);
-            printParameterTableFooter();
+            printJavadocParameterFooter();
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the transformation from the properties.");
 
@@ -219,7 +219,7 @@ public final class Test3211 extends TestMethodGenerator {
         if (parameterUnit != null && parameterUnit.equals("NULL")) {
             parameterUnit = null;
         }
-        printParameterTableRow(parameterName, parameterValue, parameterUnit);
+        printJavadocParameterRow(parameterName, Double.valueOf(parameterValue), parameterUnit, Double.NaN);
     }
 
     /**

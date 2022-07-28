@@ -28,6 +28,10 @@ package org.iogp.gigs.generator;
 /**
  * The geodetic CRS types. The name of each enumeration value shall match the name
  * of a {@code AxisDirection[]} constant in {@code org.iogp.gigs.Test2205} class.
+ *
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 1.0
+ * @since   1.0
  */
 public enum GeodeticCrsType {
     /**

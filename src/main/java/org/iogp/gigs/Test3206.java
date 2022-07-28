@@ -24,6 +24,7 @@
  */
 package org.iogp.gigs;
 
+import org.iogp.gigs.internal.geoapi.Pending;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -73,6 +74,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * }
  *
  * @author  Michael Arneson (INT)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0
  */
@@ -151,23 +153,6 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Returns the operation method of the given name. This is a temporary method until
-     * {@code getOperationMethod(…)} is added directly in the {@link CoordinateOperationFactory} interface.
-     *
-     * @param  methodName  name of the operation method to fetch.
-     * @return operation method for the given name.
-     * @throws NoSuchIdentifierException if the given name is not recognized.
-     */
-    private OperationMethod getOperationMethod(final String methodName) throws NoSuchIdentifierException {
-        for (final OperationMethod candidate : mtFactory.getAvailableMethods(SingleOperation.class)) {
-            if (methodName.equalsIgnoreCase(candidate.getName().getCode())) {
-                return candidate;
-            }
-        }
-        throw new NoSuchIdentifierException("Operation method \"" + methodName + "\" not found.", methodName);
-    }
-
-    /**
      * Instantiates the {@link #definition} field.
      * It is caller's responsibility to set the parameter values.
      *
@@ -179,8 +164,8 @@ public class Test3206 extends Series3000<Conversion> {
         /*
          * Get the OperationMethod defined by the library. Libraries are not required
          * to implement every possible operation methods, in which case unimplemented
-         * methods will be reported. If the method is supported, then this method will
-         * verify the following properties:
+         * methods will be reported. If the operation method is supported, then this
+         * Java method will verify the following properties:
          *
          *  - The number of source dimensions
          *  - The number of target dimensions
@@ -190,7 +175,7 @@ public class Test3206 extends Series3000<Conversion> {
          * instances from the given properties.
          */
         try {
-            method = getOperationMethod(methodName);
+            method = Pending.getOperationMethod(mtFactory, methodName);
         } catch (NoSuchIdentifierException e) {
             unsupportedCode(OperationMethod.class, methodName);
             throw e;
@@ -199,8 +184,6 @@ public class Test3206 extends Series3000<Conversion> {
             fail("CoordinateOperationFactory.getOperationMethod(\"" + methodName + "\") shall not return null.");
         }
         validators.validate(method);
-        assertEquals(Integer.valueOf(2), method.getSourceDimensions(), "OperationMethod.getSourceDimensions()");
-        assertEquals(Integer.valueOf(2), method.getTargetDimensions(), "OperationMethod.getTargetDimensions()");
         definition = method.getParameters().createValue();
     }
 
@@ -262,7 +245,7 @@ public class Test3206 extends Series3000<Conversion> {
             for (final GeneralParameterValue info : definition.values()) {
                 final String paramName = getName(info.getDescriptor());
                 if ("semi_major".equalsIgnoreCase(paramName) ||
-                        "semi_minor".equalsIgnoreCase(paramName))
+                    "semi_minor".equalsIgnoreCase(paramName))
                 {
                     /*
                      * Semi-major and semi-minor parameters were part of OGC 01-009 specification.
@@ -283,7 +266,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 1”  conversion from the factory.
+     * Tests “GIGS conversion 1” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65001</b></li>
@@ -293,11 +276,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>3.0°</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>3°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.9996 Unity</td></tr>
-     *   <tr><td>False easting</td><td>500000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>0.0 metre</td></tr>
+     *   <tr><td>False easting</td><td>500000 metres</td></tr>
+     *   <tr><td>False northing</td><td>0 metre</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -317,7 +300,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 10”  conversion from the factory.
+     * Tests “GIGS conversion 10” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65010</b></li>
@@ -327,11 +310,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>21.0°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>1.0 Unity</td></tr>
-     *   <tr><td>False easting</td><td>0.0 metre</td></tr>
-     *   <tr><td>False northing</td><td>0.0 metre</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>21°</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>1 Unity</td></tr>
+     *   <tr><td>False easting</td><td>0 metre</td></tr>
+     *   <tr><td>False northing</td><td>0 metre</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -351,7 +334,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 11”  conversion from the factory.
+     * Tests “GIGS conversion 11” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65011</b></li>
@@ -361,11 +344,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>-90.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>-60.0°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>1.0 Unity</td></tr>
-     *   <tr><td>False easting</td><td>5500000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>0.0 metre</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>-90°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>-60°</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>1 Unity</td></tr>
+     *   <tr><td>False easting</td><td>5500000 metres</td></tr>
+     *   <tr><td>False northing</td><td>0 metre</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -385,7 +368,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 12”  conversion from the factory.
+     * Tests “GIGS conversion 12” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65012</b></li>
@@ -395,10 +378,10 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>-54.0°</td></tr>
-     *   <tr><td>False easting</td><td>5000000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>1.0E7 metres</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>-54°</td></tr>
+     *   <tr><td>False easting</td><td>5000000 metres</td></tr>
+     *   <tr><td>False northing</td><td>10000000 metres</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -417,7 +400,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 13”  conversion from the factory.
+     * Tests “GIGS conversion 13” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65013</b></li>
@@ -426,10 +409,10 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of projection centre</td><td>4.0°</td></tr>
-     *   <tr><td>Longitude of projection centre</td><td>115.0°</td></tr>
-     *   <tr><td>Azimuth of initial line</td><td>53.31580994°</td></tr>
-     *   <tr><td>Angle from Rectified to Skew Grid</td><td>53.13010236°</td></tr>
+     *   <tr><td>Latitude of projection centre</td><td>4°</td></tr>
+     *   <tr><td>Longitude of projection centre</td><td>115°</td></tr>
+     *   <tr><td>Azimuth of initial line</td><td>53°18′56.9158″ (53.31580994°)</td></tr>
+     *   <tr><td>Angle from Rectified to Skew Grid</td><td>53°07′48.3685″ (53.13010236°)</td></tr>
      *   <tr><td>Scale factor on initial line</td><td>0.99984 Unity</td></tr>
      *   <tr><td>Easting at projection centre</td><td>590521.147 metres</td></tr>
      *   <tr><td>Northing at projection centre</td><td>442890.861 metres</td></tr>
@@ -457,7 +440,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 14”  conversion from the factory.
+     * Tests “GIGS conversion 14” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65014</b></li>
@@ -467,13 +450,13 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of projection centre</td><td>4.0°</td></tr>
-     *   <tr><td>Longitude of projection centre</td><td>115.0°</td></tr>
-     *   <tr><td>Azimuth of initial line</td><td>53.31580994°</td></tr>
-     *   <tr><td>Angle from Rectified to Skew Grid</td><td>53.13010236°</td></tr>
+     *   <tr><td>Latitude of projection centre</td><td>4°</td></tr>
+     *   <tr><td>Longitude of projection centre</td><td>115°</td></tr>
+     *   <tr><td>Azimuth of initial line</td><td>53°18′56.9158″ (53.31580994°)</td></tr>
+     *   <tr><td>Angle from Rectified to Skew Grid</td><td>53°07′48.3685″ (53.13010236°)</td></tr>
      *   <tr><td>Scale factor on initial line</td><td>0.99984 Unity</td></tr>
-     *   <tr><td>False easting</td><td>0.0 metre</td></tr>
-     *   <tr><td>False northing</td><td>0.0 metre</td></tr>
+     *   <tr><td>False easting</td><td>0 metre</td></tr>
+     *   <tr><td>False northing</td><td>0 metre</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -495,7 +478,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 15”  conversion from the factory.
+     * Tests “GIGS conversion 15” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65015</b></li>
@@ -505,8 +488,8 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>2.121679722°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>103.4279362°</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>2°07′18.04708″ (2.121679722°)</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>103°25′40.57045″ (103.4279362°)</td></tr>
      *   <tr><td>False easting</td><td>-14810.562 metres</td></tr>
      *   <tr><td>False northing</td><td>8758.32 metres</td></tr>
      * </table>
@@ -527,7 +510,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 16”  conversion from the factory.
+     * Tests “GIGS conversion 16” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65016</b></li>
@@ -537,10 +520,10 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>52.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>10.0°</td></tr>
-     *   <tr><td>False easting</td><td>4321000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>3210000.0 metres</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>52°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>10°</td></tr>
+     *   <tr><td>False easting</td><td>4321000 metres</td></tr>
+     *   <tr><td>False northing</td><td>3210000 metres</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -559,7 +542,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 17”  conversion from the factory.
+     * Tests “GIGS conversion 17” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65017</b></li>
@@ -569,10 +552,10 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of false origin</td><td>40.33333333°</td></tr>
-     *   <tr><td>Longitude of false origin</td><td>-111.5°</td></tr>
-     *   <tr><td>Latitude of 1st standard parallel</td><td>41.78333333°</td></tr>
-     *   <tr><td>Latitude of 2nd standard parallel</td><td>40.71666667°</td></tr>
+     *   <tr><td>Latitude of false origin</td><td>40°20′00″ (40.33333333°)</td></tr>
+     *   <tr><td>Longitude of false origin</td><td>-111°30′00″ (-111.5°)</td></tr>
+     *   <tr><td>Latitude of 1st standard parallel</td><td>41°47′00″ (41.78333333°)</td></tr>
+     *   <tr><td>Latitude of 2nd standard parallel</td><td>40°43′00″ (40.71666667°)</td></tr>
      *   <tr><td>Easting at false origin</td><td>1640419.948 foots</td></tr>
      *   <tr><td>Northing at false origin</td><td>3280839.895 foots</td></tr>
      * </table>
@@ -595,7 +578,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 18”  conversion from the factory.
+     * Tests “GIGS conversion 18” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65018</b></li>
@@ -605,10 +588,10 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of false origin</td><td>40.33333333°</td></tr>
-     *   <tr><td>Longitude of false origin</td><td>-111.5°</td></tr>
-     *   <tr><td>Latitude of 1st standard parallel</td><td>41.78333333°</td></tr>
-     *   <tr><td>Latitude of 2nd standard parallel</td><td>40.71666667°</td></tr>
+     *   <tr><td>Latitude of false origin</td><td>40°20′00″ (40.33333333°)</td></tr>
+     *   <tr><td>Longitude of false origin</td><td>-111°30′00″ (-111.5°)</td></tr>
+     *   <tr><td>Latitude of 1st standard parallel</td><td>41°47′00″ (41.78333333°)</td></tr>
+     *   <tr><td>Latitude of 2nd standard parallel</td><td>40°43′00″ (40.71666667°)</td></tr>
      *   <tr><td>Easting at false origin</td><td>1640416.667 US survey foots</td></tr>
      *   <tr><td>Northing at false origin</td><td>3280833.333 US survey foots</td></tr>
      * </table>
@@ -631,7 +614,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 19”  conversion from the factory.
+     * Tests “GIGS conversion 19” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65019</b></li>
@@ -641,11 +624,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>52.0 grads</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>0.0 grad</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>52 grads</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>0 grad</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.99987742 Unity</td></tr>
-     *   <tr><td>False easting</td><td>600000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>2200000.0 metres</td></tr>
+     *   <tr><td>False easting</td><td>600000 metres</td></tr>
+     *   <tr><td>False northing</td><td>2200000 metres</td></tr>
      * </table>
      *
      * Remarks: Referenced to Paris meridian.
@@ -667,7 +650,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 2”  conversion from the factory.
+     * Tests “GIGS conversion 2” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65002</b></li>
@@ -677,11 +660,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>49.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>-2.0°</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>49°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>-2°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.999601272 Unity</td></tr>
-     *   <tr><td>False easting</td><td>400000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>-100000.0 metres</td></tr>
+     *   <tr><td>False easting</td><td>400000 metres</td></tr>
+     *   <tr><td>False northing</td><td>-100000 metres</td></tr>
      * </table>
      *
      * Remarks: If application is unable to define a TM with origin away from the equator use conversion 65021 and 65022 definitions instead.
@@ -703,7 +686,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 23”  conversion from the factory.
+     * Tests “GIGS conversion 23” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65023</b></li>
@@ -712,11 +695,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>3.0°</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>3°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.9996 Unity</td></tr>
      *   <tr><td>False easting</td><td>1640416.667 US survey foots</td></tr>
-     *   <tr><td>False northing</td><td>0.0 US survey foot</td></tr>
+     *   <tr><td>False northing</td><td>0 US survey foot</td></tr>
      * </table>
      *
      * Remarks: No direct equivalent.
@@ -740,7 +723,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 24”  conversion from the factory.
+     * Tests “GIGS conversion 24” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65024</b></li>
@@ -750,10 +733,10 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of 1st standard parallel</td><td>42.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>51.0°</td></tr>
-     *   <tr><td>False easting</td><td>0.0 metre</td></tr>
-     *   <tr><td>False northing</td><td>0.0 metre</td></tr>
+     *   <tr><td>Latitude of 1st standard parallel</td><td>42°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>51°</td></tr>
+     *   <tr><td>False easting</td><td>0 metre</td></tr>
+     *   <tr><td>False northing</td><td>0 metre</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -772,7 +755,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 25”  conversion from the factory.
+     * Tests “GIGS conversion 25” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65025</b></li>
@@ -781,11 +764,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>46.8°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>2.337229167°</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>46°48′00″ (46.8°)</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>2°20′14.025″ (2.337229167°)</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.99987742 Unity</td></tr>
-     *   <tr><td>False easting</td><td>600000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>2200000.0 metres</td></tr>
+     *   <tr><td>False easting</td><td>600000 metres</td></tr>
+     *   <tr><td>False northing</td><td>2200000 metres</td></tr>
      * </table>
      *
      * Remarks: No direct EPSG equivalent.
@@ -810,7 +793,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 26”  conversion from the factory.
+     * Tests “GIGS conversion 26” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65026</b></li>
@@ -820,13 +803,13 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of projection centre</td><td>47.1443937°</td></tr>
-     *   <tr><td>Longitude of projection centre</td><td>19.0485718°</td></tr>
-     *   <tr><td>Azimuth of initial line</td><td>90.0°</td></tr>
-     *   <tr><td>Angle from Rectified to Skew Grid</td><td>90.0°</td></tr>
+     *   <tr><td>Latitude of projection centre</td><td>47°08′39.8174″ (47.1443937°)</td></tr>
+     *   <tr><td>Longitude of projection centre</td><td>19°02′54.8584″ (19.0485718°)</td></tr>
+     *   <tr><td>Azimuth of initial line</td><td>90°00′00″ (90°)</td></tr>
+     *   <tr><td>Angle from Rectified to Skew Grid</td><td>90°00′00″ (90°)</td></tr>
      *   <tr><td>Scale factor on initial line</td><td>0.99993 Unity</td></tr>
-     *   <tr><td>Easting at projection centre</td><td>650000.0 metres</td></tr>
-     *   <tr><td>Northing at projection centre</td><td>200000.0 metres</td></tr>
+     *   <tr><td>Easting at projection centre</td><td>650000 metres</td></tr>
+     *   <tr><td>Northing at projection centre</td><td>200000 metres</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -848,7 +831,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 27”  conversion from the factory.
+     * Tests “GIGS conversion 27” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65027</b></li>
@@ -858,11 +841,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>110.0°</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>110°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.997 Unity</td></tr>
-     *   <tr><td>False easting</td><td>3900000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>900000.0 metres</td></tr>
+     *   <tr><td>False easting</td><td>3900000 metres</td></tr>
+     *   <tr><td>False northing</td><td>900000 metres</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -882,7 +865,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 28”  conversion from the factory.
+     * Tests “GIGS conversion 28” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65028</b></li>
@@ -892,11 +875,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>-135.0°</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>-135°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.9996 Unity</td></tr>
-     *   <tr><td>False easting</td><td>500000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>0.0 metre</td></tr>
+     *   <tr><td>False easting</td><td>500000 metres</td></tr>
+     *   <tr><td>False northing</td><td>0 metre</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -916,7 +899,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 2 alt A”  conversion from the factory.
+     * Tests “GIGS conversion 2 alt A” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65021</b></li>
@@ -925,10 +908,10 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>-2.0°</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>-2°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.999601272 Unity</td></tr>
-     *   <tr><td>False easting</td><td>400000.0 metres</td></tr>
+     *   <tr><td>False easting</td><td>400000 metres</td></tr>
      *   <tr><td>False northing</td><td>-5527462.688 metres</td></tr>
      * </table>
      *
@@ -953,7 +936,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 2 alt B”  conversion from the factory.
+     * Tests “GIGS conversion 2 alt B” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65022</b></li>
@@ -962,10 +945,10 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>-2.0°</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>-2°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.999601272 Unity</td></tr>
-     *   <tr><td>False easting</td><td>400000.0 metres</td></tr>
+     *   <tr><td>False easting</td><td>400000 metres</td></tr>
      *   <tr><td>False northing</td><td>-5527063.816 metres</td></tr>
      * </table>
      *
@@ -990,7 +973,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 4”  conversion from the factory.
+     * Tests “GIGS conversion 4” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65004</b></li>
@@ -1000,11 +983,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>52.15616056°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>5.387638889°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.9999079 metre</td></tr>
-     *   <tr><td>False easting</td><td>155000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>463000.0 metres</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>52°09′22.178″ (52.15616056°)</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>5°23′15.5″ (5.387638889°)</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.9999079 Unity</td></tr>
+     *   <tr><td>False easting</td><td>155000 metres</td></tr>
+     *   <tr><td>False northing</td><td>463000 metres</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -1017,14 +1000,14 @@ public class Test3206 extends Series3000<Conversion> {
         createDefaultParameters();
         definition.parameter("Latitude of natural origin").setValue(52.15616056, units.degree());
         definition.parameter("Longitude of natural origin").setValue(5.387638889, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.9999079, units.metre());
+        definition.parameter("Scale factor at natural origin").setValue(0.9999079, units.one());
         definition.parameter("False easting").setValue(155000.0, units.metre());
         definition.parameter("False northing").setValue(463000.0, units.metre());
         verifyConversion();
     }
 
     /**
-     * Tests “GIGS conversion 5”  conversion from the factory.
+     * Tests “GIGS conversion 5” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65005</b></li>
@@ -1034,11 +1017,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>3.192280556°</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>3°11′32.21″ (3.192280556°)</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.997 Unity</td></tr>
-     *   <tr><td>False easting</td><td>3900000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>900000.0 metres</td></tr>
+     *   <tr><td>False easting</td><td>3900000 metres</td></tr>
+     *   <tr><td>False northing</td><td>900000 metres</td></tr>
      * </table>
      *
      * Remarks: EPSG 19905 but referenced to Jakarta meridian rather than Greenwich meridian.
@@ -1061,7 +1044,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 6”  conversion from the factory.
+     * Tests “GIGS conversion 6” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65006</b></li>
@@ -1071,10 +1054,10 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of false origin</td><td>90.0°</td></tr>
-     *   <tr><td>Longitude of false origin</td><td>4.367486667°</td></tr>
-     *   <tr><td>Latitude of 1st standard parallel</td><td>51.16666723°</td></tr>
-     *   <tr><td>Latitude of 2nd standard parallel</td><td>49.8333339°</td></tr>
+     *   <tr><td>Latitude of false origin</td><td>90°00′00″</td></tr>
+     *   <tr><td>Longitude of false origin</td><td>4°22′02.952″ (4.367486667°)</td></tr>
+     *   <tr><td>Latitude of 1st standard parallel</td><td>51°10′00.00204″ (51.16666723°)</td></tr>
+     *   <tr><td>Latitude of 2nd standard parallel</td><td>49°50′00.00204″ (49.8333339°)</td></tr>
      *   <tr><td>Easting at false origin</td><td>150000.013 metres</td></tr>
      *   <tr><td>Northing at false origin</td><td>5400088.438 metres</td></tr>
      * </table>
@@ -1097,7 +1080,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 7”  conversion from the factory.
+     * Tests “GIGS conversion 7” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65007</b></li>
@@ -1107,11 +1090,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>141.0°</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>141°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.9996 Unity</td></tr>
-     *   <tr><td>False easting</td><td>500000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>1.0E7 metres</td></tr>
+     *   <tr><td>False easting</td><td>500000 metres</td></tr>
+     *   <tr><td>False northing</td><td>10000000 metres</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -1131,7 +1114,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 8”  conversion from the factory.
+     * Tests “GIGS conversion 8” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65008</b></li>
@@ -1141,11 +1124,11 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of natural origin</td><td>0.0°</td></tr>
-     *   <tr><td>Longitude of natural origin</td><td>147.0°</td></tr>
+     *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of natural origin</td><td>147°</td></tr>
      *   <tr><td>Scale factor at natural origin</td><td>0.9996 Unity</td></tr>
-     *   <tr><td>False easting</td><td>500000.0 metres</td></tr>
-     *   <tr><td>False northing</td><td>1.0E7 metres</td></tr>
+     *   <tr><td>False easting</td><td>500000 metres</td></tr>
+     *   <tr><td>False northing</td><td>10000000 metres</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.
@@ -1165,7 +1148,7 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Tests “GIGS conversion 9”  conversion from the factory.
+     * Tests “GIGS conversion 9” conversion from the factory.
      *
      * <ul>
      *   <li>GIGS conversion code: <b>65009</b></li>
@@ -1175,12 +1158,12 @@ public class Test3206 extends Series3000<Conversion> {
      * <table class="ogc">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Latitude of false origin</td><td>0.0°</td></tr>
-     *   <tr><td>Longitude of false origin</td><td>132.0°</td></tr>
-     *   <tr><td>Latitude of 1st standard parallel</td><td>-18.0°</td></tr>
-     *   <tr><td>Latitude of 2nd standard parallel</td><td>-36.0°</td></tr>
-     *   <tr><td>Easting at false origin</td><td>0.0 metre</td></tr>
-     *   <tr><td>Northing at false origin</td><td>0.0 metre</td></tr>
+     *   <tr><td>Latitude of false origin</td><td>0°</td></tr>
+     *   <tr><td>Longitude of false origin</td><td>132°</td></tr>
+     *   <tr><td>Latitude of 1st standard parallel</td><td>-18°</td></tr>
+     *   <tr><td>Latitude of 2nd standard parallel</td><td>-36°</td></tr>
+     *   <tr><td>Easting at false origin</td><td>0 metre</td></tr>
+     *   <tr><td>Northing at false origin</td><td>0 metre</td></tr>
      * </table>
      *
      * @throws FactoryException if an error occurred while creating the conversion from the properties.

@@ -166,7 +166,7 @@ public final class Test3208 extends TestMethodGenerator {
                 descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(codeEPSG.getAsInt(), nameEPSG)));
             }
             printJavadocKeyValues(descriptions.toArray());
-            printParameterTableHeader("Transformation parameters");
+            printJavadocParameterHeader("Transformation parameters");
             printJavadocParameterString(parameter1Name, parameter1Value, parameter1Unit, parameter1ValueInDegrees);
             printJavadocParameterString(parameter2Name, parameter2Value, parameter2Unit);
             printJavadocParameterString(parameter3Name, parameter3Value, parameter3Unit);
@@ -177,7 +177,7 @@ public final class Test3208 extends TestMethodGenerator {
             printJavadocParameterString(parameter8Name, parameter8Value, parameter8Unit);
             printJavadocParameterString(parameter9Name, parameter9Value, parameter9Unit);
             printJavadocParameterString(parameter10Name, parameter10Value, parameter10Unit);
-            printParameterTableFooter();
+            printJavadocParameterFooter();
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the transformation from the properties.");
 
@@ -256,13 +256,13 @@ public final class Test3208 extends TestMethodGenerator {
             return;
         }
         if (parameterUnit != null && parameterUnit.equals("sexagesimal DMS") && parameterValueAsDec != null && parameterValueAsDec.length > 0) {
-            printParameterTableRow(parameterName, parameterValueAsDec[0], "degree");
+            printJavadocParameterRow(parameterName, Double.valueOf(parameterValueAsDec[0]), "degree", Double.NaN);
             return;
         }
         if (parameterUnit != null && parameterUnit.equals("NULL")) {
             parameterUnit = null;
         }
-        printParameterTableRow(parameterName, parameterValue, parameterUnit);
+        printJavadocParameterRow(parameterName, Double.valueOf(parameterValue), parameterUnit, Double.NaN);
     }
 
     /**
