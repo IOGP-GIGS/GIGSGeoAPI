@@ -54,49 +54,6 @@ public final class Test2205 extends TestMethodGenerator {
     }
 
     /**
-     * The geodetic CRS types. The name of each enumeration value shall match the name
-     * of a {@code AxisDirection[]} constant in {@code org.iogp.gigs.Test2205} class.
-     */
-    private enum Type {
-        /**
-         * Possible value in the "type" column of CSV file.
-         */
-        GEOGRAPHIC_2D("Geographic 2D"),
-        GEOGRAPHIC_3D("Geographic 3D"),
-        GEOCENTRIC   ("Geocentric");
-
-        /**
-         * The text used in the CSV file for identifying this type.
-         */
-        final String label;
-
-        /**
-         * Creates a new enumeration value.
-         *
-         * @param  label  text used in the CSV file for identifying this type.
-         */
-        private Type(final String label) {
-            this.label = label;
-        }
-
-        /**
-         * Returns the enumeration value for the given type.
-         *
-         * @param  label  the text used in the CSV file for identifying the type.
-         * @return the enumeration value for the given label.
-         * @throws IOException if the given label can not be matched to an enumeration value.
-         */
-        static Type parse(final String label) throws IOException {
-            for (final Type type : values()) {
-                if (type.label.equalsIgnoreCase(label)) {
-                    return type;
-                }
-            }
-            throw new IOException("Unexpected type: " + label);
-        }
-    }
-
-    /**
      * Generates the code.
      *
      * @throws IOException if an error occurred while reading the test data.
@@ -112,13 +69,13 @@ public final class Test2205 extends TestMethodGenerator {
                 String .class);     // [6]: GIGS Remarks
 
         while (data.next()) {
-            final int      code    = data.getInt    (0);
-            final Type     type    = Type.parse(data.getString(1));
-            final String   name    = data.getString (2);
-            final String[] aliases = data.getStrings(3);
-            final int      datum   = data.getInt    (4);
-            final String   extent  = data.getString (5);
-            final String   remarks = data.getString (6);
+            final int             code    = data.getInt    (0);
+            final GeodeticCrsType type    = data.getCrsType(1);
+            final String          name    = data.getString (2);
+            final String[]        aliases = data.getStrings(3);
+            final int             datum   = data.getInt    (4);
+            final String          extent  = data.getString (5);
+            final String          remarks = data.getString (6);
 
             out.append('\n');
             indent(1); out.append("/**\n");
@@ -137,7 +94,7 @@ public final class Test2205 extends TestMethodGenerator {
                                   "name",         name,
                                   "aliases",      aliases,
                                   "datumCode",    datum,
-                                  "isGeocentric", type == Type.GEOCENTRIC);
+                                  "isGeocentric", type == GeodeticCrsType.GEOCENTRIC);
             indent(2); out.append("verifyGeodeticCRS(").append(type.name()).append(");\n");
             printCallToDependencyTest("datumTest", datum);
             indent(1); out.append('}');

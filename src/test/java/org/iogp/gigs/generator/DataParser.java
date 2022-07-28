@@ -311,7 +311,7 @@ final class DataParser {
                 upper = data.indexOf(LIST_ELEMENT_SEPARATOR, lower);
             } while (!stop);
         }
-        return elements.toArray(new String[elements.size()]);
+        return elements.toArray(String[]::new);
     }
 
     /**
@@ -436,6 +436,19 @@ final class DataParser {
      */
     public DefinitionSource getSource(final int column) {
         return DefinitionSource.parse(getString(column));
+    }
+
+    /**
+     * Returns the value in the given column as a geodetic CRS type.
+     *
+     * @param  column  the column from which to get the value.
+     * @return the value in the given column.
+     * @throws NoSuchElementException if there is currently no active row.
+     * @throws IllegalArgumentException if the value in the given column is not a geodetic CRS type.
+     * @throws NullPointerException if there is no value in the given column.
+     */
+    public GeodeticCrsType getCrsType(final int column) {
+        return GeodeticCrsType.parse(getString(column));
     }
 
     /**

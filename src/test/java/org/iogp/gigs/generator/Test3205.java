@@ -109,21 +109,13 @@ public final class Test3205 extends TestMethodGenerator {
             final int              code         = data.getInt    (0);
             final DefinitionSource source       = data.getSource (1);
             final String           name         = data.getString (2);
-            final String           geodeticType = data.getString (3);
+            final GeodeticCrsType  geodeticType = data.getCrsType(3);
             final int              datumCode    = data.getInt    (4);
             final int              csCode       = data.getInt    (5);
             final int[]            codeEPSG     = data.getInts   (6);
             final String[]         nameEPSG     = data.getStrings(7);
             final String           remarks      = data.getString (9);
-
-            final boolean isGeocentric;
-            if (geodeticType.startsWith("Geographic")) {
-                isGeocentric = false;
-            } else if (geodeticType.equals("Geocentric")) {
-                isGeocentric = true;
-            } else {
-                throw new AssertionError(geodeticType);
-            }
+            final boolean          isGeocentric = geodeticType == GeodeticCrsType.GEOCENTRIC;
             /*
              * TODO: "User Early-Bound" is not yet supported because we do not have the needed API in GeoAPI 3.0.
              */

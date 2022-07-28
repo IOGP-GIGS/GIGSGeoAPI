@@ -91,7 +91,7 @@ public enum DefinitionSource {
         if ("Library"         .equalsIgnoreCase(source)) return LIBRARY;
         if ("User"            .equalsIgnoreCase(source)) return USER;
         if ("User Early-Bound".equalsIgnoreCase(source)) return USER_EARLY_BOUND;
-        throw new IllegalArgumentException(source);
+        throw new IllegalArgumentException("Unexpected source: " + source);
     }
 
     /**
