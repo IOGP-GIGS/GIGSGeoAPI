@@ -95,6 +95,9 @@ final class Runner implements TestExecutionListener {
                 final DefaultMutableTreeNode parent = series(model, entry.series);
                 final int index = new Children(parent).insert(entry);
                 model.nodesWereInserted(parent, new int[] {index});
+                if (entry.result.getStatus() != TestExecutionResult.Status.SUCCESSFUL) {
+                    tree.expandPath(new TreePath(new Object[] {model.getRoot(), parent}));
+                }
             });
         }
     }
