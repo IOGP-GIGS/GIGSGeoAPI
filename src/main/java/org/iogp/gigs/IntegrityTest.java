@@ -189,7 +189,7 @@ public abstract class IntegrityTest extends ConformanceTest {
             final double semiMajor, final double inverseFlattening, final Unit<Length> axisUnit)
     {
         if (ellipsoid != null) {
-            if (name != null) {
+            if (name != null && !skipIdentificationCheck) {
                 assertUnicodeIdentifierEquals("Ellipsoid.getName().getCode()", name, getName(ellipsoid), true);
             }
             final Unit<Length> actualUnit = ellipsoid.getAxisUnit();
@@ -228,7 +228,7 @@ public abstract class IntegrityTest extends ConformanceTest {
             final double greenwichLongitude, final Unit<Angle> angularUnit)
     {
         if (primeMeridian != null) {
-            if (name != null) {
+            if (name != null && !skipIdentificationCheck) {
                 assertUnicodeIdentifierEquals("PrimeMeridian.getName().getCode()", name, getName(primeMeridian), true);
             }
             final Unit<Angle> actualUnit = primeMeridian.getAngularUnit();
