@@ -53,7 +53,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * <caption>Test description</caption>
  * <tr>
  *   <th>Test method:</th>
- *   <td>Create user-defined projected CRS.</td>
+ *   <td>Create user-defined transformations.</td>
  * </tr><tr>
  *   <th>Test data:</th>
  *   <td><a href="doc-files/GIGS_3005_userProjection.csv">{@code GIGS_user_3208_CoordTfm.txt}</a>.</td>

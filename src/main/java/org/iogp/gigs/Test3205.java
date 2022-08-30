@@ -25,6 +25,7 @@
 package org.iogp.gigs;
 
 import org.iogp.gigs.internal.geoapi.Configuration;
+import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.referencing.crs.*;
@@ -112,6 +113,11 @@ public class Test3205 extends Series3000<GeodeticCRS> {
     protected final CRSFactory crsFactory;
 
     /**
+     * The factory to use for creating coordinate system instances.
+     */
+    protected final CSFactory csFactory;
+
+    /**
      * Factory to use for building {@link GeodeticDatum} instances, or {@code null} if none.
      * May also be used for building {@link Ellipsoid} and {@link PrimeMeridian} components.
      */
@@ -136,7 +142,7 @@ public class Test3205 extends Series3000<GeodeticCRS> {
     /**
      * The factory to use for creating coordinate system instances.
      */
-    private final EPSGMock epsgFactory;
+    private final PseudoEpsgFactory epsgFactory;
 
     /**
      * Creates a new test using the given factory. If a given factory is {@code null},
@@ -155,7 +161,8 @@ public class Test3205 extends Series3000<GeodeticCRS> {
                     final DatumAuthorityFactory datumAuthorityFactory)
     {
         this.crsFactory            = crsFactory;
-        this.epsgFactory           = new EPSGMock(units, datumFactory, csFactory, validators);
+        this.csFactory             = csFactory;
+        this.epsgFactory           = new PseudoEpsgFactory(units, datumFactory, csFactory, crsFactory, null, null, validators);
         this.datumFactory          = datumFactory;
         this.datumAuthorityFactory = datumAuthorityFactory;
     }
@@ -182,7 +189,7 @@ public class Test3205 extends Series3000<GeodeticCRS> {
     public Configuration configuration() {
         final Configuration op = super.configuration();
         assertNull(op.put(Configuration.Key.crsFactory, crsFactory));
-        assertNull(op.put(Configuration.Key.csFactory, epsgFactory.getCSFactory()));
+        assertNull(op.put(Configuration.Key.csFactory, csFactory));
         assertNull(op.put(Configuration.Key.datumFactory, datumFactory));
         assertNull(op.put(Configuration.Key.datumAuthorityFactory, datumAuthorityFactory));
         return op;

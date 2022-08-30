@@ -661,7 +661,7 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Prints a statement like "{@code CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis(…)}".
+     * Prints a statement like "{@code CoordinateSystemAxis axis1 = createCoordinateSystemAxis(…)}".
      *
      * @param  variable      name of the variable.
      * @param  name          axis name.
@@ -673,7 +673,7 @@ public abstract class TestMethodGenerator {
         Unit<?> parsedUnit = parseUnit(unit);
         indent(2);
         out.append("CoordinateSystemAxis ").append(variable)
-           .append(" = epsgFactory.createCoordinateSystemAxis(\"")
+           .append(" = createCoordinateSystemAxis(\"")
            .append(name).append("\", \"")
            .append(abbreviation).append("\", ")
            .append("AxisDirection.").append(orientation.toUpperCase(Locale.US)).append(", ");

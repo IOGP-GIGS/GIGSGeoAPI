@@ -24,7 +24,6 @@
  */
 package org.iogp.gigs.generator;
 
-import javax.measure.Unit;
 import java.io.IOException;
 import java.util.OptionalInt;
 
@@ -61,8 +60,7 @@ public final class Test3210 extends TestMethodGenerator {
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
-        //use corrected file for now, unit issue https://github.com/IOGP-GIGS/GIGSTestDataset/issues/3 is fixed
-        final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3210_VerticalCRS_corrected.txt",
+        final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3210_VerticalCRS.txt",
                 Integer.class,      // [ 0]: GIGS Vertical CRS Code
                 String .class,      // [ 1]: GIGS Vertical CRS Name
                 Integer.class,      // [ 2]: GIGS Vertical Datum Code (see GIGS Test Procedure 3209)
@@ -116,14 +114,7 @@ public final class Test3210 extends TestMethodGenerator {
 
             indent(2); out.append("createDatum(Test3209::GIGS_").append(datumCode).append(");\n");
 
-            Unit<?> parsedAxis1Unit = parseUnit(axis1Unit);
-            String axis1Direction = getAxisDirection(axis1Orientation);
-            indent(2); out.append("CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis(\"")
-                    .append(axis1Name).append("\", \"")
-                    .append(axis1Abbreviation).append("\", ")
-                    .append(axis1Direction).append(", ");
-            printProgrammaticName(parsedAxis1Unit);
-            out.append(");\n");
+            printAxis("axis1", axis1Name, axis1Abbreviation, axis1Orientation, axis1Unit);
             indent(2); out.append("verticalCS = epsgFactory.createVerticalCS(\"").append(csCode).append("\", axis1);\n");
             indent(2); out.append("verifyVerticalCRS();\n");
             indent(1); out.append('}');

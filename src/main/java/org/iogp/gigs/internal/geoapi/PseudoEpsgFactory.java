@@ -820,22 +820,6 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * Create a coordinate system axis that is used in the creation of a coordinate system.
-     *
-     * @param  name          the coordinate axis name.
-     * @param  abbreviation  the coordinate axis abbreviation.
-     * @param  direction     the axis direction.
-     * @param  unit          the coordinate axis unit.
-     * @return the axis for the given properties.
-     * @throws FactoryException if the object creation failed.
-     */
-    public CoordinateSystemAxis createCoordinateSystemAxis(String name, String abbreviation, AxisDirection direction, Unit<?> unit) throws FactoryException {
-        final Map<String,Object> properties = new HashMap<>(4);
-        assertNull(properties.put(IdentifiedObject.NAME_KEY, name));
-        return csFactory.createCoordinateSystemAxis(properties, abbreviation, direction, unit);
-    }
-
-    /**
      * Returns an {@linkplain Unit unit} from a code.
      *
      * <table class="ogc">

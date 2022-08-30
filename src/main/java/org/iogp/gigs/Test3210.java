@@ -24,7 +24,11 @@
  */
 package org.iogp.gigs;
 
+import java.util.Map;
+import java.util.Collections;
+import javax.measure.Unit;
 import org.iogp.gigs.internal.geoapi.Configuration;
+import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.referencing.crs.CRSFactory;
@@ -36,7 +40,6 @@ import org.opengis.referencing.cs.VerticalCS;
 import org.opengis.referencing.datum.DatumFactory;
 import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.util.FactoryException;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -124,7 +127,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
     /**
      * The factory to use for creating coordinate system instances.
      */
-    private final EPSGMock epsgFactory;
+    private final PseudoEpsgFactory epsgFactory;
 
     /**
      * Creates a new test using the given factory. If a given factory is {@code null},
@@ -135,10 +138,10 @@ public class Test3210 extends Series3000<VerticalCRS> {
      * @param datumFactory  factory for creating {@link VerticalDatum} instances.
      */
     public Test3210(final CSFactory csFactory, final CRSFactory crsFactory, DatumFactory datumFactory) {
-        this.crsFactory = crsFactory;
-        this.csFactory = csFactory;
+        this.crsFactory   = crsFactory;
+        this.csFactory    = csFactory;
         this.datumFactory = datumFactory;
-        this.epsgFactory  = new EPSGMock(units, datumFactory, csFactory, validators);
+        this.epsgFactory  = new PseudoEpsgFactory(units, datumFactory, csFactory, crsFactory, null, null, validators);
     }
 
     /**
@@ -192,6 +195,24 @@ public class Test3210 extends Series3000<VerticalCRS> {
      */
     final void setIdentifiedObject(final VerticalCRS instance) {
         crs = instance;
+    }
+
+    /**
+     * Create a coordinate system axis that is used in the creation of a coordinate system.
+     *
+     * @param  name          the coordinate axis name.
+     * @param  abbreviation  the coordinate axis abbreviation.
+     * @param  direction     the axis direction.
+     * @param  unit          the coordinate axis unit.
+     * @return the axis for the given properties.
+     * @throws FactoryException if the object creation failed.
+     */
+    public CoordinateSystemAxis createCoordinateSystemAxis(final String name, final String abbreviation,
+            final AxisDirection direction, final Unit<?> unit) throws FactoryException
+    {
+        return csFactory.createCoordinateSystemAxis(
+                Collections.singletonMap(CoordinateSystemAxis.NAME_KEY, name),
+                abbreviation, direction, unit);
     }
 
     /**
@@ -252,7 +273,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64502() throws FactoryException {
         setCodeAndName(64502, "GIGS vertCRS U1 depth");
         createDatum(Test3209::GIGS_66601);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
         verticalCS = epsgFactory.createVerticalCS("6498", axis1);
         verifyVerticalCRS();
     }
@@ -278,7 +299,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64501() throws FactoryException {
         setCodeAndName(64501, "GIGS vertCRS U1 height");
         createDatum(Test3209::GIGS_66601);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
         verticalCS = epsgFactory.createVerticalCS("6499", axis1);
         verifyVerticalCRS();
     }
@@ -306,7 +327,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64504() throws FactoryException {
         setCodeAndName(64504, "GIGS vertCRS U2 depth");
         createDatum(Test3209::GIGS_66601);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.foot());
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.foot());
         verticalCS = epsgFactory.createVerticalCS("6495", axis1);
         verifyVerticalCRS();
     }
@@ -334,7 +355,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64503() throws FactoryException {
         setCodeAndName(64503, "GIGS vertCRS U2 height");
         createDatum(Test3209::GIGS_66601);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.foot());
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.foot());
         verticalCS = epsgFactory.createVerticalCS("1030", axis1);
         verifyVerticalCRS();
     }
@@ -360,7 +381,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64506() throws FactoryException {
         setCodeAndName(64506, "GIGS vertCRS V1 depth");
         createDatum(Test3209::GIGS_66602);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
         verticalCS = epsgFactory.createVerticalCS("6498", axis1);
         verifyVerticalCRS();
     }
@@ -386,7 +407,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64505() throws FactoryException {
         setCodeAndName(64505, "GIGS vertCRS V1 height");
         createDatum(Test3209::GIGS_66602);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
         verticalCS = epsgFactory.createVerticalCS("6499", axis1);
         verifyVerticalCRS();
     }
@@ -414,7 +435,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64509() throws FactoryException {
         setCodeAndName(64509, "GIGS vertCRS V2 height");
         createDatum(Test3209::GIGS_66602);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.footSurveyUS());
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.footSurveyUS());
         verticalCS = epsgFactory.createVerticalCS("6497", axis1);
         verifyVerticalCRS();
     }
@@ -440,7 +461,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64508() throws FactoryException {
         setCodeAndName(64508, "GIGS vertCRS W1 depth");
         createDatum(Test3209::GIGS_66603);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
         verticalCS = epsgFactory.createVerticalCS("6498", axis1);
         verifyVerticalCRS();
     }
@@ -466,7 +487,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64507() throws FactoryException {
         setCodeAndName(64507, "GIGS vertCRS W1 height");
         createDatum(Test3209::GIGS_66603);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
         verticalCS = epsgFactory.createVerticalCS("6499", axis1);
         verifyVerticalCRS();
     }
