@@ -200,7 +200,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
     /**
      * Creates a vertical coordinate system from a code and verify that it got the expected axes.
      *
-     * @param  code  EPSG code of the Cartesian coordiante system to create.
+     * @param  code  EPSG code of the Cartesian coordinate system to create.
      * @param  axis  expected axis.
      * @throws FactoryException  if an error occurred while creating the coordinate system.
      */
@@ -232,8 +232,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      *
      * @throws FactoryException if an error occurred while creating the CRS instance.
      */
-    final void verifyVerticalCRS() throws FactoryException
-    {
+    final void verifyVerticalCRS() throws FactoryException {
         if (skipTests) {
             return;
         }
@@ -242,7 +241,6 @@ public class Test3210 extends Series3000<VerticalCRS> {
             assertNotNull(crs, "CRSFactory.createGeographicCRS(…) shall not return null.");
             validators.validate(crs);
             verifyIdentification(crs, getName(), String.valueOf(getCode()));
-
             if (datumTest != null) {
                 datumTest.copyConfigurationFrom(this);
                 datumTest.setIdentifiedObject(datum);
@@ -265,18 +263,19 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
-     * Tests “GIGS vertCRS U1 depth” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS U1 depth” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64502</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS U1 depth</b></li>
      *   <li>EPSG equivalence: <b>5336 – Black Sea depth</b></li>
      *   <li>EPSG coordinate system code: <b>6498</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related depth</b></li>
-     *   <li>Axis 1 abbreviation: <b>D</b></li>
-     *   <li>Axis 1 orientation: <b>down</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
      * </ul>
+     * <table class="ogc">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related depth</td><td>D</td><td>down</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS from the properties.
      */
@@ -291,18 +290,19 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
-     * Tests “GIGS vertCRS U1 height” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS U1 height” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64501</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS U1 height</b></li>
      *   <li>EPSG equivalence: <b>5735 – Black Sea height</b></li>
      *   <li>EPSG coordinate system code: <b>6499</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related height</b></li>
-     *   <li>Axis 1 abbreviation: <b>H</b></li>
-     *   <li>Axis 1 orientation: <b>up</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
      * </ul>
+     * <table class="ogc">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS from the properties.
      */
@@ -317,17 +317,18 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
-     * Tests “GIGS vertCRS U2 depth” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS U2 depth” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64504</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS U2 depth</b></li>
      *   <li>EPSG coordinate system code: <b>6495</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related depth</b></li>
-     *   <li>Axis 1 abbreviation: <b>D</b></li>
-     *   <li>Axis 1 orientation: <b>down</b></li>
-     *   <li>Axis 1 unit: <b>foot</b></li>
      * </ul>
+     * <table class="ogc">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related depth</td><td>D</td><td>down</td><td>foot</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * But would be Black Sea depth (ft).
@@ -345,17 +346,18 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
-     * Tests “GIGS vertCRS U2 height” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS U2 height” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64503</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS U2 height</b></li>
      *   <li>EPSG coordinate system code: <b>1030</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related height</b></li>
-     *   <li>Axis 1 abbreviation: <b>H</b></li>
-     *   <li>Axis 1 orientation: <b>up</b></li>
-     *   <li>Axis 1 unit: <b>foot</b></li>
      * </ul>
+     * <table class="ogc">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>foot</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * But would be Black Sea height (ft).
@@ -373,18 +375,19 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
-     * Tests “GIGS vertCRS V1 depth” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS V1 depth” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64506</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS V1 depth</b></li>
      *   <li>EPSG equivalence: <b>5612 – Baltic 1977 depth</b></li>
      *   <li>EPSG coordinate system code: <b>6498</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related depth</b></li>
-     *   <li>Axis 1 abbreviation: <b>D</b></li>
-     *   <li>Axis 1 orientation: <b>down</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
      * </ul>
+     * <table class="ogc">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related depth</td><td>D</td><td>down</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS from the properties.
      */
@@ -399,18 +402,19 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
-     * Tests “GIGS vertCRS V1 height” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS V1 height” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64505</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS V1 height</b></li>
      *   <li>EPSG equivalence: <b>5705 – Baltic 1977 height</b></li>
      *   <li>EPSG coordinate system code: <b>6499</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related height</b></li>
-     *   <li>Axis 1 abbreviation: <b>H</b></li>
-     *   <li>Axis 1 orientation: <b>up</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
      * </ul>
+     * <table class="ogc">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS from the properties.
      */
@@ -425,17 +429,18 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
-     * Tests “GIGS vertCRS V2 height” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS V2 height” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64509</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS V2 height</b></li>
      *   <li>EPSG coordinate system code: <b>6497</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related height</b></li>
-     *   <li>Axis 1 abbreviation: <b>H</b></li>
-     *   <li>Axis 1 orientation: <b>up</b></li>
-     *   <li>Axis 1 unit: <b>ftUS</b></li>
      * </ul>
+     * <table class="ogc">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>ftUS</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * But would be Baltic 1977 height (ftUS).
@@ -453,18 +458,19 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
-     * Tests “GIGS vertCRS W1 depth” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS W1 depth” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64508</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS W1 depth</b></li>
      *   <li>EPSG equivalence: <b>5706 – Caspian depth</b></li>
      *   <li>EPSG coordinate system code: <b>6498</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related depth</b></li>
-     *   <li>Axis 1 abbreviation: <b>D</b></li>
-     *   <li>Axis 1 orientation: <b>down</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
      * </ul>
+     * <table class="ogc">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related depth</td><td>D</td><td>down</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS from the properties.
      */
@@ -479,18 +485,19 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
-     * Tests “GIGS vertCRS W1 height” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS W1 height” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64507</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS W1 height</b></li>
      *   <li>EPSG equivalence: <b>5611 – Caspian height</b></li>
      *   <li>EPSG coordinate system code: <b>6499</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related height</b></li>
-     *   <li>Axis 1 abbreviation: <b>H</b></li>
-     *   <li>Axis 1 orientation: <b>up</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
      * </ul>
+     * <table class="ogc">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS from the properties.
      */

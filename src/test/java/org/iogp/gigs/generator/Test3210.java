@@ -75,35 +75,31 @@ public final class Test3210 extends TestMethodGenerator {
                 String .class);     // [11]: GIGS Remarks
 
         while (data.next()) {
-            final int         code              = data.getInt        ( 0);
-            final String      name              = data.getString     ( 1);
-            final int         datumCode         = data.getInt        ( 2);
-            final int         csCode            = data.getInt        ( 3);
-            final String      axisName          = data.getString     ( 4);
-            final String      axisAbbreviation  = data.getString     ( 5);
-            final String      axisOrientation   = data.getString     ( 6);
-            final String      axisUnit          = data.getString     ( 7);
-            final OptionalInt optionalCodeEPSG  = data.getIntOptional( 8);
-            final String      nameEPSG          = data.getString     ( 9);
-            final String      remarks           = data.getString     (11);
-
+            final int         code             = data.getInt        ( 0);
+            final String      name             = data.getString     ( 1);
+            final int         datumCode        = data.getInt        ( 2);
+            final int         csCode           = data.getInt        ( 3);
+            final String      axisName         = data.getString     ( 4);
+            final String      axisAbbreviation = data.getString     ( 5);
+            final String      axisOrientation  = data.getString     ( 6);
+            final String      axisUnit         = data.getString     ( 7);
+            final OptionalInt codeEPSG         = data.getIntOptional( 8);
+            final String      nameEPSG         = data.getString     ( 9);
+            final String      remarks          = data.getString     (11);
             /*
              * Write javadoc.
              */
             out.append('\n');
-            out.append('\n');
-            indent(1);
-            out.append("/**\n");
-            indent(1);
-            out.append(" * Tests “").append(name).append("” projected CRS creation from the factory.\n");
-            indent(1);
-            out.append(" *\n");
+            indent(1); out.append("/**\n");
+            indent(1); out.append(" * Tests “").append(name).append("” vertical CRS creation from the factory.\n");
+            indent(1); out.append(" *\n");
             printJavadocKeyValues("GIGS vertical CRS code", code,
                                   "GIGS vertical name", replaceAsciiPrimeByUnicode(name),
-                                  "EPSG equivalence", codeAndName(optionalCodeEPSG, nameEPSG),
+                                  "EPSG equivalence", codeAndName(codeEPSG, nameEPSG),
                                   "EPSG coordinate system code", csCode);
             printJavadocAxisHeader();
             printJavadocAxisRow(axisName, axisAbbreviation, axisOrientation, axisUnit);
+            printJavadocTableFooter();
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the vertical CRS from the properties.");
             /*
@@ -121,27 +117,5 @@ public final class Test3210 extends TestMethodGenerator {
             saveTestMethod();
         }
         flushAllMethods();
-    }
-
-    /**
-     * Returns the axis direction associated with the axis orientation, throws an error if axis orientation is invalid.
-     *
-     * @param  axisOrientation axis orientation specified in the GIGS testing file
-     * @return programmatic string of the axis direction
-     * @throws IllegalArgumentException if axis orientation is invalid
-     */
-    private String getAxisDirection(String axisOrientation) {
-        switch (axisOrientation) {
-            case "up":
-                return "AxisDirection.UP";
-            case "down":
-                return "AxisDirection.DOWN";
-            case "west":
-                return "AxisDirection.WEST";
-            case "south":
-                return "AxisDirection.SOUTH";
-            default:
-                throw new IllegalArgumentException("Invalid axis orientation, " + axisOrientation);
-        }
     }
 }

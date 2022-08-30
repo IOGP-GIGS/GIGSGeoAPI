@@ -292,7 +292,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     /**
      * Creates a Cartesian coordinate system from a code and verify that it got the expected axes.
      *
-     * @param  code   EPSG code of the Cartesian coordiante system to create.
+     * @param  code   EPSG code of the Cartesian coordinate system to create.
      * @param  axis1  first expected axis.
      * @param  axis2  second expected axis.
      * @throws FactoryException  if an error occurred while creating the coordinate system.
