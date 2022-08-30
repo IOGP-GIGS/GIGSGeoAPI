@@ -306,7 +306,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     }
 
     /**
-     * Create a coordinate system axis that is used in the creation of a coordinate system.
+     * Creates a coordinate system axis that is used in the creation of a coordinate system.
      *
      * @param  name          the coordinate axis name.
      * @param  abbreviation  the coordinate axis abbreviation.
@@ -315,26 +315,12 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * @return the axis for the given properties.
      * @throws FactoryException if the object creation failed.
      */
-    public CoordinateSystemAxis createCoordinateSystemAxis(final String name, final String abbreviation,
+    private CoordinateSystemAxis createCoordinateSystemAxis(final String name, final String abbreviation,
             final AxisDirection direction, final Unit<?> unit) throws FactoryException
     {
         return csFactory.createCoordinateSystemAxis(
                 Collections.singletonMap(CoordinateSystemAxis.NAME_KEY, name),
                 abbreviation, direction, unit);
-    }
-
-    /**
-     * Verifies that the given coordinate system axis has the expected values.
-     *
-     * @param expected  expected axis.
-     * @param actual    actual axis.
-     */
-    private static void verifyAxis(final CoordinateSystemAxis expected, final CoordinateSystemAxis actual) {
-        final String name = expected.getName().getCode();
-        assertEquals(name, actual.getName().getCode());
-        assertEquals(expected.getAbbreviation(), actual.getAbbreviation(), name);
-        assertEquals(expected.getDirection(), actual.getDirection(), name);
-        assertEquals(expected.getUnit(), actual.getUnit(), name);
     }
 
     /**

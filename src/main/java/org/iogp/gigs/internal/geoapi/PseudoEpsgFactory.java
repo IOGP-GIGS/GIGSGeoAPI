@@ -693,7 +693,16 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Creates a vertical coordinate system from a code.
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * <table class="ogc">
+     *   <caption>Supported codes</caption>
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>1030</td> <td>Vertical CS. Axis: height (H). Orientation: up. UoM: ft.</td></tr>
+     *   <tr><td>6495</td> <td>Vertical CS. Axis: depth (D). Orientation: down. UoM: ft.</td></tr>
+     *   <tr><td>6497</td> <td>Vertical CS. Axis: height (H). Orientation: up. UoM: ftUS.</td></tr>
+     *   <tr><td>6498</td> <td>Vertical CS. Axis: depth (D). Orientation: down. UoM: m.;</td></tr>
+     *   <tr><td>6499</td> <td>Vertical CS. Axis: height (H). Orientation: up. UoM: m.</td></tr>
+     * </table>
      *
      * @param  code  value allocated by authority.
      * @return the coordinate system for the given code.
@@ -702,30 +711,22 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     @Override
     public VerticalCS createVerticalCS(final String code) throws FactoryException {
         final int id = parseCode(code);
+        final String name;
+        final int axis;
         switch (id) {
+            case 1030: name = "Vertical CS. Axis: height (H). Orientation: up. UoM: ft.";   axis = 1082; break;
+            case 6495: name = "Vertical CS. Axis: depth (D). Orientation: down. UoM: ft.";  axis =  214; break;
+            case 6497: name = "Vertical CS. Axis: height (H). Orientation: up. UoM: ftUS."; axis =  112; break;
+            case 6498: name = "Vertical CS. Axis: depth (D). Orientation: down. UoM: m.";   axis =  113; break;
+            case 6499: name = "Vertical CS. Axis: height (H). Orientation: up. UoM: m.";    axis =  114; break;
             default: throw noSuchAuthorityCode(id, code);
         }
-    }
-
-    /**
-     * Creates a vertical coordinate system from the specified coordinate system code and axis.
-     *
-     * @param  code  the code of the coordinate system.
-     * @param  axis  the vertical coordinate system axis.
-     * @throws FactoryException if an error occurred while creating the vertical coordinate system.
-     */
-    public VerticalCS createVerticalCS(final String code, CoordinateSystemAxis axis) throws FactoryException {
-        final int id = parseCode(code);
-        final String name;
-        switch (id) {
-            case 1030: name = "Vertical CS. Axis: height (H). Orientation: up. UoM: ft."; break;
-            case 6495: name = "Vertical CS. Axis: depth (D). Orientation: down. UoM: ft."; break;
-            case 6497: name = "Vertical CS. Axis: height (H). Orientation: up. UoM: ftUS."; break;
-            case 6498: name = "Vertical CS. Axis: depth (D). Orientation: down. UoM: m."; break;
-            case 6499: name = "Vertical CS. Axis: height (H). Orientation: up. UoM: m."; break;
-            default: name = "Vertical CS"; break;
-        }
-        return csFactory.createVerticalCS(createPropertiesMap(id, name), axis);
+        assumeTrue(csFactory != null);
+        final Map<String,?> properties = createPropertiesMap(id, name);
+        final VerticalCS object = csFactory.createVerticalCS(properties,
+                createCoordinateSystemAxis(String.valueOf(axis)));
+        validators.validate(object);
+        return object;
     }
 
     /**
@@ -749,29 +750,34 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
-     *   <tr><th>Code</th>          <th>Name</th>    <th>Abbreviation</th>    <th>Unit</th></tr>
-     *   <tr><td>1, 43</td>         <td>Easting</td>            <td>E</td>    <td>metre</td></tr>
-     *   <tr><td>2, 44</td>         <td>Northing</td>           <td>N</td>    <td>metre</td></tr>
-     *   <tr><td>41, 51</td>        <td>Easting</td>            <td>X</td>    <td>metre</td></tr>
-     *   <tr><td>42, 52</td>        <td>Northing</td>           <td>Y</td>    <td>metre</td></tr>
-     *   <tr><td>39, 47</td>        <td>Easting</td>            <td>Y</td>    <td>metre</td></tr>
-     *   <tr><td>40, 48</td>        <td>Northing</td>           <td>X</td>    <td>metre</td></tr>
-     *   <tr><td>33</td>            <td>Easting</td>            <td>X</td>    <td>foot</td></tr>
-     *   <tr><td>34</td>            <td>Northing</td>           <td>Y</td>    <td>foot</td></tr>
-     *   <tr><td>37</td>            <td>Easting</td>            <td>X</td>    <td>foot US</td></tr>
-     *   <tr><td>38</td>            <td>Northing</td>           <td>Y</td>    <td>foot US</td></tr>
-     *   <tr><td>122</td>           <td>Westing</td>            <td>Y</td>    <td>metre</td></tr>
-     *   <tr><td>123</td>           <td>Southing</td>           <td>X</td>    <td>metre</td></tr>
-     *   <tr><td>183</td>           <td>Northing</td>           <td>none</td> <td>metre</td></tr>
-     *   <tr><td>184</td>           <td>Easting</td>            <td>none</td> <td>metre</td></tr>
-     *   <tr><td>58</td>            <td>Geodetic latitude</td>  <td>Lat</td>  <td>grad</td></tr>
-     *   <tr><td>59</td>            <td>Geodetic longitude</td> <td>Long</td> <td>grad</td></tr>
-     *   <tr><td>106, 108, 221</td> <td>Geodetic latitude</td>  <td>Lat</td>  <td>degree</td></tr>
-     *   <tr><td>107, 109, 220</td> <td>Geodetic longitude</td> <td>Long</td> <td>degree</td></tr>
-     *   <tr><td>110</td>           <td>Ellipsoidal height</td> <td>h</td>    <td>metre</td></tr>
-     *   <tr><td>115</td>           <td>Geocentric X</td>       <td>X</td>    <td>metre</td></tr>
-     *   <tr><td>116</td>           <td>Geocentric Y</td>       <td>Y</td>    <td>metre</td></tr>
-     *   <tr><td>117</td>           <td>Geocentric Z</td>       <td>Z</td>    <td>metre</td></tr>
+     *   <tr><th>Code</th>          <th>Name</th>        <th>Abbreviation</th>    <th>Unit</th></tr>
+     *   <tr><td>1, 43</td>         <td>Easting</td>                <td>E</td>    <td>metre</td></tr>
+     *   <tr><td>2, 44</td>         <td>Northing</td>               <td>N</td>    <td>metre</td></tr>
+     *   <tr><td>41, 51</td>        <td>Easting</td>                <td>X</td>    <td>metre</td></tr>
+     *   <tr><td>42, 52</td>        <td>Northing</td>               <td>Y</td>    <td>metre</td></tr>
+     *   <tr><td>39, 47</td>        <td>Easting</td>                <td>Y</td>    <td>metre</td></tr>
+     *   <tr><td>40, 48</td>        <td>Northing</td>               <td>X</td>    <td>metre</td></tr>
+     *   <tr><td>33</td>            <td>Easting</td>                <td>X</td>    <td>foot</td></tr>
+     *   <tr><td>34</td>            <td>Northing</td>               <td>Y</td>    <td>foot</td></tr>
+     *   <tr><td>37</td>            <td>Easting</td>                <td>X</td>    <td>foot US</td></tr>
+     *   <tr><td>38</td>            <td>Northing</td>               <td>Y</td>    <td>foot US</td></tr>
+     *   <tr><td>122</td>           <td>Westing</td>                <td>Y</td>    <td>metre</td></tr>
+     *   <tr><td>123</td>           <td>Southing</td>               <td>X</td>    <td>metre</td></tr>
+     *   <tr><td>183</td>           <td>Northing</td>               <td>none</td> <td>metre</td></tr>
+     *   <tr><td>184</td>           <td>Easting</td>                <td>none</td> <td>metre</td></tr>
+     *   <tr><td>58</td>            <td>Geodetic latitude</td>      <td>Lat</td>  <td>grad</td></tr>
+     *   <tr><td>59</td>            <td>Geodetic longitude</td>     <td>Long</td> <td>grad</td></tr>
+     *   <tr><td>106, 108, 221</td> <td>Geodetic latitude</td>      <td>Lat</td>  <td>degree</td></tr>
+     *   <tr><td>107, 109, 220</td> <td>Geodetic longitude</td>     <td>Long</td> <td>degree</td></tr>
+     *   <tr><td>110</td>           <td>Ellipsoidal height</td>     <td>h</td>    <td>metre</td></tr>
+     *   <tr><td>115</td>           <td>Geocentric X</td>           <td>X</td>    <td>metre</td></tr>
+     *   <tr><td>116</td>           <td>Geocentric Y</td>           <td>Y</td>    <td>metre</td></tr>
+     *   <tr><td>117</td>           <td>Geocentric Z</td>           <td>Z</td>    <td>metre</td></tr>
+     *   <tr><td>112</td>           <td>Gravity-related height</td> <td>H</td>    <td>foot US</td></tr>
+     *   <tr><td>113</td>           <td>Gravity-related depth</td>  <td>D</td>    <td>metre</td></tr>
+     *   <tr><td>114</td>           <td>Gravity-related height</td> <td>H</td>    <td>metre</td></tr>
+     *   <tr><td>214</td>           <td>Gravity-related depth</td>  <td>D</td>    <td>foot</td></tr>
+     *   <tr><td>1082</td>          <td>Gravity-related height</td> <td>H</td>    <td>foot</td></tr>
      * </table>
      *
      * @param  code  value allocated by authority.
@@ -786,30 +792,35 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         final int unit;
         final int id = parseCode(code);
         switch (id) {
-            case   1: case 43: name="Easting";  abbreviation="E";    direction=AxisDirection.EAST;  unit=9001; break;
-            case   2: case 44: name="Northing"; abbreviation="N";    direction=AxisDirection.NORTH; unit=9001; break;
-            case  41: case 51: name="Easting";  abbreviation="X";    direction=AxisDirection.EAST;  unit=9001; break;
-            case  42: case 52: name="Northing"; abbreviation="Y";    direction=AxisDirection.NORTH; unit=9001; break;
-            case  39: case 47: name="Easting";  abbreviation="Y";    direction=AxisDirection.EAST;  unit=9001; break;
-            case  40: case 48: name="Northing"; abbreviation="X";    direction=AxisDirection.NORTH; unit=9001; break;
-            case  33:          name="Easting";  abbreviation="X";    direction=AxisDirection.EAST;  unit=9002; break;
-            case  34:          name="Northing"; abbreviation="Y";    direction=AxisDirection.NORTH; unit=9002; break;
-            case  37:          name="Easting";  abbreviation="X";    direction=AxisDirection.EAST;  unit=9003; break;
-            case  38:          name="Northing"; abbreviation="Y";    direction=AxisDirection.NORTH; unit=9003; break;
-            case 122:          name="Westing";  abbreviation="Y";    direction=AxisDirection.WEST;  unit=9001; break;
-            case 123:          name="Southing"; abbreviation="X";    direction=AxisDirection.SOUTH; unit=9001; break;
-            case 183:          name="Northing"; abbreviation="none"; direction=AxisDirection.NORTH; unit=9001; break;
-            case 184:          name="Easting";  abbreviation="none"; direction=AxisDirection.EAST;  unit=9001; break;
-            case 108: case 221:
-            case 106: name="Geodetic latitude";  abbreviation="Lat";  direction=AxisDirection.NORTH;        unit=9122; break;
-            case  58: name="Geodetic latitude";  abbreviation="Lat";  direction=AxisDirection.NORTH;        unit=9105; break;
-            case 109: case 220:
-            case 107: name="Geodetic longitude"; abbreviation="Long"; direction=AxisDirection.EAST;         unit=9122; break;
-            case  59: name="Geodetic longitude"; abbreviation="Long"; direction=AxisDirection.EAST;         unit=9105; break;
-            case 110: name="Ellipsoidal height"; abbreviation="h";    direction=AxisDirection.UP;           unit=9001; break;
-            case 115: name="Geocentric X";       abbreviation="X";    direction=AxisDirection.GEOCENTRIC_X; unit=9001; break;
-            case 116: name="Geocentric Y";       abbreviation="Y";    direction=AxisDirection.GEOCENTRIC_Y; unit=9001; break;
-            case 117: name="Geocentric Z";       abbreviation="Z";    direction=AxisDirection.GEOCENTRIC_Z; unit=9001; break;
+            case    1: case 43: name="Easting";  abbreviation="E";    direction=AxisDirection.EAST;  unit=9001; break;
+            case    2: case 44: name="Northing"; abbreviation="N";    direction=AxisDirection.NORTH; unit=9001; break;
+            case   41: case 51: name="Easting";  abbreviation="X";    direction=AxisDirection.EAST;  unit=9001; break;
+            case   42: case 52: name="Northing"; abbreviation="Y";    direction=AxisDirection.NORTH; unit=9001; break;
+            case   39: case 47: name="Easting";  abbreviation="Y";    direction=AxisDirection.EAST;  unit=9001; break;
+            case   40: case 48: name="Northing"; abbreviation="X";    direction=AxisDirection.NORTH; unit=9001; break;
+            case   33:          name="Easting";  abbreviation="X";    direction=AxisDirection.EAST;  unit=9002; break;
+            case   34:          name="Northing"; abbreviation="Y";    direction=AxisDirection.NORTH; unit=9002; break;
+            case   37:          name="Easting";  abbreviation="X";    direction=AxisDirection.EAST;  unit=9003; break;
+            case   38:          name="Northing"; abbreviation="Y";    direction=AxisDirection.NORTH; unit=9003; break;
+            case  122:          name="Westing";  abbreviation="Y";    direction=AxisDirection.WEST;  unit=9001; break;
+            case  123:          name="Southing"; abbreviation="X";    direction=AxisDirection.SOUTH; unit=9001; break;
+            case  183:          name="Northing"; abbreviation="none"; direction=AxisDirection.NORTH; unit=9001; break;
+            case  184:          name="Easting";  abbreviation="none"; direction=AxisDirection.EAST;  unit=9001; break;
+            case  108: case 221:
+            case  106: name="Geodetic latitude";  abbreviation="Lat";  direction=AxisDirection.NORTH;        unit=9122; break;
+            case   58: name="Geodetic latitude";  abbreviation="Lat";  direction=AxisDirection.NORTH;        unit=9105; break;
+            case  109: case 220:
+            case  107: name="Geodetic longitude";     abbreviation="Long"; direction=AxisDirection.EAST;         unit=9122; break;
+            case   59: name="Geodetic longitude";     abbreviation="Long"; direction=AxisDirection.EAST;         unit=9105; break;
+            case  110: name="Ellipsoidal height";     abbreviation="h";    direction=AxisDirection.UP;           unit=9001; break;
+            case  115: name="Geocentric X";           abbreviation="X";    direction=AxisDirection.GEOCENTRIC_X; unit=9001; break;
+            case  116: name="Geocentric Y";           abbreviation="Y";    direction=AxisDirection.GEOCENTRIC_Y; unit=9001; break;
+            case  117: name="Geocentric Z";           abbreviation="Z";    direction=AxisDirection.GEOCENTRIC_Z; unit=9001; break;
+            case  112: name="Gravity-related height"; abbreviation="H";    direction=AxisDirection.UP;           unit=9003; break;
+            case  113: name="Gravity-related depth";  abbreviation="D";    direction=AxisDirection.DOWN;         unit=9001; break;
+            case  114: name="Gravity-related height"; abbreviation="H";    direction=AxisDirection.UP;           unit=9001; break;
+            case  214: name="Gravity-related depth";  abbreviation="D";    direction=AxisDirection.DOWN;         unit=9002; break;
+            case 1082: name="Gravity-related height"; abbreviation="H";    direction=AxisDirection.UP;           unit=9002; break;
             default:  throw noSuchAuthorityCode(id, code);
         }
         assumeTrue(csFactory != null);

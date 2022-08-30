@@ -31,6 +31,7 @@ import org.opengis.util.FactoryException;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.iogp.gigs.internal.geoapi.Configuration;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -191,4 +192,18 @@ public abstract class Series3000<T> extends IntegrityTest {
      * @throws FactoryException if an error occurred while creating the identified object.
      */
     public abstract T getIdentifiedObject() throws FactoryException;
+
+    /**
+     * Verifies that the given coordinate system axis has the expected values.
+     *
+     * @param expected  expected axis.
+     * @param actual    actual axis.
+     */
+    static void verifyAxis(final CoordinateSystemAxis expected, final CoordinateSystemAxis actual) {
+        final String name = expected.getName().getCode();
+        assertEquals(name, actual.getName().getCode());
+        assertEquals(expected.getAbbreviation(), actual.getAbbreviation(), name);
+        assertEquals(expected.getDirection(), actual.getDirection(), name);
+        assertEquals(expected.getUnit(), actual.getUnit(), name);
+    }
 }

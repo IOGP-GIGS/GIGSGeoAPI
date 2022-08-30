@@ -79,10 +79,10 @@ public final class Test3210 extends TestMethodGenerator {
             final String      name              = data.getString     ( 1);
             final int         datumCode         = data.getInt        ( 2);
             final int         csCode            = data.getInt        ( 3);
-            final String      axis1Name         = data.getString     ( 4);
-            final String      axis1Abbreviation = data.getString     ( 5);
-            final String      axis1Orientation  = data.getString     ( 6);
-            final String      axis1Unit         = data.getString     ( 7);
+            final String      axisName          = data.getString     ( 4);
+            final String      axisAbbreviation  = data.getString     ( 5);
+            final String      axisOrientation   = data.getString     ( 6);
+            final String      axisUnit          = data.getString     ( 7);
             final OptionalInt optionalCodeEPSG  = data.getIntOptional( 8);
             final String      nameEPSG          = data.getString     ( 9);
             final String      remarks           = data.getString     (11);
@@ -103,7 +103,7 @@ public final class Test3210 extends TestMethodGenerator {
                                   "EPSG equivalence", codeAndName(optionalCodeEPSG, nameEPSG),
                                   "EPSG coordinate system code", csCode);
             printJavadocAxisHeader();
-            printJavadocAxisRow(axis1Name, axis1Abbreviation, axis1Orientation, axis1Unit);
+            printJavadocAxisRow(axisName, axisAbbreviation, axisOrientation, axisUnit);
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the vertical CRS from the properties.");
             /*
@@ -114,8 +114,8 @@ public final class Test3210 extends TestMethodGenerator {
 
             indent(2); out.append("createDatum(Test3209::GIGS_").append(datumCode).append(");\n");
 
-            printAxis("axis1", axis1Name, axis1Abbreviation, axis1Orientation, axis1Unit);
-            indent(2); out.append("verticalCS = epsgFactory.createVerticalCS(\"").append(csCode).append("\", axis1);\n");
+            printAxis("axis", axisName, axisAbbreviation, axisOrientation, axisUnit);
+            indent(2); out.append("createVerticalCS(").append(csCode).append(", axis);\n");
             indent(2); out.append("verifyVerticalCRS();\n");
             indent(1); out.append('}');
             saveTestMethod();
