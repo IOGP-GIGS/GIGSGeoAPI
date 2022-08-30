@@ -27,9 +27,14 @@ package org.iogp.gigs;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.crs.*;
-import org.opengis.referencing.cs.*;
-import org.opengis.referencing.datum.*;
+import org.opengis.referencing.crs.CRSFactory;
+import org.opengis.referencing.crs.VerticalCRS;
+import org.opengis.referencing.cs.AxisDirection;
+import org.opengis.referencing.cs.CSFactory;
+import org.opengis.referencing.cs.CoordinateSystemAxis;
+import org.opengis.referencing.cs.VerticalCS;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.util.FactoryException;
 import java.util.Map;
 

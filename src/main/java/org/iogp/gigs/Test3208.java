@@ -29,10 +29,17 @@ import org.iogp.gigs.internal.sis.TransformationFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.referencing.crs.*;
+import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.crs.CRSFactory;
+import org.opengis.referencing.crs.GeographicCRS;
 import org.opengis.referencing.cs.CSFactory;
-import org.opengis.referencing.datum.*;
-import org.opengis.referencing.operation.*;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.datum.Ellipsoid;
+import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.referencing.operation.OperationMethod;
+import org.opengis.referencing.operation.Transformation;
 import org.opengis.util.FactoryException;
 import java.util.Map;
 
@@ -272,12 +279,12 @@ public class Test3208 extends Series3000<Transformation> {
 
         if (sourceCRSTest != null) {
             sourceCRSTest.copyConfigurationFrom(this);
-            sourceCRSTest.setIdentifiedObject((GeographicCRS) sourceCRS);
+            sourceCRSTest.setIdentifiedObject(sourceCRS);
             sourceCRSTest.verifyGeographicCRS();
         }
         if (targetCRSTest != null) {
             targetCRSTest.copyConfigurationFrom(this);
-            targetCRSTest.setIdentifiedObject((GeographicCRS) targetCRS);
+            targetCRSTest.setIdentifiedObject(targetCRS);
             targetCRSTest.verifyGeographicCRS();
         }
 
@@ -340,7 +347,7 @@ public class Test3208 extends Series3000<Transformation> {
      * @throws FactoryException  if an error occurred while creating the target CRS.
      */
     private void createTargetCRS(final int code) throws FactoryException {
-        this.targetCRS = this.crsAuthorityFactory.createGeographicCRS(String.valueOf(code));
+        this.targetCRS = crsAuthorityFactory.createGeographicCRS(String.valueOf(code));
     }
 
     /**
@@ -367,7 +374,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS A to WGS 84 (1)")
     public void GIGS_61001() throws FactoryException {
         setCodeAndName(61001, "GIGS geogCRS A to WGS 84 (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64003);
@@ -407,7 +414,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS B to GIGS geogCRS A (1)")
     public void GIGS_61196() throws FactoryException {
         setCodeAndName(61196, "GIGS geogCRS B to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64005);
@@ -451,7 +458,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS B to GIGS geogCRS A (2)")
     public void GIGS_61314() throws FactoryException {
         setCodeAndName(61314, "GIGS geogCRS B to GIGS geogCRS A (2)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Position Vector transformation (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64005);
@@ -496,7 +503,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS C to GIGS geogCRS A (1)")
     public void GIGS_61002() throws FactoryException {
         setCodeAndName(61002, "GIGS geogCRS C to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64006);
@@ -540,7 +547,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS C to GIGS geogCRS A (2)")
     public void GIGS_15934() throws FactoryException {
         setCodeAndName(15934, "GIGS geogCRS C to GIGS geogCRS A (2)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Coordinate Frame rotation (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64006);
@@ -593,7 +600,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS C to GIGS geogCRS A (3)")
     public void GIGS_61003() throws FactoryException {
         setCodeAndName(61003, "GIGS geogCRS C to GIGS geogCRS A (3)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Molodensky";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64006);
@@ -640,7 +647,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS E to GIGS geogCRS A (1)")
     public void GIGS_61610() throws FactoryException {
         setCodeAndName(61610, "GIGS geogCRS E to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64008);
@@ -684,7 +691,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS E to GIGS geogCRS A (2)")
     public void GIGS_15929() throws FactoryException {
         setCodeAndName(15929, "GIGS geogCRS E to GIGS geogCRS A (2)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Coordinate Frame rotation (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64008);
@@ -728,7 +735,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS F to GIGS geogCRS A (1)")
     public void GIGS_61150() throws FactoryException {
         setCodeAndName(61150, "GIGS geogCRS F to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64009);
@@ -766,7 +773,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS H to GIGS geogCRS T (1)")
     public void GIGS_61763() throws FactoryException {
         setCodeAndName(61763, "GIGS geogCRS H to GIGS geogCRS T (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Longitude rotation";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64011);
@@ -798,7 +805,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS J to GIGS geogCRS A (1)")
     public void GIGS_61173() throws FactoryException {
         setCodeAndName(61173, "GIGS geogCRS J to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64012);
@@ -839,7 +846,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS J to GIGS geogCRS A (2)")
     public void GIGS_61004() throws FactoryException {
         setCodeAndName(61004, "GIGS geogCRS J to GIGS geogCRS A (2)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "NADCON";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64012);
@@ -872,7 +879,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS J to GIGS geogCRS A (3)")
     public void GIGS_61692() throws FactoryException {
         setCodeAndName(61692, "GIGS geogCRS J to GIGS geogCRS A (3)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "NTv2";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64012);
@@ -904,7 +911,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS K to GIGS geogCRS A (1)")
     public void GIGS_61242() throws FactoryException {
         setCodeAndName(61242, "GIGS geogCRS K to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64015);
@@ -944,7 +951,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS M to GIGS geogCRS A (1)")
     public void GIGS_61275() throws FactoryException {
         setCodeAndName(61275, "GIGS geogCRS M to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64020);
@@ -984,7 +991,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS T to GIGS geogCRS A (1)")
     public void GIGS_61193() throws FactoryException {
         setCodeAndName(61193, "GIGS geogCRS T to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64013);
@@ -1024,7 +1031,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS X to GIGS geogCRS A (1)")
     public void GIGS_15788() throws FactoryException {
         setCodeAndName(15788, "GIGS geogCRS X to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64016);
@@ -1064,7 +1071,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS Y to GIGS geogCRS A (1)")
     public void GIGS_61254() throws FactoryException {
         setCodeAndName(61254, "GIGS geogCRS Y to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64017);
@@ -1104,7 +1111,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS Z to GIGS geogCRS A (1)")
     public void GIGS_61188() throws FactoryException {
         setCodeAndName(61188, "GIGS geogCRS Z to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64018);

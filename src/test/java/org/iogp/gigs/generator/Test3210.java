@@ -26,8 +26,6 @@ package org.iogp.gigs.generator;
 
 import javax.measure.Unit;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.OptionalInt;
 
 
@@ -102,19 +100,12 @@ public final class Test3210 extends TestMethodGenerator {
             out.append(" * Tests “").append(name).append("” projected CRS creation from the factory.\n");
             indent(1);
             out.append(" *\n");
-            final var descriptions = new ArrayList<>(20);
-            descriptions.addAll(Arrays.asList("GIGS vertical CRS code", code,
-                    "GIGS vertical name", replaceAsciiPrimeByUnicode(name)));
-            if (optionalCodeEPSG.isPresent()) {
-                descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(optionalCodeEPSG.getAsInt(), nameEPSG)));
-            }
-            descriptions.addAll(Arrays.asList("EPSG coordinate system code", csCode,
-                    "Axis 1 name", axis1Name,
-                    "Axis 1 abbreviation", axis1Abbreviation,
-                    "Axis 1 orientation", axis1Orientation,
-                    "Axis 1 unit", axis1Unit
-            ));
-            printJavadocKeyValues(descriptions.toArray());
+            printJavadocKeyValues("GIGS vertical CRS code", code,
+                                  "GIGS vertical name", replaceAsciiPrimeByUnicode(name),
+                                  "EPSG equivalence", codeAndName(optionalCodeEPSG, nameEPSG),
+                                  "EPSG coordinate system code", csCode);
+            printJavadocAxisHeader();
+            printJavadocAxisRow(axis1Name, axis1Abbreviation, axis1Orientation, axis1Unit);
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the vertical CRS from the properties.");
             /*

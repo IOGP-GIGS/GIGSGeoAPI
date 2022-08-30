@@ -27,7 +27,9 @@ package org.iogp.gigs;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.datum.*;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.datum.VerticalDatum;
+import org.opengis.referencing.datum.VerticalDatumType;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
 import java.util.Map;
@@ -164,7 +166,7 @@ public class Test3209 extends Series3000<VerticalDatum> {
         }
         final String name   = getName();
         final String code   = getCode();
-        final String origin = (String) properties.get(GeodeticDatum.ANCHOR_POINT_KEY);
+        final String origin = (String) properties.get(VerticalDatum.ANCHOR_POINT_KEY);
         final VerticalDatum datum = getIdentifiedObject();
         assertNotNull(datum, "VerticalDatum");
         validators.validate(datum);
@@ -193,7 +195,7 @@ public class Test3209 extends Series3000<VerticalDatum> {
     @DisplayName("GIGS vertical datum U")
     public void GIGS_66601() throws FactoryException {
         setCodeAndName(66601, "GIGS vertical datum U");
-        properties.put(Datum.ANCHOR_POINT_KEY, "Origin U");
+        properties.put(VerticalDatum.ANCHOR_POINT_KEY, "Origin U");
         datumType = VerticalDatumType.GEOIDAL;
         verifyVerticalDatum();
     }
@@ -214,7 +216,7 @@ public class Test3209 extends Series3000<VerticalDatum> {
     @DisplayName("GIGS vertical datum V")
     public void GIGS_66602() throws FactoryException {
         setCodeAndName(66602, "GIGS vertical datum V");
-        properties.put(Datum.ANCHOR_POINT_KEY, "Origin V");
+        properties.put(VerticalDatum.ANCHOR_POINT_KEY, "Origin V");
         datumType = VerticalDatumType.GEOIDAL;
         verifyVerticalDatum();
     }
@@ -235,7 +237,7 @@ public class Test3209 extends Series3000<VerticalDatum> {
     @DisplayName("GIGS vertical datum W")
     public void GIGS_66603() throws FactoryException {
         setCodeAndName(66603, "GIGS vertical datum W");
-        properties.put(Datum.ANCHOR_POINT_KEY, "Origin W");
+        properties.put(VerticalDatum.ANCHOR_POINT_KEY, "Origin W");
         datumType = VerticalDatumType.GEOIDAL;
         verifyVerticalDatum();
     }

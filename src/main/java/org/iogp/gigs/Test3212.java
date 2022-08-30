@@ -28,12 +28,16 @@ import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.sis.TransformationFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.crs.*;
+import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.cs.CSFactory;
-import org.opengis.referencing.datum.*;
-import org.opengis.referencing.operation.*;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.operation.ConcatenatedOperation;
+import org.opengis.referencing.operation.CoordinateOperationFactory;
+import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.referencing.operation.Transformation;
 import org.opengis.util.FactoryException;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 

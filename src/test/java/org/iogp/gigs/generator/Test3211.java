@@ -26,8 +26,6 @@ package org.iogp.gigs.generator;
 
 import javax.measure.Unit;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.OptionalInt;
 import java.util.Set;
@@ -132,13 +130,9 @@ public final class Test3211 extends TestMethodGenerator {
                     .append(" transformation from the factory.\n");
             indent(1);
             out.append(" *\n");
-            final var descriptions = new ArrayList<>();
-            descriptions.addAll(Arrays.asList("GIGS transformation code", code,
-                    "EPSG Transformation Method", methodName));
-            if (codeEPSG.isPresent()) {
-                descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(codeEPSG.getAsInt(), nameEPSG)));
-            }
-            printJavadocKeyValues(descriptions.toArray());
+            printJavadocKeyValues("GIGS transformation code", code,
+                                  "EPSG Transformation Method", methodName,
+                                  "EPSG equivalence", codeAndName(codeEPSG, nameEPSG));
             printJavadocParameterHeader("Transformation parameters");
             printJavadocParameterString(parameter1Name, parameter1Value, parameter1Unit);
             printJavadocParameterString(parameter2Name, parameter2Value, parameter2Unit);

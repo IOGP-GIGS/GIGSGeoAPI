@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.OptionalInt;
 import java.util.TreeMap;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
@@ -319,6 +320,17 @@ public abstract class TestMethodGenerator {
      */
     static String codeAndName(final int code, final String name) {
         return code + " – " + name;
+    }
+
+    /**
+     * Returns the code and name on the same line if the code is present.
+     *
+     * @param  code  the authority code to format.
+     * @param  name  the name to format.
+     * @return the (authority, code) tuple, or {@code null} if the EPSG code is absent.
+     */
+    static String codeAndName(final OptionalInt code, final String name) {
+        return code.isPresent() ? codeAndName(code.getAsInt(), name) : null;
     }
 
     /**

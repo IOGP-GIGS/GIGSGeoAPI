@@ -24,8 +24,8 @@
  */
 package org.iogp.gigs.generator;
 
+import java.util.OptionalInt;
 import java.io.IOException;
-import java.util.*;
 
 
 /**
@@ -107,18 +107,13 @@ public final class Test3207 extends TestMethodGenerator {
             indent(1); out.append("/**\n");
             indent(1); out.append(" * Tests “").append(name).append("” projected CRS creation from the factory.\n");
             indent(1); out.append(" *\n");
-            final var descriptions = new ArrayList<>(20);
-            descriptions.addAll(Arrays.asList("GIGS projected CRS code", code,
-                    "GIGS projectedCRS name", replaceAsciiPrimeByUnicode(name)));
-            if (codeEPSG.isPresent()) {
-                descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(codeEPSG.getAsInt(), nameEPSG)));
-            }
-            descriptions.addAll(Arrays.asList("GIGS base CRS code", baseCRSCode,
-                    "GIGS conversion code", conversionCode,
-                    "Conversion definition source", source,
-                    "EPSG coordinate system code", csCode
-            ));
-            printJavadocKeyValues(descriptions.toArray());
+            printJavadocKeyValues("GIGS projected CRS code", code,
+                                  "GIGS projectedCRS name", replaceAsciiPrimeByUnicode(name),
+                                  "EPSG equivalence", codeAndName(codeEPSG, nameEPSG),
+                                  "GIGS base CRS code", baseCRSCode,
+                                  "GIGS conversion code", conversionCode,
+                                  "Conversion definition source", source,
+                                  "EPSG coordinate system code", csCode);
             printJavadocAxisHeader();
             printJavadocAxisRow(axis1Name, axis1Abbreviation, axis1Orientation, axis1Unit);
             printJavadocAxisRow(axis2Name, axis2Abbreviation, axis2Orientation, axis2Unit);

@@ -25,8 +25,6 @@
 package org.iogp.gigs.generator;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.OptionalInt;
 
 
@@ -135,13 +133,9 @@ public final class Test3206 extends TestMethodGenerator {
             indent(1); out.append("/**\n");
             indent(1); out.append(" * Tests “").append(name).append("” conversion from the factory.\n");
             indent(1); out.append(" *\n");
-            final var descriptions = new ArrayList<>();
-            descriptions.addAll(Arrays.asList("GIGS conversion code", code,
-                                              "GIGS conversion name", name));
-            if (codeEPSG.isPresent()) {
-                descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(codeEPSG.getAsInt(), nameEPSG)));
-            }
-            printJavadocKeyValues(descriptions.toArray());
+            printJavadocKeyValues("GIGS conversion code", code,
+                                  "GIGS conversion name", name,
+                                  "EPSG equivalence", codeAndName(codeEPSG, nameEPSG));
             printJavadocParameterHeader("Conversion parameters");
             printJavadocParameterRow(parameter1Name, parameter1Value, parameter1Unit, parameter1ValueInDegrees);
             printJavadocParameterRow(parameter2Name, parameter2Value, parameter2Unit, parameter2ValueInDegrees);

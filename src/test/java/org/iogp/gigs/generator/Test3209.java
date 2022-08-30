@@ -25,8 +25,6 @@
 package org.iogp.gigs.generator;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.OptionalInt;
 
 
@@ -86,14 +84,10 @@ public final class Test3209 extends TestMethodGenerator {
             indent(1); out.append(" * Tests “").append(name).append("” ")
                     .append(" vertical datum from the factory.\n");
             indent(1); out.append(" *\n");
-            final var descriptions = new ArrayList<>();
-            descriptions.addAll(Arrays.asList("GIGS datum code", code,
-                    "GIGS datum name", name,
-                    "Datum Origin", origin));
-            if (codeEPSG.isPresent()) {
-                descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(codeEPSG.getAsInt(), nameEPSG)));
-            }
-            printJavadocKeyValues(descriptions.toArray());
+            printJavadocKeyValues("GIGS datum code", code,
+                                  "GIGS datum name", name,
+                                  "Datum Origin", origin,
+                                  "EPSG equivalence", codeAndName(codeEPSG, nameEPSG));
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the datum from the properties.");
 

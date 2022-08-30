@@ -29,10 +29,15 @@ import org.iogp.gigs.internal.sis.TransformationFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.referencing.crs.*;
+import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.crs.CRSFactory;
+import org.opengis.referencing.crs.VerticalCRS;
 import org.opengis.referencing.cs.CSFactory;
-import org.opengis.referencing.datum.*;
-import org.opengis.referencing.operation.*;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.referencing.operation.OperationMethod;
+import org.opengis.referencing.operation.Transformation;
 import org.opengis.util.FactoryException;
 import java.util.Map;
 
@@ -340,7 +345,7 @@ public class Test3211 extends Series3000<Transformation> {
     @DisplayName("GIGS_61501")
     public void GIGS_61501() throws FactoryException {
         setCodeAndName(61501, "GIGS_61501");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Vertical offset";
         createDefaultParameters();
         createSourceCRS(Test3210::GIGS_64505);
@@ -370,7 +375,7 @@ public class Test3211 extends Series3000<Transformation> {
     @DisplayName("GIGS_61502")
     public void GIGS_61502() throws FactoryException {
         setCodeAndName(61502, "GIGS_61502");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Vertical offset";
         createDefaultParameters();
         createSourceCRS(Test3210::GIGS_64506);
@@ -405,7 +410,7 @@ public class Test3211 extends Series3000<Transformation> {
     @DisplayName("GIGS_61503")
     public void GIGS_61503() throws FactoryException {
         setCodeAndName(61503, "GIGS_61503");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Vertical Offset and Slope";
         createDefaultParameters();
         createSourceCRS(Test3210::GIGS_64501);
@@ -440,7 +445,7 @@ public class Test3211 extends Series3000<Transformation> {
     @DisplayName("GIGS_65400")
     public void GIGS_65400() throws FactoryException {
         setCodeAndName(65400, "GIGS_65400");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Vertical offset";
         createDefaultParameters();
         createSourceCRS(Test3210::GIGS_64505);
@@ -469,7 +474,7 @@ public class Test3211 extends Series3000<Transformation> {
     @DisplayName("GIGS_65438")
     public void GIGS_65438() throws FactoryException {
         setCodeAndName(65438, "GIGS_65438");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Vertical offset";
         createDefaultParameters();
         createSourceCRS(Test3210::GIGS_64505);
@@ -498,7 +503,7 @@ public class Test3211 extends Series3000<Transformation> {
     @DisplayName("GIGS_65440")
     public void GIGS_65440() throws FactoryException {
         setCodeAndName(65440, "GIGS_65440");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Vertical offset";
         createDefaultParameters();
         createSourceCRS(Test3210::GIGS_64506);
@@ -529,7 +534,7 @@ public class Test3211 extends Series3000<Transformation> {
     @DisplayName("GIGS_65441")
     public void GIGS_65441() throws FactoryException {
         setCodeAndName(65441, "GIGS_65441");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Vertical offset";
         createDefaultParameters();
         createSourceCRS(Test3210::GIGS_64506);
@@ -558,7 +563,7 @@ public class Test3211 extends Series3000<Transformation> {
     @DisplayName("GIGS_65447")
     public void GIGS_65447() throws FactoryException {
         setCodeAndName(65447, "GIGS_65447");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Vertical offset";
         createDefaultParameters();
         createSourceCRS(Test3210::GIGS_64505);
