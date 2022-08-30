@@ -150,7 +150,7 @@ public final class Test3206 extends TestMethodGenerator {
             printJavadocParameterRow(parameter5Name, parameter5Value, parameter5Unit, Double.NaN);
             printJavadocParameterRow(parameter6Name, parameter6Value, parameter6Unit, Double.NaN);
             printJavadocParameterRow(parameter7Name, parameter7Value, parameter7Unit, Double.NaN);
-            printJavadocParameterFooter();
+            printJavadocTableFooter();
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the conversion from the properties.");
             /*

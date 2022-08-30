@@ -24,7 +24,6 @@
  */
 package org.iogp.gigs.generator;
 
-import javax.measure.Unit;
 import java.io.IOException;
 import java.util.*;
 
@@ -62,7 +61,7 @@ public final class Test3207 extends TestMethodGenerator {
      */
     private void run() throws IOException {
         //use corrected file for now, unit issue https://github.com/IOGP-GIGS/GIGSTestDataset/issues/2 is fixed
-        final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3207_ProjectedCRS_corrected.txt",
+        final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3207_ProjectedCRS.txt",
                 Integer.class,      // [ 0]: GIGS Projected CRS Code
                 String .class,      // [ 1]: GIGS Projected CRS Definition Source
                 String .class,      // [ 2]: GIGS Projected CRS Name
@@ -82,56 +81,48 @@ public final class Test3207 extends TestMethodGenerator {
                 Integer.class,      // [16]: Equivalent EPSG CRS Code
                 String .class,      // [17]: Equivalent EPSG CRS Name
                 String .class);     // [18]: GIGS Remarks
-        while (data.next()) {
-            final int         code              = data.getInt        ( 0);
-            final String      source            = data.getString     ( 1);
-            final String      name              = data.getString     ( 2);
-            final int         baseCRSCode       = data.getInt        ( 3);
-            final int         conversionCode    = data.getInt        ( 5);
-            final int         csCode            = data.getInt        ( 7);
-            final String      axis1Name         = data.getString     ( 8);
-            final String      axis1Abbreviation = data.getString     ( 9);
-            final String      axis1Orientation  = data.getString     (10);
-            final String      axis1Unit         = data.getString     (11);
-            final String      axis2Name         = data.getString     (12);
-            final String      axis2Abbreviation = data.getString     (13);
-            final String      axis2Orientation  = data.getString     (14);
-            final String      axis2Unit         = data.getString     (15);
-            final OptionalInt optionalCodeEPSG  = data.getIntOptional(16);
-            final String      nameEPSG          = data.getString     (17);
-            final String      remarks           = data.getString     (18);
 
-            final boolean librarySource = "Library".equalsIgnoreCase(source);
+        while (data.next()) {
+            final int              code              = data.getInt        ( 0);
+            final DefinitionSource source            = data.getSource     ( 1);
+            final String           name              = data.getString     ( 2);
+            final int              baseCRSCode       = data.getInt        ( 3);
+            final int              conversionCode    = data.getInt        ( 5);
+            final int              csCode            = data.getInt        ( 7);
+            final String           axis1Name         = data.getString     ( 8);
+            final String           axis1Abbreviation = data.getString     ( 9);
+            final String           axis1Orientation  = data.getString     (10);
+            final String           axis1Unit         = data.getString     (11);
+            final String           axis2Name         = data.getString     (12);
+            final String           axis2Abbreviation = data.getString     (13);
+            final String           axis2Orientation  = data.getString     (14);
+            final String           axis2Unit         = data.getString     (15);
+            final OptionalInt      codeEPSG          = data.getIntOptional(16);
+            final String           nameEPSG          = data.getString     (17);
+            final String           remarks           = data.getString     (18);
             /*
              * Write javadoc.
              */
             out.append('\n');
-            out.append('\n');
-            indent(1);
-            out.append("/**\n");
-            indent(1);
-            out.append(" * Tests “").append(name).append("” projected CRS creation from the factory.\n");
-            indent(1);
-            out.append(" *\n");
+            indent(1); out.append("/**\n");
+            indent(1); out.append(" * Tests “").append(name).append("” projected CRS creation from the factory.\n");
+            indent(1); out.append(" *\n");
             final var descriptions = new ArrayList<>(20);
             descriptions.addAll(Arrays.asList("GIGS projected CRS code", code,
                     "GIGS projectedCRS name", replaceAsciiPrimeByUnicode(name)));
-            if (optionalCodeEPSG.isPresent()) {
-                descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(optionalCodeEPSG.getAsInt(), nameEPSG)));
+            if (codeEPSG.isPresent()) {
+                descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(codeEPSG.getAsInt(), nameEPSG)));
             }
             descriptions.addAll(Arrays.asList("GIGS base CRS code", baseCRSCode,
                     "GIGS conversion code", conversionCode,
-                    "EPSG coordinate system code", csCode,
-                    "Axis 1 name", axis1Name,
-                    "Axis 1 abbreviation", axis1Abbreviation,
-                    "Axis 1 orientation", axis1Orientation,
-                    "Axis 1 unit", axis1Unit,
-                    "Axis 2 name", axis2Name,
-                    "Axis 2 abbreviation", axis2Abbreviation,
-                    "Axis 2 orientation", axis2Orientation,
-                    "Axis 2 unit", axis2Unit
+                    "Conversion definition source", source,
+                    "EPSG coordinate system code", csCode
             ));
             printJavadocKeyValues(descriptions.toArray());
+            printJavadocAxisHeader();
+            printJavadocAxisRow(axis1Name, axis1Abbreviation, axis1Orientation, axis1Unit);
+            printJavadocAxisRow(axis2Name, axis2Abbreviation, axis2Orientation, axis2Unit);
+            printJavadocTableFooter();
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the projected CRS from the properties.");
             /*
@@ -141,61 +132,20 @@ public final class Test3207 extends TestMethodGenerator {
             printCallToSetCodeAndName(code, name);
 
             indent(2); out.append("createBaseCRS(Test3205::GIGS_").append(baseCRSCode).append(");\n");
-            if (librarySource) {
-                indent(2);
-                out.append("createConversion(")
-                   .append(conversionCode).append(");\n");
-
-            } else {
-                indent(2);
-                out.append("createConversion(Test3206::GIGS_")
-                   .append(conversionCode).append(");\n");
+            indent(2); out.append("createConversion(");
+            switch (source) {
+                case LIBRARY: break;
+                case USER:    out.append("Test3206::GIGS_"); break;
+                default:      throw new AssertionError(source);
             }
-            Unit<?> parsedAxis1Unit = parseUnit(axis1Unit);
-            String axis1Direction = getAxisDirection(axis1Orientation);
-            indent(2); out.append("CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis(\"")
-                    .append(axis1Name).append("\", \"")
-                    .append(axis1Abbreviation).append("\", ")
-                    .append(axis1Direction).append(", ");
-            printProgrammaticName(parsedAxis1Unit);
-            out.append(");\n");
-
-            Unit<?> parsedAxis2Unit = parseUnit(axis2Unit);
-            String axis2Direction = getAxisDirection(axis2Orientation);
-            indent(2); out.append("CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis(\"")
-                    .append(axis2Name).append("\", \"")
-                    .append(axis2Abbreviation).append("\", ")
-                    .append(axis2Direction).append(", ");
-            printProgrammaticName(parsedAxis2Unit);
-            out.append(");\n");
-
-            indent(2); out.append("cartesianCS = epsgFactory.createCartesianCS(\"").append(csCode).append("\", axis1, axis2);\n");
+            out.append(conversionCode).append(");\n");
+            printAxis("axis1", axis1Name, axis1Abbreviation, axis1Orientation, axis1Unit);
+            printAxis("axis2", axis2Name, axis2Abbreviation, axis2Orientation, axis2Unit);
+            indent(2); out.append("createCartesianCS(").append(csCode).append(", axis1, axis2);\n");
             indent(2); out.append("verifyProjectedCRS();\n");
             indent(1); out.append('}');
             saveTestMethod();
         }
         flushAllMethods();
-    }
-
-    /**
-     * Returns the axis direction associated with the axis orientation, throws an error if axis orientation is invalid.
-     *
-     * @param  axisOrientation axis orientation specified in the GIGS testing file
-     * @return programmatic string of the axis direction
-     * @throws IllegalArgumentException if axis orientation is invalid
-     */
-    private String getAxisDirection(String axisOrientation) {
-        switch (axisOrientation) {
-            case "north":
-                return "AxisDirection.NORTH";
-            case "east":
-                return "AxisDirection.EAST";
-            case "west":
-                return "AxisDirection.WEST";
-            case "south":
-                return "AxisDirection.SOUTH";
-            default:
-                throw new IllegalArgumentException("Invalid axis orientation, " + axisOrientation);
-        }
     }
 }

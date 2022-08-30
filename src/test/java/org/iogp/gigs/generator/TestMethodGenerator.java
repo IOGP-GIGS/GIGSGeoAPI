@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeMap;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
@@ -411,6 +412,15 @@ public abstract class TestMethodGenerator {
     }
 
     /**
+     * Prints the first lines for the table of axes in Javadoc.
+     */
+    final void printJavadocAxisHeader() {
+        indent(1); out.append(" * <table class=\"ogc\">\n");
+        indent(1); out.append(" *   <caption>Coordinate system axes</caption>\n");
+        indent(1); out.append(" *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>\n");
+    }
+
+    /**
      * Prints the first lines for the table of parameters in Javadoc.
      *
      * @param  caption  the table caption (e.g. "Conversion parameters").
@@ -419,6 +429,25 @@ public abstract class TestMethodGenerator {
         indent(1); out.append(" * <table class=\"ogc\">\n");
         indent(1); out.append(" *   <caption>").append(caption).append("</caption>\n");
         indent(1); out.append(" *   <tr><th>Parameter name</th><th>Value</th></tr>\n");
+    }
+
+    /**
+     * Prints an axis name, abbreviation, orientation and units in Javadoc.
+     *
+     * @param  name          the axis name.
+     * @param  abbreviation  the axis abbreviation.
+     * @param  orientation   the axis orientation.
+     * @param  unit          unit of measurement associated to the axis.
+     *
+     * @see #printParameterString(String, double, String, double)
+     */
+    final void printJavadocAxisRow(final String name, final String abbreviation, final String orientation, final String unit) {
+        indent(1);
+        out.append(" *   <tr><td>").append(name)
+               .append("</td><td>").append(abbreviation)
+               .append("</td><td>").append(orientation)
+               .append("</td><td>").append(unit)
+               .append("</td></tr>\n");
     }
 
     /**
@@ -462,9 +491,9 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Prints the last lines for the table of parameters in Javadoc.
+     * Prints the last lines for the table of axes or parameters in Javadoc.
      */
-    final void printJavadocParameterFooter() {
+    final void printJavadocTableFooter() {
         indent(1); out.append(" * </table>\n");
     }
 
@@ -617,6 +646,27 @@ public abstract class TestMethodGenerator {
         if (value instanceof Boolean)  return (Boolean) value;
         if (value instanceof String[]) return ((String[]) value).length != 0;
         return true;
+    }
+
+    /**
+     * Prints a statement like "{@code CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis(…)}".
+     *
+     * @param  variable      name of the variable.
+     * @param  name          axis name.
+     * @param  abbreviation  axis abbreviation.
+     * @param  orientation   axis orientation.
+     * @param  unit          axis units of measurement.
+     */
+    final void printAxis(final String variable, final String name, final String abbreviation, final String orientation, final String unit) {
+        Unit<?> parsedUnit = parseUnit(unit);
+        indent(2);
+        out.append("CoordinateSystemAxis ").append(variable)
+           .append(" = epsgFactory.createCoordinateSystemAxis(\"")
+           .append(name).append("\", \"")
+           .append(abbreviation).append("\", ")
+           .append("AxisDirection.").append(orientation.toUpperCase(Locale.US)).append(", ");
+        printProgrammaticName(parsedUnit);
+        out.append(");\n");
     }
 
     /**

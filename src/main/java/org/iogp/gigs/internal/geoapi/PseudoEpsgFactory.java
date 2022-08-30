@@ -193,7 +193,10 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
+     * Returns the organization or party responsible for definition and maintenance of the database.
      * The default implementation returns {@code null}.
+     *
+     * @return the organization responsible for definition of the database.
      */
     @Override
     public Citation getAuthority() {
@@ -201,8 +204,11 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
+     * Returns the set of authority codes for objects of the given type.
      * The default implementation returns an empty set.
      *
+     * @param  type  the spatial reference objects type.
+     * @return the set of authority codes for spatial reference objects of the given type.
      * @throws FactoryException if this method can not provide the requested information.
      *
      * @todo Needs to be implemented.
@@ -213,8 +219,12 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
+     * Returns a description of the object corresponding to a code.
      * The default implementation returns {@code null}.
      *
+     * @param  code  value allocated by authority.
+     * @return a description of the object, or {@code null} if the object
+     *         corresponding to the specified {@code code} has no description.
      * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
@@ -223,7 +233,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * Builds a map of properties for a referencing object to be build. The map shall contains
+     * Builds a map of properties for a referencing object to be built. The map shall contain
      * at least the {@link IdentifiedObject#NAME_KEY} identifier associated to the given value.
      * Subclasses can override this method in order to provide more information if they wish.
      *
@@ -501,6 +511,16 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>4400</td> <td>Cartesian 2D CS. Axes: easting, northing (E,N). Orientations: east, north. UoM: m.</td></tr>
+     *   <tr><td>4495</td> <td>Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: ft.</td></tr>
+     *   <tr><td>4497</td> <td>Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: ftUS.</td></tr>
+     *   <tr><td>4498</td> <td>Cartesian 2D CS. Axes: easting, northing (Y,X). Orientations: east, north. UoM: m.</td></tr>
+     *   <tr><td>4499</td> <td>Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: m.</td></tr>
+     *   <tr><td>4500</td> <td>Cartesian 2D CS. Axes: northing, easting (N,E). Orientations: north, east. UoM: m.</td></tr>
+     *   <tr><td>4530</td> <td>Cartesian 2D CS. Axes: northing, easting (X,Y). Orientations: north, east. UoM: m.</td></tr>
+     *   <tr><td>4532</td> <td>Cartesian 2D CS. Axes: northing, easting (Y,X). Orientations: north, east. UoM: m.</td></tr>
+     *   <tr><td>4534</td> <td>Cartesian 2D CS. Axes: northing, easting (no abbrev). Orientations: north, east. UoM: m.</td></tr>
+     *   <tr><td>6503</td> <td>Cartesian 2D CS. Axes: westing, southing (Y,X). Orientations: west, south. UoM: m.</td></tr>
      *   <tr><td>6500</td> <td>Earth centred, earth fixed, righthanded 3D coordinate system,
      *     consisting of 3 orthogonal axes with X and Y axes in the equatorial plane,
      *     positive Z-axis parallel to mean earth rotation axis and pointing towards North Pole.
@@ -514,101 +534,91 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     @Override
     public CartesianCS createCartesianCS(final String code) throws FactoryException {
         final String name;
-        final int axisCode0;
-        final int axisCode1;
-        final int axisCode2;
+        final int[] axes;
         final int id = parseCode(code);
         switch (id) {
+            case 4400: name = "Cartesian 2D CS. Axes: easting, northing (E,N). Orientations: east, north. UoM: m.";       axes = new int[] {  1,   2}; break;
+            case 4495: name = "Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: ft.";      axes = new int[] { 33,  34}; break;
+            case 4497: name = "Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: ftUS.";    axes = new int[] { 37,  38}; break;
+            case 4498: name = "Cartesian 2D CS. Axes: easting, northing (Y,X). Orientations: east, north. UoM: m.";       axes = new int[] { 39,  40}; break;
+            case 4499: name = "Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: m.";       axes = new int[] { 41,  42}; break;
+            case 4500: name = "Cartesian 2D CS. Axes: northing, easting (N,E). Orientations: north, east. UoM: m.";       axes = new int[] { 44,  43}; break;
+            case 4530: name = "Cartesian 2D CS. Axes: northing, easting (X,Y). Orientations: north, east. UoM: m.";       axes = new int[] { 48,  47}; break;
+            case 4532: name = "Cartesian 2D CS. Axes: northing, easting (Y,X). Orientations: north, east. UoM: m.";       axes = new int[] { 52,  51}; break;
+            case 4534: name = "Cartesian 2D CS. Axes: northing, easting (no abbrev). Orientations: north, east. UoM: m."; axes = new int[] {183, 184}; break;
+            case 6503: name = "Cartesian 2D CS. Axes: westing, southing (Y,X). Orientations: west, south. UoM: m.";       axes = new int[] {122, 123}; break;
             case 6500: {
                 name = "Earth centred, earth fixed, righthanded 3D coordinate system, "
                      + "consisting of 3 orthogonal axes with X and Y axes in the equatorial plane, "
                      + "positive Z-axis parallel to mean earth rotation axis and pointing towards North Pole. "
                      + "UoM: m";
-                axisCode0 = 115;        // Geocentric X
-                axisCode1 = 116;        // Geocentric Y
-                axisCode2 = 117;        // Geocentric Z
+                axes = new int[] {115, 116, 117};
                 break;
             }
             default: throw noSuchAuthorityCode(id, code);
         }
         assumeTrue(csFactory != null);
-        final Map<String,?>   properties = createPropertiesMap(id, name);
-        final CoordinateSystemAxis axis0 = createCoordinateSystemAxis(String.valueOf(axisCode0));
-        final CoordinateSystemAxis axis1 = createCoordinateSystemAxis(String.valueOf(axisCode1));
+        final Map<String,?> properties = createPropertiesMap(id, name);
         final CartesianCS object;
-        if (axisCode2 == 0) {
-            object = csFactory.createCartesianCS(properties, axis0, axis1);
+        if (axes.length >= 3) {
+            object = csFactory.createCartesianCS(properties,
+                    createCoordinateSystemAxis(String.valueOf(axes[0])),
+                    createCoordinateSystemAxis(String.valueOf(axes[1])),
+                    createCoordinateSystemAxis(String.valueOf(axes[2])));
         } else {
-            object = csFactory.createCartesianCS(properties, axis0, axis1,
-                    createCoordinateSystemAxis(String.valueOf(axisCode2)));
+            object = csFactory.createCartesianCS(properties,
+                    createCoordinateSystemAxis(String.valueOf(axes[0])),
+                    createCoordinateSystemAxis(String.valueOf(axes[1])));
         }
         validators.validate(object);
         return object;
     }
 
     /**
-     * Creates a cartesian coordinate system from the specified coordinate system code and axis.
-     *
-     * @param  code   the code of the coordinate system
-     * @param  axis1  the first axis
-     * @param  axis2  the second axis
-     * @throws FactoryException if an error occurred while creating the cartesian coordinate system
-     */
-    public CartesianCS createCartesianCS(final String code, CoordinateSystemAxis axis1, CoordinateSystemAxis axis2) throws FactoryException {
-        final int id = parseCode(code);
-        final String name;
-        switch (id) {
-            case 4400: name = "Cartesian 2D CS. Axes: easting, northing (E,N). Orientations: east, north. UoM: m."; break;
-            case 4495: name = "Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: ft."; break;
-            case 4497: name = "Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: ftUS."; break;
-            case 4498: name = "Cartesian 2D CS. Axes: easting, northing (Y,X). Orientations: east, north. UoM: m."; break;
-            case 4499: name = "Cartesian 2D CS. Axes: easting, northing (X,Y). Orientations: east, north. UoM: m."; break;
-            case 4500: name = "Cartesian 2D CS. Axes: northing, easting (N,E). Orientations: north, east. UoM: m."; break;
-            case 4530: name = "Cartesian 2D CS. Axes: northing, easting (X,Y). Orientations: north, east. UoM: m."; break;
-            case 4532: name = "Cartesian 2D CS. Axes: northing, easting (Y,X). Orientations: north, east. UoM: m."; break;
-            case 4534: name = "Cartesian 2D CS. Axes: northing, easting (no abbrev). Orientations: north, east. UoM: m."; break;
-            case 6503: name = "Cartesian 2D CS. Axes: westing, southing (Y,X). Orientations: west, south. UoM: m."; break;
-            default: name = "Cartesian 2D CS"; break;
-        }
-        return csFactory.createCartesianCS(createPropertiesMap(id, name), axis1, axis2);
-    }
-
-    /**
+     * Creates a polar coordinate system from a code.
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public PolarCS createPolarCS(final String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
+            default: throw noSuchAuthorityCode(id, code);
         }
     }
 
     /**
+     * Creates a cylindrical coordinate system from a code.
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public CylindricalCS createCylindricalCS(final String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
+            default: throw noSuchAuthorityCode(id, code);
         }
     }
 
     /**
+     * Creates a spherocal coordinate system from a code.
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public SphericalCS createSphericalCS(final String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
+            default: throw noSuchAuthorityCode(id, code);
         }
     }
 
@@ -631,71 +641,69 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     @Override
     public EllipsoidalCS createEllipsoidalCS(final String code) throws FactoryException {
         final String name;
-        final int axisCode0;
-        final int axisCode1;
-              int axisCode2 = 0;
+        final int[] axes;
         final int id = parseCode(code);
         switch (id) {
             case 6403: {
                 name = "Ellipsoidal 2D CS. Axes: latitude, longitude. "
                      + "Orientations: north, east. "
                      + "UoM: grads. ";
-                axisCode0 = 58;         // Geodetic latitude
-                axisCode1 = 59;         // Geodetic longitude
+                axes = new int[] {58, 59};              // Geodetic latitude, Geodetic longitude
                 break;
             }
             case 6422: {
                 name = "Ellipsoidal 2D CS. Axes: latitude, longitude. "
                      + "Orientations: north, east. "
                      + "UoM: degree";
-                axisCode0 = 106;        // Geodetic latitude
-                axisCode1 = 107;        // Geodetic longitude
+                axes = new int[] {106, 107};            // Geodetic latitude, Geodetic longitude
                 break;
             }
             case 6423: {
                 name = "Ellipsoidal 3D CS. Axes: latitude, longitude, ellipsoidal height. "
                      + "Orientations: north, east, up. "
                      + "UoM: degree, degree, metre.";
-                axisCode0 = 108;        // Geodetic latitude
-                axisCode1 = 109;        // Geodetic longitude
-                axisCode2 = 110;        // Ellipsoidal height
+                axes = new int[] {108, 109, 110};       // Geodetic latitude, Geodetic longitude, Ellipsoidal height
                 break;
             }
             case 6424: {
                 name = "Ellipsoidal 2D CS. Axes: longitude, latitude. "
                      + "Orientations: east, north. "
                      + "UoM: degree";
-                axisCode0 = 220;        // Geodetic longitude
-                axisCode1 = 221;        // Geodetic latitude
+                axes = new int[] {220, 221};            // Geodetic longitude, Geodetic latitude
                 break;
             }
             default: throw noSuchAuthorityCode(id, code);
         }
         assumeTrue(csFactory != null);
-        final Map<String,?>   properties = createPropertiesMap(id, name);
-        final CoordinateSystemAxis axis0 = createCoordinateSystemAxis(String.valueOf(axisCode0));
-        final CoordinateSystemAxis axis1 = createCoordinateSystemAxis(String.valueOf(axisCode1));
+        final Map<String,?> properties = createPropertiesMap(id, name);
         final EllipsoidalCS object;
-        if (axisCode2 == 0) {
-            object = csFactory.createEllipsoidalCS(properties, axis0, axis1);
+        if (axes.length >= 3) {
+            object = csFactory.createEllipsoidalCS(properties,
+                    createCoordinateSystemAxis(String.valueOf(axes[0])),
+                    createCoordinateSystemAxis(String.valueOf(axes[1])),
+                    createCoordinateSystemAxis(String.valueOf(axes[2])));
         } else {
-            object = csFactory.createEllipsoidalCS(properties, axis0, axis1,
-                    createCoordinateSystemAxis(String.valueOf(axisCode2)));
+            object = csFactory.createEllipsoidalCS(properties,
+                    createCoordinateSystemAxis(String.valueOf(axes[0])),
+                    createCoordinateSystemAxis(String.valueOf(axes[1])));
         }
         validators.validate(object);
         return object;
     }
 
     /**
+     * Creates a vertical coordinate system from a code.
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public VerticalCS createVerticalCS(final String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
+            default: throw noSuchAuthorityCode(id, code);
         }
     }
 
@@ -721,8 +729,11 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
+     * Creates a temporal coordinate system from a code.
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
@@ -738,15 +749,29 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
-     *   <tr><th>Code</th>          <th>Name</th>               <th>Unit</th></tr>
-     *   <tr><td>58</td>            <td>Geodetic latitude</td>  <td>grad</td></tr>
-     *   <tr><td>59</td>            <td>Geodetic longitude</td> <td>grad</td></tr>
-     *   <tr><td>106, 108, 221</td> <td>Geodetic latitude</td>  <td>degree</td></tr>
-     *   <tr><td>107, 109, 220</td> <td>Geodetic longitude</td> <td>degree</td></tr>
-     *   <tr><td>110</td>           <td>Ellipsoidal height</td> <td>metre</td></tr>
-     *   <tr><td>115</td>           <td>Geocentric X</td>       <td>metre</td></tr>
-     *   <tr><td>116</td>           <td>Geocentric Y</td>       <td>metre</td></tr>
-     *   <tr><td>117</td>           <td>Geocentric Z</td>       <td>metre</td></tr>
+     *   <tr><th>Code</th>          <th>Name</th>    <th>Abbreviation</th>    <th>Unit</th></tr>
+     *   <tr><td>1, 43</td>         <td>Easting</td>            <td>E</td>    <td>metre</td></tr>
+     *   <tr><td>2, 44</td>         <td>Northing</td>           <td>N</td>    <td>metre</td></tr>
+     *   <tr><td>41, 51</td>        <td>Easting</td>            <td>X</td>    <td>metre</td></tr>
+     *   <tr><td>42, 52</td>        <td>Northing</td>           <td>Y</td>    <td>metre</td></tr>
+     *   <tr><td>39, 47</td>        <td>Easting</td>            <td>Y</td>    <td>metre</td></tr>
+     *   <tr><td>40, 48</td>        <td>Northing</td>           <td>X</td>    <td>metre</td></tr>
+     *   <tr><td>33</td>            <td>Easting</td>            <td>X</td>    <td>foot</td></tr>
+     *   <tr><td>34</td>            <td>Northing</td>           <td>Y</td>    <td>foot</td></tr>
+     *   <tr><td>37</td>            <td>Easting</td>            <td>X</td>    <td>foot US</td></tr>
+     *   <tr><td>38</td>            <td>Northing</td>           <td>Y</td>    <td>foot US</td></tr>
+     *   <tr><td>122</td>           <td>Westing</td>            <td>Y</td>    <td>metre</td></tr>
+     *   <tr><td>123</td>           <td>Southing</td>           <td>X</td>    <td>metre</td></tr>
+     *   <tr><td>183</td>           <td>Northing</td>           <td>none</td> <td>metre</td></tr>
+     *   <tr><td>184</td>           <td>Easting</td>            <td>none</td> <td>metre</td></tr>
+     *   <tr><td>58</td>            <td>Geodetic latitude</td>  <td>Lat</td>  <td>grad</td></tr>
+     *   <tr><td>59</td>            <td>Geodetic longitude</td> <td>Long</td> <td>grad</td></tr>
+     *   <tr><td>106, 108, 221</td> <td>Geodetic latitude</td>  <td>Lat</td>  <td>degree</td></tr>
+     *   <tr><td>107, 109, 220</td> <td>Geodetic longitude</td> <td>Long</td> <td>degree</td></tr>
+     *   <tr><td>110</td>           <td>Ellipsoidal height</td> <td>h</td>    <td>metre</td></tr>
+     *   <tr><td>115</td>           <td>Geocentric X</td>       <td>X</td>    <td>metre</td></tr>
+     *   <tr><td>116</td>           <td>Geocentric Y</td>       <td>Y</td>    <td>metre</td></tr>
+     *   <tr><td>117</td>           <td>Geocentric Z</td>       <td>Z</td>    <td>metre</td></tr>
      * </table>
      *
      * @param  code  value allocated by authority.
@@ -761,6 +786,20 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         final int unit;
         final int id = parseCode(code);
         switch (id) {
+            case   1: case 43: name="Easting";  abbreviation="E";    direction=AxisDirection.EAST;  unit=9001; break;
+            case   2: case 44: name="Northing"; abbreviation="N";    direction=AxisDirection.NORTH; unit=9001; break;
+            case  41: case 51: name="Easting";  abbreviation="X";    direction=AxisDirection.EAST;  unit=9001; break;
+            case  42: case 52: name="Northing"; abbreviation="Y";    direction=AxisDirection.NORTH; unit=9001; break;
+            case  39: case 47: name="Easting";  abbreviation="Y";    direction=AxisDirection.EAST;  unit=9001; break;
+            case  40: case 48: name="Northing"; abbreviation="X";    direction=AxisDirection.NORTH; unit=9001; break;
+            case  33:          name="Easting";  abbreviation="X";    direction=AxisDirection.EAST;  unit=9002; break;
+            case  34:          name="Northing"; abbreviation="Y";    direction=AxisDirection.NORTH; unit=9002; break;
+            case  37:          name="Easting";  abbreviation="X";    direction=AxisDirection.EAST;  unit=9003; break;
+            case  38:          name="Northing"; abbreviation="Y";    direction=AxisDirection.NORTH; unit=9003; break;
+            case 122:          name="Westing";  abbreviation="Y";    direction=AxisDirection.WEST;  unit=9001; break;
+            case 123:          name="Southing"; abbreviation="X";    direction=AxisDirection.SOUTH; unit=9001; break;
+            case 183:          name="Northing"; abbreviation="none"; direction=AxisDirection.NORTH; unit=9001; break;
+            case 184:          name="Easting";  abbreviation="none"; direction=AxisDirection.EAST;  unit=9001; break;
             case 108: case 221:
             case 106: name="Geodetic latitude";  abbreviation="Lat";  direction=AxisDirection.NORTH;        unit=9122; break;
             case  58: name="Geodetic latitude";  abbreviation="Lat";  direction=AxisDirection.NORTH;        unit=9105; break;
@@ -803,6 +842,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>9001</td> <td>metre</td></tr>
+     *   <tr><td>9002</td> <td>foot</td></tr>
+     *   <tr><td>9003</td> <td>foot US survey</td></tr>
      *   <tr><td>9102</td> <td>degree</td></tr>
      *   <tr><td>9105</td> <td>grad</td></tr>
      *   <tr><td>9122</td> <td>degree (supplier to define representation)</td></tr>
@@ -817,6 +858,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         final int id = parseCode(code);
         switch (id) {
             case 9001: return units.metre();
+            case 9002: return units.foot();
+            case 9003: return units.footSurveyUS();
             case 9122: // Fall through
             case 9102: return units.degree();
             case 9105: return units.grad();

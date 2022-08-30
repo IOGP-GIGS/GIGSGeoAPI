@@ -177,7 +177,7 @@ public final class Test3208 extends TestMethodGenerator {
             printJavadocParameterString(parameter8Name, parameter8Value, parameter8Unit);
             printJavadocParameterString(parameter9Name, parameter9Value, parameter9Unit);
             printJavadocParameterString(parameter10Name, parameter10Value, parameter10Unit);
-            printJavadocParameterFooter();
+            printJavadocTableFooter();
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the transformation from the properties.");
 
