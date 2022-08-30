@@ -29,10 +29,21 @@ import org.iogp.gigs.internal.sis.TransformationFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.referencing.crs.*;
+import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.crs.CRSFactory;
+import org.opengis.referencing.crs.GeodeticCRS;
+import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.cs.CSFactory;
-import org.opengis.referencing.datum.*;
-import org.opengis.referencing.operation.*;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.datum.Ellipsoid;
+import org.opengis.referencing.datum.GeodeticDatum;
+import org.opengis.referencing.datum.PrimeMeridian;
+import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.referencing.operation.OperationMethod;
+import org.opengis.referencing.operation.Transformation;
 import org.opengis.util.FactoryException;
 import java.util.Map;
 
@@ -46,10 +57,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * <caption>Test description</caption>
  * <tr>
  *   <th>Test method:</th>
- *   <td>Create user-defined projected CRS.</td>
+ *   <td>Create user-defined transformations.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_3005_userProjection.csv">{@code GIGS_user_3208_CoordTfm.txt}</a>.</td>
  *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/blob/main/GIGSTestDatasetFiles/GIGS%203200%20User-defined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_user_3208_CoordTfm.txt">{@code GIGS_user_3208_CoordTfm.txt}</a>
  * </tr><tr>
  *   <th>Tested API:</th>
@@ -272,12 +282,12 @@ public class Test3208 extends Series3000<Transformation> {
 
         if (sourceCRSTest != null) {
             sourceCRSTest.copyConfigurationFrom(this);
-            sourceCRSTest.setIdentifiedObject((GeographicCRS) sourceCRS);
+            sourceCRSTest.setIdentifiedObject(sourceCRS);
             sourceCRSTest.verifyGeographicCRS();
         }
         if (targetCRSTest != null) {
             targetCRSTest.copyConfigurationFrom(this);
-            targetCRSTest.setIdentifiedObject((GeographicCRS) targetCRS);
+            targetCRSTest.setIdentifiedObject(targetCRS);
             targetCRSTest.verifyGeographicCRS();
         }
 
@@ -340,7 +350,7 @@ public class Test3208 extends Series3000<Transformation> {
      * @throws FactoryException  if an error occurred while creating the target CRS.
      */
     private void createTargetCRS(final int code) throws FactoryException {
-        this.targetCRS = this.crsAuthorityFactory.createGeographicCRS(String.valueOf(code));
+        this.targetCRS = crsAuthorityFactory.createGeographicCRS(String.valueOf(code));
     }
 
     /**
@@ -351,7 +361,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>GIGS transformation name: <b>GIGS geogCRS A to WGS 84 (1)</b></li>
      *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>0 metre</td></tr>
@@ -367,7 +377,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS A to WGS 84 (1)")
     public void GIGS_61001() throws FactoryException {
         setCodeAndName(61001, "GIGS geogCRS A to WGS 84 (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64003);
@@ -393,7 +403,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
      *   <li>EPSG equivalence: <b>1196 – OSGB36 to WGS 84 (2)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>371 metres</td></tr>
@@ -407,7 +417,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS B to GIGS geogCRS A (1)")
     public void GIGS_61196() throws FactoryException {
         setCodeAndName(61196, "GIGS geogCRS B to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64005);
@@ -433,7 +443,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Position Vector 7-param. transformation</b></li>
      *   <li>EPSG equivalence: <b>1314 – OSGB36 to WGS 84 (6)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>446.448 metres</td></tr>
@@ -451,7 +461,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS B to GIGS geogCRS A (2)")
     public void GIGS_61314() throws FactoryException {
         setCodeAndName(61314, "GIGS geogCRS B to GIGS geogCRS A (2)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Position Vector transformation (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64005);
@@ -480,7 +490,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>GIGS transformation name: <b>GIGS geogCRS C to GIGS geogCRS A (1)</b></li>
      *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>593 metres</td></tr>
@@ -496,7 +506,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS C to GIGS geogCRS A (1)")
     public void GIGS_61002() throws FactoryException {
         setCodeAndName(61002, "GIGS geogCRS C to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64006);
@@ -522,7 +532,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Coordinate Frame rotation</b></li>
      *   <li>EPSG equivalence: <b>15934 – Amersfoort to WGS 84 (3)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>565.2369 metres</td></tr>
@@ -540,7 +550,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS C to GIGS geogCRS A (2)")
     public void GIGS_15934() throws FactoryException {
         setCodeAndName(15934, "GIGS geogCRS C to GIGS geogCRS A (2)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Coordinate Frame rotation (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64006);
@@ -569,7 +579,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>GIGS transformation name: <b>GIGS geogCRS C to GIGS geogCRS A (3)</b></li>
      *   <li>EPSG Transformation Method: <b>Molodensky-Badekas 10-parameter transformation</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>593.0297 metres</td></tr>
@@ -593,7 +603,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS C to GIGS geogCRS A (3)")
     public void GIGS_61003() throws FactoryException {
         setCodeAndName(61003, "GIGS geogCRS C to GIGS geogCRS A (3)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Molodensky";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64006);
@@ -626,7 +636,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
      *   <li>EPSG equivalence: <b>1610 – BD72 to WGS 84 (2)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>-125.8 metres</td></tr>
@@ -640,7 +650,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS E to GIGS geogCRS A (1)")
     public void GIGS_61610() throws FactoryException {
         setCodeAndName(61610, "GIGS geogCRS E to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64008);
@@ -666,7 +676,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Coordinate Frame rotation</b></li>
      *   <li>EPSG equivalence: <b>15929 – BD72 to WGS 84 (3)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>-106.8686 metres</td></tr>
@@ -684,7 +694,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS E to GIGS geogCRS A (2)")
     public void GIGS_15929() throws FactoryException {
         setCodeAndName(15929, "GIGS geogCRS E to GIGS geogCRS A (2)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Coordinate Frame rotation (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64008);
@@ -714,7 +724,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
      *   <li>EPSG equivalence: <b>1150 – GDA94 to WGS 84 (1)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>0 metre</td></tr>
@@ -728,7 +738,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS F to GIGS geogCRS A (1)")
     public void GIGS_61150() throws FactoryException {
         setCodeAndName(61150, "GIGS geogCRS F to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64009);
@@ -754,7 +764,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Longitude rotation</b></li>
      *   <li>EPSG equivalence: <b>1763 – NTF (Paris) to NTF (1)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Longitude offset</td><td>2.5969213 grads</td></tr>
@@ -766,7 +776,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS H to GIGS geogCRS T (1)")
     public void GIGS_61763() throws FactoryException {
         setCodeAndName(61763, "GIGS geogCRS H to GIGS geogCRS T (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Longitude rotation";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64011);
@@ -784,7 +794,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
      *   <li>EPSG equivalence: <b>1173 – NAD27 to WGS 84 (4)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>-8 metres</td></tr>
@@ -798,7 +808,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS J to GIGS geogCRS A (1)")
     public void GIGS_61173() throws FactoryException {
         setCodeAndName(61173, "GIGS geogCRS J to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64012);
@@ -823,7 +833,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>GIGS transformation name: <b>GIGS geogCRS J to GIGS geogCRS A (2)</b></li>
      *   <li>EPSG Transformation Method: <b>NADCON</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude difference file</td><td>n_slope.las</td></tr>
@@ -839,7 +849,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS J to GIGS geogCRS A (2)")
     public void GIGS_61004() throws FactoryException {
         setCodeAndName(61004, "GIGS geogCRS J to GIGS geogCRS A (2)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "NADCON";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64012);
@@ -858,7 +868,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>NTv2</b></li>
      *   <li>EPSG equivalence: <b>1692 – NAD27 to WGS 84 (34)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude and longitude difference file</td><td>QUE27-98.gsb</td></tr>
@@ -872,7 +882,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS J to GIGS geogCRS A (3)")
     public void GIGS_61692() throws FactoryException {
         setCodeAndName(61692, "GIGS geogCRS J to GIGS geogCRS A (3)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "NTv2";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64012);
@@ -890,7 +900,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
      *   <li>EPSG equivalence: <b>1242 – HD72 to WGS 84 (4)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>52.17 metres</td></tr>
@@ -904,7 +914,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS K to GIGS geogCRS A (1)")
     public void GIGS_61242() throws FactoryException {
         setCodeAndName(61242, "GIGS geogCRS K to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64015);
@@ -930,7 +940,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
      *   <li>EPSG equivalence: <b>1275 – ED50 to WGS 84 (17)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>-84 metres</td></tr>
@@ -944,7 +954,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS M to GIGS geogCRS A (1)")
     public void GIGS_61275() throws FactoryException {
         setCodeAndName(61275, "GIGS geogCRS M to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64020);
@@ -970,7 +980,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
      *   <li>EPSG equivalence: <b>1193 – NTF to WGS 84 (1)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>-168 metres</td></tr>
@@ -984,7 +994,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS T to GIGS geogCRS A (1)")
     public void GIGS_61193() throws FactoryException {
         setCodeAndName(61193, "GIGS geogCRS T to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64013);
@@ -1010,7 +1020,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
      *   <li>EPSG equivalence: <b>15788 – AGD66 to WGS 84 (16)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>-127.8 metres</td></tr>
@@ -1024,7 +1034,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS X to GIGS geogCRS A (1)")
     public void GIGS_15788() throws FactoryException {
         setCodeAndName(15788, "GIGS geogCRS X to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64016);
@@ -1050,7 +1060,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
      *   <li>EPSG equivalence: <b>1254 – Pulkovo 1942 to WGS 84 (1)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>28 metres</td></tr>
@@ -1064,7 +1074,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS Y to GIGS geogCRS A (1)")
     public void GIGS_61254() throws FactoryException {
         setCodeAndName(61254, "GIGS geogCRS Y to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64017);
@@ -1090,7 +1100,7 @@ public class Test3208 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
      *   <li>EPSG equivalence: <b>1188 – NAD83 to WGS 84 (1)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>X-axis translation</td><td>0 metre</td></tr>
@@ -1104,7 +1114,7 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS Z to GIGS geogCRS A (1)")
     public void GIGS_61188() throws FactoryException {
         setCodeAndName(61188, "GIGS geogCRS Z to GIGS geogCRS A (1)");
-        properties.put(CoordinateOperation.OPERATION_VERSION_KEY, "GIGS Transformation");
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
         methodName = "Geocentric translations (geog2D domain)";
         createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64018);

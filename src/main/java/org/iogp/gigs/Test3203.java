@@ -121,9 +121,10 @@ public class Test3203 extends Series3000<PrimeMeridian> {
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * <p>The coordinate system factory is used only if the test needs a sexagesimal unit,
+     * <h4>Authority factory usage</h4>
+     * The coordinate system factory is used only if the test needs a sexagesimal unit,
      * because the standard {@link javax.measure.spi.SystemOfUnits} API can not create them.
-     * If needed, the EPSG code used is 9110.</p>
+     * If needed, the EPSG code used is 9110.
      *
      * @param datumFactory  factory for creating {@link PrimeMeridian} instances.
      * @param unitFactory   the factory to use for sexagesimal units, or {@code null} if none.

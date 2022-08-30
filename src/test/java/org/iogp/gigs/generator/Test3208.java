@@ -26,7 +26,9 @@ package org.iogp.gigs.generator;
 
 import javax.measure.Unit;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashSet;
+import java.util.OptionalInt;
+import java.util.Set;
 
 
 /**
@@ -61,7 +63,7 @@ public final class Test3208 extends TestMethodGenerator {
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
-        // GIGS crs codes
+        // GIGS CRS codes
         final Set<Integer> crsCodes = loadDependencies("GIGS_user_3205_GeodeticCRS.txt");
 
         final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3208_CoordTfm.txt",
@@ -149,24 +151,19 @@ public final class Test3208 extends TestMethodGenerator {
             final OptionalInt codeEPSG            = data.getIntOptional (39);
             final String nameEPSG                 = data.getString      (40);
             final String remarks                  = data.getString      (41);
-
             /*
              * Write javadoc.
              */
             out.append('\n');
             indent(1); out.append("/**\n");
             indent(1); out.append(" * Tests “").append(name).append("” ")
-                    .append(" transformation from the factory.\n");
+                          .append(" transformation from the factory.\n");
             indent(1); out.append(" *\n");
-            final var descriptions = new ArrayList<>();
-            descriptions.addAll(Arrays.asList("GIGS transformation code", code,
-                    "GIGS transformation name", name,
-                    "EPSG Transformation Method", methodName));
-            if (codeEPSG.isPresent()) {
-                descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(codeEPSG.getAsInt(), nameEPSG)));
-            }
-            printJavadocKeyValues(descriptions.toArray());
-            printParameterTableHeader("Transformation parameters");
+            printJavadocKeyValues("GIGS transformation code", code,
+                                  "GIGS transformation name", name,
+                                  "EPSG Transformation Method", methodName,
+                                  "EPSG equivalence", codeAndName(codeEPSG, nameEPSG));
+            printJavadocParameterHeader("Transformation parameters");
             printJavadocParameterString(parameter1Name, parameter1Value, parameter1Unit, parameter1ValueInDegrees);
             printJavadocParameterString(parameter2Name, parameter2Value, parameter2Unit);
             printJavadocParameterString(parameter3Name, parameter3Value, parameter3Unit);
@@ -177,7 +174,7 @@ public final class Test3208 extends TestMethodGenerator {
             printJavadocParameterString(parameter8Name, parameter8Value, parameter8Unit);
             printJavadocParameterString(parameter9Name, parameter9Value, parameter9Unit);
             printJavadocParameterString(parameter10Name, parameter10Value, parameter10Unit);
-            printParameterTableFooter();
+            printJavadocTableFooter();
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the transformation from the properties.");
 
@@ -256,13 +253,13 @@ public final class Test3208 extends TestMethodGenerator {
             return;
         }
         if (parameterUnit != null && parameterUnit.equals("sexagesimal DMS") && parameterValueAsDec != null && parameterValueAsDec.length > 0) {
-            printParameterTableRow(parameterName, parameterValueAsDec[0], "degree");
+            printJavadocParameterRow(parameterName, Double.valueOf(parameterValueAsDec[0]), "degree", Double.NaN);
             return;
         }
         if (parameterUnit != null && parameterUnit.equals("NULL")) {
             parameterUnit = null;
         }
-        printParameterTableRow(parameterName, parameterValue, parameterUnit);
+        printJavadocParameterRow(parameterName, Double.valueOf(parameterValue), parameterUnit, Double.NaN);
     }
 
     /**

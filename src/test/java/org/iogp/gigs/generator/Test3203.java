@@ -26,6 +26,8 @@ package org.iogp.gigs.generator;
 
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 /**
  * Code generator for {@link org.iogp.gigs.Test3203}. This generator needs to be executed only if the GIGS data changed.
@@ -78,7 +80,11 @@ public final class Test3203 extends TestMethodGenerator {
             final int     codeEPSG           = data.getInt    ( 5);
             final String  nameEPSG           = data.getString ( 6);
             final String  remarks            = data.getString ( 7);
-            final Object  unit               = SexagesimalUnit.parse(unitName);
+            Object unit = SexagesimalUnit.parse(unitName);
+            if (unit == null) {
+                unit = parseAngularUnit(unitName);
+                assertNotNull(unit, unitName);
+            }
             /*
              * Write javadoc.
              */

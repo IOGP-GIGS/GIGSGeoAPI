@@ -29,7 +29,9 @@ import java.util.HashMap;
 import org.opengis.metadata.Identifier;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.ObjectFactory;
+import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.iogp.gigs.internal.geoapi.Configuration;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,6 +41,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * Base class for tests of new CRS definitions (3000 series).
  * The test procedures in this series evaluate the software’s capabilities
  * for adding user-defined CRS and transformation definitions.
+ * The geodetic objects are created using one or many {@link ObjectFactory} sub-types.
+ *
+ * <h2>Authority factory usage</h2>
+ * In addition to the {@link ObjectFactory} to test, some test cases use also an {@link AuthorityFactory}.
+ * The authority factories are always optional in the 3000 series;
+ * providing {@code null} authority factories may disable some test cases, but not all of them.
+ * Sometime the test cases exist in two variants: one creating the object fully using only {@link ObjectFactory},
+ * and another variant creating the same object where some components are created using {@link AuthorityFactory}.
  *
  * @param  <T>  the type of objects to test.
  *
@@ -182,4 +192,18 @@ public abstract class Series3000<T> extends IntegrityTest {
      * @throws FactoryException if an error occurred while creating the identified object.
      */
     public abstract T getIdentifiedObject() throws FactoryException;
+
+    /**
+     * Verifies that the given coordinate system axis has the expected values.
+     *
+     * @param expected  expected axis.
+     * @param actual    actual axis.
+     */
+    static void verifyAxis(final CoordinateSystemAxis expected, final CoordinateSystemAxis actual) {
+        final String name = expected.getName().getCode();
+        assertEquals(name, actual.getName().getCode());
+        assertEquals(expected.getAbbreviation(), actual.getAbbreviation(), name);
+        assertEquals(expected.getDirection(), actual.getDirection(), name);
+        assertEquals(expected.getUnit(), actual.getUnit(), name);
+    }
 }

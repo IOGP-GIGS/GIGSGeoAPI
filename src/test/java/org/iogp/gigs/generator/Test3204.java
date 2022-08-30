@@ -142,11 +142,11 @@ public final class Test3204 extends TestMethodGenerator {
             if (source == DefinitionSource.LIBRARY) {
                 indent(2);
                 out.append("createEllipsoid(")
-                   .append(getCodeForName(ellipsoidsEPSG, ellipsoidName)).append(");\n");
+                   .append(getCodeForName(ellipsoidsEPSG, ellipsoidName)).append(", null);\n");
 
                 indent(2);
                 out.append("createPrimeMeridian(")
-                   .append(getCodeForName(primeMeridiansEPSG, primeMeridianName)).append(");\n");
+                   .append(getCodeForName(primeMeridiansEPSG, primeMeridianName)).append(", null);\n");
             } else {
                 indent(2);
                 out.append("createEllipsoid(Test3202::GIGS_")

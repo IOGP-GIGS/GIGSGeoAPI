@@ -40,6 +40,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Base class for tests of EPSG definitions (2000 series).
  * Those tests verify the correctness of geodetic parameters that are delivered with the software.
+ * The geodetic objects are created using one or many {@link AuthorityFactory} sub-types.
  * The comparison to be taken as truth is the EPSG Dataset.
  *
  * @param  <T>  the type of objects to test.

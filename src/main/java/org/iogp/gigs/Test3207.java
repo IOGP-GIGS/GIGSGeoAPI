@@ -24,15 +24,32 @@
  */
 package org.iogp.gigs;
 
+import java.util.Map;
+import java.util.Collections;
+import javax.measure.Unit;
 import org.iogp.gigs.internal.geoapi.Configuration;
+import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.crs.*;
-import org.opengis.referencing.cs.*;
-import org.opengis.referencing.datum.*;
-import org.opengis.referencing.operation.*;
+import org.opengis.referencing.crs.CRSFactory;
+import org.opengis.referencing.crs.GeodeticCRS;
+import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.crs.ProjectedCRS;
+import org.opengis.referencing.cs.AxisDirection;
+import org.opengis.referencing.cs.CSFactory;
+import org.opengis.referencing.cs.CartesianCS;
+import org.opengis.referencing.cs.CoordinateSystemAxis;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.datum.Ellipsoid;
+import org.opengis.referencing.datum.GeodeticDatum;
+import org.opengis.referencing.datum.PrimeMeridian;
+import org.opengis.referencing.operation.Conversion;
+import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
+import org.opengis.referencing.operation.CoordinateOperationFactory;
+import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.referencing.operation.Transformation;
 import org.opengis.util.FactoryException;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -145,7 +162,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     /**
      * The factory to use for creating coordinate system instances.
      */
-    private final EPSGMock epsgFactory;
+    private final PseudoEpsgFactory epsgFactory;
 
     /**
      * Data about the base CRS of the projected CRS.
@@ -187,7 +204,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         this.crsFactory   = crsFactory;
         this.csFactory  = csFactory;
         this.copAuthorityFactory = copAuthorityFactory;
-        this.epsgFactory  = new EPSGMock(units, datumFactory, csFactory, validators);
+        this.epsgFactory  = new PseudoEpsgFactory(units, datumFactory, csFactory, crsFactory, copFactory, mtFactory, validators);
     }
 
     /**
@@ -278,6 +295,40 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     }
 
     /**
+     * Creates a Cartesian coordinate system from a code and verify that it got the expected axes.
+     *
+     * @param  code   EPSG code of the Cartesian coordinate system to create.
+     * @param  axis1  first expected axis.
+     * @param  axis2  second expected axis.
+     * @throws FactoryException  if an error occurred while creating the coordinate system.
+     */
+    private void createCartesianCS(final int code, final CoordinateSystemAxis axis1, final CoordinateSystemAxis axis2)
+            throws FactoryException
+    {
+        cartesianCS = epsgFactory.createCartesianCS(String.valueOf(code));
+        verifyAxis(axis1, cartesianCS.getAxis(0));
+        verifyAxis(axis2, cartesianCS.getAxis(1));
+    }
+
+    /**
+     * Creates a coordinate system axis that is used in the creation of a coordinate system.
+     *
+     * @param  name          the coordinate axis name.
+     * @param  abbreviation  the coordinate axis abbreviation.
+     * @param  direction     the axis direction.
+     * @param  unit          the coordinate axis unit.
+     * @return the axis for the given properties.
+     * @throws FactoryException if the object creation failed.
+     */
+    private CoordinateSystemAxis createCoordinateSystemAxis(final String name, final String abbreviation,
+            final AxisDirection direction, final Unit<?> unit) throws FactoryException
+    {
+        return csFactory.createCoordinateSystemAxis(
+                Collections.singletonMap(CoordinateSystemAxis.NAME_KEY, name),
+                abbreviation, direction, unit);
+    }
+
+    /**
      * Verifies the properties of the projected CRS given by {@link #getIdentifiedObject()}.
      *
      * @throws FactoryException if an error occurred while creating the projected CRS.
@@ -321,16 +372,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>32631 – WGS 84 / UTM zone 31N</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65001</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -340,9 +390,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62001, "GIGS projCRS A1");
         createBaseCRS(Test3205::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -354,16 +404,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A1-2</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65001</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4500</b></li>
-     *   <li>Axis 1 name: <b>Northing</b></li>
-     *   <li>Axis 1 abbreviation: <b>N</b></li>
-     *   <li>Axis 1 orientation: <b>north</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Easting</b></li>
-     *   <li>Axis 2 abbreviation: <b>E</b></li>
-     *   <li>Axis 2 orientation: <b>east</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * Similar to WGS 84 / UTM zone 31N but with different Coordinate System.
@@ -376,9 +425,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62002, "GIGS projCRS A1-2");
         createBaseCRS(Test3205::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4500", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        createCartesianCS(4500, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -390,16 +439,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A1-3</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65001</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * Similar to WGS 84 / UTM zone 31N but with different Coordinate System.
@@ -412,9 +460,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62003, "GIGS projCRS A1-3");
         createBaseCRS(Test3205::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4499, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -426,16 +474,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A1-4</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65001</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4532</b></li>
-     *   <li>Axis 1 name: <b>Northing</b></li>
-     *   <li>Axis 1 abbreviation: <b>Y</b></li>
-     *   <li>Axis 1 orientation: <b>north</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Easting</b></li>
-     *   <li>Axis 2 abbreviation: <b>X</b></li>
-     *   <li>Axis 2 orientation: <b>east</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * Similar to WGS 84 / UTM zone 31N but with different Coordinate System.
@@ -448,9 +495,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62004, "GIGS projCRS A1-4");
         createBaseCRS(Test3205::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4532", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        createCartesianCS(4532, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -462,16 +509,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A1-5</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65001</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4498</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>Y</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>X</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>Y</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>X</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * Similar to WGS 84 / UTM zone 31N but with different Coordinate System.
@@ -484,9 +530,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62005, "GIGS projCRS A1-5");
         createBaseCRS(Test3205::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4498", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4498, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -498,16 +544,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A1-6</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65001</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4530</b></li>
-     *   <li>Axis 1 name: <b>Northing</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>north</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Easting</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>east</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Northing</td><td>X</td><td>north</td><td>metre</td></tr>
+     *   <tr><td>Easting</td><td>Y</td><td>east</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * Similar to WGS 84 / UTM zone 31N but with different Coordinate System.
@@ -520,9 +565,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62006, "GIGS projCRS A1-6");
         createBaseCRS(Test3205::GIGS_64003);
         createConversion(Test3206::GIGS_65001);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4530", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
+        createCartesianCS(4530, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -534,16 +579,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A2</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65002</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * Would be equivalent to WGS 84 / British National Grid.
@@ -556,9 +600,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62007, "GIGS projCRS A2");
         createBaseCRS(Test3205::GIGS_64003);
         createConversion(Test3206::GIGS_65002);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -570,19 +614,19 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A21</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65021</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
-     * Use as alternative to CRS 62007 only if in test 3005 it has not been possible to define proj code 65002 (The CRS A2 is required for Data Operations tests).
+     * Use as alternative to CRS 62007 only if in test 3005 it has not been possible to define proj code 61002
+     * (The CRS A2 is required for Data Operations tests).
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -592,9 +636,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62008, "GIGS projCRS A21");
         createBaseCRS(Test3205::GIGS_64003);
         createConversion(Test3206::GIGS_65021);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -606,16 +650,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A23</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65023</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4497</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>US survey foot</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>US survey foot</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>US survey foot</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>US survey foot</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * Would be equivalent to WGS 84 / BLM 31N (ftUS).
@@ -628,9 +671,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62027, "GIGS projCRS A23");
         createBaseCRS(Test3205::GIGS_64003);
         createConversion(Test3206::GIGS_65023);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.footSurveyUS());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.footSurveyUS());
-        cartesianCS = epsgFactory.createCartesianCS("4497", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.footSurveyUS());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.footSurveyUS());
+        createCartesianCS(4497, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -643,16 +686,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>32631 – WGS 84 / UTM zone 31N</b></li>
      *   <li>GIGS base CRS code: <b>64326</b></li>
      *   <li>GIGS conversion code: <b>16031</b></li>
+     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -662,9 +704,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62028, "GIGS projCRS AA1");
         createBaseCRS(Test3205::GIGS_64326);
         createConversion(16031);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -677,16 +719,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>27700 – OSGB36 / British National Grid</b></li>
      *   <li>GIGS base CRS code: <b>64005</b></li>
      *   <li>GIGS conversion code: <b>65002</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -696,9 +737,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62009, "GIGS projCRS B2");
         createBaseCRS(Test3205::GIGS_64005);
         createConversion(Test3206::GIGS_65002);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -709,20 +750,20 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projected CRS code: <b>62010</b></li>
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS B22</b></li>
      *   <li>GIGS base CRS code: <b>64005</b></li>
-     *   <li>GIGS conversion code: <b>65002</b></li>
+     *   <li>GIGS conversion code: <b>65022</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
-     * Use as alternative to CRS 62009 only if in test 3005 it has not been possible to define proj code 65002 (The CRS B1 is required for Data Operations tests).
+     * Use as alternative to CRS 62009 only if in test 3005 it has not been possible to define proj code 61002
+     * (The CRS B1 is required for Data Operations tests).
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -731,10 +772,43 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     public void GIGS_62010() throws FactoryException {
         setCodeAndName(62010, "GIGS projCRS B22");
         createBaseCRS(Test3205::GIGS_64005);
-        createConversion(Test3206::GIGS_65002);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        createConversion(Test3206::GIGS_65022);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
+        verifyProjectedCRS();
+    }
+
+    /**
+     * Tests “GIGS projCRS BB2” projected CRS creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS projected CRS code: <b>62029</b></li>
+     *   <li>GIGS projectedCRS name: <b>GIGS projCRS BB2</b></li>
+     *   <li>EPSG equivalence: <b>27700 – OSGB36 / British National Grid</b></li>
+     *   <li>GIGS base CRS code: <b>64277</b></li>
+     *   <li>GIGS conversion code: <b>19916</b></li>
+     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
+     *   <li>EPSG coordinate system code: <b>4400</b></li>
+     * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
+     */
+    @Test
+    @DisplayName("GIGS projCRS BB2")
+    public void GIGS_62029() throws FactoryException {
+        setCodeAndName(62029, "GIGS projCRS BB2");
+        createBaseCRS(Test3205::GIGS_64277);
+        createConversion(19916);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -747,16 +821,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>28992 – Amersfoort / RD New</b></li>
      *   <li>GIGS base CRS code: <b>64006</b></li>
      *   <li>GIGS conversion code: <b>65004</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -766,9 +839,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62011, "GIGS projCRS C4");
         createBaseCRS(Test3205::GIGS_64006);
         createConversion(Test3206::GIGS_65004);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4499, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -781,16 +854,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>28992 – Amersfoort / RD New</b></li>
      *   <li>GIGS base CRS code: <b>64289</b></li>
      *   <li>GIGS conversion code: <b>19914</b></li>
+     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -800,9 +872,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62030, "GIGS projCRS CC4");
         createBaseCRS(Test3205::GIGS_64289);
         createConversion(19914);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4499, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -815,16 +887,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>5330 – Batavia (Jakarta) / NEIEZ</b></li>
      *   <li>GIGS base CRS code: <b>64007</b></li>
      *   <li>GIGS conversion code: <b>65005</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: Equivalent to Batavia / NEIEZ (code 3001) except that its definition is with respect to the Jakarta meridian.
      * See GIGS projCRS L27 (62037).
@@ -837,9 +908,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62012, "GIGS projCRS D5");
         createBaseCRS(Test3205::GIGS_64007);
         createConversion(Test3206::GIGS_65005);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4499, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -852,16 +923,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>31370 – Belge 1972 / Belgian Lambert 72</b></li>
      *   <li>GIGS base CRS code: <b>64008</b></li>
      *   <li>GIGS conversion code: <b>65006</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -871,9 +941,42 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62013, "GIGS projCRS E6");
         createBaseCRS(Test3205::GIGS_64008);
         createConversion(Test3206::GIGS_65006);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4499, axis1, axis2);
+        verifyProjectedCRS();
+    }
+
+    /**
+     * Tests “GIGS projCRS EE6” projected CRS creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS projected CRS code: <b>62031</b></li>
+     *   <li>GIGS projectedCRS name: <b>GIGS projCRS EE6</b></li>
+     *   <li>EPSG equivalence: <b>31370 – Belge 1972 / Belgian Lambert 72</b></li>
+     *   <li>GIGS base CRS code: <b>64313</b></li>
+     *   <li>GIGS conversion code: <b>19961</b></li>
+     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
+     *   <li>EPSG coordinate system code: <b>4499</b></li>
+     * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
+     */
+    @Test
+    @DisplayName("GIGS projCRS EE6")
+    public void GIGS_62031() throws FactoryException {
+        setCodeAndName(62031, "GIGS projCRS EE6");
+        createBaseCRS(Test3205::GIGS_64313);
+        createConversion(19961);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4499, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -886,16 +989,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>28354 – GDA94 / MGA zone 54</b></li>
      *   <li>GIGS base CRS code: <b>64009</b></li>
      *   <li>GIGS conversion code: <b>65007</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -905,9 +1007,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62014, "GIGS projCRS F7");
         createBaseCRS(Test3205::GIGS_64009);
         createConversion(Test3206::GIGS_65007);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -920,16 +1022,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>28355 – GDA94 / MGA zone 55</b></li>
      *   <li>GIGS base CRS code: <b>64009</b></li>
      *   <li>GIGS conversion code: <b>65008</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -939,9 +1040,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62015, "GIGS projCRS F8");
         createBaseCRS(Test3205::GIGS_64009);
         createConversion(Test3206::GIGS_65008);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -954,16 +1055,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3577 – GDA94 / Australian Albers</b></li>
      *   <li>GIGS base CRS code: <b>64009</b></li>
      *   <li>GIGS conversion code: <b>65009</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -973,9 +1073,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62016, "GIGS projCRS F9");
         createBaseCRS(Test3205::GIGS_64009);
         createConversion(Test3206::GIGS_65009);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -988,16 +1088,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>28354 – GDA94 / MGA zone 54</b></li>
      *   <li>GIGS base CRS code: <b>64283</b></li>
      *   <li>GIGS conversion code: <b>17354</b></li>
+     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -1007,9 +1106,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62032, "GIGS projCRS FF8");
         createBaseCRS(Test3205::GIGS_64283);
         createConversion(17354);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1022,16 +1121,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>2049 – Hartebeesthoek94 / Lo21</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65010</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>6503</b></li>
-     *   <li>Axis 1 name: <b>Westing</b></li>
-     *   <li>Axis 1 abbreviation: <b>Y</b></li>
-     *   <li>Axis 1 orientation: <b>west</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Southing</b></li>
-     *   <li>Axis 2 abbreviation: <b>X</b></li>
-     *   <li>Axis 2 orientation: <b>south</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Westing</td><td>Y</td><td>west</td><td>metre</td></tr>
+     *   <tr><td>Southing</td><td>X</td><td>south</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: Equivalence applies only to late-binding applications.
      *
@@ -1043,9 +1141,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62017, "GIGS projCRS G10");
         createBaseCRS(Test3205::GIGS_64010);
         createConversion(Test3206::GIGS_65010);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Westing", "Y", AxisDirection.WEST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Southing", "X", AxisDirection.SOUTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("6503", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Westing", "Y", AxisDirection.WEST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Southing", "X", AxisDirection.SOUTH, units.metre());
+        createCartesianCS(6503, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1058,16 +1156,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>22175 – POSGAR 98 / Argentina 5</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65011</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4530</b></li>
-     *   <li>Axis 1 name: <b>Northing</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>north</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Easting</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>east</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Northing</td><td>X</td><td>north</td><td>metre</td></tr>
+     *   <tr><td>Easting</td><td>Y</td><td>east</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: Equivalence applies only to late-binding applications.
      *
@@ -1079,9 +1176,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62018, "GIGS projCRS G11");
         createBaseCRS(Test3205::GIGS_64010);
         createConversion(Test3206::GIGS_65011);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4530", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
+        createCartesianCS(4530, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1094,16 +1191,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>5880 – SIRGAS2000 / Brazil Polyconic</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65012</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -1113,9 +1209,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62019, "GIGS projCRS G12");
         createBaseCRS(Test3205::GIGS_64010);
         createConversion(Test3206::GIGS_65012);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4499, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1127,16 +1223,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS G13</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65013</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * Functionally equivalent to GDM2000 / East Malaysia BRSO.
@@ -1150,9 +1245,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62020, "GIGS projCRS G13");
         createBaseCRS(Test3205::GIGS_64010);
         createConversion(Test3206::GIGS_65013);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1165,16 +1260,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3376 – GDM2000 / East Malaysia BRSO</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65014</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: Equivalence applies only to late-binding applications.
      *
@@ -1186,9 +1280,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62021, "GIGS projCRS G14");
         createBaseCRS(Test3205::GIGS_64010);
         createConversion(Test3206::GIGS_65014);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1201,16 +1295,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3377 – GDM2000 / Johor Grid</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65015</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: Equivalence applies only to late-binding applications.
      *
@@ -1222,9 +1315,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62022, "GIGS projCRS G15");
         createBaseCRS(Test3205::GIGS_64010);
         createConversion(Test3206::GIGS_65015);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4499, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1237,16 +1330,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3035 – ETRS89-extended / LAEA Europe</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65016</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4532</b></li>
-     *   <li>Axis 1 name: <b>Northing</b></li>
-     *   <li>Axis 1 abbreviation: <b>Y</b></li>
-     *   <li>Axis 1 orientation: <b>north</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Easting</b></li>
-     *   <li>Axis 2 abbreviation: <b>X</b></li>
-     *   <li>Axis 2 orientation: <b>east</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: Equivalence applies only to late-binding applications.
      *
@@ -1258,9 +1350,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62023, "GIGS projCRS G16");
         createBaseCRS(Test3205::GIGS_64010);
         createConversion(Test3206::GIGS_65016);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4532", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        createCartesianCS(4532, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1273,16 +1365,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>2921 – NAD83(HARN) / Utah North (ft)</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65017</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4495</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>foot</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>foot</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>foot</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>foot</td></tr>
+     * </table>
      *
      * Remarks: Equivalence applies only to late-binding applications.
      *
@@ -1294,9 +1385,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62024, "GIGS projCRS G17");
         createBaseCRS(Test3205::GIGS_64010);
         createConversion(Test3206::GIGS_65017);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.foot());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.foot());
-        cartesianCS = epsgFactory.createCartesianCS("4495", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.foot());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.foot());
+        createCartesianCS(4495, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1309,16 +1400,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3568 – NAD83(HARN) / Utah North (ftUS)</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65018</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4497</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>US survey foot</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>US survey foot</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>US survey foot</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>US survey foot</td></tr>
+     * </table>
      *
      * Remarks: Equivalence applies only to late-binding applications.
      *
@@ -1330,9 +1420,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62025, "GIGS projCRS G18");
         createBaseCRS(Test3205::GIGS_64010);
         createConversion(Test3206::GIGS_65018);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.footSurveyUS());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.footSurveyUS());
-        cartesianCS = epsgFactory.createCartesianCS("4497", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.footSurveyUS());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.footSurveyUS());
+        createCartesianCS(4497, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1345,16 +1435,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>27572 – NTF (Paris) / Lambert zone II</b></li>
      *   <li>GIGS base CRS code: <b>64011</b></li>
      *   <li>GIGS conversion code: <b>65019</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -1364,9 +1453,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62026, "GIGS projCRS H19");
         createBaseCRS(Test3205::GIGS_64011);
         createConversion(Test3206::GIGS_65019);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4499, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1379,16 +1468,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>27572 – NTF (Paris) / Lambert zone II</b></li>
      *   <li>GIGS base CRS code: <b>64807</b></li>
      *   <li>GIGS conversion code: <b>18082</b></li>
+     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -1398,9 +1486,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62033, "GIGS projCRS HH19");
         createBaseCRS(Test3205::GIGS_64807);
         createConversion(18082);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4499, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1413,16 +1501,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>26708 – NAD27 / UTM zone 8N</b></li>
      *   <li>GIGS base CRS code: <b>64012</b></li>
      *   <li>GIGS conversion code: <b>65028</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -1432,9 +1519,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62038, "GIGS projCRS J28");
         createBaseCRS(Test3205::GIGS_64012);
         createConversion(Test3206::GIGS_65028);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1447,16 +1534,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>23700 – HD72 / EOV</b></li>
      *   <li>GIGS base CRS code: <b>64015</b></li>
      *   <li>GIGS conversion code: <b>65026</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4498</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>Y</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>X</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>Y</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>X</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -1466,9 +1552,42 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62036, "GIGS projCRS K26");
         createBaseCRS(Test3205::GIGS_64015);
         createConversion(Test3206::GIGS_65026);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4498", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "Y", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "X", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4498, axis1, axis2);
+        verifyProjectedCRS();
+    }
+
+    /**
+     * Tests “GIGS projCRS L27” projected CRS creation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS projected CRS code: <b>62037</b></li>
+     *   <li>GIGS projectedCRS name: <b>GIGS projCRS L27</b></li>
+     *   <li>EPSG equivalence: <b>3001 – Batavia / NEIEZ</b></li>
+     *   <li>GIGS base CRS code: <b>64014</b></li>
+     *   <li>GIGS conversion code: <b>65027</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
+     *   <li>EPSG coordinate system code: <b>4499</b></li>
+     * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
+     */
+    @Test
+    @DisplayName("GIGS projCRS L27")
+    public void GIGS_62037() throws FactoryException {
+        setCodeAndName(62037, "GIGS projCRS L27");
+        createBaseCRS(Test3205::GIGS_64014);
+        createConversion(Test3206::GIGS_65027);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4499, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1480,16 +1599,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS M25</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65025</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>X</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>Y</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * Deprecated EPSG projCRS 2192 ED50 / France EuroLambert.
@@ -1504,9 +1622,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62035, "GIGS projCRS M25");
         createBaseCRS(Test3205::GIGS_64003);
         createConversion(Test3206::GIGS_65025);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4499", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "X", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "Y", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4499, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1519,16 +1637,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3388 – Pulkovo 1942 / Caspian Sea Mercator</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65024</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4534</b></li>
-     *   <li>Axis 1 name: <b>Northing</b></li>
-     *   <li>Axis 1 abbreviation: <b>none</b></li>
-     *   <li>Axis 1 orientation: <b>north</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Easting</b></li>
-     *   <li>Axis 2 abbreviation: <b>none</b></li>
-     *   <li>Axis 2 orientation: <b>east</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Northing</td><td>none</td><td>north</td><td>metre</td></tr>
+     *   <tr><td>Easting</td><td>none</td><td>east</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -1538,9 +1655,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62034, "GIGS projCRS Y24");
         createBaseCRS(Test3205::GIGS_64003);
         createConversion(Test3206::GIGS_65024);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Northing", "none", AxisDirection.NORTH, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Easting", "none", AxisDirection.EAST, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4534", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Northing", "none", AxisDirection.NORTH, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Easting", "none", AxisDirection.EAST, units.metre());
+        createCartesianCS(4534, axis1, axis2);
         verifyProjectedCRS();
     }
 
@@ -1553,16 +1670,15 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>26908 – NAD83 / UTM zone 8N</b></li>
      *   <li>GIGS base CRS code: <b>64012</b></li>
      *   <li>GIGS conversion code: <b>65028</b></li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
-     *   <li>Axis 1 name: <b>Easting</b></li>
-     *   <li>Axis 1 abbreviation: <b>E</b></li>
-     *   <li>Axis 1 orientation: <b>east</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
-     *   <li>Axis 2 name: <b>Northing</b></li>
-     *   <li>Axis 2 abbreviation: <b>N</b></li>
-     *   <li>Axis 2 orientation: <b>north</b></li>
-     *   <li>Axis 2 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
+     *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the properties.
      */
@@ -1572,9 +1688,9 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         setCodeAndName(62039, "GIGS projCRS Z28");
         createBaseCRS(Test3205::GIGS_64012);
         createConversion(Test3206::GIGS_65028);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
-        CoordinateSystemAxis axis2 = epsgFactory.createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
-        cartesianCS = epsgFactory.createCartesianCS("4400", axis1, axis2);
+        CoordinateSystemAxis axis1 = createCoordinateSystemAxis("Easting", "E", AxisDirection.EAST, units.metre());
+        CoordinateSystemAxis axis2 = createCoordinateSystemAxis("Northing", "N", AxisDirection.NORTH, units.metre());
+        createCartesianCS(4400, axis1, axis2);
         verifyProjectedCRS();
     }
 }

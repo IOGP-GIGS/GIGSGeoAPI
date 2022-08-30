@@ -24,14 +24,23 @@
  */
 package org.iogp.gigs;
 
+import java.util.Map;
+import java.util.Collections;
+import javax.measure.Unit;
 import org.iogp.gigs.internal.geoapi.Configuration;
+import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.crs.*;
-import org.opengis.referencing.cs.*;
-import org.opengis.referencing.datum.*;
+import org.opengis.referencing.crs.CRSFactory;
+import org.opengis.referencing.crs.GeodeticCRS;
+import org.opengis.referencing.crs.VerticalCRS;
+import org.opengis.referencing.cs.AxisDirection;
+import org.opengis.referencing.cs.CSFactory;
+import org.opengis.referencing.cs.CoordinateSystemAxis;
+import org.opengis.referencing.cs.VerticalCS;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.util.FactoryException;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -119,7 +128,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
     /**
      * The factory to use for creating coordinate system instances.
      */
-    private final EPSGMock epsgFactory;
+    private final PseudoEpsgFactory epsgFactory;
 
     /**
      * Creates a new test using the given factory. If a given factory is {@code null},
@@ -130,10 +139,10 @@ public class Test3210 extends Series3000<VerticalCRS> {
      * @param datumFactory  factory for creating {@link VerticalDatum} instances.
      */
     public Test3210(final CSFactory csFactory, final CRSFactory crsFactory, DatumFactory datumFactory) {
-        this.crsFactory = crsFactory;
-        this.csFactory = csFactory;
+        this.crsFactory   = crsFactory;
+        this.csFactory    = csFactory;
         this.datumFactory = datumFactory;
-        this.epsgFactory  = new EPSGMock(units, datumFactory, csFactory, validators);
+        this.epsgFactory  = new PseudoEpsgFactory(units, datumFactory, csFactory, crsFactory, null, null, validators);
     }
 
     /**
@@ -190,12 +199,41 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
+     * Creates a vertical coordinate system from a code and verify that it got the expected axes.
+     *
+     * @param  code  EPSG code of the Cartesian coordinate system to create.
+     * @param  axis  expected axis.
+     * @throws FactoryException  if an error occurred while creating the coordinate system.
+     */
+    private void createVerticalCS(final int code, final CoordinateSystemAxis axis) throws FactoryException {
+        verticalCS = epsgFactory.createVerticalCS(String.valueOf(code));
+        verifyAxis(axis, verticalCS.getAxis(0));
+    }
+
+    /**
+     * Creates a coordinate system axis that is used in the creation of a coordinate system.
+     *
+     * @param  name          the coordinate axis name.
+     * @param  abbreviation  the coordinate axis abbreviation.
+     * @param  direction     the axis direction.
+     * @param  unit          the coordinate axis unit.
+     * @return the axis for the given properties.
+     * @throws FactoryException if the object creation failed.
+     */
+    private CoordinateSystemAxis createCoordinateSystemAxis(final String name, final String abbreviation,
+            final AxisDirection direction, final Unit<?> unit) throws FactoryException
+    {
+        return csFactory.createCoordinateSystemAxis(
+                Collections.singletonMap(CoordinateSystemAxis.NAME_KEY, name),
+                abbreviation, direction, unit);
+    }
+
+    /**
      * Verifies a vertical CRS for the given properties and verify its properties after construction.
      *
      * @throws FactoryException if an error occurred while creating the CRS instance.
      */
-    final void verifyVerticalCRS() throws FactoryException
-    {
+    final void verifyVerticalCRS() throws FactoryException {
         if (skipTests) {
             return;
         }
@@ -204,7 +242,6 @@ public class Test3210 extends Series3000<VerticalCRS> {
             assertNotNull(crs, "CRSFactory.createGeographicCRS(…) shall not return null.");
             validators.validate(crs);
             verifyIdentification(crs, getName(), String.valueOf(getCode()));
-
             if (datumTest != null) {
                 datumTest.copyConfigurationFrom(this);
                 datumTest.setIdentifiedObject(datum);
@@ -227,18 +264,19 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
-     * Tests “GIGS vertCRS U1 depth” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS U1 depth” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64502</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS U1 depth</b></li>
      *   <li>EPSG equivalence: <b>5336 – Black Sea depth</b></li>
      *   <li>EPSG coordinate system code: <b>6498</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related depth</b></li>
-     *   <li>Axis 1 abbreviation: <b>D</b></li>
-     *   <li>Axis 1 orientation: <b>down</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related depth</td><td>D</td><td>down</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS from the properties.
      */
@@ -247,24 +285,25 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64502() throws FactoryException {
         setCodeAndName(64502, "GIGS vertCRS U1 depth");
         createDatum(Test3209::GIGS_66601);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
-        verticalCS = epsgFactory.createVerticalCS("6498", axis1);
+        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
+        createVerticalCS(6498, axis);
         verifyVerticalCRS();
     }
 
     /**
-     * Tests “GIGS vertCRS U1 height” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS U1 height” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64501</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS U1 height</b></li>
      *   <li>EPSG equivalence: <b>5735 – Black Sea height</b></li>
      *   <li>EPSG coordinate system code: <b>6499</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related height</b></li>
-     *   <li>Axis 1 abbreviation: <b>H</b></li>
-     *   <li>Axis 1 orientation: <b>up</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS from the properties.
      */
@@ -273,23 +312,24 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64501() throws FactoryException {
         setCodeAndName(64501, "GIGS vertCRS U1 height");
         createDatum(Test3209::GIGS_66601);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
-        verticalCS = epsgFactory.createVerticalCS("6499", axis1);
+        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
+        createVerticalCS(6499, axis);
         verifyVerticalCRS();
     }
 
     /**
-     * Tests “GIGS vertCRS U2 depth” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS U2 depth” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64504</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS U2 depth</b></li>
      *   <li>EPSG coordinate system code: <b>6495</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related depth</b></li>
-     *   <li>Axis 1 abbreviation: <b>D</b></li>
-     *   <li>Axis 1 orientation: <b>down</b></li>
-     *   <li>Axis 1 unit: <b>foot</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related depth</td><td>D</td><td>down</td><td>foot</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * But would be Black Sea depth (ft).
@@ -301,23 +341,24 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64504() throws FactoryException {
         setCodeAndName(64504, "GIGS vertCRS U2 depth");
         createDatum(Test3209::GIGS_66601);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.foot());
-        verticalCS = epsgFactory.createVerticalCS("6495", axis1);
+        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.foot());
+        createVerticalCS(6495, axis);
         verifyVerticalCRS();
     }
 
     /**
-     * Tests “GIGS vertCRS U2 height” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS U2 height” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64503</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS U2 height</b></li>
      *   <li>EPSG coordinate system code: <b>1030</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related height</b></li>
-     *   <li>Axis 1 abbreviation: <b>H</b></li>
-     *   <li>Axis 1 orientation: <b>up</b></li>
-     *   <li>Axis 1 unit: <b>foot</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>foot</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * But would be Black Sea height (ft).
@@ -329,24 +370,25 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64503() throws FactoryException {
         setCodeAndName(64503, "GIGS vertCRS U2 height");
         createDatum(Test3209::GIGS_66601);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.foot());
-        verticalCS = epsgFactory.createVerticalCS("1030", axis1);
+        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.foot());
+        createVerticalCS(1030, axis);
         verifyVerticalCRS();
     }
 
     /**
-     * Tests “GIGS vertCRS V1 depth” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS V1 depth” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64506</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS V1 depth</b></li>
      *   <li>EPSG equivalence: <b>5612 – Baltic 1977 depth</b></li>
      *   <li>EPSG coordinate system code: <b>6498</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related depth</b></li>
-     *   <li>Axis 1 abbreviation: <b>D</b></li>
-     *   <li>Axis 1 orientation: <b>down</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related depth</td><td>D</td><td>down</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS from the properties.
      */
@@ -355,24 +397,25 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64506() throws FactoryException {
         setCodeAndName(64506, "GIGS vertCRS V1 depth");
         createDatum(Test3209::GIGS_66602);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
-        verticalCS = epsgFactory.createVerticalCS("6498", axis1);
+        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
+        createVerticalCS(6498, axis);
         verifyVerticalCRS();
     }
 
     /**
-     * Tests “GIGS vertCRS V1 height” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS V1 height” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64505</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS V1 height</b></li>
      *   <li>EPSG equivalence: <b>5705 – Baltic 1977 height</b></li>
      *   <li>EPSG coordinate system code: <b>6499</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related height</b></li>
-     *   <li>Axis 1 abbreviation: <b>H</b></li>
-     *   <li>Axis 1 orientation: <b>up</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS from the properties.
      */
@@ -381,23 +424,24 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64505() throws FactoryException {
         setCodeAndName(64505, "GIGS vertCRS V1 height");
         createDatum(Test3209::GIGS_66602);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
-        verticalCS = epsgFactory.createVerticalCS("6499", axis1);
+        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
+        createVerticalCS(6499, axis);
         verifyVerticalCRS();
     }
 
     /**
-     * Tests “GIGS vertCRS V2 height” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS V2 height” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64509</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS V2 height</b></li>
      *   <li>EPSG coordinate system code: <b>6497</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related height</b></li>
-     *   <li>Axis 1 abbreviation: <b>H</b></li>
-     *   <li>Axis 1 orientation: <b>up</b></li>
-     *   <li>Axis 1 unit: <b>ftUS</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>ftUS</td></tr>
+     * </table>
      *
      * Remarks: No direct EPSG equivalent.
      * But would be Baltic 1977 height (ftUS).
@@ -409,24 +453,25 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64509() throws FactoryException {
         setCodeAndName(64509, "GIGS vertCRS V2 height");
         createDatum(Test3209::GIGS_66602);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.footSurveyUS());
-        verticalCS = epsgFactory.createVerticalCS("6497", axis1);
+        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.footSurveyUS());
+        createVerticalCS(6497, axis);
         verifyVerticalCRS();
     }
 
     /**
-     * Tests “GIGS vertCRS W1 depth” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS W1 depth” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64508</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS W1 depth</b></li>
      *   <li>EPSG equivalence: <b>5706 – Caspian depth</b></li>
      *   <li>EPSG coordinate system code: <b>6498</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related depth</b></li>
-     *   <li>Axis 1 abbreviation: <b>D</b></li>
-     *   <li>Axis 1 orientation: <b>down</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related depth</td><td>D</td><td>down</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS from the properties.
      */
@@ -435,24 +480,25 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64508() throws FactoryException {
         setCodeAndName(64508, "GIGS vertCRS W1 depth");
         createDatum(Test3209::GIGS_66603);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
-        verticalCS = epsgFactory.createVerticalCS("6498", axis1);
+        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
+        createVerticalCS(6498, axis);
         verifyVerticalCRS();
     }
 
     /**
-     * Tests “GIGS vertCRS W1 height” projected CRS creation from the factory.
+     * Tests “GIGS vertCRS W1 height” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>GIGS vertical CRS code: <b>64507</b></li>
      *   <li>GIGS vertical name: <b>GIGS vertCRS W1 height</b></li>
      *   <li>EPSG equivalence: <b>5611 – Caspian height</b></li>
      *   <li>EPSG coordinate system code: <b>6499</b></li>
-     *   <li>Axis 1 name: <b>Gravity-related height</b></li>
-     *   <li>Axis 1 abbreviation: <b>H</b></li>
-     *   <li>Axis 1 orientation: <b>up</b></li>
-     *   <li>Axis 1 unit: <b>metre</b></li>
      * </ul>
+     * <table class="gigs">
+     *   <caption>Coordinate system axes</caption>
+     *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
+     *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>metre</td></tr>
+     * </table>
      *
      * @throws FactoryException if an error occurred while creating the vertical CRS from the properties.
      */
@@ -461,8 +507,8 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64507() throws FactoryException {
         setCodeAndName(64507, "GIGS vertCRS W1 height");
         createDatum(Test3209::GIGS_66603);
-        CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
-        verticalCS = epsgFactory.createVerticalCS("6499", axis1);
+        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
+        createVerticalCS(6499, axis);
         verifyVerticalCRS();
     }
 }

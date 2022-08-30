@@ -25,6 +25,7 @@
 package org.iogp.gigs;
 
 import org.iogp.gigs.internal.geoapi.Configuration;
+import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.referencing.crs.*;
@@ -112,6 +113,11 @@ public class Test3205 extends Series3000<GeodeticCRS> {
     protected final CRSFactory crsFactory;
 
     /**
+     * The factory to use for creating coordinate system instances.
+     */
+    protected final CSFactory csFactory;
+
+    /**
      * Factory to use for building {@link GeodeticDatum} instances, or {@code null} if none.
      * May also be used for building {@link Ellipsoid} and {@link PrimeMeridian} components.
      */
@@ -120,8 +126,6 @@ public class Test3205 extends Series3000<GeodeticCRS> {
     /**
      * Factory to use for building {@link GeodeticDatum} and {@link PrimeMeridian} components, or {@code null} if none.
      * This is used only for tests with EPSG codes for datum components.
-     *
-     * @see #createDatum(int)
      */
     protected final DatumAuthorityFactory datumAuthorityFactory;
 
@@ -136,11 +140,15 @@ public class Test3205 extends Series3000<GeodeticCRS> {
     /**
      * The factory to use for creating coordinate system instances.
      */
-    private final EPSGMock epsgFactory;
+    private final PseudoEpsgFactory epsgFactory;
 
     /**
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
+     *
+     * <h4>Authority factory usage</h4>
+     * The authority factory is used only for some test cases where the components are fetched by EPSG codes
+     * instead of being built by user. Those test cases are identified by the "definition source" line in Javadoc.
      *
      * @param crsFactory             factory for creating {@link GeodeticCRS} instances.
      * @param csFactory              factory for creating {@code CoordinateSystem} instances.
@@ -151,7 +159,8 @@ public class Test3205 extends Series3000<GeodeticCRS> {
                     final DatumAuthorityFactory datumAuthorityFactory)
     {
         this.crsFactory            = crsFactory;
-        this.epsgFactory           = new EPSGMock(units, datumFactory, csFactory, validators);
+        this.csFactory             = csFactory;
+        this.epsgFactory           = new PseudoEpsgFactory(units, datumFactory, csFactory, crsFactory, null, null, validators);
         this.datumFactory          = datumFactory;
         this.datumAuthorityFactory = datumAuthorityFactory;
     }
@@ -165,7 +174,7 @@ public class Test3205 extends Series3000<GeodeticCRS> {
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
      *       <li>{@link #crsFactory}</li>
-     *       <li>{@code csFactory}</li>
+     *       <li>{@link #csFactory}</li>
      *       <li>{@link #datumFactory}</li>
      *       <li>{@link #datumAuthorityFactory}</li>
      *     </ul>
@@ -178,7 +187,7 @@ public class Test3205 extends Series3000<GeodeticCRS> {
     public Configuration configuration() {
         final Configuration op = super.configuration();
         assertNull(op.put(Configuration.Key.crsFactory, crsFactory));
-        assertNull(op.put(Configuration.Key.csFactory, epsgFactory.getCSFactory()));
+        assertNull(op.put(Configuration.Key.csFactory, csFactory));
         assertNull(op.put(Configuration.Key.datumFactory, datumFactory));
         assertNull(op.put(Configuration.Key.datumAuthorityFactory, datumAuthorityFactory));
         return op;
@@ -468,6 +477,8 @@ public class Test3205 extends Series3000<GeodeticCRS> {
 
     /**
      * Tests “GIGS geogCRS AA” Geographic 2D CRS from the factory.
+     * This test creates the same geodetic CRS than {@link #GIGS_64003()} (except for the name),
+     * except that the geodetic datum is obtained from an EPSG code instead of being built by user.
      *
      * <ul>
      *   <li>GIGS CRS code: <b>64326</b></li>
@@ -518,6 +529,8 @@ public class Test3205 extends Series3000<GeodeticCRS> {
 
     /**
      * Tests “GIGS geogCRS Alonlat” Geographic 2D CRS from the factory.
+     * This test creates the same geodetic CRS than {@link #GIGS_64033()} (except for the name),
+     * but with a different axis order.
      *
      * <ul>
      *   <li>GIGS CRS code: <b>64004</b></li>
@@ -568,6 +581,8 @@ public class Test3205 extends Series3000<GeodeticCRS> {
 
     /**
      * Tests “GIGS geogCRS BB” Geographic 2D CRS from the factory.
+     * This test creates the same geodetic CRS than {@link #GIGS_64005()} (except for the name),
+     * except that the geodetic datum is obtained from an EPSG code instead of being built by user.
      *
      * <ul>
      *   <li>GIGS CRS code: <b>64277</b></li>
@@ -616,6 +631,8 @@ public class Test3205 extends Series3000<GeodeticCRS> {
 
     /**
      * Tests “GIGS geogCRS CC” Geographic 2D CRS from the factory.
+     * This test creates the same geodetic CRS than {@link #GIGS_64006()} (except for the name),
+     * except that the geodetic datum is obtained from an EPSG code instead of being built by user.
      *
      * <ul>
      *   <li>GIGS CRS code: <b>64289</b></li>
@@ -664,6 +681,8 @@ public class Test3205 extends Series3000<GeodeticCRS> {
 
     /**
      * Tests “GIGS geogCRS DD” Geographic 2D CRS from the factory.
+     * This test creates the same geodetic CRS than {@link #GIGS_64007()} (except for the name),
+     * except that the geodetic datum is obtained from an EPSG code instead of being built by user.
      *
      * <ul>
      *   <li>GIGS CRS code: <b>64813</b></li>
@@ -712,6 +731,8 @@ public class Test3205 extends Series3000<GeodeticCRS> {
 
     /**
      * Tests “GIGS geogCRS EE” Geographic 2D CRS from the factory.
+     * This test creates the same geodetic CRS than {@link #GIGS_64008()} (except for the name),
+     * except that the geodetic datum is obtained from an EPSG code instead of being built by user.
      *
      * <ul>
      *   <li>GIGS CRS code: <b>64313</b></li>
@@ -760,6 +781,8 @@ public class Test3205 extends Series3000<GeodeticCRS> {
 
     /**
      * Tests “GIGS geogCRS FF” Geographic 2D CRS from the factory.
+     * This test creates the same geodetic CRS than {@link #GIGS_64009()} (except for the name),
+     * except that the geodetic datum is obtained from an EPSG code instead of being built by user.
      *
      * <ul>
      *   <li>GIGS CRS code: <b>64283</b></li>
@@ -839,6 +862,8 @@ public class Test3205 extends Series3000<GeodeticCRS> {
 
     /**
      * Tests “GIGS geogCRS HH” Geographic 2D CRS from the factory.
+     * This test creates the same geodetic CRS than {@link #GIGS_64011()} (except for the name),
+     * except that the geodetic datum is obtained from an EPSG code instead of being built by user.
      *
      * <ul>
      *   <li>GIGS CRS code: <b>64807</b></li>
@@ -1055,6 +1080,8 @@ public class Test3205 extends Series3000<GeodeticCRS> {
 
     /**
      * Tests “GIGS geogCRS ZZ” Geographic 2D CRS from the factory.
+     * This test creates the same geodetic CRS than {@link #GIGS_64018()} (except for the name),
+     * except that the geodetic datum is obtained from an EPSG code instead of being built by user.
      *
      * <ul>
      *   <li>GIGS CRS code: <b>64269</b></li>

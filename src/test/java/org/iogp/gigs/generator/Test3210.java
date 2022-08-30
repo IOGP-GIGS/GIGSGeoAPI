@@ -24,10 +24,7 @@
  */
 package org.iogp.gigs.generator;
 
-import javax.measure.Unit;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.OptionalInt;
 
 
@@ -63,8 +60,7 @@ public final class Test3210 extends TestMethodGenerator {
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
-        //use corrected file for now, unit issue https://github.com/IOGP-GIGS/GIGSTestDataset/issues/3 is fixed
-        final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3210_VerticalCRS_corrected.txt",
+        final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3210_VerticalCRS.txt",
                 Integer.class,      // [ 0]: GIGS Vertical CRS Code
                 String .class,      // [ 1]: GIGS Vertical CRS Name
                 Integer.class,      // [ 2]: GIGS Vertical Datum Code (see GIGS Test Procedure 3209)
@@ -79,42 +75,31 @@ public final class Test3210 extends TestMethodGenerator {
                 String .class);     // [11]: GIGS Remarks
 
         while (data.next()) {
-            final int         code              = data.getInt        ( 0);
-            final String      name              = data.getString     ( 1);
-            final int         datumCode         = data.getInt        ( 2);
-            final int         csCode            = data.getInt        ( 3);
-            final String      axis1Name         = data.getString     ( 4);
-            final String      axis1Abbreviation = data.getString     ( 5);
-            final String      axis1Orientation  = data.getString     ( 6);
-            final String      axis1Unit         = data.getString     ( 7);
-            final OptionalInt optionalCodeEPSG  = data.getIntOptional( 8);
-            final String      nameEPSG          = data.getString     ( 9);
-            final String      remarks           = data.getString     (11);
-
+            final int         code             = data.getInt        ( 0);
+            final String      name             = data.getString     ( 1);
+            final int         datumCode        = data.getInt        ( 2);
+            final int         csCode           = data.getInt        ( 3);
+            final String      axisName         = data.getString     ( 4);
+            final String      axisAbbreviation = data.getString     ( 5);
+            final String      axisOrientation  = data.getString     ( 6);
+            final String      axisUnit         = data.getString     ( 7);
+            final OptionalInt codeEPSG         = data.getIntOptional( 8);
+            final String      nameEPSG         = data.getString     ( 9);
+            final String      remarks          = data.getString     (11);
             /*
              * Write javadoc.
              */
             out.append('\n');
-            out.append('\n');
-            indent(1);
-            out.append("/**\n");
-            indent(1);
-            out.append(" * Tests “").append(name).append("” projected CRS creation from the factory.\n");
-            indent(1);
-            out.append(" *\n");
-            final var descriptions = new ArrayList<>(20);
-            descriptions.addAll(Arrays.asList("GIGS vertical CRS code", code,
-                    "GIGS vertical name", replaceAsciiPrimeByUnicode(name)));
-            if (optionalCodeEPSG.isPresent()) {
-                descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(optionalCodeEPSG.getAsInt(), nameEPSG)));
-            }
-            descriptions.addAll(Arrays.asList("EPSG coordinate system code", csCode,
-                    "Axis 1 name", axis1Name,
-                    "Axis 1 abbreviation", axis1Abbreviation,
-                    "Axis 1 orientation", axis1Orientation,
-                    "Axis 1 unit", axis1Unit
-            ));
-            printJavadocKeyValues(descriptions.toArray());
+            indent(1); out.append("/**\n");
+            indent(1); out.append(" * Tests “").append(name).append("” vertical CRS creation from the factory.\n");
+            indent(1); out.append(" *\n");
+            printJavadocKeyValues("GIGS vertical CRS code", code,
+                                  "GIGS vertical name", replaceAsciiPrimeByUnicode(name),
+                                  "EPSG equivalence", codeAndName(codeEPSG, nameEPSG),
+                                  "EPSG coordinate system code", csCode);
+            printJavadocAxisHeader();
+            printJavadocAxisRow(axisName, axisAbbreviation, axisOrientation, axisUnit);
+            printJavadocTableFooter();
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the vertical CRS from the properties.");
             /*
@@ -125,41 +110,12 @@ public final class Test3210 extends TestMethodGenerator {
 
             indent(2); out.append("createDatum(Test3209::GIGS_").append(datumCode).append(");\n");
 
-            Unit<?> parsedAxis1Unit = parseUnit(axis1Unit);
-            String axis1Direction = getAxisDirection(axis1Orientation);
-            indent(2); out.append("CoordinateSystemAxis axis1 = epsgFactory.createCoordinateSystemAxis(\"")
-                    .append(axis1Name).append("\", \"")
-                    .append(axis1Abbreviation).append("\", ")
-                    .append(axis1Direction).append(", ");
-            printProgrammaticName(parsedAxis1Unit);
-            out.append(");\n");
-            indent(2); out.append("verticalCS = epsgFactory.createVerticalCS(\"").append(csCode).append("\", axis1);\n");
+            printAxis("axis", axisName, axisAbbreviation, axisOrientation, axisUnit);
+            indent(2); out.append("createVerticalCS(").append(csCode).append(", axis);\n");
             indent(2); out.append("verifyVerticalCRS();\n");
             indent(1); out.append('}');
             saveTestMethod();
         }
         flushAllMethods();
-    }
-
-    /**
-     * Returns the axis direction associated with the axis orientation, throws an error if axis orientation is invalid.
-     *
-     * @param  axisOrientation axis orientation specified in the GIGS testing file
-     * @return programmatic string of the axis direction
-     * @throws IllegalArgumentException if axis orientation is invalid
-     */
-    private String getAxisDirection(String axisOrientation) {
-        switch (axisOrientation) {
-            case "up":
-                return "AxisDirection.UP";
-            case "down":
-                return "AxisDirection.DOWN";
-            case "west":
-                return "AxisDirection.WEST";
-            case "south":
-                return "AxisDirection.SOUTH";
-            default:
-                throw new IllegalArgumentException("Invalid axis orientation, " + axisOrientation);
-        }
     }
 }

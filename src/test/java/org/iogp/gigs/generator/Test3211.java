@@ -26,8 +26,6 @@ package org.iogp.gigs.generator;
 
 import javax.measure.Unit;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.OptionalInt;
 import java.util.Set;
@@ -132,20 +130,16 @@ public final class Test3211 extends TestMethodGenerator {
                     .append(" transformation from the factory.\n");
             indent(1);
             out.append(" *\n");
-            final var descriptions = new ArrayList<>();
-            descriptions.addAll(Arrays.asList("GIGS transformation code", code,
-                    "EPSG Transformation Method", methodName));
-            if (codeEPSG.isPresent()) {
-                descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(codeEPSG.getAsInt(), nameEPSG)));
-            }
-            printJavadocKeyValues(descriptions.toArray());
-            printParameterTableHeader("Transformation parameters");
+            printJavadocKeyValues("GIGS transformation code", code,
+                                  "EPSG Transformation Method", methodName,
+                                  "EPSG equivalence", codeAndName(codeEPSG, nameEPSG));
+            printJavadocParameterHeader("Transformation parameters");
             printJavadocParameterString(parameter1Name, parameter1Value, parameter1Unit);
             printJavadocParameterString(parameter2Name, parameter2Value, parameter2Unit);
             printJavadocParameterString(parameter3Name, parameter3Value, parameter3Unit);
             printJavadocParameterString(parameter4Name, parameter4Value, parameter4Unit);
             printJavadocParameterString(parameter5Name, parameter5Value, parameter5Unit);
-            printParameterTableFooter();
+            printJavadocTableFooter();
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the transformation from the properties.");
 
@@ -219,7 +213,7 @@ public final class Test3211 extends TestMethodGenerator {
         if (parameterUnit != null && parameterUnit.equals("NULL")) {
             parameterUnit = null;
         }
-        printParameterTableRow(parameterName, parameterValue, parameterUnit);
+        printJavadocParameterRow(parameterName, Double.valueOf(parameterValue), parameterUnit, Double.NaN);
     }
 
     /**

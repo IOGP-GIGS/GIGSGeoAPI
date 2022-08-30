@@ -28,12 +28,16 @@ import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.sis.TransformationFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.crs.*;
+import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.cs.CSFactory;
-import org.opengis.referencing.datum.*;
-import org.opengis.referencing.operation.*;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.operation.ConcatenatedOperation;
+import org.opengis.referencing.operation.CoordinateOperationFactory;
+import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.referencing.operation.Transformation;
 import org.opengis.util.FactoryException;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,8 +52,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *   <td>Create user-defined concatenated CRS.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_3005_userProjection.csv">{@code GIGS_user_3208_CoordTfm.txt}</a>.</td>
- *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/blob/main/GIGSTestDatasetFiles/GIGS%203200%20User-defined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_user_3211_VertTfm.txt">{@code GIGS_user_3211_VertTfm.txt}</a>
+ *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/blob/main/GIGSTestDatasetFiles/GIGS%203200%20User-defined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_user_3212_ConcatTfm.txt">{@code GIGS_user_3212_ConcatTfm.txt}</a>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link CoordinateOperationFactory#createConcatenatedOperation(Map, CoordinateOperation...)}.</td>

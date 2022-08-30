@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.OptionalInt;
 import java.util.TreeMap;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
@@ -65,54 +67,6 @@ public abstract class TestMethodGenerator {
      * Provider of unit implementations.
      */
     static final Units units = Units.getInstance();
-
-    /**
-     * Enumeration values for sexagesimal units, which are handled specially.
-     */
-    enum SexagesimalUnit {
-        /** Sexagesimal degree. */ DEGREE(9110, "sexagesimal degree"),
-        /** Sexagesimal DMS.    */ DMS   (9110, "sexagesimal DMS");
-
-        /** The EPSG code for the unit. */
-        public final int code;
-
-        /** The unit name in data files. */
-        public final String text;
-
-        /**
-         * Creates a new enumeration value.
-         *
-         * @param code the EPSG code for the unit.
-         * @param text the unit name in data files.
-         */
-        private SexagesimalUnit(final int code, final String text) {
-            this.text = text;
-            this.code = code;
-        }
-
-        /**
-         * Retrieves the angular unit (compatible with degrees) of the given name.
-         * The returned value is an instance of {@link SexagesimalUnit} or {@code Unit<Angle>}.
-         *
-         * @param  text  the unit name.
-         * @return the angular unit for the given name (never {@code null}).
-         */
-        public static Object parse(final String text) {
-            for (final SexagesimalUnit c : values()) {
-                if (c.text.equalsIgnoreCase(text)) {
-                    return c;
-                }
-            }
-            final Unit<Angle> c = parseAngularUnit(text);
-            assertNotNull(c, text);
-            return c;
-        }
-    }
-
-    /**
-     * The value to give to the {@link org.iogp.gigs.Series2000#aliases} field for meaning "no alias".
-     */
-    static final String[] NO_ALIAS = new String[0];
 
     /**
      * Where to write the generated code.
@@ -305,14 +259,8 @@ public abstract class TestMethodGenerator {
                         } else {
                             out.append("various");
                         }
-                    } else if (value instanceof Double) {
-                        final double asDouble = (Double) value;
-                        final int asInteger = (int) asDouble;
-                        if (asDouble == asInteger) {
-                            out.append(asInteger);
-                        } else {
-                            out.append(asDouble);
-                        }
+                    } else if (value instanceof Number) {
+                        append(((Number) value).doubleValue());
                     } else {
                         out.append(value.toString().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"));
                     }
@@ -328,6 +276,41 @@ public abstract class TestMethodGenerator {
     }
 
     /**
+     * Appends the given value as an integer if possible, or as a floating point otherwise.
+     * The intent is to avoid scientific notation for values around 1E+7, which are frequent
+     * with ellipsoidal axis lengths.
+     *
+     * @param  value  the value to append.
+     */
+    private void append(final double value) {
+        final long asInteger = Math.round(value);
+        if (asInteger == value) {
+            out.append(asInteger);
+        } else {
+            out.append(value);
+            trimFractionalPart();
+        }
+    }
+
+    /**
+     * Trims the fractional part of the last formatted number, provided that it doesn't change the value.
+     * If the buffer ends with a {@code '.'} character followed by a sequence of {@code '0'} characters,
+     * then those characters are removed. Otherwise this method does nothing.
+     * This is a <cite>"all or nothing"</cite> method: either the fractional part is completely removed,
+     * or either it is left unchanged.
+     */
+    @SuppressWarnings("fallthrough")
+    private void trimFractionalPart() {
+        for (int i=out.length(); i > 0;) {
+            switch (out.charAt(--i)) {               // No need to use Unicode code points here.
+                case '0': continue;
+                case '.': out.setLength(i);          // Fall through
+                default : return;
+            }
+        }
+    }
+
+    /**
      * Formats code and name on the same line, for inclusion in the list of argument given to
      * {@link #printJavadocKeyValues(Object[])}.
      *
@@ -337,6 +320,17 @@ public abstract class TestMethodGenerator {
      */
     static String codeAndName(final int code, final String name) {
         return code + " – " + name;
+    }
+
+    /**
+     * Returns the code and name on the same line if the code is present.
+     *
+     * @param  code  the authority code to format.
+     * @param  name  the name to format.
+     * @return the (authority, code) tuple, or {@code null} if the EPSG code is absent.
+     */
+    static String codeAndName(final OptionalInt code, final String name) {
+        return code.isPresent() ? codeAndName(code.getAsInt(), name) : null;
     }
 
     /**
@@ -430,43 +424,88 @@ public abstract class TestMethodGenerator {
     }
 
     /**
+     * Prints the first lines for the table of axes in Javadoc.
+     */
+    final void printJavadocAxisHeader() {
+        indent(1); out.append(" * <table class=\"gigs\">\n");
+        indent(1); out.append(" *   <caption>Coordinate system axes</caption>\n");
+        indent(1); out.append(" *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>\n");
+    }
+
+    /**
      * Prints the first lines for the table of parameters in Javadoc.
      *
      * @param  caption  the table caption (e.g. "Conversion parameters").
      */
-    final void printParameterTableHeader(final String caption) {
-        indent(1); out.append(" * <table class=\"ogc\">\n");
+    final void printJavadocParameterHeader(final String caption) {
+        indent(1); out.append(" * <table class=\"gigs\">\n");
         indent(1); out.append(" *   <caption>").append(caption).append("</caption>\n");
         indent(1); out.append(" *   <tr><th>Parameter name</th><th>Value</th></tr>\n");
     }
 
     /**
-     * Prints a parameter name, value and units in Javadoc.
+     * Prints an axis name, abbreviation, orientation and units in Javadoc.
      *
-     * @param  name   the parameter name.
-     * @param  value  value to assign to the parameter.
-     * @param  unit   unit of measurement associated to the value.
+     * @param  name          the axis name.
+     * @param  abbreviation  the axis abbreviation.
+     * @param  orientation   the axis orientation.
+     * @param  unit          unit of measurement associated to the axis.
+     *
+     * @see #printParameterString(String, double, String, double)
      */
-    final void printParameterTableRow(final String name, final String value, String unit) {
+    final void printJavadocAxisRow(final String name, final String abbreviation, final String orientation, final String unit) {
         indent(1);
-        out.append(" *   <tr><td>").append(name).append("</td><td>").append(value);
-        if (unit != null && !unit.equals("unity")) {
-            if (unit.equals("degree")) {
-                out.append('°');
-            } else {
-                if (Math.abs(Double.valueOf(value)) > 1) {
-                    unit += 's';
-                }
-                out.append(' ').append(unit);
-            }
-        }
-        out.append("</td></tr>\n");
+        out.append(" *   <tr><td>").append(name)
+               .append("</td><td>").append(abbreviation)
+               .append("</td><td>").append(orientation)
+               .append("</td><td>").append(unit)
+               .append("</td></tr>\n");
     }
 
     /**
-     * Prints the last lines for the table of parameters in Javadoc.
+     * Prints a parameter name, value and units in Javadoc.
+     *
+     * @param  name     the parameter name.
+     * @param  value    value to assign to the parameter, or {@link Double#NaN} if none.
+     * @param  unit     unit of measurement associated to the value.
+     * @param  degrees  the value in decimal degrees, or {@link Double#NaN} if none or not applicable.
+     *
+     * @see #printParameterString(String, double, String, double)
      */
-    final void printParameterTableFooter() {
+    final void printJavadocParameterRow(final String name, final double value, final String unit, final double degrees) {
+        if (!Double.isNaN(value)) {
+            indent(1);
+            out.append(" *   <tr><td>").append(name).append("</td><td>");
+            if (unit == null || unit.equals("unity")) {
+                append(value);
+            } else if (unit.equals("degree")) {
+                append(value);
+                out.append('°');
+            } else {
+                final SexagesimalUnit su = SexagesimalUnit.parse(unit);
+                if (su != null) {
+                    su.format(value, out);
+                } else {
+                    append(value);
+                    out.append(' ').append(unit);
+                    if (Math.abs(value) > 1) {
+                        out.append('s');
+                    }
+                }
+            }
+            if (!Double.isNaN(degrees)) {
+                out.append(" (").append(degrees);
+                trimFractionalPart();
+                out.append("°)");
+            }
+            out.append("</td></tr>\n");
+        }
+    }
+
+    /**
+     * Prints the last lines for the table of axes or parameters in Javadoc.
+     */
+    final void printJavadocTableFooter() {
         indent(1); out.append(" * </table>\n");
     }
 
@@ -622,6 +661,27 @@ public abstract class TestMethodGenerator {
     }
 
     /**
+     * Prints a statement like "{@code CoordinateSystemAxis axis1 = createCoordinateSystemAxis(…)}".
+     *
+     * @param  variable      name of the variable.
+     * @param  name          axis name.
+     * @param  abbreviation  axis abbreviation.
+     * @param  orientation   axis orientation.
+     * @param  unit          axis units of measurement.
+     */
+    final void printAxis(final String variable, final String name, final String abbreviation, final String orientation, final String unit) {
+        Unit<?> parsedUnit = parseUnit(unit);
+        indent(2);
+        out.append("CoordinateSystemAxis ").append(variable)
+           .append(" = createCoordinateSystemAxis(\"")
+           .append(name).append("\", \"")
+           .append(abbreviation).append("\", ")
+           .append("AxisDirection.").append(orientation.toUpperCase(Locale.US)).append(", ");
+        printProgrammaticName(parsedUnit);
+        out.append(");\n");
+    }
+
+    /**
      * Prints the programmatic name of the given unit.
      *
      * @param unit  the unit for which to print the programmatic name.
@@ -700,6 +760,39 @@ public abstract class TestMethodGenerator {
     final void printCallToSetCodeAndName(final int code, final String name) {
         indent(2);
         out.append("setCodeAndName(").append(code).append(", \"").append(name).append("\");\n");
+    }
+
+    /**
+     * Prints the programmatic line that adds a parameter to a parameter group.
+     *
+     * @param  name     the parameter name.
+     * @param  value    the parameter value, or {@link Double#NaN} if none.
+     * @param  unit     the parameter unit of measurement.
+     * @param  degrees  the value in decimal degrees, or {@link Double#NaN} if none or not applicable.
+     *
+     * @see #printJavadocParameterRow(String, double, String, double)
+     */
+    final void printParameterString(final String name, double value, final String unit, final double degrees) {
+        if (!Double.isNaN(value)) {
+            indent(2); out.append("definition.parameter(\"").append(name).append("\")");
+            Unit<?> parsedUnit;
+            if (!Double.isNaN(degrees)) {
+                value = degrees;
+                parsedUnit = units.degree();
+            } else {
+                parsedUnit = parseUnit(unit);
+                if (parsedUnit == null) {
+                    value = SexagesimalUnit.parse(unit).toDecimalDegrees(value);
+                    parsedUnit = units.degree();
+                }
+            }
+            out.append(".setValue(").append(value);
+            if (unit != null) {
+                out.append(", ");
+                printProgrammaticName(parsedUnit);
+            }
+            out.append(");\n");
+        }
     }
 
     /**

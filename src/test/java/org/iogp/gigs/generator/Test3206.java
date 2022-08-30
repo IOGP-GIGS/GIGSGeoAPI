@@ -24,11 +24,7 @@
  */
 package org.iogp.gigs.generator;
 
-
-import javax.measure.Unit;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.OptionalInt;
 
 
@@ -38,6 +34,7 @@ import java.util.OptionalInt;
  * but be aware that the original code may contain manual changes that need to be preserved.
  *
  * @author  Michael Arneson (INT)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0
  */
@@ -101,59 +98,53 @@ public final class Test3206 extends TestMethodGenerator {
             final int    code                     = data.getInt         ( 0);
             final String name                     = data.getString      ( 1);
             final String conversionName           = data.getString      ( 2);
-            final String parameter1Name           = data.getString      (3);
-            final Double parameter1Value          = data.getDouble      (4);
-            final String parameter1Unit           = data.getString      (5);
-            final Double parameter1ValueInDegrees = data.getDouble      (6);
-            final String parameter2Name           = data.getString      (7);
-            final Double parameter2Value          = data.getDouble      (8);
-            final String parameter2Unit           = data.getString      (9);
-            final Double parameter2ValueInDegrees = data.getDouble      (10);
+            final String parameter1Name           = data.getString      ( 3);
+            final double parameter1Value          = data.getDouble      ( 4);
+            final String parameter1Unit           = data.getString      ( 5);
+            final double parameter1ValueInDegrees = data.getDouble      ( 6);
+            final String parameter2Name           = data.getString      ( 7);
+            final double parameter2Value          = data.getDouble      ( 8);
+            final String parameter2Unit           = data.getString      ( 9);
+            final double parameter2ValueInDegrees = data.getDouble      (10);
             final String parameter3Name           = data.getString      (11);
-            final Double parameter3Value          = data.getDouble      (12);
+            final double parameter3Value          = data.getDouble      (12);
             final String parameter3Unit           = data.getString      (13);
-            final Double parameter3ValueInDegrees = data.getDouble      (14);
+            final double parameter3ValueInDegrees = data.getDouble      (14);
             final String parameter4Name           = data.getString      (15);
-            final Double parameter4Value          = data.getDouble      (16);
+            final double parameter4Value          = data.getDouble      (16);
             final String parameter4Unit           = data.getString      (17);
-            final Double parameter4ValueInDegrees = data.getDouble      (18);
+            final double parameter4ValueInDegrees = data.getDouble      (18);
             final String parameter5Name           = data.getString      (19);
-            final Double parameter5Value          = data.getDouble      (20);
+            final double parameter5Value          = data.getDouble      (20);
             final String parameter5Unit           = data.getString      (21);
             final String parameter6Name           = data.getString      (22);
-            final Double parameter6Value          = data.getDouble      (23);
+            final double parameter6Value          = data.getDouble      (23);
             final String parameter6Unit           = data.getString      (24);
             final String parameter7Name           = data.getString      (25);
-            final Double parameter7Value          = data.getDouble      (26);
+            final double parameter7Value          = data.getDouble      (26);
             final String parameter7Unit           = data.getString      (27);
             final OptionalInt codeEPSG            = data.getIntOptional (28);
             final String nameEPSG                 = data.getString      (29);
             final String remarks                  = data.getString      (30);
-
             /*
              * Write javadoc.
              */
             out.append('\n');
             indent(1); out.append("/**\n");
-            indent(1); out.append(" * Tests “").append(name).append("” ")
-                    .append(" conversion from the factory.\n");
+            indent(1); out.append(" * Tests “").append(name).append("” conversion from the factory.\n");
             indent(1); out.append(" *\n");
-            final var descriptions = new ArrayList<>();
-            descriptions.addAll(Arrays.asList("GIGS conversion code", code,
-                    "GIGS conversion name", name));
-            if (codeEPSG.isPresent()) {
-                descriptions.addAll(Arrays.asList("EPSG equivalence", codeAndName(codeEPSG.getAsInt(), nameEPSG)));
-            }
-            printJavadocKeyValues(descriptions.toArray());
-            printParameterTableHeader("Conversion parameters");
-            printJavadocParameterString(parameter1Name, parameter1Value, parameter1Unit, parameter1ValueInDegrees);
-            printJavadocParameterString(parameter2Name, parameter2Value, parameter2Unit, parameter2ValueInDegrees);
-            printJavadocParameterString(parameter3Name, parameter3Value, parameter3Unit, parameter3ValueInDegrees);
-            printJavadocParameterString(parameter4Name, parameter4Value, parameter4Unit, parameter4ValueInDegrees);
-            printJavadocParameterString(parameter5Name, parameter5Value, parameter5Unit);
-            printJavadocParameterString(parameter6Name, parameter6Value, parameter6Unit);
-            printJavadocParameterString(parameter7Name, parameter7Value, parameter7Unit);
-            printParameterTableFooter();
+            printJavadocKeyValues("GIGS conversion code", code,
+                                  "GIGS conversion name", name,
+                                  "EPSG equivalence", codeAndName(codeEPSG, nameEPSG));
+            printJavadocParameterHeader("Conversion parameters");
+            printJavadocParameterRow(parameter1Name, parameter1Value, parameter1Unit, parameter1ValueInDegrees);
+            printJavadocParameterRow(parameter2Name, parameter2Value, parameter2Unit, parameter2ValueInDegrees);
+            printJavadocParameterRow(parameter3Name, parameter3Value, parameter3Unit, parameter3ValueInDegrees);
+            printJavadocParameterRow(parameter4Name, parameter4Value, parameter4Unit, parameter4ValueInDegrees);
+            printJavadocParameterRow(parameter5Name, parameter5Value, parameter5Unit, Double.NaN);
+            printJavadocParameterRow(parameter6Name, parameter6Value, parameter6Unit, Double.NaN);
+            printJavadocParameterRow(parameter7Name, parameter7Value, parameter7Unit, Double.NaN);
+            printJavadocTableFooter();
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the conversion from the properties.");
             /*
@@ -167,54 +158,13 @@ public final class Test3206 extends TestMethodGenerator {
             printParameterString(parameter2Name, parameter2Value, parameter2Unit, parameter2ValueInDegrees);
             printParameterString(parameter3Name, parameter3Value, parameter3Unit, parameter3ValueInDegrees);
             printParameterString(parameter4Name, parameter4Value, parameter4Unit, parameter4ValueInDegrees);
-            printParameterString(parameter5Name, parameter5Value, parameter5Unit);
-            printParameterString(parameter6Name, parameter6Value, parameter6Unit);
-            printParameterString(parameter7Name, parameter7Value, parameter7Unit);
+            printParameterString(parameter5Name, parameter5Value, parameter5Unit, Double.NaN);
+            printParameterString(parameter6Name, parameter6Value, parameter6Unit, Double.NaN);
+            printParameterString(parameter7Name, parameter7Value, parameter7Unit, Double.NaN);
             indent(2); out.append("verifyConversion();\n");
             indent(1); out.append('}');
             saveTestMethod();
         }
         flushAllMethods();
-    }
-
-    private void printParameterString(String parameterName, Double parameterValue, String parameterUnit, Double... parameterValueAsDec) {
-        if (parameterName == null || parameterName.equals("NULL")) {
-            return;
-        }
-        indent(2); out.append("definition.parameter(\"").append(parameterName).append("\")");
-        if (parameterUnit != null && parameterUnit.equals("sexagesimal DMS") && parameterValueAsDec != null) {
-            parameterUnit = "degree";
-            parameterValue =  parameterValueAsDec[0];
-        }
-        if (Double.isNaN(parameterValue) && parameterUnit.equals("degree") && parameterName.startsWith("Latitude")) {
-            parameterValue = 90.;
-        }
-        if (Double.isNaN(parameterValue) && parameterUnit.equals("degree") && parameterName.startsWith("Longitude")) {
-            parameterValue = 180.;
-        }
-        out.append(".setValue(").append(parameterValue);
-        if (parameterUnit != null) {
-            out.append(", ");
-            Unit<?> unit = parseUnit(parameterUnit);
-            printProgrammaticName(unit);
-        }
-        out.append(");\n");
-    }
-
-    private void printJavadocParameterString(String parameterName, Double parameterValue, String parameterUnit, Double... parameterValueAsDec) {
-        if (parameterName == null || parameterName.equals("NULL")) {
-            return;
-        }
-        if (parameterUnit != null && parameterUnit.equals("sexagesimal DMS") && parameterValueAsDec != null && parameterValueAsDec.length > 0) {
-            parameterValue = parameterValueAsDec[0];
-            parameterUnit = "degree";
-        }
-        if (Double.isNaN(parameterValue) && parameterUnit.equals("degree") && parameterName.startsWith("Latitude")) {
-            parameterValue = 90.;
-        }
-        if (Double.isNaN(parameterValue) && parameterUnit.equals("degree") && parameterName.startsWith("Longitude")) {
-            parameterValue = 180.;
-        }
-        printParameterTableRow(parameterName, String.valueOf(parameterValue), parameterUnit);
     }
 }
