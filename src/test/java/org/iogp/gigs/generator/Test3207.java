@@ -26,6 +26,8 @@ package org.iogp.gigs.generator;
 
 import java.util.OptionalInt;
 import java.io.IOException;
+import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
+import org.opengis.referencing.operation.CoordinateOperationFactory;
 
 
 /**
@@ -52,6 +54,8 @@ public final class Test3207 extends TestMethodGenerator {
      * Creates a new test methods generator.
      */
     private Test3207() {
+        libraryFactoryType = CoordinateOperationAuthorityFactory.class;
+        userFactoryType    = CoordinateOperationFactory.class;
     }
 
     /**

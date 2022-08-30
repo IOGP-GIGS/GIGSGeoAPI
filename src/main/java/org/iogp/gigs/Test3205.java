@@ -126,8 +126,6 @@ public class Test3205 extends Series3000<GeodeticCRS> {
     /**
      * Factory to use for building {@link GeodeticDatum} and {@link PrimeMeridian} components, or {@code null} if none.
      * This is used only for tests with EPSG codes for datum components.
-     *
-     * @see #createDatum(int)
      */
     protected final DatumAuthorityFactory datumAuthorityFactory;
 
@@ -176,7 +174,7 @@ public class Test3205 extends Series3000<GeodeticCRS> {
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
      *       <li>{@link #crsFactory}</li>
-     *       <li>{@code csFactory}</li>
+     *       <li>{@link #csFactory}</li>
      *       <li>{@link #datumFactory}</li>
      *       <li>{@link #datumAuthorityFactory}</li>
      *     </ul>

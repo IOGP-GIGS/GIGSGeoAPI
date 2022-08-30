@@ -273,7 +273,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 1</b></li>
      *   <li>EPSG equivalence: <b>16031 – UTM zone 31N</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
@@ -307,7 +307,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 10</b></li>
      *   <li>EPSG equivalence: <b>17521 – South African Survey Grid zone 21</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
@@ -341,7 +341,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 11</b></li>
      *   <li>EPSG equivalence: <b>18035 – Argentina zone 5</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>-90°</td></tr>
@@ -375,7 +375,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 12</b></li>
      *   <li>EPSG equivalence: <b>19941 – Brazil Polyconic</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
@@ -406,7 +406,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion code: <b>65013</b></li>
      *   <li>GIGS conversion name: <b>GIGS conversion 13</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of projection centre</td><td>4°</td></tr>
@@ -447,7 +447,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 14</b></li>
      *   <li>EPSG equivalence: <b>19894 – Borneo RSO</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of projection centre</td><td>4°</td></tr>
@@ -485,7 +485,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 15</b></li>
      *   <li>EPSG equivalence: <b>19893 – Johor Grid</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>2°07′18.04708″ (2.121679722°)</td></tr>
@@ -517,7 +517,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 16</b></li>
      *   <li>EPSG equivalence: <b>19986 – Europe Equal Area 2001</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>52°</td></tr>
@@ -549,7 +549,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 17</b></li>
      *   <li>EPSG equivalence: <b>15362 – SPCS83 Utah North zone (International feet)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of false origin</td><td>40°20′00″ (40.33333333°)</td></tr>
@@ -585,7 +585,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 18</b></li>
      *   <li>EPSG equivalence: <b>15297 – SPCS83 Utah North zone (US Survey feet)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of false origin</td><td>40°20′00″ (40.33333333°)</td></tr>
@@ -621,7 +621,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 19</b></li>
      *   <li>EPSG equivalence: <b>18082 – Lambert zone II</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>52 grads</td></tr>
@@ -657,7 +657,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 2</b></li>
      *   <li>EPSG equivalence: <b>19916 – British National Grid</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>49°</td></tr>
@@ -692,7 +692,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion code: <b>65023</b></li>
      *   <li>GIGS conversion name: <b>GIGS conversion 23</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
@@ -730,7 +730,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 24</b></li>
      *   <li>EPSG equivalence: <b>19884 – Caspian Sea Mercator</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of 1st standard parallel</td><td>42°</td></tr>
@@ -761,7 +761,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion code: <b>65025</b></li>
      *   <li>GIGS conversion name: <b>GIGS conversion 25</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>46°48′00″ (46.8°)</td></tr>
@@ -800,7 +800,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 26</b></li>
      *   <li>EPSG equivalence: <b>19931 – Egyseges Orszagos Vetuleti</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of projection centre</td><td>47°08′39.8174″ (47.1443937°)</td></tr>
@@ -838,7 +838,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 27</b></li>
      *   <li>EPSG equivalence: <b>19905 – Netherlands East Indies Equatorial Zone</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
@@ -872,7 +872,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 28</b></li>
      *   <li>EPSG equivalence: <b>16008 – UTM zone 8N</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
@@ -905,7 +905,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion code: <b>65021</b></li>
      *   <li>GIGS conversion name: <b>GIGS conversion 2 alt A</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
@@ -942,7 +942,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion code: <b>65022</b></li>
      *   <li>GIGS conversion name: <b>GIGS conversion 2 alt B</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
@@ -980,7 +980,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 4</b></li>
      *   <li>EPSG equivalence: <b>19914 – RD New</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>52°09′22.178″ (52.15616056°)</td></tr>
@@ -1014,7 +1014,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 5</b></li>
      *   <li>EPSG equivalence: <b>5328 – Netherlands East Indies Equatorial Zone (Jkt)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
@@ -1051,7 +1051,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 6</b></li>
      *   <li>EPSG equivalence: <b>19961 – Belgian Lambert 72</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of false origin</td><td>90°00′00″</td></tr>
@@ -1087,7 +1087,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 7</b></li>
      *   <li>EPSG equivalence: <b>17454 – Australian Map Grid zone 54</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
@@ -1121,7 +1121,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 8</b></li>
      *   <li>EPSG equivalence: <b>17455 – Australian Map Grid zone 55</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
@@ -1155,7 +1155,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <li>GIGS conversion name: <b>GIGS conversion 9</b></li>
      *   <li>EPSG equivalence: <b>17365 – Australian Albers</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Conversion parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of false origin</td><td>0°</td></tr>

@@ -32,6 +32,7 @@ import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.referencing.crs.CRSFactory;
+import org.opengis.referencing.crs.GeodeticCRS;
 import org.opengis.referencing.crs.VerticalCRS;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CSFactory;
@@ -271,7 +272,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      *   <li>EPSG equivalence: <b>5336 – Black Sea depth</b></li>
      *   <li>EPSG coordinate system code: <b>6498</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Gravity-related depth</td><td>D</td><td>down</td><td>metre</td></tr>
@@ -298,7 +299,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      *   <li>EPSG equivalence: <b>5735 – Black Sea height</b></li>
      *   <li>EPSG coordinate system code: <b>6499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>metre</td></tr>
@@ -324,7 +325,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      *   <li>GIGS vertical name: <b>GIGS vertCRS U2 depth</b></li>
      *   <li>EPSG coordinate system code: <b>6495</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Gravity-related depth</td><td>D</td><td>down</td><td>foot</td></tr>
@@ -353,7 +354,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      *   <li>GIGS vertical name: <b>GIGS vertCRS U2 height</b></li>
      *   <li>EPSG coordinate system code: <b>1030</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>foot</td></tr>
@@ -383,7 +384,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      *   <li>EPSG equivalence: <b>5612 – Baltic 1977 depth</b></li>
      *   <li>EPSG coordinate system code: <b>6498</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Gravity-related depth</td><td>D</td><td>down</td><td>metre</td></tr>
@@ -410,7 +411,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      *   <li>EPSG equivalence: <b>5705 – Baltic 1977 height</b></li>
      *   <li>EPSG coordinate system code: <b>6499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>metre</td></tr>
@@ -436,7 +437,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      *   <li>GIGS vertical name: <b>GIGS vertCRS V2 height</b></li>
      *   <li>EPSG coordinate system code: <b>6497</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>ftUS</td></tr>
@@ -466,7 +467,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      *   <li>EPSG equivalence: <b>5706 – Caspian depth</b></li>
      *   <li>EPSG coordinate system code: <b>6498</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Gravity-related depth</td><td>D</td><td>down</td><td>metre</td></tr>
@@ -493,7 +494,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      *   <li>EPSG equivalence: <b>5611 – Caspian height</b></li>
      *   <li>EPSG coordinate system code: <b>6499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Gravity-related height</td><td>H</td><td>up</td><td>metre</td></tr>

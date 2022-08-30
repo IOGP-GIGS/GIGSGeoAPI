@@ -31,9 +31,12 @@ import org.junit.jupiter.api.Test;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.crs.CRSFactory;
+import org.opengis.referencing.crs.GeodeticCRS;
+import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.crs.VerticalCRS;
 import org.opengis.referencing.cs.CSFactory;
 import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.OperationMethod;
@@ -54,7 +57,6 @@ import static org.junit.jupiter.api.Assertions.*;
  *   <td>Create user-defined vertical transformation.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="doc-files/GIGS_3005_userProjection.csv">{@code GIGS_user_3208_CoordTfm.txt}</a>.</td>
  *   <td><a href="https://github.com/IOGP-GIGS/GIGSTestDataset/blob/main/GIGSTestDatasetFiles/GIGS%203200%20User-defined%20Geodetic%20Data%20Objects%20test%20data/ASCII/GIGS_user_3211_VertTfm.txt">{@code GIGS_user_3211_VertTfm.txt}</a>
  * </tr><tr>
  *   <th>Tested API:</th>
@@ -331,7 +333,7 @@ public class Test3211 extends Series3000<Transformation> {
      *   <li>GIGS transformation code: <b>61501</b></li>
      *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Vertical offset</td><td>0 metre</td></tr>
@@ -361,7 +363,7 @@ public class Test3211 extends Series3000<Transformation> {
      *   <li>GIGS transformation code: <b>61502</b></li>
      *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Vertical offset</td><td>0 metre</td></tr>
@@ -391,7 +393,7 @@ public class Test3211 extends Series3000<Transformation> {
      *   <li>GIGS transformation code: <b>61503</b></li>
      *   <li>EPSG Transformation Method: <b>Vertical Offset and Slope</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Ordinate 1 of evaluation point</td><td>52°</td></tr>
@@ -430,7 +432,7 @@ public class Test3211 extends Series3000<Transformation> {
      *   <li>GIGS transformation code: <b>65400</b></li>
      *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Vertical offset</td><td>-28 metres</td></tr>
@@ -462,7 +464,7 @@ public class Test3211 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
      *   <li>EPSG equivalence: <b>5438 – Baltic 1977 height to Caspian height (1)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Vertical offset</td><td>28 metres</td></tr>
@@ -491,7 +493,7 @@ public class Test3211 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
      *   <li>EPSG equivalence: <b>5440 – Baltic 1977 depth to Caspian depth (1)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Vertical offset</td><td>-28 metres</td></tr>
@@ -519,7 +521,7 @@ public class Test3211 extends Series3000<Transformation> {
      *   <li>GIGS transformation code: <b>65441</b></li>
      *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Vertical offset</td><td>28 metres</td></tr>
@@ -551,7 +553,7 @@ public class Test3211 extends Series3000<Transformation> {
      *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
      *   <li>EPSG equivalence: <b>5447 – Baltic 1977 height to Black Sea height (1)</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Transformation parameters</caption>
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Vertical offset</td><td>0.4 metre</td></tr>

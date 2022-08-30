@@ -427,7 +427,7 @@ public abstract class TestMethodGenerator {
      * Prints the first lines for the table of axes in Javadoc.
      */
     final void printJavadocAxisHeader() {
-        indent(1); out.append(" * <table class=\"ogc\">\n");
+        indent(1); out.append(" * <table class=\"gigs\">\n");
         indent(1); out.append(" *   <caption>Coordinate system axes</caption>\n");
         indent(1); out.append(" *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>\n");
     }
@@ -438,7 +438,7 @@ public abstract class TestMethodGenerator {
      * @param  caption  the table caption (e.g. "Conversion parameters").
      */
     final void printJavadocParameterHeader(final String caption) {
-        indent(1); out.append(" * <table class=\"ogc\">\n");
+        indent(1); out.append(" * <table class=\"gigs\">\n");
         indent(1); out.append(" *   <caption>").append(caption).append("</caption>\n");
         indent(1); out.append(" *   <tr><th>Parameter name</th><th>Value</th></tr>\n");
     }

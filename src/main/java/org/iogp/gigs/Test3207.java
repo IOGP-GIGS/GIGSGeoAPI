@@ -32,6 +32,7 @@ import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.referencing.crs.CRSFactory;
+import org.opengis.referencing.crs.GeodeticCRS;
 import org.opengis.referencing.crs.GeographicCRS;
 import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.cs.AxisDirection;
@@ -40,10 +41,14 @@ import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.datum.Ellipsoid;
+import org.opengis.referencing.datum.GeodeticDatum;
+import org.opengis.referencing.datum.PrimeMeridian;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.referencing.operation.Transformation;
 import org.opengis.util.FactoryException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -367,10 +372,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>32631 – WGS 84 / UTM zone 31N</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65001</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -399,10 +404,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A1-2</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65001</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4500</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Northing</td><td>N</td><td>north</td><td>metre</td></tr>
@@ -434,10 +439,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A1-3</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65001</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
@@ -469,10 +474,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A1-4</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65001</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4532</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
@@ -504,10 +509,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A1-5</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65001</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4498</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>Y</td><td>east</td><td>metre</td></tr>
@@ -539,10 +544,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A1-6</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65001</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4530</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Northing</td><td>X</td><td>north</td><td>metre</td></tr>
@@ -574,10 +579,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A2</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65002</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -609,10 +614,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A21</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65021</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -645,10 +650,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS A23</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65023</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4497</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>US survey foot</td></tr>
@@ -681,10 +686,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>32631 – WGS 84 / UTM zone 31N</b></li>
      *   <li>GIGS base CRS code: <b>64326</b></li>
      *   <li>GIGS conversion code: <b>16031</b></li>
-     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link AuthorityFactory})</li>
+     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -714,10 +719,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>27700 – OSGB36 / British National Grid</b></li>
      *   <li>GIGS base CRS code: <b>64005</b></li>
      *   <li>GIGS conversion code: <b>65002</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -746,10 +751,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS B22</b></li>
      *   <li>GIGS base CRS code: <b>64005</b></li>
      *   <li>GIGS conversion code: <b>65022</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -783,10 +788,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>27700 – OSGB36 / British National Grid</b></li>
      *   <li>GIGS base CRS code: <b>64277</b></li>
      *   <li>GIGS conversion code: <b>19916</b></li>
-     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link AuthorityFactory})</li>
+     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -816,10 +821,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>28992 – Amersfoort / RD New</b></li>
      *   <li>GIGS base CRS code: <b>64006</b></li>
      *   <li>GIGS conversion code: <b>65004</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
@@ -849,10 +854,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>28992 – Amersfoort / RD New</b></li>
      *   <li>GIGS base CRS code: <b>64289</b></li>
      *   <li>GIGS conversion code: <b>19914</b></li>
-     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link AuthorityFactory})</li>
+     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
@@ -882,10 +887,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>5330 – Batavia (Jakarta) / NEIEZ</b></li>
      *   <li>GIGS base CRS code: <b>64007</b></li>
      *   <li>GIGS conversion code: <b>65005</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
@@ -918,10 +923,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>31370 – Belge 1972 / Belgian Lambert 72</b></li>
      *   <li>GIGS base CRS code: <b>64008</b></li>
      *   <li>GIGS conversion code: <b>65006</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
@@ -951,10 +956,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>31370 – Belge 1972 / Belgian Lambert 72</b></li>
      *   <li>GIGS base CRS code: <b>64313</b></li>
      *   <li>GIGS conversion code: <b>19961</b></li>
-     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link AuthorityFactory})</li>
+     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
@@ -984,10 +989,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>28354 – GDA94 / MGA zone 54</b></li>
      *   <li>GIGS base CRS code: <b>64009</b></li>
      *   <li>GIGS conversion code: <b>65007</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -1017,10 +1022,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>28355 – GDA94 / MGA zone 55</b></li>
      *   <li>GIGS base CRS code: <b>64009</b></li>
      *   <li>GIGS conversion code: <b>65008</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -1050,10 +1055,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3577 – GDA94 / Australian Albers</b></li>
      *   <li>GIGS base CRS code: <b>64009</b></li>
      *   <li>GIGS conversion code: <b>65009</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -1083,10 +1088,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>28354 – GDA94 / MGA zone 54</b></li>
      *   <li>GIGS base CRS code: <b>64283</b></li>
      *   <li>GIGS conversion code: <b>17354</b></li>
-     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link AuthorityFactory})</li>
+     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -1116,10 +1121,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>2049 – Hartebeesthoek94 / Lo21</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65010</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>6503</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Westing</td><td>Y</td><td>west</td><td>metre</td></tr>
@@ -1151,10 +1156,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>22175 – POSGAR 98 / Argentina 5</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65011</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4530</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Northing</td><td>X</td><td>north</td><td>metre</td></tr>
@@ -1186,10 +1191,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>5880 – SIRGAS2000 / Brazil Polyconic</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65012</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
@@ -1218,10 +1223,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS G13</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65013</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -1255,10 +1260,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3376 – GDM2000 / East Malaysia BRSO</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65014</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -1290,10 +1295,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3377 – GDM2000 / Johor Grid</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65015</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
@@ -1325,10 +1330,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3035 – ETRS89-extended / LAEA Europe</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65016</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4532</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Northing</td><td>Y</td><td>north</td><td>metre</td></tr>
@@ -1360,10 +1365,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>2921 – NAD83(HARN) / Utah North (ft)</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65017</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4495</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>foot</td></tr>
@@ -1395,10 +1400,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3568 – NAD83(HARN) / Utah North (ftUS)</b></li>
      *   <li>GIGS base CRS code: <b>64010</b></li>
      *   <li>GIGS conversion code: <b>65018</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4497</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>US survey foot</td></tr>
@@ -1430,10 +1435,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>27572 – NTF (Paris) / Lambert zone II</b></li>
      *   <li>GIGS base CRS code: <b>64011</b></li>
      *   <li>GIGS conversion code: <b>65019</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
@@ -1463,10 +1468,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>27572 – NTF (Paris) / Lambert zone II</b></li>
      *   <li>GIGS base CRS code: <b>64807</b></li>
      *   <li>GIGS conversion code: <b>18082</b></li>
-     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link AuthorityFactory})</li>
+     *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
@@ -1496,10 +1501,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>26708 – NAD27 / UTM zone 8N</b></li>
      *   <li>GIGS base CRS code: <b>64012</b></li>
      *   <li>GIGS conversion code: <b>65028</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
@@ -1529,10 +1534,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>23700 – HD72 / EOV</b></li>
      *   <li>GIGS base CRS code: <b>64015</b></li>
      *   <li>GIGS conversion code: <b>65026</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4498</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>Y</td><td>east</td><td>metre</td></tr>
@@ -1562,10 +1567,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3001 – Batavia / NEIEZ</b></li>
      *   <li>GIGS base CRS code: <b>64014</b></li>
      *   <li>GIGS conversion code: <b>65027</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
@@ -1594,10 +1599,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS M25</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65025</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>X</td><td>east</td><td>metre</td></tr>
@@ -1632,10 +1637,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>3388 – Pulkovo 1942 / Caspian Sea Mercator</b></li>
      *   <li>GIGS base CRS code: <b>64003</b></li>
      *   <li>GIGS conversion code: <b>65024</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4534</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Northing</td><td>none</td><td>north</td><td>metre</td></tr>
@@ -1665,10 +1670,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>EPSG equivalence: <b>26908 – NAD83 / UTM zone 8N</b></li>
      *   <li>GIGS base CRS code: <b>64012</b></li>
      *   <li>GIGS conversion code: <b>65028</b></li>
-     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link ObjectFactory})</li>
+     *   <li>Conversion definition source: <b>Described by user</b> (build with {@link CoordinateOperationFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
-     * <table class="ogc">
+     * <table class="gigs">
      *   <caption>Coordinate system axes</caption>
      *   <tr><th>Name</th><th>Abbreviation</th><th>Orientation</th><th>Unit</th></tr>
      *   <tr><td>Easting</td><td>E</td><td>east</td><td>metre</td></tr>
