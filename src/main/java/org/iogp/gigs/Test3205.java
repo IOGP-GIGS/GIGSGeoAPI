@@ -79,8 +79,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * {@snippet lang="java" :
  * public class MyTest extends Test3205 {
  *     public MyTest() {
- *         super(new MyCRSFactory(), new MyCSFactory(), new MyDatumFactory(),
- *               new MyDatumAuthorityFactory());
+ *         super(new MyFactories());
  *     }
  * }
  * }
@@ -141,11 +140,10 @@ public class Test3205 extends Series3000<GeodeticCRS> {
 
     /**
      * Data about the geodetic datum.
-     * This is used only for tests with user definitions for CRS components.
      *
      * @see #createDatum(TestMethod)
      */
-    private Test3204 datumTest;
+    private final Test3204 datumTest;
 
     /**
      * The factory to use for creating coordinate system instances.
@@ -153,26 +151,27 @@ public class Test3205 extends Series3000<GeodeticCRS> {
     private final PseudoEpsgFactory epsgFactory;
 
     /**
-     * Creates a new test using the given factory. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Creates a new test using the given factories.
+     * The factories needed by this class are {@link CRSFactory}, {@link CSFactory},
+     * {@link DatumFactory} and optionally {@link DatumAuthorityFactory}.
+     * If a requested factory is {@code null}, then the tests which depend on it will be skipped.
      *
      * <h4>Authority factory usage</h4>
      * The authority factory is used only for some test cases where the components are fetched by EPSG codes
      * instead of being built by user. Those test cases are identified by the "definition source" line in Javadoc.
      *
-     * @param crsFactory             factory for creating {@link GeodeticCRS} instances.
-     * @param csFactory              factory for creating {@code CoordinateSystem} instances.
-     * @param datumFactory           factory for creating {@link GeodeticDatum} instances.
-     * @param datumAuthorityFactory  factory for creating {@link Ellipsoid} and {@link PrimeMeridian} components from EPSG codes.
+     * @param factories  factories for creating the instances to test.
      */
-    public Test3205(final CRSFactory crsFactory, final CSFactory csFactory, final DatumFactory datumFactory,
-                    final DatumAuthorityFactory datumAuthorityFactory)
-    {
-        this.crsFactory            = crsFactory;
-        this.csFactory             = csFactory;
-        this.epsgFactory           = new PseudoEpsgFactory(units, datumFactory, csFactory, crsFactory, null, null, validators);
-        this.datumFactory          = datumFactory;
-        this.datumAuthorityFactory = datumAuthorityFactory;
+    public Test3205(final Factories factories) {
+        crsFactory            = factories.crsFactory;
+        csFactory             = factories.csFactory;
+        datumFactory          = factories.datumFactory;
+        datumAuthorityFactory = factories.datumAuthorityFactory;
+        epsgFactory = new PseudoEpsgFactory(units, datumFactory, csFactory, crsFactory, null, null, validators);
+
+        datumTest = new Test3204(factories);
+        datumTest.skipTests = false;
+        datumTest.skipIdentificationCheck = true;
     }
 
     /**
@@ -194,7 +193,7 @@ public class Test3205 extends Series3000<GeodeticCRS> {
      * @return the configuration of the test being run.
      */
     @Override
-    public Configuration configuration() {
+    Configuration configuration() {
         final Configuration op = super.configuration();
         assertNull(op.put(Configuration.Key.crsFactory, crsFactory));
         assertNull(op.put(Configuration.Key.csFactory, csFactory));
@@ -207,16 +206,11 @@ public class Test3205 extends Series3000<GeodeticCRS> {
      * Creates a datum from the EPSG factory.
      *
      * @param  code      EPSG code of the datum to create.
-     * @param  verifier  the test method to use for verifying the datum, or {@code null} if none.
+     * @param  verifier  the test method to use for verifying the datum.
      * @throws FactoryException if an error occurred while creating the datum.
      */
     private void createDatum(final int code, final TestMethod<Test3204> verifier) throws FactoryException {
-        if (verifier != null) {
-            datumTest = new Test3204(datumFactory, datumAuthorityFactory);
-            datumTest.skipIdentificationCheck = true;
-            datumTest.skipTests = true;
-            verifier.test(datumTest);
-        }
+        verifier.initialize(datumTest);
         datum = datumAuthorityFactory.createGeodeticDatum(String.valueOf(code));
     }
 
@@ -227,9 +221,7 @@ public class Test3205 extends Series3000<GeodeticCRS> {
      * @throws FactoryException  if an error occurred while creating the datum.
      */
     private void createDatum(final TestMethod<Test3204> factory) throws FactoryException {
-        datumTest = new Test3204(datumFactory, datumAuthorityFactory);
-        datumTest.skipTests = true;
-        factory.test(datumTest);
+        factory.initialize(datumTest);
         datum = datumTest.getIdentifiedObject();
     }
 
@@ -332,11 +324,9 @@ public class Test3205 extends Series3000<GeodeticCRS> {
      */
     private void verifyIdentificationAndDatum(final GeodeticCRS crs) throws FactoryException {
         verifyIdentification(crs, getName(), String.valueOf(getCode()));
-        if (datumTest != null) {
-            datumTest.copyConfigurationFrom(this);
-            datumTest.setIdentifiedObject(crs.getDatum());
-            datumTest.verifyDatum();
-        }
+        datumTest.copyConfigurationFrom(this);
+        datumTest.setIdentifiedObject(crs.getDatum());
+        datumTest.verifyDatum();
     }
 
     /**

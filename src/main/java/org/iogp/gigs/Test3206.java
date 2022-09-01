@@ -68,7 +68,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * {@snippet lang="java" :
  * public class MyTest extends Test3206 {
  *     public MyTest() {
- *         super(new MyCoordinateOperationFactory(), new MyMathTransformFactory());
+ *         super(new MyFactories());
  *     }
  * }
  * }
@@ -117,15 +117,15 @@ public class Test3206 extends Series3000<Conversion> {
     protected final MathTransformFactory mtFactory;
 
     /**
-     * Creates a new test using the given factory. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Creates a new test using the given factories.
+     * The factories needed by this class are {@link CoordinateOperationFactory} and {@link MathTransformFactory}.
+     * If a requested factory is {@code null}, then the tests which depend on it will be skipped.
      *
-     * @param copFactory  factory for creating {@link Conversion} instances.
-     * @param mtFactory   factory to use for fetching operation methods, or {@code null} if none.
+     * @param factories  factories for creating the instances to test.
      */
-    public Test3206(final CoordinateOperationFactory copFactory, final MathTransformFactory mtFactory) {
-        this.copFactory = copFactory;
-        this.mtFactory = mtFactory;
+    public Test3206(final Factories factories) {
+        copFactory = factories.copFactory;
+        mtFactory  = factories.mtFactory;
     }
 
     /**
@@ -145,7 +145,7 @@ public class Test3206 extends Series3000<Conversion> {
      * @return the configuration of the test being run.
      */
     @Override
-    public Configuration configuration() {
+    Configuration configuration() {
         final Configuration op = super.configuration();
         assertNull(op.put(Configuration.Key.copFactory, copFactory));
         assertNull(op.put(Configuration.Key.mtFactory,  mtFactory));

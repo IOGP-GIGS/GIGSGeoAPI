@@ -29,23 +29,9 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.net.MalformedURLException;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
-import java.util.ServiceLoader;
-import org.opengis.util.InternationalString;
-import org.opengis.metadata.citation.Citation;
 import org.opengis.util.Factory;
-import org.opengis.referencing.AuthorityFactory;
-import org.opengis.referencing.cs.CSFactory;
-import org.opengis.referencing.cs.CSAuthorityFactory;
-import org.opengis.referencing.crs.CRSFactory;
-import org.opengis.referencing.crs.CRSAuthorityFactory;
-import org.opengis.referencing.datum.DatumFactory;
-import org.opengis.referencing.datum.DatumAuthorityFactory;
-import org.opengis.referencing.operation.CoordinateOperationFactory;
-import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
-import org.opengis.referencing.operation.MathTransformFactory;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolver;
@@ -63,7 +49,6 @@ import org.iogp.gigs.*;
 
 /**
  * Collection of all GIGS tests.
- * This {@code TestSuite} class provides some static fields for specifying explicitly which factories to use.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Michael Arneson (INT)
@@ -72,26 +57,9 @@ import org.iogp.gigs.*;
  */
 public final class TestSuite implements ParameterResolver {
     /**
-     * The type of factories to inject, in priority order. The order matter only if
-     * an argument type is assignable from more than one of the types listed here.
-     */
-    @SuppressWarnings({"unchecked", "rawtypes"})    // Generic array creation.
-    private static final Class<? extends Factory>[] FACTORY_TYPES = new Class[] {
-        CRSAuthorityFactory.class,
-        CRSFactory.class,
-        CSAuthorityFactory.class,
-        CSFactory.class,
-        DatumAuthorityFactory.class,
-        DatumFactory.class,
-        CoordinateOperationAuthorityFactory.class,
-        CoordinateOperationFactory.class,
-        MathTransformFactory.class
-    };
-
-    /**
      * All factories found. May contain null elements.
      */
-    private final Factory[] factories;
+    private final DiscoveredFactories factories;
 
     /**
      * The test under execution, or {@code null} if none.
@@ -109,7 +77,7 @@ public final class TestSuite implements ParameterResolver {
      * Creates a new suite.
      */
     private TestSuite() {
-        factories = new Factory[FACTORY_TYPES.length];
+        factories = new DiscoveredFactories();
     }
 
     /**
@@ -153,56 +121,13 @@ public final class TestSuite implements ParameterResolver {
         }
         final ClassLoader loader = new URLClassLoader(urls, TestSuite.class.getClassLoader());
         try {
-            /*
-             * Find factories. If an authority factory is for a name space other than EPSG,
-             * skip that factory.
-             */
-            for (int i=0; i < FACTORY_TYPES.length; i++) {
-                for (final Factory factory : ServiceLoader.load(FACTORY_TYPES[i], loader)) {
-                    if (factory instanceof AuthorityFactory) {
-                        if (isNotEPSG(((AuthorityFactory) factory).getAuthority())) {
-                            continue;
-                        }
-                    }
-                    factories[i] = factory;
-                    break;
-                }
-            }
+            factories.initialize(loader);
             Units.setInstance(loader);
             launcher.execute(request);
         } finally {
             Units.setInstance(null);
-            Arrays.fill(factories, null);
+            factories.clear();
         }
-    }
-
-    /**
-     * Tests whether the given citation is for an authority other than EPSG.
-     * If not specified, conservatively assumes {@code false}.
-     *
-     * @param  citation  the citation to test.
-     * @return whether the given citation is for EPSG authority.
-     */
-    private static boolean isNotEPSG(final Citation citation) {
-        if (citation == null || isEPSG(citation.getTitle())) {
-            return false;
-        }
-        boolean hasOtherTitle = false;
-        for (final InternationalString title : citation.getAlternateTitles()) {
-            if (isEPSG(title)) return false;
-            hasOtherTitle = true;
-        }
-        return hasOtherTitle;
-    }
-
-    /**
-     * Returns {@code true} if the given title is "EPSG".
-     *
-     * @param  title  the title to check, or {@code null}.
-     * @return {@code true} if the given title is "EPSG".
-     */
-    private static boolean isEPSG(final InternationalString title) {
-        return (title != null) && title.toString().contains("EPSG");
     }
 
     /**
@@ -215,7 +140,8 @@ public final class TestSuite implements ParameterResolver {
      */
     @Override
     public boolean supportsParameter(ParameterContext pc, ExtensionContext ec) {
-        return Factory.class.isAssignableFrom(pc.getParameter().getType());
+        final Class<?> type = pc.getParameter().getType();
+        return Factories.class.isAssignableFrom(type) || Factory.class.isAssignableFrom(type);
     }
 
     /**
@@ -228,13 +154,7 @@ public final class TestSuite implements ParameterResolver {
      */
     @Override
     public Object resolveParameter(ParameterContext pc, ExtensionContext ec) {
-        final Class<?> type = pc.getParameter().getType();
-        for (int i=0; i < FACTORY_TYPES.length; i++) {
-            if (type.isAssignableFrom(FACTORY_TYPES[i])) {
-                return factories[i];
-            }
-        }
-        return null;
+        return factories.get(pc.getParameter().getType());
     }
 
     /**

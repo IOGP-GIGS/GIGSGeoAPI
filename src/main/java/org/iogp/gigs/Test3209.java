@@ -97,8 +97,8 @@ public class Test3209 extends Series3000<VerticalDatum> {
     protected final DatumFactory datumFactory;
 
     /**
-     * Creates a new test using the given factory. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Creates a new test using the given factory.
+     * If the given factory is {@code null}, then the tests will be skipped.
      *
      * @param datumFactory  factory for creating {@link VerticalDatum} instances.
      */

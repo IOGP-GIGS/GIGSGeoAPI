@@ -75,9 +75,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * {@snippet lang="java" :
  * public class MyTest extends Test3211 {
  *     public MyTest() {
- *         super(new MyMathTransformFactory(), new MyCoordinateOperationFactory(),
- *               new MyDatumFactory(), new MyCSFactory(),
- *               new MyCRSFactory(), new MyCRSAuthorityFactory());
+ *         super(new MyFactories());
  *     }
  * }
  * }
@@ -138,19 +136,17 @@ public class Test3211 extends Series3000<Transformation> {
 
     /**
      * Data about the source CRS of the transformation.
-     * This is used only for tests with user definitions for CRS components.
      *
      * @see #createSourceCRS(TestMethod)
      */
-    private Test3210 sourceCRSTest;
+    private final Test3210 sourceCRSTest;
 
     /**
      * Data about the target CRS of the transformation.
-     * This is used only for tests with user definitions for CRS components.
      *
      * @see #createTargetCRS(TestMethod)
      */
-    private Test3210 targetCRSTest;
+    private final Test3210 targetCRSTest;
 
     /**
      * The source CRS of the transformation created by this factory.
@@ -163,26 +159,33 @@ public class Test3211 extends Series3000<Transformation> {
     private VerticalCRS targetCRS;
 
     /**
-     * Creates a new test using the given factory. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Creates a new test using the given factories.
+     * The factories needed by this class are {@link CoordinateOperationFactory},
+     * {@link MathTransformFactory}, {@link CRSFactory}, {@link CSFactory}, {@link DatumFactory}
+     * and optionally {@link CRSAuthorityFactory}.
+     * If a requested factory is {@code null}, then the tests which depend on it will be skipped.
      *
-     * @param mtFactory            factory for creating {@link MathTransform} instances.
-     * @param copFactory           factory for creating {@link Transformation} instances.
-     * @param datumFactory         factory for creating {@link GeodeticDatum} instances.
-     * @param csFactory            factory for creating {@code CoordinateSystem} instances.
-     * @param crsFactory           factory for creating {@link GeodeticCRS} instances.
-     * @param crsAuthorityFactory  factory for creating {@link GeodeticCRS} instances.
+     * <h4>Authority factory usage</h4>
+     * The authority factory is used only for some test cases where the components are fetched by EPSG codes
+     * instead of being built by user. Those test cases are identified by the "definition source" line in Javadoc.
+     *
+     * @param factories  factories for creating the instances to test.
      */
-    public Test3211(final MathTransformFactory mtFactory, final CoordinateOperationFactory copFactory,
-                    final DatumFactory datumFactory, final CSFactory csFactory, final CRSFactory crsFactory,
-                    final CRSAuthorityFactory crsAuthorityFactory)
-    {
-        this.mtFactory = mtFactory;
-        this.copFactory = copFactory;
-        this.datumFactory = datumFactory;
-        this.csFactory = csFactory;
-        this.crsFactory = crsFactory;
-        this.crsAuthorityFactory = crsAuthorityFactory;
+    public Test3211(final Factories factories) {
+        mtFactory           = factories.mtFactory;
+        copFactory          = factories.copFactory;
+        crsFactory          = factories.crsFactory;
+        csFactory           = factories.csFactory;
+        datumFactory        = factories.datumFactory;
+        crsAuthorityFactory = factories.crsAuthorityFactory;
+
+        sourceCRSTest = new Test3210(factories);
+        sourceCRSTest.skipTests = true;
+        sourceCRSTest.skipIdentificationCheck = true;
+
+        targetCRSTest = new Test3210(factories);
+        targetCRSTest.skipTests = true;
+        targetCRSTest.skipIdentificationCheck = true;
     }
 
     /**
@@ -195,9 +198,9 @@ public class Test3211 extends Series3000<Transformation> {
      *       <li>{@link #isFactoryPreservingUserValues}</li>
      *       <li>{@link #mtFactory}</li>
      *       <li>{@link #copFactory}</li>
-     *       <li>{@link #datumFactory}</li>
-     *       <li>{@link #csFactory}</li>
      *       <li>{@link #crsFactory}</li>
+     *       <li>{@link #csFactory}</li>
+     *       <li>{@link #datumFactory}</li>
      *       <li>{@link #crsAuthorityFactory}</li>
      *     </ul>
      *   </li>
@@ -208,11 +211,11 @@ public class Test3211 extends Series3000<Transformation> {
     @Override
     Configuration configuration() {
         final Configuration op = super.configuration();
-        assertNull(op.put(Configuration.Key.mtFactory, mtFactory));
-        assertNull(op.put(Configuration.Key.copFactory, copFactory));
-        assertNull(op.put(Configuration.Key.datumFactory, datumFactory));
-        assertNull(op.put(Configuration.Key.csFactory, csFactory));
-        assertNull(op.put(Configuration.Key.crsFactory, crsFactory));
+        assertNull(op.put(Configuration.Key.mtFactory,           mtFactory));
+        assertNull(op.put(Configuration.Key.copFactory,          copFactory));
+        assertNull(op.put(Configuration.Key.datumFactory,        datumFactory));
+        assertNull(op.put(Configuration.Key.csFactory,           csFactory));
+        assertNull(op.put(Configuration.Key.crsFactory,          crsFactory));
         assertNull(op.put(Configuration.Key.crsAuthorityFactory, crsAuthorityFactory));
         return op;
     }
@@ -257,16 +260,13 @@ public class Test3211 extends Series3000<Transformation> {
         assertNotNull(transformation, "Transformation");
         validators.validate(transformation);
 
-        if (sourceCRSTest != null) {
-            sourceCRSTest.copyConfigurationFrom(this);
-            sourceCRSTest.setIdentifiedObject(sourceCRS);
-            sourceCRSTest.verifyVerticalCRS();
-        }
-        if (targetCRSTest != null) {
-            targetCRSTest.copyConfigurationFrom(this);
-            targetCRSTest.setIdentifiedObject(targetCRS);
-            targetCRSTest.verifyVerticalCRS();
-        }
+        sourceCRSTest.copyConfigurationFrom(this);
+        sourceCRSTest.setIdentifiedObject(sourceCRS);
+//TODO  sourceCRSTest.verifyVerticalCRS();
+
+        targetCRSTest.copyConfigurationFrom(this);
+        targetCRSTest.setIdentifiedObject(targetCRS);
+//TODO  targetCRSTest.verifyVerticalCRS();
 
         // Operation method.
         final OperationMethod method = transformation.getMethod();
@@ -291,9 +291,7 @@ public class Test3211 extends Series3000<Transformation> {
      * @throws FactoryException  if an error occurred while creating the source CRS.
      */
     private void createSourceCRS(final TestMethod<Test3210> factory) throws FactoryException {
-        sourceCRSTest = new Test3210(csFactory, crsFactory, datumFactory);
-        sourceCRSTest.skipTests = true;
-        factory.test(sourceCRSTest);
+        factory.initialize(sourceCRSTest);
         sourceCRS = sourceCRSTest.getIdentifiedObject();
     }
 
@@ -314,9 +312,7 @@ public class Test3211 extends Series3000<Transformation> {
      * @throws FactoryException  if an error occurred while creating the target CRS.
      */
     private void createTargetCRS(final TestMethod<Test3210> factory) throws FactoryException {
-        targetCRSTest = new Test3210(csFactory, crsFactory, datumFactory);
-        targetCRSTest.skipTests = true;
-        factory.test(targetCRSTest);
+        factory.initialize(targetCRSTest);
         targetCRS = targetCRSTest.getIdentifiedObject();
     }
 
@@ -327,7 +323,7 @@ public class Test3211 extends Series3000<Transformation> {
      * @throws FactoryException  if an error occurred while creating the target CRS.
      */
     private void createTargetCRS(final int code) throws FactoryException {
-        this.targetCRS = this.crsAuthorityFactory.createVerticalCRS(String.valueOf(code));
+        targetCRS = crsAuthorityFactory.createVerticalCRS(String.valueOf(code));
     }
 
     /**

@@ -25,11 +25,9 @@
 package org.iogp.gigs;
 
 import java.util.Map;
-import java.util.Collections;
 import javax.measure.Unit;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.crs.CRSFactory;
-import org.opengis.referencing.crs.GeodeticCRS;
 import org.opengis.referencing.crs.VerticalCRS;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CSFactory;
@@ -74,7 +72,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * {@snippet lang="java" :
  * public class MyTest extends Test3210 {
  *     public MyTest() {
- *         super(new MyCRSFactory(), new MyCSFactory(), new MyDatumFactory());
+ *         super(new MyFactories());
  *     }
  * }
  * }
@@ -103,11 +101,10 @@ public class Test3210 extends Series3000<VerticalCRS> {
 
     /**
      * Data about the vertical datum of the vertical CRS.
-     * This is used only for tests with user definitions for CRS components.
      *
      * @see #createDatum(TestMethod)
      */
-    private Test3209 datumTest;
+    private final Test3209 datumTest;
 
     /**
      * Factory to use for building {@link VerticalCRS} instances, or {@code null} if none.
@@ -131,18 +128,21 @@ public class Test3210 extends Series3000<VerticalCRS> {
     private final PseudoEpsgFactory epsgFactory;
 
     /**
-     * Creates a new test using the given factory. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Creates a new test using the given factories.
+     * The factories needed by this class are {@link CRSFactory}, {@link CSFactory} and {@link DatumFactory}.
+     * If a requested factory is {@code null}, then the tests which depend on it will be skipped.
      *
-     * @param csFactory     factory for creating {@code CoordinateSystem} instances.
-     * @param crsFactory    factory for creating {@link GeodeticCRS} instances.
-     * @param datumFactory  factory for creating {@link VerticalDatum} instances.
+     * @param factories  factories for creating the instances to test.
      */
-    public Test3210(final CSFactory csFactory, final CRSFactory crsFactory, DatumFactory datumFactory) {
-        this.crsFactory   = crsFactory;
-        this.csFactory    = csFactory;
-        this.datumFactory = datumFactory;
-        this.epsgFactory  = new PseudoEpsgFactory(units, datumFactory, csFactory, crsFactory, null, null, validators);
+    public Test3210(final Factories factories) {
+        crsFactory   = factories.crsFactory;
+        csFactory    = factories.csFactory;
+        datumFactory = factories.datumFactory;
+        epsgFactory  = new PseudoEpsgFactory(units, datumFactory, csFactory, crsFactory, null, null, validators);
+
+        datumTest = new Test3209(datumFactory);
+        datumTest.skipTests = true;
+        datumTest.skipIdentificationCheck = true;
     }
 
     /**
@@ -163,7 +163,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      * @return the configuration of the test being run.
      */
     @Override
-    public Configuration configuration() {
+    Configuration configuration() {
         final Configuration op = super.configuration();
         assertNull(op.put(Configuration.Key.csFactory, csFactory));
         assertNull(op.put(Configuration.Key.crsFactory, crsFactory));
@@ -210,24 +210,6 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
-     * Creates a coordinate system axis that is used in the creation of a coordinate system.
-     *
-     * @param  name          the coordinate axis name.
-     * @param  abbreviation  the coordinate axis abbreviation.
-     * @param  direction     the axis direction.
-     * @param  unit          the coordinate axis unit.
-     * @return the axis for the given properties.
-     * @throws FactoryException if the object creation failed.
-     */
-    private CoordinateSystemAxis createCoordinateSystemAxis(final String name, final String abbreviation,
-            final AxisDirection direction, final Unit<?> unit) throws FactoryException
-    {
-        return csFactory.createCoordinateSystemAxis(
-                Collections.singletonMap(CoordinateSystemAxis.NAME_KEY, name),
-                abbreviation, direction, unit);
-    }
-
-    /**
      * Verifies that the specified coordinate system axis has the expected values.
      *
      * @param name          the expected name.
@@ -263,11 +245,10 @@ public class Test3210 extends Series3000<VerticalCRS> {
             assertNotNull(crs, "CRSFactory.createGeographicCRS(…) shall not return null.");
             validators.validate(crs);
             verifyIdentification(crs, getName(), String.valueOf(getCode()));
-            if (datumTest != null) {
-                datumTest.copyConfigurationFrom(this);
-                datumTest.setIdentifiedObject(datum);
-                datumTest.verifyVerticalDatum();
-            }
+
+            datumTest.copyConfigurationFrom(this);
+            datumTest.setIdentifiedObject(datum);
+//TODO      datumTest.verifyVerticalDatum();
         }
     }
 
@@ -278,9 +259,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
      * @throws FactoryException  if an error occurred while creating the datum.
      */
     private void createDatum(final TestMethod<Test3209> factory) throws FactoryException {
-        datumTest = new Test3209(datumFactory);
-        datumTest.skipTests = true;
-        factory.test(datumTest);
+        factory.initialize(datumTest);
         datum = datumTest.getIdentifiedObject();
     }
 

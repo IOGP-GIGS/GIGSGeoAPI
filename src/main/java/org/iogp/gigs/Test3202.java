@@ -148,8 +148,13 @@ public class Test3202 extends Series3000<Ellipsoid> {
     protected final DatumFactory datumFactory;
 
     /**
-     * Creates a new test using the given factory. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Whether to skip the unit of measurement checks.
+     */
+    boolean skipUnitCheck;
+
+    /**
+     * Creates a new test using the given factory.
+     * If the given factory is {@code null}, then the tests will be skipped.
      *
      * @param datumFactory  factory for creating {@link Ellipsoid} instances.
      */
@@ -229,9 +234,11 @@ public class Test3202 extends Series3000<Ellipsoid> {
         if (isFactoryPreservingUserValues) {
             configurationTip = Configuration.Key.isFactoryPreservingUserValues;
             final double ivfTolerance = isIvfDefinitive ? IVF_TOLERANCE : 0.0005;
-            assertEquals(axisUnit,          ellipsoid.getAxisUnit(),                         "Ellipsoid.getAxisUnit()");
-            assertEquals(semiMajorAxis,     ellipsoid.getSemiMajorAxis(),     axisTolerance, "Ellipsoid.getSemiMajorAxis()");
-            assertEquals(semiMinorAxis,     ellipsoid.getSemiMinorAxis(),     axisTolerance, "Ellipsoid.getSemiMinorAxis()");
+            if (!skipUnitCheck) {
+                assertEquals(axisUnit,      ellipsoid.getAxisUnit(),                         "Ellipsoid.getAxisUnit()");
+                assertEquals(semiMajorAxis, ellipsoid.getSemiMajorAxis(),     axisTolerance, "Ellipsoid.getSemiMajorAxis()");
+                assertEquals(semiMinorAxis, ellipsoid.getSemiMinorAxis(),     axisTolerance, "Ellipsoid.getSemiMinorAxis()");
+            }
             assertEquals(inverseFlattening, ellipsoid.getInverseFlattening(), ivfTolerance,  "Ellipsoid.getInverseFlattening()");
             assertEquals(isIvfDefinitive,   ellipsoid.isIvfDefinitive(),                     "Ellipsoid.isIvfDefinitive()");
             assertEquals(isSphere,          ellipsoid.isSphere(),                            "Ellipsoid.isSphere()");

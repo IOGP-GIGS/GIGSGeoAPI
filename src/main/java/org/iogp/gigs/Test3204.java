@@ -67,7 +67,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * {@snippet lang="java" :
  * public class MyTest extends Test3204 {
  *     public MyTest() {
- *         super(new MyDatumFactory(), new MyDatumAuthorityFactory());
+ *         super(new MyFactories());
  *     }
  * }
  * }
@@ -116,34 +116,41 @@ public class Test3204 extends Series3000<GeodeticDatum> {
 
     /**
      * Data about the geodetic datum {@linkplain #ellipsoid}.
-     * This is used only for tests with user definitions for datum components.
      *
      * @see #createEllipsoid(TestMethod)
      */
-    private Test3202 ellipsoidTest;
+    private final Test3202 ellipsoidTest;
 
     /**
      * Data about the geodetic datum {@linkplain #primeMeridian prime meridian}.
-     * This is used only for tests with user definitions for datum components.
      *
      * @see #createPrimeMeridian(TestMethod)
      */
-    private Test3203 primeMeridianTest;
+    private final Test3203 primeMeridianTest;
 
     /**
-     * Creates a new test using the given factory. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Creates a new test using the given factories.
+     * The factories needed by this class are {@link DatumFactory}
+     * and optionally {@link DatumAuthorityFactory}.
+     * If a requested factory is {@code null}, then the tests which depend on it will be skipped.
      *
      * <h4>Authority factory usage</h4>
      * The authority factory is used only for some test cases where the components are fetched by EPSG codes
      * instead of being built by user. Those test cases are identified by the "definition source" line in Javadoc.
      *
-     * @param datumFactory           factory for creating {@link GeodeticDatum} instances.
-     * @param datumAuthorityFactory  factory for creating {@link Ellipsoid} and {@link PrimeMeridian} components from EPSG codes.
+     * @param factories  factories for creating the instances to test.
      */
-    public Test3204(final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory) {
-        this.datumFactory = datumFactory;
-        this.datumAuthorityFactory = datumAuthorityFactory;
+    public Test3204(final Factories factories) {
+        datumFactory          = factories.datumFactory;
+        datumAuthorityFactory = factories.datumAuthorityFactory;
+
+        ellipsoidTest = new Test3202(datumFactory);
+        ellipsoidTest.skipTests = true;
+        ellipsoidTest.skipIdentificationCheck = true;
+
+        primeMeridianTest = new Test3203(factories);
+        primeMeridianTest.skipTests = true;
+        primeMeridianTest.skipIdentificationCheck = true;
     }
 
     /**
@@ -163,7 +170,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      * @return the configuration of the test being run.
      */
     @Override
-    public Configuration configuration() {
+    Configuration configuration() {
         final Configuration op = super.configuration();
         assertNull(op.put(Configuration.Key.datumFactory, datumFactory));
         assertNull(op.put(Configuration.Key.datumAuthorityFactory, datumAuthorityFactory));
@@ -174,17 +181,12 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      * Creates an ellipsoid from the EPSG factory.
      *
      * @param  code      EPSG code of the ellipsoid to create.
-     * @param  verifier  the test method to use for verifying the ellipsoid, or {@code null} if none.
+     * @param  verifier  the test method to use for verifying the ellipsoid.
      * @throws FactoryException if an error occurred while creating the ellipsoid.
      */
     private void createEllipsoid(final int code, final TestMethod<Test3202> verifier) throws FactoryException {
         assumeNotNull(datumAuthorityFactory);
-        if (verifier != null) {
-            ellipsoidTest = new Test3202(datumFactory);
-            ellipsoidTest.skipIdentificationCheck = true;
-            ellipsoidTest.skipTests = true;
-            verifier.test(ellipsoidTest);
-        }
+        verifier.initialize(ellipsoidTest);
         ellipsoid = datumAuthorityFactory.createEllipsoid(String.valueOf(code));
     }
 
@@ -192,17 +194,12 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      * Creates a prime meridian from the EPSG factory.
      *
      * @param  code      EPSG code of the prime meridian to create.
-     * @param  verifier  the test method to use for verifying the prime meridian, or {@code null} if none.
+     * @param  verifier  the test method to use for verifying the prime meridian.
      * @throws FactoryException if an error occurred while creating the prime meridian.
      */
     private void createPrimeMeridian(final int code, final TestMethod<Test3203> verifier) throws FactoryException {
         assumeNotNull(datumAuthorityFactory);
-        if (verifier != null) {
-            primeMeridianTest = new Test3203(datumFactory, null);
-            primeMeridianTest.skipIdentificationCheck = true;
-            primeMeridianTest.skipTests = true;
-            verifier.test(primeMeridianTest);
-        }
+        verifier.initialize(primeMeridianTest);
         primeMeridian = datumAuthorityFactory.createPrimeMeridian(String.valueOf(code));
     }
 
@@ -213,9 +210,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      * @throws FactoryException  if an error occurred while creating the ellipsoid.
      */
     private void createEllipsoid(final TestMethod<Test3202> factory) throws FactoryException {
-        ellipsoidTest = new Test3202(datumFactory);
-        ellipsoidTest.skipTests = true;
-        factory.test(ellipsoidTest);
+        factory.initialize(ellipsoidTest);
         ellipsoid = ellipsoidTest.getIdentifiedObject();
     }
 
@@ -226,9 +221,7 @@ public class Test3204 extends Series3000<GeodeticDatum> {
      * @throws FactoryException  if an error occurred while creating the prime meridian.
      */
     private void createPrimeMeridian(final TestMethod<Test3203> factory) throws FactoryException {
-        primeMeridianTest = new Test3203(datumFactory, null);
-        primeMeridianTest.skipTests = true;
-        factory.test(primeMeridianTest);
+        factory.initialize(primeMeridianTest);
         primeMeridian = primeMeridianTest.getIdentifiedObject();
     }
 
@@ -285,18 +278,16 @@ public class Test3204 extends Series3000<GeodeticDatum> {
         final GeodeticDatum datum = getIdentifiedObject();
         assertNotNull(datum, "GeodeticDatum");
         validators.validate(datum);
-
         verifyIdentification(datum, name, code);
-        if (ellipsoidTest != null) {
-            ellipsoidTest.copyConfigurationFrom(this);
-            ellipsoidTest.setIdentifiedObject(datum.getEllipsoid());
-            ellipsoidTest.verifyEllipsoid();
-        }
-        if (primeMeridianTest != null) {
-            primeMeridianTest.copyConfigurationFrom(this);
-            primeMeridianTest.setIdentifiedObject(datum.getPrimeMeridian());
-            primeMeridianTest.verifyPrimeMeridian();
-        }
+
+        ellipsoidTest.copyConfigurationFrom(this);
+        ellipsoidTest.setIdentifiedObject(datum.getEllipsoid());
+        ellipsoidTest.verifyEllipsoid();
+
+        primeMeridianTest.copyConfigurationFrom(this);
+        primeMeridianTest.setIdentifiedObject(datum.getPrimeMeridian());
+        primeMeridianTest.verifyPrimeMeridian();
+
         if (origin != null) {
             final InternationalString actual = datum.getAnchorPoint();
             assertNotNull(actual, "GeodeticDatum.getAnchorPoint()");
@@ -512,7 +503,8 @@ public class Test3204 extends Series3000<GeodeticDatum> {
     public void GIGS_66813() throws FactoryException {
         setCodeAndName(66813, "GIGS geodetic datum DD");
         createEllipsoid(7004, Test3202::GIGS_67004);
-        createPrimeMeridian(8908, null);        // Skip verification for avoiding the need to convert sexagesimal units.
+        createPrimeMeridian(8908, Test3203::GIGS_68908);
+        primeMeridianTest.skipUnitCheck = true;     // For avoiding the need to convert sexagesimal units.
         verifyDatum();
     }
 
@@ -619,8 +611,10 @@ public class Test3204 extends Series3000<GeodeticDatum> {
     @DisplayName("GIGS geodetic datum FF")
     public void GIGS_66283() throws FactoryException {
         setCodeAndName(66283, "GIGS geodetic datum FF");
-        createEllipsoid(7019, null);            // Skip verification for avoiding the need to convert km units.
-        createPrimeMeridian(8901, null);        // Skip verification for avoiding the need to convert sexagesimal units.
+        createEllipsoid(7019, Test3202::GIGS_67019);
+        createPrimeMeridian(8901, Test3203::GIGS_68901);
+        ellipsoidTest.skipUnitCheck = true;         // For avoiding the need to convert km units.
+        primeMeridianTest.skipUnitCheck = true;     // For avoiding the need to convert sexagesimal units.
         verifyDatum();
     }
 
@@ -935,8 +929,10 @@ public class Test3204 extends Series3000<GeodeticDatum> {
     @DisplayName("GIGS geodetic datum ZZ")
     public void GIGS_66269() throws FactoryException {
         setCodeAndName(66269, "GIGS geodetic datum ZZ");
-        createEllipsoid(7019, null);            // Skip verification for avoiding the need to convert km units.
-        createPrimeMeridian(8901, null);        // Skip verification for avoiding the need to convert sexagesimal units.
+        createEllipsoid(7019, Test3202::GIGS_67019);
+        createPrimeMeridian(8901, Test3203::GIGS_68901);
+        ellipsoidTest.skipUnitCheck = true;         // For avoiding the need to convert km units.
+        primeMeridianTest.skipUnitCheck = true;     // For avoiding the need to convert sexagesimal units.
         verifyDatum();
     }
 }

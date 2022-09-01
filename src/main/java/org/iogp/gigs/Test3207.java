@@ -25,11 +25,9 @@
 package org.iogp.gigs;
 
 import java.util.Map;
-import java.util.Collections;
 import javax.measure.Unit;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.crs.CRSFactory;
-import org.opengis.referencing.crs.GeodeticCRS;
 import org.opengis.referencing.crs.GeographicCRS;
 import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.cs.AxisDirection;
@@ -45,7 +43,6 @@ import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.referencing.operation.MathTransformFactory;
-import org.opengis.referencing.operation.Transformation;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
 import org.junit.jupiter.api.DisplayName;
@@ -83,10 +80,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * {@snippet lang="java" :
  * public class MyTest extends Test3207 {
  *     public MyTest() {
- *         super(new MyDatumFactory(), new MyDatumAuthorityFactory(),
- *               new MyCSFactory(), new MyCRSFactory(),
- *               new MyCoordinateOperationFactory(), new MyMathTransformFactory(),
- *               new MyCoordinateOperationAuthorityFactory());
+ *         super(new MyFactories());
  *     }
  * }
  * }
@@ -166,45 +160,48 @@ public class Test3207 extends Series3000<ProjectedCRS> {
 
     /**
      * Data about the base CRS of the projected CRS.
-     * This is used only for tests with user definitions for CRS components.
      *
      * @see #createBaseCRS(TestMethod)
      */
-    private Test3205 baseCRSTest;
+    private final Test3205 baseCRSTest;
 
     /**
      * Data about the conversion of the projected CRS.
-     * This is used only for tests with user definitions for CRS components.
      *
      * @see #createConversion(TestMethod)
      */
-    private Test3206 conversionTest;
+    private final Test3206 conversionTest;
 
     /**
-     * Creates a new test using the given factory. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Creates a new test using the given factories.
+     * The factories needed by this class are {@link CRSFactory}, {@link CSFactory},
+     * {@link DatumFactory}, {@link CoordinateOperationFactory}, {@link MathTransformFactory}
+     * and optionally {@link CoordinateOperationAuthorityFactory} with {@link DatumAuthorityFactory}.
+     * If a requested factory is {@code null}, then the tests which depend on it will be skipped.
      *
-     * @param datumFactory           factory for creating {@link GeodeticDatum} instances.
-     * @param datumAuthorityFactory  factory for creating {@link Ellipsoid} and {@link PrimeMeridian} components from EPSG codes.
-     * @param csFactory              factory for creating {@code CoordinateSystem} instances.
-     * @param crsFactory             factory for creating {@link GeodeticCRS} instances.
-     * @param copFactory             factory for creating {@link Transformation} instances.
-     * @param mtFactory              factory for creating {@link Transformation} instances.
-     * @param copAuthorityFactory    factory for creating {@link Transformation} instances.
+     * <h4>Authority factory usage</h4>
+     * The authority factory is used only for some test cases where the components are fetched by EPSG codes
+     * instead of being built by user. Those test cases are identified by the "definition source" line in Javadoc.
+     *
+     * @param factories  factories for creating the instances to test.
      */
-    public Test3207(final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
-                    final CSFactory csFactory, final CRSFactory crsFactory,
-                    final CoordinateOperationFactory copFactory, final MathTransformFactory mtFactory,
-                    final CoordinateOperationAuthorityFactory copAuthorityFactory)
-    {
-        this.copFactory = copFactory;
-        this.mtFactory = mtFactory;
-        this.datumFactory = datumFactory;
-        this.datumAuthorityFactory = datumAuthorityFactory;
-        this.crsFactory = crsFactory;
-        this.csFactory = csFactory;
-        this.copAuthorityFactory = copAuthorityFactory;
-        this.epsgFactory = new PseudoEpsgFactory(units, datumFactory, csFactory, crsFactory, copFactory, mtFactory, validators);
+    public Test3207(final Factories factories) {
+        copFactory            = factories.copFactory;
+        mtFactory             = factories.mtFactory;
+        datumFactory          = factories.datumFactory;
+        crsFactory            = factories.crsFactory;
+        csFactory             = factories.csFactory;
+        copAuthorityFactory   = factories.copAuthorityFactory;
+        datumAuthorityFactory = factories.datumAuthorityFactory;
+        epsgFactory = new PseudoEpsgFactory(units, datumFactory, csFactory, crsFactory, copFactory, mtFactory, validators);
+
+        baseCRSTest = new Test3205(factories);
+        baseCRSTest.skipTests = true;
+        baseCRSTest.skipIdentificationCheck = true;
+
+        conversionTest = new Test3206(factories);
+        conversionTest.skipTests = true;
+        conversionTest.skipIdentificationCheck = true;
     }
 
     /**
@@ -218,10 +215,10 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *       <li>{@link #copFactory}</li>
      *       <li>{@link #mtFactory}</li>
      *       <li>{@link #datumFactory}</li>
-     *       <li>{@link #datumAuthorityFactory}</li>
      *       <li>{@link #csFactory}</li>
      *       <li>{@link #crsFactory}</li>
      *       <li>{@link #copAuthorityFactory}</li>
+     *       <li>{@link #datumAuthorityFactory}</li>
      *     </ul>
      *   </li>
      * </ul>
@@ -229,23 +226,23 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * @return the configuration of the test being run.
      */
     @Override
-    public Configuration configuration() {
+    Configuration configuration() {
         final Configuration op = super.configuration();
-        assertNull(op.put(Configuration.Key.copFactory, copFactory));
-        assertNull(op.put(Configuration.Key.mtFactory,  mtFactory));
-        assertNull(op.put(Configuration.Key.datumFactory, datumFactory));
+        assertNull(op.put(Configuration.Key.copFactory,            copFactory));
+        assertNull(op.put(Configuration.Key.mtFactory,             mtFactory));
+        assertNull(op.put(Configuration.Key.datumFactory,          datumFactory));
+        assertNull(op.put(Configuration.Key.csFactory,             csFactory));
+        assertNull(op.put(Configuration.Key.crsFactory,            crsFactory));
+        assertNull(op.put(Configuration.Key.copAuthorityFactory,   copAuthorityFactory));
         assertNull(op.put(Configuration.Key.datumAuthorityFactory, datumAuthorityFactory));
-        assertNull(op.put(Configuration.Key.csFactory, csFactory));
-        assertNull(op.put(Configuration.Key.crsFactory, crsFactory));
-        assertNull(op.put(Configuration.Key.copAuthorityFactory, copAuthorityFactory));
         return op;
     }
 
     /**
      * Returns the projected CRS instance to be tested. When this method is invoked for the first time,
      * it creates the projected CRS to test by invoking the corresponding method from {@link CRSFactory}
-     * with the current {@link #properties properties} map, base CRS, conversion, and cartesian coordinate system in the
-     * arguments. The created object is then cached and returned in all subsequent invocations of this method.
+     * with the current {@link #properties properties} map, base CRS, conversion, and Cartesian coordinate system
+     * in the arguments. The created object is then cached and returned in all subsequent invocations of this method.
      *
      * @return the projected CRS instance to test.
      * @throws FactoryException if an error occurred while creating the projected CRS instance.
@@ -265,9 +262,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * @throws FactoryException if an error occurred while creating the base CRS.
      */
     private void createBaseCRS(final TestMethod<Test3205> factory) throws FactoryException {
-        baseCRSTest = new Test3205(crsFactory, csFactory, datumFactory, datumAuthorityFactory);
-        baseCRSTest.skipTests = true;
-        factory.test(baseCRSTest);
+        factory.initialize(baseCRSTest);
         baseCRS = (GeographicCRS) baseCRSTest.getIdentifiedObject();
     }
 
@@ -278,9 +273,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      * @throws FactoryException if an error occurred while creating the conversion.
      */
     private void createConversion(final TestMethod<Test3206> factory) throws FactoryException {
-        conversionTest = new Test3206(copFactory, mtFactory);
-        conversionTest.skipTests = true;
-        factory.test(conversionTest);
+        factory.initialize(conversionTest);
         conversion = conversionTest.getIdentifiedObject();
     }
 
@@ -303,24 +296,6 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     private void createCartesianCS(final int code) throws FactoryException {
         cartesianCS = epsgFactory.createCartesianCS(String.valueOf(code));
         validators.validate(cartesianCS);
-    }
-
-    /**
-     * Creates a coordinate system axis that is used in the creation of a coordinate system.
-     *
-     * @param  name          the coordinate axis name.
-     * @param  abbreviation  the coordinate axis abbreviation.
-     * @param  direction     the axis direction.
-     * @param  unit          the coordinate axis unit.
-     * @return the axis for the given properties.
-     * @throws FactoryException if the object creation failed.
-     */
-    private CoordinateSystemAxis createCoordinateSystemAxis(final String name, final String abbreviation,
-            final AxisDirection direction, final Unit<?> unit) throws FactoryException
-    {
-        return csFactory.createCoordinateSystemAxis(
-                Collections.singletonMap(CoordinateSystemAxis.NAME_KEY, name),
-                abbreviation, direction, unit);
     }
 
     /**
@@ -361,20 +336,20 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         assertNotNull(crs, "ProjectedCRS");
         verifyIdentification(crs, name, code);
         validators.validate(crs);
+
         // Projected CRS base CRS.
-        if (baseCRSTest != null) {
-            baseCRSTest.copyConfigurationFrom(this);
-            baseCRSTest.setIdentifiedObject(baseCRS);
-            baseCRSTest.verifyGeographicCRS();
-        }
+        baseCRSTest.copyConfigurationFrom(this);
+        baseCRSTest.setIdentifiedObject(baseCRS);
+//TODO  baseCRSTest.verifyGeographicCRS();
+
         // Projected CRS conversion.
-        if (conversionTest != null) {
-            conversionTest.copyConfigurationFrom(this);
-            conversionTest.setIdentifiedObject(conversion);
-            conversionTest.verifyConversion();
-        }
-        //validate the cartesian cs.
+        conversionTest.copyConfigurationFrom(this);
+        conversionTest.setIdentifiedObject(conversion);
+//TODO  conversionTest.verifyConversion();
+
+        // Validate the cartesian cs.
         validators.validate(cartesianCS);
+
         // Projected CRS coordinate system.
         final CartesianCS cs = crs.getCoordinateSystem();
         assertNotNull(crs, "ProjectedCRS.getCoordinateSystem()");
