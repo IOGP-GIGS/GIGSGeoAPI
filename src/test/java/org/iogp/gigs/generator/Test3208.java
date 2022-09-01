@@ -24,11 +24,11 @@
  */
 package org.iogp.gigs.generator;
 
-import javax.measure.Unit;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.OptionalInt;
 import java.util.Set;
+import javax.measure.Unit;
 
 
 /**

@@ -24,15 +24,15 @@
  */
 package org.iogp.gigs;
 
-import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.opengis.util.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.PrimeMeridian;
-import org.opengis.util.FactoryException;
+import org.iogp.gigs.internal.geoapi.Configuration;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

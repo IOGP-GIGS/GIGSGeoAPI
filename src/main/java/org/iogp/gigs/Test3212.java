@@ -24,9 +24,7 @@
  */
 package org.iogp.gigs;
 
-import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.opengis.util.FactoryException;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.cs.CSFactory;
@@ -37,7 +35,9 @@ import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.Transformation;
-import org.opengis.util.FactoryException;
+import org.iogp.gigs.internal.geoapi.Configuration;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -27,10 +27,7 @@ package org.iogp.gigs;
 import java.util.Map;
 import java.util.Collections;
 import javax.measure.Unit;
-import org.iogp.gigs.internal.geoapi.Configuration;
-import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.opengis.util.FactoryException;
 import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.crs.GeodeticCRS;
 import org.opengis.referencing.crs.GeographicCRS;
@@ -49,7 +46,10 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.Transformation;
-import org.opengis.util.FactoryException;
+import org.iogp.gigs.internal.geoapi.Configuration;
+import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -24,18 +24,28 @@
  */
 package org.iogp.gigs;
 
+import java.util.Map;
+import javax.measure.Unit;
+import javax.measure.quantity.Angle;
+import javax.measure.quantity.Length;
+import org.opengis.util.FactoryException;
+import org.opengis.referencing.crs.CRSFactory;
+import org.opengis.referencing.crs.GeocentricCRS;
+import org.opengis.referencing.crs.GeodeticCRS;
+import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.cs.AxisDirection;
+import org.opengis.referencing.cs.CSFactory;
+import org.opengis.referencing.cs.CartesianCS;
+import org.opengis.referencing.cs.EllipsoidalCS;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.referencing.datum.Ellipsoid;
+import org.opengis.referencing.datum.PrimeMeridian;
+import org.opengis.referencing.datum.GeodeticDatum;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.geoapi.PseudoEpsgFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.crs.*;
-import org.opengis.referencing.cs.*;
-import org.opengis.referencing.datum.*;
-import org.opengis.util.FactoryException;
-import javax.measure.Unit;
-import javax.measure.quantity.Angle;
-import javax.measure.quantity.Length;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 

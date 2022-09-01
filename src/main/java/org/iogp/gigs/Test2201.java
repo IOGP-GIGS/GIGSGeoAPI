@@ -25,16 +25,16 @@
 package org.iogp.gigs;
 
 import java.util.Random;
-import javax.measure.IncommensurableException;
 import javax.measure.Unit;
 import javax.measure.UnitConverter;
+import javax.measure.IncommensurableException;
+import org.opengis.util.FactoryException;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.referencing.cs.CSAuthorityFactory;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.geoapi.Units;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
-import org.opengis.referencing.cs.CSAuthorityFactory;
-import org.opengis.util.FactoryException;
 
 import static org.junit.jupiter.api.Assertions.*;
 

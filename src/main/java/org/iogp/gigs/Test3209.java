@@ -24,15 +24,15 @@
  */
 package org.iogp.gigs;
 
-import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import java.util.Map;
+import org.opengis.util.FactoryException;
+import org.opengis.util.InternationalString;
 import org.opengis.referencing.datum.DatumFactory;
 import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.referencing.datum.VerticalDatumType;
-import org.opengis.util.FactoryException;
-import org.opengis.util.InternationalString;
-import java.util.Map;
+import org.iogp.gigs.internal.geoapi.Configuration;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
