@@ -212,6 +212,7 @@ public class Test3203 extends Series3000<PrimeMeridian> {
         }
         final String name = getName();
         final String code = getCode();
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final PrimeMeridian primeMeridian = getIdentifiedObject();
         assertNotNull(primeMeridian, "PrimeMeridian");
         validators.validate(primeMeridian);

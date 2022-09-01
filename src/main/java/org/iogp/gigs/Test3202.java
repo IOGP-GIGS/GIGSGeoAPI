@@ -222,6 +222,7 @@ public class Test3202 extends Series3000<Ellipsoid> {
         }
         final String name = getName();
         final String code = getCode();
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Ellipsoid ellipsoid = getIdentifiedObject();
         assertNotNull(ellipsoid, "Ellipsoid");
         validators.validate(ellipsoid);

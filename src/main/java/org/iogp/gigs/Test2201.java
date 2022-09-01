@@ -187,6 +187,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
     private UnitConverter createConverter() throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Unit<?> unit = getIdentifiedObject();
         assertNotNull(unit, "Unit");
         try {

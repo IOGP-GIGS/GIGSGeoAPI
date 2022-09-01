@@ -123,6 +123,7 @@ public class Test3201 extends Series3000<Unit<?>> {
      * @return converter from the unit given by the identified object to test.
      */
     private UnitConverter createConverter() {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Unit<?> unit = getIdentifiedObject();
         assertNotNull(unit, "Unit");
         try {

@@ -164,6 +164,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
      * @throws FactoryException if an error occurred while creating the vertical datum instance.
      */
     private void verifyVerticalDatum() throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final VerticalDatum datum = getIdentifiedObject();
         assertNotNull(datum, "VerticalDatum");
         validators.validate(datum);

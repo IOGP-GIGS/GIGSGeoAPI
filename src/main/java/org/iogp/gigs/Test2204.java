@@ -208,6 +208,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum.
      */
     private void verifyDatum() throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final GeodeticDatum datum = getIdentifiedObject();
         assertNotNull(datum, "GeodeticDatum");
         validators.validate(datum);

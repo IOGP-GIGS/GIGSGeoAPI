@@ -243,9 +243,10 @@ public class Test3212 extends Series3000<ConcatenatedOperation> {
         if (skipTests) {
             return;
         }
-        final ConcatenatedOperation transformation = getIdentifiedObject();
-        assertNotNull(transformation, "Transformation");
-        validators.validate(transformation);
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
+        final ConcatenatedOperation concatTransformation = getIdentifiedObject();
+        assertNotNull(concatTransformation, "ConcatenatedOperation");
+        validators.validate(concatTransformation);
 
         if (step1TransformationTest != null) {
             step1TransformationTest.copyConfigurationFrom(this);

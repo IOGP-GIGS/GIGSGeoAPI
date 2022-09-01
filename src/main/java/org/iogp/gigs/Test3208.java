@@ -278,6 +278,7 @@ public class Test3208 extends Series3000<Transformation> {
         if (skipTests) {
             return;
         }
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Transformation transformation = getIdentifiedObject();
         assertNotNull(transformation, "Transformation");
         validators.validate(transformation);

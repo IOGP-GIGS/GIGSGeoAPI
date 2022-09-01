@@ -230,6 +230,7 @@ public class Test3206 extends Series3000<Conversion> {
         }
         final String name = getName();
         final String code = getCode();
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Conversion conversion = getIdentifiedObject();
         assertNotNull(conversion, "Conversion");
         validators.validate(conversion);

@@ -277,6 +277,7 @@ public class Test3205 extends Series3000<GeodeticCRS> {
             return;
         }
         if (crsFactory != null) {
+            @SuppressWarnings("LocalVariableHidesMemberVariable")
             final GeodeticCRS crs = getIdentifiedObject();
             assertInstanceOf(GeographicCRS.class, crs, "CRSFactory.createGeographicCRS(…) shall not return null.");
             validators.validate((GeographicCRS) crs);
@@ -307,6 +308,7 @@ public class Test3205 extends Series3000<GeodeticCRS> {
             return;
         }
         if (crsFactory != null) {
+            @SuppressWarnings("LocalVariableHidesMemberVariable")
             final GeodeticCRS crs = getIdentifiedObject();
             assertInstanceOf(GeocentricCRS.class, crs, "CRSFactory.createGeocentricCRS(…) shall not return null.");
             validators.validate((GeocentricCRS) crs);

@@ -258,6 +258,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
             return;
         }
         if (crsFactory != null) {
+            @SuppressWarnings("LocalVariableHidesMemberVariable")
             final VerticalCRS crs = getIdentifiedObject();
             assertNotNull(crs, "CRSFactory.createGeographicCRS(…) shall not return null.");
             validators.validate(crs);

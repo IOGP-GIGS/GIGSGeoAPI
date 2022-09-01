@@ -167,6 +167,7 @@ public class Test3209 extends Series3000<VerticalDatum> {
         final String name   = getName();
         final String code   = getCode();
         final String origin = (String) properties.get(VerticalDatum.ANCHOR_POINT_KEY);
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final VerticalDatum datum = getIdentifiedObject();
         assertNotNull(datum, "VerticalDatum");
         validators.validate(datum);

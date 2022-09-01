@@ -387,10 +387,10 @@ public abstract class Series2000<T> extends IntegrityTest {
             if (previous != Configuration.Key.isDependencyIdentificationSupported) {
                 configurationTip = Configuration.Key.isStandardAliasSupported;
             }
-            final Collection<GenericName> aliases = object.getAlias();
-            assertNotNull(aliases, () -> message + ".getAlias()");
+            final Collection<GenericName> actual = object.getAlias();
+            assertNotNull(actual, () -> message + ".getAlias()");
 next:       for (final String search : expected) {
-                for (final GenericName alias : aliases) {
+                for (final GenericName alias : actual) {
                     final String tip = alias.tip().toString();
                     if (search.equalsIgnoreCase(toASCII(tip))) {
                         continue next;

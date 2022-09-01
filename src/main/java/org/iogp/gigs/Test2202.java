@@ -253,6 +253,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      * @throws FactoryException if an error occurred while creating the ellipsoid.
      */
     private void verifyEllipsoid() throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Ellipsoid ellipsoid = getIdentifiedObject();
         assertNotNull(ellipsoid, "Ellipsoid");
         validators.validate(ellipsoid);

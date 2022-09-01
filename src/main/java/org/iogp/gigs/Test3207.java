@@ -356,10 +356,11 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         }
         final String name = getName();
         final String code = getCode();
-        final ProjectedCRS projectedCRS = getIdentifiedObject();
-        assertNotNull(projectedCRS, "PrimeMeridian");
-        verifyIdentification(projectedCRS, name, code);
-        validators.validate(projectedCRS);
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
+        final ProjectedCRS crs = getIdentifiedObject();
+        assertNotNull(crs, "ProjectedCRS");
+        verifyIdentification(crs, name, code);
+        validators.validate(crs);
         // Projected CRS base CRS.
         if (baseCRSTest != null) {
             baseCRSTest.copyConfigurationFrom(this);

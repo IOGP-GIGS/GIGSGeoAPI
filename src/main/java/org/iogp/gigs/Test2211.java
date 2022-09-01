@@ -184,6 +184,7 @@ public class Test2211 extends Series2000<Transformation> {
      * @throws FactoryException if an error occurred while creating the transformation.
      */
     private void verifyTransformation() throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Transformation transformation = getIdentifiedObject();
         assertNotNull(transformation, "Transformation");
         validators.validate(transformation);

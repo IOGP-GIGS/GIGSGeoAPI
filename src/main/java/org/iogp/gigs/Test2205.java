@@ -213,6 +213,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS instance.
      */
     private void verifyGeodeticCRS(final AxisDirection[] expectedDirections) throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final GeodeticCRS crs = getIdentifiedObject();
         assertNotNull(crs, "GeodeticCRS");
         validators.validate(crs);

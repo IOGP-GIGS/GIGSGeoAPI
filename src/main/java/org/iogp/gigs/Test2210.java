@@ -174,6 +174,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
      * @throws FactoryException if an error occurred while creating the vertical CRS.
      */
     private void verifyVerticalCRS() throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final VerticalCRS crs = getIdentifiedObject();
         assertNotNull(crs, "VerticalCRS");
         validators.validate(crs);
