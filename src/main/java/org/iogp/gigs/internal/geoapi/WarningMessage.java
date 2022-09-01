@@ -112,7 +112,7 @@ final class WarningMessage {
     private void log(final Level level) {
         final LogRecord record = new LogRecord(level, message);
         record.setLoggerName(logger.getName());
-        record.setSourceClassName("org.iogp.gigs.internal.geoapi.Validator");
+        record.setSourceClassName(Validator.class.getName());
         record.setSourceMethodName(mandatory ? "mandatory" : "forbidden");
         logger.log(record);
     }

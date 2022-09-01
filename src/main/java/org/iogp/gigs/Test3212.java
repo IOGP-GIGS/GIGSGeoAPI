@@ -25,7 +25,6 @@
 package org.iogp.gigs;
 
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.iogp.gigs.internal.sis.TransformationFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
@@ -35,6 +34,7 @@ import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.datum.DatumFactory;
 import org.opengis.referencing.operation.ConcatenatedOperation;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
+import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.Transformation;
 import org.opengis.util.FactoryException;
@@ -70,10 +70,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * {@snippet lang="java" :
  * public class MyTest extends Test3212 {
  *     public MyTest() {
- *         super(new MyMathTransformFactory(), new MyTransformationFactory(),
+ *         super(new MyMathTransformFactory(), new MyCoordinateOperationFactory(),
  *               new MyDatumFactory(), new MyDatumAuthorityFactory(),
  *               new MyCSFactory(), new MyCRSFactory(),
- *               new MyCRSAuthorityFactory(), MyCoordinateOperationFactory());
+ *               new MyCRSAuthorityFactory());
  *     }
  * }
  * }
@@ -100,11 +100,6 @@ public class Test3212 extends Series3000<ConcatenatedOperation> {
      * The factory to use for fetching operation methods, or {@code null} if none.
      */
     protected final MathTransformFactory mtFactory;
-
-    /**
-     * The factory used to create DefaultTransformation, or {@code null} if none. This factory only works for Apache SIS
-     */
-    protected final TransformationFactory transformationFactory;
 
     /**
      * Factory to use for building {@link GeodeticCRS} instances, or {@code null} if none.
@@ -164,27 +159,26 @@ public class Test3212 extends Series3000<ConcatenatedOperation> {
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param mtFactory              factory for creating {@link Transformation} instances.
-     * @param transformationFactory  factory for creating {@link Transformation} instances.
+     * @param mtFactory              factory for creating {@link MathTransform} instances.
+     * @param copFactory             factory for creating {@link ConcatenatedOperation} instances.
      * @param datumFactory           factory for creating {@link GeodeticDatum} instances.
      * @param csFactory              factory for creating {@code CoordinateSystem} instances.
      * @param crsFactory             factory for creating {@link GeodeticCRS} instances.
      * @param datumAuthorityFactory  factory for creating {@link Ellipsoid} and {@link PrimeMeridian} components from EPSG codes.
      * @param crsAuthorityFactory    factory for creating {@link GeodeticCRS} instances.
      */
-    public Test3212(final MathTransformFactory mtFactory, TransformationFactory transformationFactory,
+    public Test3212(final MathTransformFactory mtFactory, CoordinateOperationFactory copFactory,
                     final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
                     final CSFactory csFactory, final CRSFactory crsFactory,
-                    final CRSAuthorityFactory crsAuthorityFactory, final CoordinateOperationFactory copFactory)
+                    final CRSAuthorityFactory crsAuthorityFactory)
     {
         this.mtFactory = mtFactory;
-        this.transformationFactory = transformationFactory;
+        this.copFactory = copFactory;
         this.datumFactory = datumFactory;
         this.datumAuthorityFactory = datumAuthorityFactory;
         this.csFactory = csFactory;
         this.crsFactory = crsFactory;
         this.crsAuthorityFactory = crsAuthorityFactory;
-        this.copFactory = copFactory;
     }
 
     /**
@@ -196,13 +190,12 @@ public class Test3212 extends Series3000<ConcatenatedOperation> {
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
      *       <li>{@link #mtFactory}</li>
-     *       <li>{@link #transformationFactory}</li>
+     *       <li>{@link #copFactory}</li>
      *       <li>{@link #datumFactory}</li>
      *       <li>{@link #datumAuthorityFactory}</li>
      *       <li>{@link #csFactory}</li>
      *       <li>{@link #crsFactory}</li>
      *       <li>{@link #crsAuthorityFactory}</li>
-     *       <li>{@link #copFactory}</li>
      *     </ul>
      *   </li>
      * </ul>
@@ -213,13 +206,12 @@ public class Test3212 extends Series3000<ConcatenatedOperation> {
     Configuration configuration() {
         final Configuration op = super.configuration();
         assertNull(op.put(Configuration.Key.mtFactory, mtFactory));
-        assertNull(op.put(Configuration.Key.transformationFactory, transformationFactory));
+        assertNull(op.put(Configuration.Key.copFactory, copFactory));
         assertNull(op.put(Configuration.Key.datumFactory, datumFactory));
         assertNull(op.put(Configuration.Key.datumAuthorityFactory, datumAuthorityFactory));
         assertNull(op.put(Configuration.Key.csFactory, csFactory));
         assertNull(op.put(Configuration.Key.crsFactory, crsFactory));
         assertNull(op.put(Configuration.Key.crsAuthorityFactory, crsAuthorityFactory));
-        assertNull(op.put(Configuration.Key.copFactory, copFactory));
         return op;
     }
 
@@ -275,7 +267,7 @@ public class Test3212 extends Series3000<ConcatenatedOperation> {
      * @throws FactoryException  if an error occurred while creating the transformation.
      */
     private void createStep1Transformation(final TestMethod<Test3208> factory) throws FactoryException {
-        step1TransformationTest = new Test3208(mtFactory, transformationFactory, datumFactory, datumAuthorityFactory,
+        step1TransformationTest = new Test3208(mtFactory, copFactory, datumFactory, datumAuthorityFactory,
                 csFactory, crsFactory, crsAuthorityFactory);
         step1TransformationTest.skipTests = true;
         factory.test(step1TransformationTest);
@@ -290,7 +282,7 @@ public class Test3212 extends Series3000<ConcatenatedOperation> {
      * @throws FactoryException  if an error occurred while creating the transformation.
      */
     private void createStep2Transformation(final TestMethod<Test3208> factory) throws FactoryException {
-        step2TransformationTest = new Test3208(mtFactory, transformationFactory, datumFactory, datumAuthorityFactory,
+        step2TransformationTest = new Test3208(mtFactory, copFactory, datumFactory, datumAuthorityFactory,
                 csFactory, crsFactory, crsAuthorityFactory);
         step2TransformationTest.skipTests = true;
         factory.test(step2TransformationTest);

@@ -33,10 +33,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 import java.util.ServiceLoader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.iogp.gigs.internal.sis.TransformationFactory;
-import org.iogp.gigs.internal.sis.DefaultTransformationFactory;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.Factory;
@@ -89,9 +85,7 @@ public final class TestSuite implements ParameterResolver {
         DatumFactory.class,
         CoordinateOperationAuthorityFactory.class,
         CoordinateOperationFactory.class,
-        MathTransformFactory.class,
-        //needed to call apache sis api
-        TransformationFactory.class
+        MathTransformFactory.class
     };
 
     /**
@@ -173,17 +167,7 @@ public final class TestSuite implements ParameterResolver {
                     factories[i] = factory;
                     break;
                 }
-                //GeoAPI does not have required api to
-                if (FACTORY_TYPES[i].equals(TransformationFactory.class)) {
-                    try {
-                        factories[i] = new DefaultTransformationFactory(loader);
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(TestSuite.class.getName()).log(Level.WARNING, "Can't create custom transformations with specified jars, " +
-                                "only Apache SIS supports GIGS Custom Transformation tests at this time");
-                    }
-                }
             }
-            //temporary
             Units.setInstance(loader);
             launcher.execute(request);
         } finally {

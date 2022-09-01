@@ -25,7 +25,7 @@
 package org.iogp.gigs;
 
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.iogp.gigs.internal.sis.TransformationFactory;
+import org.iogp.gigs.internal.geoapi.Pending;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opengis.parameter.ParameterValueGroup;
@@ -40,12 +40,12 @@ import org.opengis.referencing.datum.DatumFactory;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.PrimeMeridian;
+import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.Transformation;
 import org.opengis.util.FactoryException;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,7 +64,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link MathTransformFactory#getDefaultParameters(String)} and<br>
- *       {@link TransformationFactory#createTransformation(Map, CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod, MathTransform)}.</td>
+ *       {@code CoordinateOperationFactory.createTransformation(Map, CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod, MathTransform)}.</td>
  * </tr><tr>
  *   <th>Expected result:</th>
  *   <td>The geoscience software should accept the test data. The order in which the transformation parameters
@@ -79,7 +79,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * {@snippet lang="java" :
  * public class MyTest extends Test3208 {
  *     public MyTest() {
- *         super(new MyMathTransformFactory(), new MyTransformationFactory(),
+ *         super(new MyMathTransformFactory(), new MyCoordinateOperationFactory(),
  *               new MyDatumFactory(), new MyDatumAuthorityFactory(),
  *               new MyCSFactory(), new MyCRSFactory(),
  *               new MyCRSAuthorityFactory());
@@ -110,9 +110,9 @@ public class Test3208 extends Series3000<Transformation> {
     protected final MathTransformFactory mtFactory;
 
     /**
-     * The factory used to create DefaultTransformation, or {@code null} if none. This factory only works for Apache SIS
+     * The factory to use for creating transformation instances, or {@code null} if none.
      */
-    protected final TransformationFactory transformationFactory;
+    protected final CoordinateOperationFactory copFactory;
 
     /**
      * Factory to use for building {@link GeodeticCRS} instances, or {@code null} if none.
@@ -177,21 +177,21 @@ public class Test3208 extends Series3000<Transformation> {
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param mtFactory              factory for creating {@link Transformation} instances.
-     * @param transformationFactory  factory for creating {@link Transformation} instances.
+     * @param mtFactory              factory for creating {@link MathTransform} instances.
+     * @param copFactory             factory for creating {@link Transformation} instances.
      * @param datumFactory           factory for creating {@link GeodeticDatum} instances.
      * @param csFactory              factory for creating {@code CoordinateSystem} instances.
      * @param crsFactory             factory for creating {@link GeodeticCRS} instances.
      * @param datumAuthorityFactory  factory for creating {@link Ellipsoid} and {@link PrimeMeridian} components from EPSG codes.
      * @param crsAuthorityFactory    factory for creating {@link GeodeticCRS} instances.
      */
-    public Test3208(final MathTransformFactory mtFactory, TransformationFactory transformationFactory,
+    public Test3208(final MathTransformFactory mtFactory, final CoordinateOperationFactory copFactory,
                     final DatumFactory datumFactory, final DatumAuthorityFactory datumAuthorityFactory,
                     final CSFactory csFactory, final CRSFactory crsFactory,
                     final CRSAuthorityFactory crsAuthorityFactory)
     {
         this.mtFactory = mtFactory;
-        this.transformationFactory = transformationFactory;
+        this.copFactory = copFactory;
         this.datumFactory = datumFactory;
         this.datumAuthorityFactory = datumAuthorityFactory;
         this.csFactory = csFactory;
@@ -208,7 +208,7 @@ public class Test3208 extends Series3000<Transformation> {
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
      *       <li>{@link #mtFactory}</li>
-     *       <li>{@link #transformationFactory}</li>
+     *       <li>{@link #copFactory}</li>
      *       <li>{@link #datumFactory}</li>
      *       <li>{@link #datumAuthorityFactory}</li>
      *       <li>{@link #csFactory}</li>
@@ -224,7 +224,7 @@ public class Test3208 extends Series3000<Transformation> {
     Configuration configuration() {
         final Configuration op = super.configuration();
         assertNull(op.put(Configuration.Key.mtFactory, mtFactory));
-        assertNull(op.put(Configuration.Key.transformationFactory, transformationFactory));
+        assertNull(op.put(Configuration.Key.copFactory, copFactory));
         assertNull(op.put(Configuration.Key.datumFactory, datumFactory));
         assertNull(op.put(Configuration.Key.datumAuthorityFactory, datumAuthorityFactory));
         assertNull(op.put(Configuration.Key.csFactory, csFactory));
@@ -237,11 +237,14 @@ public class Test3208 extends Series3000<Transformation> {
      * Returns the transformation instance to be tested. When this method is invoked for the first time, it creates the
      * transformation to test by invoking the {@link MathTransformFactory#getDefaultParameters(String)}
      * method with the current {@link #methodName} value in argument and then specifying the parameters by invoking
-     * {@link MathTransformFactory#createParameterizedTransform(ParameterValueGroup)}. In order to create a
-     * transformation that is created from CRS and parameters, the Apache SIS api needs to be called. The call to the
-     * Apache SIS api is done by invoking {@link TransformationFactory#createTransformation(Map,
-     * CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod, MathTransform)}. The created object
-     * is then cached and returned in all subsequent invocations of this method.
+     * {@link MathTransformFactory#createParameterizedTransform(ParameterValueGroup)}.
+     *
+     * In order to create a transformation that is created from CRS and parameters,
+     * an implementation-specific API needs to be called.
+     * Details of the implementation-specific part are internal to GIGS test suite
+     * and will tentatively be removed with GeoAPI 3.1.
+     *
+     * The created object is then cached and returned in all subsequent invocations of this method.
      *
      * @return the transformation instance to test.
      * @throws FactoryException if an error occurred while creating the transformation instance.
@@ -251,7 +254,7 @@ public class Test3208 extends Series3000<Transformation> {
         if (transformation == null) {
             MathTransform transform = mtFactory.createParameterizedTransform(parameterValueGroup);
             OperationMethod method = mtFactory.getLastMethodUsed();
-            transformation = transformationFactory.createTransformation(properties, sourceCRS, targetCRS, method, transform);
+            transformation = Pending.getInstance(copFactory).createTransformation(properties, sourceCRS, targetCRS, method, transform);
         }
         return transformation;
     }

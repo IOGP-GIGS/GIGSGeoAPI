@@ -24,36 +24,78 @@
  */
 package org.iogp.gigs.internal.sis;
 
-import org.opengis.metadata.citation.Citation;
+import org.iogp.gigs.internal.geoapi.Pending;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.Transformation;
 import org.opengis.util.FactoryException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Constructor;
 import java.util.Map;
 
 
-public class DefaultTransformationFactory implements TransformationFactory {
-    private final Class defaultTransformationClass;
+/**
+ * Accessor to API specific to Apache SIS project.
+ * This is a placeholder for methods that are missing in GeoAPI 3.0 but may be added in GeoAPI 3.1.
+ *
+ * @author  Michael Arneson (INT)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 1.0
+ * @since   1.0
+ */
+public final class DefaultTransformationFactory extends Pending {
+    /**
+     * Prefix in package name for identifying this implementation.
+     */
+    public static final String PACKAGE_PREFIX = "org.apache.sis.";
 
-    public DefaultTransformationFactory(ClassLoader loader) throws ClassNotFoundException {
-        this.defaultTransformationClass = loader.loadClass("org.apache.sis.referencing.operation.DefaultTransformation");
+    /**
+     * Accessor to the public {@code DefaultTransformation} constructor of Apache SIS.
+     */
+    private final Constructor<? extends Transformation> defaultTransformationConstructor;
+
+    /**
+     * Creates a new accessor to Apache SIS.
+     *
+     * @param  loader  the class loader that loaded the implementation.
+     * @throws ReflectiveOperationException if the class or constructor is not found.
+     */
+    public DefaultTransformationFactory(final ClassLoader loader) throws ReflectiveOperationException {
+        super(loader);
+        defaultTransformationConstructor = loader.loadClass("org.apache.sis.referencing.operation.DefaultTransformation")
+                .asSubclass(Transformation.class)
+                .getConstructor(Map.class,                            // properties
+                                CoordinateReferenceSystem.class,      // sourceCRS
+                                CoordinateReferenceSystem.class,      // targetCRS
+                                CoordinateReferenceSystem.class,      // interpolationCRS
+                                OperationMethod.class,                // method
+                                MathTransform.class);                 // transform
     }
 
+    /**
+     * Creates a coordinate transformation from the given properties.
+     * This method delegates to Apache SIS public API using reflection.
+     */
     @Override
-    public Citation getVendor() {
-        return null;
-    }
-
-    @Override
-    public Transformation createTransformation(Map<String,Object> properties, CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS,
-                                               OperationMethod method, MathTransform transform) throws FactoryException {
+    public Transformation createTransformation(final Map<String,Object> properties,
+                                               final CoordinateReferenceSystem sourceCRS,
+                                               final CoordinateReferenceSystem targetCRS,
+                                               final OperationMethod method,
+                                               final MathTransform transform) throws FactoryException
+    {
         try {
-            Constructor<?> constructor = defaultTransformationClass.getConstructor(Map.class, CoordinateReferenceSystem.class, CoordinateReferenceSystem.class,
-                    CoordinateReferenceSystem.class, OperationMethod.class, MathTransform.class);
-            return (Transformation) constructor.newInstance(properties, sourceCRS, targetCRS, null, method, transform);
-        } catch(Exception ex) {
+            return defaultTransformationConstructor.newInstance(properties, sourceCRS, targetCRS, null, method, transform);
+        } catch (InvocationTargetException ex) {
+            final Throwable cause = ex.getCause();
+            if (cause instanceof FactoryException) {    // Propagate as if we invoked the implementation API directly.
+                throw (FactoryException) cause;
+            }
+            if (cause instanceof RuntimeException) {
+                throw (RuntimeException) cause;
+            }
+            throw new FactoryException("Unable to create transformation", cause);
+        } catch (ReflectiveOperationException ex) {
             throw new FactoryException("Unable to create transformation", ex);
         }
     }
