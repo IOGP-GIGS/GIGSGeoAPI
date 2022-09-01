@@ -107,11 +107,9 @@ public final class Test3210 extends TestMethodGenerator {
              */
             printTestMethodSignature(GIGS, code, name);
             printCallToSetCodeAndName(code, name);
-
             indent(2); out.append("createDatum(Test3209::GIGS_").append(datumCode).append(");\n");
-
-            printAxis("axis", axisName, axisAbbreviation, axisOrientation, axisUnit);
-            indent(2); out.append("createVerticalCS(").append(csCode).append(", axis);\n");
+            indent(2); out.append("createVerticalCS(").append(csCode).append(");\n");
+            printVerifyAxis(-1, axisName, axisAbbreviation, axisOrientation, axisUnit);
             indent(2); out.append("verifyVerticalCRS();\n");
             indent(1); out.append('}');
             saveTestMethod();

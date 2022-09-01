@@ -31,7 +31,6 @@ import org.opengis.util.FactoryException;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.iogp.gigs.internal.geoapi.Configuration;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -139,20 +138,6 @@ public abstract class Series3000<T> extends IntegrityTest {
     }
 
     /**
-     * Creates a map containing the given name and code, to be given to object factories.
-     *
-     * @param  code  the GIGS (not EPSG) code of the object to create.
-     * @param  name  the name of the object to create.
-     * @return properties to be given to the {@code create(…)} method.
-     */
-    static Map<String,Object> properties(final int code, final String name) {
-        final Map<String,Object> properties = new HashMap<>(4);
-        assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new SimpleIdentifier(code)));
-        assertNull(properties.put(IdentifiedObject.NAME_KEY, name));
-        return properties;
-    }
-
-    /**
      * Sets the GIGS code name in the {@link #properties} map.
      *
      * @param  code  the GIGS (not EPSG) code of the object to create.
@@ -192,18 +177,4 @@ public abstract class Series3000<T> extends IntegrityTest {
      * @throws FactoryException if an error occurred while creating the identified object.
      */
     public abstract T getIdentifiedObject() throws FactoryException;
-
-    /**
-     * Verifies that the given coordinate system axis has the expected values.
-     *
-     * @param expected  expected axis.
-     * @param actual    actual axis.
-     */
-    static void verifyAxis(final CoordinateSystemAxis expected, final CoordinateSystemAxis actual) {
-        final String name = expected.getName().getCode();
-        assertEquals(name, actual.getName().getCode());
-        assertEquals(expected.getAbbreviation(), actual.getAbbreviation(), name);
-        assertEquals(expected.getDirection(), actual.getDirection(), name);
-        assertEquals(expected.getUnit(), actual.getUnit(), name);
-    }
 }

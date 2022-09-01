@@ -138,9 +138,9 @@ public final class Test3207 extends TestMethodGenerator {
                 default:      throw new AssertionError(source);
             }
             out.append(conversionCode).append(");\n");
-            printAxis("axis1", axis1Name, axis1Abbreviation, axis1Orientation, axis1Unit);
-            printAxis("axis2", axis2Name, axis2Abbreviation, axis2Orientation, axis2Unit);
-            indent(2); out.append("createCartesianCS(").append(csCode).append(", axis1, axis2);\n");
+            indent(2); out.append("createCartesianCS(").append(csCode).append(");\n");
+            printVerifyAxis(0, axis1Name, axis1Abbreviation, axis1Orientation, axis1Unit);
+            printVerifyAxis(1, axis2Name, axis2Abbreviation, axis2Orientation, axis2Unit);
             indent(2); out.append("verifyProjectedCRS();\n");
             indent(1); out.append('}');
             saveTestMethod();

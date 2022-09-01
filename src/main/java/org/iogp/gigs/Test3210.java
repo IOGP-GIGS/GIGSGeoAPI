@@ -199,15 +199,14 @@ public class Test3210 extends Series3000<VerticalCRS> {
     }
 
     /**
-     * Creates a vertical coordinate system from a code and verify that it got the expected axes.
+     * Creates a vertical coordinate system from a code.
      *
      * @param  code  EPSG code of the Cartesian coordinate system to create.
-     * @param  axis  expected axis.
-     * @throws FactoryException  if an error occurred while creating the coordinate system.
+     * @throws FactoryException if an error occurred while creating the coordinate system.
      */
-    private void createVerticalCS(final int code, final CoordinateSystemAxis axis) throws FactoryException {
+    private void createVerticalCS(final int code) throws FactoryException {
         verticalCS = epsgFactory.createVerticalCS(String.valueOf(code));
-        verifyAxis(axis, verticalCS.getAxis(0));
+        validators.validate(verticalCS);
     }
 
     /**
@@ -226,6 +225,27 @@ public class Test3210 extends Series3000<VerticalCRS> {
         return csFactory.createCoordinateSystemAxis(
                 Collections.singletonMap(CoordinateSystemAxis.NAME_KEY, name),
                 abbreviation, direction, unit);
+    }
+
+    /**
+     * Verifies that the specified coordinate system axis has the expected values.
+     *
+     * @param name          the expected name.
+     * @param abbreviation  the expected abbreviation.
+     * @param direction     the expected axis direction.
+     * @param unit          the expected axis unit.
+     */
+    private void verifyAxis(final String name, final String abbreviation,
+                            final AxisDirection direction, final Unit<?> unit)
+    {
+        if (skipTests) {
+            return;
+        }
+        final CoordinateSystemAxis axis = verticalCS.getAxis(0);
+        assertEquals(name,         axis.getName().getCode());
+        assertEquals(abbreviation, axis.getAbbreviation(), name);
+        assertEquals(direction,    axis.getDirection(), name);
+        assertEquals(unit,         axis.getUnit(), name);
     }
 
     /**
@@ -285,8 +305,8 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64502() throws FactoryException {
         setCodeAndName(64502, "GIGS vertCRS U1 depth");
         createDatum(Test3209::GIGS_66601);
-        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
-        createVerticalCS(6498, axis);
+        createVerticalCS(6498);
+        verifyAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
         verifyVerticalCRS();
     }
 
@@ -312,8 +332,8 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64501() throws FactoryException {
         setCodeAndName(64501, "GIGS vertCRS U1 height");
         createDatum(Test3209::GIGS_66601);
-        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
-        createVerticalCS(6499, axis);
+        createVerticalCS(6499);
+        verifyAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
         verifyVerticalCRS();
     }
 
@@ -341,8 +361,8 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64504() throws FactoryException {
         setCodeAndName(64504, "GIGS vertCRS U2 depth");
         createDatum(Test3209::GIGS_66601);
-        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.foot());
-        createVerticalCS(6495, axis);
+        createVerticalCS(6495);
+        verifyAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.foot());
         verifyVerticalCRS();
     }
 
@@ -370,8 +390,8 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64503() throws FactoryException {
         setCodeAndName(64503, "GIGS vertCRS U2 height");
         createDatum(Test3209::GIGS_66601);
-        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.foot());
-        createVerticalCS(1030, axis);
+        createVerticalCS(1030);
+        verifyAxis("Gravity-related height", "H", AxisDirection.UP, units.foot());
         verifyVerticalCRS();
     }
 
@@ -397,8 +417,8 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64506() throws FactoryException {
         setCodeAndName(64506, "GIGS vertCRS V1 depth");
         createDatum(Test3209::GIGS_66602);
-        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
-        createVerticalCS(6498, axis);
+        createVerticalCS(6498);
+        verifyAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
         verifyVerticalCRS();
     }
 
@@ -424,8 +444,8 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64505() throws FactoryException {
         setCodeAndName(64505, "GIGS vertCRS V1 height");
         createDatum(Test3209::GIGS_66602);
-        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
-        createVerticalCS(6499, axis);
+        createVerticalCS(6499);
+        verifyAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
         verifyVerticalCRS();
     }
 
@@ -453,8 +473,8 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64509() throws FactoryException {
         setCodeAndName(64509, "GIGS vertCRS V2 height");
         createDatum(Test3209::GIGS_66602);
-        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.footSurveyUS());
-        createVerticalCS(6497, axis);
+        createVerticalCS(6497);
+        verifyAxis("Gravity-related height", "H", AxisDirection.UP, units.footSurveyUS());
         verifyVerticalCRS();
     }
 
@@ -480,8 +500,8 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64508() throws FactoryException {
         setCodeAndName(64508, "GIGS vertCRS W1 depth");
         createDatum(Test3209::GIGS_66603);
-        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
-        createVerticalCS(6498, axis);
+        createVerticalCS(6498);
+        verifyAxis("Gravity-related depth", "D", AxisDirection.DOWN, units.metre());
         verifyVerticalCRS();
     }
 
@@ -507,8 +527,8 @@ public class Test3210 extends Series3000<VerticalCRS> {
     public void GIGS_64507() throws FactoryException {
         setCodeAndName(64507, "GIGS vertCRS W1 height");
         createDatum(Test3209::GIGS_66603);
-        CoordinateSystemAxis axis = createCoordinateSystemAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
-        createVerticalCS(6499, axis);
+        createVerticalCS(6499);
+        verifyAxis("Gravity-related height", "H", AxisDirection.UP, units.metre());
         verifyVerticalCRS();
     }
 }

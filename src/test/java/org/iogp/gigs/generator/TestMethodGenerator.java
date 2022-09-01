@@ -661,23 +661,25 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Prints a statement like "{@code CoordinateSystemAxis axis1 = createCoordinateSystemAxis(…)}".
+     * Prints a "{@code verifyAxis(…)}" statement.
      *
-     * @param  variable      name of the variable.
-     * @param  name          axis name.
-     * @param  abbreviation  axis abbreviation.
-     * @param  orientation   axis orientation.
-     * @param  unit          axis units of measurement.
+     * @param  axisIndex     index of the axis to verify, or -1 if none.
+     * @param  name          expected axis name.
+     * @param  abbreviation  expected axis abbreviation.
+     * @param  orientation   expected axis orientation.
+     * @param  unit          expected axis units of measurement.
      */
-    final void printAxis(final String variable, final String name, final String abbreviation, final String orientation, final String unit) {
-        Unit<?> parsedUnit = parseUnit(unit);
+    final void printVerifyAxis(final int axisIndex, final String name, final String abbreviation,
+                               final String orientation, final String unit)
+    {
         indent(2);
-        out.append("CoordinateSystemAxis ").append(variable)
-           .append(" = createCoordinateSystemAxis(\"")
-           .append(name).append("\", \"")
-           .append(abbreviation).append("\", ")
-           .append("AxisDirection.").append(orientation.toUpperCase(Locale.US)).append(", ");
-        printProgrammaticName(parsedUnit);
+        out.append("verifyAxis(");
+        if (axisIndex >= 0) {
+            out.append(axisIndex).append(", ");
+        }
+        out.append('"').append(name).append("\", \"").append(abbreviation)
+           .append("\", AxisDirection.").append(orientation.toUpperCase(Locale.US)).append(", ");
+        printProgrammaticName(parseUnit(unit));
         out.append(");\n");
     }
 
