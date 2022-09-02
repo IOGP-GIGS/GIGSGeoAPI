@@ -44,19 +44,24 @@ public enum DefinitionSource {
      * Object is defined by the library.
      * Fetching this object requires the use of an {@link AuthorityFactory}.
      */
-    LIBRARY(AuthorityFactory.class, "Fetched from EPSG dataset"),
+    LIBRARY(AuthorityFactory.class, "Fetched from EPSG dataset", "EPSG"),
 
     /**
      * Object is defined by the user providing all parameters.
      * Fetching this object requires the use of an {@link ObjectFactory}.
      */
-    USER(ObjectFactory.class, "Described by user"),
+    USER(ObjectFactory.class, "Described by user", "GIGS"),
 
     /**
      * Object is defined by the user providing all parameters together with an early-binding transformation.
      * Fetching this object requires the use of an {@link ObjectFactory}.
      */
-    USER_EARLY_BOUND(ObjectFactory.class, "Described by user with early-binding");
+    USER_EARLY_BOUND(ObjectFactory.class, "Described by user with early-binding", "GIGS");
+
+    /**
+     * The source of the definition: EPSG or GIGS.
+     */
+    final String author;
 
     /**
      * Description of this source to write in the Javadoc.
@@ -74,10 +79,12 @@ public enum DefinitionSource {
      *
      * @param  factoryType  the type of factory used for building the object.
      * @param  description  description of this source to write in the Javadoc.
+     * @param  author       the source of the definition: EPSG or GIGS.
      */
-    private DefinitionSource(final Class<? extends Factory> factoryType, final String description) {
+    private DefinitionSource(final Class<? extends Factory> factoryType, final String description, final String author) {
         this.factoryType = factoryType;
         this.description = description;
+        this.author      = author;
     }
 
     /**

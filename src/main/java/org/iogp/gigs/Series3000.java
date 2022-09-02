@@ -31,6 +31,7 @@ import org.opengis.util.FactoryException;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.datum.Datum;
 import org.iogp.gigs.internal.geoapi.Configuration;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -138,6 +139,15 @@ public abstract class Series3000<T> extends IntegrityTest {
     }
 
     /**
+     * Returns {@code true} if the test has been initialized.
+     *
+     * @return whether the test has been initialized.
+     */
+    final boolean isInitialized() {
+        return !properties.isEmpty();
+    }
+
+    /**
      * Sets the GIGS code name in the {@link #properties} map.
      *
      * @param  code  the GIGS (not EPSG) code of the object to create.
@@ -146,6 +156,15 @@ public abstract class Series3000<T> extends IntegrityTest {
     final void setCodeAndName(final int code, final String name) {
         assertNull(properties.put(IdentifiedObject.NAME_KEY, name), IdentifiedObject.NAME_KEY);
         assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new SimpleIdentifier(code)), IdentifiedObject.IDENTIFIERS_KEY);
+    }
+
+    /**
+     * Sets the origin (anchor point) of the datum to create.
+     *
+     * @param  origin  the origin of the datum to create.
+     */
+    final void setOrigin(final String origin) {
+        assertNull(properties.put(Datum.ANCHOR_POINT_KEY, origin), Datum.ANCHOR_POINT_KEY);
     }
 
     /**

@@ -27,12 +27,8 @@ package org.iogp.gigs.generator;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import org.opengis.referencing.datum.DatumFactory;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -65,32 +61,13 @@ public final class Test3205 extends TestMethodGenerator {
     }
 
     /**
-     * Loads (GIGS code, EPSG code) mapping for datum.
-     *
-     * @return (GIGS code, EPSG code) of datum.
-     * @throws IOException if an error occurred while reading the test data.
-     */
-    private static Map<Integer,Integer> loadDependencies() throws IOException {
-        final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3204_GeodeticDatum.txt",
-                Integer.class, null, null, null, null, null, null, String.class);
-        final Map<Integer,Integer> dependencies = new HashMap<>();
-        while (data.next()) {
-            final int[] codes = data.getInts(7);
-            if (codes.length == 1) {
-                assertNull(dependencies.put(data.getInt(0), codes[0]));
-            }
-        }
-        return dependencies;
-    }
-
-    /**
      * Generates the code.
      *
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
         // EPSG definitions
-        final Map<Integer,Integer> datumsEPSG = loadDependencies();
+        final CodeMapper toEPSG = new CodeMapper("GIGS_user_3204_GeodeticDatum.txt", 7, false);
 
         // GIGS definitions
         final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3205_GeodeticCRS.txt",
@@ -145,7 +122,7 @@ public final class Test3205 extends TestMethodGenerator {
             printCallToSetCodeAndName(code, name);
             indent(2); out.append("createDatum(");
             if (source == DefinitionSource.LIBRARY) {
-                out.append(toEPSG(datumsEPSG, datumCode)).append(", ");
+                out.append(toEPSG.convert(datumCode)).append(", ");
             }
             out.append("Test3204::GIGS_").append(datumCode).append(");\n");
             indent(2); out.append("csCode = ").append(csCode).append(";\n");
@@ -157,18 +134,5 @@ public final class Test3205 extends TestMethodGenerator {
             saveTestMethod();
         }
         flushAllMethods();
-    }
-
-    /**
-     * Returns the EPSG code associated to the given GIGS code in the map, making sure it is not null.
-     *
-     * @param  codes  the map from which to get the code.
-     * @param  code   GIGS code of the object for which to get the EPSG code.
-     * @return EPSG code for the named object.
-     */
-    private static int toEPSG(final Map<Integer,Integer> codes, final int code) {
-        Integer epsg = codes.get(code);
-        assertNotNull(epsg);
-        return epsg;
     }
 }

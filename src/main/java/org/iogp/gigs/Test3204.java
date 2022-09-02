@@ -254,15 +254,6 @@ public class Test3204 extends Series3000<GeodeticDatum> {
     }
 
     /**
-     * Sets the origin of the geodetic datum to create.
-     *
-     * @param  origin  the origin of the datum to create.
-     */
-    private void setOrigin(final String origin) {
-        assertNull(properties.put(GeodeticDatum.ANCHOR_POINT_KEY, origin), GeodeticDatum.ANCHOR_POINT_KEY);
-    }
-
-    /**
      * Verifies the properties of the geodetic datum given by {@link #getIdentifiedObject()}.
      *
      * @throws FactoryException if an error occurred while creating the datum.

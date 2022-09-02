@@ -110,7 +110,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     private Conversion conversion;
 
     /**
-     * The cartesian coordinate system used for the projected CRS created by this factory.
+     * The Cartesian coordinate system used for the projected CRS created by this factory.
      */
     private CartesianCS cartesianCS;
 
@@ -280,11 +280,16 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     /**
      * Creates a conversion from the EPSG factory
      *
-     * @param  code  EPSG code of the conversion to create.
+     * @param  code      EPSG code of the conversion to create.
+     * @param  verifier  the test method to use for verifying the conversion, or {@code null} if none.
      * @throws FactoryException if an error occurred while creating the conversion.
+     * @throws ClassCastException if the operation created by the factory is not a conversion.
      */
-    private void createConversion(final int code) throws FactoryException {
+    private void createConversion(final int code, final TestMethod<Test3206> verifier) throws FactoryException {
         conversion = (Conversion) copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
+        if (verifier != null) {
+            verifier.initialize(conversionTest);
+        }
     }
 
     /**
@@ -340,14 +345,16 @@ public class Test3207 extends Series3000<ProjectedCRS> {
         // Projected CRS base CRS.
         baseCRSTest.copyConfigurationFrom(this);
         baseCRSTest.setIdentifiedObject(baseCRS);
-//TODO  baseCRSTest.verifyGeographicCRS();
+        baseCRSTest.verifyGeographicCRS();
 
         // Projected CRS conversion.
-        conversionTest.copyConfigurationFrom(this);
-        conversionTest.setIdentifiedObject(conversion);
-//TODO  conversionTest.verifyConversion();
+        if (conversionTest.isInitialized()) {
+            conversionTest.copyConfigurationFrom(this);
+            conversionTest.setIdentifiedObject(conversion);
+            conversionTest.verifyConversion();
+        }
 
-        // Validate the cartesian cs.
+        // Validate the Cartesian CS.
         validators.validate(cartesianCS);
 
         // Projected CRS coordinate system.
@@ -678,7 +685,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS AA1</b></li>
      *   <li>EPSG equivalence: <b>32631 – WGS 84 / UTM zone 31N</b></li>
      *   <li>GIGS base CRS code: <b>64326</b></li>
-     *   <li>GIGS conversion code: <b>16031</b></li>
+     *   <li>EPSG conversion code: <b>16031</b></li>
      *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
@@ -696,7 +703,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     public void GIGS_62028() throws FactoryException {
         setCodeAndName(62028, "GIGS projCRS AA1");
         createBaseCRS(Test3205::GIGS_64326);
-        createConversion(16031);
+        createConversion(16031, Test3206::GIGS_65001);
         createCartesianCS(4400);
         verifyAxis(0, "Easting", "E", AxisDirection.EAST, units.metre());
         verifyAxis(1, "Northing", "N", AxisDirection.NORTH, units.metre());
@@ -780,7 +787,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS BB2</b></li>
      *   <li>EPSG equivalence: <b>27700 – OSGB36 / British National Grid</b></li>
      *   <li>GIGS base CRS code: <b>64277</b></li>
-     *   <li>GIGS conversion code: <b>19916</b></li>
+     *   <li>EPSG conversion code: <b>19916</b></li>
      *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
@@ -798,7 +805,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     public void GIGS_62029() throws FactoryException {
         setCodeAndName(62029, "GIGS projCRS BB2");
         createBaseCRS(Test3205::GIGS_64277);
-        createConversion(19916);
+        createConversion(19916, Test3206::GIGS_65002);
         createCartesianCS(4400);
         verifyAxis(0, "Easting", "E", AxisDirection.EAST, units.metre());
         verifyAxis(1, "Northing", "N", AxisDirection.NORTH, units.metre());
@@ -846,7 +853,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS CC4</b></li>
      *   <li>EPSG equivalence: <b>28992 – Amersfoort / RD New</b></li>
      *   <li>GIGS base CRS code: <b>64289</b></li>
-     *   <li>GIGS conversion code: <b>19914</b></li>
+     *   <li>EPSG conversion code: <b>19914</b></li>
      *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
@@ -864,7 +871,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     public void GIGS_62030() throws FactoryException {
         setCodeAndName(62030, "GIGS projCRS CC4");
         createBaseCRS(Test3205::GIGS_64289);
-        createConversion(19914);
+        createConversion(19914, Test3206::GIGS_65004);
         createCartesianCS(4499);
         verifyAxis(0, "Easting", "X", AxisDirection.EAST, units.metre());
         verifyAxis(1, "Northing", "Y", AxisDirection.NORTH, units.metre());
@@ -948,7 +955,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS EE6</b></li>
      *   <li>EPSG equivalence: <b>31370 – Belge 1972 / Belgian Lambert 72</b></li>
      *   <li>GIGS base CRS code: <b>64313</b></li>
-     *   <li>GIGS conversion code: <b>19961</b></li>
+     *   <li>EPSG conversion code: <b>19961</b></li>
      *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
@@ -966,7 +973,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     public void GIGS_62031() throws FactoryException {
         setCodeAndName(62031, "GIGS projCRS EE6");
         createBaseCRS(Test3205::GIGS_64313);
-        createConversion(19961);
+        createConversion(19961, Test3206::GIGS_65006);
         createCartesianCS(4499);
         verifyAxis(0, "Easting", "X", AxisDirection.EAST, units.metre());
         verifyAxis(1, "Northing", "Y", AxisDirection.NORTH, units.metre());
@@ -1080,7 +1087,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS FF8</b></li>
      *   <li>EPSG equivalence: <b>28354 – GDA94 / MGA zone 54</b></li>
      *   <li>GIGS base CRS code: <b>64283</b></li>
-     *   <li>GIGS conversion code: <b>17354</b></li>
+     *   <li>EPSG conversion code: <b>17354</b></li>
      *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4400</b></li>
      * </ul>
@@ -1098,7 +1105,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     public void GIGS_62032() throws FactoryException {
         setCodeAndName(62032, "GIGS projCRS FF8");
         createBaseCRS(Test3205::GIGS_64283);
-        createConversion(17354);
+        createConversion(17354, null);
         createCartesianCS(4400);
         verifyAxis(0, "Easting", "E", AxisDirection.EAST, units.metre());
         verifyAxis(1, "Northing", "N", AxisDirection.NORTH, units.metre());
@@ -1460,7 +1467,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
      *   <li>GIGS projectedCRS name: <b>GIGS projCRS HH19</b></li>
      *   <li>EPSG equivalence: <b>27572 – NTF (Paris) / Lambert zone II</b></li>
      *   <li>GIGS base CRS code: <b>64807</b></li>
-     *   <li>GIGS conversion code: <b>18082</b></li>
+     *   <li>EPSG conversion code: <b>18082</b></li>
      *   <li>Conversion definition source: <b>Fetched from EPSG dataset</b> (build with {@link CoordinateOperationAuthorityFactory})</li>
      *   <li>EPSG coordinate system code: <b>4499</b></li>
      * </ul>
@@ -1478,7 +1485,7 @@ public class Test3207 extends Series3000<ProjectedCRS> {
     public void GIGS_62033() throws FactoryException {
         setCodeAndName(62033, "GIGS projCRS HH19");
         createBaseCRS(Test3205::GIGS_64807);
-        createConversion(18082);
+        createConversion(18082, Test3206::GIGS_65019);
         createCartesianCS(4499);
         verifyAxis(0, "Easting", "X", AxisDirection.EAST, units.metre());
         verifyAxis(1, "Northing", "Y", AxisDirection.NORTH, units.metre());

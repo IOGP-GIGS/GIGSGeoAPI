@@ -64,7 +64,7 @@ public final class Test3207 extends TestMethodGenerator {
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
-        //use corrected file for now, unit issue https://github.com/IOGP-GIGS/GIGSTestDataset/issues/2 is fixed
+        final CodeMapper toGIGS = new CodeMapper("GIGS_user_3206_Conversion.txt", 28, true);
         final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3207_ProjectedCRS.txt",
                 Integer.class,      // [ 0]: GIGS Projected CRS Code
                 String .class,      // [ 1]: GIGS Projected CRS Definition Source
@@ -115,7 +115,7 @@ public final class Test3207 extends TestMethodGenerator {
                                   "GIGS projectedCRS name", replaceAsciiPrimeByUnicode(name),
                                   "EPSG equivalence", codeAndName(codeEPSG, nameEPSG),
                                   "GIGS base CRS code", baseCRSCode,
-                                  "GIGS conversion code", conversionCode,
+                                  source.author + " conversion code", conversionCode,
                                   "Conversion definition source", source,
                                   "EPSG coordinate system code", csCode);
             printJavadocAxisHeader();
@@ -133,11 +133,22 @@ public final class Test3207 extends TestMethodGenerator {
             indent(2); out.append("createBaseCRS(Test3205::GIGS_").append(baseCRSCode).append(");\n");
             indent(2); out.append("createConversion(");
             switch (source) {
-                case LIBRARY: break;
-                case USER:    out.append("Test3206::GIGS_"); break;
-                default:      throw new AssertionError(source);
+                case USER: {
+                    out.append("Test3206::GIGS_").append(conversionCode);
+                    break;
+                }
+                case LIBRARY: {
+                    out.append(conversionCode).append(", ");
+                    toGIGS.optional(conversionCode).ifPresentOrElse((gigs) -> {
+                        out.append("Test3206::GIGS_").append(gigs);
+                    }, () -> {
+                        out.append("null");
+                    });
+                    break;
+                }
+                default: throw new AssertionError(source);
             }
-            out.append(conversionCode).append(");\n");
+            out.append(");\n");
             indent(2); out.append("createCartesianCS(").append(csCode).append(");\n");
             printVerifyAxis(0, axis1Name, axis1Abbreviation, axis1Orientation, axis1Unit);
             printVerifyAxis(1, axis2Name, axis2Abbreviation, axis2Orientation, axis2Unit);
