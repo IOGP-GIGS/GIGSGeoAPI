@@ -55,8 +55,8 @@ final class CodeMapper {
      */
     CodeMapper(final String filename, final int epsgColumn, final boolean reverse) throws IOException {
         final Class<?>[] columnTypes = new Class<?>[epsgColumn + 1];
+        columnTypes[epsgColumn] = String.class;     // Should be first.
         columnTypes[0] = Integer.class;
-        columnTypes[epsgColumn] = String.class;
         dependencies = new HashMap<>();
         final DataParser data = new DataParser(Series.USER_DEFINED, filename, columnTypes);
         while (data.next()) {

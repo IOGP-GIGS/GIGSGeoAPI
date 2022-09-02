@@ -36,6 +36,7 @@ import org.opengis.referencing.operation.CoordinateOperationFactory;
  * but be aware that the original code may contain manual changes that need to be preserved.
  *
  * @author  Michael Arneson (INT)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0
  */

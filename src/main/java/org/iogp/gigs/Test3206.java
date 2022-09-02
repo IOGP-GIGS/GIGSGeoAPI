@@ -87,8 +87,9 @@ public class Test3206 extends Series3000<Conversion> {
     public String methodName;
 
     /**
-     * The parameters of the conversion to create.
+     * The parameters defining the conversion to create.
      * This field is set by all test methods before to create and verify the {@link Conversion} instance.
+     * The name of this parameter group is typically {@link #methodName}.
      */
     public ParameterValueGroup definition;
 

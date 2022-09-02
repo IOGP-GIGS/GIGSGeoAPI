@@ -85,6 +85,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * }
  *
  * @author  Michael Arneson (INT)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0
  */
@@ -94,6 +95,13 @@ public class Test3208 extends Series3000<Transformation> {
      * Name of the transformation method.
      */
     public String methodName;
+
+    /**
+     * The parameters defining the transformation to create.
+     * This field is set by all test methods before to create and verify the {@link Transformation} instance.
+     * The name of this parameter group is typically {@link #methodName}.
+     */
+    public ParameterValueGroup definition;
 
     /**
      * The coordinate transformation created by the factory,
@@ -140,11 +148,6 @@ public class Test3208 extends Series3000<Transformation> {
     protected final CRSAuthorityFactory crsAuthorityFactory;
 
     /**
-     * The parameters used to create the
-     */
-    private ParameterValueGroup parameterValueGroup;
-
-    /**
      * Data about the source CRS of the transformation.
      *
      * @see #createSourceCRS(TestMethod)
@@ -159,12 +162,12 @@ public class Test3208 extends Series3000<Transformation> {
     private final Test3205 targetCRSTest;
 
     /**
-     * The source CRS of the transformation created by this factory.
+     * The source CRS of the transformation created by this test.
      */
     private GeographicCRS sourceCRS;
 
     /**
-     * The target CRS of the transformation created by this factory.
+     * The target CRS of the transformation created by this test.
      */
     private GeographicCRS targetCRS;
 
@@ -234,6 +237,66 @@ public class Test3208 extends Series3000<Transformation> {
     }
 
     /**
+     * Creates a user-defined source CRS by executing the specified method from the {@link Test3205} class.
+     *
+     * @param  factory  the test method to use for creating the source CRS.
+     * @throws FactoryException if an error occurred while creating the source CRS.
+     * @throws ClassCastException if the CRS is not geographic.
+     */
+    private void createSourceCRS(final TestMethod<Test3205> factory) throws FactoryException {
+        factory.initialize(sourceCRSTest);
+        sourceCRS = (GeographicCRS) sourceCRSTest.getIdentifiedObject();
+    }
+
+    /**
+     * Creates a user-defined target CRS by executing the specified method from the {@link Test3205} class.
+     *
+     * @param  factory  the test method to use for creating the target CRS.
+     * @throws FactoryException if an error occurred while creating the target CRS.
+     * @throws ClassCastException if the CRS is not geographic.
+     */
+    private void createTargetCRS(final TestMethod<Test3205> factory) throws FactoryException {
+        factory.initialize(targetCRSTest);
+        targetCRS = (GeographicCRS) targetCRSTest.getIdentifiedObject();
+    }
+
+    /**
+     * Creates a target CRS from the EPSG factory
+     *
+     * @param  code  EPSG code of the target CRS to create.
+     * @throws FactoryException  if an error occurred while creating the target CRS.
+     */
+    private void createTargetCRS(final int code) throws FactoryException {
+        targetCRS = crsAuthorityFactory.createGeographicCRS(String.valueOf(code));
+    }
+
+    /**
+     * Sets the axis lengths of source and target ellipsoids.
+     */
+    private void setEllipsoidAxisLengths() {
+        final Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
+        final Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
+        definition.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
+        definition.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
+        definition.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
+        definition.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+    }
+
+    /**
+     * Instantiates the {@link #definition} field.
+     * It is caller's responsibility to set the parameter values.
+     *
+     * @param  method  name of the transformation method.
+     * @throws FactoryException if an error occurred while creating the parameters.
+     */
+    private void createDefaultParameters(final String method) throws FactoryException {
+        methodName = method;
+        assumeNotNull(mtFactory);
+        definition = mtFactory.getDefaultParameters(method);
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
+    }
+
+    /**
      * Returns the transformation instance to be tested. When this method is invoked for the first time, it creates the
      * transformation to test by invoking the {@link MathTransformFactory#getDefaultParameters(String)}
      * method with the current {@link #methodName} value in argument and then specifying the parameters by invoking
@@ -252,7 +315,7 @@ public class Test3208 extends Series3000<Transformation> {
     @Override
     public Transformation getIdentifiedObject() throws FactoryException {
         if (transformation == null) {
-            MathTransform transform = mtFactory.createParameterizedTransform(parameterValueGroup);
+            MathTransform transform = mtFactory.createParameterizedTransform(definition);
             OperationMethod method = mtFactory.getLastMethodUsed();
             transformation = Pending.getInstance(copFactory).createTransformation(properties, sourceCRS, targetCRS, method, transform);
         }
@@ -298,60 +361,7 @@ public class Test3208 extends Series3000<Transformation> {
     }
 
     /**
-     * Instantiates the {@link #parameterValueGroup} field.
-     * It is caller's responsibility to set the parameter values.
-     *
-     * @throws FactoryException if an error occurred while creating the parameters.
-     */
-    private void createDefaultParameters() throws FactoryException {
-        assumeNotNull(mtFactory);
-        this.parameterValueGroup = mtFactory.getDefaultParameters(methodName);
-    }
-
-    /**
-     * Creates a user-defined source CRS by executing the specified method from the {@link Test3205} class.
-     *
-     * @param  factory           the test method to use for creating the source CRS.
-     * @throws FactoryException  if an error occurred while creating the source CRS.
-     */
-    private void createSourceCRS(final TestMethod<Test3205> factory) throws FactoryException {
-        factory.initialize(sourceCRSTest);
-        sourceCRS = (GeographicCRS) sourceCRSTest.getIdentifiedObject();
-    }
-
-    /**
-     * Creates a source CRS from the EPSG factory
-     *
-     * @param  code  EPSG code of the source CRS to create.
-     * @throws FactoryException  if an error occurred while creating the source CRS.
-     */
-    private void createSourceCRS(final int code) throws FactoryException {
-        this.sourceCRS = this.crsAuthorityFactory.createGeographicCRS(String.valueOf(code));
-    }
-
-    /**
-     * Creates a user-defined target CRS by executing the specified method from the {@link Test3205} class.
-     *
-     * @param  factory           the test method to use for creating the target CRS.
-     * @throws FactoryException  if an error occurred while creating the target CRS.
-     */
-    private void createTargetCRS(final TestMethod<Test3205> factory) throws FactoryException {
-        factory.initialize(targetCRSTest);
-        targetCRS = (GeographicCRS) targetCRSTest.getIdentifiedObject();
-    }
-
-    /**
-     * Creates a target CRS from the EPSG factory
-     *
-     * @param  code  EPSG code of the target CRS to create.
-     * @throws FactoryException  if an error occurred while creating the target CRS.
-     */
-    private void createTargetCRS(final int code) throws FactoryException {
-        this.targetCRS = crsAuthorityFactory.createGeographicCRS(String.valueOf(code));
-    }
-
-    /**
-     * Tests “GIGS geogCRS A to WGS 84 (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS A to WGS 84 (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61001</b></li>
@@ -374,25 +384,18 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS A to WGS 84 (1)")
     public void GIGS_61001() throws FactoryException {
         setCodeAndName(61001, "GIGS geogCRS A to WGS 84 (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Geocentric translations (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64003);
         createTargetCRS(4326);
-        parameterValueGroup.parameter("X-axis translation").setValue(0, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(0, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(0, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(0.0, units.metre());
+        definition.parameter("Y-axis translation").setValue(0.0, units.metre());
+        definition.parameter("Z-axis translation").setValue(0.0, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS B to GIGS geogCRS A (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS B to GIGS geogCRS A (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61196</b></li>
@@ -414,25 +417,18 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS B to GIGS geogCRS A (1)")
     public void GIGS_61196() throws FactoryException {
         setCodeAndName(61196, "GIGS geogCRS B to GIGS geogCRS A (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Geocentric translations (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64005);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(371, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(-112, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(434, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(371.0, units.metre());
+        definition.parameter("Y-axis translation").setValue(-112.0, units.metre());
+        definition.parameter("Z-axis translation").setValue(434.0, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS B to GIGS geogCRS A (2)”  transformation from the factory.
+     * Tests “GIGS geogCRS B to GIGS geogCRS A (2)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61314</b></li>
@@ -458,29 +454,22 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS B to GIGS geogCRS A (2)")
     public void GIGS_61314() throws FactoryException {
         setCodeAndName(61314, "GIGS geogCRS B to GIGS geogCRS A (2)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Position Vector transformation (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64005);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(446.448, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(-125.157, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(542.06, units.metre());
-        parameterValueGroup.parameter("X-axis rotation").setValue(0.15, units.arcSecond());
-        parameterValueGroup.parameter("Y-axis rotation").setValue(0.247, units.arcSecond());
-        parameterValueGroup.parameter("Z-axis rotation").setValue(0.842, units.arcSecond());
-        parameterValueGroup.parameter("Scale difference").setValue(-20.489, units.ppm());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Position Vector transformation (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(446.448, units.metre());
+        definition.parameter("Y-axis translation").setValue(-125.157, units.metre());
+        definition.parameter("Z-axis translation").setValue(542.06, units.metre());
+        definition.parameter("X-axis rotation").setValue(0.15, units.arcSecond());
+        definition.parameter("Y-axis rotation").setValue(0.247, units.arcSecond());
+        definition.parameter("Z-axis rotation").setValue(0.842, units.arcSecond());
+        definition.parameter("Scale difference").setValue(-20.489, units.ppm());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS C to GIGS geogCRS A (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS C to GIGS geogCRS A (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61002</b></li>
@@ -503,25 +492,18 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS C to GIGS geogCRS A (1)")
     public void GIGS_61002() throws FactoryException {
         setCodeAndName(61002, "GIGS geogCRS C to GIGS geogCRS A (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Geocentric translations (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64006);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(593, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(26, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(479, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(593.0, units.metre());
+        definition.parameter("Y-axis translation").setValue(26.0, units.metre());
+        definition.parameter("Z-axis translation").setValue(479.0, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS C to GIGS geogCRS A (2)”  transformation from the factory.
+     * Tests “GIGS geogCRS C to GIGS geogCRS A (2)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>15934</b></li>
@@ -547,29 +529,22 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS C to GIGS geogCRS A (2)")
     public void GIGS_15934() throws FactoryException {
         setCodeAndName(15934, "GIGS geogCRS C to GIGS geogCRS A (2)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Coordinate Frame rotation (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64006);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(565.2369, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(50.0087, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(465.658, units.metre());
-        parameterValueGroup.parameter("X-axis rotation").setValue(1.9725, units.microradian());
-        parameterValueGroup.parameter("Y-axis rotation").setValue(-1.7004, units.microradian());
-        parameterValueGroup.parameter("Z-axis rotation").setValue(9.0677, units.microradian());
-        parameterValueGroup.parameter("Scale difference").setValue(4.0812, units.ppm());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Coordinate Frame rotation (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(565.2369, units.metre());
+        definition.parameter("Y-axis translation").setValue(50.0087, units.metre());
+        definition.parameter("Z-axis translation").setValue(465.658, units.metre());
+        definition.parameter("X-axis rotation").setValue(1.9725, units.microradian());
+        definition.parameter("Y-axis rotation").setValue(-1.7004, units.microradian());
+        definition.parameter("Z-axis rotation").setValue(9.0677, units.microradian());
+        definition.parameter("Scale difference").setValue(4.0812, units.ppm());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS C to GIGS geogCRS A (3)”  transformation from the factory.
+     * Tests “GIGS geogCRS C to GIGS geogCRS A (3)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61003</b></li>
@@ -600,32 +575,53 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS C to GIGS geogCRS A (3)")
     public void GIGS_61003() throws FactoryException {
         setCodeAndName(61003, "GIGS geogCRS C to GIGS geogCRS A (3)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Molodensky";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64006);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(593.0297, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(26.0038, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(478.7534, units.metre());
-        parameterValueGroup.parameter("X-axis rotation").setValue(0.4069, units.arcSecond());
-        parameterValueGroup.parameter("Y-axis rotation").setValue(-0.3507, units.arcSecond());
-        parameterValueGroup.parameter("Z-axis rotation").setValue(1.8703, units.arcSecond());
-        parameterValueGroup.parameter("Scale difference").setValue(4.0812, units.ppm());
-        parameterValueGroup.parameter("Ordinate 1 of evaluation point").setValue(3903453.1482, units.metre());
-        parameterValueGroup.parameter("Ordinate 2 of evaluation point").setValue(368135.3134, units.metre());
-        parameterValueGroup.parameter("Ordinate 3 of evaluation point").setValue(5012970.3051, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Molodensky");
+        definition.parameter("X-axis translation").setValue(593.0297, units.metre());
+        definition.parameter("Y-axis translation").setValue(26.0038, units.metre());
+        definition.parameter("Z-axis translation").setValue(478.7534, units.metre());
+        definition.parameter("X-axis rotation").setValue(0.4069, units.arcSecond());
+        definition.parameter("Y-axis rotation").setValue(-0.3507, units.arcSecond());
+        definition.parameter("Z-axis rotation").setValue(1.8703, units.arcSecond());
+        definition.parameter("Scale difference").setValue(4.0812, units.ppm());
+        definition.parameter("Ordinate 1 of evaluation point").setValue(3903453.1482, units.metre());
+        definition.parameter("Ordinate 2 of evaluation point").setValue(368135.3134, units.metre());
+        definition.parameter("Ordinate 3 of evaluation point").setValue(5012970.3051, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS E to GIGS geogCRS A (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS D to GIGS geogCRS L (1)” transformation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS transformation code: <b>61759</b></li>
+     *   <li>GIGS transformation name: <b>GIGS geogCRS D to GIGS geogCRS L (1)</b></li>
+     *   <li>EPSG Transformation Method: <b>Longitude rotation</b></li>
+     *   <li>EPSG equivalence: <b>1759 – Batavia (Jakarta) to Batavia (1)</b></li>
+     * </ul>
+     * <table class="gigs">
+     *   <caption>Transformation parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Longitude offset</td><td>106°48′27.79″ (106.8077194°)</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the transformation from the properties.
+     */
+    @Test
+    @DisplayName("GIGS geogCRS D to GIGS geogCRS L (1)")
+    public void GIGS_61759() throws FactoryException {
+        setCodeAndName(61759, "GIGS geogCRS D to GIGS geogCRS L (1)");
+        createSourceCRS(Test3205::GIGS_64007);
+        createTargetCRS(Test3205::GIGS_64014);
+        createDefaultParameters("Longitude rotation");
+        definition.parameter("Longitude offset").setValue(106.8077194, units.degree());
+        verifyTransformation();
+    }
+
+    /**
+     * Tests “GIGS geogCRS E to GIGS geogCRS A (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61610</b></li>
@@ -647,25 +643,18 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS E to GIGS geogCRS A (1)")
     public void GIGS_61610() throws FactoryException {
         setCodeAndName(61610, "GIGS geogCRS E to GIGS geogCRS A (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Geocentric translations (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64008);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(-125.8, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(79.9, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(-100.5, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(-125.8, units.metre());
+        definition.parameter("Y-axis translation").setValue(79.9, units.metre());
+        definition.parameter("Z-axis translation").setValue(-100.5, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS E to GIGS geogCRS A (2)”  transformation from the factory.
+     * Tests “GIGS geogCRS E to GIGS geogCRS A (2)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>15929</b></li>
@@ -691,29 +680,22 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS E to GIGS geogCRS A (2)")
     public void GIGS_15929() throws FactoryException {
         setCodeAndName(15929, "GIGS geogCRS E to GIGS geogCRS A (2)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Coordinate Frame rotation (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64008);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(-106.8686, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(52.2978, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(-103.7239, units.metre());
-        parameterValueGroup.parameter("X-axis rotation").setValue(-0.3366, units.arcSecond());
-        parameterValueGroup.parameter("Y-axis rotation").setValue(0.457, units.arcSecond());
-        parameterValueGroup.parameter("Z-axis rotation").setValue(-1.8422, units.arcSecond());
-        parameterValueGroup.parameter("Scale difference").setValue(-1.2747, units.ppm());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Coordinate Frame rotation (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(-106.8686, units.metre());
+        definition.parameter("Y-axis translation").setValue(52.2978, units.metre());
+        definition.parameter("Z-axis translation").setValue(-103.7239, units.metre());
+        definition.parameter("X-axis rotation").setValue(-0.3366, units.arcSecond());
+        definition.parameter("Y-axis rotation").setValue(0.457, units.arcSecond());
+        definition.parameter("Z-axis rotation").setValue(-1.8422, units.arcSecond());
+        definition.parameter("Scale difference").setValue(-1.2747, units.ppm());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS F to GIGS geogCRS A (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS F to GIGS geogCRS A (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61150</b></li>
@@ -735,25 +717,18 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS F to GIGS geogCRS A (1)")
     public void GIGS_61150() throws FactoryException {
         setCodeAndName(61150, "GIGS geogCRS F to GIGS geogCRS A (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Geocentric translations (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64009);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(0, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(0, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(0, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(0.0, units.metre());
+        definition.parameter("Y-axis translation").setValue(0.0, units.metre());
+        definition.parameter("Z-axis translation").setValue(0.0, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS H to GIGS geogCRS T (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS H to GIGS geogCRS T (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61763</b></li>
@@ -773,17 +748,15 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS H to GIGS geogCRS T (1)")
     public void GIGS_61763() throws FactoryException {
         setCodeAndName(61763, "GIGS geogCRS H to GIGS geogCRS T (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Longitude rotation";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64011);
         createTargetCRS(Test3205::GIGS_64013);
-        parameterValueGroup.parameter("Longitude offset").setValue(2.5969213, units.grad());
+        createDefaultParameters("Longitude rotation");
+        definition.parameter("Longitude offset").setValue(2.5969213, units.grad());
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS J to GIGS geogCRS A (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS J to GIGS geogCRS A (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61173</b></li>
@@ -805,25 +778,18 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS J to GIGS geogCRS A (1)")
     public void GIGS_61173() throws FactoryException {
         setCodeAndName(61173, "GIGS geogCRS J to GIGS geogCRS A (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Geocentric translations (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64012);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(-8, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(160, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(176, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(-8.0, units.metre());
+        definition.parameter("Y-axis translation").setValue(160.0, units.metre());
+        definition.parameter("Z-axis translation").setValue(176.0, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS J to GIGS geogCRS A (2)”  transformation from the factory.
+     * Tests “GIGS geogCRS J to GIGS geogCRS A (2)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61004</b></li>
@@ -846,18 +812,16 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS J to GIGS geogCRS A (2)")
     public void GIGS_61004() throws FactoryException {
         setCodeAndName(61004, "GIGS geogCRS J to GIGS geogCRS A (2)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "NADCON";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64012);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("Latitude difference file").setValue("n_slope.las");
-        parameterValueGroup.parameter("Longitude difference file").setValue("n_slope.los");
+        createDefaultParameters("NADCON");
+        definition.parameter("Latitude difference file").setValue("n_slope.las");
+        definition.parameter("Longitude difference file").setValue("n_slope.los");
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS J to GIGS geogCRS A (3)”  transformation from the factory.
+     * Tests “GIGS geogCRS J to GIGS geogCRS A (3)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61692</b></li>
@@ -879,17 +843,15 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS J to GIGS geogCRS A (3)")
     public void GIGS_61692() throws FactoryException {
         setCodeAndName(61692, "GIGS geogCRS J to GIGS geogCRS A (3)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "NTv2";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64012);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("Latitude and longitude difference file").setValue("QUE27-98.gsb");
+        createDefaultParameters("NTv2");
+        definition.parameter("Latitude and longitude difference file").setValue("QUE27-98.gsb");
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS K to GIGS geogCRS A (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS K to GIGS geogCRS A (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61242</b></li>
@@ -911,25 +873,55 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS K to GIGS geogCRS A (1)")
     public void GIGS_61242() throws FactoryException {
         setCodeAndName(61242, "GIGS geogCRS K to GIGS geogCRS A (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Geocentric translations (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64015);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(52.17, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(-71.82, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(-14.9, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(52.17, units.metre());
+        definition.parameter("Y-axis translation").setValue(-71.82, units.metre());
+        definition.parameter("Z-axis translation").setValue(-14.9, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS M to GIGS geogCRS A (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS L to GIGS geogCRS A (1)” transformation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS transformation code: <b>61123</b></li>
+     *   <li>GIGS transformation name: <b>GIGS geogCRS L to GIGS geogCRS A (1)</b></li>
+     *   <li>EPSG Transformation Method: <b>Geocentric translations</b></li>
+     *   <li>EPSG equivalence: <b>8452 – Batavia to WGS 84 (1)</b></li>
+     * </ul>
+     * <table class="gigs">
+     *   <caption>Transformation parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>X-axis translation</td><td>-377 metres</td></tr>
+     *   <tr><td>Y-axis translation</td><td>681 metres</td></tr>
+     *   <tr><td>Z-axis translation</td><td>-50 metres</td></tr>
+     * </table>
+     *
+     * Remarks: EPSG tfm 1123 deprecated due to change in area of applicability.
+     * Values remain unchanged.
+     * GIGS tfm code maintained for continuity.
+     *
+     * @throws FactoryException if an error occurred while creating the transformation from the properties.
+     */
+    @Test
+    @DisplayName("GIGS geogCRS L to GIGS geogCRS A (1)")
+    public void GIGS_61123() throws FactoryException {
+        setCodeAndName(61123, "GIGS geogCRS L to GIGS geogCRS A (1)");
+        createSourceCRS(Test3205::GIGS_64014);
+        createTargetCRS(Test3205::GIGS_64003);
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(-377.0, units.metre());
+        definition.parameter("Y-axis translation").setValue(681.0, units.metre());
+        definition.parameter("Z-axis translation").setValue(-50.0, units.metre());
+        setEllipsoidAxisLengths();
+        verifyTransformation();
+    }
+
+    /**
+     * Tests “GIGS geogCRS M to GIGS geogCRS A (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61275</b></li>
@@ -951,25 +943,18 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS M to GIGS geogCRS A (1)")
     public void GIGS_61275() throws FactoryException {
         setCodeAndName(61275, "GIGS geogCRS M to GIGS geogCRS A (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Geocentric translations (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64020);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(-84, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(-97, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(-117, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(-84.0, units.metre());
+        definition.parameter("Y-axis translation").setValue(-97.0, units.metre());
+        definition.parameter("Z-axis translation").setValue(-117.0, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS T to GIGS geogCRS A (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS T to GIGS geogCRS A (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61193</b></li>
@@ -991,25 +976,18 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS T to GIGS geogCRS A (1)")
     public void GIGS_61193() throws FactoryException {
         setCodeAndName(61193, "GIGS geogCRS T to GIGS geogCRS A (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Geocentric translations (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64013);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(-168, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(-60, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(320, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(-168.0, units.metre());
+        definition.parameter("Y-axis translation").setValue(-60.0, units.metre());
+        definition.parameter("Z-axis translation").setValue(320.0, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS X to GIGS geogCRS A (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS X to GIGS geogCRS A (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>15788</b></li>
@@ -1031,25 +1009,18 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS X to GIGS geogCRS A (1)")
     public void GIGS_15788() throws FactoryException {
         setCodeAndName(15788, "GIGS geogCRS X to GIGS geogCRS A (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Geocentric translations (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64016);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(-127.8, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(-52.3, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(152.9, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(-127.8, units.metre());
+        definition.parameter("Y-axis translation").setValue(-52.3, units.metre());
+        definition.parameter("Z-axis translation").setValue(152.9, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS Y to GIGS geogCRS A (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS Y to GIGS geogCRS A (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61254</b></li>
@@ -1071,25 +1042,18 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS Y to GIGS geogCRS A (1)")
     public void GIGS_61254() throws FactoryException {
         setCodeAndName(61254, "GIGS geogCRS Y to GIGS geogCRS A (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Geocentric translations (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64017);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(28, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(-130, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(-95, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(28.0, units.metre());
+        definition.parameter("Y-axis translation").setValue(-130.0, units.metre());
+        definition.parameter("Z-axis translation").setValue(-95.0, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS geogCRS Z to GIGS geogCRS A (1)”  transformation from the factory.
+     * Tests “GIGS geogCRS Z to GIGS geogCRS A (1)” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61188</b></li>
@@ -1111,20 +1075,13 @@ public class Test3208 extends Series3000<Transformation> {
     @DisplayName("GIGS geogCRS Z to GIGS geogCRS A (1)")
     public void GIGS_61188() throws FactoryException {
         setCodeAndName(61188, "GIGS geogCRS Z to GIGS geogCRS A (1)");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Geocentric translations (geog2D domain)";
-        createDefaultParameters();
         createSourceCRS(Test3205::GIGS_64018);
         createTargetCRS(Test3205::GIGS_64003);
-        parameterValueGroup.parameter("X-axis translation").setValue(0, units.metre());
-        parameterValueGroup.parameter("Y-axis translation").setValue(0, units.metre());
-        parameterValueGroup.parameter("Z-axis translation").setValue(0, units.metre());
-        Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-        Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-        parameterValueGroup.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-        parameterValueGroup.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+        createDefaultParameters("Geocentric translations (geog2D domain)");
+        definition.parameter("X-axis translation").setValue(0.0, units.metre());
+        definition.parameter("Y-axis translation").setValue(0.0, units.metre());
+        definition.parameter("Z-axis translation").setValue(0.0, units.metre());
+        setEllipsoidAxisLengths();
         verifyTransformation();
     }
 }
