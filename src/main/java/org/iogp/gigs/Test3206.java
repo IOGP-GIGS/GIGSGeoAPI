@@ -663,7 +663,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>49°</td></tr>
      *   <tr><td>Longitude of natural origin</td><td>-2°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.999601272 Unity</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.9996012717 Unity</td></tr>
      *   <tr><td>False easting</td><td>400000 metres</td></tr>
      *   <tr><td>False northing</td><td>-100000 metres</td></tr>
      * </table>
@@ -680,7 +680,7 @@ public class Test3206 extends Series3000<Conversion> {
         createDefaultParameters();
         definition.parameter("Latitude of natural origin").setValue(49.0, units.degree());
         definition.parameter("Longitude of natural origin").setValue(-2.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.999601272, units.one());
+        definition.parameter("Scale factor at natural origin").setValue(0.9996012717, units.one());
         definition.parameter("False easting").setValue(400000.0, units.metre());
         definition.parameter("False northing").setValue(-100000.0, units.metre());
         verifyConversion();
@@ -911,7 +911,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
      *   <tr><td>Longitude of natural origin</td><td>-2°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.999601272 Unity</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.9996012717 Unity</td></tr>
      *   <tr><td>False easting</td><td>400000 metres</td></tr>
      *   <tr><td>False northing</td><td>-5527462.688 metres</td></tr>
      * </table>
@@ -930,7 +930,7 @@ public class Test3206 extends Series3000<Conversion> {
         createDefaultParameters();
         definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
         definition.parameter("Longitude of natural origin").setValue(-2.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.999601272, units.one());
+        definition.parameter("Scale factor at natural origin").setValue(0.9996012717, units.one());
         definition.parameter("False easting").setValue(400000.0, units.metre());
         definition.parameter("False northing").setValue(-5527462.688, units.metre());
         verifyConversion();
@@ -948,7 +948,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
      *   <tr><td>Longitude of natural origin</td><td>-2°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.999601272 Unity</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.9996012717 Unity</td></tr>
      *   <tr><td>False easting</td><td>400000 metres</td></tr>
      *   <tr><td>False northing</td><td>-5527063.816 metres</td></tr>
      * </table>
@@ -967,7 +967,7 @@ public class Test3206 extends Series3000<Conversion> {
         createDefaultParameters();
         definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
         definition.parameter("Longitude of natural origin").setValue(-2.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.999601272, units.one());
+        definition.parameter("Scale factor at natural origin").setValue(0.9996012717, units.one());
         definition.parameter("False easting").setValue(400000.0, units.metre());
         definition.parameter("False northing").setValue(-5527063.816, units.metre());
         verifyConversion();
