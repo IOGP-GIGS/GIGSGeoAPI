@@ -30,7 +30,7 @@ import java.util.OptionalInt;
 
 /**
  * Code generator for {@link org.iogp.gigs.Test3209}. This generator needs to be executed only if the GIGS data changed.
- * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the test class,
+ * The code is sent to the standard output; maintainers need to copy-and-paste the relevant methods to the test class,
  * but be aware that the original code may contain manual changes that need to be preserved.
  *
  * @author  Michael Arneson (INT)
