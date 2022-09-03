@@ -120,11 +120,11 @@ public final class Test3202 extends TestMethodGenerator {
              * of provided by GIGS data, round to the same amount of digits.
              */
             double axisTolerance = 10, scaled;
-            while ((scaled = semiMajorAxis * axisTolerance) != Math.rint(scaled)) {
+            while ((scaled = semiMajorAxis * axisTolerance) != StrictMath.rint(scaled)) {
                 axisTolerance *= 10;
             }
             if (isIvfDefinitive) {
-                semiMinorAxis = Math.rint(semiMinorAxis * axisTolerance) / axisTolerance;
+                semiMinorAxis = StrictMath.rint(semiMinorAxis * axisTolerance) / axisTolerance;
             }
             axisTolerance = 0.5 / axisTolerance;
             /*

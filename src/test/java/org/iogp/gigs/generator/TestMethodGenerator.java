@@ -283,7 +283,7 @@ public abstract class TestMethodGenerator {
      * @param  value  the value to append.
      */
     private void append(final double value) {
-        final long asInteger = Math.round(value);
+        final long asInteger = StrictMath.round(value);
         if (asInteger == value) {
             out.append(asInteger);
         } else {
@@ -483,7 +483,7 @@ public abstract class TestMethodGenerator {
                     } else {
                         append(value);
                         out.append(' ').append(unit);
-                        if (Math.abs(value) > 1) {
+                        if (StrictMath.abs(value) > 1) {
                             out.append('s');
                         }
                     }
@@ -600,7 +600,7 @@ public abstract class TestMethodGenerator {
         assertTrue((pairs.length & 1) == 0, "Array length shall be even");
         int length = 0;
         for (int i=0; i<pairs.length; i += 2) {
-            length = Math.max(length, ((CharSequence) pairs[i]).length());
+            length = StrictMath.max(length, ((CharSequence) pairs[i]).length());
         }
         for (int i=0; i<pairs.length; i += 2) {
             final Object value = pairs[i+1];

@@ -395,7 +395,7 @@ final class DataParser {
              */
             final int length = count + (upper - lower) / step + 1;
             if (length > values.length) {
-                values = Arrays.copyOf(values, Math.max(values.length*2, length));
+                values = Arrays.copyOf(values, StrictMath.max(values.length*2, length));
             }
             for (int value = lower; value <= upper; value += step) {
                 values[count++] = value;

@@ -364,7 +364,7 @@ public abstract class Series2000<T> extends IntegrityTest {
             }
             final String actual = getVerifiableName(object);
             int length = expected.length();
-            if (full) length = Math.max(length, actual.length());
+            if (full) length = StrictMath.max(length, actual.length());
             if (actual == null || !actual.regionMatches(true, 0, expected, 0, length)) {
                 assertEquals(expected, getName(object), message + ".getName()");
             }

@@ -268,7 +268,7 @@ public abstract class IntegrityTest extends ConformanceTest {
                 final CoordinateSystemAxis axis = cs.getAxis(i);
                 assertNotNull(axis, "CoordinateSystem.getAxis(*)");
                 assertEquals(directions[i], axis.getDirection(), "CoordinateSystem.getAxis(*).getDirection()");
-                assertEquals(axisUnits[Math.min(i, axisUnits.length-1)], axis.getUnit(), "CoordinateSystem.getAxis(*).getUnit()");
+                assertEquals(axisUnits[StrictMath.min(i, axisUnits.length-1)], axis.getUnit(), "CoordinateSystem.getAxis(*).getUnit()");
             }
         }
     }

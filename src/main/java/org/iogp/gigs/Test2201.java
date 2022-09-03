@@ -173,7 +173,6 @@ public class Test2201 extends Series2000<Unit<?>> {
                 unit = csAuthorityFactory.createUnit(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
                 unsupportedCode(Unit.class, code, e);
-                throw e;
             }
         }
         return unit;

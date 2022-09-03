@@ -161,7 +161,6 @@ public class Test2204 extends Series2000<GeodeticDatum> {
                 datum = datumAuthorityFactory.createGeodeticDatum(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
                 unsupportedCode(GeodeticDatum.class, code, e);
-                throw e;
             }
         }
         return datum;

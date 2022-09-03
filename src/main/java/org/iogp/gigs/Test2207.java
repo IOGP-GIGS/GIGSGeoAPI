@@ -184,7 +184,6 @@ public class Test2207 extends Series2000<ProjectedCRS> {
                  * non-implemented operation methods (may be identified by their name rather than EPSG code).
                  */
                 unsupportedCode(ProjectedCRS.class, code, e);
-                throw e;
             }
         }
         return crs;

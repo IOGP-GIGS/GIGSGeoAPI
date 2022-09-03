@@ -200,7 +200,6 @@ public class Test2205 extends Series2000<GeodeticCRS> {
                 }
             } catch (NoSuchAuthorityCodeException e) {
                 unsupportedCode(GeodeticCRS.class, code, e);
-                throw e;
             }
         }
         return crs;
