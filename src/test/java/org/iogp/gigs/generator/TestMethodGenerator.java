@@ -765,14 +765,18 @@ public abstract class TestMethodGenerator {
     /**
      * Prints the programmatic lines that adds parameters to a parameter group.
      *
+     * @param  methodName  the name of the operation method to create.
      * @param  parameters  the parameters to print.
      *
      * @see #printJavadocParameters(String, Parameters[])
      */
-    final void printParameterDefinitions(final Parameter[] parameters) {
+    final void printParameterDefinitions(final String methodName, final Parameter[] parameters) {
+        indent(2);
+        out.append("createParameters(\"").append(methodName).append('"');
         for (final Parameter parameter : parameters) {
-            indent(2);
-            out.append("definition.parameter(\"").append(parameter.name).append("\").setValue(");
+            out.append(",\n");
+            indent(3);
+            out.append("new SimpleParameter(\"").append(parameter.name).append("\", ");
             if (Double.isNaN(parameter.value)) {
                 out.append('"').append(parameter.valueAsString).append('"');
             } else {
@@ -789,14 +793,17 @@ public abstract class TestMethodGenerator {
                     value = SexagesimalUnit.parse(unit).toDecimalDegrees(value);
                     parsedUnit = units.degree();
                 }
-                out.append(value);
+                append(value);
+                out.append(", ");
                 if (parsedUnit != null) {
-                    out.append(", ");
                     printProgrammaticName(parsedUnit);
+                } else {
+                    out.append("null");
                 }
             }
-            out.append(");\n");
+            out.append(')');
         }
+        out.append(");\n");
     }
 
     /**

@@ -120,9 +120,7 @@ public final class Test3206 extends TestMethodGenerator {
              */
             printTestMethodSignature(GIGS, code, name);
             printCallToSetCodeAndName(code, name);
-            printFieldAssignments("methodName", conversion);
-            indent(2); out.append("createDefaultParameters();\n");
-            printParameterDefinitions(parameters);
+            printParameterDefinitions(conversion, parameters);
             indent(2); out.append("verifyConversion();\n");
             indent(1); out.append('}');
             saveTestMethod();

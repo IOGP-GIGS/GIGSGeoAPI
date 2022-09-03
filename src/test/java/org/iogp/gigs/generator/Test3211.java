@@ -136,11 +136,7 @@ public final class Test3211 extends TestMethodGenerator {
             /*
              * Write definitions of operation parameters.
              */
-            indent(2);
-            out.append("createDefaultParameters(\"")
-               .append(GIGS_TO_EPSG_METHOD_NAME.getOrDefault(methodName, methodName))
-               .append("\");\n");
-            printParameterDefinitions(parameters);
+            printParameterDefinitions(GIGS_TO_EPSG_METHOD_NAME.getOrDefault(methodName, methodName), parameters);
             indent(2); out.append("verifyTransformation();\n");
             indent(1); out.append('}');
             saveTestMethod();

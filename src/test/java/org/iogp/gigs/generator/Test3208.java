@@ -161,15 +161,11 @@ public final class Test3208 extends TestMethodGenerator {
              * Write definitions of operation parameters.
              * Some (not all) methods requires semi-major and semi-minor axis lengths.
              */
-            indent(2);
-            out.append("createDefaultParameters(\"")
-               .append(GIGS_TO_EPSG_METHOD_NAME.getOrDefault(methodName, methodName))
-               .append("\");\n");
-            printParameterDefinitions(parameters);
             if (!NO_AXIS_LENGTHS.contains(methodName)) {
                 indent(2);
-                out.append("setEllipsoidAxisLengths();\n");
+                out.append("needEllipsoidAxisLengths = true;\n");
             }
+            printParameterDefinitions(GIGS_TO_EPSG_METHOD_NAME.getOrDefault(methodName, methodName), parameters);
             indent(2); out.append("verifyTransformation();\n");
             indent(1); out.append('}');
             saveTestMethod();
