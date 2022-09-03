@@ -87,7 +87,7 @@ public abstract class Series2000<T> extends IntegrityTest {
     protected boolean isStandardIdentifierSupported;
 
     /**
-     * {@code true} if the tested factories support {@linkplain IdentifiedObject#getName() name}.
+     * {@code true} if the tested factories support standard {@linkplain IdentifiedObject#getName() names}.
      * If {@code true} (the default), then the test methods will ensure that the identified objects
      * created by the factories declare the same name than the GIGS tests.
      * If {@code false}, then the names are ignored.

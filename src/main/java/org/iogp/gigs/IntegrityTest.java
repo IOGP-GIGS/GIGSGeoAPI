@@ -158,7 +158,8 @@ public abstract class IntegrityTest extends ConformanceTest {
     /*
      * ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
      *   Methods below this point were copied from `org.opengis.test.referencing.ReferencingTestCase`
-     *   and should be deleted after next GeoAPI release.
+     *   and should be deleted after next GeoAPI release, except for `skipIdentificationCheck` which
+     *   can be replaced by forcing the `name` argument to null.
      * ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
      */
 

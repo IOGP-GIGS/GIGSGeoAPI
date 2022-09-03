@@ -26,7 +26,10 @@ package org.iogp.gigs;
 
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
+import org.opengis.parameter.GeneralParameterValue;
+import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.crs.GeodeticCRS;
@@ -43,6 +46,7 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.Transformation;
+import org.opentest4j.AssertionFailedError;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.geoapi.Pending;
 import org.junit.jupiter.api.DisplayName;
@@ -323,7 +327,7 @@ public class Test3208 extends Series3000<Transformation> {
         if (transformation == null) {
             MathTransform transform = mtFactory.createParameterizedTransform(definition);
             OperationMethod method = mtFactory.getLastMethodUsed();
-            transformation = Pending.getInstance(copFactory).createTransformation(properties, sourceCRS, targetCRS, method, transform);
+            transformation = Pending.getInstance(copFactory).createTransformation(properties, sourceCRS, targetCRS, method, definition, transform);
         }
         return transformation;
     }
@@ -361,9 +365,47 @@ public class Test3208 extends Series3000<Transformation> {
         targetCRSTest.setIdentifiedObject(targetCRS);
         targetCRSTest.verifyGeographicCRS();
 
-        // Operation method.
-        final OperationMethod method = transformation.getMethod();
-        assertNotNull(method, "Transformation.getMethod()");
+        if (isFactoryPreservingUserValues) {
+            assertEquals(methodName, getName(transformation.getMethod()), "OperationMethod.name");
+            verifyParameterValues(definition, transformation.getParameterValues());
+        }
+    }
+
+    /**
+     * Verifies that the parameter values provided by the implementation are equal to the expected values.
+     * If the actual group contains more parameters than expected, the extra parameters are ignored.
+     * Parameter order and parameter descriptors are ignored.
+     *
+     * @param expected  the group of expected parameter values.
+     * @param actual    the group of actual parameter values.
+     */
+    static void verifyParameterValues(final ParameterValueGroup expected, final ParameterValueGroup actual) {
+        for (final GeneralParameterValue parameter : expected.values()) {
+            if (parameter instanceof ParameterValue<?>) {
+                final ParameterValue<?> ep = (ParameterValue<?>) parameter;
+                final String name = getName(ep.getDescriptor());
+                assertNotNull(name, "parameter.name");
+                final ParameterValue<?> ap;
+                try {
+                    ap = actual.parameter(name);
+                } catch (ParameterNotFoundException e) {
+                    if (name.equals("src_semi_major") || name.equals("src_semi_minor") ||
+                        name.equals("tgt_semi_major") || name.equals("tgt_semi_minor"))
+                    {
+                        continue;
+                    }
+                    throw new AssertionFailedError("Parameter not found: " + name, e);
+                }
+                final Object ev = ep.getValue();
+                if (ev instanceof Double) {
+                    final double value = (Double) ev;
+                    assertEquals(value, ap.doubleValue(), StrictMath.abs(value * TOLERANCE), name);
+                } else {
+                    assertEquals(ep, ap.getValue(), name);
+                }
+                assertEquals(ep.getUnit(), ap.getUnit(), name);
+            }
+        }
     }
 
     /**

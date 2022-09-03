@@ -24,8 +24,9 @@
  */
 package org.iogp.gigs.generator;
 
-import java.io.IOException;
+import java.util.Map;
 import java.util.OptionalInt;
+import java.io.IOException;
 
 
 /**
@@ -48,6 +49,13 @@ public final class Test3211 extends TestMethodGenerator {
     public static void main(String[] args) throws IOException {
         new Test3211().run();
     }
+
+    /**
+     * Mapping from the transform method name specified in the GIGS testing file
+     * to method name used in EPSG database.
+     */
+    private static final Map<String,String> GIGS_TO_EPSG_METHOD_NAME = Map.of(
+        "Vertical offset", "Vertical Offset");
 
     /**
      * Mapping from GIGS CRS codes to EPSG codes.
@@ -129,7 +137,9 @@ public final class Test3211 extends TestMethodGenerator {
              * Write definitions of operation parameters.
              */
             indent(2);
-            out.append("createDefaultParameters(\"").append(methodName).append("\");\n");
+            out.append("createDefaultParameters(\"")
+               .append(GIGS_TO_EPSG_METHOD_NAME.getOrDefault(methodName, methodName))
+               .append("\");\n");
             printParameterDefinitions(parameters);
             indent(2); out.append("verifyTransformation();\n");
             indent(1); out.append('}');

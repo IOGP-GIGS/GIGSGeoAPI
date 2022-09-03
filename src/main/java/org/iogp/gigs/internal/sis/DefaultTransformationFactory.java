@@ -27,12 +27,15 @@ package org.iogp.gigs.internal.sis;
 import java.util.Map;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import org.opengis.util.FactoryException;
+import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.Transformation;
-import org.opengis.util.FactoryException;
 import org.iogp.gigs.internal.geoapi.Pending;
+
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 /**
@@ -82,8 +85,10 @@ public final class DefaultTransformationFactory extends Pending {
                                                final CoordinateReferenceSystem sourceCRS,
                                                final CoordinateReferenceSystem targetCRS,
                                                final OperationMethod method,
+                                               final ParameterValueGroup parameters,
                                                final MathTransform transform) throws FactoryException
     {
+        assertNull(properties.put("parameters", parameters));       // SIS-specific property.
         try {
             return defaultTransformationConstructor.newInstance(properties, sourceCRS, targetCRS, null, method, transform);
         } catch (InvocationTargetException ex) {

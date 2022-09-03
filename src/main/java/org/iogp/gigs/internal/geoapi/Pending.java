@@ -27,9 +27,9 @@ package org.iogp.gigs.internal.geoapi;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.iogp.gigs.internal.sis.DefaultTransformationFactory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
+import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.referencing.operation.MathTransform;
@@ -37,6 +37,7 @@ import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.SingleOperation;
 import org.opengis.referencing.operation.Transformation;
+import org.iogp.gigs.internal.sis.DefaultTransformationFactory;
 
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
@@ -129,6 +130,7 @@ public class Pending {
      * @param  sourceCRS   the source CRS.
      * @param  targetCRS   the target CRS.
      * @param  method      the coordinate operation method (mandatory in all cases).
+     * @param  parameters  the coordinate operation parameters.
      * @param  transform   transform from positions in the source CRS to positions in the target CRS.
      * @return a transformation from {@code sourceCRS} to {@code targetCRS} using the given transform implementation.
      * @throws FactoryException if the operation creation failed.
@@ -137,6 +139,7 @@ public class Pending {
                                                CoordinateReferenceSystem sourceCRS,
                                                CoordinateReferenceSystem targetCRS,
                                                OperationMethod method,
+                                               ParameterValueGroup parameters,
                                                MathTransform transform) throws FactoryException
     {
         assumeTrue(false, "Factory method is not available.");

@@ -295,7 +295,7 @@ public class Test3211 extends Series3000<Transformation> {
         if (transformation == null) {
             MathTransform transform = mtFactory.createParameterizedTransform(definition);
             OperationMethod method = mtFactory.getLastMethodUsed();
-            transformation = Pending.getInstance(copFactory).createTransformation(properties, sourceCRS, targetCRS, method, transform);
+            transformation = Pending.getInstance(copFactory).createTransformation(properties, sourceCRS, targetCRS, method, definition, transform);
         }
         return transformation;
     }
@@ -322,9 +322,10 @@ public class Test3211 extends Series3000<Transformation> {
         targetCRSTest.setIdentifiedObject(targetCRS);
 //TODO  targetCRSTest.verifyVerticalCRS();
 
-        // Operation method.
-        final OperationMethod method = transformation.getMethod();
-        assertNotNull(method, "Transformation.getMethod()");
+        if (isFactoryPreservingUserValues) {
+            assertEquals(methodName, getName(transformation.getMethod()), "OperationMethod.name");
+            Test3208.verifyParameterValues(definition, transformation.getParameterValues());
+        }
     }
 
     /**
@@ -386,7 +387,7 @@ public class Test3211 extends Series3000<Transformation> {
         setCodeAndName(65440, "GIGS vertCRS V1 depth to GIGS vertCRS W1 depth");
         createSourceCRS(Test3210::GIGS_64506);
         createTargetCRS(Test3210::GIGS_64508);
-        createDefaultParameters("Vertical offset");
+        createDefaultParameters("Vertical Offset");
         definition.parameter("Vertical offset").setValue(-28.0, units.metre());
         verifyTransformation();
     }
@@ -415,7 +416,7 @@ public class Test3211 extends Series3000<Transformation> {
         setCodeAndName(65441, "GIGS vertCRS V1 depth to GIGS vertCRS W1 height");
         createSourceCRS(Test3210::GIGS_64506);
         createTargetCRS(Test3210::GIGS_64507);
-        createDefaultParameters("Vertical offset");
+        createDefaultParameters("Vertical Offset");
         definition.parameter("Vertical offset").setValue(28.0, units.metre());
         verifyTransformation();
     }
@@ -443,7 +444,7 @@ public class Test3211 extends Series3000<Transformation> {
         setCodeAndName(61502, "GIGS vertCRS V1 depth to MSL depth");
         createSourceCRS(Test3210::GIGS_64506);
         createTargetCRS(5715);
-        createDefaultParameters("Vertical offset");
+        createDefaultParameters("Vertical Offset");
         definition.parameter("Vertical offset").setValue(0.0, units.metre());
         verifyTransformation();
     }
@@ -470,7 +471,7 @@ public class Test3211 extends Series3000<Transformation> {
         setCodeAndName(65447, "GIGS vertCRS V1 height to GIGS vertCRS U1 height");
         createSourceCRS(Test3210::GIGS_64505);
         createTargetCRS(Test3210::GIGS_64501);
-        createDefaultParameters("Vertical offset");
+        createDefaultParameters("Vertical Offset");
         definition.parameter("Vertical offset").setValue(0.4, units.metre());
         verifyTransformation();
     }
@@ -499,7 +500,7 @@ public class Test3211 extends Series3000<Transformation> {
         setCodeAndName(65400, "GIGS vertCRS V1 height to GIGS vertCRS W1 depth");
         createSourceCRS(Test3210::GIGS_64505);
         createTargetCRS(Test3210::GIGS_64508);
-        createDefaultParameters("Vertical offset");
+        createDefaultParameters("Vertical Offset");
         definition.parameter("Vertical offset").setValue(-28.0, units.metre());
         verifyTransformation();
     }
@@ -526,7 +527,7 @@ public class Test3211 extends Series3000<Transformation> {
         setCodeAndName(65438, "GIGS vertCRS V1 height to GIGS vertCRS W1 height");
         createSourceCRS(Test3210::GIGS_64505);
         createTargetCRS(Test3210::GIGS_64507);
-        createDefaultParameters("Vertical offset");
+        createDefaultParameters("Vertical Offset");
         definition.parameter("Vertical offset").setValue(28.0, units.metre());
         verifyTransformation();
     }
@@ -554,7 +555,7 @@ public class Test3211 extends Series3000<Transformation> {
         setCodeAndName(61501, "GIGS vertCRS V1 height to MSL height");
         createSourceCRS(Test3210::GIGS_64505);
         createTargetCRS(5714);
-        createDefaultParameters("Vertical offset");
+        createDefaultParameters("Vertical Offset");
         definition.parameter("Vertical offset").setValue(0.0, units.metre());
         verifyTransformation();
     }
