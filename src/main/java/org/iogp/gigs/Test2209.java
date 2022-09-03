@@ -140,7 +140,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
             try {
                 datum = datumAuthorityFactory.createVerticalDatum(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(VerticalDatum.class, code);
+                unsupportedCode(VerticalDatum.class, code, e);
                 throw e;
             }
         }

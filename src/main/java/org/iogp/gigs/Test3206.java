@@ -178,7 +178,7 @@ public class Test3206 extends Series3000<Conversion> {
         try {
             method = Pending.getOperationMethod(mtFactory, methodName);
         } catch (NoSuchIdentifierException e) {
-            unsupportedCode(OperationMethod.class, methodName);
+            unsupportedCode(OperationMethod.class, methodName, e);
             throw e;
         }
         if (method == null) {

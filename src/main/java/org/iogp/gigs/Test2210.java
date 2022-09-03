@@ -149,7 +149,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
             try {
                 crs = crsAuthorityFactory.createVerticalCRS(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(VerticalCRS.class, code);
+                unsupportedCode(VerticalCRS.class, code, e);
                 throw e;
             }
         }

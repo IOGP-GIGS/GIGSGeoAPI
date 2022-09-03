@@ -183,7 +183,7 @@ public class Test2207 extends Series2000<ProjectedCRS> {
                  * will typically use MathTransformFactory under the hood, which throws NoSuchIdentifierException for
                  * non-implemented operation methods (may be identified by their name rather than EPSG code).
                  */
-                unsupportedCode(ProjectedCRS.class, code);
+                unsupportedCode(ProjectedCRS.class, code, e);
                 throw e;
             }
         }

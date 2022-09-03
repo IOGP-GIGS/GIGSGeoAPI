@@ -25,6 +25,7 @@
 package org.iogp.gigs;
 
 import org.opengis.util.FactoryException;
+import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.crs.CRSFactory;
@@ -265,7 +266,11 @@ public class Test3211 extends Series3000<Transformation> {
     private void createDefaultParameters(final String method) throws FactoryException {
         methodName = method;
         assumeNotNull(mtFactory);
-        definition = mtFactory.getDefaultParameters(method);
+        try {
+            definition = mtFactory.getDefaultParameters(method);
+        } catch (NoSuchIdentifierException e) {
+            unsupportedCode(OperationMethod.class, method, e);
+        }
         properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
     }
 

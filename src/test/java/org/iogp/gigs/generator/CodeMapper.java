@@ -65,9 +65,9 @@ final class CodeMapper {
                 final Integer gigs = data.getInt(0);
                 final Integer epsg = codes[0];
                 if (reverse) {
-                    assertNull(dependencies.put(epsg, gigs));
+                    assertNull(dependencies.put(epsg, gigs), () -> "Duplicated EPSG code " + epsg);
                 } else {
-                    assertNull(dependencies.put(gigs, epsg));
+                    assertNull(dependencies.put(gigs, epsg), () -> "Duplicated GIGS code " + gigs);
                 }
             }
         }

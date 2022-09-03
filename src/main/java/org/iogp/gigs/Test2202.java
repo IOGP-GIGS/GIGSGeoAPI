@@ -198,7 +198,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
             try {
                 ellipsoid = datumAuthorityFactory.createEllipsoid(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(Ellipsoid.class, code);
+                unsupportedCode(Ellipsoid.class, code, e);
                 throw e;
             }
         }

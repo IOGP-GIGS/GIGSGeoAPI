@@ -25,6 +25,7 @@
 package org.iogp.gigs;
 
 import org.opengis.util.FactoryException;
+import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.crs.CRSFactory;
@@ -263,10 +264,12 @@ public class Test3208 extends Series3000<Transformation> {
     /**
      * Creates a target CRS from the EPSG factory
      *
-     * @param  code  EPSG code of the target CRS to create.
+     * @param  code      EPSG code of the target CRS to create.
+     * @param  verifier  the test to use for verifying the object created by EPSG factory.
      * @throws FactoryException  if an error occurred while creating the target CRS.
      */
-    private void createTargetCRS(final int code) throws FactoryException {
+    private void createTargetCRS(final int code, final TestMethod<Test3205> verifier) throws FactoryException {
+        verifier.initialize(targetCRSTest);
         targetCRS = crsAuthorityFactory.createGeographicCRS(String.valueOf(code));
     }
 
@@ -287,12 +290,15 @@ public class Test3208 extends Series3000<Transformation> {
      * It is caller's responsibility to set the parameter values.
      *
      * @param  method  name of the transformation method.
-     * @throws FactoryException if an error occurred while creating the parameters.
      */
-    private void createDefaultParameters(final String method) throws FactoryException {
+    private void createDefaultParameters(final String method) {
         methodName = method;
         assumeNotNull(mtFactory);
-        definition = mtFactory.getDefaultParameters(method);
+        try {
+            definition = mtFactory.getDefaultParameters(method);
+        } catch (NoSuchIdentifierException e) {
+            unsupportedCode(OperationMethod.class, method, e);
+        }
         properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
     }
 
@@ -349,11 +355,11 @@ public class Test3208 extends Series3000<Transformation> {
 
         sourceCRSTest.copyConfigurationFrom(this);
         sourceCRSTest.setIdentifiedObject(sourceCRS);
-//TODO  sourceCRSTest.verifyGeographicCRS();
+        sourceCRSTest.verifyGeographicCRS();
 
         targetCRSTest.copyConfigurationFrom(this);
         targetCRSTest.setIdentifiedObject(targetCRS);
-//TODO  targetCRSTest.verifyGeographicCRS();
+        targetCRSTest.verifyGeographicCRS();
 
         // Operation method.
         final OperationMethod method = transformation.getMethod();
@@ -385,7 +391,7 @@ public class Test3208 extends Series3000<Transformation> {
     public void GIGS_61001() throws FactoryException {
         setCodeAndName(61001, "GIGS geogCRS A to WGS 84 (1)");
         createSourceCRS(Test3205::GIGS_64003);
-        createTargetCRS(4326);
+        createTargetCRS(4326, Test3205::GIGS_64003);
         createDefaultParameters("Geocentric translations (geog2D domain)");
         definition.parameter("X-axis translation").setValue(0.0, units.metre());
         definition.parameter("Y-axis translation").setValue(0.0, units.metre());
@@ -577,7 +583,7 @@ public class Test3208 extends Series3000<Transformation> {
         setCodeAndName(61003, "GIGS geogCRS C to GIGS geogCRS A (3)");
         createSourceCRS(Test3205::GIGS_64006);
         createTargetCRS(Test3205::GIGS_64003);
-        createDefaultParameters("Molodensky");
+        createDefaultParameters("Molodensky-Badekas (PV geog2D domain)");
         definition.parameter("X-axis translation").setValue(593.0297, units.metre());
         definition.parameter("Y-axis translation").setValue(26.0038, units.metre());
         definition.parameter("Z-axis translation").setValue(478.7534, units.metre());

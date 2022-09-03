@@ -167,7 +167,7 @@ public class Test2211 extends Series2000<Transformation> {
                  * will typically use MathTransformFactory under the hood, which throws NoSuchIdentifierException for
                  * non-implemented operation methods (may be identified by their name rather than EPSG code).
                  */
-                unsupportedCode(Transformation.class, code);
+                unsupportedCode(Transformation.class, code, e);
                 throw e;
             }
             if (operation != null) {  // For consistency with the behavior in other classes.

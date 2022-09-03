@@ -25,6 +25,7 @@
 package org.iogp.gigs.generator;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.OptionalInt;
 import java.io.IOException;
 
@@ -53,17 +54,19 @@ public final class Test3208 extends TestMethodGenerator {
     /**
      * Mapping from the transform method name specified in the GIGS testing file
      * to method name used in EPSG database.
+     *
+     * @see <a href="https://github.com/IOGP-GIGS/GIGSTestDataset/issues/5">Ambiguous operation method names</a>
      */
     private static final Map<String,String> GIGS_TO_EPSG_METHOD_NAME = Map.of(
         "Geocentric translations",                        "Geocentric translations (geog2D domain)",
         "Position Vector 7-param. transformation",        "Position Vector transformation (geog2D domain)",
         "Coordinate Frame rotation",                      "Coordinate Frame rotation (geog2D domain)",
-        "Molodensky-Badekas 10-parameter transformation", "Molodensky");
+        "Molodensky-Badekas 10-parameter transformation", "Molodensky-Badekas (PV geog2D domain)");
 
     /**
-     * Mapping from GIGS CRS codes to EPSG codes.
+     * Operation methods that do not require ellipsoid axis lengths.
      */
-    private CodeMapper crsCodes;
+    private static final Set<String> NO_AXIS_LENGTHS = Set.of("NTv2", "NADCON", "Longitude rotation");
 
     /**
      * Creates a new test methods generator.
@@ -77,8 +80,6 @@ public final class Test3208 extends TestMethodGenerator {
      * @throws IOException if an error occurred while reading the test data.
      */
     private void run() throws IOException {
-        // GIGS CRS codes to EPSG codes.
-        crsCodes = new CodeMapper("GIGS_user_3205_GeodeticCRS.txt", 6, false);
         final DataParser data = new DataParser(Series.USER_DEFINED, "GIGS_user_3208_CoordTfm.txt",
                 Integer.class,      // [ 0]: GIGS Transformation Code
                 String .class,      // [ 1]: GIGS Transformation Name
@@ -158,16 +159,14 @@ public final class Test3208 extends TestMethodGenerator {
             writeCreateCRS("createTargetCRS", targetCRS);
             /*
              * Write definitions of operation parameters.
+             * Some (not all) methods requires semi-major and semi-minor axis lengths.
              */
             indent(2);
             out.append("createDefaultParameters(\"")
                .append(GIGS_TO_EPSG_METHOD_NAME.getOrDefault(methodName, methodName))
                .append("\");\n");
             printParameterDefinitions(parameters);
-
-            if (!methodName.equalsIgnoreCase("ntv2") && !methodName.equalsIgnoreCase("nadcon")
-                    && !methodName.equalsIgnoreCase("Longitude rotation"))
-            {
+            if (!NO_AXIS_LENGTHS.contains(methodName)) {
                 indent(2);
                 out.append("setEllipsoidAxisLengths();\n");
             }
@@ -179,14 +178,27 @@ public final class Test3208 extends TestMethodGenerator {
     }
 
     /**
-     * Write a "create CRS" statement (either from GIGS or EPSG).
+     * Writes a "create CRS" statement from GIGS code. According the header in GIGS test file,
+     * codes in "Source CRS" and "Target CRS" columns are GIGS codes. But the following EPSG
+     * codes are exceptions to this rule:
+     *
+     * <blockquote>4326</blockquote>
+     *
+     * Those exceptions are handled in a special way because, for example,
+     * there is two GIGS methods is series 3205 for EPSG:4326.
      */
-    private void writeCreateCRS(final String method, final int code) {
+    private void writeCreateCRS(final String method, int code) {
+        final int gigs;
+        switch (code) {
+            case 4326: gigs = 64003; break;
+            default:   gigs = 0; break;
+        }
         indent(2);
         out.append(method).append('(');
-        if (crsCodes.optional(code).isPresent()) {
-            out.append("Test3205::GIGS_");
+        if (gigs != 0) {
+            out.append(code).append(", ");      // EPSG code.
+            code = gigs;
         }
-        out.append(code).append(");\n");
+        out.append("Test3205::GIGS_").append(code).append(");\n");
     }
 }

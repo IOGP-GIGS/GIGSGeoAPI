@@ -199,7 +199,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
                     crs = crsAuthorityFactory.createGeographicCRS(String.valueOf(code));
                 }
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(GeodeticCRS.class, code);
+                unsupportedCode(GeodeticCRS.class, code, e);
                 throw e;
             }
         }

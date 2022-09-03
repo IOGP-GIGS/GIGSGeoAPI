@@ -152,7 +152,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
             try {
                 primeMeridian = datumAuthorityFactory.createPrimeMeridian(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(PrimeMeridian.class, code);
+                unsupportedCode(PrimeMeridian.class, code, e);
                 throw e;
             }
         }
