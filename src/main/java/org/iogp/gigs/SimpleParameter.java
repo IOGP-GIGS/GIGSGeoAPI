@@ -24,36 +24,69 @@
  */
 package org.iogp.gigs;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Objects;
-import java.util.Set;
 import javax.measure.Unit;
-import javax.measure.IncommensurableException;
-import org.opengis.parameter.InvalidParameterValueException;
-import org.opengis.parameter.InvalidParameterTypeException;
+import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.parameter.ParameterDescriptor;
+import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterValue;
+import org.opengis.referencing.operation.SingleOperation;
+import org.opentest4j.AssertionFailedError;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
- * A simple parameter value implementation for GIGS tests creating coordinate operation.
- * In order to keep this class simple, this parameter value is also its own descriptor.
+ * An immutable tuple for parameter name, value and unit of measurement.
+ * This class provides a small subset of {@link ParameterDescriptor} and
+ * {@link ParameterValue} functionalities combined in a single class for simplicity.
+ * This class serves two purposes:
+ *
+ * <ol>
+ *   <li>Assign parameter values to the {@link ParameterValueGroup}
+ *       instance supplied by the implementation to test.</li>
+ *   <li>Verifies the parameter values declared by the {@link SingleOperation}
+ *       instance created by the implementation to test.</li>
+ * </ol>
+ *
+ * This class exists because the GIGS tests need to perform those two steps.
+ * For normal use, this class would not be needed.
+ * Users should instead initialize parameters with a pattern like below:
+ *
+ * {@snippet lang="java" :
+ *     ParameterValueGroup pg = mtFactory.getDefaultParameters("Oblique Stereographic");
+ *     pg.parameter("Latitude of natural origin")    .setValue(52.15616056, units.degree());
+ *     pg.parameter("Longitude of natural origin")   .setValue(5.387638889, units.degree());
+ *     pg.parameter("Scale factor at natural origin").setValue(0.9999079,   units.one());
+ *     pg.parameter("False easting")                 .setValue(155000,      units.metre());
+ *     pg.parameter("False northing")                .setValue(463000,      units.metre());
+ * }
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0
  */
-final class SimpleParameter extends SimpleIdentifiedObject
-        implements ParameterValue<Object>, ParameterDescriptor<Object>
-{
+final class SimpleParameter {
+    /**
+     * The parameter name.
+     *
+     * @see ParameterDescriptor#getName()
+     */
+    public final String name;
+
     /**
      * The parameter value.
+     * The type can be {@link String} or {@link Double}.
+     *
+     * @see ParameterValue#getValue()
      */
     private final Object value;
 
     /**
      * The unit of measurement, or {@code null} if none.
+     * If non-null, then {@link #value} shall be an instance of {@link Double}.
+     *
+     * @see ParameterValue#getUnit()
      */
     private final Unit<?> unit;
 
@@ -64,7 +97,7 @@ final class SimpleParameter extends SimpleIdentifiedObject
      * @param  value  the parameter value.
      */
     SimpleParameter(final String name, final String value) {
-        super(name);
+        this.name  = name;
         this.value = value;
         this.unit  = null;
     }
@@ -77,262 +110,83 @@ final class SimpleParameter extends SimpleIdentifiedObject
      * @param  unit   the unit of measurement, or {@code null} if none.
      */
     SimpleParameter(final String name, final double value, final Unit<?> unit) {
-        super(name);
+        this.name  = name;
         this.value = value;
         this.unit  = unit;
     }
 
     /**
-     * Returns the descriptor of the parameter value. Since this simple class implements both the
-     * {@linkplain ParameterValue value} and the {@linkplain ParameterDescriptor descriptor} interfaces,
-     * this method returns {@code this}.
+     * Returns the error message to return if the parameter was not found.
+     * This method is defined in case that the implementation does not said which parameter was not found.
+     * Users would normally not need to define such method for using the {@link ParameterValueGroup} API.
+     */
+    private String parameterNotFound() {
+        return "A parameter named \"" + name + "\" was required but not found.";
+    }
+
+    /**
+     * Locates the parameter named {@link #name} in the specified group and sets its value.
+     * This is a convenience method for GIGS tests; users normally do not need this method.
+     * The recommended pattern for setting a parameter value is simply like below:
      *
-     * @return {@code this} descriptor.
-     */
-    @Override
-    public ParameterDescriptor<Object> getDescriptor() {
-        return this;
-    }
-
-    /**
-     * Returns the class of the value.
-     * We use raw types because we did not bother to parameterized this class.
-     * It would be bad practice in a public class, but because instances of this
-     * class are created only by GIGS code in contexts where users will only see
-     * {@code ParameterValue<?>}, it is okay here.
-     */
-    @Override
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    public Class getValueClass() {
-        return value.getClass();
-    }
-
-    @Override
-    public int getMinimumOccurs() {
-        return 1;
-    }
-
-    @Override
-    public int getMaximumOccurs() {
-        return 1;
-    }
-
-    @Override
-    public Comparable<Object> getMinimumValue() {
-        return null;
-    }
-
-    @Override
-    public Comparable<Object> getMaximumValue() {
-        return null;
-    }
-
-    @Override
-    public Set<Object> getValidValues() {
-        return null;
-    }
-
-    @Override
-    public Object getDefaultValue() {
-        return null;
-    }
-
-    /**
-     * Returns the unit of measurement.
+     * {@snippet lang="java" :
+     *     group.parameter("Latitude of 1st standard parallel").setValue(-18, units.degree());
+     * }
      *
-     * @return the unit of measurement, or {@code null} if unknown.
+     * The code in this method is more complicated, but this is for the purpose of GIGS tests only.
+     *
+     * @param  destination  the parameter group where to copy the parameter value.
+     * @throws AssertionFailedError if this parameter is not found in the specified group.
      */
-    @Override
-    public Unit<?> getUnit() {
-        return unit;
-    }
-
-    /**
-     * Returns the parameter {@linkplain #value} as an object.
-     */
-    @Override
-    public Object getValue() {
-        return value;
-    }
-
-    /**
-     * Returns the numeric value represented by this parameter.
-     */
-    @Override
-    public double doubleValue() {
-        if (value instanceof Number) {
-            return ((Number) value).doubleValue();
+    public void setValueInto(final ParameterValueGroup destination) {
+        final ParameterValue<?> parameter;
+        try {
+            parameter = destination.parameter(name);
+        } catch (ParameterNotFoundException e) {
+            throw new AssertionFailedError(parameterNotFound(), e);
+        }
+        if (unit != null) {
+            parameter.setValue((Double) value, unit);
         } else {
-            throw new InvalidParameterTypeException("Not a number", name);
+            parameter.setValue(value);
         }
     }
 
     /**
-     * Returns the numeric value of the operation parameter in the specified unit of measure.
-     * This convenience method applies unit conversion on the fly as needed.
+     * Verifies that the parameter named {@link #name} exists and has the expected value.
+     * Unit conversion are applied if needed.
+     *
+     * @param  parameters  the group of parameters to verify.
+     * @throws AssertionFailedError if this parameter is not found in the specified group
+     *         or does not have the expected value.
      */
-    @Override
-    public double doubleValue(final Unit<?> target) {
-        if (unit == null) {
-            throw new IllegalStateException("No unit for parameter " + name + '.');
-        } else try {
-            return unit.getConverterToAny(target).convert(doubleValue());
-        } catch (IncommensurableException e) {
-            throw new IllegalArgumentException(e);
+    public void verify(final ParameterValueGroup parameters) {
+        final ParameterValue<?> parameter;
+        try {
+            parameter = parameters.parameter(name);
+        } catch (ParameterNotFoundException e) {
+            throw new AssertionFailedError(parameterNotFound(), e);
         }
-    }
-
-    /**
-     * Returns the integer value of an operation parameter, usually used for a count.
-     */
-    @Override
-    public int intValue() {
-        if (value instanceof Number) {
-            return ((Number) value).intValue();
+        if (unit != null) {
+            final double expected = (Double) value;
+            final double actual = parameter.doubleValue(unit);
+            assertEquals(expected, actual, StrictMath.abs(expected * IntegrityTest.TOLERANCE), name);
         } else {
-            throw new InvalidParameterTypeException("Not a number", name);
+            assertEquals(value, parameter.getValue(), name);
         }
-    }
-
-    /**
-     * Returns the boolean value of an operation parameter.
-     */
-    @Override
-    public boolean booleanValue() {
-        if (value instanceof Boolean) {
-            return (Boolean) value;
-        } else {
-            throw new InvalidParameterTypeException("Not a boolean", name);
-        }
-    }
-
-    /**
-     * Returns the string representation of an operation parameter value.
-     */
-    @Override
-    public String stringValue() {
-        return value.toString();
-    }
-
-    /**
-     * Returns an ordered sequence of numeric values in the specified unit of measure.
-     */
-    @Override
-    public double[] doubleValueList(final Unit<?> unit) throws IllegalArgumentException, IllegalStateException {
-        throw new InvalidParameterTypeException("This parameter is not for arrays.", name);
-    }
-
-    /**
-     * Returns an ordered sequence numeric values of an operation parameter list, where each value
-     * has the same associated {@linkplain Unit unit of measure}.
-     */
-    @Override
-    public double[] doubleValueList() {
-        throw new InvalidParameterTypeException("This parameter is not for arrays.", name);
-    }
-
-    /**
-     * Returns an ordered sequence integer values of an operation parameter list.
-     */
-    @Override
-    public int[] intValueList() {
-        throw new InvalidParameterTypeException("This parameter is not for arrays.", name);
-    }
-
-    /**
-     * Returns the parameter value as an URI.
-     */
-    @Override
-    public URI valueFile() {
-        URISyntaxException cause = null;
-        if (value instanceof URI) try {
-            return new URI((String) value);
-        } catch (URISyntaxException e) {
-            cause = e;
-        }
-        InvalidParameterTypeException ex = new InvalidParameterTypeException("This parameter is not for files.", name);
-        if (cause != null) ex.initCause(cause);
-        throw ex;
-    }
-
-    /**
-     * Message for the exception to be thrown when a parameter setter is invoked.
-     */
-    static final String IMMUTABLE = "This parameter implementation is immutable.";
-
-    /**
-     * Unsupported operation because this parameter implementation is immutable.
-     */
-    @Override
-    public void setValue(final double value, final Unit<?> unit) {
-        throw new UnsupportedOperationException(IMMUTABLE);
-    }
-
-    /**
-     * Unsupported operation because this parameter implementation is immutable.
-     */
-    @Override
-    public void setValue(final double value) throws InvalidParameterValueException {
-        throw new UnsupportedOperationException(IMMUTABLE);
-    }
-
-    /**
-     * Unsupported operation because this parameter implementation is immutable.
-     */
-    @Override
-    public void setValue(final double[] values, final Unit<?> unit) throws InvalidParameterValueException {
-        throw new UnsupportedOperationException(IMMUTABLE);
-    }
-
-    /**
-     * Unsupported operation because this parameter implementation is immutable.
-     */
-    @Override
-    public void setValue(final int value) throws InvalidParameterValueException {
-        throw new UnsupportedOperationException(IMMUTABLE);
-    }
-
-    /**
-     * Unsupported operation because this parameter implementation is immutable.
-     */
-    @Override
-    public void setValue(final boolean value) throws InvalidParameterValueException {
-        throw new UnsupportedOperationException(IMMUTABLE);
-    }
-
-    /**
-     * Unsupported operation because this parameter implementation is immutable.
-     */
-    @Override
-    public void setValue(final Object value) throws InvalidParameterValueException {
-        throw new UnsupportedOperationException(IMMUTABLE);
-    }
-
-    /**
-     * Unsupported operation because this parameter implementation is immutable.
-     */
-    @Override
-    public SimpleParameter createValue() {
-        throw new UnsupportedOperationException(IMMUTABLE);
-    }
-
-    /**
-     * Not needed because this parameter implementation is immutable.
-     */
-    @Override
-    @SuppressWarnings("CloneDoesntCallSuperClone")
-    public ParameterValue<Object> clone() {
-        return this;
     }
 
     /**
      * Compares the given object with this parameter for equality.
+     *
+     * @param  object  the object to compare with this parameter.
+     * @return whether the two objects are equal.
      */
     @Override
     public boolean equals(final Object object) {
         if (object instanceof SimpleParameter) {
             final SimpleParameter other = (SimpleParameter) object;
-            return name.equals(other.name) &&
+            return name .equals(other.name)  &&
                    value.equals(other.value) &&
                    Objects.equals(unit, other.unit);
         }
@@ -341,6 +195,8 @@ final class SimpleParameter extends SimpleIdentifiedObject
 
     /**
      * Returns a hash code value for this parameter.
+     *
+     * @return a hash code value for this parameter.
      */
     @Override
     public int hashCode() {
@@ -348,7 +204,9 @@ final class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Returns the string representation of this parameter value.
+     * Returns a string representation of this parameter value.
+     *
+     * @return a string representation of this parameter value.
      */
     @Override
     public String toString() {

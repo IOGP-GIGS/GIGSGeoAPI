@@ -28,8 +28,6 @@ import org.iogp.gigs.internal.geoapi.Pending;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.parameter.GeneralParameterValue;
-import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
@@ -87,16 +85,10 @@ public class Test3206 extends Series3000<Conversion> {
     public String methodName;
 
     /**
-     * The parameters defining the conversion to create.
+     * The parameters defining the transformation to create.
      * This field is set by all test methods before to create and verify the {@link Conversion} instance.
-     * The name of this parameter group is typically {@link #methodName}.
      */
-    public ParameterValueGroup definition;
-
-    /**
-     * The coordinate operation method.
-     */
-    private OperationMethod method;
+    private SimpleParameter[] parameters;
 
     /**
      * The coordinate conversion created by the factory,
@@ -154,37 +146,15 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Instantiates the {@link #definition} field.
+     * Instantiates the {@link #parameters} field.
      *
-     * @param  methodName  name of the transformation method.
-     * @param  parameters  all parameter values.
+     * @param  method      name of the transformation method.
+     * @param  definition  all parameter values defining the operation.
      */
-    private void createParameters(final String methodName, SimpleParameter... parameters) throws FactoryException {
-        assumeNotNull(copFactory);
-        assumeNotNull(mtFactory);
-        /*
-         * Get the OperationMethod defined by the library. Libraries are not required
-         * to implement every possible operation methods, in which case unimplemented
-         * methods will be reported. If the operation method is supported, then this
-         * Java method will verify the following properties:
-         *
-         *  - The number of source dimensions
-         *  - The number of target dimensions
-         *
-         * We currently do not verify the name because libraries often have their own
-         * hard-coded implementations of operation methods instead of creating new
-         * instances from the given properties.
-         */
-        try {
-            method = Pending.getOperationMethod(mtFactory, methodName);
-        } catch (NoSuchIdentifierException e) {
-            unsupportedCode(OperationMethod.class, methodName, e);
-        }
-        if (method == null) {
-            fail("CoordinateOperationFactory.getOperationMethod(\"" + methodName + "\") shall not return null.");
-        }
-        validators.validate(method);
-        definition = new SimpleParameterGroup(methodName, parameters);
+    @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
+    private void createParameters(final String method, final SimpleParameter... definition) {
+        methodName = method;
+        parameters = definition;
     }
 
     /**
@@ -199,6 +169,41 @@ public class Test3206 extends Series3000<Conversion> {
     @Override
     public Conversion getIdentifiedObject() throws FactoryException {
         if (conversion == null) {
+            assumeNotNull(mtFactory);
+            /*
+             * Get the OperationMethod defined by the library. Libraries are not required
+             * to implement every possible operation methods, in which case unimplemented
+             * methods will be reported.
+             */
+            final OperationMethod method;
+            try {
+                method = Pending.getOperationMethod(mtFactory, methodName);
+            } catch (NoSuchIdentifierException e) {
+                unsupportedCode(OperationMethod.class, methodName, e);
+                throw e;
+            }
+            if (method == null) {
+                fail("CoordinateOperationFactory.getOperationMethod(\"" + methodName + "\") shall not return null.");
+            }
+            validators.validate(method);
+            /*
+             * Set the parameter values. Users normally do not need an intermediate `Parameter` object like here.
+             * The recommended pattern for setting a parameter value is simply like below:
+             *
+             *     group.parameter("Latitude of 1st standard parallel").setValue(-18, units.degree());
+             *
+             * The code in this method is more complicated, but this is only for the purpose of GIGS tests.
+             * It is because we want to keep the original parameter value for later verification.
+             */
+            @SuppressWarnings("null")           // Because `fail(…)` does not return.
+            final ParameterValueGroup definition = method.getParameters().createValue();
+            for (final SimpleParameter p : parameters) {
+                p.setValueInto(definition);
+            }
+            /*
+             * Create the defining conversion.
+             */
+            assumeNotNull(copFactory);
             final CoordinateOperation operation = copFactory.createDefiningConversion(properties, method, definition);
             if (operation != null) {            // For consistency with the behavior in other classes.
                 assertInstanceOf(Conversion.class, operation, getName());
@@ -239,28 +244,12 @@ public class Test3206 extends Series3000<Conversion> {
          * group to contain at least the values that we gave to it. If the library defines some
          * additional parameters, then those extra parameters will be ignored.
          */
-        final ParameterValueGroup projectionParameters = conversion.getParameterValues();
-        assertNotNull(projectionParameters, "Conversion.getParameterValues()");
         if (isFactoryPreservingUserValues) {
-            for (final GeneralParameterValue info : definition.values()) {
-                final String paramName = getName(info.getDescriptor());
-                if ("semi_major".equalsIgnoreCase(paramName) ||
-                    "semi_minor".equalsIgnoreCase(paramName))
-                {
-                    /*
-                     * Semi-major and semi-minor parameters were part of OGC 01-009 specification.
-                     * Since ISO 19111 they are not anymore explicit part of projection parameters.
-                     * However some implementations may still use them, so we make this test tolerant.
-                     */
-                    continue;
-                }
-                if (info instanceof ParameterValue<?>) {
-                    final ParameterValue<?> expected = (ParameterValue<?>) info;
-                    final ParameterValue<?> param = projectionParameters.parameter(paramName);
-                    assertNotNull(param, paramName);
-                    final double value = expected.doubleValue();
-                    assertEquals(value, param.doubleValue(expected.getUnit()), StrictMath.abs(TOLERANCE * value), paramName);
-                }
+            verifyIdentification(conversion.getMethod(), methodName, null);
+            final ParameterValueGroup definition = conversion.getParameterValues();
+            assertNotNull(definition, "Conversion.getParameterValues()");
+            for (final SimpleParameter p : parameters) {
+                p.verify(definition);
             }
         }
     }

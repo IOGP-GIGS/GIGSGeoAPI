@@ -24,7 +24,6 @@
  */
 package org.iogp.gigs.generator;
 
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 

@@ -684,11 +684,16 @@ public abstract class TestMethodGenerator {
     /**
      * Prints the programmatic name of the given unit.
      *
-     * @param unit  the unit for which to print the programmatic name.
+     * @param unit  the unit for which to print the programmatic name, or {@code null} if none.
      */
     final void printProgrammaticName(final Unit<?> unit) {
-        final String name = UNIT_NAMES.get(unit);
-        assertNotNull(name, unit.toString());
+        final String name;
+        if (unit == null) {
+            name = "null";
+        } else {
+            name = UNIT_NAMES.get(unit);
+            assertNotNull(name, unit.toString());
+        }
         out.append(name);
     }
 
@@ -795,11 +800,7 @@ public abstract class TestMethodGenerator {
                 }
                 append(value);
                 out.append(", ");
-                if (parsedUnit != null) {
-                    printProgrammaticName(parsedUnit);
-                } else {
-                    out.append("null");
-                }
+                printProgrammaticName(parsedUnit);
             }
             out.append(')');
         }

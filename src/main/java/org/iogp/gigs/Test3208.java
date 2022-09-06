@@ -24,11 +24,8 @@
  */
 package org.iogp.gigs;
 
-import java.util.Arrays;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
-import org.opengis.parameter.GeneralParameterValue;
-import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
@@ -47,7 +44,6 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.Transformation;
-import org.opentest4j.AssertionFailedError;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.geoapi.Pending;
 import org.junit.jupiter.api.DisplayName;
@@ -105,9 +101,8 @@ public class Test3208 extends Series3000<Transformation> {
     /**
      * The parameters defining the transformation to create.
      * This field is set by all test methods before to create and verify the {@link Transformation} instance.
-     * The name of this parameter group is typically {@link #methodName}.
      */
-    public ParameterValueGroup definition;
+    private SimpleParameter[] parameters;
 
     /**
      * Whether the transformation may need the semi-axis length of source and target ellipsoids.
@@ -284,25 +279,15 @@ public class Test3208 extends Series3000<Transformation> {
     }
 
     /**
-     * Instantiates the {@link #definition} field.
+     * Instantiates the {@link #parameters} field.
      *
      * @param  method      name of the transformation method.
-     * @param  parameters  all parameter values.
+     * @param  definition  all parameter values defining the operation.
      */
-    private void createParameters(final String method, SimpleParameter... parameters) {
-        if (needEllipsoidAxisLengths) {
-            final Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
-            final Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
-            int i = parameters.length;
-            parameters = Arrays.copyOf(parameters, i+4);
-            parameters[i++] = new SimpleParameter("src_semi_major", sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
-            parameters[i++] = new SimpleParameter("src_semi_minor", sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
-            parameters[i++] = new SimpleParameter("tgt_semi_major", targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
-            parameters[i++] = new SimpleParameter("tgt_semi_minor", targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
-            assertEquals(parameters.length, i);
-        }
+    @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
+    private void createParameters(final String method, final SimpleParameter... definition) {
         methodName = method;
-        definition = new SimpleParameterGroup(method, parameters);
+        parameters = definition;
         properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
     }
 
@@ -324,12 +309,36 @@ public class Test3208 extends Series3000<Transformation> {
      */
     @Override
     public Transformation getIdentifiedObject() throws FactoryException {
-        if (transformation == null) try {
+        if (transformation == null) {
+            assumeNotNull(mtFactory);
+            final ParameterValueGroup definition;
+            try {
+                definition = mtFactory.getDefaultParameters(methodName);
+            } catch (NoSuchIdentifierException e) {
+                unsupportedCode(OperationMethod.class, methodName, e);
+                throw e;
+            }
+            for (final SimpleParameter p : parameters) {
+                p.setValueInto(definition);
+            }
+            if (needEllipsoidAxisLengths) try {
+                final Ellipsoid sourceEllipsoid = sourceCRS.getDatum().getEllipsoid();
+                final Ellipsoid targetEllipsoid = targetCRS.getDatum().getEllipsoid();
+                definition.parameter("src_semi_major").setValue(sourceEllipsoid.getSemiMajorAxis(), sourceEllipsoid.getAxisUnit());
+                definition.parameter("src_semi_minor").setValue(sourceEllipsoid.getSemiMinorAxis(), sourceEllipsoid.getAxisUnit());
+                definition.parameter("tgt_semi_major").setValue(targetEllipsoid.getSemiMajorAxis(), targetEllipsoid.getAxisUnit());
+                definition.parameter("tgt_semi_minor").setValue(targetEllipsoid.getSemiMinorAxis(), targetEllipsoid.getAxisUnit());
+            } catch (ParameterNotFoundException e) {
+                /*
+                 * Ignore. Maybe the implementation do not need those information.
+                 */
+                needEllipsoidAxisLengths = false;
+            }
+            validators.validate(definition);
             MathTransform transform = mtFactory.createParameterizedTransform(definition);
             OperationMethod method = mtFactory.getLastMethodUsed();
+            assumeNotNull(copFactory);
             transformation = Pending.getInstance(copFactory).createTransformation(properties, sourceCRS, targetCRS, method, definition, transform);
-        } catch (NoSuchIdentifierException e) {
-            unsupportedCode(OperationMethod.class, methodName, e);
         }
         return transformation;
     }
@@ -366,46 +375,17 @@ public class Test3208 extends Series3000<Transformation> {
         targetCRSTest.copyConfigurationFrom(this);
         targetCRSTest.setIdentifiedObject(targetCRS);
         targetCRSTest.verifyGeographicCRS();
-
+        /*
+         * Verifies that the parameter values provided by the implementation are equal to the expected values.
+         * If the actual group contains more parameters than expected, the extra parameters are ignored.
+         * Parameter order and parameter descriptors are ignored.
+         */
         if (isFactoryPreservingUserValues) {
-            assertEquals(methodName, getName(transformation.getMethod()), "OperationMethod.name");
-            verifyParameterValues(definition, transformation.getParameterValues());
-        }
-    }
-
-    /**
-     * Verifies that the parameter values provided by the implementation are equal to the expected values.
-     * If the actual group contains more parameters than expected, the extra parameters are ignored.
-     * Parameter order and parameter descriptors are ignored.
-     *
-     * @param expected  the group of expected parameter values.
-     * @param actual    the group of actual parameter values.
-     */
-    static void verifyParameterValues(final ParameterValueGroup expected, final ParameterValueGroup actual) {
-        for (final GeneralParameterValue parameter : expected.values()) {
-            if (parameter instanceof ParameterValue<?>) {
-                final ParameterValue<?> ep = (ParameterValue<?>) parameter;
-                final String name = getName(ep.getDescriptor());
-                assertNotNull(name, "parameter.name");
-                final ParameterValue<?> ap;
-                try {
-                    ap = actual.parameter(name);
-                } catch (ParameterNotFoundException e) {
-                    if (name.equals("src_semi_major") || name.equals("src_semi_minor") ||
-                        name.equals("tgt_semi_major") || name.equals("tgt_semi_minor"))
-                    {
-                        continue;
-                    }
-                    throw new AssertionFailedError("Parameter not found: " + name, e);
-                }
-                final Object ev = ep.getValue();
-                if (ev instanceof Double) {
-                    final double value = (Double) ev;
-                    assertEquals(value, ap.doubleValue(), StrictMath.abs(value * TOLERANCE), name);
-                } else {
-                    assertEquals(ep, ap.getValue(), name);
-                }
-                assertEquals(ep.getUnit(), ap.getUnit(), name);
+            verifyIdentification(transformation.getMethod(), methodName, null);
+            final ParameterValueGroup definition = transformation.getParameterValues();
+            assertNotNull(definition, "Transformation.getParameterValues()");
+            for (final SimpleParameter p : parameters) {
+                p.verify(definition);
             }
         }
     }

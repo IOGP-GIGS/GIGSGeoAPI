@@ -96,9 +96,8 @@ public class Test3211 extends Series3000<Transformation> {
     /**
      * The parameters defining the transformation to create.
      * This field is set by all test methods before to create and verify the {@link Transformation} instance.
-     * The name of this parameter group is typically {@link #methodName}.
      */
-    public ParameterValueGroup definition;
+    private SimpleParameter[] parameters;
 
     /**
      * The coordinate transformation created by the factory,
@@ -257,14 +256,15 @@ public class Test3211 extends Series3000<Transformation> {
     }
 
     /**
-     * Instantiates the {@link #definition} field.
+     * Instantiates the {@link #parameters} field.
      *
      * @param  method      name of the transformation method.
-     * @param  parameters  all parameter values.
+     * @param  definition  all parameter values defining the operation.
      */
-    private void createParameters(final String method, SimpleParameter... parameters) {
+    @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
+    private void createParameters(final String method, final SimpleParameter... definition) {
         methodName = method;
-        definition = new SimpleParameterGroup(method, parameters);
+        parameters = definition;
         properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
     }
 
@@ -286,12 +286,23 @@ public class Test3211 extends Series3000<Transformation> {
      */
     @Override
     public Transformation getIdentifiedObject() throws FactoryException {
-        if (transformation == null) try {
+        if (transformation == null) {
+            assumeNotNull(mtFactory);
+            final ParameterValueGroup definition;
+            try {
+                definition = mtFactory.getDefaultParameters(methodName);
+            } catch (NoSuchIdentifierException e) {
+                unsupportedCode(OperationMethod.class, methodName, e);
+                throw e;
+            }
+            for (final SimpleParameter p : parameters) {
+                p.setValueInto(definition);
+            }
+            validators.validate(definition);
             MathTransform transform = mtFactory.createParameterizedTransform(definition);
             OperationMethod method = mtFactory.getLastMethodUsed();
+            assumeNotNull(copFactory);
             transformation = Pending.getInstance(copFactory).createTransformation(properties, sourceCRS, targetCRS, method, definition, transform);
-        } catch (NoSuchIdentifierException e) {
-            unsupportedCode(OperationMethod.class, methodName, e);
         }
         return transformation;
     }
@@ -317,10 +328,18 @@ public class Test3211 extends Series3000<Transformation> {
         targetCRSTest.copyConfigurationFrom(this);
         targetCRSTest.setIdentifiedObject(targetCRS);
 //TODO  targetCRSTest.verifyVerticalCRS();
-
+        /*
+         * Verifies that the parameter values provided by the implementation are equal to the expected values.
+         * If the actual group contains more parameters than expected, the extra parameters are ignored.
+         * Parameter order and parameter descriptors are ignored.
+         */
         if (isFactoryPreservingUserValues) {
-            assertEquals(methodName, getName(transformation.getMethod()), "OperationMethod.name");
-            Test3208.verifyParameterValues(definition, transformation.getParameterValues());
+            verifyIdentification(transformation.getMethod(), methodName, null);
+            final ParameterValueGroup definition = transformation.getParameterValues();
+            assertNotNull(definition, "Transformation.getParameterValues()");
+            for (final SimpleParameter p : parameters) {
+                p.verify(definition);
+            }
         }
     }
 
