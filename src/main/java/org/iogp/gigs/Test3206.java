@@ -85,10 +85,10 @@ public class Test3206 extends Series3000<Conversion> {
     public String methodName;
 
     /**
-     * The parameters defining the transformation to create.
+     * The parameters defining the map projection to create.
      * This field is set by all test methods before to create and verify the {@link Conversion} instance.
      */
-    private SimpleParameter[] parameters;
+    public Parameter[] parameters;
 
     /**
      * The coordinate conversion created by the factory,
@@ -152,7 +152,7 @@ public class Test3206 extends Series3000<Conversion> {
      * @param  definition  all parameter values defining the operation.
      */
     @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
-    private void createParameters(final String method, final SimpleParameter... definition) {
+    private void createParameters(final String method, final Parameter... definition) {
         methodName = method;
         parameters = definition;
     }
@@ -197,7 +197,7 @@ public class Test3206 extends Series3000<Conversion> {
              */
             @SuppressWarnings("null")           // Because `fail(…)` does not return.
             final ParameterValueGroup definition = method.getParameters().createValue();
-            for (final SimpleParameter p : parameters) {
+            for (final Parameter p : parameters) {
                 p.setValueInto(definition);
             }
             /*
@@ -248,7 +248,7 @@ public class Test3206 extends Series3000<Conversion> {
             verifyIdentification(conversion.getMethod(), methodName, null);
             final ParameterValueGroup definition = conversion.getParameterValues();
             assertNotNull(definition, "Conversion.getParameterValues()");
-            for (final SimpleParameter p : parameters) {
+            for (final Parameter p : parameters) {
                 p.verify(definition);
             }
         }
@@ -279,11 +279,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65001() throws FactoryException {
         setCodeAndName(65001, "GIGS conversion 1");
         createParameters("Transverse Mercator",
-            new SimpleParameter("Latitude of natural origin", 0, units.degree()),
-            new SimpleParameter("Longitude of natural origin", 3, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 0.9996, units.one()),
-            new SimpleParameter("False easting", 500000, units.metre()),
-            new SimpleParameter("False northing", 0, units.metre()));
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 3, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996, units.one()),
+            new Parameter("False easting", 500000, units.metre()),
+            new Parameter("False northing", 0, units.metre()));
         verifyConversion();
     }
 
@@ -312,11 +312,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65010() throws FactoryException {
         setCodeAndName(65010, "GIGS conversion 10");
         createParameters("Transverse Mercator (South Orientated)",
-            new SimpleParameter("Latitude of natural origin", 0, units.degree()),
-            new SimpleParameter("Longitude of natural origin", 21, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 1, units.one()),
-            new SimpleParameter("False easting", 0, units.metre()),
-            new SimpleParameter("False northing", 0, units.metre()));
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 21, units.degree()),
+            new Parameter("Scale factor at natural origin", 1, units.one()),
+            new Parameter("False easting", 0, units.metre()),
+            new Parameter("False northing", 0, units.metre()));
         verifyConversion();
     }
 
@@ -345,11 +345,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65011() throws FactoryException {
         setCodeAndName(65011, "GIGS conversion 11");
         createParameters("Transverse Mercator",
-            new SimpleParameter("Latitude of natural origin", -90, units.degree()),
-            new SimpleParameter("Longitude of natural origin", -60, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 1, units.one()),
-            new SimpleParameter("False easting", 5500000, units.metre()),
-            new SimpleParameter("False northing", 0, units.metre()));
+            new Parameter("Latitude of natural origin", -90, units.degree()),
+            new Parameter("Longitude of natural origin", -60, units.degree()),
+            new Parameter("Scale factor at natural origin", 1, units.one()),
+            new Parameter("False easting", 5500000, units.metre()),
+            new Parameter("False northing", 0, units.metre()));
         verifyConversion();
     }
 
@@ -377,10 +377,10 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65012() throws FactoryException {
         setCodeAndName(65012, "GIGS conversion 12");
         createParameters("American Polyconic",
-            new SimpleParameter("Latitude of natural origin", 0, units.degree()),
-            new SimpleParameter("Longitude of natural origin", -54, units.degree()),
-            new SimpleParameter("False easting", 5000000, units.metre()),
-            new SimpleParameter("False northing", 10000000, units.metre()));
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", -54, units.degree()),
+            new Parameter("False easting", 5000000, units.metre()),
+            new Parameter("False northing", 10000000, units.metre()));
         verifyConversion();
     }
 
@@ -413,13 +413,13 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65013() throws FactoryException {
         setCodeAndName(65013, "GIGS conversion 13");
         createParameters("Hotine Oblique Mercator (variant B)",
-            new SimpleParameter("Latitude of projection centre", 4, units.degree()),
-            new SimpleParameter("Longitude of projection centre", 115, units.degree()),
-            new SimpleParameter("Azimuth of initial line", 53.31580994, units.degree()),
-            new SimpleParameter("Angle from Rectified to Skew Grid", 53.13010236, units.degree()),
-            new SimpleParameter("Scale factor on initial line", 0.99984, units.one()),
-            new SimpleParameter("Easting at projection centre", 590521.147, units.metre()),
-            new SimpleParameter("Northing at projection centre", 442890.861, units.metre()));
+            new Parameter("Latitude of projection centre", 4, units.degree()),
+            new Parameter("Longitude of projection centre", 115, units.degree()),
+            new Parameter("Azimuth of initial line", 53.31580994, units.degree()),
+            new Parameter("Angle from Rectified to Skew Grid", 53.13010236, units.degree()),
+            new Parameter("Scale factor on initial line", 0.99984, units.one()),
+            new Parameter("Easting at projection centre", 590521.147, units.metre()),
+            new Parameter("Northing at projection centre", 442890.861, units.metre()));
         verifyConversion();
     }
 
@@ -450,13 +450,13 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65014() throws FactoryException {
         setCodeAndName(65014, "GIGS conversion 14");
         createParameters("Hotine Oblique Mercator (variant A)",
-            new SimpleParameter("Latitude of projection centre", 4, units.degree()),
-            new SimpleParameter("Longitude of projection centre", 115, units.degree()),
-            new SimpleParameter("Azimuth of initial line", 53.31580994, units.degree()),
-            new SimpleParameter("Angle from Rectified to Skew Grid", 53.13010236, units.degree()),
-            new SimpleParameter("Scale factor on initial line", 0.99984, units.one()),
-            new SimpleParameter("False easting", 0, units.metre()),
-            new SimpleParameter("False northing", 0, units.metre()));
+            new Parameter("Latitude of projection centre", 4, units.degree()),
+            new Parameter("Longitude of projection centre", 115, units.degree()),
+            new Parameter("Azimuth of initial line", 53.31580994, units.degree()),
+            new Parameter("Angle from Rectified to Skew Grid", 53.13010236, units.degree()),
+            new Parameter("Scale factor on initial line", 0.99984, units.one()),
+            new Parameter("False easting", 0, units.metre()),
+            new Parameter("False northing", 0, units.metre()));
         verifyConversion();
     }
 
@@ -484,10 +484,10 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65015() throws FactoryException {
         setCodeAndName(65015, "GIGS conversion 15");
         createParameters("Cassini-Soldner",
-            new SimpleParameter("Latitude of natural origin", 2.121679722, units.degree()),
-            new SimpleParameter("Longitude of natural origin", 103.4279362, units.degree()),
-            new SimpleParameter("False easting", -14810.562, units.metre()),
-            new SimpleParameter("False northing", 8758.32, units.metre()));
+            new Parameter("Latitude of natural origin", 2.121679722, units.degree()),
+            new Parameter("Longitude of natural origin", 103.4279362, units.degree()),
+            new Parameter("False easting", -14810.562, units.metre()),
+            new Parameter("False northing", 8758.32, units.metre()));
         verifyConversion();
     }
 
@@ -515,10 +515,10 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65016() throws FactoryException {
         setCodeAndName(65016, "GIGS conversion 16");
         createParameters("Lambert Azimuthal Equal Area",
-            new SimpleParameter("Latitude of natural origin", 52, units.degree()),
-            new SimpleParameter("Longitude of natural origin", 10, units.degree()),
-            new SimpleParameter("False easting", 4321000, units.metre()),
-            new SimpleParameter("False northing", 3210000, units.metre()));
+            new Parameter("Latitude of natural origin", 52, units.degree()),
+            new Parameter("Longitude of natural origin", 10, units.degree()),
+            new Parameter("False easting", 4321000, units.metre()),
+            new Parameter("False northing", 3210000, units.metre()));
         verifyConversion();
     }
 
@@ -548,12 +548,12 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65017() throws FactoryException {
         setCodeAndName(65017, "GIGS conversion 17");
         createParameters("Lambert Conic Conformal (2SP)",
-            new SimpleParameter("Latitude of false origin", 40.33333333, units.degree()),
-            new SimpleParameter("Longitude of false origin", -111.5, units.degree()),
-            new SimpleParameter("Latitude of 1st standard parallel", 41.78333333, units.degree()),
-            new SimpleParameter("Latitude of 2nd standard parallel", 40.71666667, units.degree()),
-            new SimpleParameter("Easting at false origin", 1640419.948, units.foot()),
-            new SimpleParameter("Northing at false origin", 3280839.895, units.foot()));
+            new Parameter("Latitude of false origin", 40.33333333, units.degree()),
+            new Parameter("Longitude of false origin", -111.5, units.degree()),
+            new Parameter("Latitude of 1st standard parallel", 41.78333333, units.degree()),
+            new Parameter("Latitude of 2nd standard parallel", 40.71666667, units.degree()),
+            new Parameter("Easting at false origin", 1640419.948, units.foot()),
+            new Parameter("Northing at false origin", 3280839.895, units.foot()));
         verifyConversion();
     }
 
@@ -583,12 +583,12 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65018() throws FactoryException {
         setCodeAndName(65018, "GIGS conversion 18");
         createParameters("Lambert Conic Conformal (2SP)",
-            new SimpleParameter("Latitude of false origin", 40.33333333, units.degree()),
-            new SimpleParameter("Longitude of false origin", -111.5, units.degree()),
-            new SimpleParameter("Latitude of 1st standard parallel", 41.78333333, units.degree()),
-            new SimpleParameter("Latitude of 2nd standard parallel", 40.71666667, units.degree()),
-            new SimpleParameter("Easting at false origin", 1640416.667, units.footSurveyUS()),
-            new SimpleParameter("Northing at false origin", 3280833.333, units.footSurveyUS()));
+            new Parameter("Latitude of false origin", 40.33333333, units.degree()),
+            new Parameter("Longitude of false origin", -111.5, units.degree()),
+            new Parameter("Latitude of 1st standard parallel", 41.78333333, units.degree()),
+            new Parameter("Latitude of 2nd standard parallel", 40.71666667, units.degree()),
+            new Parameter("Easting at false origin", 1640416.667, units.footSurveyUS()),
+            new Parameter("Northing at false origin", 3280833.333, units.footSurveyUS()));
         verifyConversion();
     }
 
@@ -619,11 +619,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65019() throws FactoryException {
         setCodeAndName(65019, "GIGS conversion 19");
         createParameters("Lambert Conic Conformal (1SP)",
-            new SimpleParameter("Latitude of natural origin", 52, units.grad()),
-            new SimpleParameter("Longitude of natural origin", 0, units.grad()),
-            new SimpleParameter("Scale factor at natural origin", 0.99987742, units.one()),
-            new SimpleParameter("False easting", 600000, units.metre()),
-            new SimpleParameter("False northing", 2200000, units.metre()));
+            new Parameter("Latitude of natural origin", 52, units.grad()),
+            new Parameter("Longitude of natural origin", 0, units.grad()),
+            new Parameter("Scale factor at natural origin", 0.99987742, units.one()),
+            new Parameter("False easting", 600000, units.metre()),
+            new Parameter("False northing", 2200000, units.metre()));
         verifyConversion();
     }
 
@@ -654,11 +654,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65002() throws FactoryException {
         setCodeAndName(65002, "GIGS conversion 2");
         createParameters("Transverse Mercator",
-            new SimpleParameter("Latitude of natural origin", 49, units.degree()),
-            new SimpleParameter("Longitude of natural origin", -2, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 0.9996012717, units.one()),
-            new SimpleParameter("False easting", 400000, units.metre()),
-            new SimpleParameter("False northing", -100000, units.metre()));
+            new Parameter("Latitude of natural origin", 49, units.degree()),
+            new Parameter("Longitude of natural origin", -2, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996012717, units.one()),
+            new Parameter("False easting", 400000, units.metre()),
+            new Parameter("False northing", -100000, units.metre()));
         verifyConversion();
     }
 
@@ -690,11 +690,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65023() throws FactoryException {
         setCodeAndName(65023, "GIGS conversion 23");
         createParameters("Transverse Mercator",
-            new SimpleParameter("Latitude of natural origin", 0, units.degree()),
-            new SimpleParameter("Longitude of natural origin", 3, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 0.9996, units.one()),
-            new SimpleParameter("False easting", 1640416.667, units.footSurveyUS()),
-            new SimpleParameter("False northing", 0, units.footSurveyUS()));
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 3, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996, units.one()),
+            new Parameter("False easting", 1640416.667, units.footSurveyUS()),
+            new Parameter("False northing", 0, units.footSurveyUS()));
         verifyConversion();
     }
 
@@ -722,10 +722,10 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65024() throws FactoryException {
         setCodeAndName(65024, "GIGS conversion 24");
         createParameters("Mercator (variant B)",
-            new SimpleParameter("Latitude of 1st standard parallel", 42, units.degree()),
-            new SimpleParameter("Longitude of natural origin", 51, units.degree()),
-            new SimpleParameter("False easting", 0, units.metre()),
-            new SimpleParameter("False northing", 0, units.metre()));
+            new Parameter("Latitude of 1st standard parallel", 42, units.degree()),
+            new Parameter("Longitude of natural origin", 51, units.degree()),
+            new Parameter("False easting", 0, units.metre()),
+            new Parameter("False northing", 0, units.metre()));
         verifyConversion();
     }
 
@@ -758,11 +758,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65025() throws FactoryException {
         setCodeAndName(65025, "GIGS conversion 25");
         createParameters("Lambert Conic Conformal (1SP)",
-            new SimpleParameter("Latitude of natural origin", 46.8, units.degree()),
-            new SimpleParameter("Longitude of natural origin", 2.337229167, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 0.99987742, units.one()),
-            new SimpleParameter("False easting", 600000, units.metre()),
-            new SimpleParameter("False northing", 2200000, units.metre()));
+            new Parameter("Latitude of natural origin", 46.8, units.degree()),
+            new Parameter("Longitude of natural origin", 2.337229167, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.99987742, units.one()),
+            new Parameter("False easting", 600000, units.metre()),
+            new Parameter("False northing", 2200000, units.metre()));
         verifyConversion();
     }
 
@@ -793,13 +793,13 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65026() throws FactoryException {
         setCodeAndName(65026, "GIGS conversion 26");
         createParameters("Hotine Oblique Mercator (variant B)",
-            new SimpleParameter("Latitude of projection centre", 47.1443937, units.degree()),
-            new SimpleParameter("Longitude of projection centre", 19.0485718, units.degree()),
-            new SimpleParameter("Azimuth of initial line", 90, units.degree()),
-            new SimpleParameter("Angle from Rectified to Skew Grid", 90, units.degree()),
-            new SimpleParameter("Scale factor on initial line", 0.99993, units.one()),
-            new SimpleParameter("Easting at projection centre", 650000, units.metre()),
-            new SimpleParameter("Northing at projection centre", 200000, units.metre()));
+            new Parameter("Latitude of projection centre", 47.1443937, units.degree()),
+            new Parameter("Longitude of projection centre", 19.0485718, units.degree()),
+            new Parameter("Azimuth of initial line", 90, units.degree()),
+            new Parameter("Angle from Rectified to Skew Grid", 90, units.degree()),
+            new Parameter("Scale factor on initial line", 0.99993, units.one()),
+            new Parameter("Easting at projection centre", 650000, units.metre()),
+            new Parameter("Northing at projection centre", 200000, units.metre()));
         verifyConversion();
     }
 
@@ -828,11 +828,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65027() throws FactoryException {
         setCodeAndName(65027, "GIGS conversion 27");
         createParameters("Mercator (variant A)",
-            new SimpleParameter("Latitude of natural origin", 0, units.degree()),
-            new SimpleParameter("Longitude of natural origin", 110, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 0.997, units.one()),
-            new SimpleParameter("False easting", 3900000, units.metre()),
-            new SimpleParameter("False northing", 900000, units.metre()));
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 110, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.997, units.one()),
+            new Parameter("False easting", 3900000, units.metre()),
+            new Parameter("False northing", 900000, units.metre()));
         verifyConversion();
     }
 
@@ -861,11 +861,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65028() throws FactoryException {
         setCodeAndName(65028, "GIGS conversion 28");
         createParameters("Transverse Mercator",
-            new SimpleParameter("Latitude of natural origin", 0, units.degree()),
-            new SimpleParameter("Longitude of natural origin", -135, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 0.9996, units.one()),
-            new SimpleParameter("False easting", 500000, units.metre()),
-            new SimpleParameter("False northing", 0, units.metre()));
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", -135, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996, units.one()),
+            new Parameter("False easting", 500000, units.metre()),
+            new Parameter("False northing", 0, units.metre()));
         verifyConversion();
     }
 
@@ -897,11 +897,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65021() throws FactoryException {
         setCodeAndName(65021, "GIGS conversion 2 alt A");
         createParameters("Transverse Mercator",
-            new SimpleParameter("Latitude of natural origin", 0, units.degree()),
-            new SimpleParameter("Longitude of natural origin", -2, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 0.9996012717, units.one()),
-            new SimpleParameter("False easting", 400000, units.metre()),
-            new SimpleParameter("False northing", -5527462.688, units.metre()));
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", -2, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996012717, units.one()),
+            new Parameter("False easting", 400000, units.metre()),
+            new Parameter("False northing", -5527462.688, units.metre()));
         verifyConversion();
     }
 
@@ -933,11 +933,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65022() throws FactoryException {
         setCodeAndName(65022, "GIGS conversion 2 alt B");
         createParameters("Transverse Mercator",
-            new SimpleParameter("Latitude of natural origin", 0, units.degree()),
-            new SimpleParameter("Longitude of natural origin", -2, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 0.9996012717, units.one()),
-            new SimpleParameter("False easting", 400000, units.metre()),
-            new SimpleParameter("False northing", -5527063.816, units.metre()));
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", -2, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996012717, units.one()),
+            new Parameter("False easting", 400000, units.metre()),
+            new Parameter("False northing", -5527063.816, units.metre()));
         verifyConversion();
     }
 
@@ -966,11 +966,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65004() throws FactoryException {
         setCodeAndName(65004, "GIGS conversion 4");
         createParameters("Oblique Stereographic",
-            new SimpleParameter("Latitude of natural origin", 52.15616056, units.degree()),
-            new SimpleParameter("Longitude of natural origin", 5.387638889, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 0.9999079, units.one()),
-            new SimpleParameter("False easting", 155000, units.metre()),
-            new SimpleParameter("False northing", 463000, units.metre()));
+            new Parameter("Latitude of natural origin", 52.15616056, units.degree()),
+            new Parameter("Longitude of natural origin", 5.387638889, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9999079, units.one()),
+            new Parameter("False easting", 155000, units.metre()),
+            new Parameter("False northing", 463000, units.metre()));
         verifyConversion();
     }
 
@@ -1002,11 +1002,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65005() throws FactoryException {
         setCodeAndName(65005, "GIGS conversion 5");
         createParameters("Mercator (variant A)",
-            new SimpleParameter("Latitude of natural origin", 0, units.degree()),
-            new SimpleParameter("Longitude of natural origin", 3.192280556, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 0.997, units.one()),
-            new SimpleParameter("False easting", 3900000, units.metre()),
-            new SimpleParameter("False northing", 900000, units.metre()));
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 3.192280556, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.997, units.one()),
+            new Parameter("False easting", 3900000, units.metre()),
+            new Parameter("False northing", 900000, units.metre()));
         verifyConversion();
     }
 
@@ -1036,12 +1036,12 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65006() throws FactoryException {
         setCodeAndName(65006, "GIGS conversion 6");
         createParameters("Lambert Conic Conformal (2SP)",
-            new SimpleParameter("Latitude of false origin", 90, units.degree()),
-            new SimpleParameter("Longitude of false origin", 4.367486667, units.degree()),
-            new SimpleParameter("Latitude of 1st standard parallel", 51.16666723, units.degree()),
-            new SimpleParameter("Latitude of 2nd standard parallel", 49.8333339, units.degree()),
-            new SimpleParameter("Easting at false origin", 150000.013, units.metre()),
-            new SimpleParameter("Northing at false origin", 5400088.438, units.metre()));
+            new Parameter("Latitude of false origin", 90, units.degree()),
+            new Parameter("Longitude of false origin", 4.367486667, units.degree()),
+            new Parameter("Latitude of 1st standard parallel", 51.16666723, units.degree()),
+            new Parameter("Latitude of 2nd standard parallel", 49.8333339, units.degree()),
+            new Parameter("Easting at false origin", 150000.013, units.metre()),
+            new Parameter("Northing at false origin", 5400088.438, units.metre()));
         verifyConversion();
     }
 
@@ -1070,11 +1070,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65007() throws FactoryException {
         setCodeAndName(65007, "GIGS conversion 7");
         createParameters("Transverse Mercator",
-            new SimpleParameter("Latitude of natural origin", 0, units.degree()),
-            new SimpleParameter("Longitude of natural origin", 141, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 0.9996, units.one()),
-            new SimpleParameter("False easting", 500000, units.metre()),
-            new SimpleParameter("False northing", 10000000, units.metre()));
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 141, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996, units.one()),
+            new Parameter("False easting", 500000, units.metre()),
+            new Parameter("False northing", 10000000, units.metre()));
         verifyConversion();
     }
 
@@ -1103,11 +1103,11 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65008() throws FactoryException {
         setCodeAndName(65008, "GIGS conversion 8");
         createParameters("Transverse Mercator",
-            new SimpleParameter("Latitude of natural origin", 0, units.degree()),
-            new SimpleParameter("Longitude of natural origin", 147, units.degree()),
-            new SimpleParameter("Scale factor at natural origin", 0.9996, units.one()),
-            new SimpleParameter("False easting", 500000, units.metre()),
-            new SimpleParameter("False northing", 10000000, units.metre()));
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 147, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996, units.one()),
+            new Parameter("False easting", 500000, units.metre()),
+            new Parameter("False northing", 10000000, units.metre()));
         verifyConversion();
     }
 
@@ -1137,12 +1137,12 @@ public class Test3206 extends Series3000<Conversion> {
     public void GIGS_65009() throws FactoryException {
         setCodeAndName(65009, "GIGS conversion 9");
         createParameters("Albers Equal Area",
-            new SimpleParameter("Latitude of false origin", 0, units.degree()),
-            new SimpleParameter("Longitude of false origin", 132, units.degree()),
-            new SimpleParameter("Latitude of 1st standard parallel", -18, units.degree()),
-            new SimpleParameter("Latitude of 2nd standard parallel", -36, units.degree()),
-            new SimpleParameter("Easting at false origin", 0, units.metre()),
-            new SimpleParameter("Northing at false origin", 0, units.metre()));
+            new Parameter("Latitude of false origin", 0, units.degree()),
+            new Parameter("Longitude of false origin", 132, units.degree()),
+            new Parameter("Latitude of 1st standard parallel", -18, units.degree()),
+            new Parameter("Latitude of 2nd standard parallel", -36, units.degree()),
+            new Parameter("Easting at false origin", 0, units.metre()),
+            new Parameter("Northing at false origin", 0, units.metre()));
         verifyConversion();
     }
 }

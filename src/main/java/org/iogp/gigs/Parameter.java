@@ -66,7 +66,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 1.0
  * @since   1.0
  */
-final class SimpleParameter {
+public class Parameter {
     /**
      * The parameter name.
      *
@@ -96,7 +96,7 @@ final class SimpleParameter {
      * @param  name   the parameter name.
      * @param  value  the parameter value.
      */
-    SimpleParameter(final String name, final String value) {
+    public Parameter(final String name, final String value) {
         this.name  = name;
         this.value = value;
         this.unit  = null;
@@ -109,7 +109,7 @@ final class SimpleParameter {
      * @param  value  the parameter value.
      * @param  unit   the unit of measurement, or {@code null} if none.
      */
-    SimpleParameter(final String name, final double value, final Unit<?> unit) {
+    public Parameter(final String name, final double value, final Unit<?> unit) {
         this.name  = name;
         this.value = value;
         this.unit  = unit;
@@ -184,8 +184,8 @@ final class SimpleParameter {
      */
     @Override
     public boolean equals(final Object object) {
-        if (object instanceof SimpleParameter) {
-            final SimpleParameter other = (SimpleParameter) object;
+        if (object != null && object.getClass() == getClass()) {
+            final Parameter other = (Parameter) object;
             return name .equals(other.name)  &&
                    value.equals(other.value) &&
                    Objects.equals(unit, other.unit);

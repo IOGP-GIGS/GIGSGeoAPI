@@ -102,7 +102,7 @@ public class Test3208 extends Series3000<Transformation> {
      * The parameters defining the transformation to create.
      * This field is set by all test methods before to create and verify the {@link Transformation} instance.
      */
-    private SimpleParameter[] parameters;
+    public Parameter[] parameters;
 
     /**
      * Whether the transformation may need the semi-axis length of source and target ellipsoids.
@@ -285,7 +285,7 @@ public class Test3208 extends Series3000<Transformation> {
      * @param  definition  all parameter values defining the operation.
      */
     @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
-    private void createParameters(final String method, final SimpleParameter... definition) {
+    private void createParameters(final String method, final Parameter... definition) {
         methodName = method;
         parameters = definition;
         properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
@@ -318,7 +318,7 @@ public class Test3208 extends Series3000<Transformation> {
                 unsupportedCode(OperationMethod.class, methodName, e);
                 throw e;
             }
-            for (final SimpleParameter p : parameters) {
+            for (final Parameter p : parameters) {
                 p.setValueInto(definition);
             }
             if (needEllipsoidAxisLengths) try {
@@ -384,7 +384,7 @@ public class Test3208 extends Series3000<Transformation> {
             verifyIdentification(transformation.getMethod(), methodName, null);
             final ParameterValueGroup definition = transformation.getParameterValues();
             assertNotNull(definition, "Transformation.getParameterValues()");
-            for (final SimpleParameter p : parameters) {
+            for (final Parameter p : parameters) {
                 p.verify(definition);
             }
         }
@@ -418,9 +418,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(4326, Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", 0, units.metre()),
-            new SimpleParameter("Y-axis translation", 0, units.metre()),
-            new SimpleParameter("Z-axis translation", 0, units.metre()));
+            new Parameter("X-axis translation", 0, units.metre()),
+            new Parameter("Y-axis translation", 0, units.metre()),
+            new Parameter("Z-axis translation", 0, units.metre()));
         verifyTransformation();
     }
 
@@ -451,9 +451,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", 371, units.metre()),
-            new SimpleParameter("Y-axis translation", -112, units.metre()),
-            new SimpleParameter("Z-axis translation", 434, units.metre()));
+            new Parameter("X-axis translation", 371, units.metre()),
+            new Parameter("Y-axis translation", -112, units.metre()),
+            new Parameter("Z-axis translation", 434, units.metre()));
         verifyTransformation();
     }
 
@@ -488,13 +488,13 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Position Vector transformation (geog2D domain)",
-            new SimpleParameter("X-axis translation", 446.448, units.metre()),
-            new SimpleParameter("Y-axis translation", -125.157, units.metre()),
-            new SimpleParameter("Z-axis translation", 542.06, units.metre()),
-            new SimpleParameter("X-axis rotation", 0.15, units.arcSecond()),
-            new SimpleParameter("Y-axis rotation", 0.247, units.arcSecond()),
-            new SimpleParameter("Z-axis rotation", 0.842, units.arcSecond()),
-            new SimpleParameter("Scale difference", -20.489, units.ppm()));
+            new Parameter("X-axis translation", 446.448, units.metre()),
+            new Parameter("Y-axis translation", -125.157, units.metre()),
+            new Parameter("Z-axis translation", 542.06, units.metre()),
+            new Parameter("X-axis rotation", 0.15, units.arcSecond()),
+            new Parameter("Y-axis rotation", 0.247, units.arcSecond()),
+            new Parameter("Z-axis rotation", 0.842, units.arcSecond()),
+            new Parameter("Scale difference", -20.489, units.ppm()));
         verifyTransformation();
     }
 
@@ -526,9 +526,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", 593, units.metre()),
-            new SimpleParameter("Y-axis translation", 26, units.metre()),
-            new SimpleParameter("Z-axis translation", 479, units.metre()));
+            new Parameter("X-axis translation", 593, units.metre()),
+            new Parameter("Y-axis translation", 26, units.metre()),
+            new Parameter("Z-axis translation", 479, units.metre()));
         verifyTransformation();
     }
 
@@ -563,13 +563,13 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Coordinate Frame rotation (geog2D domain)",
-            new SimpleParameter("X-axis translation", 565.2369, units.metre()),
-            new SimpleParameter("Y-axis translation", 50.0087, units.metre()),
-            new SimpleParameter("Z-axis translation", 465.658, units.metre()),
-            new SimpleParameter("X-axis rotation", 1.9725, units.microradian()),
-            new SimpleParameter("Y-axis rotation", -1.7004, units.microradian()),
-            new SimpleParameter("Z-axis rotation", 9.0677, units.microradian()),
-            new SimpleParameter("Scale difference", 4.0812, units.ppm()));
+            new Parameter("X-axis translation", 565.2369, units.metre()),
+            new Parameter("Y-axis translation", 50.0087, units.metre()),
+            new Parameter("Z-axis translation", 465.658, units.metre()),
+            new Parameter("X-axis rotation", 1.9725, units.microradian()),
+            new Parameter("Y-axis rotation", -1.7004, units.microradian()),
+            new Parameter("Z-axis rotation", 9.0677, units.microradian()),
+            new Parameter("Scale difference", 4.0812, units.ppm()));
         verifyTransformation();
     }
 
@@ -609,16 +609,16 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Molodensky-Badekas (PV geog2D domain)",
-            new SimpleParameter("X-axis translation", 593.0297, units.metre()),
-            new SimpleParameter("Y-axis translation", 26.0038, units.metre()),
-            new SimpleParameter("Z-axis translation", 478.7534, units.metre()),
-            new SimpleParameter("X-axis rotation", 0.4069, units.arcSecond()),
-            new SimpleParameter("Y-axis rotation", -0.3507, units.arcSecond()),
-            new SimpleParameter("Z-axis rotation", 1.8703, units.arcSecond()),
-            new SimpleParameter("Scale difference", 4.0812, units.ppm()),
-            new SimpleParameter("Ordinate 1 of evaluation point", 3903453.1482, units.metre()),
-            new SimpleParameter("Ordinate 2 of evaluation point", 368135.3134, units.metre()),
-            new SimpleParameter("Ordinate 3 of evaluation point", 5012970.3051, units.metre()));
+            new Parameter("X-axis translation", 593.0297, units.metre()),
+            new Parameter("Y-axis translation", 26.0038, units.metre()),
+            new Parameter("Z-axis translation", 478.7534, units.metre()),
+            new Parameter("X-axis rotation", 0.4069, units.arcSecond()),
+            new Parameter("Y-axis rotation", -0.3507, units.arcSecond()),
+            new Parameter("Z-axis rotation", 1.8703, units.arcSecond()),
+            new Parameter("Scale difference", 4.0812, units.ppm()),
+            new Parameter("Ordinate 1 of evaluation point", 3903453.1482, units.metre()),
+            new Parameter("Ordinate 2 of evaluation point", 368135.3134, units.metre()),
+            new Parameter("Ordinate 3 of evaluation point", 5012970.3051, units.metre()));
         verifyTransformation();
     }
 
@@ -646,7 +646,7 @@ public class Test3208 extends Series3000<Transformation> {
         createSourceCRS(Test3205::GIGS_64007);
         createTargetCRS(Test3205::GIGS_64014);
         createParameters("Longitude rotation",
-            new SimpleParameter("Longitude offset", 106.8077194, units.degree()));
+            new Parameter("Longitude offset", 106.8077194, units.degree()));
         verifyTransformation();
     }
 
@@ -677,9 +677,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", -125.8, units.metre()),
-            new SimpleParameter("Y-axis translation", 79.9, units.metre()),
-            new SimpleParameter("Z-axis translation", -100.5, units.metre()));
+            new Parameter("X-axis translation", -125.8, units.metre()),
+            new Parameter("Y-axis translation", 79.9, units.metre()),
+            new Parameter("Z-axis translation", -100.5, units.metre()));
         verifyTransformation();
     }
 
@@ -714,13 +714,13 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Coordinate Frame rotation (geog2D domain)",
-            new SimpleParameter("X-axis translation", -106.8686, units.metre()),
-            new SimpleParameter("Y-axis translation", 52.2978, units.metre()),
-            new SimpleParameter("Z-axis translation", -103.7239, units.metre()),
-            new SimpleParameter("X-axis rotation", -0.3366, units.arcSecond()),
-            new SimpleParameter("Y-axis rotation", 0.457, units.arcSecond()),
-            new SimpleParameter("Z-axis rotation", -1.8422, units.arcSecond()),
-            new SimpleParameter("Scale difference", -1.2747, units.ppm()));
+            new Parameter("X-axis translation", -106.8686, units.metre()),
+            new Parameter("Y-axis translation", 52.2978, units.metre()),
+            new Parameter("Z-axis translation", -103.7239, units.metre()),
+            new Parameter("X-axis rotation", -0.3366, units.arcSecond()),
+            new Parameter("Y-axis rotation", 0.457, units.arcSecond()),
+            new Parameter("Z-axis rotation", -1.8422, units.arcSecond()),
+            new Parameter("Scale difference", -1.2747, units.ppm()));
         verifyTransformation();
     }
 
@@ -751,9 +751,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", 0, units.metre()),
-            new SimpleParameter("Y-axis translation", 0, units.metre()),
-            new SimpleParameter("Z-axis translation", 0, units.metre()));
+            new Parameter("X-axis translation", 0, units.metre()),
+            new Parameter("Y-axis translation", 0, units.metre()),
+            new Parameter("Z-axis translation", 0, units.metre()));
         verifyTransformation();
     }
 
@@ -781,7 +781,7 @@ public class Test3208 extends Series3000<Transformation> {
         createSourceCRS(Test3205::GIGS_64011);
         createTargetCRS(Test3205::GIGS_64013);
         createParameters("Longitude rotation",
-            new SimpleParameter("Longitude offset", 2.5969213, units.grad()));
+            new Parameter("Longitude offset", 2.5969213, units.grad()));
         verifyTransformation();
     }
 
@@ -812,9 +812,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", -8, units.metre()),
-            new SimpleParameter("Y-axis translation", 160, units.metre()),
-            new SimpleParameter("Z-axis translation", 176, units.metre()));
+            new Parameter("X-axis translation", -8, units.metre()),
+            new Parameter("Y-axis translation", 160, units.metre()),
+            new Parameter("Z-axis translation", 176, units.metre()));
         verifyTransformation();
     }
 
@@ -845,8 +845,8 @@ public class Test3208 extends Series3000<Transformation> {
         createSourceCRS(Test3205::GIGS_64012);
         createTargetCRS(Test3205::GIGS_64003);
         createParameters("NADCON",
-            new SimpleParameter("Latitude difference file", "n_slope.las"),
-            new SimpleParameter("Longitude difference file", "n_slope.los"));
+            new Parameter("Latitude difference file", "n_slope.las"),
+            new Parameter("Longitude difference file", "n_slope.los"));
         verifyTransformation();
     }
 
@@ -876,7 +876,7 @@ public class Test3208 extends Series3000<Transformation> {
         createSourceCRS(Test3205::GIGS_64012);
         createTargetCRS(Test3205::GIGS_64003);
         createParameters("NTv2",
-            new SimpleParameter("Latitude and longitude difference file", "QUE27-98.gsb"));
+            new Parameter("Latitude and longitude difference file", "QUE27-98.gsb"));
         verifyTransformation();
     }
 
@@ -907,9 +907,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", 52.17, units.metre()),
-            new SimpleParameter("Y-axis translation", -71.82, units.metre()),
-            new SimpleParameter("Z-axis translation", -14.9, units.metre()));
+            new Parameter("X-axis translation", 52.17, units.metre()),
+            new Parameter("Y-axis translation", -71.82, units.metre()),
+            new Parameter("Z-axis translation", -14.9, units.metre()));
         verifyTransformation();
     }
 
@@ -944,9 +944,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", -377, units.metre()),
-            new SimpleParameter("Y-axis translation", 681, units.metre()),
-            new SimpleParameter("Z-axis translation", -50, units.metre()));
+            new Parameter("X-axis translation", -377, units.metre()),
+            new Parameter("Y-axis translation", 681, units.metre()),
+            new Parameter("Z-axis translation", -50, units.metre()));
         verifyTransformation();
     }
 
@@ -977,9 +977,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", -84, units.metre()),
-            new SimpleParameter("Y-axis translation", -97, units.metre()),
-            new SimpleParameter("Z-axis translation", -117, units.metre()));
+            new Parameter("X-axis translation", -84, units.metre()),
+            new Parameter("Y-axis translation", -97, units.metre()),
+            new Parameter("Z-axis translation", -117, units.metre()));
         verifyTransformation();
     }
 
@@ -1010,9 +1010,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", -168, units.metre()),
-            new SimpleParameter("Y-axis translation", -60, units.metre()),
-            new SimpleParameter("Z-axis translation", 320, units.metre()));
+            new Parameter("X-axis translation", -168, units.metre()),
+            new Parameter("Y-axis translation", -60, units.metre()),
+            new Parameter("Z-axis translation", 320, units.metre()));
         verifyTransformation();
     }
 
@@ -1043,9 +1043,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", -127.8, units.metre()),
-            new SimpleParameter("Y-axis translation", -52.3, units.metre()),
-            new SimpleParameter("Z-axis translation", 152.9, units.metre()));
+            new Parameter("X-axis translation", -127.8, units.metre()),
+            new Parameter("Y-axis translation", -52.3, units.metre()),
+            new Parameter("Z-axis translation", 152.9, units.metre()));
         verifyTransformation();
     }
 
@@ -1076,9 +1076,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", 28, units.metre()),
-            new SimpleParameter("Y-axis translation", -130, units.metre()),
-            new SimpleParameter("Z-axis translation", -95, units.metre()));
+            new Parameter("X-axis translation", 28, units.metre()),
+            new Parameter("Y-axis translation", -130, units.metre()),
+            new Parameter("Z-axis translation", -95, units.metre()));
         verifyTransformation();
     }
 
@@ -1109,9 +1109,9 @@ public class Test3208 extends Series3000<Transformation> {
         createTargetCRS(Test3205::GIGS_64003);
         needEllipsoidAxisLengths = true;
         createParameters("Geocentric translations (geog2D domain)",
-            new SimpleParameter("X-axis translation", 0, units.metre()),
-            new SimpleParameter("Y-axis translation", 0, units.metre()),
-            new SimpleParameter("Z-axis translation", 0, units.metre()));
+            new Parameter("X-axis translation", 0, units.metre()),
+            new Parameter("Y-axis translation", 0, units.metre()),
+            new Parameter("Z-axis translation", 0, units.metre()));
         verifyTransformation();
     }
 }

@@ -97,7 +97,7 @@ public class Test3211 extends Series3000<Transformation> {
      * The parameters defining the transformation to create.
      * This field is set by all test methods before to create and verify the {@link Transformation} instance.
      */
-    private SimpleParameter[] parameters;
+    public Parameter[] parameters;
 
     /**
      * The coordinate transformation created by the factory,
@@ -262,7 +262,7 @@ public class Test3211 extends Series3000<Transformation> {
      * @param  definition  all parameter values defining the operation.
      */
     @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
-    private void createParameters(final String method, final SimpleParameter... definition) {
+    private void createParameters(final String method, final Parameter... definition) {
         methodName = method;
         parameters = definition;
         properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
@@ -295,7 +295,7 @@ public class Test3211 extends Series3000<Transformation> {
                 unsupportedCode(OperationMethod.class, methodName, e);
                 throw e;
             }
-            for (final SimpleParameter p : parameters) {
+            for (final Parameter p : parameters) {
                 p.setValueInto(definition);
             }
             validators.validate(definition);
@@ -337,7 +337,7 @@ public class Test3211 extends Series3000<Transformation> {
             verifyIdentification(transformation.getMethod(), methodName, null);
             final ParameterValueGroup definition = transformation.getParameterValues();
             assertNotNull(definition, "Transformation.getParameterValues()");
-            for (final SimpleParameter p : parameters) {
+            for (final Parameter p : parameters) {
                 p.verify(definition);
             }
         }
@@ -372,11 +372,11 @@ public class Test3211 extends Series3000<Transformation> {
         createSourceCRS(Test3210::GIGS_64501);
         createTargetCRS(Test3210::GIGS_64505);
         createParameters("Vertical Offset and Slope",
-            new SimpleParameter("Ordinate 1 of evaluation point", 52, units.degree()),
-            new SimpleParameter("Ordinate 2 of evaluation point", 3, units.degree()),
-            new SimpleParameter("Vertical offset", -0.486, units.metre()),
-            new SimpleParameter("Inclination in latitude", -0.003, units.arcSecond()),
-            new SimpleParameter("Inclination in longitude", 0.006, units.arcSecond()));
+            new Parameter("Ordinate 1 of evaluation point", 52, units.degree()),
+            new Parameter("Ordinate 2 of evaluation point", 3, units.degree()),
+            new Parameter("Vertical offset", -0.486, units.metre()),
+            new Parameter("Inclination in latitude", -0.003, units.arcSecond()),
+            new Parameter("Inclination in longitude", 0.006, units.arcSecond()));
         verifyTransformation();
     }
 
@@ -403,7 +403,7 @@ public class Test3211 extends Series3000<Transformation> {
         createSourceCRS(Test3210::GIGS_64506);
         createTargetCRS(Test3210::GIGS_64508);
         createParameters("Vertical Offset",
-            new SimpleParameter("Vertical offset", -28, units.metre()));
+            new Parameter("Vertical offset", -28, units.metre()));
         verifyTransformation();
     }
 
@@ -432,7 +432,7 @@ public class Test3211 extends Series3000<Transformation> {
         createSourceCRS(Test3210::GIGS_64506);
         createTargetCRS(Test3210::GIGS_64507);
         createParameters("Vertical Offset",
-            new SimpleParameter("Vertical offset", 28, units.metre()));
+            new Parameter("Vertical offset", 28, units.metre()));
         verifyTransformation();
     }
 
@@ -460,7 +460,7 @@ public class Test3211 extends Series3000<Transformation> {
         createSourceCRS(Test3210::GIGS_64506);
         createTargetCRS(5715);
         createParameters("Vertical Offset",
-            new SimpleParameter("Vertical offset", 0, units.metre()));
+            new Parameter("Vertical offset", 0, units.metre()));
         verifyTransformation();
     }
 
@@ -487,7 +487,7 @@ public class Test3211 extends Series3000<Transformation> {
         createSourceCRS(Test3210::GIGS_64505);
         createTargetCRS(Test3210::GIGS_64501);
         createParameters("Vertical Offset",
-            new SimpleParameter("Vertical offset", 0.4, units.metre()));
+            new Parameter("Vertical offset", 0.4, units.metre()));
         verifyTransformation();
     }
 
@@ -516,7 +516,7 @@ public class Test3211 extends Series3000<Transformation> {
         createSourceCRS(Test3210::GIGS_64505);
         createTargetCRS(Test3210::GIGS_64508);
         createParameters("Vertical Offset",
-            new SimpleParameter("Vertical offset", -28, units.metre()));
+            new Parameter("Vertical offset", -28, units.metre()));
         verifyTransformation();
     }
 
@@ -543,7 +543,7 @@ public class Test3211 extends Series3000<Transformation> {
         createSourceCRS(Test3210::GIGS_64505);
         createTargetCRS(Test3210::GIGS_64507);
         createParameters("Vertical Offset",
-            new SimpleParameter("Vertical offset", 28, units.metre()));
+            new Parameter("Vertical offset", 28, units.metre()));
         verifyTransformation();
     }
 
@@ -571,7 +571,7 @@ public class Test3211 extends Series3000<Transformation> {
         createSourceCRS(Test3210::GIGS_64505);
         createTargetCRS(5714);
         createParameters("Vertical Offset",
-            new SimpleParameter("Vertical offset", 0, units.metre()));
+            new Parameter("Vertical offset", 0, units.metre()));
         verifyTransformation();
     }
 }

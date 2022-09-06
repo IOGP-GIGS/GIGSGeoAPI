@@ -781,7 +781,7 @@ public abstract class TestMethodGenerator {
         for (final Parameter parameter : parameters) {
             out.append(",\n");
             indent(3);
-            out.append("new SimpleParameter(\"").append(parameter.name).append("\", ");
+            out.append("new Parameter(\"").append(parameter.name).append("\", ");
             if (Double.isNaN(parameter.value)) {
                 out.append('"').append(parameter.valueAsString).append('"');
             } else {
