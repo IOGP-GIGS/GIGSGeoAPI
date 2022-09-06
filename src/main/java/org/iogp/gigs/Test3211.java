@@ -323,11 +323,13 @@ public class Test3211 extends Series3000<Transformation> {
 
         sourceCRSTest.copyConfigurationFrom(this);
         sourceCRSTest.setIdentifiedObject(sourceCRS);
-//TODO  sourceCRSTest.verifyVerticalCRS();
+        sourceCRSTest.verifyVerticalCRS();
 
-        targetCRSTest.copyConfigurationFrom(this);
-        targetCRSTest.setIdentifiedObject(targetCRS);
-//TODO  targetCRSTest.verifyVerticalCRS();
+        if (targetCRSTest.isInitialized()) {
+            targetCRSTest.copyConfigurationFrom(this);
+            targetCRSTest.setIdentifiedObject(targetCRS);
+            targetCRSTest.verifyVerticalCRS();
+        }
         /*
          * Verifies that the parameter values provided by the implementation are equal to the expected values.
          * If the actual group contains more parameters than expected, the extra parameters are ignored.

@@ -248,7 +248,7 @@ public class Test3210 extends Series3000<VerticalCRS> {
 
             datumTest.copyConfigurationFrom(this);
             datumTest.setIdentifiedObject(datum);
-//TODO      datumTest.verifyVerticalDatum();
+            datumTest.verifyVerticalDatum();
         }
     }
 

@@ -249,11 +249,11 @@ public class Test3212 extends Series3000<ConcatenatedOperation> {
 
         step1TransformationTest.copyConfigurationFrom(this);
         step1TransformationTest.setIdentifiedObject(step1Transformation);
-//TODO  step1TransformationTest.verifyTransformation();
+        step1TransformationTest.verifyTransformation();
 
         step2TransformationTest.copyConfigurationFrom(this);
         step2TransformationTest.setIdentifiedObject(step2Transformation);
-//TODO  step2TransformationTest.verifyTransformation();
+        step2TransformationTest.verifyTransformation();
     }
 
     /**
@@ -299,6 +299,28 @@ public class Test3212 extends Series3000<ConcatenatedOperation> {
         setCodeAndName(68094, "GIGS_68094");
         createStep1Transformation(Test3208::GIGS_61763);
         createStep2Transformation(Test3208::GIGS_61193);
+        verifyTransformation();
+    }
+
+    /**
+     * Tests “GIGS_68178”  transformation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS transformation code: <b>68178</b></li>
+     *   <li>Step 1 GIGS Transform Code: <b>61759</b></li>
+     *   <li>Step 1 GIGS Transform Name: <b>GIGS D to L (1)</b></li>
+     *   <li>Step 2 GIGS Transform Code: <b>61123</b></li>
+     *   <li>Step 2 GIGS Transform Name: <b>GIGS L to A (1)</b></li>
+     * </ul>
+     *
+     * @throws FactoryException if an error occurred while creating the transformation from the properties.
+     */
+    @Test
+    @DisplayName("GIGS_68178")
+    public void GIGS_68178() throws FactoryException {
+        setCodeAndName(68178, "GIGS_68178");
+        createStep1Transformation(Test3208::GIGS_61759);
+        createStep2Transformation(Test3208::GIGS_61123);
         verifyTransformation();
     }
 }
