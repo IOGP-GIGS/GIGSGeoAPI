@@ -140,6 +140,7 @@ public class Test3209 extends Series3000<VerticalDatum> {
     @Override
     public VerticalDatum getIdentifiedObject() throws FactoryException {
         if (datum == null) {
+            assumeNotNull(datumFactory);
             datum = datumFactory.createVerticalDatum(properties, datumType);
         }
         return datum;

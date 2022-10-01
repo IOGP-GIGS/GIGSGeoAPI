@@ -3,7 +3,7 @@ Repository for integrating GIGS reference data with OGC GeoAPI.
 This repository provides an executable form of [Geospatial Integrity of Geoscience Software](https://gigs.iogp.org/) (GIGS) tests.
 GIGS tests are published by the [International Association of Oil & Gas Producers](https://www.iogp.org) (IOGP) Geomatics Committee.
 This module makes those tests available in a form that can be executed by various implementations,
-through the [OGC GeoAPI 3.0.1](https://www.geoapi.org/) standard interfaces.
+through the [OGC GeoAPI 3.0.2](https://www.geoapi.org/) standard interfaces.
 
 ## Documentation
 * [Online javadoc](https://iogp-gigs.github.io/GIGSGeoAPI/).
@@ -16,8 +16,8 @@ through the [OGC GeoAPI 3.0.1](https://www.geoapi.org/) standard interfaces.
 ## Programming languages
 The tests are implemented in the Java programming language but are executable in the following languages:
 
-* Any Java library implementing OGC GeoAPI 3.0.1 interfaces.
-* Any C/C++ library providing Java Native Interface (JNI) bridge to GeoAPI 3.0.1.
+* Any Java library implementing OGC GeoAPI 3.0.2 interfaces.
+* Any C/C++ library providing Java Native Interface (JNI) bridge to GeoAPI 3.0.2.
 * Python library through the GeoAPI-Python bridge _(experimental in GeoAPI 4 branch)_.
 
 ### Implementations

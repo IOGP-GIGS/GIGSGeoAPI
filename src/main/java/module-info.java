@@ -33,4 +33,32 @@
  * @version 1.0
  * @since   1.0
  */
-package org.iogp.gigs;
+module GIGSTests {
+    /*
+     * Modules needed by GIGS for its internal, but not exposed to users.
+     */
+    requires java.prefs;
+    requires java.logging;
+    requires java.desktop;
+    requires org.junit.platform.engine;
+    requires org.junit.platform.launcher;
+    /*
+     * API that users of GIGS tests will need to handle,
+     * both from external projects and defined by GIGS.
+     */
+    requires transitive org.junit.jupiter.api;
+    requires transitive org.opengis.geoapi;
+    exports org.iogp.gigs.runner;
+    exports org.iogp.gigs;
+    opens   org.iogp.gigs;          // Grants reflective access (needed by JUnit).
+    /*
+     * Services providers defined by implementations to test.
+     */
+    uses org.opengis.referencing.datum.DatumFactory;
+    uses org.opengis.referencing.datum.DatumAuthorityFactory;
+    uses org.opengis.referencing.cs.CSFactory;
+    uses org.opengis.referencing.cs.CSAuthorityFactory;
+    uses org.opengis.referencing.crs.CRSFactory;
+    uses org.opengis.referencing.crs.CRSAuthorityFactory;
+    uses org.opengis.referencing.operation.CoordinateOperationFactory;
+}

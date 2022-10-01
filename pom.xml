@@ -12,7 +12,7 @@
   <!-- url>TBD</url -->
   <description>
     Implementation of Geospatial Integrity of Geoscience Software (GIGS) tests.
-    The tests can be executed on any software library implementing OGC GeoAPI 3.0.1 interfaces.
+    The tests can be executed on any software library implementing OGC GeoAPI 3.0.2 interfaces.
   </description>
 
   <organization>
@@ -65,7 +65,7 @@
     <dependency>
       <groupId>org.opengis</groupId>
       <artifactId>geoapi</artifactId>
-      <version>3.0.1</version>
+      <version>3.0.2</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -80,7 +80,7 @@
     <dependency>
       <groupId>tech.uom</groupId>
       <artifactId>seshat</artifactId>
-      <version>1.1</version>
+      <version>1.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -203,4 +203,11 @@
       </plugin>
     </plugins>
   </build>
+  <repositories>
+    <repository>
+      <id>geoapi.staging</id>
+      <name>GeoAPI staging repository</name>
+      <url>https://oss.sonatype.org/content/repositories/orgopengis-1200/</url>
+    </repository>
+  </repositories>
 </project>
