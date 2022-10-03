@@ -87,7 +87,7 @@ public abstract class Series2000<T> extends IntegrityTest {
     protected boolean isStandardIdentifierSupported;
 
     /**
-     * {@code true} if the tested factories support {@linkplain IdentifiedObject#getName() name}.
+     * {@code true} if the tested factories support standard {@linkplain IdentifiedObject#getName() names}.
      * If {@code true} (the default), then the test methods will ensure that the identified objects
      * created by the factories declare the same name than the GIGS tests.
      * If {@code false}, then the names are ignored.
@@ -166,7 +166,7 @@ public abstract class Series2000<T> extends IntegrityTest {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
@@ -364,7 +364,7 @@ public abstract class Series2000<T> extends IntegrityTest {
             }
             final String actual = getVerifiableName(object);
             int length = expected.length();
-            if (full) length = Math.max(length, actual.length());
+            if (full) length = StrictMath.max(length, actual.length());
             if (actual == null || !actual.regionMatches(true, 0, expected, 0, length)) {
                 assertEquals(expected, getName(object), message + ".getName()");
             }
@@ -387,10 +387,10 @@ public abstract class Series2000<T> extends IntegrityTest {
             if (previous != Configuration.Key.isDependencyIdentificationSupported) {
                 configurationTip = Configuration.Key.isStandardAliasSupported;
             }
-            final Collection<GenericName> aliases = object.getAlias();
-            assertNotNull(aliases, () -> message + ".getAlias()");
+            final Collection<GenericName> actual = object.getAlias();
+            assertNotNull(actual, () -> message + ".getAlias()");
 next:       for (final String search : expected) {
-                for (final GenericName alias : aliases) {
+                for (final GenericName alias : actual) {
                     final String tip = alias.tip().toString();
                     if (search.equalsIgnoreCase(toASCII(tip))) {
                         continue next;

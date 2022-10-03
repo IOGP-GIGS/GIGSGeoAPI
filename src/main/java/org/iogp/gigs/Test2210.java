@@ -112,7 +112,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
@@ -149,8 +149,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
             try {
                 crs = crsAuthorityFactory.createVerticalCRS(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(VerticalCRS.class, code);
-                throw e;
+                unsupportedCode(VerticalCRS.class, code, e);
             }
         }
         return crs;
@@ -174,6 +173,7 @@ public class Test2210 extends Series2000<VerticalCRS> {
      * @throws FactoryException if an error occurred while creating the vertical CRS.
      */
     private void verifyVerticalCRS() throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final VerticalCRS crs = getIdentifiedObject();
         assertNotNull(crs, "VerticalCRS");
         validators.validate(crs);

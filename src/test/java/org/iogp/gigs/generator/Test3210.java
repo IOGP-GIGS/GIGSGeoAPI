@@ -30,7 +30,7 @@ import java.util.OptionalInt;
 
 /**
  * Code generator for {@link org.iogp.gigs.Test3210}. This generator needs to be executed only if the GIGS data changed.
- * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the test class,
+ * The code is sent to the standard output; maintainers need to copy-and-paste the relevant methods to the test class,
  * but be aware that the original code may contain manual changes that need to be preserved.
  *
  * @author  Michael Arneson (INT)
@@ -107,11 +107,9 @@ public final class Test3210 extends TestMethodGenerator {
              */
             printTestMethodSignature(GIGS, code, name);
             printCallToSetCodeAndName(code, name);
-
             indent(2); out.append("createDatum(Test3209::GIGS_").append(datumCode).append(");\n");
-
-            printAxis("axis", axisName, axisAbbreviation, axisOrientation, axisUnit);
-            indent(2); out.append("createVerticalCS(").append(csCode).append(", axis);\n");
+            indent(2); out.append("createVerticalCS(").append(csCode).append(");\n");
+            printVerifyAxis(-1, axisName, axisAbbreviation, axisOrientation, axisUnit);
             indent(2); out.append("verifyVerticalCRS();\n");
             indent(1); out.append('}');
             saveTestMethod();

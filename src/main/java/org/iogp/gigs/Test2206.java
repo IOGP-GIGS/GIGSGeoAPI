@@ -114,7 +114,7 @@ public class Test2206 extends Series2000<Conversion> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
@@ -158,7 +158,7 @@ public class Test2206 extends Series2000<Conversion> {
                  * will typically use MathTransformFactory under the hood, which throws NoSuchIdentifierException for
                  * non-implemented operation methods (may be identified by their name rather than EPSG code).
                  */
-                unsupportedCode(Conversion.class, code);
+                unsupportedCode(Conversion.class, code, e);
                 throw e;
             }
             if (operation != null) {            // For consistency with the behavior in other classes.
@@ -179,6 +179,7 @@ public class Test2206 extends Series2000<Conversion> {
         this.code = code;
         conversion = null;              // For forcing the fetch of a new operation.
 
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Conversion conversion = getIdentifiedObject();
         assertNotNull(conversion, "Conversion");
         validators.validate(conversion);
@@ -205,6 +206,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("3-degree Gauss-Kruger")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void various3DegreeGaussKruger() throws FactoryException {
         name       = "3-degree Gauss-Kruger";
         methodName = "Transverse Mercator";
@@ -695,6 +697,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("6-degree Gauss-Kruger")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void various6DegreeGaussKruger() throws FactoryException {
         name       = "6-degree Gauss-Kruger";
         methodName = "Transverse Mercator";
@@ -3687,6 +3690,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("Libya")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void variousLibya() throws FactoryException {
         name       = "Libya";
         methodName = "Transverse Mercator";
@@ -3709,6 +3713,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("Libya TM")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void variousLibyaTM() throws FactoryException {
         name       = "Libya TM";
         methodName = "Transverse Mercator";
@@ -4176,6 +4181,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("Philippines")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void variousPhilippines() throws FactoryException {
         name       = "Philippines";
         methodName = "Transverse Mercator";
@@ -5619,6 +5625,7 @@ public class Test2206 extends Series2000<Conversion> {
      */
     @Test
     @DisplayName("UTM")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void variousUTM() throws FactoryException {
         name       = "UTM";
         methodName = "Transverse Mercator";

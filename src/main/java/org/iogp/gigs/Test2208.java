@@ -121,7 +121,7 @@ public class Test2208 extends Series2000<Transformation> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
@@ -167,7 +167,7 @@ public class Test2208 extends Series2000<Transformation> {
                  * will typically use MathTransformFactory under the hood, which throws NoSuchIdentifierException for
                  * non-implemented operation methods (may be identified by their name rather than EPSG code).
                  */
-                unsupportedCode(Transformation.class, code);
+                unsupportedCode(Transformation.class, code, e);
                 throw e;
             }
             if (operation != null) {                        // For consistency with the behavior in other classes.
@@ -184,6 +184,7 @@ public class Test2208 extends Series2000<Transformation> {
      * @throws FactoryException if an error occurred while creating the transformation.
      */
     private void verifyTransformation() throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Transformation transformation = getIdentifiedObject();
         assertNotNull(transformation, "Transformation");
         validators.validate(transformation);

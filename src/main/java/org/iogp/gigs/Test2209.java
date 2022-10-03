@@ -103,7 +103,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
@@ -140,8 +140,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
             try {
                 datum = datumAuthorityFactory.createVerticalDatum(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(VerticalDatum.class, code);
-                throw e;
+                unsupportedCode(VerticalDatum.class, code, e);
             }
         }
         return datum;
@@ -164,6 +163,7 @@ public class Test2209 extends Series2000<VerticalDatum> {
      * @throws FactoryException if an error occurred while creating the vertical datum instance.
      */
     private void verifyVerticalDatum() throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final VerticalDatum datum = getIdentifiedObject();
         assertNotNull(datum, "VerticalDatum");
         validators.validate(datum);

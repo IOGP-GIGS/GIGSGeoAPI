@@ -116,7 +116,7 @@ enum SexagesimalUnit {
      * @return the decimal value.
      */
     double toDecimalDegrees(final double value) {
-        if (value == Math.rint(value)) {
+        if (value == StrictMath.rint(value)) {
             return value;
         } else {
             throw new IllegalArgumentException("Sexagesimal value without corresponding decimal value: " + value);

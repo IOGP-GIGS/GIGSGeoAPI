@@ -25,16 +25,16 @@
 package org.iogp.gigs;
 
 import java.util.Random;
-import javax.measure.IncommensurableException;
 import javax.measure.Unit;
 import javax.measure.UnitConverter;
+import javax.measure.IncommensurableException;
+import org.opengis.util.FactoryException;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.referencing.cs.CSAuthorityFactory;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.geoapi.Units;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
-import org.opengis.referencing.cs.CSAuthorityFactory;
-import org.opengis.util.FactoryException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -136,7 +136,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
@@ -172,8 +172,7 @@ public class Test2201 extends Series2000<Unit<?>> {
             try {
                 unit = csAuthorityFactory.createUnit(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(Unit.class, code);
-                throw e;
+                unsupportedCode(Unit.class, code, e);
             }
         }
         return unit;
@@ -187,6 +186,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
     private UnitConverter createConverter() throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Unit<?> unit = getIdentifiedObject();
         assertNotNull(unit, "Unit");
         try {

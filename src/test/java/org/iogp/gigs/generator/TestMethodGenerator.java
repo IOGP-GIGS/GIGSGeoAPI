@@ -44,7 +44,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Base class of test code generators. Those generators need to be executed only if the GIGS data changed.
- * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the
+ * The code is sent to the standard output; maintainers need to copy-and-paste the relevant methods to the
  * test class, but be aware that the original code may contain manual changes that need to be preserved.
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -283,7 +283,7 @@ public abstract class TestMethodGenerator {
      * @param  value  the value to append.
      */
     private void append(final double value) {
-        final long asInteger = Math.round(value);
+        final long asInteger = StrictMath.round(value);
         if (asInteger == value) {
             out.append(asInteger);
         } else {
@@ -433,17 +433,6 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Prints the first lines for the table of parameters in Javadoc.
-     *
-     * @param  caption  the table caption (e.g. "Conversion parameters").
-     */
-    final void printJavadocParameterHeader(final String caption) {
-        indent(1); out.append(" * <table class=\"gigs\">\n");
-        indent(1); out.append(" *   <caption>").append(caption).append("</caption>\n");
-        indent(1); out.append(" *   <tr><th>Parameter name</th><th>Value</th></tr>\n");
-    }
-
-    /**
      * Prints an axis name, abbreviation, orientation and units in Javadoc.
      *
      * @param  name          the axis name.
@@ -451,7 +440,7 @@ public abstract class TestMethodGenerator {
      * @param  orientation   the axis orientation.
      * @param  unit          unit of measurement associated to the axis.
      *
-     * @see #printParameterString(String, double, String, double)
+     * @see #printParameterDefinitions(Parameters...)
      */
     final void printJavadocAxisRow(final String name, final String abbreviation, final String orientation, final String unit) {
         indent(1);
@@ -463,43 +452,52 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Prints a parameter name, value and units in Javadoc.
+     * Prints parameter names, values and units in Javadoc.
      *
-     * @param  name     the parameter name.
-     * @param  value    value to assign to the parameter, or {@link Double#NaN} if none.
-     * @param  unit     unit of measurement associated to the value.
-     * @param  degrees  the value in decimal degrees, or {@link Double#NaN} if none or not applicable.
+     * @param  caption  the table caption (e.g. "Conversion parameters").
+     * @param  parameters  the parameters to print.
      *
-     * @see #printParameterString(String, double, String, double)
+     * @see #printParameterDefinitions(Parameters[])
      */
-    final void printJavadocParameterRow(final String name, final double value, final String unit, final double degrees) {
-        if (!Double.isNaN(value)) {
+    final void printJavadocParameters(final String caption, final Parameter[] parameters) {
+        indent(1); out.append(" * <table class=\"gigs\">\n");
+        indent(1); out.append(" *   <caption>").append(caption).append("</caption>\n");
+        indent(1); out.append(" *   <tr><th>Parameter name</th><th>Value</th></tr>\n");
+        for (final Parameter parameter : parameters) {
             indent(1);
-            out.append(" *   <tr><td>").append(name).append("</td><td>");
-            if (unit == null || unit.equals("unity")) {
-                append(value);
-            } else if (unit.equals("degree")) {
-                append(value);
-                out.append('°');
+            out.append(" *   <tr><td>").append(parameter.name).append("</td><td>");
+            final double value = parameter.value;
+            if (Double.isNaN(value)) {
+                out.append(parameter.valueAsString);
             } else {
-                final SexagesimalUnit su = SexagesimalUnit.parse(unit);
-                if (su != null) {
-                    su.format(value, out);
-                } else {
+                final String unit = parameter.unit;
+                if (unit == null || unit.equals("unity")) {
                     append(value);
-                    out.append(' ').append(unit);
-                    if (Math.abs(value) > 1) {
-                        out.append('s');
+                } else if (unit.equals("degree")) {
+                    append(value);
+                    out.append('°');
+                } else {
+                    final SexagesimalUnit su = SexagesimalUnit.parse(unit);
+                    if (su != null) {
+                        su.format(value, out);
+                    } else {
+                        append(value);
+                        out.append(' ').append(unit);
+                        if (StrictMath.abs(value) > 1) {
+                            out.append('s');
+                        }
                     }
                 }
-            }
-            if (!Double.isNaN(degrees)) {
-                out.append(" (").append(degrees);
-                trimFractionalPart();
-                out.append("°)");
+                final double degrees = parameter.valueInDegrees;
+                if (!Double.isNaN(degrees)) {
+                    out.append(" (").append(degrees);
+                    trimFractionalPart();
+                    out.append("°)");
+                }
             }
             out.append("</td></tr>\n");
         }
+        printJavadocTableFooter();
     }
 
     /**
@@ -602,7 +600,7 @@ public abstract class TestMethodGenerator {
         assertTrue((pairs.length & 1) == 0, "Array length shall be even");
         int length = 0;
         for (int i=0; i<pairs.length; i += 2) {
-            length = Math.max(length, ((CharSequence) pairs[i]).length());
+            length = StrictMath.max(length, ((CharSequence) pairs[i]).length());
         }
         for (int i=0; i<pairs.length; i += 2) {
             final Object value = pairs[i+1];
@@ -661,34 +659,41 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Prints a statement like "{@code CoordinateSystemAxis axis1 = createCoordinateSystemAxis(…)}".
+     * Prints a "{@code verifyAxis(…)}" statement.
      *
-     * @param  variable      name of the variable.
-     * @param  name          axis name.
-     * @param  abbreviation  axis abbreviation.
-     * @param  orientation   axis orientation.
-     * @param  unit          axis units of measurement.
+     * @param  axisIndex     index of the axis to verify, or -1 if none.
+     * @param  name          expected axis name.
+     * @param  abbreviation  expected axis abbreviation.
+     * @param  orientation   expected axis orientation.
+     * @param  unit          expected axis units of measurement.
      */
-    final void printAxis(final String variable, final String name, final String abbreviation, final String orientation, final String unit) {
-        Unit<?> parsedUnit = parseUnit(unit);
+    final void printVerifyAxis(final int axisIndex, final String name, final String abbreviation,
+                               final String orientation, final String unit)
+    {
         indent(2);
-        out.append("CoordinateSystemAxis ").append(variable)
-           .append(" = createCoordinateSystemAxis(\"")
-           .append(name).append("\", \"")
-           .append(abbreviation).append("\", ")
-           .append("AxisDirection.").append(orientation.toUpperCase(Locale.US)).append(", ");
-        printProgrammaticName(parsedUnit);
+        out.append("verifyAxis(");
+        if (axisIndex >= 0) {
+            out.append(axisIndex).append(", ");
+        }
+        out.append('"').append(name).append("\", \"").append(abbreviation)
+           .append("\", AxisDirection.").append(orientation.toUpperCase(Locale.US)).append(", ");
+        printProgrammaticName(parseUnit(unit));
         out.append(");\n");
     }
 
     /**
      * Prints the programmatic name of the given unit.
      *
-     * @param unit  the unit for which to print the programmatic name.
+     * @param unit  the unit for which to print the programmatic name, or {@code null} if none.
      */
     final void printProgrammaticName(final Unit<?> unit) {
-        final String name = UNIT_NAMES.get(unit);
-        assertNotNull(unit.toString(), name);
+        final String name;
+        if (unit == null) {
+            name = "null";
+        } else {
+            name = UNIT_NAMES.get(unit);
+            assertNotNull(name, unit.toString());
+        }
         out.append(name);
     }
 
@@ -763,36 +768,43 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Prints the programmatic line that adds a parameter to a parameter group.
+     * Prints the programmatic lines that adds parameters to a parameter group.
      *
-     * @param  name     the parameter name.
-     * @param  value    the parameter value, or {@link Double#NaN} if none.
-     * @param  unit     the parameter unit of measurement.
-     * @param  degrees  the value in decimal degrees, or {@link Double#NaN} if none or not applicable.
+     * @param  methodName  the name of the operation method to create.
+     * @param  parameters  the parameters to print.
      *
-     * @see #printJavadocParameterRow(String, double, String, double)
+     * @see #printJavadocParameters(String, Parameters[])
      */
-    final void printParameterString(final String name, double value, final String unit, final double degrees) {
-        if (!Double.isNaN(value)) {
-            indent(2); out.append("definition.parameter(\"").append(name).append("\")");
-            Unit<?> parsedUnit;
-            if (!Double.isNaN(degrees)) {
-                value = degrees;
-                parsedUnit = units.degree();
+    final void printParameterDefinitions(final String methodName, final Parameter[] parameters) {
+        indent(2);
+        out.append("createParameters(\"").append(methodName).append('"');
+        for (final Parameter parameter : parameters) {
+            out.append(",\n");
+            indent(3);
+            out.append("new Parameter(\"").append(parameter.name).append("\", ");
+            if (Double.isNaN(parameter.value)) {
+                out.append('"').append(parameter.valueAsString).append('"');
             } else {
-                parsedUnit = parseUnit(unit);
-                if (parsedUnit == null) {
+                Unit<?> parsedUnit;
+                final String unit = parameter.unit;
+                double value = parameter.value;
+                final double degrees = parameter.valueInDegrees;
+                if (!Double.isNaN(degrees)) {
+                    value = degrees;
+                    parsedUnit = units.degree();
+                } else if (unit == null) {
+                    parsedUnit = null;
+                } else if ((parsedUnit = parseUnit(unit)) == null) {
                     value = SexagesimalUnit.parse(unit).toDecimalDegrees(value);
                     parsedUnit = units.degree();
                 }
-            }
-            out.append(".setValue(").append(value);
-            if (unit != null) {
+                append(value);
                 out.append(", ");
                 printProgrammaticName(parsedUnit);
             }
-            out.append(");\n");
+            out.append(')');
         }
+        out.append(");\n");
     }
 
     /**

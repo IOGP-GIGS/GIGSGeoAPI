@@ -30,7 +30,7 @@ import java.util.OptionalInt;
 
 /**
  * Code generator for {@link org.iogp.gigs.Test3209}. This generator needs to be executed only if the GIGS data changed.
- * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the test class,
+ * The code is sent to the standard output; maintainers need to copy-and-paste the relevant methods to the test class,
  * but be aware that the original code may contain manual changes that need to be preserved.
  *
  * @author  Michael Arneson (INT)
@@ -75,7 +75,6 @@ public final class Test3209 extends TestMethodGenerator {
             final OptionalInt codeEPSG = data.getIntOptional ( 3);
             final String      nameEPSG = data.getString      ( 4);
             final String      remarks  = data.getString      ( 5);
-
             /*
              * Write javadoc.
              */
@@ -90,13 +89,12 @@ public final class Test3209 extends TestMethodGenerator {
                                   "EPSG equivalence", codeAndName(codeEPSG, nameEPSG));
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the datum from the properties.");
-
             /*
              * Write test method.
              */
             printTestMethodSignature(GIGS, code, name);
             printCallToSetCodeAndName(code, name);
-            indent(2); out.append("properties.put(Datum.ANCHOR_POINT_KEY, \"").append(origin).append("\");\n");
+            indent(2); out.append("properties.put(VerticalDatum.ANCHOR_POINT_KEY, \"").append(origin).append("\");\n");
             indent(2); out.append("datumType = VerticalDatumType.GEOIDAL;\n");
             indent(2); out.append("verifyVerticalDatum();\n");
             indent(1); out.append('}');

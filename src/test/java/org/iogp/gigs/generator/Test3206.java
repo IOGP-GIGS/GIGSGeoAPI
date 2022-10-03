@@ -30,7 +30,7 @@ import java.util.OptionalInt;
 
 /**
  * Code generator for {@link org.iogp.gigs.Test3206}. This generator needs to be executed only if the GIGS data changed.
- * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the test class,
+ * The code is sent to the standard output; maintainers need to copy-and-paste the relevant methods to the test class,
  * but be aware that the original code may contain manual changes that need to be preserved.
  *
  * @author  Michael Arneson (INT)
@@ -95,37 +95,13 @@ public final class Test3206 extends TestMethodGenerator {
                 String .class);     // [30]: GIGS Remarks
 
         while (data.next()) {
-            final int    code                     = data.getInt         ( 0);
-            final String name                     = data.getString      ( 1);
-            final String conversionName           = data.getString      ( 2);
-            final String parameter1Name           = data.getString      ( 3);
-            final double parameter1Value          = data.getDouble      ( 4);
-            final String parameter1Unit           = data.getString      ( 5);
-            final double parameter1ValueInDegrees = data.getDouble      ( 6);
-            final String parameter2Name           = data.getString      ( 7);
-            final double parameter2Value          = data.getDouble      ( 8);
-            final String parameter2Unit           = data.getString      ( 9);
-            final double parameter2ValueInDegrees = data.getDouble      (10);
-            final String parameter3Name           = data.getString      (11);
-            final double parameter3Value          = data.getDouble      (12);
-            final String parameter3Unit           = data.getString      (13);
-            final double parameter3ValueInDegrees = data.getDouble      (14);
-            final String parameter4Name           = data.getString      (15);
-            final double parameter4Value          = data.getDouble      (16);
-            final String parameter4Unit           = data.getString      (17);
-            final double parameter4ValueInDegrees = data.getDouble      (18);
-            final String parameter5Name           = data.getString      (19);
-            final double parameter5Value          = data.getDouble      (20);
-            final String parameter5Unit           = data.getString      (21);
-            final String parameter6Name           = data.getString      (22);
-            final double parameter6Value          = data.getDouble      (23);
-            final String parameter6Unit           = data.getString      (24);
-            final String parameter7Name           = data.getString      (25);
-            final double parameter7Value          = data.getDouble      (26);
-            final String parameter7Unit           = data.getString      (27);
-            final OptionalInt codeEPSG            = data.getIntOptional (28);
-            final String nameEPSG                 = data.getString      (29);
-            final String remarks                  = data.getString      (30);
+            final int         code       = data.getInt        ( 0);
+            final String      name       = data.getString     ( 1);
+            final String      conversion = data.getString     ( 2);
+            final Parameter[] parameters = data.getParameters ( 3, 7, 4);
+            final OptionalInt codeEPSG   = data.getIntOptional(28);
+            final String      nameEPSG   = data.getString     (29);
+            final String      remarks    = data.getString     (30);
             /*
              * Write javadoc.
              */
@@ -136,15 +112,7 @@ public final class Test3206 extends TestMethodGenerator {
             printJavadocKeyValues("GIGS conversion code", code,
                                   "GIGS conversion name", name,
                                   "EPSG equivalence", codeAndName(codeEPSG, nameEPSG));
-            printJavadocParameterHeader("Conversion parameters");
-            printJavadocParameterRow(parameter1Name, parameter1Value, parameter1Unit, parameter1ValueInDegrees);
-            printJavadocParameterRow(parameter2Name, parameter2Value, parameter2Unit, parameter2ValueInDegrees);
-            printJavadocParameterRow(parameter3Name, parameter3Value, parameter3Unit, parameter3ValueInDegrees);
-            printJavadocParameterRow(parameter4Name, parameter4Value, parameter4Unit, parameter4ValueInDegrees);
-            printJavadocParameterRow(parameter5Name, parameter5Value, parameter5Unit, Double.NaN);
-            printJavadocParameterRow(parameter6Name, parameter6Value, parameter6Unit, Double.NaN);
-            printJavadocParameterRow(parameter7Name, parameter7Value, parameter7Unit, Double.NaN);
-            printJavadocTableFooter();
+            printJavadocParameters("Conversion parameters", parameters);
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the conversion from the properties.");
             /*
@@ -152,15 +120,7 @@ public final class Test3206 extends TestMethodGenerator {
              */
             printTestMethodSignature(GIGS, code, name);
             printCallToSetCodeAndName(code, name);
-            printFieldAssignments("methodName", conversionName);
-            indent(2); out.append("createDefaultParameters();\n");
-            printParameterString(parameter1Name, parameter1Value, parameter1Unit, parameter1ValueInDegrees);
-            printParameterString(parameter2Name, parameter2Value, parameter2Unit, parameter2ValueInDegrees);
-            printParameterString(parameter3Name, parameter3Value, parameter3Unit, parameter3ValueInDegrees);
-            printParameterString(parameter4Name, parameter4Value, parameter4Unit, parameter4ValueInDegrees);
-            printParameterString(parameter5Name, parameter5Value, parameter5Unit, Double.NaN);
-            printParameterString(parameter6Name, parameter6Value, parameter6Unit, Double.NaN);
-            printParameterString(parameter7Name, parameter7Value, parameter7Unit, Double.NaN);
+            printParameterDefinitions(conversion, parameters);
             indent(2); out.append("verifyConversion();\n");
             indent(1); out.append('}');
             saveTestMethod();

@@ -28,6 +28,7 @@ import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import org.opengis.util.Factory;
+import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.cs.AxisDirection;
@@ -36,6 +37,7 @@ import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.iogp.gigs.internal.TestSuite;
+import org.opentest4j.TestAbortedException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestInstance;
@@ -123,17 +125,18 @@ public abstract class IntegrityTest extends ConformanceTest {
      * This method has a behavior equivalent to a call to {@code assumeTrue(false)}, which will cause
      * the test to terminate with the "ignored" status.
      *
-     * @param  type  the GeoAPI interface of the tested object.
-     * @param  code  the EPSG code or name of the tested object.
+     * @param  type   the GeoAPI interface of the tested object.
+     * @param  code   the EPSG code or name of the tested object.
+     * @param  cause  the exception thrown by the factory method.
      */
-    final void unsupportedCode(final Class<?> type, final Object code) {
+    final void unsupportedCode(final Class<?> type, final Object code, final NoSuchIdentifierException cause) {
         final StringBuilder buffer = new StringBuilder(50).append(type.getSimpleName()).append('[');
         final boolean quote = !(code instanceof Number);
         if (quote) buffer.append('"');
         buffer.append(code);
         if (quote) buffer.append('"');
         buffer.append("] not supported.");
-        assumeTrue(false, buffer.toString());
+        throw new TestAbortedException(buffer.toString(), cause);
     }
 
     /**
@@ -155,7 +158,8 @@ public abstract class IntegrityTest extends ConformanceTest {
     /*
      * ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
      *   Methods below this point were copied from `org.opengis.test.referencing.ReferencingTestCase`
-     *   and should be deleted after next GeoAPI release.
+     *   and should be deleted after next GeoAPI release, except for `skipIdentificationCheck` which
+     *   can be replaced by forcing the `name` argument to null.
      * ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
      */
 
@@ -264,7 +268,7 @@ public abstract class IntegrityTest extends ConformanceTest {
                 final CoordinateSystemAxis axis = cs.getAxis(i);
                 assertNotNull(axis, "CoordinateSystem.getAxis(*)");
                 assertEquals(directions[i], axis.getDirection(), "CoordinateSystem.getAxis(*).getDirection()");
-                assertEquals(axisUnits[Math.min(i, axisUnits.length-1)], axis.getUnit(), "CoordinateSystem.getAxis(*).getUnit()");
+                assertEquals(axisUnits[StrictMath.min(i, axisUnits.length-1)], axis.getUnit(), "CoordinateSystem.getAxis(*).getUnit()");
             }
         }
     }

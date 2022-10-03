@@ -24,15 +24,15 @@
  */
 package org.iogp.gigs;
 
-import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.opengis.util.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.PrimeMeridian;
-import org.opengis.util.FactoryException;
+import org.iogp.gigs.internal.geoapi.Configuration;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -123,7 +123,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
@@ -160,8 +160,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
             try {
                 datum = datumAuthorityFactory.createGeodeticDatum(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(GeodeticDatum.class, code);
-                throw e;
+                unsupportedCode(GeodeticDatum.class, code, e);
             }
         }
         return datum;
@@ -208,6 +207,7 @@ public class Test2204 extends Series2000<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum.
      */
     private void verifyDatum() throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final GeodeticDatum datum = getIdentifiedObject();
         assertNotNull(datum, "GeodeticDatum");
         validators.validate(datum);

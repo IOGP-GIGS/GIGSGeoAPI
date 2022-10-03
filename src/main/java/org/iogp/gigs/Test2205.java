@@ -156,7 +156,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
@@ -199,8 +199,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
                     crs = crsAuthorityFactory.createGeographicCRS(String.valueOf(code));
                 }
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(GeodeticCRS.class, code);
-                throw e;
+                unsupportedCode(GeodeticCRS.class, code, e);
             }
         }
         return crs;
@@ -213,6 +212,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS instance.
      */
     private void verifyGeodeticCRS(final AxisDirection[] expectedDirections) throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final GeodeticCRS crs = getIdentifiedObject();
         assertNotNull(crs, "GeodeticCRS");
         validators.validate(crs);

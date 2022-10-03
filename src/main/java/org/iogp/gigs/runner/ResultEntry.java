@@ -351,7 +351,7 @@ final class ResultEntry {
         }
         final Paint p = graphics.getPaint();
         final int width = bounds.width;
-        bounds.width = Math.round(width * coverage);
+        bounds.width = StrictMath.round(width * coverage);
         graphics.setColor(color);
         graphics.fill(bounds);
         bounds.width = width;

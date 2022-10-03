@@ -24,16 +24,16 @@
  */
 package org.iogp.gigs;
 
-import org.iogp.gigs.internal.geoapi.Units;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import javax.measure.IncommensurableException;
+import java.util.Random;
 import javax.measure.Unit;
 import javax.measure.UnitConverter;
 import javax.measure.quantity.Angle;
-import javax.measure.quantity.Dimensionless;
 import javax.measure.quantity.Length;
-import java.util.Random;
+import javax.measure.quantity.Dimensionless;
+import javax.measure.IncommensurableException;
+import org.iogp.gigs.internal.geoapi.Units;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -123,6 +123,7 @@ public class Test3201 extends Series3000<Unit<?>> {
      * @return converter from the unit given by the identified object to test.
      */
     private UnitConverter createConverter() {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Unit<?> unit = getIdentifiedObject();
         assertNotNull(unit, "Unit");
         try {

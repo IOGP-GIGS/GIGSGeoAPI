@@ -85,6 +85,11 @@ final class DataParser {
     private static final char QUOTE = '"';
 
     /**
+     * The {@value} string, which is used for meaning "no data".
+     */
+    private static final String NULL = "NULL";
+
+    /**
      * The {@code GIGSTestDataset} content.
      */
     private final List<Object[]> content;
@@ -196,7 +201,7 @@ final class DataParser {
             if (skip != 0) {
                 part = trim(line, skip, part.length() - skip);
             }
-            if (!part.isEmpty()) {
+            if (!part.isEmpty() && !part.equals(NULL)) {
                 final Class<?> type = columnTypes[i];
                 if (type != null) {
                     final Object value;
@@ -205,7 +210,7 @@ final class DataParser {
                     } else if (type == Integer.class) {
                         value = Integer.valueOf(part);
                     } else if (type == Double.class) {
-                        value = part.equalsIgnoreCase("NULL") ? Double.NaN : Double.valueOf(part);
+                        value = Double.valueOf(part);
                     } else if (type == Boolean.class) {
                         value = Boolean.valueOf(part);
                     } else {
@@ -390,7 +395,7 @@ final class DataParser {
              */
             final int length = count + (upper - lower) / step + 1;
             if (length > values.length) {
-                values = Arrays.copyOf(values, Math.max(values.length*2, length));
+                values = Arrays.copyOf(values, StrictMath.max(values.length*2, length));
             }
             for (int value = lower; value <= upper; value += step) {
                 values[count++] = value;
@@ -449,6 +454,29 @@ final class DataParser {
      */
     public GeodeticCrsType getCrsType(final int column) {
         return GeodeticCrsType.parse(getString(column));
+    }
+
+    /**
+     * Returns the parameters read from an arbitrary number of columns.
+     *
+     * @param  column           column of the name of the first parameter.
+     * @param  maxParamCount    maximum number of parameters.
+     * @param  countInDegrees   number of parameters having a column for decimal degrees.
+     * @return an array with the non-empty parameters.
+     */
+    public Parameter[] getParameters(int column, int maxParamCount, int countInDegrees) {
+        Parameter[] parameters = new Parameter[maxParamCount];
+        int count = 0;
+        while (--maxParamCount >= 0) {
+            final Parameter p = new Parameter(this, column, getValue(column+1), countInDegrees > 0);
+            if (!p.isEmpty()) parameters[count++] = p;
+            if (--countInDegrees >= 0) column++;
+            column += 3;
+        }
+        if (count != parameters.length) {
+            parameters = Arrays.copyOf(parameters, count);
+        }
+        return parameters;
     }
 
     /**

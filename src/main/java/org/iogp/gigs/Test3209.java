@@ -24,15 +24,15 @@
  */
 package org.iogp.gigs;
 
-import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import java.util.Map;
+import org.opengis.util.FactoryException;
+import org.opengis.util.InternationalString;
 import org.opengis.referencing.datum.DatumFactory;
 import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.referencing.datum.VerticalDatumType;
-import org.opengis.util.FactoryException;
-import org.opengis.util.InternationalString;
-import java.util.Map;
+import org.iogp.gigs.internal.geoapi.Configuration;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -97,8 +97,8 @@ public class Test3209 extends Series3000<VerticalDatum> {
     protected final DatumFactory datumFactory;
 
     /**
-     * Creates a new test using the given factory. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Creates a new test using the given factory.
+     * If the given factory is {@code null}, then the tests will be skipped.
      *
      * @param datumFactory  factory for creating {@link VerticalDatum} instances.
      */
@@ -111,7 +111,7 @@ public class Test3209 extends Series3000<VerticalDatum> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
      *       <li>{@link #datumFactory}</li>
@@ -167,6 +167,7 @@ public class Test3209 extends Series3000<VerticalDatum> {
         final String name   = getName();
         final String code   = getCode();
         final String origin = (String) properties.get(VerticalDatum.ANCHOR_POINT_KEY);
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final VerticalDatum datum = getIdentifiedObject();
         assertNotNull(datum, "VerticalDatum");
         validators.validate(datum);

@@ -39,7 +39,6 @@ import java.util.LinkedHashMap;
 import java.util.Objects;
 import javax.measure.spi.SystemOfUnits;
 
-import org.iogp.gigs.internal.sis.TransformationFactory;
 import org.opengis.util.CodeList;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
@@ -451,12 +450,6 @@ public final class Configuration {
          */
         public static final Key<DatumAuthorityFactory> datumAuthorityFactory =
                 new Key<>(DatumAuthorityFactory.class, "datumAuthorityFactory");
-
-        /**
-         * The {@linkplain TransformationFactory Transform factory} instance used for a test.
-         */
-        public static final Key<TransformationFactory> transformationFactory =
-                new Key<>(TransformationFactory.class, "transformationFactory");
 
         /**
          * Whether the objects created by the tested {@link org.opengis.referencing.ObjectFactory} use the

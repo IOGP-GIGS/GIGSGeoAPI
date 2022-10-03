@@ -26,13 +26,13 @@ package org.iogp.gigs;
 
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
-import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.opengis.util.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.datum.PrimeMeridian;
-import org.opengis.util.FactoryException;
+import org.iogp.gigs.internal.geoapi.Configuration;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -115,7 +115,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
@@ -152,8 +152,7 @@ public class Test2203 extends Series2000<PrimeMeridian> {
             try {
                 primeMeridian = datumAuthorityFactory.createPrimeMeridian(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(PrimeMeridian.class, code);
-                throw e;
+                unsupportedCode(PrimeMeridian.class, code, e);
             }
         }
         return primeMeridian;
@@ -176,26 +175,27 @@ public class Test2203 extends Series2000<PrimeMeridian> {
      * @throws FactoryException if an error occurred while creating the prime meridian.
      */
     private void verifyPrimeMeridian() throws FactoryException {
-        final PrimeMeridian pm = getIdentifiedObject();
-        assertNotNull(pm, "PrimeMeridian");
-        validators.validate(pm);
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
+        final PrimeMeridian primeMeridian = getIdentifiedObject();
+        assertNotNull(primeMeridian, "PrimeMeridian");
+        validators.validate(primeMeridian);
 
         // Prime meridian identification.
-        assertIdentifierEquals(code, pm, "PrimeMeridian");
-        assertNameEquals(true, name, pm, "PrimeMeridian");
-        assertAliasesEqual (aliases, pm, "PrimeMeridian");
+        assertIdentifierEquals(code, primeMeridian, "PrimeMeridian");
+        assertNameEquals(true, name, primeMeridian, "PrimeMeridian");
+        assertAliasesEqual (aliases, primeMeridian, "PrimeMeridian");
         /*
          * Before to compare the Greenwich longitude, convert the expected angular value from decimal degrees
          * to the units actually used by the implementation. We do the conversion that way rather than the
          * opposite way in order to have a more appropriate error message in case of failure.
          */
-        final Unit<Angle> unit = pm.getAngularUnit();
+        final Unit<Angle> unit = primeMeridian.getAngularUnit();
         double longitude = greenwichLongitude;
         final Unit<Angle> degree = units.degree();
         if (unit != null && !unit.equals(degree)) {
             longitude = degree.getConverterTo(unit).convert(longitude);
         }
-        assertEquals(longitude, pm.getGreenwichLongitude(), ANGULAR_TOLERANCE, "PrimeMeridian.getGreenwichLongitude()");
+        assertEquals(longitude, primeMeridian.getGreenwichLongitude(), ANGULAR_TOLERANCE, "PrimeMeridian.getGreenwichLongitude()");
     }
 
     /**

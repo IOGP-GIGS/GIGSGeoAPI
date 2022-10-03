@@ -31,7 +31,7 @@ import org.opengis.util.FactoryException;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.cs.CoordinateSystemAxis;
+import org.opengis.referencing.datum.Datum;
 import org.iogp.gigs.internal.geoapi.Configuration;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -109,7 +109,7 @@ public abstract class Series3000<T> extends IntegrityTest {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
      *       <li>The factories used by the test (provided by subclasses)</li>
@@ -139,17 +139,12 @@ public abstract class Series3000<T> extends IntegrityTest {
     }
 
     /**
-     * Creates a map containing the given name and code, to be given to object factories.
+     * Returns {@code true} if the test has been initialized.
      *
-     * @param  code  the GIGS (not EPSG) code of the object to create.
-     * @param  name  the name of the object to create.
-     * @return properties to be given to the {@code create(…)} method.
+     * @return whether the test has been initialized.
      */
-    static Map<String,Object> properties(final int code, final String name) {
-        final Map<String,Object> properties = new HashMap<>(4);
-        assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new SimpleIdentifier(code)));
-        assertNull(properties.put(IdentifiedObject.NAME_KEY, name));
-        return properties;
+    final boolean isInitialized() {
+        return !properties.isEmpty();
     }
 
     /**
@@ -161,6 +156,15 @@ public abstract class Series3000<T> extends IntegrityTest {
     final void setCodeAndName(final int code, final String name) {
         assertNull(properties.put(IdentifiedObject.NAME_KEY, name), IdentifiedObject.NAME_KEY);
         assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new SimpleIdentifier(code)), IdentifiedObject.IDENTIFIERS_KEY);
+    }
+
+    /**
+     * Sets the origin (anchor point) of the datum to create.
+     *
+     * @param  origin  the origin of the datum to create.
+     */
+    final void setOrigin(final String origin) {
+        assertNull(properties.put(Datum.ANCHOR_POINT_KEY, origin), Datum.ANCHOR_POINT_KEY);
     }
 
     /**
@@ -192,18 +196,4 @@ public abstract class Series3000<T> extends IntegrityTest {
      * @throws FactoryException if an error occurred while creating the identified object.
      */
     public abstract T getIdentifiedObject() throws FactoryException;
-
-    /**
-     * Verifies that the given coordinate system axis has the expected values.
-     *
-     * @param expected  expected axis.
-     * @param actual    actual axis.
-     */
-    static void verifyAxis(final CoordinateSystemAxis expected, final CoordinateSystemAxis actual) {
-        final String name = expected.getName().getCode();
-        assertEquals(name, actual.getName().getCode());
-        assertEquals(expected.getAbbreviation(), actual.getAbbreviation(), name);
-        assertEquals(expected.getDirection(), actual.getDirection(), name);
-        assertEquals(expected.getUnit(), actual.getUnit(), name);
-    }
 }

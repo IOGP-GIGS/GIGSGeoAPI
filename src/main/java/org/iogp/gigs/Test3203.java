@@ -65,7 +65,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * {@snippet lang="java" :
  * public class MyTest extends Test3203 {
  *     public MyTest() {
- *         super(new MyDatumFactory());
+ *         super(new MyFactories());
  *     }
  * }
  * }
@@ -118,20 +118,26 @@ public class Test3203 extends Series3000<PrimeMeridian> {
     protected final CSAuthorityFactory unitFactory;
 
     /**
-     * Creates a new test using the given factory. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Whether to skip the tests that depend on the unit of measurement.
+     */
+    boolean skipUnitCheck;
+
+    /**
+     * Creates a new test using the given factories.
+     * The factories needed by this class are {@link DatumFactory}
+     * and optionally {@link CSAuthorityFactory} (for sexagesimal units).
+     * If a requested factory is {@code null}, then the tests which depend on it will be skipped.
      *
      * <h4>Authority factory usage</h4>
      * The coordinate system factory is used only if the test needs a sexagesimal unit,
      * because the standard {@link javax.measure.spi.SystemOfUnits} API can not create them.
      * If needed, the EPSG code used is 9110.
      *
-     * @param datumFactory  factory for creating {@link PrimeMeridian} instances.
-     * @param unitFactory   the factory to use for sexagesimal units, or {@code null} if none.
+     * @param factories  factories for creating the instances to test.
      */
-    public Test3203(final DatumFactory datumFactory, final CSAuthorityFactory unitFactory) {
-        this.datumFactory = datumFactory;
-        this.unitFactory  = unitFactory;
+    public Test3203(final Factories factories) {
+        datumFactory = factories.datumFactory;
+        unitFactory  = factories.csAuthorityFactory;
     }
 
     /**
@@ -139,7 +145,7 @@ public class Test3203 extends Series3000<PrimeMeridian> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
      *       <li>{@link #datumFactory}</li>
@@ -212,6 +218,7 @@ public class Test3203 extends Series3000<PrimeMeridian> {
         }
         final String name = getName();
         final String code = getCode();
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final PrimeMeridian primeMeridian = getIdentifiedObject();
         assertNotNull(primeMeridian, "PrimeMeridian");
         validators.validate(primeMeridian);
@@ -230,9 +237,11 @@ public class Test3203 extends Series3000<PrimeMeridian> {
          */
         verifyIdentification(primeMeridian, name, code);
         verifyPrimeMeridian(primeMeridian, name, greenwichLongitude, angularUnit);
-        assertEquals(longitudeInDegrees,
-                     primeMeridian.getAngularUnit().getConverterTo(units.degree()).convert(primeMeridian.getGreenwichLongitude()),
-                     ANGULAR_TOLERANCE);
+        if (!skipUnitCheck) {
+            assertEquals(longitudeInDegrees,
+                         primeMeridian.getAngularUnit().getConverterTo(units.degree()).convert(primeMeridian.getGreenwichLongitude()),
+                         ANGULAR_TOLERANCE);
+        }
     }
 
     /**

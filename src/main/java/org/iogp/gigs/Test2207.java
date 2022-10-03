@@ -141,7 +141,7 @@ public class Test2207 extends Series2000<ProjectedCRS> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
@@ -183,8 +183,7 @@ public class Test2207 extends Series2000<ProjectedCRS> {
                  * will typically use MathTransformFactory under the hood, which throws NoSuchIdentifierException for
                  * non-implemented operation methods (may be identified by their name rather than EPSG code).
                  */
-                unsupportedCode(ProjectedCRS.class, code);
-                throw e;
+                unsupportedCode(ProjectedCRS.class, code, e);
             }
         }
         return crs;
@@ -200,6 +199,7 @@ public class Test2207 extends Series2000<ProjectedCRS> {
         this.code = code;
         crs = null;                 // For forcing the fetch of a new projected CRS.
 
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final ProjectedCRS crs = getIdentifiedObject();
         assertNotNull(crs, "ProjectedCRS");
         validators.validate(crs);
@@ -357,6 +357,7 @@ public class Test2207 extends Series2000<ProjectedCRS> {
      */
     @Test
     @DisplayName("AGD66 / AMG")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void variousAGD66AMG() throws FactoryException {
         name              = "AGD66 / AMG";
         geographicCRS     = "AGD66";
@@ -379,6 +380,7 @@ public class Test2207 extends Series2000<ProjectedCRS> {
      */
     @Test
     @DisplayName("AGD84 / AMG")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void variousAGD84AMG() throws FactoryException {
         name              = "AGD84 / AMG";
         geographicCRS     = "AGD84";
@@ -2211,6 +2213,7 @@ public class Test2207 extends Series2000<ProjectedCRS> {
      */
     @Test
     @DisplayName("ELD79 / Libya")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void variousELD79Libya() throws FactoryException {
         name              = "ELD79 / Libya";
         geographicCRS     = "ELD79";
@@ -2233,6 +2236,7 @@ public class Test2207 extends Series2000<ProjectedCRS> {
      */
     @Test
     @DisplayName("ELD79 / UTM")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void variousELD79UTM() throws FactoryException {
         name              = "ELD79 / UTM";
         geographicCRS     = "ELD79";
@@ -2255,6 +2259,7 @@ public class Test2207 extends Series2000<ProjectedCRS> {
      */
     @Test
     @DisplayName("ETRS89 / UTM")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void variousETRS89UTM() throws FactoryException {
         name              = "ETRS89 / UTM";
         geographicCRS     = "ETRS89";
@@ -2321,6 +2326,7 @@ public class Test2207 extends Series2000<ProjectedCRS> {
      */
     @Test
     @DisplayName("GDA94 / MGA")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void variousGDA94MGA() throws FactoryException {
         name              = "GDA94 / MGA";
         geographicCRS     = "GDA94";
@@ -5171,6 +5177,7 @@ public class Test2207 extends Series2000<ProjectedCRS> {
      */
     @Test
     @DisplayName("PSAD56 / UTM")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void variousPSAD56UTM() throws FactoryException {
         name              = "PSAD56 / UTM";
         geographicCRS     = "PSAD56";
@@ -5883,6 +5890,7 @@ public class Test2207 extends Series2000<ProjectedCRS> {
      */
     @Test
     @DisplayName("WGS 84 / UTM")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public void variousWGS84UTM() throws FactoryException {
         name              = "WGS 84 / UTM";
         geographicCRS     = "WGS 84";

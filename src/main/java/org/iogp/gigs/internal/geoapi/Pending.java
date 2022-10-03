@@ -24,11 +24,22 @@
  */
 package org.iogp.gigs.internal.geoapi;
 
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.opengis.util.FactoryException;
+import org.opengis.util.NoSuchIdentifierException;
+import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
+import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.SingleOperation;
-import org.opengis.util.NoSuchIdentifierException;
+import org.opengis.referencing.operation.Transformation;
+import org.iogp.gigs.internal.sis.DefaultTransformationFactory;
+
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 
 /**
@@ -36,15 +47,58 @@ import org.opengis.util.NoSuchIdentifierException;
  * This class centralizes in a single place the methods that could be in GeoAPI,
  * but that we have to simulate in the meantime.
  *
+ * <p>Implementation-specific subclasses may exist.</p>
+ *
  * @author  Martin Desruisseaux (Geomatys)
+ * @author  Michael Arneson (INT)
  * @version 1.0
  * @since   1.0
  */
-public final class Pending {
+public class Pending {
     /**
-     * Do not allow instantiation of this class.
+     * The (usually unique) instance, created when first needed.
      */
-    private Pending() {
+    private static Pending instance;
+
+    /**
+     * The class loader of the library for which to provide access to implementation-specific API.
+     * This is the {@code loader} argument given to the constructor.
+     */
+    private final ClassLoader loader;
+
+    /**
+     * Creates implementation-specific accessor to pending methods.
+     *
+     * @param  loader  class loader of the library for which to provide access to implementation-specific API.
+     */
+    public Pending(final ClassLoader loader) {
+        this.loader = loader;
+    }
+
+    /**
+     * Returns an accessor to pending API for the given factory.
+     *
+     * @param  factory  the factory for which to get an accessor to pending API.
+     * @return accessor to pending API for the given factory.
+     */
+    public static synchronized Pending getInstance(final CoordinateOperationFactory factory) {
+        final Class<? extends CoordinateOperationFactory> c = factory.getClass();
+        final ClassLoader loader = c.getClassLoader();
+        if (instance == null || instance.loader != loader) {
+            final String pn = c.getPackageName();
+            try {
+                if (pn.startsWith(DefaultTransformationFactory.PACKAGE_PREFIX)) {
+                    instance = new DefaultTransformationFactory(loader);
+                } else {
+                    instance = new Pending(loader);
+                }
+            } catch (ReflectiveOperationException e) {
+                instance = new Pending(loader);
+                Logger.getLogger("org.opengis.referencing.operation")
+                      .log(Level.WARNING, "Can not find the implementation-specific API.", e);
+            }
+        }
+        return instance;
     }
 
     /**
@@ -65,5 +119,30 @@ public final class Pending {
             }
         }
         throw new NoSuchIdentifierException("Operation method \"" + methodName + "\" not found.", methodName);
+    }
+
+    /**
+     * Creates a coordinate transformation from the given properties.
+     * This is a temporary method until a similar method is added in
+     * the {@link CoordinateOperationFactory} interface.
+     *
+     * @param  properties  the properties to be given to the identified object.
+     * @param  sourceCRS   the source CRS.
+     * @param  targetCRS   the target CRS.
+     * @param  method      the coordinate operation method (mandatory in all cases).
+     * @param  parameters  the coordinate operation parameters.
+     * @param  transform   transform from positions in the source CRS to positions in the target CRS.
+     * @return a transformation from {@code sourceCRS} to {@code targetCRS} using the given transform implementation.
+     * @throws FactoryException if the operation creation failed.
+     */
+    public Transformation createTransformation(Map<String,Object> properties,
+                                               CoordinateReferenceSystem sourceCRS,
+                                               CoordinateReferenceSystem targetCRS,
+                                               OperationMethod method,
+                                               ParameterValueGroup parameters,
+                                               MathTransform transform) throws FactoryException
+    {
+        assumeTrue(false, "Factory method is not available.");
+        throw new FactoryException("Factory method is not available.");
     }
 }

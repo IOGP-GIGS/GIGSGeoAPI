@@ -31,7 +31,7 @@ import javax.measure.quantity.Length;
 
 /**
  * Code generator for {@link org.iogp.gigs.Test3202}. This generator needs to be executed only if the GIGS data changed.
- * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the test class,
+ * The code is sent to the standard output; maintainers need to copy-and-paste the relevant methods to the test class,
  * but be aware that the original code may contain manual changes that need to be preserved.
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -120,11 +120,11 @@ public final class Test3202 extends TestMethodGenerator {
              * of provided by GIGS data, round to the same amount of digits.
              */
             double axisTolerance = 10, scaled;
-            while ((scaled = semiMajorAxis * axisTolerance) != Math.rint(scaled)) {
+            while ((scaled = semiMajorAxis * axisTolerance) != StrictMath.rint(scaled)) {
                 axisTolerance *= 10;
             }
             if (isIvfDefinitive) {
-                semiMinorAxis = Math.rint(semiMinorAxis * axisTolerance) / axisTolerance;
+                semiMinorAxis = StrictMath.rint(semiMinorAxis * axisTolerance) / axisTolerance;
             }
             axisTolerance = 0.5 / axisTolerance;
             /*

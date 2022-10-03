@@ -28,8 +28,6 @@ import org.iogp.gigs.internal.geoapi.Pending;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.opengis.parameter.GeneralParameterValue;
-import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.operation.*;
 import org.opengis.util.FactoryException;
@@ -68,7 +66,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * {@snippet lang="java" :
  * public class MyTest extends Test3206 {
  *     public MyTest() {
- *         super(new MyCoordinateOperationFactory(), new MyMathTransformFactory());
+ *         super(new MyFactories());
  *     }
  * }
  * }
@@ -87,15 +85,10 @@ public class Test3206 extends Series3000<Conversion> {
     public String methodName;
 
     /**
-     * The parameters of the conversion to create.
+     * The parameters defining the map projection to create.
      * This field is set by all test methods before to create and verify the {@link Conversion} instance.
      */
-    public ParameterValueGroup definition;
-
-    /**
-     * The coordinate operation method.
-     */
-    private OperationMethod method;
+    public Parameter[] parameters;
 
     /**
      * The coordinate conversion created by the factory,
@@ -117,15 +110,15 @@ public class Test3206 extends Series3000<Conversion> {
     protected final MathTransformFactory mtFactory;
 
     /**
-     * Creates a new test using the given factory. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Creates a new test using the given factories.
+     * The factories needed by this class are {@link CoordinateOperationFactory} and {@link MathTransformFactory}.
+     * If a requested factory is {@code null}, then the tests which depend on it will be skipped.
      *
-     * @param copFactory  factory for creating {@link Conversion} instances.
-     * @param mtFactory   factory to use for fetching operation methods, or {@code null} if none.
+     * @param factories  factories for creating the instances to test.
      */
-    public Test3206(final CoordinateOperationFactory copFactory, final MathTransformFactory mtFactory) {
-        this.copFactory = copFactory;
-        this.mtFactory = mtFactory;
+    public Test3206(final Factories factories) {
+        copFactory = factories.copFactory;
+        mtFactory  = factories.mtFactory;
     }
 
     /**
@@ -133,7 +126,7 @@ public class Test3206 extends Series3000<Conversion> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
      *       <li>{@link #copFactory}</li>
@@ -145,7 +138,7 @@ public class Test3206 extends Series3000<Conversion> {
      * @return the configuration of the test being run.
      */
     @Override
-    public Configuration configuration() {
+    Configuration configuration() {
         final Configuration op = super.configuration();
         assertNull(op.put(Configuration.Key.copFactory, copFactory));
         assertNull(op.put(Configuration.Key.mtFactory,  mtFactory));
@@ -153,38 +146,15 @@ public class Test3206 extends Series3000<Conversion> {
     }
 
     /**
-     * Instantiates the {@link #definition} field.
-     * It is caller's responsibility to set the parameter values.
+     * Instantiates the {@link #parameters} field.
      *
-     * @throws FactoryException if an error occurred while creating the parameters.
+     * @param  method      name of the transformation method.
+     * @param  definition  all parameter values defining the operation.
      */
-    private void createDefaultParameters() throws FactoryException {
-        assumeNotNull(copFactory);
-        assumeNotNull(mtFactory);
-        /*
-         * Get the OperationMethod defined by the library. Libraries are not required
-         * to implement every possible operation methods, in which case unimplemented
-         * methods will be reported. If the operation method is supported, then this
-         * Java method will verify the following properties:
-         *
-         *  - The number of source dimensions
-         *  - The number of target dimensions
-         *
-         * We currently do not verify the name because libraries often have their own
-         * hard-coded implementations of operation methods instead of creating new
-         * instances from the given properties.
-         */
-        try {
-            method = Pending.getOperationMethod(mtFactory, methodName);
-        } catch (NoSuchIdentifierException e) {
-            unsupportedCode(OperationMethod.class, methodName);
-            throw e;
-        }
-        if (method == null) {
-            fail("CoordinateOperationFactory.getOperationMethod(\"" + methodName + "\") shall not return null.");
-        }
-        validators.validate(method);
-        definition = method.getParameters().createValue();
+    @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
+    private void createParameters(final String method, final Parameter... definition) {
+        methodName = method;
+        parameters = definition;
     }
 
     /**
@@ -199,7 +169,41 @@ public class Test3206 extends Series3000<Conversion> {
     @Override
     public Conversion getIdentifiedObject() throws FactoryException {
         if (conversion == null) {
-            validators.validate(definition);
+            assumeNotNull(mtFactory);
+            /*
+             * Get the OperationMethod defined by the library. Libraries are not required
+             * to implement every possible operation methods, in which case unimplemented
+             * methods will be reported.
+             */
+            final OperationMethod method;
+            try {
+                method = Pending.getOperationMethod(mtFactory, methodName);
+            } catch (NoSuchIdentifierException e) {
+                unsupportedCode(OperationMethod.class, methodName, e);
+                throw e;
+            }
+            if (method == null) {
+                fail("CoordinateOperationFactory.getOperationMethod(\"" + methodName + "\") shall not return null.");
+            }
+            validators.validate(method);
+            /*
+             * Set the parameter values. Users normally do not need an intermediate `Parameter` object like here.
+             * The recommended pattern for setting a parameter value is simply like below:
+             *
+             *     group.parameter("Latitude of 1st standard parallel").setValue(-18, units.degree());
+             *
+             * The code in this method is more complicated, but this is only for the purpose of GIGS tests.
+             * It is because we want to keep the original parameter value for later verification.
+             */
+            @SuppressWarnings("null")           // Because `fail(…)` does not return.
+            final ParameterValueGroup definition = method.getParameters().createValue();
+            for (final Parameter p : parameters) {
+                p.setValueInto(definition);
+            }
+            /*
+             * Create the defining conversion.
+             */
+            assumeNotNull(copFactory);
             final CoordinateOperation operation = copFactory.createDefiningConversion(properties, method, definition);
             if (operation != null) {            // For consistency with the behavior in other classes.
                 assertInstanceOf(Conversion.class, operation, getName());
@@ -230,6 +234,7 @@ public class Test3206 extends Series3000<Conversion> {
         }
         final String name = getName();
         final String code = getCode();
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Conversion conversion = getIdentifiedObject();
         assertNotNull(conversion, "Conversion");
         validators.validate(conversion);
@@ -239,28 +244,12 @@ public class Test3206 extends Series3000<Conversion> {
          * group to contain at least the values that we gave to it. If the library defines some
          * additional parameters, then those extra parameters will be ignored.
          */
-        final ParameterValueGroup projectionParameters = conversion.getParameterValues();
-        assertNotNull(projectionParameters, "Conversion.getParameterValues()");
         if (isFactoryPreservingUserValues) {
-            for (final GeneralParameterValue info : definition.values()) {
-                final String paramName = getName(info.getDescriptor());
-                if ("semi_major".equalsIgnoreCase(paramName) ||
-                    "semi_minor".equalsIgnoreCase(paramName))
-                {
-                    /*
-                     * Semi-major and semi-minor parameters were part of OGC 01-009 specification.
-                     * Since ISO 19111 they are not anymore explicit part of projection parameters.
-                     * However some implementations may still use them, so we make this test tolerant.
-                     */
-                    continue;
-                }
-                if (info instanceof ParameterValue<?>) {
-                    final ParameterValue<?> expected = (ParameterValue<?>) info;
-                    final ParameterValue<?> param = projectionParameters.parameter(paramName);
-                    assertNotNull(param, paramName);
-                    final double value = expected.doubleValue();
-                    assertEquals(value, param.doubleValue(expected.getUnit()), StrictMath.abs(TOLERANCE * value), paramName);
-                }
+            verifyIdentification(conversion.getMethod(), methodName, null);
+            final ParameterValueGroup definition = conversion.getParameterValues();
+            assertNotNull(definition, "Conversion.getParameterValues()");
+            for (final Parameter p : parameters) {
+                p.verify(definition);
             }
         }
     }
@@ -289,13 +278,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 1")
     public void GIGS_65001() throws FactoryException {
         setCodeAndName(65001, "GIGS conversion 1");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(3.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
-        definition.parameter("False easting").setValue(500000.0, units.metre());
-        definition.parameter("False northing").setValue(0.0, units.metre());
+        createParameters("Transverse Mercator",
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 3, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996, units.one()),
+            new Parameter("False easting", 500000, units.metre()),
+            new Parameter("False northing", 0, units.metre()));
         verifyConversion();
     }
 
@@ -323,13 +311,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 10")
     public void GIGS_65010() throws FactoryException {
         setCodeAndName(65010, "GIGS conversion 10");
-        methodName = "Transverse Mercator (South Orientated)";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(21.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(1.0, units.one());
-        definition.parameter("False easting").setValue(0.0, units.metre());
-        definition.parameter("False northing").setValue(0.0, units.metre());
+        createParameters("Transverse Mercator (South Orientated)",
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 21, units.degree()),
+            new Parameter("Scale factor at natural origin", 1, units.one()),
+            new Parameter("False easting", 0, units.metre()),
+            new Parameter("False northing", 0, units.metre()));
         verifyConversion();
     }
 
@@ -357,13 +344,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 11")
     public void GIGS_65011() throws FactoryException {
         setCodeAndName(65011, "GIGS conversion 11");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(-90.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(-60.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(1.0, units.one());
-        definition.parameter("False easting").setValue(5500000.0, units.metre());
-        definition.parameter("False northing").setValue(0.0, units.metre());
+        createParameters("Transverse Mercator",
+            new Parameter("Latitude of natural origin", -90, units.degree()),
+            new Parameter("Longitude of natural origin", -60, units.degree()),
+            new Parameter("Scale factor at natural origin", 1, units.one()),
+            new Parameter("False easting", 5500000, units.metre()),
+            new Parameter("False northing", 0, units.metre()));
         verifyConversion();
     }
 
@@ -390,12 +376,11 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 12")
     public void GIGS_65012() throws FactoryException {
         setCodeAndName(65012, "GIGS conversion 12");
-        methodName = "American Polyconic";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(-54.0, units.degree());
-        definition.parameter("False easting").setValue(5000000.0, units.metre());
-        definition.parameter("False northing").setValue(1.0E7, units.metre());
+        createParameters("American Polyconic",
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", -54, units.degree()),
+            new Parameter("False easting", 5000000, units.metre()),
+            new Parameter("False northing", 10000000, units.metre()));
         verifyConversion();
     }
 
@@ -427,15 +412,14 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 13")
     public void GIGS_65013() throws FactoryException {
         setCodeAndName(65013, "GIGS conversion 13");
-        methodName = "Hotine Oblique Mercator (variant B)";
-        createDefaultParameters();
-        definition.parameter("Latitude of projection centre").setValue(4.0, units.degree());
-        definition.parameter("Longitude of projection centre").setValue(115.0, units.degree());
-        definition.parameter("Azimuth of initial line").setValue(53.31580994, units.degree());
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.13010236, units.degree());
-        definition.parameter("Scale factor on initial line").setValue(0.99984, units.one());
-        definition.parameter("Easting at projection centre").setValue(590521.147, units.metre());
-        definition.parameter("Northing at projection centre").setValue(442890.861, units.metre());
+        createParameters("Hotine Oblique Mercator (variant B)",
+            new Parameter("Latitude of projection centre", 4, units.degree()),
+            new Parameter("Longitude of projection centre", 115, units.degree()),
+            new Parameter("Azimuth of initial line", 53.31580994, units.degree()),
+            new Parameter("Angle from Rectified to Skew Grid", 53.13010236, units.degree()),
+            new Parameter("Scale factor on initial line", 0.99984, units.one()),
+            new Parameter("Easting at projection centre", 590521.147, units.metre()),
+            new Parameter("Northing at projection centre", 442890.861, units.metre()));
         verifyConversion();
     }
 
@@ -465,15 +449,14 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 14")
     public void GIGS_65014() throws FactoryException {
         setCodeAndName(65014, "GIGS conversion 14");
-        methodName = "Hotine Oblique Mercator (variant A)";
-        createDefaultParameters();
-        definition.parameter("Latitude of projection centre").setValue(4.0, units.degree());
-        definition.parameter("Longitude of projection centre").setValue(115.0, units.degree());
-        definition.parameter("Azimuth of initial line").setValue(53.31580994, units.degree());
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.13010236, units.degree());
-        definition.parameter("Scale factor on initial line").setValue(0.99984, units.one());
-        definition.parameter("False easting").setValue(0.0, units.metre());
-        definition.parameter("False northing").setValue(0.0, units.metre());
+        createParameters("Hotine Oblique Mercator (variant A)",
+            new Parameter("Latitude of projection centre", 4, units.degree()),
+            new Parameter("Longitude of projection centre", 115, units.degree()),
+            new Parameter("Azimuth of initial line", 53.31580994, units.degree()),
+            new Parameter("Angle from Rectified to Skew Grid", 53.13010236, units.degree()),
+            new Parameter("Scale factor on initial line", 0.99984, units.one()),
+            new Parameter("False easting", 0, units.metre()),
+            new Parameter("False northing", 0, units.metre()));
         verifyConversion();
     }
 
@@ -500,12 +483,11 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 15")
     public void GIGS_65015() throws FactoryException {
         setCodeAndName(65015, "GIGS conversion 15");
-        methodName = "Cassini-Soldner";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(2.121679722, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(103.4279362, units.degree());
-        definition.parameter("False easting").setValue(-14810.562, units.metre());
-        definition.parameter("False northing").setValue(8758.32, units.metre());
+        createParameters("Cassini-Soldner",
+            new Parameter("Latitude of natural origin", 2.121679722, units.degree()),
+            new Parameter("Longitude of natural origin", 103.4279362, units.degree()),
+            new Parameter("False easting", -14810.562, units.metre()),
+            new Parameter("False northing", 8758.32, units.metre()));
         verifyConversion();
     }
 
@@ -532,12 +514,11 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 16")
     public void GIGS_65016() throws FactoryException {
         setCodeAndName(65016, "GIGS conversion 16");
-        methodName = "Lambert Azimuthal Equal Area";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(52.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(10.0, units.degree());
-        definition.parameter("False easting").setValue(4321000.0, units.metre());
-        definition.parameter("False northing").setValue(3210000.0, units.metre());
+        createParameters("Lambert Azimuthal Equal Area",
+            new Parameter("Latitude of natural origin", 52, units.degree()),
+            new Parameter("Longitude of natural origin", 10, units.degree()),
+            new Parameter("False easting", 4321000, units.metre()),
+            new Parameter("False northing", 3210000, units.metre()));
         verifyConversion();
     }
 
@@ -566,14 +547,13 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 17")
     public void GIGS_65017() throws FactoryException {
         setCodeAndName(65017, "GIGS conversion 17");
-        methodName = "Lambert Conic Conformal (2SP)";
-        createDefaultParameters();
-        definition.parameter("Latitude of false origin").setValue(40.33333333, units.degree());
-        definition.parameter("Longitude of false origin").setValue(-111.5, units.degree());
-        definition.parameter("Latitude of 1st standard parallel").setValue(41.78333333, units.degree());
-        definition.parameter("Latitude of 2nd standard parallel").setValue(40.71666667, units.degree());
-        definition.parameter("Easting at false origin").setValue(1640419.948, units.foot());
-        definition.parameter("Northing at false origin").setValue(3280839.895, units.foot());
+        createParameters("Lambert Conic Conformal (2SP)",
+            new Parameter("Latitude of false origin", 40.33333333, units.degree()),
+            new Parameter("Longitude of false origin", -111.5, units.degree()),
+            new Parameter("Latitude of 1st standard parallel", 41.78333333, units.degree()),
+            new Parameter("Latitude of 2nd standard parallel", 40.71666667, units.degree()),
+            new Parameter("Easting at false origin", 1640419.948, units.foot()),
+            new Parameter("Northing at false origin", 3280839.895, units.foot()));
         verifyConversion();
     }
 
@@ -602,14 +582,13 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 18")
     public void GIGS_65018() throws FactoryException {
         setCodeAndName(65018, "GIGS conversion 18");
-        methodName = "Lambert Conic Conformal (2SP)";
-        createDefaultParameters();
-        definition.parameter("Latitude of false origin").setValue(40.33333333, units.degree());
-        definition.parameter("Longitude of false origin").setValue(-111.5, units.degree());
-        definition.parameter("Latitude of 1st standard parallel").setValue(41.78333333, units.degree());
-        definition.parameter("Latitude of 2nd standard parallel").setValue(40.71666667, units.degree());
-        definition.parameter("Easting at false origin").setValue(1640416.667, units.footSurveyUS());
-        definition.parameter("Northing at false origin").setValue(3280833.333, units.footSurveyUS());
+        createParameters("Lambert Conic Conformal (2SP)",
+            new Parameter("Latitude of false origin", 40.33333333, units.degree()),
+            new Parameter("Longitude of false origin", -111.5, units.degree()),
+            new Parameter("Latitude of 1st standard parallel", 41.78333333, units.degree()),
+            new Parameter("Latitude of 2nd standard parallel", 40.71666667, units.degree()),
+            new Parameter("Easting at false origin", 1640416.667, units.footSurveyUS()),
+            new Parameter("Northing at false origin", 3280833.333, units.footSurveyUS()));
         verifyConversion();
     }
 
@@ -639,13 +618,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 19")
     public void GIGS_65019() throws FactoryException {
         setCodeAndName(65019, "GIGS conversion 19");
-        methodName = "Lambert Conic Conformal (1SP)";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(52.0, units.grad());
-        definition.parameter("Longitude of natural origin").setValue(0.0, units.grad());
-        definition.parameter("Scale factor at natural origin").setValue(0.99987742, units.one());
-        definition.parameter("False easting").setValue(600000.0, units.metre());
-        definition.parameter("False northing").setValue(2200000.0, units.metre());
+        createParameters("Lambert Conic Conformal (1SP)",
+            new Parameter("Latitude of natural origin", 52, units.grad()),
+            new Parameter("Longitude of natural origin", 0, units.grad()),
+            new Parameter("Scale factor at natural origin", 0.99987742, units.one()),
+            new Parameter("False easting", 600000, units.metre()),
+            new Parameter("False northing", 2200000, units.metre()));
         verifyConversion();
     }
 
@@ -662,7 +640,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>49°</td></tr>
      *   <tr><td>Longitude of natural origin</td><td>-2°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.999601272 Unity</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.9996012717 Unity</td></tr>
      *   <tr><td>False easting</td><td>400000 metres</td></tr>
      *   <tr><td>False northing</td><td>-100000 metres</td></tr>
      * </table>
@@ -675,13 +653,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 2")
     public void GIGS_65002() throws FactoryException {
         setCodeAndName(65002, "GIGS conversion 2");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(49.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(-2.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.999601272, units.one());
-        definition.parameter("False easting").setValue(400000.0, units.metre());
-        definition.parameter("False northing").setValue(-100000.0, units.metre());
+        createParameters("Transverse Mercator",
+            new Parameter("Latitude of natural origin", 49, units.degree()),
+            new Parameter("Longitude of natural origin", -2, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996012717, units.one()),
+            new Parameter("False easting", 400000, units.metre()),
+            new Parameter("False northing", -100000, units.metre()));
         verifyConversion();
     }
 
@@ -712,13 +689,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 23")
     public void GIGS_65023() throws FactoryException {
         setCodeAndName(65023, "GIGS conversion 23");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(3.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
-        definition.parameter("False easting").setValue(1640416.667, units.footSurveyUS());
-        definition.parameter("False northing").setValue(0.0, units.footSurveyUS());
+        createParameters("Transverse Mercator",
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 3, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996, units.one()),
+            new Parameter("False easting", 1640416.667, units.footSurveyUS()),
+            new Parameter("False northing", 0, units.footSurveyUS()));
         verifyConversion();
     }
 
@@ -745,12 +721,11 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 24")
     public void GIGS_65024() throws FactoryException {
         setCodeAndName(65024, "GIGS conversion 24");
-        methodName = "Mercator (variant B)";
-        createDefaultParameters();
-        definition.parameter("Latitude of 1st standard parallel").setValue(42.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(51.0, units.degree());
-        definition.parameter("False easting").setValue(0.0, units.metre());
-        definition.parameter("False northing").setValue(0.0, units.metre());
+        createParameters("Mercator (variant B)",
+            new Parameter("Latitude of 1st standard parallel", 42, units.degree()),
+            new Parameter("Longitude of natural origin", 51, units.degree()),
+            new Parameter("False easting", 0, units.metre()),
+            new Parameter("False northing", 0, units.metre()));
         verifyConversion();
     }
 
@@ -782,13 +757,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 25")
     public void GIGS_65025() throws FactoryException {
         setCodeAndName(65025, "GIGS conversion 25");
-        methodName = "Lambert Conic Conformal (1SP)";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(46.8, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(2.337229167, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.99987742, units.one());
-        definition.parameter("False easting").setValue(600000.0, units.metre());
-        definition.parameter("False northing").setValue(2200000.0, units.metre());
+        createParameters("Lambert Conic Conformal (1SP)",
+            new Parameter("Latitude of natural origin", 46.8, units.degree()),
+            new Parameter("Longitude of natural origin", 2.337229167, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.99987742, units.one()),
+            new Parameter("False easting", 600000, units.metre()),
+            new Parameter("False northing", 2200000, units.metre()));
         verifyConversion();
     }
 
@@ -818,15 +792,14 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 26")
     public void GIGS_65026() throws FactoryException {
         setCodeAndName(65026, "GIGS conversion 26");
-        methodName = "Hotine Oblique Mercator (variant B)";
-        createDefaultParameters();
-        definition.parameter("Latitude of projection centre").setValue(47.1443937, units.degree());
-        definition.parameter("Longitude of projection centre").setValue(19.0485718, units.degree());
-        definition.parameter("Azimuth of initial line").setValue(90.0, units.degree());
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(90.0, units.degree());
-        definition.parameter("Scale factor on initial line").setValue(0.99993, units.one());
-        definition.parameter("Easting at projection centre").setValue(650000.0, units.metre());
-        definition.parameter("Northing at projection centre").setValue(200000.0, units.metre());
+        createParameters("Hotine Oblique Mercator (variant B)",
+            new Parameter("Latitude of projection centre", 47.1443937, units.degree()),
+            new Parameter("Longitude of projection centre", 19.0485718, units.degree()),
+            new Parameter("Azimuth of initial line", 90, units.degree()),
+            new Parameter("Angle from Rectified to Skew Grid", 90, units.degree()),
+            new Parameter("Scale factor on initial line", 0.99993, units.one()),
+            new Parameter("Easting at projection centre", 650000, units.metre()),
+            new Parameter("Northing at projection centre", 200000, units.metre()));
         verifyConversion();
     }
 
@@ -854,13 +827,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 27")
     public void GIGS_65027() throws FactoryException {
         setCodeAndName(65027, "GIGS conversion 27");
-        methodName = "Mercator (variant A)";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(110.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.997, units.one());
-        definition.parameter("False easting").setValue(3900000.0, units.metre());
-        definition.parameter("False northing").setValue(900000.0, units.metre());
+        createParameters("Mercator (variant A)",
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 110, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.997, units.one()),
+            new Parameter("False easting", 3900000, units.metre()),
+            new Parameter("False northing", 900000, units.metre()));
         verifyConversion();
     }
 
@@ -888,13 +860,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 28")
     public void GIGS_65028() throws FactoryException {
         setCodeAndName(65028, "GIGS conversion 28");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(-135.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
-        definition.parameter("False easting").setValue(500000.0, units.metre());
-        definition.parameter("False northing").setValue(0.0, units.metre());
+        createParameters("Transverse Mercator",
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", -135, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996, units.one()),
+            new Parameter("False easting", 500000, units.metre()),
+            new Parameter("False northing", 0, units.metre()));
         verifyConversion();
     }
 
@@ -910,7 +881,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
      *   <tr><td>Longitude of natural origin</td><td>-2°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.999601272 Unity</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.9996012717 Unity</td></tr>
      *   <tr><td>False easting</td><td>400000 metres</td></tr>
      *   <tr><td>False northing</td><td>-5527462.688 metres</td></tr>
      * </table>
@@ -925,13 +896,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 2 alt A")
     public void GIGS_65021() throws FactoryException {
         setCodeAndName(65021, "GIGS conversion 2 alt A");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(-2.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.999601272, units.one());
-        definition.parameter("False easting").setValue(400000.0, units.metre());
-        definition.parameter("False northing").setValue(-5527462.688, units.metre());
+        createParameters("Transverse Mercator",
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", -2, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996012717, units.one()),
+            new Parameter("False easting", 400000, units.metre()),
+            new Parameter("False northing", -5527462.688, units.metre()));
         verifyConversion();
     }
 
@@ -947,7 +917,7 @@ public class Test3206 extends Series3000<Conversion> {
      *   <tr><th>Parameter name</th><th>Value</th></tr>
      *   <tr><td>Latitude of natural origin</td><td>0°</td></tr>
      *   <tr><td>Longitude of natural origin</td><td>-2°</td></tr>
-     *   <tr><td>Scale factor at natural origin</td><td>0.999601272 Unity</td></tr>
+     *   <tr><td>Scale factor at natural origin</td><td>0.9996012717 Unity</td></tr>
      *   <tr><td>False easting</td><td>400000 metres</td></tr>
      *   <tr><td>False northing</td><td>-5527063.816 metres</td></tr>
      * </table>
@@ -962,13 +932,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 2 alt B")
     public void GIGS_65022() throws FactoryException {
         setCodeAndName(65022, "GIGS conversion 2 alt B");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(-2.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.999601272, units.one());
-        definition.parameter("False easting").setValue(400000.0, units.metre());
-        definition.parameter("False northing").setValue(-5527063.816, units.metre());
+        createParameters("Transverse Mercator",
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", -2, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996012717, units.one()),
+            new Parameter("False easting", 400000, units.metre()),
+            new Parameter("False northing", -5527063.816, units.metre()));
         verifyConversion();
     }
 
@@ -996,13 +965,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 4")
     public void GIGS_65004() throws FactoryException {
         setCodeAndName(65004, "GIGS conversion 4");
-        methodName = "Oblique Stereographic";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(52.15616056, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(5.387638889, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.9999079, units.one());
-        definition.parameter("False easting").setValue(155000.0, units.metre());
-        definition.parameter("False northing").setValue(463000.0, units.metre());
+        createParameters("Oblique Stereographic",
+            new Parameter("Latitude of natural origin", 52.15616056, units.degree()),
+            new Parameter("Longitude of natural origin", 5.387638889, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9999079, units.one()),
+            new Parameter("False easting", 155000, units.metre()),
+            new Parameter("False northing", 463000, units.metre()));
         verifyConversion();
     }
 
@@ -1033,13 +1001,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 5")
     public void GIGS_65005() throws FactoryException {
         setCodeAndName(65005, "GIGS conversion 5");
-        methodName = "Mercator (variant A)";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(3.192280556, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.997, units.one());
-        definition.parameter("False easting").setValue(3900000.0, units.metre());
-        definition.parameter("False northing").setValue(900000.0, units.metre());
+        createParameters("Mercator (variant A)",
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 3.192280556, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.997, units.one()),
+            new Parameter("False easting", 3900000, units.metre()),
+            new Parameter("False northing", 900000, units.metre()));
         verifyConversion();
     }
 
@@ -1068,14 +1035,13 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 6")
     public void GIGS_65006() throws FactoryException {
         setCodeAndName(65006, "GIGS conversion 6");
-        methodName = "Lambert Conic Conformal (2SP)";
-        createDefaultParameters();
-        definition.parameter("Latitude of false origin").setValue(90.0, units.degree());
-        definition.parameter("Longitude of false origin").setValue(4.367486667, units.degree());
-        definition.parameter("Latitude of 1st standard parallel").setValue(51.16666723, units.degree());
-        definition.parameter("Latitude of 2nd standard parallel").setValue(49.8333339, units.degree());
-        definition.parameter("Easting at false origin").setValue(150000.013, units.metre());
-        definition.parameter("Northing at false origin").setValue(5400088.438, units.metre());
+        createParameters("Lambert Conic Conformal (2SP)",
+            new Parameter("Latitude of false origin", 90, units.degree()),
+            new Parameter("Longitude of false origin", 4.367486667, units.degree()),
+            new Parameter("Latitude of 1st standard parallel", 51.16666723, units.degree()),
+            new Parameter("Latitude of 2nd standard parallel", 49.8333339, units.degree()),
+            new Parameter("Easting at false origin", 150000.013, units.metre()),
+            new Parameter("Northing at false origin", 5400088.438, units.metre()));
         verifyConversion();
     }
 
@@ -1103,13 +1069,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 7")
     public void GIGS_65007() throws FactoryException {
         setCodeAndName(65007, "GIGS conversion 7");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(141.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
-        definition.parameter("False easting").setValue(500000.0, units.metre());
-        definition.parameter("False northing").setValue(1.0E7, units.metre());
+        createParameters("Transverse Mercator",
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 141, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996, units.one()),
+            new Parameter("False easting", 500000, units.metre()),
+            new Parameter("False northing", 10000000, units.metre()));
         verifyConversion();
     }
 
@@ -1137,13 +1102,12 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 8")
     public void GIGS_65008() throws FactoryException {
         setCodeAndName(65008, "GIGS conversion 8");
-        methodName = "Transverse Mercator";
-        createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, units.degree());
-        definition.parameter("Longitude of natural origin").setValue(147.0, units.degree());
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
-        definition.parameter("False easting").setValue(500000.0, units.metre());
-        definition.parameter("False northing").setValue(1.0E7, units.metre());
+        createParameters("Transverse Mercator",
+            new Parameter("Latitude of natural origin", 0, units.degree()),
+            new Parameter("Longitude of natural origin", 147, units.degree()),
+            new Parameter("Scale factor at natural origin", 0.9996, units.one()),
+            new Parameter("False easting", 500000, units.metre()),
+            new Parameter("False northing", 10000000, units.metre()));
         verifyConversion();
     }
 
@@ -1172,14 +1136,13 @@ public class Test3206 extends Series3000<Conversion> {
     @DisplayName("GIGS conversion 9")
     public void GIGS_65009() throws FactoryException {
         setCodeAndName(65009, "GIGS conversion 9");
-        methodName = "Albers Equal Area";
-        createDefaultParameters();
-        definition.parameter("Latitude of false origin").setValue(0.0, units.degree());
-        definition.parameter("Longitude of false origin").setValue(132.0, units.degree());
-        definition.parameter("Latitude of 1st standard parallel").setValue(-18.0, units.degree());
-        definition.parameter("Latitude of 2nd standard parallel").setValue(-36.0, units.degree());
-        definition.parameter("Easting at false origin").setValue(0.0, units.metre());
-        definition.parameter("Northing at false origin").setValue(0.0, units.metre());
+        createParameters("Albers Equal Area",
+            new Parameter("Latitude of false origin", 0, units.degree()),
+            new Parameter("Longitude of false origin", 132, units.degree()),
+            new Parameter("Latitude of 1st standard parallel", -18, units.degree()),
+            new Parameter("Latitude of 2nd standard parallel", -36, units.degree()),
+            new Parameter("Easting at false origin", 0, units.metre()),
+            new Parameter("Northing at false origin", 0, units.metre()));
         verifyConversion();
     }
 }

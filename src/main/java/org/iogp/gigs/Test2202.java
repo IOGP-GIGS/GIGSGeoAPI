@@ -26,13 +26,13 @@ package org.iogp.gigs;
 
 import javax.measure.Unit;
 import javax.measure.quantity.Length;
-import org.iogp.gigs.internal.geoapi.Configuration;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.opengis.util.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.datum.Ellipsoid;
-import org.opengis.util.FactoryException;
+import org.iogp.gigs.internal.geoapi.Configuration;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
@@ -161,7 +161,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isStandardIdentifierSupported}</li>
      *       <li>{@link #isStandardNameSupported}</li>
@@ -198,8 +198,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
             try {
                 ellipsoid = datumAuthorityFactory.createEllipsoid(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(Ellipsoid.class, code);
-                throw e;
+                unsupportedCode(Ellipsoid.class, code, e);
             }
         }
         return ellipsoid;
@@ -253,6 +252,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
      * @throws FactoryException if an error occurred while creating the ellipsoid.
      */
     private void verifyEllipsoid() throws FactoryException {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Ellipsoid ellipsoid = getIdentifiedObject();
         assertNotNull(ellipsoid, "Ellipsoid");
         validators.validate(ellipsoid);

@@ -24,10 +24,8 @@
  */
 package org.iogp.gigs;
 
-import org.iogp.gigs.internal.geoapi.Configuration;
-import org.iogp.gigs.internal.sis.TransformationFactory;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.opengis.util.FactoryException;
+import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.crs.CRSFactory;
@@ -37,12 +35,15 @@ import org.opengis.referencing.crs.VerticalCRS;
 import org.opengis.referencing.cs.CSFactory;
 import org.opengis.referencing.datum.DatumFactory;
 import org.opengis.referencing.datum.GeodeticDatum;
+import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.Transformation;
-import org.opengis.util.FactoryException;
-import java.util.Map;
+import org.iogp.gigs.internal.geoapi.Configuration;
+import org.iogp.gigs.internal.geoapi.Pending;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,7 +62,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link MathTransformFactory#getDefaultParameters(String)} and<br>
- *       {@link TransformationFactory#createTransformation(Map, CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod, MathTransform)}.</td>
+ *       {@code CoordinateOperationFactory.createTransformation(Map, CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod, MathTransform)}.</td>
  * </tr><tr>
  *   <th>Expected result:</th>
  *   <td>The geoscience software should accept the test data. The order in which the transformation parameters
@@ -75,14 +76,13 @@ import static org.junit.jupiter.api.Assertions.*;
  * {@snippet lang="java" :
  * public class MyTest extends Test3211 {
  *     public MyTest() {
- *         super(new MyMathTransformFactory(), new MyTransformationFactory(),
- *               new MyDatumFactory(), new MyCSFactory(),
- *               new MyCRSFactory(), new MyCRSAuthorityFactory());
+ *         super(new MyFactories());
  *     }
  * }
  * }
  *
  * @author  Michael Arneson (INT)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0
  */
@@ -92,6 +92,12 @@ public class Test3211 extends Series3000<Transformation> {
      * Name of the transformation method.
      */
     public String methodName;
+
+    /**
+     * The parameters defining the transformation to create.
+     * This field is set by all test methods before to create and verify the {@link Transformation} instance.
+     */
+    public Parameter[] parameters;
 
     /**
      * The coordinate transformation created by the factory,
@@ -107,7 +113,7 @@ public class Test3211 extends Series3000<Transformation> {
     /**
      * The factory used to create DefaultTransformation, or {@code null} if none. This factory only works for Apache SIS
      */
-    protected final TransformationFactory transformationFactory;
+    protected final CoordinateOperationFactory copFactory;
 
     /**
      * Factory to use for building {@link GeodeticCRS} instances, or {@code null} if none.
@@ -132,25 +138,18 @@ public class Test3211 extends Series3000<Transformation> {
     protected final CRSAuthorityFactory crsAuthorityFactory;
 
     /**
-     * The parameters used to create the
-     */
-    private ParameterValueGroup parameterValueGroup;
-
-    /**
      * Data about the source CRS of the transformation.
-     * This is used only for tests with user definitions for CRS components.
      *
      * @see #createSourceCRS(TestMethod)
      */
-    private Test3210 sourceCRSTest;
+    private final Test3210 sourceCRSTest;
 
     /**
      * Data about the target CRS of the transformation.
-     * This is used only for tests with user definitions for CRS components.
      *
      * @see #createTargetCRS(TestMethod)
      */
-    private Test3210 targetCRSTest;
+    private final Test3210 targetCRSTest;
 
     /**
      * The source CRS of the transformation created by this factory.
@@ -163,26 +162,33 @@ public class Test3211 extends Series3000<Transformation> {
     private VerticalCRS targetCRS;
 
     /**
-     * Creates a new test using the given factory. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Creates a new test using the given factories.
+     * The factories needed by this class are {@link CoordinateOperationFactory},
+     * {@link MathTransformFactory}, {@link CRSFactory}, {@link CSFactory}, {@link DatumFactory}
+     * and optionally {@link CRSAuthorityFactory}.
+     * If a requested factory is {@code null}, then the tests which depend on it will be skipped.
      *
-     * @param mtFactory              factory for creating {@link Transformation} instances.
-     * @param transformationFactory  factory for creating {@link Transformation} instances.
-     * @param datumFactory           factory for creating {@link GeodeticDatum} instances.
-     * @param csFactory              factory for creating {@code CoordinateSystem} instances.
-     * @param crsFactory             factory for creating {@link GeodeticCRS} instances.
-     * @param crsAuthorityFactory    factory for creating {@link GeodeticCRS} instances.
+     * <h4>Authority factory usage</h4>
+     * The authority factory is used only for some test cases where the components are fetched by EPSG codes
+     * instead of being built by user. Those test cases are identified by the "definition source" line in Javadoc.
+     *
+     * @param factories  factories for creating the instances to test.
      */
-    public Test3211(final MathTransformFactory mtFactory, TransformationFactory transformationFactory,
-                    final DatumFactory datumFactory, final CSFactory csFactory, final CRSFactory crsFactory,
-                    CRSAuthorityFactory crsAuthorityFactory)
-    {
-        this.mtFactory = mtFactory;
-        this.transformationFactory = transformationFactory;
-        this.datumFactory = datumFactory;
-        this.csFactory = csFactory;
-        this.crsFactory = crsFactory;
-        this.crsAuthorityFactory = crsAuthorityFactory;
+    public Test3211(final Factories factories) {
+        mtFactory           = factories.mtFactory;
+        copFactory          = factories.copFactory;
+        crsFactory          = factories.crsFactory;
+        csFactory           = factories.csFactory;
+        datumFactory        = factories.datumFactory;
+        crsAuthorityFactory = factories.crsAuthorityFactory;
+
+        sourceCRSTest = new Test3210(factories);
+        sourceCRSTest.skipTests = true;
+        sourceCRSTest.skipIdentificationCheck = true;
+
+        targetCRSTest = new Test3210(factories);
+        targetCRSTest.skipTests = true;
+        targetCRSTest.skipIdentificationCheck = true;
     }
 
     /**
@@ -190,14 +196,14 @@ public class Test3211 extends Series3000<Transformation> {
      * This method returns a map containing:
      *
      * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isFactoryPreservingUserValues}</li>
      *       <li>{@link #mtFactory}</li>
-     *       <li>{@link #transformationFactory}</li>
-     *       <li>{@link #datumFactory}</li>
-     *       <li>{@link #csFactory}</li>
+     *       <li>{@link #copFactory}</li>
      *       <li>{@link #crsFactory}</li>
+     *       <li>{@link #csFactory}</li>
+     *       <li>{@link #datumFactory}</li>
      *       <li>{@link #crsAuthorityFactory}</li>
      *     </ul>
      *   </li>
@@ -208,24 +214,72 @@ public class Test3211 extends Series3000<Transformation> {
     @Override
     Configuration configuration() {
         final Configuration op = super.configuration();
-        assertNull(op.put(Configuration.Key.mtFactory, mtFactory));
-        assertNull(op.put(Configuration.Key.transformationFactory, transformationFactory));
-        assertNull(op.put(Configuration.Key.datumFactory, datumFactory));
-        assertNull(op.put(Configuration.Key.csFactory, csFactory));
-        assertNull(op.put(Configuration.Key.crsFactory, crsFactory));
+        assertNull(op.put(Configuration.Key.mtFactory,           mtFactory));
+        assertNull(op.put(Configuration.Key.copFactory,          copFactory));
+        assertNull(op.put(Configuration.Key.datumFactory,        datumFactory));
+        assertNull(op.put(Configuration.Key.csFactory,           csFactory));
+        assertNull(op.put(Configuration.Key.crsFactory,          crsFactory));
         assertNull(op.put(Configuration.Key.crsAuthorityFactory, crsAuthorityFactory));
         return op;
+    }
+
+    /**
+     * Creates a user-defined source CRS by executing the specified method from the {@link Test3210} class.
+     *
+     * @param  factory           the test method to use for creating the source CRS.
+     * @throws FactoryException  if an error occurred while creating the source CRS.
+     */
+    private void createSourceCRS(final TestMethod<Test3210> factory) throws FactoryException {
+        factory.initialize(sourceCRSTest);
+        sourceCRS = sourceCRSTest.getIdentifiedObject();
+    }
+
+    /**
+     * Creates a user-defined target CRS by executing the specified method from the {@link Test3210} class.
+     *
+     * @param  factory           the test method to use for creating the target CRS.
+     * @throws FactoryException  if an error occurred while creating the target CRS.
+     */
+    private void createTargetCRS(final TestMethod<Test3210> factory) throws FactoryException {
+        factory.initialize(targetCRSTest);
+        targetCRS = targetCRSTest.getIdentifiedObject();
+    }
+
+    /**
+     * Creates a target CRS from the EPSG factory
+     *
+     * @param  code  EPSG code of the target CRS to create.
+     * @throws FactoryException  if an error occurred while creating the target CRS.
+     */
+    private void createTargetCRS(final int code) throws FactoryException {
+        targetCRS = crsAuthorityFactory.createVerticalCRS(String.valueOf(code));
+    }
+
+    /**
+     * Instantiates the {@link #parameters} field.
+     *
+     * @param  method      name of the transformation method.
+     * @param  definition  all parameter values defining the operation.
+     */
+    @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
+    private void createParameters(final String method, final Parameter... definition) {
+        methodName = method;
+        parameters = definition;
+        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
     }
 
     /**
      * Returns the vertical transformation instance to be tested. When this method is invoked for the first time, it
      * creates the transformation to test by invoking the {@link MathTransformFactory#getDefaultParameters(String)}
      * method with the current {@link #methodName} value in argument and then specifying the parameters by invoking
-     * {@link MathTransformFactory#createParameterizedTransform(ParameterValueGroup)}. In order to create a
-     * transformation that is created from CRS and parameters, the Apache SIS api needs to be called. The call to the
-     * Apache SIS api is done by invoking {@link TransformationFactory#createTransformation(Map,
-     * CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod, MathTransform)}. The created object
-     * is then cached and returned in all subsequent invocations of this method.
+     * {@link MathTransformFactory#createParameterizedTransform(ParameterValueGroup)}.
+     *
+     * In order to create a transformation that is created from CRS and parameters,
+     * an implementation-specific API needs to be called.
+     * Details of the implementation-specific part are internal to GIGS test suite
+     * and will tentatively be removed with GeoAPI 3.1.
+     *
+     * The created object is then cached and returned in all subsequent invocations of this method.
      *
      * @return the transformation instance to test.
      * @throws FactoryException if an error occurred while creating the transformation instance.
@@ -233,9 +287,22 @@ public class Test3211 extends Series3000<Transformation> {
     @Override
     public Transformation getIdentifiedObject() throws FactoryException {
         if (transformation == null) {
-            MathTransform transform = mtFactory.createParameterizedTransform(parameterValueGroup);
+            assumeNotNull(mtFactory);
+            final ParameterValueGroup definition;
+            try {
+                definition = mtFactory.getDefaultParameters(methodName);
+            } catch (NoSuchIdentifierException e) {
+                unsupportedCode(OperationMethod.class, methodName, e);
+                throw e;
+            }
+            for (final Parameter p : parameters) {
+                p.setValueInto(definition);
+            }
+            validators.validate(definition);
+            MathTransform transform = mtFactory.createParameterizedTransform(definition);
             OperationMethod method = mtFactory.getLastMethodUsed();
-            transformation = transformationFactory.createTransformation(properties, sourceCRS, targetCRS, method, transform);
+            assumeNotNull(copFactory);
+            transformation = Pending.getInstance(copFactory).createTransformation(properties, sourceCRS, targetCRS, method, definition, transform);
         }
         return transformation;
     }
@@ -249,145 +316,37 @@ public class Test3211 extends Series3000<Transformation> {
         if (skipTests) {
             return;
         }
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final Transformation transformation = getIdentifiedObject();
         assertNotNull(transformation, "Transformation");
         validators.validate(transformation);
 
-        if (sourceCRSTest != null) {
-            sourceCRSTest.copyConfigurationFrom(this);
-            sourceCRSTest.setIdentifiedObject(sourceCRS);
-            sourceCRSTest.verifyVerticalCRS();
-        }
-        if (targetCRSTest != null) {
+        sourceCRSTest.copyConfigurationFrom(this);
+        sourceCRSTest.setIdentifiedObject(sourceCRS);
+        sourceCRSTest.verifyVerticalCRS();
+
+        if (targetCRSTest.isInitialized()) {
             targetCRSTest.copyConfigurationFrom(this);
             targetCRSTest.setIdentifiedObject(targetCRS);
             targetCRSTest.verifyVerticalCRS();
         }
-
-        // Operation method.
-        final OperationMethod method = transformation.getMethod();
-        assertNotNull(method, "Transformation.getMethod()");
+        /*
+         * Verifies that the parameter values provided by the implementation are equal to the expected values.
+         * If the actual group contains more parameters than expected, the extra parameters are ignored.
+         * Parameter order and parameter descriptors are ignored.
+         */
+        if (isFactoryPreservingUserValues) {
+            verifyIdentification(transformation.getMethod(), methodName, null);
+            final ParameterValueGroup definition = transformation.getParameterValues();
+            assertNotNull(definition, "Transformation.getParameterValues()");
+            for (final Parameter p : parameters) {
+                p.verify(definition);
+            }
+        }
     }
 
     /**
-     * Instantiates the {@link #parameterValueGroup} field.
-     * It is caller's responsibility to set the parameter values.
-     *
-     * @throws FactoryException if an error occurred while creating the parameters.
-     */
-    private void createDefaultParameters() throws FactoryException {
-        assumeNotNull(mtFactory);
-        this.parameterValueGroup = mtFactory.getDefaultParameters(methodName);
-    }
-
-    /**
-     * Creates a user-defined source CRS by executing the specified method from the {@link Test3210} class.
-     *
-     * @param  factory           the test method to use for creating the source CRS.
-     * @throws FactoryException  if an error occurred while creating the source CRS.
-     */
-    private void createSourceCRS(final TestMethod<Test3210> factory) throws FactoryException {
-        sourceCRSTest = new Test3210(csFactory, crsFactory, datumFactory);
-        sourceCRSTest.skipTests = true;
-        factory.test(sourceCRSTest);
-        sourceCRS = sourceCRSTest.getIdentifiedObject();
-    }
-
-    /**
-     * Creates a source CRS from the EPSG factory
-     *
-     * @param  code  EPSG code of the source CRS to create.
-     * @throws FactoryException  if an error occurred while creating the source CRS.
-     */
-    private void createSourceCRS(final int code) throws FactoryException {
-        this.sourceCRS = this.crsAuthorityFactory.createVerticalCRS(String.valueOf(code));
-    }
-
-    /**
-     * Creates a user-defined target CRS by executing the specified method from the {@link Test3210} class.
-     *
-     * @param  factory           the test method to use for creating the target CRS.
-     * @throws FactoryException  if an error occurred while creating the target CRS.
-     */
-    private void createTargetCRS(final TestMethod<Test3210> factory) throws FactoryException {
-        targetCRSTest = new Test3210(csFactory, crsFactory, datumFactory);
-        targetCRSTest.skipTests = true;
-        factory.test(targetCRSTest);
-        targetCRS = targetCRSTest.getIdentifiedObject();
-    }
-
-    /**
-     * Creates a target CRS from the EPSG factory
-     *
-     * @param  code  EPSG code of the target CRS to create.
-     * @throws FactoryException  if an error occurred while creating the target CRS.
-     */
-    private void createTargetCRS(final int code) throws FactoryException {
-        this.targetCRS = this.crsAuthorityFactory.createVerticalCRS(String.valueOf(code));
-    }
-
-    /**
-     * Tests “GIGS_61501”  transformation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS transformation code: <b>61501</b></li>
-     *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
-     * </ul>
-     * <table class="gigs">
-     *   <caption>Transformation parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Vertical offset</td><td>0 metre</td></tr>
-     * </table>
-     *
-     * Remarks: No direct EPSG equivalent.
-     *
-     * @throws FactoryException if an error occurred while creating the transformation from the properties.
-     */
-    @Test
-    @DisplayName("GIGS_61501")
-    public void GIGS_61501() throws FactoryException {
-        setCodeAndName(61501, "GIGS_61501");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Vertical offset";
-        createDefaultParameters();
-        createSourceCRS(Test3210::GIGS_64505);
-        createTargetCRS(5714);
-        parameterValueGroup.parameter("Vertical offset").setValue(0, units.metre());
-        verifyTransformation();
-    }
-
-    /**
-     * Tests “GIGS_61502”  transformation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS transformation code: <b>61502</b></li>
-     *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
-     * </ul>
-     * <table class="gigs">
-     *   <caption>Transformation parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Vertical offset</td><td>0 metre</td></tr>
-     * </table>
-     *
-     * Remarks: No direct EPSG equivalent.
-     *
-     * @throws FactoryException if an error occurred while creating the transformation from the properties.
-     */
-    @Test
-    @DisplayName("GIGS_61502")
-    public void GIGS_61502() throws FactoryException {
-        setCodeAndName(61502, "GIGS_61502");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Vertical offset";
-        createDefaultParameters();
-        createSourceCRS(Test3210::GIGS_64506);
-        createTargetCRS(5715);
-        parameterValueGroup.parameter("Vertical offset").setValue(0, units.metre());
-        verifyTransformation();
-    }
-
-    /**
-     * Tests “GIGS_61503”  transformation from the factory.
+     * Tests “GIGS vertCRS U1 height to GIGS vertCRS V1 height” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>61503</b></li>
@@ -409,84 +368,22 @@ public class Test3211 extends Series3000<Transformation> {
      * @throws FactoryException if an error occurred while creating the transformation from the properties.
      */
     @Test
-    @DisplayName("GIGS_61503")
+    @DisplayName("GIGS vertCRS U1 height to GIGS vertCRS V1 height")
     public void GIGS_61503() throws FactoryException {
-        setCodeAndName(61503, "GIGS_61503");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Vertical Offset and Slope";
-        createDefaultParameters();
+        setCodeAndName(61503, "GIGS vertCRS U1 height to GIGS vertCRS V1 height");
         createSourceCRS(Test3210::GIGS_64501);
         createTargetCRS(Test3210::GIGS_64505);
-        parameterValueGroup.parameter("Ordinate 1 of evaluation point").setValue(52, units.degree());
-        parameterValueGroup.parameter("Ordinate 2 of evaluation point").setValue(3, units.degree());
-        parameterValueGroup.parameter("Vertical offset").setValue(-0.486, units.metre());
-        parameterValueGroup.parameter("Inclination in latitude").setValue(-0.003, units.arcSecond());
-        parameterValueGroup.parameter("Inclination in longitude").setValue(0.006, units.arcSecond());
+        createParameters("Vertical Offset and Slope",
+            new Parameter("Ordinate 1 of evaluation point", 52, units.degree()),
+            new Parameter("Ordinate 2 of evaluation point", 3, units.degree()),
+            new Parameter("Vertical offset", -0.486, units.metre()),
+            new Parameter("Inclination in latitude", -0.003, units.arcSecond()),
+            new Parameter("Inclination in longitude", 0.006, units.arcSecond()));
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS_65400”  transformation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS transformation code: <b>65400</b></li>
-     *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
-     * </ul>
-     * <table class="gigs">
-     *   <caption>Transformation parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Vertical offset</td><td>-28 metres</td></tr>
-     * </table>
-     *
-     * Remarks: EPSG equivalent deprecated but remains relevant.
-     * Previous equivalent 5400 Baltic height to Caspian depth (1).
-     *
-     * @throws FactoryException if an error occurred while creating the transformation from the properties.
-     */
-    @Test
-    @DisplayName("GIGS_65400")
-    public void GIGS_65400() throws FactoryException {
-        setCodeAndName(65400, "GIGS_65400");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Vertical offset";
-        createDefaultParameters();
-        createSourceCRS(Test3210::GIGS_64505);
-        createTargetCRS(Test3210::GIGS_64508);
-        parameterValueGroup.parameter("Vertical offset").setValue(-28, units.metre());
-        verifyTransformation();
-    }
-
-    /**
-     * Tests “GIGS_65438”  transformation from the factory.
-     *
-     * <ul>
-     *   <li>GIGS transformation code: <b>65438</b></li>
-     *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
-     *   <li>EPSG equivalence: <b>5438 – Baltic 1977 height to Caspian height (1)</b></li>
-     * </ul>
-     * <table class="gigs">
-     *   <caption>Transformation parameters</caption>
-     *   <tr><th>Parameter name</th><th>Value</th></tr>
-     *   <tr><td>Vertical offset</td><td>28 metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if an error occurred while creating the transformation from the properties.
-     */
-    @Test
-    @DisplayName("GIGS_65438")
-    public void GIGS_65438() throws FactoryException {
-        setCodeAndName(65438, "GIGS_65438");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Vertical offset";
-        createDefaultParameters();
-        createSourceCRS(Test3210::GIGS_64505);
-        createTargetCRS(Test3210::GIGS_64507);
-        parameterValueGroup.parameter("Vertical offset").setValue(28, units.metre());
-        verifyTransformation();
-    }
-
-    /**
-     * Tests “GIGS_65440”  transformation from the factory.
+     * Tests “GIGS vertCRS V1 depth to GIGS vertCRS W1 depth” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>65440</b></li>
@@ -502,20 +399,18 @@ public class Test3211 extends Series3000<Transformation> {
      * @throws FactoryException if an error occurred while creating the transformation from the properties.
      */
     @Test
-    @DisplayName("GIGS_65440")
+    @DisplayName("GIGS vertCRS V1 depth to GIGS vertCRS W1 depth")
     public void GIGS_65440() throws FactoryException {
-        setCodeAndName(65440, "GIGS_65440");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Vertical offset";
-        createDefaultParameters();
+        setCodeAndName(65440, "GIGS vertCRS V1 depth to GIGS vertCRS W1 depth");
         createSourceCRS(Test3210::GIGS_64506);
         createTargetCRS(Test3210::GIGS_64508);
-        parameterValueGroup.parameter("Vertical offset").setValue(-28, units.metre());
+        createParameters("Vertical Offset",
+            new Parameter("Vertical offset", -28, units.metre()));
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS_65441”  transformation from the factory.
+     * Tests “GIGS vertCRS V1 depth to GIGS vertCRS W1 height” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>65441</b></li>
@@ -533,20 +428,46 @@ public class Test3211 extends Series3000<Transformation> {
      * @throws FactoryException if an error occurred while creating the transformation from the properties.
      */
     @Test
-    @DisplayName("GIGS_65441")
+    @DisplayName("GIGS vertCRS V1 depth to GIGS vertCRS W1 height")
     public void GIGS_65441() throws FactoryException {
-        setCodeAndName(65441, "GIGS_65441");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Vertical offset";
-        createDefaultParameters();
+        setCodeAndName(65441, "GIGS vertCRS V1 depth to GIGS vertCRS W1 height");
         createSourceCRS(Test3210::GIGS_64506);
         createTargetCRS(Test3210::GIGS_64507);
-        parameterValueGroup.parameter("Vertical offset").setValue(28, units.metre());
+        createParameters("Vertical Offset",
+            new Parameter("Vertical offset", 28, units.metre()));
         verifyTransformation();
     }
 
     /**
-     * Tests “GIGS_65447”  transformation from the factory.
+     * Tests “GIGS vertCRS V1 depth to MSL depth” transformation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS transformation code: <b>61502</b></li>
+     *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
+     * </ul>
+     * <table class="gigs">
+     *   <caption>Transformation parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Vertical offset</td><td>0 metre</td></tr>
+     * </table>
+     *
+     * Remarks: No direct EPSG equivalent.
+     *
+     * @throws FactoryException if an error occurred while creating the transformation from the properties.
+     */
+    @Test
+    @DisplayName("GIGS vertCRS V1 depth to MSL depth")
+    public void GIGS_61502() throws FactoryException {
+        setCodeAndName(61502, "GIGS vertCRS V1 depth to MSL depth");
+        createSourceCRS(Test3210::GIGS_64506);
+        createTargetCRS(5715);
+        createParameters("Vertical Offset",
+            new Parameter("Vertical offset", 0, units.metre()));
+        verifyTransformation();
+    }
+
+    /**
+     * Tests “GIGS vertCRS V1 height to GIGS vertCRS U1 height” transformation from the factory.
      *
      * <ul>
      *   <li>GIGS transformation code: <b>65447</b></li>
@@ -562,15 +483,97 @@ public class Test3211 extends Series3000<Transformation> {
      * @throws FactoryException if an error occurred while creating the transformation from the properties.
      */
     @Test
-    @DisplayName("GIGS_65447")
+    @DisplayName("GIGS vertCRS V1 height to GIGS vertCRS U1 height")
     public void GIGS_65447() throws FactoryException {
-        setCodeAndName(65447, "GIGS_65447");
-        properties.put(Transformation.OPERATION_VERSION_KEY, "GIGS Transformation");
-        methodName = "Vertical offset";
-        createDefaultParameters();
+        setCodeAndName(65447, "GIGS vertCRS V1 height to GIGS vertCRS U1 height");
         createSourceCRS(Test3210::GIGS_64505);
         createTargetCRS(Test3210::GIGS_64501);
-        parameterValueGroup.parameter("Vertical offset").setValue(0.4, units.metre());
+        createParameters("Vertical Offset",
+            new Parameter("Vertical offset", 0.4, units.metre()));
+        verifyTransformation();
+    }
+
+    /**
+     * Tests “GIGS vertCRS V1 height to GIGS vertCRS W1 depth” transformation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS transformation code: <b>65400</b></li>
+     *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
+     * </ul>
+     * <table class="gigs">
+     *   <caption>Transformation parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Vertical offset</td><td>-28 metres</td></tr>
+     * </table>
+     *
+     * Remarks: EPSG equivalent deprecated but remains relevant.
+     * Previous equivalent 5400 Baltic height to Caspian depth (1).
+     *
+     * @throws FactoryException if an error occurred while creating the transformation from the properties.
+     */
+    @Test
+    @DisplayName("GIGS vertCRS V1 height to GIGS vertCRS W1 depth")
+    public void GIGS_65400() throws FactoryException {
+        setCodeAndName(65400, "GIGS vertCRS V1 height to GIGS vertCRS W1 depth");
+        createSourceCRS(Test3210::GIGS_64505);
+        createTargetCRS(Test3210::GIGS_64508);
+        createParameters("Vertical Offset",
+            new Parameter("Vertical offset", -28, units.metre()));
+        verifyTransformation();
+    }
+
+    /**
+     * Tests “GIGS vertCRS V1 height to GIGS vertCRS W1 height” transformation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS transformation code: <b>65438</b></li>
+     *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
+     *   <li>EPSG equivalence: <b>5438 – Baltic 1977 height to Caspian height (1)</b></li>
+     * </ul>
+     * <table class="gigs">
+     *   <caption>Transformation parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Vertical offset</td><td>28 metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException if an error occurred while creating the transformation from the properties.
+     */
+    @Test
+    @DisplayName("GIGS vertCRS V1 height to GIGS vertCRS W1 height")
+    public void GIGS_65438() throws FactoryException {
+        setCodeAndName(65438, "GIGS vertCRS V1 height to GIGS vertCRS W1 height");
+        createSourceCRS(Test3210::GIGS_64505);
+        createTargetCRS(Test3210::GIGS_64507);
+        createParameters("Vertical Offset",
+            new Parameter("Vertical offset", 28, units.metre()));
+        verifyTransformation();
+    }
+
+    /**
+     * Tests “GIGS vertCRS V1 height to MSL height” transformation from the factory.
+     *
+     * <ul>
+     *   <li>GIGS transformation code: <b>61501</b></li>
+     *   <li>EPSG Transformation Method: <b>Vertical offset</b></li>
+     * </ul>
+     * <table class="gigs">
+     *   <caption>Transformation parameters</caption>
+     *   <tr><th>Parameter name</th><th>Value</th></tr>
+     *   <tr><td>Vertical offset</td><td>0 metre</td></tr>
+     * </table>
+     *
+     * Remarks: No direct EPSG equivalent.
+     *
+     * @throws FactoryException if an error occurred while creating the transformation from the properties.
+     */
+    @Test
+    @DisplayName("GIGS vertCRS V1 height to MSL height")
+    public void GIGS_61501() throws FactoryException {
+        setCodeAndName(61501, "GIGS vertCRS V1 height to MSL height");
+        createSourceCRS(Test3210::GIGS_64505);
+        createTargetCRS(5714);
+        createParameters("Vertical Offset",
+            new Parameter("Vertical offset", 0, units.metre()));
         verifyTransformation();
     }
 }

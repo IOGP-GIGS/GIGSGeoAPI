@@ -41,9 +41,11 @@ import org.opengis.util.FactoryException;
 interface TestMethod<T extends IntegrityTest> {
     /**
      * Execute a test method in the given test class.
+     * The method is executed with actual tests disabled,
+     * so the purpose of invoking this method is to initialize test data.
      *
      * @param  testCase  a instance of the class which contain the test method.
      * @throws FactoryException if an error occurred while creating the geodetic object to test.
      */
-    void test(T testCase) throws FactoryException;
+    void initialize(T testCase) throws FactoryException;
 }
