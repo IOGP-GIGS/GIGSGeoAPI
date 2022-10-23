@@ -33,6 +33,31 @@ import javax.swing.UIManager;
 /**
  * Entry point for running GIGS tests in a Graphical User Interface (GUI).
  *
+ * <h2>Configuration</h2>
+ * If the {@systemProperty org.iogp.gigs.config} system property is specified
+ * (typically with the {@code -D} option on the command line),
+ * then its value shall by the path to a file in
+ * {@linkplain java.util.Properties#load(java.io.Reader) Java property file format}.
+ * The properties in that file shall have the following syntax:
+ *
+ * <pre>class.method.key=value</pre>
+ *
+ * Where:
+ *
+ * <ul>
+ *   <li><var>class</var>  is the name of a class (without package) in the {@link org.iogp.gigs} package;</li>
+ *   <li><var>method</var> is the name of a method in the class named by <var>class</var>;</li>
+ *   <li><var>key</var>    is the name of a test option such as {@code isStandardAliasSupported};</li>
+ *   <li><var>value</var>  is the value to assign to that option.</li>
+ * </ul>
+ *
+ * <p>Special cases:</p>
+ * <ul>
+ *   <li>If {@code class.method} is {@code "*"}, then the option applies to all tests.</li>
+ * </ul>
+ *
+ * Currently, only boolean options are supported.
+ *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
  * @since   1.0

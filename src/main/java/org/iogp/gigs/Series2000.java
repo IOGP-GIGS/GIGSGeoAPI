@@ -131,20 +131,47 @@ public abstract class Series2000<T> extends IntegrityTest {
      * Creates a new test.
      */
     Series2000() {
-        @SuppressWarnings("unchecked")
-        final boolean[] isEnabled = getEnabledFlags(
-                Configuration.Key.isStandardIdentifierSupported,
-                Configuration.Key.isStandardNameSupported,
-                Configuration.Key.isStandardAliasSupported,
-                Configuration.Key.isDependencyIdentificationSupported,
-                Configuration.Key.isDeprecatedObjectCreationSupported,
-                Configuration.Key.isOperationVersionSupported);
-        isStandardIdentifierSupported       = isEnabled[0];
-        isStandardNameSupported             = isEnabled[1];
-        isStandardAliasSupported            = isEnabled[2];
-        isDependencyIdentificationSupported = isEnabled[3];
-        isDeprecatedObjectCreationSupported = isEnabled[4];
-        isOperationVersionSupported         = isEnabled[5];
+        initialize();
+    }
+
+    /**
+     * Returns the configuration keys for enabling or disabling optional aspects to be verified.
+     * This method does not clone the returned array. It is okay because this method is not public.
+     */
+    @Override
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
+    final Configuration.Key<Boolean>[] getOptionKeys() {
+        return OPTION_KEYS;
+    }
+
+    /**
+     * The array returned by {@link #getOptionKeys()}.
+     * Shall not be modified, because it will not be cloned.
+     */
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    private static final Configuration.Key<Boolean>[] OPTION_KEYS = new Configuration.Key[] {
+            /* [0] */ Configuration.Key.isStandardIdentifierSupported,
+            /* [1] */ Configuration.Key.isStandardNameSupported,
+            /* [2] */ Configuration.Key.isStandardAliasSupported,
+            /* [3] */ Configuration.Key.isDependencyIdentificationSupported,
+            /* [4] */ Configuration.Key.isDeprecatedObjectCreationSupported,
+            /* [5] */ Configuration.Key.isOperationVersionSupported};
+
+    /**
+     * Enables or disables an optional aspect to be verified.
+     * The {@code key} argument value shall be an index in the {@link #OPTION_KEYS} array.
+     */
+    @Override
+    final void setOptionEnabled(final int key, final boolean value) {
+        switch (key) {
+            case  0: isStandardIdentifierSupported       = value; break;
+            case  1: isStandardNameSupported             = value; break;
+            case  2: isStandardAliasSupported            = value; break;
+            case  3: isDependencyIdentificationSupported = value; break;
+            case  4: isDeprecatedObjectCreationSupported = value; break;
+            case  5: isOperationVersionSupported         = value; break;
+            default: throw new AssertionError(key);
+        }
     }
 
     /**

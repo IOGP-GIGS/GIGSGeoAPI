@@ -63,13 +63,13 @@ public final class TestSuite implements ParameterResolver {
 
     /**
      * The test under execution, or {@code null} if none.
-     * This is set by {@link IntegrityTest#reference()} after test execution.
+     * This is set by {@link IntegrityTest#saveReference()} after test execution.
      */
     public volatile IntegrityTest executing;
 
     /**
      * If a test failure occurred in an optional test, the configuration key for disabling that test.
-     * Otherwise {@code null}. This is set by {@link IntegrityTest#reference()} after test execution.
+     * Otherwise {@code null}. This is set by {@link IntegrityTest#saveReference()} after test execution.
      */
     public volatile Configuration.Key<Boolean> configurationTip;
 

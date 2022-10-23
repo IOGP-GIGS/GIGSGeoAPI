@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Objects;
+import java.util.Optional;
 import javax.measure.spi.SystemOfUnits;
 
 import org.opengis.util.CodeList;
@@ -497,9 +498,19 @@ public final class Configuration {
         }
 
         /**
+         * Returns the key that matches the given name.
+         *
+         * @param  name  the name of the key to fetch or to create.
+         * @return a key matching the given name.
+         * @throws NullPointerException if the given name is {@code null}.
+         */
+        public static Optional<Key<?>> valueOf(final String name) {
+            return Optional.ofNullable(find(name));
+        }
+
+        /**
          * Returns the key that matches the given name, or returns a new one if none match it.
-         * If no existing instance is found, then a new one is created for the given name and
-         * type.
+         * If no existing instance is found, then a new one is created for the given name and type.
          *
          * @param  <T>   the type of the key to fetch.
          * @param  type  the type of the key to fetch.
@@ -511,7 +522,22 @@ public final class Configuration {
         @SuppressWarnings("unchecked")
         public static <T> Key<? extends T> valueOf(final String name, final Class<T> type) {
             Objects.requireNonNull(type, "type");
-            final Key<?> key = valueOf(Key.class, new Filter() {
+            final Key<?> key = find(name);
+            if (key != null) {
+                if (!type.isAssignableFrom(key.type)) {
+                    throw new ClassCastException(key.type.getName());
+                }
+                return (Key) key;
+            }
+            return new Key<>(type, name);
+        }
+
+        /**
+         * Finds the key of the given name, or returns {@code null} if the key is not found.
+         */
+        @SuppressWarnings("unchecked")
+        private static Key<?> find(final String name) {
+            return valueOf(Key.class, new Filter() {
                 @Override public boolean accept(CodeList<?> code) {
                     return name.equals(code.name());
                 }
@@ -520,13 +546,6 @@ public final class Configuration {
                     return null;
                 }
             });
-            if (key != null) {
-                if (!type.isAssignableFrom(key.type)) {
-                    throw new ClassCastException(key.type.getName());
-                }
-                return (Key) key;
-            }
-            return new Key<>(type, name);
         }
 
         /**

@@ -51,12 +51,6 @@ import org.iogp.gigs.internal.geoapi.Configuration;
  */
 abstract class ConformanceTest {
     /**
-     * The list of tests that are enabled.
-     * This is a static field for now but will become configurable in a future version.
-     */
-    private static final Configuration config = new Configuration();
-
-    /**
      * Provider of units of measurement (degree, metre, second, <i>etc</i>), never {@code null}.
      * The {@link Units#degree()}, {@link Units#metre() metre()} and other methods shall return
      * {@link javax.measure.Unit} instances compatible with the units created by the {@link Factory}
@@ -95,23 +89,6 @@ abstract class ConformanceTest {
     ConformanceTest() {
         units = Units.getInstance();
         validators = ValidatorContainer.DEFAULT;
-    }
-
-    /**
-     * Returns booleans indicating whether the given operations are enabled.
-     *
-     * @param  properties  the key for which the flags are wanted.
-     * @return an array of the same length than {@code properties} in which each element at index
-     *         <var>i</var> indicates whether the {@code properties[i]} test should be enabled.
-     */
-    @SafeVarargs
-    final boolean[] getEnabledFlags(final Configuration.Key<Boolean>... properties) {
-        final boolean[] isEnabled = new boolean[properties.length];
-        for (int i=0; i<properties.length; i++) {
-            final Boolean value = config.get(properties[i]);
-            isEnabled[i] = (value == null) || value;
-        }
-        return isEnabled;
     }
 
     /**

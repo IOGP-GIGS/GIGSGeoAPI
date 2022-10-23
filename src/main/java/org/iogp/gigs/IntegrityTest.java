@@ -36,10 +36,13 @@ import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.PrimeMeridian;
+import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.TestSuite;
 import org.opentest4j.TestAbortedException;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -79,8 +82,8 @@ public abstract class IntegrityTest extends ConformanceTest {
     static final double ANGULAR_TOLERANCE = 1E-7;
 
     /**
-     * The extension which will perform dependency injection. When a constructor an argument of the {@code FooFactory},
-     * the {@link TestSuite#resolveParameter resolveParameter(…)} method is invoked for providing the factory instance.
+     * The extension which will perform dependency injection. When a constructor has arguments of {@code Factory} subtypes,
+     * the {@link TestSuite#resolveParameter resolveParameter(…)} method is invoked for providing the factory instances.
      */
     @RegisterExtension
     static final TestSuite INJECTION = TestSuite.INSTANCE;
@@ -95,9 +98,57 @@ public abstract class IntegrityTest extends ConformanceTest {
     boolean skipIdentificationCheck;
 
     /**
-     * Creates a new test.
+     * Creates a new test. Subclasses implementing abstract methods
+     * should invoke {@link #initialize()} in their constructor.
      */
     IntegrityTest() {
+    }
+
+    /**
+     * Returns the configuration keys for enabling or disabling optional aspects to be verified.
+     * The array content shall not be modified, so there is no need to clone the returned array.
+     * The index of each element is the key to use in calls to {@link #setOptionEnabled(int, boolean)}.
+     *
+     * @return keys for optional aspects to be tested. The returned array shall not be modified.
+     */
+    abstract Configuration.Key<Boolean>[] getOptionKeys();
+
+    /**
+     * Enables or disables an optional aspect to be verified.
+     * Subclasses should copy the {@code enabled} value in a boolean field identified by the key.
+     * Implementation should not depend on object state because this method will (indirectly) be
+     * invoked at construction time.
+     *
+     * @param  key      index of a key in the {@link #getOptionKeys()} array.
+     * @param  enabled  whether the aspect identified by the key should be enabled.
+     */
+    abstract void setOptionEnabled(int key, boolean enabled);
+
+    /**
+     * Sets the boolean value of all flags telling whether an optional aspect should be tested.
+     * This method should be invoked in the constructor of subclasses providing implementations
+     * of {@link #getOptionKeys()} and {@link #setOptionEnabled(int, boolean)} as final methods.
+     * This method assumes that the initial value of all flags is {@code false}.
+     */
+    final void initialize() {
+        final Configuration config = ConfigurationMap.INSTANCE.global;
+        final Configuration.Key<Boolean>[] keys = getOptionKeys();
+        for (int i=0; i<keys.length; i++) {
+            final Boolean enabled = config.get(keys[i]);
+            if ((enabled == null) || enabled) {
+                setOptionEnabled(i, true);
+            }
+        }
+    }
+
+    /**
+     * Tunes the configuration of a test which is about to be executed.
+     *
+     * @param  info  class and method of the test which is about to be executed.
+     */
+    @BeforeEach
+    final void configureTestCase(final TestInfo info) {
+        info.getTestMethod().ifPresent((method) -> ConfigurationMap.INSTANCE.applyTestSpecificOptions(this, method));
     }
 
     /**
@@ -105,7 +156,7 @@ public abstract class IntegrityTest extends ConformanceTest {
      * It will be used for fetching configuration information if needed.
      */
     @AfterEach
-    final void reference() {
+    final void saveReference() {
         TestSuite.INSTANCE.executing = this;
         TestSuite.INSTANCE.configurationTip = configurationTip;
     }

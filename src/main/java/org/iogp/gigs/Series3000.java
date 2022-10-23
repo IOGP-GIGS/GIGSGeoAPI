@@ -98,10 +98,37 @@ public abstract class Series3000<T> extends IntegrityTest {
      */
     Series3000() {
         properties = new HashMap<>(4);
-        @SuppressWarnings("unchecked")
-        final boolean[] isEnabled = getEnabledFlags(
-                Configuration.Key.isFactoryPreservingUserValues);
-        isFactoryPreservingUserValues = isEnabled[0];
+        initialize();
+    }
+
+    /**
+     * Returns the configuration keys for enabling or disabling optional aspects to be verified.
+     * This method does not clone the returned array. It is okay because this method is not public.
+     */
+    @Override
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
+    final Configuration.Key<Boolean>[] getOptionKeys() {
+        return OPTION_KEYS;
+    }
+
+    /**
+     * The array returned by {@link #getOptionKeys()}.
+     * Shall not be modified, because it will not be cloned.
+     */
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    private static final Configuration.Key<Boolean>[] OPTION_KEYS = new Configuration.Key[] {
+            /* [0] */ Configuration.Key.isFactoryPreservingUserValues};
+
+    /**
+     * Enables or disables an optional aspect to be verified.
+     * The {@code key} argument value shall be an index in the {@link #OPTION_KEYS} array.
+     */
+    @Override
+    final void setOptionEnabled(final int key, final boolean value) {
+        switch (key) {
+            case  0: isFactoryPreservingUserValues = value; break;
+            default: throw new AssertionError(key);
+        }
     }
 
     /**
