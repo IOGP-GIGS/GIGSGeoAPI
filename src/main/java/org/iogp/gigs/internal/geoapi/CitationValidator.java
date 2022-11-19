@@ -121,7 +121,7 @@ public class CitationValidator extends MetadataValidator {
     }
 
     /**
-     * Asserts that the date {@code d2} is equals or after {@code d1}.
+     * Asserts that the date {@code d2} is equal or after {@code d1}.
      *
      * @param  t1  type of the first date.
      * @param  d1  the first date to compare.

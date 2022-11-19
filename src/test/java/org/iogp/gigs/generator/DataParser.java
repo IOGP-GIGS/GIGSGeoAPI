@@ -391,7 +391,7 @@ final class DataParser {
             }
             /*
              * At this point, we have all information to add in the array.
-             * First, we must ensure that the array as a suffisient capacity.
+             * First, we must ensure that the array as a sufficient capacity.
              */
             final int length = count + (upper - lower) / step + 1;
             if (length > values.length) {

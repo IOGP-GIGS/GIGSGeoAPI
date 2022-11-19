@@ -52,7 +52,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *       and EPSG Dataset.
  *       Tests for component logical consistency: for example, if a higher-level library-defined component
  *       such as ED50 datum is selected it should then not be possible to change any of its lower-level
- *       components such as the ellipsoid from the pre-defined value (in this example International 1924).</td>
+ *       components such as the ellipsoid from the predefined value (in this example International 1924).</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link DatumAuthorityFactory#createGeodeticDatum(String)}.</td>

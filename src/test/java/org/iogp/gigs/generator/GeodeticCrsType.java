@@ -78,7 +78,7 @@ public enum GeodeticCrsType {
      *
      * @param  type  the text used in the CSV file for identifying the type.
      * @return the enumeration value for the given label.
-     * @throws IllegalArgumentException if the given label can not be matched to an enumeration value.
+     * @throws IllegalArgumentException if the given label cannot be matched to an enumeration value.
      */
     static GeodeticCrsType parse(final String type) {
         for (final GeodeticCrsType e : values()) {

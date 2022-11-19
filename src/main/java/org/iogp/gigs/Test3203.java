@@ -130,7 +130,7 @@ public class Test3203 extends Series3000<PrimeMeridian> {
      *
      * <h4>Authority factory usage</h4>
      * The coordinate system factory is used only if the test needs a sexagesimal unit,
-     * because the standard {@link javax.measure.spi.SystemOfUnits} API can not create them.
+     * because the standard {@link javax.measure.spi.SystemOfUnits} API cannot create them.
      * If needed, the EPSG code used is 9110.
      *
      * @param factories  factories for creating the instances to test.

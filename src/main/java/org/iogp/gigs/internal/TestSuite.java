@@ -91,7 +91,7 @@ public final class TestSuite implements ParameterResolver {
      *
      * @param  listener  the listener which will collect test results.
      * @param  jarFiles  JAR files of the implementation to test.
-     * @throws MalformedURLException if a file can not be converted to a URL.
+     * @throws MalformedURLException if a file cannot be converted to a URL.
      */
     public void run(final TestExecutionListener listener, final File... jarFiles) throws MalformedURLException {
         /*

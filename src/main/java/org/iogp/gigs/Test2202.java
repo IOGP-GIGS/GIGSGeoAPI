@@ -265,7 +265,7 @@ public class Test2202 extends Series2000<Ellipsoid> {
          * Get the axis lengths and their unit. Null units are assumed to mean metres
          * (whether we accept null unit or not is determined by the validators).
          * If the implementation uses metre units but the EPSG definition expected
-         * another unit, convert the axis lengths from the later units to metre units.
+         * another unit, convert the axis lengths from the latter units to metre units.
          */
         final Unit<Length> unit = ellipsoid.getAxisUnit();
         final boolean inMetres = toMetres != 1 && (unit == null || unit.equals(units.metre()));

@@ -47,7 +47,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * In addition to the {@link ObjectFactory} to test, some test cases use also an {@link AuthorityFactory}.
  * The authority factories are always optional in the 3000 series;
  * providing {@code null} authority factories may disable some test cases, but not all of them.
- * Sometime the test cases exist in two variants: one creating the object fully using only {@link ObjectFactory},
+ * Sometimes the test cases exist in two variants: one creating the object fully using only {@link ObjectFactory},
  * and another variant creating the same object where some components are created using {@link AuthorityFactory}.
  *
  * @param  <T>  the type of objects to test.

@@ -334,7 +334,7 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Adds "EPSG equivalence" pairs for an arbitrary amount of EPSG equivalences.
+     * Adds "EPSG equivalence" pairs for an arbitrary number of EPSG equivalences.
      *
      * @param  addTo  where to add EPSG equivalence" pairs.
      * @param  codes  equivalent EPSG codes.
@@ -862,11 +862,11 @@ public abstract class TestMethodGenerator {
     }
 
     /**
-     * Declares that a test has been skipped because it can not be represented as a JUnit test.
+     * Declares that a test has been skipped because it cannot be represented as a JUnit test.
      *
      * @param  series  the test series (e.g. 3204).
-     * @param  test    code of the GIGS object which can not be tested.
-     * @param  name    name of the GIGS object which can not be tested.
+     * @param  test    code of the GIGS object which cannot be tested.
+     * @param  name    name of the GIGS object which cannot be tested.
      * @param  reason  reason why the test has been skipped.
      */
     final void addUnsupportedTest(final int series, final int test, final String name, final String reason) {

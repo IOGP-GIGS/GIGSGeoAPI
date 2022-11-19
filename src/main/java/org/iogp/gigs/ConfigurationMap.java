@@ -149,7 +149,7 @@ final class ConfigurationMap {
     }
 
     /**
-     * Logs a warning about a property that can not be parsed.
+     * Logs a warning about a property that cannot be parsed.
      * This is considered a non-fatal error; it will not stop execution.
      * Continuing execution may cause more test failures than expected
      * because configuration may not be as intended.
