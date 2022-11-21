@@ -112,7 +112,7 @@ public final class Test2207 extends TestMethodGenerator {
                 (code) -> Arrays.binarySearch(isWestOrientated,  code) >= 0,        // [8]
                 (code) -> Arrays.binarySearch(isSouthOrientated, code) >= 0);       // [9]
         /*
-         * Group related projections in a single method. For example the following projections will be
+         * Group related projections in a single method. For example, the following projections will be
          * tested in a loop inside a single method instead of generating a method for each projection:
          *
          *   32601    6326    WGS 84    WGS 84 / UTM zone 1N    World - N hemisphere - 180°W to 174°W - by country

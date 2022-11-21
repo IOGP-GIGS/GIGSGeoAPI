@@ -105,7 +105,7 @@ public abstract class Series2000<T> extends IntegrityTest {
     /**
      * {@code true} if the {@link IdentifiedObject} instances created indirectly by the factories
      * are expected to have correct identification information.
-     * For example when testing a {@link org.opengis.referencing.crs.CoordinateReferenceSystem} (CRS) object,
+     * For example, when testing a {@link org.opengis.referencing.crs.CoordinateReferenceSystem} (CRS) object,
      * the CRS authority code will be verified unconditionally but the authority codes of associated objects
      * ({@link org.opengis.referencing.datum.GeodeticDatum} or {@link org.opengis.referencing.cs.CoordinateSystem})
      * will be verified only if this flag is {@code true}.
@@ -289,7 +289,7 @@ public abstract class Series2000<T> extends IntegrityTest {
 
     /**
      * Replaces some Unicode characters by ASCII characters on a "best effort basis".
-     * For example the “ é ” character is replaced by  “ e ” (without accent),
+     * For example, the “ é ” character is replaced by  “ e ” (without accent),
      * the  “ ″ ” symbol for minutes of angle is replaced by straight double quotes “ " ”,
      * and combined characters like ㎏, ㎎, ㎝, ㎞, ㎢, ㎦, ㎖, ㎧, ㎩, ㎐, <i>etc.</i> are replaced
      * by the corresponding sequences of characters.
@@ -402,7 +402,7 @@ public abstract class Series2000<T> extends IntegrityTest {
     /**
      * Ensures that the aliases of the given object contains all expected aliases.
      * This method verifies that the given collection contains at least the expected aliases.
-     * However the collection may contain additional aliases, which will be ignored.
+     * However, the collection may contain additional aliases, which will be ignored.
      *
      * @param  expected  the expected aliases (usually {@link #aliases}).
      * @param  object    the object for which to verify the aliases.

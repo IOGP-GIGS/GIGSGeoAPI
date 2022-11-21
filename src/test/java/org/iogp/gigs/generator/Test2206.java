@@ -67,7 +67,7 @@ public final class Test2206 extends TestMethodGenerator {
                 String .class,      // [4]: EPSG Usage Extent
                 String .class);     // [5]: GIGS Remarks
         /*
-         * Group related projections in a single method. For example the following projections will be
+         * Group related projections in a single method. For example, the following projections will be
          * tested in a loop inside a single method instead of generating a method for each projection:
          *
          *   16001    UTM zone 1N    Transverse Mercator    World - N hemisphere - 180°W to 174°W
