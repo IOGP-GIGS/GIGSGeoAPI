@@ -119,6 +119,8 @@ public class Parameter {
      * Returns the error message to return if the parameter was not found.
      * This method is defined in case that the implementation does not said which parameter was not found.
      * Users would normally not need to define such method for using the {@link ParameterValueGroup} API.
+     *
+     * @return the error message to put in an exception to be thrown.
      */
     private String parameterNotFound() {
         return "A parameter named \"" + name + "\" was required but not found.";

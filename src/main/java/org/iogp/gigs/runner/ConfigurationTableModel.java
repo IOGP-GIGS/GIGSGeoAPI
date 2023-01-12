@@ -31,18 +31,17 @@
  */
 package org.iogp.gigs.runner;
 
-import java.util.Map;
 import java.util.List;
 import java.util.Collections;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableColumnModel;
 
-import org.iogp.gigs.internal.geoapi.Configuration;
-
 
 /**
  * The table model for the list of configuration entries.
+ * The table contains a column with checkbox telling whether the configuration option is enabled.
+ * If user changes the checkbox status, the test is rerun with the new configuration.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
@@ -69,9 +68,11 @@ final class ConfigurationTableModel extends AbstractTableModel {
     };
 
     /**
-     * The configuration entries.
+     * The configuration entries. This reference is set to the {@link ResultEntry#configuration}
+     * list of the test currently shown in the "details" pane. This reference changes every time
+     * that details are shown for a different test.
      */
-    List<Map.Entry<Configuration.Key<?>, ResultEntry.StatusOptional>> entries;
+    List<TestAspect> entries;
 
     /**
      * Creates an initially empty table model.
@@ -137,12 +138,31 @@ final class ConfigurationTableModel extends AbstractTableModel {
      */
     @Override
     public Object getValueAt(final int row, final int column) {
-        final Map.Entry<Configuration.Key<?>, ResultEntry.StatusOptional> entry = entries.get(row);
+        final TestAspect entry = entries.get(row);
         switch (column) {
-            case KEY_COLUMN:   return ResultEntry.separateWords(entry.getKey().name(), true, "");
-            case VALUE_COLUMN: return entry.getValue() != ResultEntry.StatusOptional.DISABLED;
-            case PASS_COLUMN:  return entry.getValue() == ResultEntry.StatusOptional.FAILED ? "Failed" : null;
+            case KEY_COLUMN:   return ResultEntry.separateWords(entry.name(), true, "");
+            case VALUE_COLUMN: return entry.status() != TestAspect.Status.DISABLED;
+            case PASS_COLUMN:  return entry.status() == TestAspect.Status.FAILED ? "Failed" : null;
             default: throw new IndexOutOfBoundsException(String.valueOf(column));
+        }
+    }
+
+    /**
+     * Returns whether the specified cell can be edited.
+     * This is {@code true} for the checkbox column and {@code false} for all other columns.
+     */
+    @Override
+    public boolean isCellEditable(final int row, final int column) {
+        return (column == VALUE_COLUMN) && entries.get(row).isEditable();
+    }
+
+    /**
+     * Invoked when the user changed the status of a checkbox for enabling or disabling a configuration item.
+     */
+    @Override
+    public void setValueAt(final Object value, final int row, final int column) {
+        if (column == VALUE_COLUMN) {
+            entries.get(row).execute((Boolean) value);
         }
     }
 }

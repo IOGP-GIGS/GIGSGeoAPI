@@ -50,32 +50,16 @@ import org.iogp.gigs.Factories;
  */
 final class DiscoveredFactories extends Factories {
     /**
-     * Creates an initially empty set of factories.
-     */
-    DiscoveredFactories() {
-    }
-
-    /**
-     * Restores this object to its initial state.
-     */
-    final void clear() {
-        crsAuthorityFactory   = null;
-        crsFactory            = null;
-        csAuthorityFactory    = null;
-        csFactory             = null;
-        datumAuthorityFactory = null;
-        datumFactory          = null;
-        copAuthorityFactory   = null;
-        copFactory            = null;
-        mtFactory             = null;
-    }
-
-    /**
-     * Initializes this object to all discovered factories.
+     * The name of the desired authority for authority factories. This is usually "EPSG".
      *
-     * @param  loader  the loader to use for discovering factories.
+     * @todo Value is fixed for GIGS tests, but may become configurable in a future version.
      */
-    final void initialize(final ClassLoader loader) {
+    private static final String AUTHORITY = "EPSG";
+
+    /**
+     * Creates a set of factories discovered using the specified service loader.
+     */
+    DiscoveredFactories(final ClassLoader loader) {
         crsAuthorityFactory   = find(loader, CRSAuthorityFactory.class);
         crsFactory            = find(loader, CRSFactory.class);
         csAuthorityFactory    = find(loader, CSAuthorityFactory.class);
@@ -88,29 +72,10 @@ final class DiscoveredFactories extends Factories {
     }
 
     /**
-     * Returns the factory to test for the specified type.
-     *
-     * @param  type  GeoAPI interface of the desired factory.
-     * @return factory for the specified interface, or {@code null} if none.
-     */
-    final Object get(final Class<?> type) {
-        if (type == Factories.class)                           return this;
-        if (type == CRSAuthorityFactory.class)                 return crsAuthorityFactory;
-        if (type == CRSFactory.class)                          return crsFactory;
-        if (type == CSAuthorityFactory.class)                  return csAuthorityFactory;
-        if (type == CSFactory.class)                           return csFactory;
-        if (type == DatumAuthorityFactory.class)               return datumAuthorityFactory;
-        if (type == DatumFactory.class)                        return datumFactory;
-        if (type == CoordinateOperationAuthorityFactory.class) return copAuthorityFactory;
-        if (type == CoordinateOperationFactory.class)          return copFactory;
-        if (type == MathTransformFactory.class)                return mtFactory;
-        return null;
-    }
-
-    /**
      * Finds the first factory of the specified type.
-     * If an authority factory is for a name space other than EPSG, skips that factory.
+     * Authority factories are filtered in order to find an instance for the desired {@linkplain #AUTHORITY}.
      *
+     * @param  <T>     compile-time value of the {@code type} argument.
      * @param  loader  the loader to use for discovering factories.
      * @param  type    GeoAPI interface of the desired factory.
      * @return factory for the specified interface, or {@code null} if none.
@@ -118,7 +83,7 @@ final class DiscoveredFactories extends Factories {
     private static <T extends Factory> T find(final ClassLoader loader, final Class<T> type) {
         for (final Factory factory : ServiceLoader.load(type, loader)) {
             if (factory instanceof AuthorityFactory) {
-                if (isNotEPSG(((AuthorityFactory) factory).getAuthority())) {
+                if (!useAuthority(((AuthorityFactory) factory).getAuthority())) {
                     continue;
                 }
             }
@@ -128,31 +93,31 @@ final class DiscoveredFactories extends Factories {
     }
 
     /**
-     * Tests whether the given citation is for an authority other than EPSG.
-     * If not specified, conservatively assumes {@code false}.
+     * Returns {@code true} if this test suite can use a factory for the specified authority.
+     * If the authority is not specified, this method conservatively assumes {@code true}.
      *
-     * @param  citation  the citation to test.
-     * @return whether the given citation is for EPSG authority.
+     * @param  citation  citation of the authority of a factory. May be {@code null}.
+     * @return whether the given citation is for the desired authority.
      */
-    private static boolean isNotEPSG(final Citation citation) {
-        if (citation == null || isEPSG(citation.getTitle())) {
-            return false;
+    private static boolean useAuthority(final Citation citation) {
+        if (citation == null || useAuthority(citation.getTitle())) {
+            return true;
         }
-        boolean hasOtherTitle = false;
+        boolean hasNoOtherTitle = true;
         for (final InternationalString title : citation.getAlternateTitles()) {
-            if (isEPSG(title)) return false;
-            hasOtherTitle = true;
+            if (useAuthority(title)) return true;
+            hasNoOtherTitle = false;
         }
-        return hasOtherTitle;
+        return hasNoOtherTitle;
     }
 
     /**
-     * Returns {@code true} if the given title is "EPSG".
+     * Returns {@code true} if the given title is the name of the desired authority.
      *
      * @param  title  the title to check, or {@code null}.
-     * @return {@code true} if the given title is "EPSG".
+     * @return {@code true} if the given title is for the desired authority.
      */
-    private static boolean isEPSG(final InternationalString title) {
-        return (title != null) && title.toString().contains("EPSG");
+    private static boolean useAuthority(final InternationalString title) {
+        return (title != null) && title.toString().contains(AUTHORITY);
     }
 }

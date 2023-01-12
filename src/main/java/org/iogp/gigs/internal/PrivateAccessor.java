@@ -24,43 +24,49 @@
  */
 package org.iogp.gigs.internal;
 
-import org.iogp.gigs.*;
+import java.lang.reflect.Method;
+import org.iogp.gigs.IntegrityTest;
+import org.iogp.gigs.internal.geoapi.Configuration;
 
 
 /**
- * Collection of all GIGS tests.
- * A test suite is independent of the implementation to test.
+ * Accessors for private methods that we do not want to make public at this time.
+ * This is a temporary hack to be removed after we have settle a public API.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @author  Michael Arneson (INT)
  * @version 1.0
  * @since   1.0
- *
- * @todo We need to define an abstract base class for allowing execution of GeoAPI and GIGS tests
- *       with the same application.
  */
-public final class TestSuite {
+public class PrivateAccessor {
     /**
-     * Creates a new suite.
+     * The unique accessor instance. Shall never be {@code null}.
+     * This is initialized by {@link IntegrityTest} static initializer.
      */
-    public TestSuite() {
+    public static volatile PrivateAccessor INSTANCE = new PrivateAccessor();
+
+    /**
+     * Creates a new accessor.
+     */
+    protected PrivateAccessor() {
     }
 
     /**
-     * Returns the classes providing all tests in this suite.
+     * Returns information about the configuration of a test.
      *
-     * @return all tests in this suite.
+     * @param  test  the test for which to get the configuration.
+     * @return the configuration of the specified test, or an empty map if none.
      */
-    public Class<?>[] getTestClasses() {
-        /*
-         * Prepare the tests plan. We use the GIGS class loader here,
-         * not yet the class loader for the factories to be tested.
-         */
-        return new Class<?>[] {
-            Test2201.class, Test2202.class, Test2203.class, Test2204.class, Test2205.class, Test2206.class,
-            Test2207.class, Test2208.class, Test2209.class, Test2210.class, Test2211.class, Test3201.class,
-            Test3202.class, Test3203.class, Test3204.class, Test3205.class, Test3206.class, Test3207.class,
-            Test3208.class, Test3209.class, Test3210.class, Test3211.class, Test3212.class
-        };
+    public Configuration configuration(IntegrityTest test) {
+        return new Configuration();
+    }
+
+    /**
+     * Enables or disables an optional aspect for a specific test method.
+     *
+     * @param  method  the test method to configure, or {@code null} for global configuration.
+     * @param  aspect  the test aspect to enable or disable.
+     * @param  value   the new enabled status, or {@code null} for removing.
+     */
+    public void setTestSpecificOption(Method method, Configuration.Key<Boolean> aspect, Boolean value) {
     }
 }

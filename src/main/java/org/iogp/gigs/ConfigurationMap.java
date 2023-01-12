@@ -127,14 +127,8 @@ final class ConfigurationMap {
                             }
                             Configuration.Key.valueOf(option).ifPresentOrElse((key -> {
                                 if (Boolean.class.equals(key.valueType())) {
-                                    @SuppressWarnings("unchecked")
-                                    final Configuration.Key<Boolean> bk = (Configuration.Key<Boolean>) key;
                                     final Boolean value = Boolean.valueOf(entry.getValue().toString());
-                                    if (method == null) {
-                                        global.put(bk, value);
-                                    } else {
-                                        byTest.computeIfAbsent(method, (k) -> new HashMap<>()).put(bk, value);
-                                    }
+                                    setTestSpecificOption(method, key.cast(Boolean.class), value);
                                 } else {
                                     warning("The \"" + option + "\" option is not a boolean.", null);
                                 }
@@ -183,6 +177,32 @@ final class ConfigurationMap {
                     if (enabled != null) {
                         test.setOptionEnabled(i, enabled);
                     }
+                }
+            }
+        }
+    }
+
+    /**
+     * Enables or disables an optional aspect for a specific test method.
+     *
+     * @param  method  the test method to configure, or {@code null} for global configuration.
+     * @param  aspect  the test aspect to enable or disable.
+     * @param  value   the new enabled status, or {@code null} for removing.
+     */
+    final void setTestSpecificOption(final Method method, final Configuration.Key<Boolean> aspect, final Boolean value) {
+        synchronized (byTest) {
+            if (value != null) {
+                if (method == null) {
+                    global.put(aspect, value);
+                } else {
+                    byTest.computeIfAbsent(method, (k) -> new HashMap<>()).put(aspect, value);
+                }
+            } else if (method == null) {
+                global.remove(aspect);
+            } else {
+                final Map<Configuration.Key<Boolean>, Boolean> map = byTest.get(method);
+                if (map != null) {
+                    map.remove(aspect);
                 }
             }
         }

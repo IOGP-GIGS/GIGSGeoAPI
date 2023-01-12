@@ -534,6 +534,9 @@ public final class Configuration {
 
         /**
          * Finds the key of the given name, or returns {@code null} if the key is not found.
+         *
+         * @param  name  the name of the key to fetch.
+         * @return a key matching the given name, or {@code null} if none.
          */
         @SuppressWarnings("unchecked")
         private static Key<?> find(final String name) {
@@ -578,6 +581,22 @@ public final class Configuration {
          */
         public Class<T> valueType() {
             return type;
+        }
+
+        /**
+         * Returns this key casted to the specified type.
+         *
+         * @param  <V>      compile-time value of {@code newType}.
+         * @param  newType  the desired parameterized type value.
+         * @return {@code this}.
+         * @throws ClassCastException is the given type is not equal to {@link #valueType()}.
+         */
+        @SuppressWarnings("unchecked")
+        public <V> Key<V> cast(final Class<V> newType) {
+            if (newType.equals(type)) {
+                return (Key<V>) this;
+            }
+            throw new ClassCastException("Can not cast Key<" + type.getSimpleName() + "> to Key<" + newType.getSimpleName() + ">.");
         }
     }
 }

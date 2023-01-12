@@ -36,8 +36,6 @@ import java.util.Map;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.AbstractMap;
 import java.util.Optional;
 import java.util.Locale;
 import java.awt.Color;
@@ -45,7 +43,8 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Rectangle;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.iogp.gigs.internal.TestSuite;
+import org.iogp.gigs.internal.ExecutionContext;
+import org.iogp.gigs.internal.PrivateAccessor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.platform.launcher.TestIdentifier;
 import org.junit.platform.engine.TestExecutionResult;
@@ -62,18 +61,15 @@ import org.junit.platform.engine.support.descriptor.MethodSource;
  */
 final class ResultEntry {
     /**
-     * The status (success, failure, disabled) of an optional test.
-     */
-    static enum StatusOptional {
-        /** The test is enabled.  */ ENABLED,
-        /** The test is disabled. */ DISABLED,
-        /** The test is failed.   */ FAILED
-    }
-
-    /**
      * The base URL of {@code geoapi-conformance} javadoc. The trailing slash is mandatory.
      */
     private static final String JAVADOC_BASEURL = "https://iogp-gigs.github.io/GIGSGeoAPI/";
+
+    /**
+     * The runner which has been used for running this test.
+     * This is used for re-executing the test if needed.
+     */
+    private final Runner runner;
 
     /**
      * The Java method which is the source of the test for which we are providing a result.
@@ -108,9 +104,9 @@ final class ResultEntry {
     final List<String[]> factories;
 
     /**
-     * The configuration specified by the implementer.
+     * The configuration specified by the implementer for this test.
      */
-    final List<Map.Entry<Configuration.Key<?>, StatusOptional>> configuration;
+    final List<TestAspect> configuration;
 
     /**
      * If a test failure occurred in an optional test, the configuration key for disabling that test.
@@ -140,7 +136,8 @@ final class ResultEntry {
      * @param identifier  identification of the test provided by JUnit.
      * @param result      result of the test (success, failure, aborted).
      */
-    ResultEntry(final TestIdentifier identifier, final TestExecutionResult result) {
+    ResultEntry(final Runner runner, final TestIdentifier identifier, final TestExecutionResult result) {
+        this.runner = runner;
         this.result = result;
         result.getThrowable().ifPresent(ResultEntry::trimStackTrace);
         source = (MethodSource) identifier.getSource().get();
@@ -161,10 +158,10 @@ final class ResultEntry {
          *  - Get the list of factories.
          */
         int numTests=1, numSupported=1;
-        configurationTip = TestSuite.INSTANCE.configurationTip;
-        final List<String[]> factories = new ArrayList<>();
-        final List<Map.Entry<Configuration.Key<?>, StatusOptional>> configuration = new ArrayList<>();
-        for (Map.Entry<Configuration.Key<?>,Object> entry : TestSuite.INSTANCE.configuration().entrySet()) {
+        configurationTip = ExecutionContext.INSTANCE.configurationTip;
+        factories        = new ArrayList<>();
+        configuration    = new ArrayList<>();
+        for (Map.Entry<Configuration.Key<?>,Object> entry : ExecutionContext.INSTANCE.configuration().entrySet()) {
             final Configuration.Key<?> key = entry.getKey();
             final String   name  = key.name();
             final Class<?> type  = key.valueType();
@@ -176,14 +173,14 @@ final class ResultEntry {
              */
             if ((type == Boolean.class) && name.startsWith("is")) {
                 if (name.endsWith("Supported")) {
-                    final StatusOptional so;
+                    final TestAspect.Status so;
                     if (Boolean.FALSE.equals(value)) {
-                        so = StatusOptional.DISABLED;
+                        so = TestAspect.Status.DISABLED;
                     } else {
                         numSupported++;
-                        so = (key == configurationTip) ? StatusOptional.FAILED : StatusOptional.ENABLED;
+                        so = (key == configurationTip) ? TestAspect.Status.FAILED : TestAspect.Status.ENABLED;
                     }
-                    configuration.add(new AbstractMap.SimpleImmutableEntry<>(key, so));
+                    configuration.add(new TestAspect(this, key, so));
                     numTests++;
                 } else if (name.equals("isToleranceRelaxed")) {
                     isToleranceRelaxed = (Boolean) value;
@@ -195,9 +192,7 @@ final class ResultEntry {
              */
             FactoryTableModel.addTo(type, value, factories);
         }
-        this.coverage      = numSupported / ((float) numTests);
-        this.factories     = Collections.unmodifiableList(factories);
-        this.configuration = Collections.unmodifiableList(configuration);
+        coverage = numSupported / ((float) numTests);
     }
 
     /**
@@ -287,7 +282,7 @@ final class ResultEntry {
      *
      * @return name of the test in Java source code
      */
-    String programmaticName() {
+    String getProgrammaticName() {
         return source.getClassName() + '.' + source.getMethodName();
     }
 
@@ -296,7 +291,7 @@ final class ResultEntry {
      *
      * @return the result, or {@code null} if none.
      */
-    String result() {
+    String getResultText() {
         if (result != null) {
             final Throwable exception = result.getThrowable().orElse(null);
             if (exception != null) {
@@ -315,7 +310,7 @@ final class ResultEntry {
      *
      * @return configuration that may be disabled, or {@code null} if no failure.
      */
-    String configurationTip() {
+    String getConfigurationTip() {
         if (configurationTip != null) {
             return separateWords(configurationTip.name(), true, "?");
         }
@@ -358,6 +353,14 @@ final class ResultEntry {
         graphics.setColor(color.darker());
         graphics.draw(bounds);
         graphics.setPaint(p);                   // Restore previous color.
+    }
+
+    /**
+     * Re-execute this test.
+     */
+    void setAspectAndExecute(final Configuration.Key<Boolean> aspect, final Boolean value) {
+        PrivateAccessor.INSTANCE.setTestSpecificOption(source.getJavaMethod(), aspect, value);
+        runner.execute(source);
     }
 
     /**

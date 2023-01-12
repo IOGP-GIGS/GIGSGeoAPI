@@ -24,6 +24,9 @@
  */
 package org.iogp.gigs;
 
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
 import javax.measure.Unit;
 import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
@@ -46,6 +49,8 @@ import org.opengis.referencing.operation.MathTransformFactory;
  * A container for various factory implementations.
  * This is used as a replacement for long list of arguments in constructors when a test may require
  * many factories for different kinds of objects (datum, coordinate system, operations, <i>etc</i>).
+ *
+ * <p>Implementations can create a {@code Factories} subclass and initialize all fields in their constructor.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
@@ -104,8 +109,66 @@ public class Factories {
     protected MathTransformFactory mtFactory;
 
     /**
+     * Maps each property type to an accessor for getting the property value.
+     */
+    private static final Map<Class<?>, Function<Factories,?>> ACCESSORS = Map.ofEntries(
+            entry(Factories.class,                           Function.identity()),
+            entry(CRSAuthorityFactory.class,                 (f) -> f.crsAuthorityFactory),
+            entry(CRSFactory.class,                          (f) -> f.crsFactory),
+            entry(CSAuthorityFactory.class,                  (f) -> f.csAuthorityFactory),
+            entry(CSFactory.class,                           (f) -> f.csFactory),
+            entry(DatumAuthorityFactory.class,               (f) -> f.datumAuthorityFactory),
+            entry(DatumFactory.class,                        (f) -> f.datumFactory),
+            entry(CoordinateOperationAuthorityFactory.class, (f) -> f.copAuthorityFactory),
+            entry(CoordinateOperationFactory.class,          (f) -> f.copFactory),
+            entry(MathTransformFactory.class,                (f) -> f.mtFactory));
+
+    /**
+     * Creates an entry for populating the {@link #ACCESSORS} map.
+     * This method delegates to {@code Map.entry(…)} with only a type safety added in method signature.
+     *
+     * @param  <T>       compile-type value of {@code type}.
+     * @param  type      key of the map entry to create.
+     * @param  accessor  value of the map entry to create.
+     * @return entry to put in the {@link #ACCESSORS} map.
+     */
+    private static <T> Map.Entry<Class<?>, Function<Factories,?>> entry(final Class<T> type, final Function<Factories,T> accessor) {
+        return Map.entry(type, accessor);
+    }
+
+    /**
      * Creates an initially empty set of factories.
      */
     protected Factories() {
+    }
+
+    /**
+     * Returns the factory to test for the specified type.
+     * This method returns the value of one of the type defined in this class.
+     * The field is identified by the value type.
+     * For example {@code get(CRSFactory.class)} returns {@link #crsFactory}.
+     *
+     * @param  <T>   compile-time value of the {@code type} argument.
+     * @param  type  GeoAPI interface of the desired factory.
+     * @return factory for the specified interface.
+     */
+    public final <T> Optional<T> get(final Class<T> type) {
+        final Function<Factories, ?> accessor = ACCESSORS.get(type);
+        if (accessor != null) {
+            return Optional.ofNullable(type.cast(accessor.apply(this)));
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Returns {@code true} if the given type is supported by the {@code get(…)} method.
+     * Note that a {@code true} value does not guarantee that {@code get(type)} will return
+     * a non-empty value, because the type may be supported with no value has been specified.
+     *
+     * @param  type  GeoAPI interface of a factory.
+     * @return whether the given type is supported.
+     */
+    public static boolean isSupported(final Class<?> type) {
+        return ACCESSORS.containsKey(type);
     }
 }

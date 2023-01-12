@@ -31,24 +31,26 @@
  */
 package org.iogp.gigs.runner;
 
-import java.awt.EventQueue;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.AbstractList;
-import java.util.Collections;
-import java.util.Comparator;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreePath;
-import org.junit.platform.launcher.TestIdentifier;
+import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.net.MalformedURLException;
+import javax.swing.SwingWorker;
+import org.iogp.gigs.internal.TestSuite;
+import org.iogp.gigs.internal.ExecutionContext;
 import org.junit.platform.engine.TestExecutionResult;
-import org.junit.platform.launcher.TestExecutionListener;
+import org.junit.platform.engine.discovery.ClassSelector;
+import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.engine.support.descriptor.MethodSource;
+import org.junit.platform.launcher.Launcher;
+import org.junit.platform.launcher.TestIdentifier;
+import org.junit.platform.launcher.TestExecutionListener;
+import org.junit.platform.launcher.core.LauncherFactory;
 
 
 /**
- * Provides methods for running the tests.
+ * Provides methods for running the tests,
+ * together with a view of the results as a Swing tree.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
@@ -56,23 +58,83 @@ import org.junit.platform.engine.support.descriptor.MethodSource;
  */
 final class Runner implements TestExecutionListener {
     /**
-     * The result of each tests. All accesses to this list must be synchronized.
+     * Set of classes containing the tests to execute.
+     * A test suite is independent of the implementation to test.
      */
-    private final List<ResultEntry> entries;
+    private final TestSuite suite;
 
     /**
-     * The tree where to show results.
-     * All changes in this tree must be done in the swing thread.
+     * The class loader to use for loading the implementation classes.
      */
-    final JTree tree;
+    private final ClassLoader loader;
 
     /**
-     * Creates a new, initially empty, runner.
+     * The JUnit object to use for running tests.
      */
-    Runner() {
-        entries = new ArrayList<>();
-        tree = new JTree(new DefaultTreeModel(new DefaultMutableTreeNode("Test results")));
-        tree.setRootVisible(false);
+    private final Launcher launcher;
+
+    /**
+     * Where the test results are shown.
+     */
+    private final ResultsView destination;
+
+    /**
+     * Creates a new runner.
+     *
+     * @param  suite            set of classes containing the tests to execute.
+     * @param  implementation   all JAR files required by the implementation to test.
+     * @param  destination      where to show the test results.
+     * @throws MalformedURLException if an implementation JAR file cannot be converted to a URL.
+     */
+    @SuppressWarnings("ThisEscapedInObjectConstruction")
+    Runner(final TestSuite suite, final File[] implementation, final ResultsView destination)
+            throws MalformedURLException
+    {
+        this.suite = suite;
+        this.destination = destination;
+        final URL[] urls = new URL[implementation.length];
+        for (int i=0; i < urls.length; i++) {
+            urls[i] = implementation[i].toURI().toURL();
+        }
+        loader   = new URLClassLoader(urls, Runner.class.getClassLoader());
+        launcher = LauncherFactory.create();
+        launcher.registerTestExecutionListeners(this);
+    }
+
+    /**
+     * Executes all tests and shows the result in the destination {@code ResultsView}.
+     * This method should be invoked in a background thread.
+     */
+    final void executeAll() {
+        final Class<?>[] tests = suite.getTestClasses();
+        final ClassSelector[] selectors = new ClassSelector[tests.length];
+        for (int i=0; i<selectors.length; i++) {
+            selectors[i] = DiscoverySelectors.selectClass(tests[i]);
+        }
+        ExecutionContext.INSTANCE.execute(loader, launcher, selectors);
+    }
+
+    /**
+     * Executes a single test in a background thread.
+     * This method can be invoked in the Swing thread.
+     *
+     * @param  test  the test to execute.
+     */
+    final void execute(final MethodSource test) {
+        new SwingWorker<Object,Object>() {
+            /**
+             * Invoked in a background thread for running the single test.
+             * The {@link #executionFinished(TestIdentifier, TestExecutionResult)}
+             * method will be invoked after test execution.
+             *
+             * @return {@code null} (ignored).
+             */
+            @Override protected Runner doInBackground() {
+                var selector = DiscoverySelectors.selectMethod(test.getJavaClass(), test.getJavaMethod());
+                ExecutionContext.INSTANCE.execute(loader, launcher, selector);
+                return null;
+            }
+        }.execute();
     }
 
     /**
@@ -86,123 +148,7 @@ final class Runner implements TestExecutionListener {
     @Override
     public void executionFinished​(final TestIdentifier identifier, final TestExecutionResult result) {
         if (identifier.getSource().orElse(null) instanceof MethodSource) {
-            final ResultEntry entry = new ResultEntry(identifier, result);
-            synchronized (entries) {
-                entries.add(entry);
-            }
-            EventQueue.invokeLater(() -> {
-                final DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-                final DefaultMutableTreeNode parent = series(model, entry.series);
-                final int index = new Children(parent).insert(entry);
-                model.nodesWereInserted(parent, new int[] {index});
-                if (entry.result.getStatus() != TestExecutionResult.Status.SUCCESSFUL) {
-                    tree.expandPath(new TreePath(new Object[] {model.getRoot(), parent}));
-                }
-            });
-        }
-    }
-
-    /**
-     * Returns the node of the series of the given name, creating it if needed.
-     * This method must be invoked in Swing thread.
-     *
-     * @param  model  value of {@code tree.getModel()}.
-     * @param  name   name of the series.
-     * @return node of the series of the given name.
-     */
-    private DefaultMutableTreeNode series(final DefaultTreeModel model, final String name) {
-        final DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
-        DefaultMutableTreeNode series;
-        for (int i = root.getChildCount(); --i >= 0;) {
-            series = (DefaultMutableTreeNode) root.getChildAt(i);
-            if (name.equals(series.getUserObject())) {
-                return series;
-            }
-        }
-        series = new DefaultMutableTreeNode(name);
-        final int index = root.getChildCount();
-        root.add(series);
-        model.nodesWereInserted(root, new int[] {index});
-        /*
-         * The tree stay hidden if we do not expand the root
-         * as soon as we can (after we got at least one child).
-         */
-        if (index == 0) {
-            tree.expandPath(new TreePath(model.getRoot()));
-        }
-        return series;
-    }
-
-    /**
-     * View of the nodes as a list. This class implements also the comparator used for keeping elements
-     * in the list in alphabetical order. This is used for finding where to insert a new node.
-     */
-    private static final class Children extends AbstractList<DefaultMutableTreeNode> implements Comparator<Object> {
-        /**
-         * The node of the test series.
-         * Children of this nodes are result of test methods in the series.
-         */
-        private final DefaultMutableTreeNode series;
-
-        /**
-         * Creates a new list of test results.
-         *
-         * @param  series  the node of the test series.
-         */
-        Children(final DefaultMutableTreeNode series) {
-            this.series = series;
-        }
-
-        /**
-         * {@return the child node at the given index.}
-         */
-        @Override public DefaultMutableTreeNode get(final int index) {
-            return (DefaultMutableTreeNode) series.getChildAt(index);
-        }
-
-        /**
-         * {@return the number of child nodes.}
-         */
-        @Override public int size() {
-            return series.getChildCount();
-        }
-
-        /**
-         * Returns the given object as an instance of {@code ResultEntry}.
-         *
-         * @param  obj  the {@code ResultEntry} or {@code DefaultMutableTreeNode} instance.
-         * @return the given object as a {@code ResultEntry} instance.
-         */
-        private static ResultEntry cast(Object obj) {
-            if (obj instanceof DefaultMutableTreeNode) {
-                obj = ((DefaultMutableTreeNode) obj).getUserObject();
-            }
-            return (ResultEntry) obj;
-        }
-
-        /**
-         * Compares two nodes for order.
-         *
-         * @param  o1  the first node to compare.
-         * @param  o2  the second node to compare.
-         * @return negative if {@code o1} should be sorted before {@code o2}, positive if the converse.
-         */
-        @Override
-        public int compare(final Object o1, final Object o2) {
-            return cast(o1).displayName.compareToIgnoreCase(cast(o2).displayName);
-        }
-
-        /**
-         * Inserts the given entry in the list of children.
-         *
-         * @param  entry  the entry to add.
-         * @return the position where the entry has been inserted.
-         */
-        final int insert(final ResultEntry entry) {
-            int i = Collections.binarySearch(this, entry, this);
-            if (i < 0) i = ~i;      // Tild operator, not minus.
-            series.insert(new DefaultMutableTreeNode(entry, false), i);
-            return i;
+            destination.addOrReplace​(new ResultEntry(this, identifier, result));
         }
     }
 }

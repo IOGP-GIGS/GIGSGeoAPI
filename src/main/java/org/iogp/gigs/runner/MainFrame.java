@@ -33,31 +33,17 @@ package org.iogp.gigs.runner;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.Collections;
 import java.util.prefs.Preferences;
 import java.util.concurrent.ExecutionException;
-
-import java.awt.Desktop;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.FileDialog;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JButton;
 import javax.swing.SwingWorker;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
-import javax.swing.JTree;
-import javax.swing.tree.TreePath;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 
 import org.iogp.gigs.internal.TestSuite;
 
@@ -69,17 +55,16 @@ import org.iogp.gigs.internal.TestSuite;
  * @version 1.0
  * @since   1.0
  */
-@SuppressWarnings("serial")
-final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSelectionListener {
+final class MainFrame implements Runnable {
     /**
      * The preference key for the directory in which to select JAR files.
      */
     private static final String JAR_DIRECTORY_KEY = "jar.directory";
 
     /**
-     * The desktop for browse operations, or {@code null} if unsupported.
+     * The main frame.
      */
-    private final Desktop desktop;
+    private final JFrame frame;
 
     /**
      * Labels used for rendering information from {@link ImplementationManifest}.
@@ -89,48 +74,16 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
     private final JLabel title, vendor, version, specification, specVersion, specVendor;
 
     /**
-     * Labels used for rendering information about the selected test.
-     *
-     * @see #setDetails(ResultEntry)
+     * The tree where to show test results.
      */
-    private final JLabel testName;
-
-    /**
-     * Labels used for rendering details about the test result.
-     */
-    private final JLabel testResult;
-
-    /**
-     * Labels used for rendering a tip about a configuration that may be applied
-     * for allowing a failed test to pass.
-     */
-    private final JLabel configurationTip;
-
-    /**
-     * The factories used for the test case, to be reported in the "details" tab.
-     */
-    private final FactoryTableModel factories;
-
-    /**
-     * The configuration specified by the implementer for the test case,
-     * to be reported in the "details" tab.
-     */
-    private final ConfigurationTableModel configuration;
-
-    /**
-     * Where to report stack trace.
-     */
-    private final JTextArea exception;
+    private final ResultsView results;
 
     /**
      * The object to use for running the tests.
+     * Created after user selected the implementation to test.
+     * This is used for running tests again if requested.
      */
-    private final Runner runner;
-
-    /**
-     * The test report which is currently shown in the "details" tab, or {@code null} if none.
-     */
-    private ResultEntry currentReport;
+    private Runner runner;
 
     /**
      * Where to save the last user choices, for the next run.
@@ -138,26 +91,24 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
     private final Preferences preferences;
 
     /**
-     * Creates a new frame, which contains all our JUnit runner tabs.
+     * Creates a new frame with all tabs.
      * There is no menu for this application.
      *
      * @param  windowTitle  the window title.
      */
     @SuppressWarnings("ThisEscapedInObjectConstruction")
     MainFrame(final String windowTitle) {
-        super(windowTitle);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(400, 400));
-        setSize(800, 800);
-        setLocationByPlatform(true);
-        runner      = new Runner();
-        desktop     = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+        frame = new JFrame(windowTitle);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setMinimumSize(new Dimension(400, 400));
+        frame.setSize(800, 800);
+        frame.setLocationByPlatform(true);
         preferences = Preferences.userNodeForPackage(org.iogp.gigs.IntegrityTest.class);
         /*
          * The top panel, which show a description of the product being tested
          * (vendor name, URL, etc). This panel will be visible from every tabs.
          */
-        add(new SwingPanelBuilder().createManifestPane(
+        frame.add(new SwingPanelBuilder().createManifestPane(
                 title         = new JLabel(),
                 version       = new JLabel(),
                 vendor        = new JLabel(),
@@ -165,42 +116,28 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
                 specVersion   = new JLabel(),
                 specVendor    = new JLabel()), BorderLayout.NORTH);
         /*
-         * The main panel, which will contain panes. The first pane shows the test results.
-         * Next pane shows more information about test failures or about features supported
+         * The main panel, which will contain panes. The top pane shows results of all tests.
+         * Bottom pane shows more information about test failures or about features supported
          * by the application being tested.
          */
+        final TestDetails details = new TestDetails();
+        results = new ResultsView(details);
         final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
         splitPane.setOneTouchExpandable(true);
         splitPane.setContinuousLayout(true);
         splitPane.setDividerLocation(300);
         splitPane.setResizeWeight(1);
-        add(splitPane, BorderLayout.CENTER);
-        /*
-         * The main tab, showing the JUnit test results in a tree.
-         */
-        {   // For keeping variables in a local scope.
-            final JTree tree = runner.tree;
-            final JScrollPane pane = new JScrollPane(tree);
-            tree.setCellRenderer(new ResultCellRenderer(pane));
-            tree.getSelectionModel().addTreeSelectionListener(this);
-            splitPane.setTopComponent(pane);
-        }
-        /*
-         * A tab showing more information about a failed tests (for example the stack trace),
-         * together with some information about the configuration.
-         */
-        final JButton viewJavadoc = new JButton("Online documentation");
-        viewJavadoc.setEnabled(desktop != null && desktop.isSupported(Desktop.Action.BROWSE));
-        viewJavadoc.setToolTipText("View javadoc for this test");
-        viewJavadoc.addActionListener(this);
-        splitPane.setBottomComponent(new SwingPanelBuilder().createDetailsPane(
-                testName         = new JLabel(),
-                testResult       = new JLabel(),
-                configurationTip = new JLabel(),
-                viewJavadoc,
-                (factories     = new FactoryTableModel()).createView(),
-                (configuration = new ConfigurationTableModel()).createView(),
-                exception = new JTextArea()));
+        splitPane.setTopComponent(results.createView());
+        splitPane.setBottomComponent(details.createView());
+        frame.add(splitPane, BorderLayout.CENTER);
+    }
+
+    /**
+     * Shows the application.
+     */
+    final void show() {
+        frame.setVisible(true);
+        EventQueue.invokeLater(this);
     }
 
     /**
@@ -211,7 +148,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
     @Override
     public void run() {
         final String directory = preferences.get(JAR_DIRECTORY_KEY, null);
-        final FileDialog chooser = new FileDialog(this, "Select a GeoAPI implementation");
+        final FileDialog chooser = new FileDialog(frame, "Select a GeoAPI implementation");
         chooser.setDirectory(directory);
         chooser.setFilenameFilter((file, name) -> name.endsWith(".jar"));
         chooser.setMultipleMode(true);
@@ -239,100 +176,17 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
     }
 
     /**
-     * Updates the content of the "Details" pane with information relative to the given entry.
-     * A {@code null} entry clears the "Details" pane.
-     *
-     * @param  entry  description of test result.
-     */
-    private void setDetails(final ResultEntry entry) {
-        String progName   = null;
-        String stacktrace = null;
-        String result     = null;
-        String tip        = null;
-        if (entry == null) {
-            factories.entries     = Collections.emptyList();
-            configuration.entries = Collections.emptyList();
-        } else {
-            result   = entry.result();
-            progName = entry.programmaticName();
-            tip      = entry.configurationTip();
-            switch (entry.result.getStatus()) {
-                case FAILED: {
-                    final Throwable exception = entry.result.getThrowable().orElse(null);
-                    if (exception != null) {
-                        final StringWriter buffer = new StringWriter();
-                        final PrintWriter printer = new PrintWriter(buffer);
-                        exception.printStackTrace(printer);
-                        printer.flush();
-                        stacktrace = buffer.toString();
-                    }
-                    break;
-                }
-            }
-            factories.entries     = entry.factories;
-            configuration.entries = entry.configuration;
-        }
-        factories       .fireTableDataChanged();
-        configuration   .fireTableDataChanged();
-        configurationTip.setText(tip);
-        testName        .setText(progName);
-        testResult      .setText(result);
-        exception       .setText(stacktrace);
-        exception       .setCaretPosition(0);
-        currentReport = entry;
-    }
-
-    /**
-     * Invoked when the user clicked on a new row in the tree showing test results.
-     * This method updates the "Details" tab with information relative to the test
-     * in the selected row.
-     *
-     * @param  event  the event that characterizes the change.
-     */
-    @Override
-    public void valueChanged(final TreeSelectionEvent event) {
-        ResultEntry entry = null;
-        final TreePath path = event.getNewLeadSelectionPath();
-        if (path != null) {
-            final DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
-            final Object object = node.getUserObject();
-            if (object instanceof ResultEntry) {
-                entry = (ResultEntry) object;
-            }
-        }
-        setDetails(entry);
-    }
-
-    /**
-     * Invoked when the user pressed the "View javadoc" button.
-     *
-     * @param  event  ignored.
-     */
-    @Override
-    public void actionPerformed(final ActionEvent event) {
-        if (currentReport != null) {
-            currentReport.getJavadocURL().ifPresent((uri) -> {
-                try {
-                    desktop.browse(uri);
-                } catch (IOException e) {
-                    JOptionPane.showMessageDialog(MainFrame.this, e.toString(),
-                            "Can not open the browser", JOptionPane.ERROR_MESSAGE);
-                }
-            });
-        }
-    }
-
-    /**
      * The worker for loading JAR files in background.
+     * This worker return the runner used for executing the tests.
      */
-    private final class Loader extends SwingWorker<Object,Object> {
+    private final class Loader extends SwingWorker<Runner,Object> {
         /**
          * The JAR files.
          */
         private final File[] files;
 
         /**
-         * Creates a new worker which will loads the given JAR files.
+         * Creates a new worker which will load the given JAR files.
          *
          * @param  files  the JAR files.
          */
@@ -342,15 +196,18 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
 
         /**
          * Loads the given JAR files and creates a class loader for running the tests.
+         * This method is invoked in a background thread and is invoked only once.
          *
-         * @return {@code null} (ignored).
+         * @return the runner used for executing the tests.
          */
         @Override
-        protected Object doInBackground() throws IOException {
+        protected Runner doInBackground() throws IOException {
             final ImplementationManifest manifest = ImplementationManifest.parse(files);
-            setManifest(manifest);
-            TestSuite.INSTANCE.run(runner, manifest != null ? manifest.dependencies : files);
-            return null;
+            EventQueue.invokeLater(() -> setManifest(manifest));
+            final File[] implementation = (manifest != null) ? manifest.dependencies : files;
+            final Runner runner = new Runner(new TestSuite(), implementation, results);
+            runner.executeAll();
+            return runner;
         }
 
         /**
@@ -359,14 +216,14 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, TreeSe
         @Override
         protected void done() {
             try {
-                get();
+                runner = get();
             } catch (InterruptedException e) {
                 // Should not happen at this point.
             } catch (ExecutionException e) {
                 String message = e.getCause().toString().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
                 message = "<html><body><p style='width: 600px;'>An error occurred while processing the JAR files:</p>"
                         + "<p style='width: 600px;'>" + message + "</p></body></html>";
-                JOptionPane.showMessageDialog(MainFrame.this, message,
+                JOptionPane.showMessageDialog(frame, message,
                         "Can not use the JAR files", JOptionPane.ERROR_MESSAGE);
             }
         }

@@ -24,6 +24,7 @@
  */
 package org.iogp.gigs;
 
+import java.lang.reflect.Method;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
@@ -37,7 +38,8 @@ import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.iogp.gigs.internal.geoapi.Configuration;
-import org.iogp.gigs.internal.TestSuite;
+import org.iogp.gigs.internal.ExecutionContext;
+import org.iogp.gigs.internal.PrivateAccessor;
 import org.opentest4j.TestAbortedException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -81,12 +83,30 @@ public abstract class IntegrityTest extends ConformanceTest {
      */
     static final double ANGULAR_TOLERANCE = 1E-7;
 
+    /*
+     * Hack for allowing accesses to package-private methods from other packages.
+     * This hack may be removed in a future version after we settle a public API.
+     */
+    static {
+        PrivateAccessor.INSTANCE = new PrivateAccessor() {
+            @Override
+            public Configuration configuration(final IntegrityTest test) {
+                return test.configuration();
+            }
+
+            @Override
+            public void setTestSpecificOption(Method method, Configuration.Key<Boolean> aspect, Boolean value) {
+                ConfigurationMap.INSTANCE.setTestSpecificOption(method, aspect, value);
+            }
+        };
+    }
+
     /**
      * The extension which will perform dependency injection. When a constructor has arguments of {@code Factory} subtypes,
-     * the {@link TestSuite#resolveParameter resolveParameter(…)} method is invoked for providing the factory instances.
+     * the {@link ExecutionContext#resolveParameter resolveParameter(…)} method is invoked for providing the factory instances.
      */
     @RegisterExtension
-    static final TestSuite INJECTION = TestSuite.INSTANCE;
+    static final ExecutionContext INJECTION = ExecutionContext.INSTANCE;
 
     /**
      * Whether to skip {@link #verifyIdentification(IdentifiedObject, String, String)}.
@@ -157,8 +177,8 @@ public abstract class IntegrityTest extends ConformanceTest {
      */
     @AfterEach
     final void saveReference() {
-        TestSuite.INSTANCE.executing = this;
-        TestSuite.INSTANCE.configurationTip = configurationTip;
+        ExecutionContext.INSTANCE.executing = this;
+        ExecutionContext.INSTANCE.configurationTip = configurationTip;
     }
 
     /**

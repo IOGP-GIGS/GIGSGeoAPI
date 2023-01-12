@@ -26,7 +26,6 @@ package org.iogp.gigs.runner;
 
 import java.io.Console;
 import java.io.PrintWriter;
-import java.awt.EventQueue;
 import javax.swing.UIManager;
 
 
@@ -96,7 +95,7 @@ public final class Launcher {
         } else {
             final Console console = System.console();
             final PrintWriter out = (console != null) ? console.writer() : new PrintWriter(System.out, true);
-            out.println("Usage: java -jar geoapi-conformance.jar");
+            out.println("Usage: java -jar gigs.jar");
             out.flush();
         }
     }
@@ -106,7 +105,6 @@ public final class Launcher {
      */
     public static void startSwingApplication() {
         final MainFrame frame = new MainFrame("GIGS tests");
-        frame.setVisible(true);
-        EventQueue.invokeLater(frame);
+        frame.show();
     }
 }
