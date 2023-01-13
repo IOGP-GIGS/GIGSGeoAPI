@@ -36,11 +36,13 @@ import java.util.TreeMap;
 import java.util.Comparator;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
+import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 import org.iogp.gigs.internal.PrivateAccessor;
 
 
@@ -65,12 +67,14 @@ final class AllConfigurations implements ActionListener, Comparator<Object> {
      */
     @Override
     public void actionPerformed(final ActionEvent event) {
-        final Component parent = (Component) event.getSource();
+        final Frame parent = (Frame) SwingUtilities.getWindowAncestor((Component) event.getSource());
         final JTextArea text = new JTextArea(getTestConfigurations());
         text.setEditable(false);
         text.setFont(Font.decode("Monospaced"));
-        JOptionPane.showMessageDialog(parent, new JScrollPane(text),
-                "Configuration of tests", JOptionPane.INFORMATION_MESSAGE);
+        final JDialog dialog = new JDialog(parent, "Configuration of tests", true);
+        dialog.add(new JScrollPane(text));
+        dialog.setSize(800, 600);
+        dialog.setVisible(true);
     }
 
     /**
@@ -102,14 +106,6 @@ final class AllConfigurations implements ActionListener, Comparator<Object> {
      */
     @Override
     public int compare(final Object k1, final Object k2) {
-        final String s1 = k1.toString();
-        final String s2 = k2.toString();
-        final int i1 = s1.lastIndexOf('.');
-        final int i2 = s2.lastIndexOf('.');
-        int c = s1.substring(i1 + 1).compareTo(s2.substring(i2 + 1));
-        if (c == 0) {
-            c = s1.compareTo(s2);
-        }
-        return c;
+        return k1.toString().compareTo(k2.toString());
     }
 }

@@ -127,7 +127,7 @@ final class ResultsView implements TreeSelectionListener {
             if (replace != null) {
                 details.setTest(replace, entry);
             }
-            if (entry.result.getStatus() != TestExecutionResult.Status.SUCCESSFUL) {
+            if (entry.result.getStatus() == TestExecutionResult.Status.FAILED) {
                 tree.expandPath(new TreePath(new Object[] {model.getRoot(), parent}));
             }
         });

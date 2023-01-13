@@ -177,10 +177,25 @@ final class TestDetails implements ActionListener {
         }
         configurationTip.setText(tip);
         testName        .setText(progName);
-        testResult      .setText(result);
+        testResult      .setText(toHTML(result));
         exception       .setText(stacktrace);
         exception       .setCaretPosition(0);
+        exception       .setEnabled(stacktrace != null);
         currentReport = entry;
+    }
+
+    /**
+     * Converts the given text to HTML
+     *
+     * @param  text  the text to convert. Can be null.
+     * @return the converted text, or null if the given text was null.
+     */
+    private static String toHTML(String text) {
+        if (text == null) {
+            return null;
+        }
+        text = text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+        return "<html>" + text + "</html>";
     }
 
     /**

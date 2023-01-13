@@ -79,13 +79,6 @@ final class MainFrame implements Runnable {
     private final ResultsView results;
 
     /**
-     * The object to use for running the tests.
-     * Created after user selected the implementation to test.
-     * This is used for running tests again if requested.
-     */
-    private Runner runner;
-
-    /**
      * Where to save the last user choices, for the next run.
      */
     private final Preferences preferences;
@@ -178,6 +171,7 @@ final class MainFrame implements Runnable {
     /**
      * The worker for loading JAR files in background.
      * This worker return the runner used for executing the tests.
+     * This runner is used for re-executing tests again if requested.
      */
     private final class Loader extends SwingWorker<Runner,Object> {
         /**
@@ -216,7 +210,7 @@ final class MainFrame implements Runnable {
         @Override
         protected void done() {
             try {
-                runner = get();
+                get();
             } catch (InterruptedException e) {
                 // Should not happen at this point.
             } catch (ExecutionException e) {

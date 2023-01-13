@@ -35,8 +35,6 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -127,11 +125,11 @@ final class SwingPanelBuilder extends GridBagConstraints {
 
         final JPanel panel = new JPanel(new GridBagLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(9, 0, 0, 0));
-        gridx=0; weightx=0; anchor=WEST; fill=BOTH; insets.left = 12;
+        gridx=0; weightx=0; anchor=NORTHWEST; fill=HORIZONTAL; insets.left = 12; insets.bottom = 3;
         gridy=0; panel.add(createLabel("Test method:", testName), this);
         gridy++; panel.add(createLabel("Result:",    testResult), this);
         gridy++; panel.add(createLabel("Tip:", configurationTip), this);
-        gridx++; weightx=1;
+        gridx++; weightx=1; fill=BOTH;
         gridy=0; panel.add(testName,         this);     // "Javadoc" button will be on the right side of this line.
         gridy++; panel.add(testResult,       this); gridwidth=2;
         gridy++; panel.add(configurationTip, this);
@@ -142,16 +140,14 @@ final class SwingPanelBuilder extends GridBagConstraints {
         panel.add(tabs, this);
         /*
          * If new tabs are added below, make sure that the index of the "Exception"
-         * tab match the index given to 'tabs.setEnabledAt(…)' in the listener.
+         * tab match the index given to `tabs.setEnabledAt(…)` in the listener.
          */
         tabs.addTab("Factories",     new JScrollPane(factories));
         tabs.addTab("Configuration", new JScrollPane(configuration));
         tabs.addTab("Stack trace",   new JScrollPane(exception));
-        exception.addPropertyChangeListener("enabled", new PropertyChangeListener() {
-            @Override public void propertyChange(final PropertyChangeEvent event) {
-                tabs.setEnabledAt(2, (Boolean) event.getNewValue());
-                // Number 2 above is the index of "Exception" tab.
-            }
+        exception.addPropertyChangeListener("enabled", (event) -> {
+            tabs.setEnabledAt(2, (Boolean) event.getNewValue());
+            // Number 2 above is the index of "Exception" tab.
         });
         exception.setEditable(false);
         panel.setOpaque(false);
