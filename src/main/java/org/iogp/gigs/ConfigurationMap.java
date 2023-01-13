@@ -2,7 +2,7 @@
  * GIGS - Geospatial Integrity of Geoscience Software
  * https://gigs.iogp.org/
  *
- * Copyright (C) 2022 International Association of Oil and Gas Producers.
+ * Copyright (C) 2022-2023 International Association of Oil and Gas Producers.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
