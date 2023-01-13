@@ -114,6 +114,16 @@ final class TestAspect {
     }
 
     /**
+     * Returns {@code true} if this aspect uses the same configuration key than the specified aspect.
+     *
+     * @param  other  the other aspect to compare to.
+     * @return whether the two aspect uses the same configuration key.
+     */
+    boolean useSameConfigurationKey(final TestAspect other) {
+        return aspect.equals(other.aspect);
+    }
+
+    /**
      * Returns the status of this test aspect.
      *
      * @return the status to show in the widget.

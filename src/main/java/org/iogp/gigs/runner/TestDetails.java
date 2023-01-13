@@ -63,7 +63,7 @@ final class TestDetails implements ActionListener {
     /**
      * Labels used for rendering information about the selected test.
      *
-     * @see #setTest(ResultEntry)
+     * @see #setTest(ResultEntry, ResultEntry)
      */
     private final JLabel testName;
 
@@ -128,11 +128,17 @@ final class TestDetails implements ActionListener {
 
     /**
      * Updates the content of the "Details" pane with information relative to the given entry.
-     * A {@code null} entry clears the "Details" pane.
+     * If the {@code replace} entry is non-null, then this method will set the entry only if
+     * it replaces the specified previous entry.
      *
-     * @param  entry  description of test result.
+     * @param  replace  the previous entry to replace, or {@code null} for unconditional new entry.
+     * @param  entry    description of test result, or {@code null} for clearing the "Details" pane.
      */
-    final void setTest(final ResultEntry entry) {
+    final void setTest(final ResultEntry replace, final ResultEntry entry) {
+        if (replace != null && replace != currentReport) {
+            return;
+        }
+        final int numUpdatedRows;       // -1 for all rows.
         String progName   = null;
         String stacktrace = null;
         String result     = null;
@@ -140,6 +146,7 @@ final class TestDetails implements ActionListener {
         if (entry == null) {
             factories.entries     = Collections.emptyList();
             configuration.entries = Collections.emptyList();
+            numUpdatedRows        = -1;
         } else {
             result   = entry.getResultText();
             progName = entry.getProgrammaticName();
@@ -159,9 +166,15 @@ final class TestDetails implements ActionListener {
             }
             factories.entries     = entry.factories;
             configuration.entries = entry.configuration;
+            numUpdatedRows = entry.useSameConfigurationKeys(replace) ? configuration.getRowCount() - 1 : -1;
         }
-        factories       .fireTableDataChanged();
-        configuration   .fireTableDataChanged();
+        factories.fireTableDataChanged();
+        if (numUpdatedRows < 0) {
+            configuration.fireTableDataChanged();
+        } else {
+            // Avoid `fireTableDataChanged()` in order to preserve row selection status.
+            configuration.fireTableRowsUpdated(0, numUpdatedRows);
+        }
         configurationTip.setText(tip);
         testName        .setText(progName);
         testResult      .setText(result);

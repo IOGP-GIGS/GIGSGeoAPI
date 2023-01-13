@@ -364,6 +364,27 @@ final class ResultEntry {
     }
 
     /**
+     * Returns {@code true} if this entry uses the same configuration keys than the specified entry.
+     *
+     * @param  other  the other entry to compare to.
+     * @return whether the two entries use the same configuration keys.
+     */
+    boolean useSameConfigurationKeys(final ResultEntry other) {
+        if (other != null) {
+            final int n = configuration.size();
+            if (n == other.configuration.size()) {
+                for (int i=0; i<n; i++) {
+                    if (!configuration.get(i).useSameConfigurationKey(other.configuration.get(i))) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns a string representation of this entry.
      */
     @Override

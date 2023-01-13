@@ -106,7 +106,7 @@ final class ResultsView implements TreeSelectionListener {
                 entry = (ResultEntry) object;
             }
         }
-        details.setTest(entry);
+        details.setTest(null, entry);
     }
 
     /**
@@ -123,7 +123,10 @@ final class ResultsView implements TreeSelectionListener {
             final DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
             final DefaultMutableTreeNode parent = series(model, entry.series);
             final Children searcher = new Children(parent);
-            searcher.insert(model, entry);
+            final ResultEntry replace = searcher.insertOrReplace(model, entry);
+            if (replace != null) {
+                details.setTest(replace, entry);
+            }
             if (entry.result.getStatus() != TestExecutionResult.Status.SUCCESSFUL) {
                 tree.expandPath(new TreePath(new Object[] {model.getRoot(), parent}));
             }
@@ -226,17 +229,21 @@ final class ResultsView implements TreeSelectionListener {
          *
          * @param  model  the model to notify.
          * @param  entry  the entry to add.
+         * @return the previous entry, or {@code null} if none.
          */
-        final void insert(final DefaultTreeModel model, final ResultEntry entry) {
+        final ResultEntry insertOrReplace(final DefaultTreeModel model, final ResultEntry entry) {
             int i = Collections.binarySearch(this, entry, this);
             if (i >= 0) {
                 final DefaultMutableTreeNode node = (DefaultMutableTreeNode) series.getChildAt(i);
+                final ResultEntry old = (ResultEntry) node.getUserObject();
                 node.setUserObject(entry);
                 model.nodeChanged(node);
+                return old;
             } else {
                 i = ~i;             // Tild operator, not minus.
                 series.insert(new DefaultMutableTreeNode(entry, false), i);
                 model.nodesWereInserted(series, new int[] {i});
+                return null;
             }
         }
     }
