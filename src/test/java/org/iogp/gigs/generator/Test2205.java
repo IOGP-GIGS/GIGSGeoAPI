@@ -79,7 +79,7 @@ public final class Test2205 extends TestMethodGenerator {
 
             out.append('\n');
             indent(1); out.append("/**\n");
-            indent(1); out.append(" * Tests “").append(name).append("” geodetic CRS creation from the factory.\n");
+            indent(1); out.append(" * Tests “").append(name).append("” ").append(type.title).append(" creation from the factory.\n");
             indent(1); out.append(" *\n");
             printJavadocKeyValues("EPSG CRS code", code,
                                   "EPSG CRS name", name,
@@ -89,7 +89,7 @@ public final class Test2205 extends TestMethodGenerator {
                                   "EPSG Usage Extent", extent);
             printRemarks(remarks);
             printJavadocThrows("if an error occurred while creating the CRS from the EPSG code.");
-            printTestMethodSignature(EPSG, code, name);
+            printTestMethodSignature(EPSG, code, name.concat(type.displayNameSuffix));
             printFieldAssignments("code",         code,
                                   "name",         name,
                                   "aliases",      aliases,

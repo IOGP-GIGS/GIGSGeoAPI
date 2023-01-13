@@ -252,7 +252,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Abidjan 1987” geodetic CRS creation from the factory.
+     * Tests “Abidjan 1987” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4143</b></li>
@@ -277,7 +277,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Accra” geodetic CRS creation from the factory.
+     * Tests “Accra” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4168</b></li>
@@ -300,7 +300,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Adindan” geodetic CRS creation from the factory.
+     * Tests “Adindan” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4201</b></li>
@@ -325,7 +325,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Afgooye” geodetic CRS creation from the factory.
+     * Tests “Afgooye” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4205</b></li>
@@ -348,7 +348,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Agadez” geodetic CRS creation from the factory.
+     * Tests “Agadez” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4206</b></li>
@@ -371,7 +371,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “AGD66” geodetic CRS creation from the factory.
+     * Tests “AGD66” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4202</b></li>
@@ -394,7 +394,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “AGD84” geodetic CRS creation from the factory.
+     * Tests “AGD84” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4203</b></li>
@@ -417,7 +417,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Ain el Abd” geodetic CRS creation from the factory.
+     * Tests “Ain el Abd” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4204</b></li>
@@ -440,7 +440,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Albanian 1987” geodetic CRS creation from the factory.
+     * Tests “Albanian 1987” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4191</b></li>
@@ -465,7 +465,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “American Samoa 1962” geodetic CRS creation from the factory.
+     * Tests “American Samoa 1962” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4169</b></li>
@@ -488,7 +488,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Amersfoort” geodetic CRS creation from the factory.
+     * Tests “Amersfoort” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4289</b></li>
@@ -513,7 +513,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Ammassalik 1958” geodetic CRS creation from the factory.
+     * Tests “Ammassalik 1958” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4196</b></li>
@@ -536,7 +536,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Anguilla 1957” geodetic CRS creation from the factory.
+     * Tests “Anguilla 1957” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4600</b></li>
@@ -559,7 +559,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Antigua 1943” geodetic CRS creation from the factory.
+     * Tests “Antigua 1943” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4601</b></li>
@@ -582,7 +582,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Aratu” geodetic CRS creation from the factory.
+     * Tests “Aratu” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4208</b></li>
@@ -605,7 +605,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Arc 1950” geodetic CRS creation from the factory.
+     * Tests “Arc 1950” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4209</b></li>
@@ -628,7 +628,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Arc 1960” geodetic CRS creation from the factory.
+     * Tests “Arc 1960” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4210</b></li>
@@ -651,7 +651,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Ascension Island 1958” geodetic CRS creation from the factory.
+     * Tests “Ascension Island 1958” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4712</b></li>
@@ -674,7 +674,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Astro DOS 71” geodetic CRS creation from the factory.
+     * Tests “Astro DOS 71” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4710</b></li>
@@ -699,7 +699,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ATF (Paris)” geodetic CRS creation from the factory.
+     * Tests “ATF (Paris)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4901</b></li>
@@ -722,7 +722,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ATS77” geodetic CRS creation from the factory.
+     * Tests “ATS77” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4122</b></li>
@@ -745,7 +745,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Australian Antarctic” geodetic CRS creation from the factory.
+     * Tests “Australian Antarctic” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4176</b></li>
@@ -770,7 +770,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Australian Antarctic” geodetic CRS creation from the factory.
+     * Tests “Australian Antarctic” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4931</b></li>
@@ -784,7 +784,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Australian Antarctic")
+    @DisplayName("Australian Antarctic (3D)")
     public void EPSG_4931() throws FactoryException {
         code         = 4931;
         name         = "Australian Antarctic";
@@ -795,7 +795,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Australian Antarctic” geodetic CRS creation from the factory.
+     * Tests “Australian Antarctic” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4930</b></li>
@@ -809,7 +809,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Australian Antarctic")
+    @DisplayName("Australian Antarctic (geocentric)")
     public void EPSG_4930() throws FactoryException {
         code         = 4930;
         name         = "Australian Antarctic";
@@ -821,7 +821,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Ayabelle Lighthouse” geodetic CRS creation from the factory.
+     * Tests “Ayabelle Lighthouse” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4713</b></li>
@@ -844,7 +844,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Azores Central 1948” geodetic CRS creation from the factory.
+     * Tests “Azores Central 1948” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4183</b></li>
@@ -869,7 +869,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Azores Central 1995” geodetic CRS creation from the factory.
+     * Tests “Azores Central 1995” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4665</b></li>
@@ -894,7 +894,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Azores Occidental 1939” geodetic CRS creation from the factory.
+     * Tests “Azores Occidental 1939” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4182</b></li>
@@ -917,7 +917,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Azores Oriental 1940” geodetic CRS creation from the factory.
+     * Tests “Azores Oriental 1940” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4184</b></li>
@@ -942,7 +942,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Azores Oriental 1995” geodetic CRS creation from the factory.
+     * Tests “Azores Oriental 1995” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4664</b></li>
@@ -967,7 +967,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Barbados 1938” geodetic CRS creation from the factory.
+     * Tests “Barbados 1938” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4212</b></li>
@@ -990,7 +990,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Batavia” geodetic CRS creation from the factory.
+     * Tests “Batavia” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4211</b></li>
@@ -1015,7 +1015,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Batavia (Jakarta)” geodetic CRS creation from the factory.
+     * Tests “Batavia (Jakarta)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4813</b></li>
@@ -1040,7 +1040,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “BDA2000” geodetic CRS creation from the factory.
+     * Tests “BDA2000” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4762</b></li>
@@ -1063,7 +1063,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “BDA2000” geodetic CRS creation from the factory.
+     * Tests “BDA2000” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4887</b></li>
@@ -1076,7 +1076,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("BDA2000")
+    @DisplayName("BDA2000 (3D)")
     public void EPSG_4887() throws FactoryException {
         code         = 4887;
         name         = "BDA2000";
@@ -1086,7 +1086,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “BDA2000” geodetic CRS creation from the factory.
+     * Tests “BDA2000” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4886</b></li>
@@ -1099,7 +1099,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("BDA2000")
+    @DisplayName("BDA2000 (geocentric)")
     public void EPSG_4886() throws FactoryException {
         code         = 4886;
         name         = "BDA2000";
@@ -1110,7 +1110,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Beduaram” geodetic CRS creation from the factory.
+     * Tests “Beduaram” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4213</b></li>
@@ -1133,7 +1133,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Beijing 1954” geodetic CRS creation from the factory.
+     * Tests “Beijing 1954” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4214</b></li>
@@ -1156,7 +1156,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Belge 1950” geodetic CRS creation from the factory.
+     * Tests “Belge 1950” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4215</b></li>
@@ -1181,7 +1181,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Belge 1950 (Brussels)” geodetic CRS creation from the factory.
+     * Tests “Belge 1950 (Brussels)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4809</b></li>
@@ -1206,7 +1206,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Belge 1972” geodetic CRS creation from the factory.
+     * Tests “Belge 1972” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4313</b></li>
@@ -1231,7 +1231,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Bellevue” geodetic CRS creation from the factory.
+     * Tests “Bellevue” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4714</b></li>
@@ -1256,7 +1256,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Bermuda 1957” geodetic CRS creation from the factory.
+     * Tests “Bermuda 1957” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4216</b></li>
@@ -1279,7 +1279,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Bern 1898 (Bern)” geodetic CRS creation from the factory.
+     * Tests “Bern 1898 (Bern)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4801</b></li>
@@ -1302,7 +1302,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Bern 1938” geodetic CRS creation from the factory.
+     * Tests “Bern 1938” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4306</b></li>
@@ -1325,7 +1325,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Bissau” geodetic CRS creation from the factory.
+     * Tests “Bissau” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4165</b></li>
@@ -1348,7 +1348,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Bogota 1975” geodetic CRS creation from the factory.
+     * Tests “Bogota 1975” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4218</b></li>
@@ -1373,7 +1373,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Bogota 1975 (Bogota)” geodetic CRS creation from the factory.
+     * Tests “Bogota 1975 (Bogota)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4802</b></li>
@@ -1396,7 +1396,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Bukit Rimpah” geodetic CRS creation from the factory.
+     * Tests “Bukit Rimpah” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4219</b></li>
@@ -1419,7 +1419,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Camacupa 1948” geodetic CRS creation from the factory.
+     * Tests “Camacupa 1948” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4220</b></li>
@@ -1444,7 +1444,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Camp Area Astro” geodetic CRS creation from the factory.
+     * Tests “Camp Area Astro” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4715</b></li>
@@ -1467,7 +1467,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Campo Inchauspe” geodetic CRS creation from the factory.
+     * Tests “Campo Inchauspe” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4221</b></li>
@@ -1490,7 +1490,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Cape” geodetic CRS creation from the factory.
+     * Tests “Cape” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4222</b></li>
@@ -1513,7 +1513,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Cape Canaveral” geodetic CRS creation from the factory.
+     * Tests “Cape Canaveral” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4717</b></li>
@@ -1536,7 +1536,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Carthage” geodetic CRS creation from the factory.
+     * Tests “Carthage” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4223</b></li>
@@ -1559,7 +1559,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Carthage (Paris)” geodetic CRS creation from the factory.
+     * Tests “Carthage (Paris)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4816</b></li>
@@ -1582,7 +1582,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “CH1903” geodetic CRS creation from the factory.
+     * Tests “CH1903” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4149</b></li>
@@ -1605,7 +1605,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “CH1903+” geodetic CRS creation from the factory.
+     * Tests “CH1903+” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4150</b></li>
@@ -1628,7 +1628,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Chatham Islands 1971” geodetic CRS creation from the factory.
+     * Tests “Chatham Islands 1971” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4672</b></li>
@@ -1653,7 +1653,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Chatham Islands 1979” geodetic CRS creation from the factory.
+     * Tests “Chatham Islands 1979” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4673</b></li>
@@ -1678,7 +1678,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Chos Malal 1914” geodetic CRS creation from the factory.
+     * Tests “Chos Malal 1914” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4160</b></li>
@@ -1703,7 +1703,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “CHTRF95” geodetic CRS creation from the factory.
+     * Tests “CHTRF95” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4151</b></li>
@@ -1726,7 +1726,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “CHTRF96” geodetic CRS creation from the factory.
+     * Tests “CHTRF96” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4933</b></li>
@@ -1739,7 +1739,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("CHTRF96")
+    @DisplayName("CHTRF96 (3D)")
     public void EPSG_4933() throws FactoryException {
         code         = 4933;
         name         = "CHTRF96";
@@ -1749,7 +1749,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “CHTRF97” geodetic CRS creation from the factory.
+     * Tests “CHTRF97” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4932</b></li>
@@ -1762,7 +1762,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("CHTRF97")
+    @DisplayName("CHTRF97 (geocentric)")
     public void EPSG_4932() throws FactoryException {
         code         = 4932;
         name         = "CHTRF97";
@@ -1773,7 +1773,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Chua” geodetic CRS creation from the factory.
+     * Tests “Chua” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4224</b></li>
@@ -1796,7 +1796,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Cocos Islands 1965” geodetic CRS creation from the factory.
+     * Tests “Cocos Islands 1965” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4708</b></li>
@@ -1819,7 +1819,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Combani 1950” geodetic CRS creation from the factory.
+     * Tests “Combani 1950” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4632</b></li>
@@ -1842,7 +1842,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Conakry 1905” geodetic CRS creation from the factory.
+     * Tests “Conakry 1905” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4315</b></li>
@@ -1865,7 +1865,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Corrego Alegre 1970-72” geodetic CRS creation from the factory.
+     * Tests “Corrego Alegre 1970-72” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4225</b></li>
@@ -1890,7 +1890,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “CSG67” geodetic CRS creation from the factory.
+     * Tests “CSG67” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4623</b></li>
@@ -1913,7 +1913,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Dabola 1981” geodetic CRS creation from the factory.
+     * Tests “Dabola 1981” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4155</b></li>
@@ -1936,7 +1936,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Datum 73” geodetic CRS creation from the factory.
+     * Tests “Datum 73” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4274</b></li>
@@ -1961,7 +1961,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Dealul Piscului 1930” geodetic CRS creation from the factory.
+     * Tests “Dealul Piscului 1930” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4316</b></li>
@@ -1986,7 +1986,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Deception Island” geodetic CRS creation from the factory.
+     * Tests “Deception Island” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4736</b></li>
@@ -2009,7 +2009,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Deir ez Zor” geodetic CRS creation from the factory.
+     * Tests “Deir ez Zor” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4227</b></li>
@@ -2034,7 +2034,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “DGN95” geodetic CRS creation from the factory.
+     * Tests “DGN95” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4755</b></li>
@@ -2059,7 +2059,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “DGN95” geodetic CRS creation from the factory.
+     * Tests “DGN95” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4898</b></li>
@@ -2073,7 +2073,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("DGN95")
+    @DisplayName("DGN95 (3D)")
     public void EPSG_4898() throws FactoryException {
         code         = 4898;
         name         = "DGN95";
@@ -2084,7 +2084,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “DGN95” geodetic CRS creation from the factory.
+     * Tests “DGN95” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4897</b></li>
@@ -2098,7 +2098,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("DGN95")
+    @DisplayName("DGN95 (geocentric)")
     public void EPSG_4897() throws FactoryException {
         code         = 4897;
         name         = "DGN95";
@@ -2110,7 +2110,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “DHDN” geodetic CRS creation from the factory.
+     * Tests “DHDN” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4314</b></li>
@@ -2133,7 +2133,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Diego Garcia 1969” geodetic CRS creation from the factory.
+     * Tests “Diego Garcia 1969” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4724</b></li>
@@ -2156,7 +2156,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Dominica 1945” geodetic CRS creation from the factory.
+     * Tests “Dominica 1945” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4602</b></li>
@@ -2179,7 +2179,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Douala 1948” geodetic CRS creation from the factory.
+     * Tests “Douala 1948” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4192</b></li>
@@ -2202,7 +2202,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Easter Island 1967” geodetic CRS creation from the factory.
+     * Tests “Easter Island 1967” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4719</b></li>
@@ -2225,7 +2225,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ED50” geodetic CRS creation from the factory.
+     * Tests “ED50” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4230</b></li>
@@ -2248,7 +2248,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ED50(ED77)” geodetic CRS creation from the factory.
+     * Tests “ED50(ED77)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4154</b></li>
@@ -2271,7 +2271,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ED79” geodetic CRS creation from the factory.
+     * Tests “ED79” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4668</b></li>
@@ -2294,7 +2294,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ED87” geodetic CRS creation from the factory.
+     * Tests “ED87” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4231</b></li>
@@ -2317,7 +2317,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Egypt 1907” geodetic CRS creation from the factory.
+     * Tests “Egypt 1907” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4229</b></li>
@@ -2342,7 +2342,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Egypt 1930” geodetic CRS creation from the factory.
+     * Tests “Egypt 1930” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4199</b></li>
@@ -2367,7 +2367,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Egypt Gulf of Suez S-650 TL” geodetic CRS creation from the factory.
+     * Tests “Egypt Gulf of Suez S-650 TL” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4706</b></li>
@@ -2392,7 +2392,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ELD79” geodetic CRS creation from the factory.
+     * Tests “ELD79” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4159</b></li>
@@ -2415,7 +2415,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “EST92” geodetic CRS creation from the factory.
+     * Tests “EST92” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4133</b></li>
@@ -2438,7 +2438,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “EST97” geodetic CRS creation from the factory.
+     * Tests “EST97” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4180</b></li>
@@ -2461,7 +2461,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “EST98” geodetic CRS creation from the factory.
+     * Tests “EST98” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4935</b></li>
@@ -2474,7 +2474,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("EST98")
+    @DisplayName("EST98 (3D)")
     public void EPSG_4935() throws FactoryException {
         code         = 4935;
         name         = "EST98";
@@ -2484,7 +2484,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “EST99” geodetic CRS creation from the factory.
+     * Tests “EST99” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4834</b></li>
@@ -2497,7 +2497,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("EST99")
+    @DisplayName("EST99 (geocentric)")
     public void EPSG_4834() throws FactoryException {
         code         = 4834;
         name         = "EST99";
@@ -2508,7 +2508,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ETRS89” geodetic CRS creation from the factory.
+     * Tests “ETRS89” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4258</b></li>
@@ -2533,7 +2533,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ETRS89” geodetic CRS creation from the factory.
+     * Tests “ETRS89” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4937</b></li>
@@ -2547,7 +2547,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("ETRS89")
+    @DisplayName("ETRS89 (3D)")
     public void EPSG_4937() throws FactoryException {
         code         = 4937;
         name         = "ETRS89";
@@ -2558,7 +2558,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ETRS89” geodetic CRS creation from the factory.
+     * Tests “ETRS89” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4936</b></li>
@@ -2572,7 +2572,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("ETRS89")
+    @DisplayName("ETRS89 (geocentric)")
     public void EPSG_4936() throws FactoryException {
         code         = 4936;
         name         = "ETRS89";
@@ -2584,7 +2584,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Fahud” geodetic CRS creation from the factory.
+     * Tests “Fahud” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4232</b></li>
@@ -2607,7 +2607,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Fatu Iva 72” geodetic CRS creation from the factory.
+     * Tests “Fatu Iva 72” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4688</b></li>
@@ -2632,7 +2632,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “FD54” geodetic CRS creation from the factory.
+     * Tests “FD54” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4741</b></li>
@@ -2655,7 +2655,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “FD58” geodetic CRS creation from the factory.
+     * Tests “FD58” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4132</b></li>
@@ -2680,7 +2680,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Fiji 1956” geodetic CRS creation from the factory.
+     * Tests “Fiji 1956” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4721</b></li>
@@ -2703,7 +2703,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Fiji 1986” geodetic CRS creation from the factory.
+     * Tests “Fiji 1986” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4720</b></li>
@@ -2728,7 +2728,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “fk89” geodetic CRS creation from the factory.
+     * Tests “fk89” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4753</b></li>
@@ -2753,7 +2753,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Fort Marigot” geodetic CRS creation from the factory.
+     * Tests “Fort Marigot” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4621</b></li>
@@ -2776,7 +2776,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Gan 1970” geodetic CRS creation from the factory.
+     * Tests “Gan 1970” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4684</b></li>
@@ -2801,7 +2801,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Garoua” geodetic CRS creation from the factory.
+     * Tests “Garoua” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4197</b></li>
@@ -2824,7 +2824,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “GDA94” geodetic CRS creation from the factory.
+     * Tests “GDA94” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4283</b></li>
@@ -2847,7 +2847,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “GDA95” geodetic CRS creation from the factory.
+     * Tests “GDA95” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4939</b></li>
@@ -2860,7 +2860,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("GDA95")
+    @DisplayName("GDA95 (3D)")
     public void EPSG_4939() throws FactoryException {
         code         = 4939;
         name         = "GDA95";
@@ -2870,7 +2870,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “GDA96” geodetic CRS creation from the factory.
+     * Tests “GDA96” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4938</b></li>
@@ -2883,7 +2883,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("GDA96")
+    @DisplayName("GDA96 (geocentric)")
     public void EPSG_4938() throws FactoryException {
         code         = 4938;
         name         = "GDA96";
@@ -2894,7 +2894,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “GDM2000” geodetic CRS creation from the factory.
+     * Tests “GDM2000” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4742</b></li>
@@ -2917,7 +2917,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “GDM2000” geodetic CRS creation from the factory.
+     * Tests “GDM2000” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4921</b></li>
@@ -2930,7 +2930,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("GDM2000")
+    @DisplayName("GDM2000 (3D)")
     public void EPSG_4921() throws FactoryException {
         code         = 4921;
         name         = "GDM2000";
@@ -2940,7 +2940,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “GDM2000” geodetic CRS creation from the factory.
+     * Tests “GDM2000” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4920</b></li>
@@ -2953,7 +2953,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("GDM2000")
+    @DisplayName("GDM2000 (geocentric)")
     public void EPSG_4920() throws FactoryException {
         code         = 4920;
         name         = "GDM2000";
@@ -2964,7 +2964,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “GGRS87” geodetic CRS creation from the factory.
+     * Tests “GGRS87” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4121</b></li>
@@ -2987,7 +2987,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “GR96” geodetic CRS creation from the factory.
+     * Tests “GR96” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4747</b></li>
@@ -3010,7 +3010,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “GR96” geodetic CRS creation from the factory.
+     * Tests “GR96” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4909</b></li>
@@ -3023,7 +3023,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("GR96")
+    @DisplayName("GR96 (3D)")
     public void EPSG_4909() throws FactoryException {
         code         = 4909;
         name         = "GR96";
@@ -3033,7 +3033,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “GR96” geodetic CRS creation from the factory.
+     * Tests “GR96” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4908</b></li>
@@ -3046,7 +3046,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("GR96")
+    @DisplayName("GR96 (geocentric)")
     public void EPSG_4908() throws FactoryException {
         code         = 4908;
         name         = "GR96";
@@ -3057,7 +3057,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Grand Cayman 1959” geodetic CRS creation from the factory.
+     * Tests “Grand Cayman 1959” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4723</b></li>
@@ -3082,7 +3082,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Grand Comoros” geodetic CRS creation from the factory.
+     * Tests “Grand Comoros” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4646</b></li>
@@ -3107,7 +3107,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Greek” geodetic CRS creation from the factory.
+     * Tests “Greek” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4120</b></li>
@@ -3130,7 +3130,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Greek (Athens)” geodetic CRS creation from the factory.
+     * Tests “Greek (Athens)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4815</b></li>
@@ -3153,7 +3153,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Grenada 1953” geodetic CRS creation from the factory.
+     * Tests “Grenada 1953” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4603</b></li>
@@ -3176,7 +3176,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Guadeloupe 1948” geodetic CRS creation from the factory.
+     * Tests “Guadeloupe 1948” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4622</b></li>
@@ -3201,7 +3201,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Guam 1963” geodetic CRS creation from the factory.
+     * Tests “Guam 1963” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4675</b></li>
@@ -3224,7 +3224,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Gulshan 303” geodetic CRS creation from the factory.
+     * Tests “Gulshan 303” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4682</b></li>
@@ -3247,7 +3247,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Hanoi 1972” geodetic CRS creation from the factory.
+     * Tests “Hanoi 1972” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4147</b></li>
@@ -3270,7 +3270,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Hartebeesthoek94” geodetic CRS creation from the factory.
+     * Tests “Hartebeesthoek94” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4148</b></li>
@@ -3293,7 +3293,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Hartebeesthoek94” geodetic CRS creation from the factory.
+     * Tests “Hartebeesthoek94” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4941</b></li>
@@ -3306,7 +3306,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Hartebeesthoek94")
+    @DisplayName("Hartebeesthoek94 (3D)")
     public void EPSG_4941() throws FactoryException {
         code         = 4941;
         name         = "Hartebeesthoek94";
@@ -3316,7 +3316,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Hartebeesthoek94” geodetic CRS creation from the factory.
+     * Tests “Hartebeesthoek94” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4940</b></li>
@@ -3329,7 +3329,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Hartebeesthoek94")
+    @DisplayName("Hartebeesthoek94 (geocentric)")
     public void EPSG_4940() throws FactoryException {
         code         = 4940;
         name         = "Hartebeesthoek94";
@@ -3340,7 +3340,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “HD1909” geodetic CRS creation from the factory.
+     * Tests “HD1909” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>3819</b></li>
@@ -3363,7 +3363,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “HD72” geodetic CRS creation from the factory.
+     * Tests “HD72” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4237</b></li>
@@ -3386,7 +3386,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Helle 1954” geodetic CRS creation from the factory.
+     * Tests “Helle 1954” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4660</b></li>
@@ -3409,7 +3409,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Herat North” geodetic CRS creation from the factory.
+     * Tests “Herat North” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4255</b></li>
@@ -3432,7 +3432,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Hito XVIII 1963” geodetic CRS creation from the factory.
+     * Tests “Hito XVIII 1963” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4254</b></li>
@@ -3457,7 +3457,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Hjorsey 1955” geodetic CRS creation from the factory.
+     * Tests “Hjorsey 1955” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4658</b></li>
@@ -3480,7 +3480,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Hong Kong 1963” geodetic CRS creation from the factory.
+     * Tests “Hong Kong 1963” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4738</b></li>
@@ -3505,7 +3505,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Hong Kong 1963(67)” geodetic CRS creation from the factory.
+     * Tests “Hong Kong 1963(67)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4739</b></li>
@@ -3530,7 +3530,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Hong Kong 1980” geodetic CRS creation from the factory.
+     * Tests “Hong Kong 1980” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4611</b></li>
@@ -3555,7 +3555,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “HTRS96” geodetic CRS creation from the factory.
+     * Tests “HTRS96” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4761</b></li>
@@ -3578,7 +3578,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “HTRS96” geodetic CRS creation from the factory.
+     * Tests “HTRS96” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4889</b></li>
@@ -3591,7 +3591,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("HTRS96")
+    @DisplayName("HTRS96 (3D)")
     public void EPSG_4889() throws FactoryException {
         code         = 4889;
         name         = "HTRS96";
@@ -3601,7 +3601,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “HTRS96” geodetic CRS creation from the factory.
+     * Tests “HTRS96” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4888</b></li>
@@ -3614,7 +3614,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("HTRS96")
+    @DisplayName("HTRS96 (geocentric)")
     public void EPSG_4888() throws FactoryException {
         code         = 4888;
         name         = "HTRS96";
@@ -3625,7 +3625,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Hu Tzu Shan 1950” geodetic CRS creation from the factory.
+     * Tests “Hu Tzu Shan 1950” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4236</b></li>
@@ -3650,7 +3650,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ID74” geodetic CRS creation from the factory.
+     * Tests “ID74” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4238</b></li>
@@ -3673,7 +3673,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IGC 1962 6th Parallel South” geodetic CRS creation from the factory.
+     * Tests “IGC 1962 6th Parallel South” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4697</b></li>
@@ -3698,7 +3698,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IGCB 1955” geodetic CRS creation from the factory.
+     * Tests “IGCB 1955” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4701</b></li>
@@ -3723,7 +3723,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IGM95” geodetic CRS creation from the factory.
+     * Tests “IGM95” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4670</b></li>
@@ -3746,7 +3746,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IGM95” geodetic CRS creation from the factory.
+     * Tests “IGM95” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4983</b></li>
@@ -3759,7 +3759,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("IGM95")
+    @DisplayName("IGM95 (3D)")
     public void EPSG_4983() throws FactoryException {
         code         = 4983;
         name         = "IGM95";
@@ -3769,7 +3769,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IGM95” geodetic CRS creation from the factory.
+     * Tests “IGM95” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4982</b></li>
@@ -3782,7 +3782,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("IGM95")
+    @DisplayName("IGM95 (geocentric)")
     public void EPSG_4982() throws FactoryException {
         code         = 4982;
         name         = "IGM95";
@@ -3793,7 +3793,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IGN 1962 Kerguelen” geodetic CRS creation from the factory.
+     * Tests “IGN 1962 Kerguelen” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4698</b></li>
@@ -3816,7 +3816,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IGN53 Mare” geodetic CRS creation from the factory.
+     * Tests “IGN53 Mare” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4641</b></li>
@@ -3839,7 +3839,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IGN56 Lifou” geodetic CRS creation from the factory.
+     * Tests “IGN56 Lifou” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4633</b></li>
@@ -3862,7 +3862,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IGN63 Hiva Oa” geodetic CRS creation from the factory.
+     * Tests “IGN63 Hiva Oa” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4689</b></li>
@@ -3885,7 +3885,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IGN72 Grande Terre” geodetic CRS creation from the factory.
+     * Tests “IGN72 Grande Terre” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4662</b></li>
@@ -3908,7 +3908,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IGN72 Nuku Hiva” geodetic CRS creation from the factory.
+     * Tests “IGN72 Nuku Hiva” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4630</b></li>
@@ -3931,7 +3931,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IGN Astro 1960” geodetic CRS creation from the factory.
+     * Tests “IGN Astro 1960” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4700</b></li>
@@ -3956,7 +3956,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IKBD-92” geodetic CRS creation from the factory.
+     * Tests “IKBD-92” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4667</b></li>
@@ -3979,7 +3979,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Indian 1954” geodetic CRS creation from the factory.
+     * Tests “Indian 1954” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4239</b></li>
@@ -4002,7 +4002,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Indian 1960” geodetic CRS creation from the factory.
+     * Tests “Indian 1960” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4131</b></li>
@@ -4027,7 +4027,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Indian 1975” geodetic CRS creation from the factory.
+     * Tests “Indian 1975” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4240</b></li>
@@ -4050,7 +4050,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IRENET95” geodetic CRS creation from the factory.
+     * Tests “IRENET95” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4173</b></li>
@@ -4075,7 +4075,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IRENET96” geodetic CRS creation from the factory.
+     * Tests “IRENET96” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4943</b></li>
@@ -4089,7 +4089,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("IRENET96")
+    @DisplayName("IRENET96 (3D)")
     public void EPSG_4943() throws FactoryException {
         code         = 4943;
         name         = "IRENET96";
@@ -4100,7 +4100,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “IRENET97” geodetic CRS creation from the factory.
+     * Tests “IRENET97” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4942</b></li>
@@ -4114,7 +4114,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("IRENET97")
+    @DisplayName("IRENET97 (geocentric)")
     public void EPSG_4942() throws FactoryException {
         code         = 4942;
         name         = "IRENET97";
@@ -4126,7 +4126,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ISN93” geodetic CRS creation from the factory.
+     * Tests “ISN93” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4659</b></li>
@@ -4149,7 +4149,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ISN93” geodetic CRS creation from the factory.
+     * Tests “ISN93” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4945</b></li>
@@ -4162,7 +4162,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("ISN93")
+    @DisplayName("ISN93 (3D)")
     public void EPSG_4945() throws FactoryException {
         code         = 4945;
         name         = "ISN93";
@@ -4172,7 +4172,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ISN93” geodetic CRS creation from the factory.
+     * Tests “ISN93” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4944</b></li>
@@ -4185,7 +4185,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("ISN93")
+    @DisplayName("ISN93 (geocentric)")
     public void EPSG_4944() throws FactoryException {
         code         = 4944;
         name         = "ISN93";
@@ -4196,7 +4196,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Israel 1993” geodetic CRS creation from the factory.
+     * Tests “Israel 1993” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4141</b></li>
@@ -4221,7 +4221,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Iwo Jima 1945” geodetic CRS creation from the factory.
+     * Tests “Iwo Jima 1945” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4709</b></li>
@@ -4244,7 +4244,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “JAD2001” geodetic CRS creation from the factory.
+     * Tests “JAD2001” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4758</b></li>
@@ -4267,7 +4267,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “JAD2001” geodetic CRS creation from the factory.
+     * Tests “JAD2001” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4895</b></li>
@@ -4280,7 +4280,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("JAD2001")
+    @DisplayName("JAD2001 (3D)")
     public void EPSG_4895() throws FactoryException {
         code         = 4895;
         name         = "JAD2001";
@@ -4290,7 +4290,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “JAD2001” geodetic CRS creation from the factory.
+     * Tests “JAD2001” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4894</b></li>
@@ -4303,7 +4303,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("JAD2001")
+    @DisplayName("JAD2001 (geocentric)")
     public void EPSG_4894() throws FactoryException {
         code         = 4894;
         name         = "JAD2001";
@@ -4314,7 +4314,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “JAD69” geodetic CRS creation from the factory.
+     * Tests “JAD69” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4242</b></li>
@@ -4337,7 +4337,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Jamaica 1875” geodetic CRS creation from the factory.
+     * Tests “Jamaica 1875” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4241</b></li>
@@ -4360,7 +4360,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “JGD2000” geodetic CRS creation from the factory.
+     * Tests “JGD2000” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4612</b></li>
@@ -4383,7 +4383,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “JGD2001” geodetic CRS creation from the factory.
+     * Tests “JGD2001” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4947</b></li>
@@ -4396,7 +4396,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("JGD2001")
+    @DisplayName("JGD2001 (3D)")
     public void EPSG_4947() throws FactoryException {
         code         = 4947;
         name         = "JGD2001";
@@ -4406,7 +4406,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “JGD2002” geodetic CRS creation from the factory.
+     * Tests “JGD2002” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4946</b></li>
@@ -4419,7 +4419,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("JGD2002")
+    @DisplayName("JGD2002 (geocentric)")
     public void EPSG_4946() throws FactoryException {
         code         = 4946;
         name         = "JGD2002";
@@ -4430,7 +4430,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Johnston Island 1961” geodetic CRS creation from the factory.
+     * Tests “Johnston Island 1961” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4725</b></li>
@@ -4455,7 +4455,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Jouik 1961” geodetic CRS creation from the factory.
+     * Tests “Jouik 1961” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4679</b></li>
@@ -4478,7 +4478,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Kalianpur 1880” geodetic CRS creation from the factory.
+     * Tests “Kalianpur 1880” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4243</b></li>
@@ -4501,7 +4501,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Kalianpur 1937” geodetic CRS creation from the factory.
+     * Tests “Kalianpur 1937” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4144</b></li>
@@ -4524,7 +4524,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Kalianpur 1962” geodetic CRS creation from the factory.
+     * Tests “Kalianpur 1962” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4145</b></li>
@@ -4547,7 +4547,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Kalianpur 1975” geodetic CRS creation from the factory.
+     * Tests “Kalianpur 1975” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4146</b></li>
@@ -4570,7 +4570,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Kandawala” geodetic CRS creation from the factory.
+     * Tests “Kandawala” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4244</b></li>
@@ -4593,7 +4593,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Karbala 1979” geodetic CRS creation from the factory.
+     * Tests “Karbala 1979” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4743</b></li>
@@ -4618,7 +4618,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Kasai 1953” geodetic CRS creation from the factory.
+     * Tests “Kasai 1953” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4696</b></li>
@@ -4641,7 +4641,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Katanga 1955” geodetic CRS creation from the factory.
+     * Tests “Katanga 1955” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4695</b></li>
@@ -4664,7 +4664,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Kertau (RSO)” geodetic CRS creation from the factory.
+     * Tests “Kertau (RSO)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4751</b></li>
@@ -4687,7 +4687,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Kertau 1968” geodetic CRS creation from the factory.
+     * Tests “Kertau 1968” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4245</b></li>
@@ -4712,7 +4712,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “KKJ” geodetic CRS creation from the factory.
+     * Tests “KKJ” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4123</b></li>
@@ -4735,7 +4735,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “KOC” geodetic CRS creation from the factory.
+     * Tests “KOC” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4246</b></li>
@@ -4758,7 +4758,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Korea 2000” geodetic CRS creation from the factory.
+     * Tests “Korea 2000” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4737</b></li>
@@ -4781,7 +4781,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Korea 2000” geodetic CRS creation from the factory.
+     * Tests “Korea 2000” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4927</b></li>
@@ -4794,7 +4794,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Korea 2000")
+    @DisplayName("Korea 2000 (3D)")
     public void EPSG_4927() throws FactoryException {
         code         = 4927;
         name         = "Korea 2000";
@@ -4804,7 +4804,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Korea 2000” geodetic CRS creation from the factory.
+     * Tests “Korea 2000” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4926</b></li>
@@ -4817,7 +4817,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Korea 2000")
+    @DisplayName("Korea 2000 (geocentric)")
     public void EPSG_4926() throws FactoryException {
         code         = 4926;
         name         = "Korea 2000";
@@ -4828,7 +4828,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Korean 1985” geodetic CRS creation from the factory.
+     * Tests “Korean 1985” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4162</b></li>
@@ -4851,7 +4851,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Korean 1995” geodetic CRS creation from the factory.
+     * Tests “Korean 1995” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4166</b></li>
@@ -4874,7 +4874,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Kousseri” geodetic CRS creation from the factory.
+     * Tests “Kousseri” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4198</b></li>
@@ -4897,7 +4897,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “KUDAMS” geodetic CRS creation from the factory.
+     * Tests “KUDAMS” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4319</b></li>
@@ -4920,7 +4920,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Kusaie 1951” geodetic CRS creation from the factory.
+     * Tests “Kusaie 1951” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4735</b></li>
@@ -4943,7 +4943,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “La Canoa” geodetic CRS creation from the factory.
+     * Tests “La Canoa” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4247</b></li>
@@ -4966,7 +4966,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Lake” geodetic CRS creation from the factory.
+     * Tests “Lake” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4249</b></li>
@@ -4989,7 +4989,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Lao 1993” geodetic CRS creation from the factory.
+     * Tests “Lao 1993” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4677</b></li>
@@ -5012,7 +5012,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Lao 1993” geodetic CRS creation from the factory.
+     * Tests “Lao 1993” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4991</b></li>
@@ -5025,7 +5025,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Lao 1993")
+    @DisplayName("Lao 1993 (3D)")
     public void EPSG_4991() throws FactoryException {
         code         = 4991;
         name         = "Lao 1993";
@@ -5035,7 +5035,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Lao 1993” geodetic CRS creation from the factory.
+     * Tests “Lao 1993” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4990</b></li>
@@ -5048,7 +5048,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Lao 1993")
+    @DisplayName("Lao 1993 (geocentric)")
     public void EPSG_4990() throws FactoryException {
         code         = 4990;
         name         = "Lao 1993";
@@ -5059,7 +5059,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Lao 1997” geodetic CRS creation from the factory.
+     * Tests “Lao 1997” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4678</b></li>
@@ -5082,7 +5082,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Lao 1997” geodetic CRS creation from the factory.
+     * Tests “Lao 1997” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4993</b></li>
@@ -5095,7 +5095,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Lao 1997")
+    @DisplayName("Lao 1997 (3D)")
     public void EPSG_4993() throws FactoryException {
         code         = 4993;
         name         = "Lao 1997";
@@ -5105,7 +5105,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Lao 1997” geodetic CRS creation from the factory.
+     * Tests “Lao 1997” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4992</b></li>
@@ -5118,7 +5118,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Lao 1997")
+    @DisplayName("Lao 1997 (geocentric)")
     public void EPSG_4992() throws FactoryException {
         code         = 4992;
         name         = "Lao 1997";
@@ -5129,7 +5129,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Leigon” geodetic CRS creation from the factory.
+     * Tests “Leigon” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4250</b></li>
@@ -5152,7 +5152,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Le Pouce 1934” geodetic CRS creation from the factory.
+     * Tests “Le Pouce 1934” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4699</b></li>
@@ -5177,7 +5177,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “LGD2006” geodetic CRS creation from the factory.
+     * Tests “LGD2006” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4754</b></li>
@@ -5200,7 +5200,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “LGD2006” geodetic CRS creation from the factory.
+     * Tests “LGD2006” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4900</b></li>
@@ -5213,7 +5213,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("LGD2006")
+    @DisplayName("LGD2006 (3D)")
     public void EPSG_4900() throws FactoryException {
         code         = 4900;
         name         = "LGD2006";
@@ -5223,7 +5223,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “LGD2006” geodetic CRS creation from the factory.
+     * Tests “LGD2006” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4899</b></li>
@@ -5236,7 +5236,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("LGD2006")
+    @DisplayName("LGD2006 (geocentric)")
     public void EPSG_4899() throws FactoryException {
         code         = 4899;
         name         = "LGD2006";
@@ -5247,7 +5247,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Liberia 1964” geodetic CRS creation from the factory.
+     * Tests “Liberia 1964” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4251</b></li>
@@ -5270,7 +5270,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Lisbon” geodetic CRS creation from the factory.
+     * Tests “Lisbon” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4207</b></li>
@@ -5295,7 +5295,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Lisbon (Lisbon)” geodetic CRS creation from the factory.
+     * Tests “Lisbon (Lisbon)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4803</b></li>
@@ -5320,7 +5320,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Lisbon 1890” geodetic CRS creation from the factory.
+     * Tests “Lisbon 1890” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4666</b></li>
@@ -5343,7 +5343,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Lisbon 1890 (Lisbon)” geodetic CRS creation from the factory.
+     * Tests “Lisbon 1890 (Lisbon)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4904</b></li>
@@ -5366,7 +5366,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “LKS92” geodetic CRS creation from the factory.
+     * Tests “LKS92” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4661</b></li>
@@ -5389,7 +5389,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “LKS92” geodetic CRS creation from the factory.
+     * Tests “LKS92” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4949</b></li>
@@ -5402,7 +5402,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("LKS92")
+    @DisplayName("LKS92 (3D)")
     public void EPSG_4949() throws FactoryException {
         code         = 4949;
         name         = "LKS92";
@@ -5412,7 +5412,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “LKS92” geodetic CRS creation from the factory.
+     * Tests “LKS92” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4948</b></li>
@@ -5425,7 +5425,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("LKS92")
+    @DisplayName("LKS92 (geocentric)")
     public void EPSG_4948() throws FactoryException {
         code         = 4948;
         name         = "LKS92";
@@ -5436,7 +5436,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “LKS94” geodetic CRS creation from the factory.
+     * Tests “LKS94” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4669</b></li>
@@ -5461,7 +5461,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “LKS95” geodetic CRS creation from the factory.
+     * Tests “LKS95” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4951</b></li>
@@ -5475,7 +5475,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("LKS95")
+    @DisplayName("LKS95 (3D)")
     public void EPSG_4951() throws FactoryException {
         code         = 4951;
         name         = "LKS95";
@@ -5486,7 +5486,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “LKS96” geodetic CRS creation from the factory.
+     * Tests “LKS96” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4950</b></li>
@@ -5500,7 +5500,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("LKS96")
+    @DisplayName("LKS96 (geocentric)")
     public void EPSG_4950() throws FactoryException {
         code         = 4950;
         name         = "LKS96";
@@ -5512,7 +5512,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Locodjo 1965” geodetic CRS creation from the factory.
+     * Tests “Locodjo 1965” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4142</b></li>
@@ -5537,7 +5537,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Loma Quintana” geodetic CRS creation from the factory.
+     * Tests “Loma Quintana” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4288</b></li>
@@ -5560,7 +5560,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Lome” geodetic CRS creation from the factory.
+     * Tests “Lome” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4252</b></li>
@@ -5583,7 +5583,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Luxembourg 1930” geodetic CRS creation from the factory.
+     * Tests “Luxembourg 1930” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4181</b></li>
@@ -5608,7 +5608,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Luzon 1911” geodetic CRS creation from the factory.
+     * Tests “Luzon 1911” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4253</b></li>
@@ -5631,7 +5631,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “M'poraloko” geodetic CRS creation from the factory.
+     * Tests “M'poraloko” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4266</b></li>
@@ -5654,7 +5654,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Madrid 1870 (Madrid)” geodetic CRS creation from the factory.
+     * Tests “Madrid 1870 (Madrid)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4903</b></li>
@@ -5679,7 +5679,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Madzansua” geodetic CRS creation from the factory.
+     * Tests “Madzansua” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4128</b></li>
@@ -5702,7 +5702,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “MAGNA-SIRGAS” geodetic CRS creation from the factory.
+     * Tests “MAGNA-SIRGAS” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4686</b></li>
@@ -5725,7 +5725,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “MAGNA-SIRGAS” geodetic CRS creation from the factory.
+     * Tests “MAGNA-SIRGAS” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4997</b></li>
@@ -5738,7 +5738,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("MAGNA-SIRGAS")
+    @DisplayName("MAGNA-SIRGAS (3D)")
     public void EPSG_4997() throws FactoryException {
         code         = 4997;
         name         = "MAGNA-SIRGAS";
@@ -5748,7 +5748,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “MAGNA-SIRGAS” geodetic CRS creation from the factory.
+     * Tests “MAGNA-SIRGAS” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4996</b></li>
@@ -5761,7 +5761,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("MAGNA-SIRGAS")
+    @DisplayName("MAGNA-SIRGAS (geocentric)")
     public void EPSG_4996() throws FactoryException {
         code         = 4996;
         name         = "MAGNA-SIRGAS";
@@ -5772,7 +5772,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Mahe 1971” geodetic CRS creation from the factory.
+     * Tests “Mahe 1971” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4256</b></li>
@@ -5795,7 +5795,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Makassar” geodetic CRS creation from the factory.
+     * Tests “Makassar” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4257</b></li>
@@ -5818,7 +5818,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Makassar (Jakarta)” geodetic CRS creation from the factory.
+     * Tests “Makassar (Jakarta)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4804</b></li>
@@ -5841,7 +5841,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Malongo 1987” geodetic CRS creation from the factory.
+     * Tests “Malongo 1987” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4259</b></li>
@@ -5866,7 +5866,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Manoca 1962” geodetic CRS creation from the factory.
+     * Tests “Manoca 1962” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4193</b></li>
@@ -5889,7 +5889,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Marcus Island 1952” geodetic CRS creation from the factory.
+     * Tests “Marcus Island 1952” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4711</b></li>
@@ -5912,7 +5912,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Marshall Islands 1960” geodetic CRS creation from the factory.
+     * Tests “Marshall Islands 1960” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4732</b></li>
@@ -5935,7 +5935,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Martinique 1938” geodetic CRS creation from the factory.
+     * Tests “Martinique 1938” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4625</b></li>
@@ -5960,7 +5960,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Massawa” geodetic CRS creation from the factory.
+     * Tests “Massawa” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4262</b></li>
@@ -5983,7 +5983,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Maupiti 83” geodetic CRS creation from the factory.
+     * Tests “Maupiti 83” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4692</b></li>
@@ -6008,7 +6008,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Mauritania 1999” geodetic CRS creation from the factory.
+     * Tests “Mauritania 1999” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4702</b></li>
@@ -6031,7 +6031,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Mauritania 1999” geodetic CRS creation from the factory.
+     * Tests “Mauritania 1999” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4925</b></li>
@@ -6044,7 +6044,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Mauritania 1999")
+    @DisplayName("Mauritania 1999 (3D)")
     public void EPSG_4925() throws FactoryException {
         code         = 4925;
         name         = "Mauritania 1999";
@@ -6054,7 +6054,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Mauritania 1999” geodetic CRS creation from the factory.
+     * Tests “Mauritania 1999” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4924</b></li>
@@ -6067,7 +6067,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Mauritania 1999")
+    @DisplayName("Mauritania 1999 (geocentric)")
     public void EPSG_4924() throws FactoryException {
         code         = 4924;
         name         = "Mauritania 1999";
@@ -6078,7 +6078,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Merchich” geodetic CRS creation from the factory.
+     * Tests “Merchich” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4261</b></li>
@@ -6101,7 +6101,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “MGI” geodetic CRS creation from the factory.
+     * Tests “MGI” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4312</b></li>
@@ -6124,7 +6124,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “MGI (Ferro)” geodetic CRS creation from the factory.
+     * Tests “MGI (Ferro)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4805</b></li>
@@ -6147,7 +6147,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Mhast (offshore)” geodetic CRS creation from the factory.
+     * Tests “Mhast (offshore)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4705</b></li>
@@ -6172,7 +6172,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Mhast (onshore)” geodetic CRS creation from the factory.
+     * Tests “Mhast (onshore)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4704</b></li>
@@ -6197,7 +6197,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Mhast 1951” geodetic CRS creation from the factory.
+     * Tests “Mhast 1951” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4703</b></li>
@@ -6220,7 +6220,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Midway 1961” geodetic CRS creation from the factory.
+     * Tests “Midway 1961” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4727</b></li>
@@ -6243,7 +6243,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Minna” geodetic CRS creation from the factory.
+     * Tests “Minna” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4263</b></li>
@@ -6266,7 +6266,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Monte Mario” geodetic CRS creation from the factory.
+     * Tests “Monte Mario” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4265</b></li>
@@ -6291,7 +6291,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Monte Mario (Rome)” geodetic CRS creation from the factory.
+     * Tests “Monte Mario (Rome)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4806</b></li>
@@ -6316,7 +6316,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Montserrat 1958” geodetic CRS creation from the factory.
+     * Tests “Montserrat 1958” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4604</b></li>
@@ -6341,7 +6341,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Moorea 87” geodetic CRS creation from the factory.
+     * Tests “Moorea 87” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4691</b></li>
@@ -6364,7 +6364,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “MOP78” geodetic CRS creation from the factory.
+     * Tests “MOP78” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4639</b></li>
@@ -6389,7 +6389,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Mount Dillon” geodetic CRS creation from the factory.
+     * Tests “Mount Dillon” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4157</b></li>
@@ -6412,7 +6412,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Moznet” geodetic CRS creation from the factory.
+     * Tests “Moznet” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4130</b></li>
@@ -6435,7 +6435,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Moznet” geodetic CRS creation from the factory.
+     * Tests “Moznet” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4953</b></li>
@@ -6448,7 +6448,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Moznet")
+    @DisplayName("Moznet (3D)")
     public void EPSG_4953() throws FactoryException {
         code         = 4953;
         name         = "Moznet";
@@ -6458,7 +6458,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Moznet” geodetic CRS creation from the factory.
+     * Tests “Moznet” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4952</b></li>
@@ -6471,7 +6471,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Moznet")
+    @DisplayName("Moznet (geocentric)")
     public void EPSG_4952() throws FactoryException {
         code         = 4952;
         name         = "Moznet";
@@ -6482,7 +6482,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD27” geodetic CRS creation from the factory.
+     * Tests “NAD27” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4267</b></li>
@@ -6505,7 +6505,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD27(76)” geodetic CRS creation from the factory.
+     * Tests “NAD27(76)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4608</b></li>
@@ -6528,7 +6528,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD27(CGQ77)” geodetic CRS creation from the factory.
+     * Tests “NAD27(CGQ77)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4609</b></li>
@@ -6553,7 +6553,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD83” geodetic CRS creation from the factory.
+     * Tests “NAD83” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4269</b></li>
@@ -6578,7 +6578,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD83(CSRS)” geodetic CRS creation from the factory.
+     * Tests “NAD83(CSRS)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4617</b></li>
@@ -6601,7 +6601,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD83(CSRS)” geodetic CRS creation from the factory.
+     * Tests “NAD83(CSRS)” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4955</b></li>
@@ -6614,7 +6614,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("NAD83(CSRS)")
+    @DisplayName("NAD83(CSRS) (3D)")
     public void EPSG_4955() throws FactoryException {
         code         = 4955;
         name         = "NAD83(CSRS)";
@@ -6624,7 +6624,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD83(CSRS)” geodetic CRS creation from the factory.
+     * Tests “NAD83(CSRS)” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4954</b></li>
@@ -6637,7 +6637,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("NAD83(CSRS)")
+    @DisplayName("NAD83(CSRS) (geocentric)")
     public void EPSG_4954() throws FactoryException {
         code         = 4954;
         name         = "NAD83(CSRS)";
@@ -6648,7 +6648,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD83(HARN)” geodetic CRS creation from the factory.
+     * Tests “NAD83(HARN)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4152</b></li>
@@ -6673,7 +6673,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD83(HARN)” geodetic CRS creation from the factory.
+     * Tests “NAD83(HARN)” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4957</b></li>
@@ -6687,7 +6687,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("NAD83(HARN)")
+    @DisplayName("NAD83(HARN) (3D)")
     public void EPSG_4957() throws FactoryException {
         code         = 4957;
         name         = "NAD83(HARN)";
@@ -6698,7 +6698,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD83(HARN)” geodetic CRS creation from the factory.
+     * Tests “NAD83(HARN)” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4956</b></li>
@@ -6712,7 +6712,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("NAD83(HARN)")
+    @DisplayName("NAD83(HARN) (geocentric)")
     public void EPSG_4956() throws FactoryException {
         code         = 4956;
         name         = "NAD83(HARN)";
@@ -6724,7 +6724,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD83(NSRS2007)” geodetic CRS creation from the factory.
+     * Tests “NAD83(NSRS2007)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4759</b></li>
@@ -6747,7 +6747,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD83(NSRS2007)” geodetic CRS creation from the factory.
+     * Tests “NAD83(NSRS2007)” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4893</b></li>
@@ -6760,7 +6760,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("NAD83(NSRS2007)")
+    @DisplayName("NAD83(NSRS2007) (3D)")
     public void EPSG_4893() throws FactoryException {
         code         = 4893;
         name         = "NAD83(NSRS2007)";
@@ -6770,7 +6770,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NAD83(NSRS2007)” geodetic CRS creation from the factory.
+     * Tests “NAD83(NSRS2007)” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4892</b></li>
@@ -6783,7 +6783,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("NAD83(NSRS2007)")
+    @DisplayName("NAD83(NSRS2007) (geocentric)")
     public void EPSG_4892() throws FactoryException {
         code         = 4892;
         name         = "NAD83(NSRS2007)";
@@ -6794,7 +6794,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Nahrwan 1934” geodetic CRS creation from the factory.
+     * Tests “Nahrwan 1934” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4744</b></li>
@@ -6817,7 +6817,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Nahrwan 1967” geodetic CRS creation from the factory.
+     * Tests “Nahrwan 1967” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4270</b></li>
@@ -6840,7 +6840,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Nakhl-e Ghanem” geodetic CRS creation from the factory.
+     * Tests “Nakhl-e Ghanem” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4693</b></li>
@@ -6863,7 +6863,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Naparima 1955” geodetic CRS creation from the factory.
+     * Tests “Naparima 1955” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4158</b></li>
@@ -6886,7 +6886,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Naparima 1972” geodetic CRS creation from the factory.
+     * Tests “Naparima 1972” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4271</b></li>
@@ -6911,7 +6911,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NEA74 Noumea” geodetic CRS creation from the factory.
+     * Tests “NEA74 Noumea” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4644</b></li>
@@ -6934,7 +6934,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NGN” geodetic CRS creation from the factory.
+     * Tests “NGN” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4318</b></li>
@@ -6957,7 +6957,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NGO 1948” geodetic CRS creation from the factory.
+     * Tests “NGO 1948” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4273</b></li>
@@ -6980,7 +6980,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NGO 1948 (Oslo)” geodetic CRS creation from the factory.
+     * Tests “NGO 1948 (Oslo)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4817</b></li>
@@ -7003,7 +7003,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Nord Sahara 1959” geodetic CRS creation from the factory.
+     * Tests “Nord Sahara 1959” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4307</b></li>
@@ -7026,7 +7026,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Nouakchott 1965” geodetic CRS creation from the factory.
+     * Tests “Nouakchott 1965” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4680</b></li>
@@ -7049,7 +7049,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NSWC 9Z-2” geodetic CRS creation from the factory.
+     * Tests “NSWC 9Z-2” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4276</b></li>
@@ -7072,7 +7072,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NTF” geodetic CRS creation from the factory.
+     * Tests “NTF” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4275</b></li>
@@ -7095,7 +7095,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NTF (Paris)” geodetic CRS creation from the factory.
+     * Tests “NTF (Paris)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4807</b></li>
@@ -7118,7 +7118,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NZGD2000” geodetic CRS creation from the factory.
+     * Tests “NZGD2000” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4167</b></li>
@@ -7141,7 +7141,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NZGD2000” geodetic CRS creation from the factory.
+     * Tests “NZGD2000” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4959</b></li>
@@ -7154,7 +7154,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("NZGD2000")
+    @DisplayName("NZGD2000 (3D)")
     public void EPSG_4959() throws FactoryException {
         code         = 4959;
         name         = "NZGD2000";
@@ -7164,7 +7164,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NZGD2000” geodetic CRS creation from the factory.
+     * Tests “NZGD2000” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4958</b></li>
@@ -7177,7 +7177,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("NZGD2000")
+    @DisplayName("NZGD2000 (geocentric)")
     public void EPSG_4958() throws FactoryException {
         code         = 4958;
         name         = "NZGD2000";
@@ -7188,7 +7188,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “NZGD49” geodetic CRS creation from the factory.
+     * Tests “NZGD49” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4272</b></li>
@@ -7213,7 +7213,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Observatario” geodetic CRS creation from the factory.
+     * Tests “Observatario” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4129</b></li>
@@ -7238,7 +7238,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Old Hawaiian” geodetic CRS creation from the factory.
+     * Tests “Old Hawaiian” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4135</b></li>
@@ -7261,7 +7261,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “OS(SN)80” geodetic CRS creation from the factory.
+     * Tests “OS(SN)80” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4279</b></li>
@@ -7284,7 +7284,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “OSGB36” geodetic CRS creation from the factory.
+     * Tests “OSGB36” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4277</b></li>
@@ -7307,7 +7307,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “OSGB70” geodetic CRS creation from the factory.
+     * Tests “OSGB70” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4278</b></li>
@@ -7330,7 +7330,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “OSNI 1952” geodetic CRS creation from the factory.
+     * Tests “OSNI 1952” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4188</b></li>
@@ -7353,7 +7353,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Palestine 1923” geodetic CRS creation from the factory.
+     * Tests “Palestine 1923” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4281</b></li>
@@ -7376,7 +7376,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Pampa del Castillo” geodetic CRS creation from the factory.
+     * Tests “Pampa del Castillo” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4161</b></li>
@@ -7401,7 +7401,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “PD/83” geodetic CRS creation from the factory.
+     * Tests “PD/83” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4746</b></li>
@@ -7426,7 +7426,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Perroud 1950” geodetic CRS creation from the factory.
+     * Tests “Perroud 1950” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4637</b></li>
@@ -7449,7 +7449,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Petrels 1972” geodetic CRS creation from the factory.
+     * Tests “Petrels 1972” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4636</b></li>
@@ -7472,7 +7472,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Phoenix Islands 1966” geodetic CRS creation from the factory.
+     * Tests “Phoenix Islands 1966” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4716</b></li>
@@ -7495,7 +7495,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Pitcairn 1967” geodetic CRS creation from the factory.
+     * Tests “Pitcairn 1967” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4729</b></li>
@@ -7518,7 +7518,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Pitcairn 2006” geodetic CRS creation from the factory.
+     * Tests “Pitcairn 2006” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4763</b></li>
@@ -7541,7 +7541,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “PN84” geodetic CRS creation from the factory.
+     * Tests “PN84” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4728</b></li>
@@ -7566,7 +7566,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Point 58” geodetic CRS creation from the factory.
+     * Tests “Point 58” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4620</b></li>
@@ -7591,7 +7591,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Pointe Noire” geodetic CRS creation from the factory.
+     * Tests “Pointe Noire” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4282</b></li>
@@ -7616,7 +7616,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Porto Santo” geodetic CRS creation from the factory.
+     * Tests “Porto Santo” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4615</b></li>
@@ -7641,7 +7641,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Porto Santo 1995” geodetic CRS creation from the factory.
+     * Tests “Porto Santo 1995” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4663</b></li>
@@ -7666,7 +7666,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “POSGAR 94” geodetic CRS creation from the factory.
+     * Tests “POSGAR 94” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4694</b></li>
@@ -7689,7 +7689,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “POSGAR 94” geodetic CRS creation from the factory.
+     * Tests “POSGAR 94” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4929</b></li>
@@ -7702,7 +7702,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("POSGAR 94")
+    @DisplayName("POSGAR 94 (3D)")
     public void EPSG_4929() throws FactoryException {
         code         = 4929;
         name         = "POSGAR 94";
@@ -7712,7 +7712,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “POSGAR 94” geodetic CRS creation from the factory.
+     * Tests “POSGAR 94” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4928</b></li>
@@ -7725,7 +7725,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("POSGAR 94")
+    @DisplayName("POSGAR 94 (geocentric)")
     public void EPSG_4928() throws FactoryException {
         code         = 4928;
         name         = "POSGAR 94";
@@ -7736,7 +7736,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “POSGAR 98” geodetic CRS creation from the factory.
+     * Tests “POSGAR 98” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4190</b></li>
@@ -7761,7 +7761,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “POSGAR 98” geodetic CRS creation from the factory.
+     * Tests “POSGAR 98” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4961</b></li>
@@ -7774,7 +7774,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("POSGAR 98")
+    @DisplayName("POSGAR 98 (3D)")
     public void EPSG_4961() throws FactoryException {
         code         = 4961;
         name         = "POSGAR 98";
@@ -7784,7 +7784,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “POSGAR 98” geodetic CRS creation from the factory.
+     * Tests “POSGAR 98” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4960</b></li>
@@ -7797,7 +7797,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("POSGAR 98")
+    @DisplayName("POSGAR 98 (geocentric)")
     public void EPSG_4960() throws FactoryException {
         code         = 4960;
         name         = "POSGAR 98";
@@ -7808,7 +7808,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “PRS92” geodetic CRS creation from the factory.
+     * Tests “PRS92” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4683</b></li>
@@ -7833,7 +7833,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “PRS92” geodetic CRS creation from the factory.
+     * Tests “PRS92” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4995</b></li>
@@ -7847,7 +7847,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("PRS92")
+    @DisplayName("PRS92 (3D)")
     public void EPSG_4995() throws FactoryException {
         code         = 4995;
         name         = "PRS92";
@@ -7858,7 +7858,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “PRS92” geodetic CRS creation from the factory.
+     * Tests “PRS92” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4994</b></li>
@@ -7872,7 +7872,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("PRS92")
+    @DisplayName("PRS92 (geocentric)")
     public void EPSG_4994() throws FactoryException {
         code         = 4994;
         name         = "PRS92";
@@ -7884,7 +7884,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “PSAD56” geodetic CRS creation from the factory.
+     * Tests “PSAD56” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4248</b></li>
@@ -7911,7 +7911,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “PSD93” geodetic CRS creation from the factory.
+     * Tests “PSD93” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4134</b></li>
@@ -7936,7 +7936,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Puerto Rico” geodetic CRS creation from the factory.
+     * Tests “Puerto Rico” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4139</b></li>
@@ -7959,7 +7959,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Pulkovo 1942” geodetic CRS creation from the factory.
+     * Tests “Pulkovo 1942” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4284</b></li>
@@ -7984,7 +7984,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Pulkovo 1942(58)” geodetic CRS creation from the factory.
+     * Tests “Pulkovo 1942(58)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4179</b></li>
@@ -8009,7 +8009,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Pulkovo 1942(83)” geodetic CRS creation from the factory.
+     * Tests “Pulkovo 1942(83)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4178</b></li>
@@ -8034,7 +8034,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Pulkovo 1995” geodetic CRS creation from the factory.
+     * Tests “Pulkovo 1995” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4200</b></li>
@@ -8059,7 +8059,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “PZ-90” geodetic CRS creation from the factory.
+     * Tests “PZ-90” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4740</b></li>
@@ -8082,7 +8082,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “PZ-90” geodetic CRS creation from the factory.
+     * Tests “PZ-90” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4923</b></li>
@@ -8095,7 +8095,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("PZ-90")
+    @DisplayName("PZ-90 (3D)")
     public void EPSG_4923() throws FactoryException {
         code         = 4923;
         name         = "PZ-90";
@@ -8105,7 +8105,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “PZ-90” geodetic CRS creation from the factory.
+     * Tests “PZ-90” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4922</b></li>
@@ -8118,7 +8118,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("PZ-90")
+    @DisplayName("PZ-90 (geocentric)")
     public void EPSG_4922() throws FactoryException {
         code         = 4922;
         name         = "PZ-90";
@@ -8129,7 +8129,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Qatar 1948” geodetic CRS creation from the factory.
+     * Tests “Qatar 1948” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4286</b></li>
@@ -8152,7 +8152,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Qatar 1974” geodetic CRS creation from the factory.
+     * Tests “Qatar 1974” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4285</b></li>
@@ -8175,7 +8175,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “QND95” geodetic CRS creation from the factory.
+     * Tests “QND95” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4614</b></li>
@@ -8198,7 +8198,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Qornoq 1927” geodetic CRS creation from the factory.
+     * Tests “Qornoq 1927” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4194</b></li>
@@ -8221,7 +8221,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Rassadiran” geodetic CRS creation from the factory.
+     * Tests “Rassadiran” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4153</b></li>
@@ -8244,7 +8244,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RD/83” geodetic CRS creation from the factory.
+     * Tests “RD/83” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4745</b></li>
@@ -8269,7 +8269,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “REGVEN” geodetic CRS creation from the factory.
+     * Tests “REGVEN” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4189</b></li>
@@ -8292,7 +8292,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “REGVEN” geodetic CRS creation from the factory.
+     * Tests “REGVEN” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4963</b></li>
@@ -8305,7 +8305,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("REGVEN")
+    @DisplayName("REGVEN (3D)")
     public void EPSG_4963() throws FactoryException {
         code         = 4963;
         name         = "REGVEN";
@@ -8315,7 +8315,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “REGVEN” geodetic CRS creation from the factory.
+     * Tests “REGVEN” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4962</b></li>
@@ -8328,7 +8328,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("REGVEN")
+    @DisplayName("REGVEN (geocentric)")
     public void EPSG_4962() throws FactoryException {
         code         = 4962;
         name         = "REGVEN";
@@ -8339,7 +8339,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Reunion 1947” geodetic CRS creation from the factory.
+     * Tests “Reunion 1947” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4626</b></li>
@@ -8364,7 +8364,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Reykjavik 1900” geodetic CRS creation from the factory.
+     * Tests “Reykjavik 1900” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4657</b></li>
@@ -8387,7 +8387,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGF93” geodetic CRS creation from the factory.
+     * Tests “RGF93” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4171</b></li>
@@ -8412,7 +8412,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGF94” geodetic CRS creation from the factory.
+     * Tests “RGF94” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4965</b></li>
@@ -8426,7 +8426,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("RGF94")
+    @DisplayName("RGF94 (3D)")
     public void EPSG_4965() throws FactoryException {
         code         = 4965;
         name         = "RGF94";
@@ -8437,7 +8437,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGF95” geodetic CRS creation from the factory.
+     * Tests “RGF95” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4964</b></li>
@@ -8450,7 +8450,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("RGF95")
+    @DisplayName("RGF95 (geocentric)")
     public void EPSG_4964() throws FactoryException {
         code         = 4964;
         name         = "RGF95";
@@ -8461,7 +8461,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGFG95” geodetic CRS creation from the factory.
+     * Tests “RGFG95” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4624</b></li>
@@ -8486,7 +8486,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGFG95” geodetic CRS creation from the factory.
+     * Tests “RGFG95” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4967</b></li>
@@ -8500,7 +8500,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("RGFG95")
+    @DisplayName("RGFG95 (3D)")
     public void EPSG_4967() throws FactoryException {
         code         = 4967;
         name         = "RGFG95";
@@ -8511,7 +8511,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGFG95” geodetic CRS creation from the factory.
+     * Tests “RGFG95” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4966</b></li>
@@ -8524,7 +8524,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("RGFG95")
+    @DisplayName("RGFG95 (geocentric)")
     public void EPSG_4966() throws FactoryException {
         code         = 4966;
         name         = "RGFG95";
@@ -8535,7 +8535,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGNC91-93” geodetic CRS creation from the factory.
+     * Tests “RGNC91-93” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4749</b></li>
@@ -8558,7 +8558,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGNC91-93” geodetic CRS creation from the factory.
+     * Tests “RGNC91-93” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4907</b></li>
@@ -8571,7 +8571,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("RGNC91-93")
+    @DisplayName("RGNC91-93 (3D)")
     public void EPSG_4907() throws FactoryException {
         code         = 4907;
         name         = "RGNC91-93";
@@ -8581,7 +8581,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGNC91-93” geodetic CRS creation from the factory.
+     * Tests “RGNC91-93” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4906</b></li>
@@ -8594,7 +8594,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("RGNC91-93")
+    @DisplayName("RGNC91-93 (geocentric)")
     public void EPSG_4906() throws FactoryException {
         code         = 4906;
         name         = "RGNC91-93";
@@ -8605,7 +8605,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGPF” geodetic CRS creation from the factory.
+     * Tests “RGPF” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4687</b></li>
@@ -8628,7 +8628,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGPF” geodetic CRS creation from the factory.
+     * Tests “RGPF” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4999</b></li>
@@ -8641,7 +8641,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("RGPF")
+    @DisplayName("RGPF (3D)")
     public void EPSG_4999() throws FactoryException {
         code         = 4999;
         name         = "RGPF";
@@ -8651,7 +8651,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGPF” geodetic CRS creation from the factory.
+     * Tests “RGPF” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4998</b></li>
@@ -8664,7 +8664,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("RGPF")
+    @DisplayName("RGPF (geocentric)")
     public void EPSG_4998() throws FactoryException {
         code         = 4998;
         name         = "RGPF";
@@ -8675,7 +8675,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGR92” geodetic CRS creation from the factory.
+     * Tests “RGR92” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4627</b></li>
@@ -8700,7 +8700,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGR92” geodetic CRS creation from the factory.
+     * Tests “RGR92” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4971</b></li>
@@ -8714,7 +8714,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("RGR92")
+    @DisplayName("RGR92 (3D)")
     public void EPSG_4971() throws FactoryException {
         code         = 4971;
         name         = "RGR92";
@@ -8725,7 +8725,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RGR92” geodetic CRS creation from the factory.
+     * Tests “RGR92” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4970</b></li>
@@ -8738,7 +8738,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("RGR92")
+    @DisplayName("RGR92 (geocentric)")
     public void EPSG_4970() throws FactoryException {
         code         = 4970;
         name         = "RGR92";
@@ -8749,7 +8749,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RRAF 1991” geodetic CRS creation from the factory.
+     * Tests “RRAF 1991” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4558</b></li>
@@ -8772,7 +8772,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RSRGD2000” geodetic CRS creation from the factory.
+     * Tests “RSRGD2000” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4764</b></li>
@@ -8795,7 +8795,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RSRGD2000” geodetic CRS creation from the factory.
+     * Tests “RSRGD2000” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4885</b></li>
@@ -8808,7 +8808,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("RSRGD2000")
+    @DisplayName("RSRGD2000 (3D)")
     public void EPSG_4885() throws FactoryException {
         code         = 4885;
         name         = "RSRGD2000";
@@ -8818,7 +8818,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RSRGD2000” geodetic CRS creation from the factory.
+     * Tests “RSRGD2000” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4884</b></li>
@@ -8831,7 +8831,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("RSRGD2000")
+    @DisplayName("RSRGD2000 (geocentric)")
     public void EPSG_4884() throws FactoryException {
         code         = 4884;
         name         = "RSRGD2000";
@@ -8842,7 +8842,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RT38” geodetic CRS creation from the factory.
+     * Tests “RT38” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4308</b></li>
@@ -8865,7 +8865,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RT38 (Stockholm)” geodetic CRS creation from the factory.
+     * Tests “RT38 (Stockholm)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4814</b></li>
@@ -8888,7 +8888,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “RT90” geodetic CRS creation from the factory.
+     * Tests “RT90” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4124</b></li>
@@ -8911,7 +8911,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “S-JTSK” geodetic CRS creation from the factory.
+     * Tests “S-JTSK” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4156</b></li>
@@ -8934,7 +8934,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “S-JTSK (Ferro)” geodetic CRS creation from the factory.
+     * Tests “S-JTSK (Ferro)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4818</b></li>
@@ -8957,7 +8957,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “SAD69” geodetic CRS creation from the factory.
+     * Tests “SAD69” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4618</b></li>
@@ -8980,7 +8980,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Saint Pierre et Miquelon 1950” geodetic CRS creation from the factory.
+     * Tests “Saint Pierre et Miquelon 1950” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4638</b></li>
@@ -9005,7 +9005,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Santo 1965” geodetic CRS creation from the factory.
+     * Tests “Santo 1965” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4730</b></li>
@@ -9030,7 +9030,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Sapper Hill 1943” geodetic CRS creation from the factory.
+     * Tests “Sapper Hill 1943” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4292</b></li>
@@ -9053,7 +9053,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Schwarzeck” geodetic CRS creation from the factory.
+     * Tests “Schwarzeck” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4293</b></li>
@@ -9076,7 +9076,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Scoresbysund 1952” geodetic CRS creation from the factory.
+     * Tests “Scoresbysund 1952” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4195</b></li>
@@ -9099,7 +9099,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Segara” geodetic CRS creation from the factory.
+     * Tests “Segara” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4613</b></li>
@@ -9124,7 +9124,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Segara (Jakarta)” geodetic CRS creation from the factory.
+     * Tests “Segara (Jakarta)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4820</b></li>
@@ -9149,7 +9149,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Selvagem Grande” geodetic CRS creation from the factory.
+     * Tests “Selvagem Grande” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4616</b></li>
@@ -9174,7 +9174,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Serindung” geodetic CRS creation from the factory.
+     * Tests “Serindung” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4295</b></li>
@@ -9197,7 +9197,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Sierra Leone 1924” geodetic CRS creation from the factory.
+     * Tests “Sierra Leone 1924” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4174</b></li>
@@ -9220,7 +9220,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Sierra Leone 1968” geodetic CRS creation from the factory.
+     * Tests “Sierra Leone 1968” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4175</b></li>
@@ -9243,7 +9243,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “SIGD61” geodetic CRS creation from the factory.
+     * Tests “SIGD61” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4726</b></li>
@@ -9268,7 +9268,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “SIRGAS 1995” geodetic CRS creation from the factory.
+     * Tests “SIRGAS 1995” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4170</b></li>
@@ -9293,7 +9293,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “SIRGAS 1995” geodetic CRS creation from the factory.
+     * Tests “SIRGAS 1995” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4975</b></li>
@@ -9307,7 +9307,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("SIRGAS 1995")
+    @DisplayName("SIRGAS 1995 (3D)")
     public void EPSG_4975() throws FactoryException {
         code         = 4975;
         name         = "SIRGAS 1995";
@@ -9318,7 +9318,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “SIRGAS 1995” geodetic CRS creation from the factory.
+     * Tests “SIRGAS 1995” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4974</b></li>
@@ -9332,7 +9332,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("SIRGAS 1995")
+    @DisplayName("SIRGAS 1995 (geocentric)")
     public void EPSG_4974() throws FactoryException {
         code         = 4974;
         name         = "SIRGAS 1995";
@@ -9344,7 +9344,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “SIRGAS 2000” geodetic CRS creation from the factory.
+     * Tests “SIRGAS 2000” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4674</b></li>
@@ -9367,7 +9367,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “SIRGAS 2000” geodetic CRS creation from the factory.
+     * Tests “SIRGAS 2000” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4989</b></li>
@@ -9380,7 +9380,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("SIRGAS 2000")
+    @DisplayName("SIRGAS 2000 (3D)")
     public void EPSG_4989() throws FactoryException {
         code         = 4989;
         name         = "SIRGAS 2000";
@@ -9390,7 +9390,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “SIRGAS 2000” geodetic CRS creation from the factory.
+     * Tests “SIRGAS 2000” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4988</b></li>
@@ -9403,7 +9403,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("SIRGAS 2000")
+    @DisplayName("SIRGAS 2000 (geocentric)")
     public void EPSG_4988() throws FactoryException {
         code         = 4988;
         name         = "SIRGAS 2000";
@@ -9414,7 +9414,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Slovenia 1996” geodetic CRS creation from the factory.
+     * Tests “Slovenia 1996” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4765</b></li>
@@ -9439,7 +9439,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Slovenia 1996” geodetic CRS creation from the factory.
+     * Tests “Slovenia 1996” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4883</b></li>
@@ -9453,7 +9453,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Slovenia 1996")
+    @DisplayName("Slovenia 1996 (3D)")
     public void EPSG_4883() throws FactoryException {
         code         = 4883;
         name         = "Slovenia 1996";
@@ -9464,7 +9464,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Slovenia 1996” geodetic CRS creation from the factory.
+     * Tests “Slovenia 1996” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4882</b></li>
@@ -9478,7 +9478,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Slovenia 1996")
+    @DisplayName("Slovenia 1996 (geocentric)")
     public void EPSG_4882() throws FactoryException {
         code         = 4882;
         name         = "Slovenia 1996";
@@ -9490,7 +9490,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Solomon 1968” geodetic CRS creation from the factory.
+     * Tests “Solomon 1968” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4718</b></li>
@@ -9513,7 +9513,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “South Georgia 1968” geodetic CRS creation from the factory.
+     * Tests “South Georgia 1968” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4722</b></li>
@@ -9536,7 +9536,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “South Yemen” geodetic CRS creation from the factory.
+     * Tests “South Yemen” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4164</b></li>
@@ -9559,7 +9559,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “St. George Island” geodetic CRS creation from the factory.
+     * Tests “St. George Island” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4138</b></li>
@@ -9582,7 +9582,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “St. Kitts 1955” geodetic CRS creation from the factory.
+     * Tests “St. Kitts 1955” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4605</b></li>
@@ -9605,7 +9605,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “St. Lawrence Island” geodetic CRS creation from the factory.
+     * Tests “St. Lawrence Island” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4136</b></li>
@@ -9628,7 +9628,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “St. Lucia 1955” geodetic CRS creation from the factory.
+     * Tests “St. Lucia 1955” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4606</b></li>
@@ -9651,7 +9651,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “St. Paul Island” geodetic CRS creation from the factory.
+     * Tests “St. Paul Island” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4137</b></li>
@@ -9674,7 +9674,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “St. Vincent 1945” geodetic CRS creation from the factory.
+     * Tests “St. Vincent 1945” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4607</b></li>
@@ -9697,7 +9697,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ST71 Belep” geodetic CRS creation from the factory.
+     * Tests “ST71 Belep” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4643</b></li>
@@ -9720,7 +9720,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ST84 Ile des Pins” geodetic CRS creation from the factory.
+     * Tests “ST84 Ile des Pins” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4642</b></li>
@@ -9743,7 +9743,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “ST87 Ouvea” geodetic CRS creation from the factory.
+     * Tests “ST87 Ouvea” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4750</b></li>
@@ -9766,7 +9766,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “SVY21” geodetic CRS creation from the factory.
+     * Tests “SVY21” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4757</b></li>
@@ -9789,7 +9789,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “SWEREF99” geodetic CRS creation from the factory.
+     * Tests “SWEREF99” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4619</b></li>
@@ -9812,7 +9812,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “SWEREF99” geodetic CRS creation from the factory.
+     * Tests “SWEREF99” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4977</b></li>
@@ -9825,7 +9825,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("SWEREF99")
+    @DisplayName("SWEREF99 (3D)")
     public void EPSG_4977() throws FactoryException {
         code         = 4977;
         name         = "SWEREF99";
@@ -9835,7 +9835,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “SWEREF99” geodetic CRS creation from the factory.
+     * Tests “SWEREF99” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4976</b></li>
@@ -9848,7 +9848,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("SWEREF99")
+    @DisplayName("SWEREF99 (geocentric)")
     public void EPSG_4976() throws FactoryException {
         code         = 4976;
         name         = "SWEREF99";
@@ -9859,7 +9859,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Tahaa 54” geodetic CRS creation from the factory.
+     * Tests “Tahaa 54” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4629</b></li>
@@ -9884,7 +9884,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Tahiti 52” geodetic CRS creation from the factory.
+     * Tests “Tahiti 52” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4628</b></li>
@@ -9909,7 +9909,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Tahiti 79” geodetic CRS creation from the factory.
+     * Tests “Tahiti 79” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4690</b></li>
@@ -9934,7 +9934,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Tananarive” geodetic CRS creation from the factory.
+     * Tests “Tananarive” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4297</b></li>
@@ -9957,7 +9957,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Tananarive (Paris)” geodetic CRS creation from the factory.
+     * Tests “Tananarive (Paris)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4810</b></li>
@@ -9980,7 +9980,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “TC(1948)” geodetic CRS creation from the factory.
+     * Tests “TC(1948)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4303</b></li>
@@ -10003,7 +10003,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Tern Island 1961” geodetic CRS creation from the factory.
+     * Tests “Tern Island 1961” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4707</b></li>
@@ -10026,7 +10026,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Tete” geodetic CRS creation from the factory.
+     * Tests “Tete” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4127</b></li>
@@ -10049,7 +10049,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Timbalai 1948” geodetic CRS creation from the factory.
+     * Tests “Timbalai 1948” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4298</b></li>
@@ -10074,7 +10074,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “TM65” geodetic CRS creation from the factory.
+     * Tests “TM65” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4299</b></li>
@@ -10097,7 +10097,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “TM75” geodetic CRS creation from the factory.
+     * Tests “TM75” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4300</b></li>
@@ -10122,7 +10122,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Tokyo” geodetic CRS creation from the factory.
+     * Tests “Tokyo” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4301</b></li>
@@ -10147,7 +10147,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Trinidad 1903” geodetic CRS creation from the factory.
+     * Tests “Trinidad 1903” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4302</b></li>
@@ -10170,7 +10170,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Tristan 1968” geodetic CRS creation from the factory.
+     * Tests “Tristan 1968” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4734</b></li>
@@ -10193,7 +10193,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “TWD67” geodetic CRS creation from the factory.
+     * Tests “TWD67” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>3821</b></li>
@@ -10216,7 +10216,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “TWD97” geodetic CRS creation from the factory.
+     * Tests “TWD97” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>3824</b></li>
@@ -10239,7 +10239,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “TWD97” geodetic CRS creation from the factory.
+     * Tests “TWD97” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>3823</b></li>
@@ -10252,7 +10252,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("TWD97")
+    @DisplayName("TWD97 (3D)")
     public void EPSG_3823() throws FactoryException {
         code         = 3823;
         name         = "TWD97";
@@ -10262,7 +10262,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “TWD97” geodetic CRS creation from the factory.
+     * Tests “TWD97” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>3822</b></li>
@@ -10275,7 +10275,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("TWD97")
+    @DisplayName("TWD97 (geocentric)")
     public void EPSG_3822() throws FactoryException {
         code         = 3822;
         name         = "TWD97";
@@ -10286,7 +10286,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Vanua Levu 1915” geodetic CRS creation from the factory.
+     * Tests “Vanua Levu 1915” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4748</b></li>
@@ -10311,7 +10311,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Vientiane 1982” geodetic CRS creation from the factory.
+     * Tests “Vientiane 1982” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4676</b></li>
@@ -10334,7 +10334,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Viti Levu 1912” geodetic CRS creation from the factory.
+     * Tests “Viti Levu 1912” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4752</b></li>
@@ -10359,7 +10359,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “VN-2000” geodetic CRS creation from the factory.
+     * Tests “VN-2000” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4756</b></li>
@@ -10382,7 +10382,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Voirol 1875” geodetic CRS creation from the factory.
+     * Tests “Voirol 1875” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4304</b></li>
@@ -10405,7 +10405,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Voirol 1875 (Paris)” geodetic CRS creation from the factory.
+     * Tests “Voirol 1875 (Paris)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4811</b></li>
@@ -10428,7 +10428,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Voirol 1879” geodetic CRS creation from the factory.
+     * Tests “Voirol 1879” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4671</b></li>
@@ -10451,7 +10451,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Voirol 1879 (Paris)” geodetic CRS creation from the factory.
+     * Tests “Voirol 1879 (Paris)” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4821</b></li>
@@ -10474,7 +10474,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Wake Island 1952” geodetic CRS creation from the factory.
+     * Tests “Wake Island 1952” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4733</b></li>
@@ -10497,7 +10497,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “WGS 66” geodetic CRS creation from the factory.
+     * Tests “WGS 66” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4760</b></li>
@@ -10520,7 +10520,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “WGS 66” geodetic CRS creation from the factory.
+     * Tests “WGS 66” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4891</b></li>
@@ -10533,7 +10533,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("WGS 66")
+    @DisplayName("WGS 66 (3D)")
     public void EPSG_4891() throws FactoryException {
         code         = 4891;
         name         = "WGS 66";
@@ -10543,7 +10543,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “WGS 66” geodetic CRS creation from the factory.
+     * Tests “WGS 66” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4890</b></li>
@@ -10556,7 +10556,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("WGS 66")
+    @DisplayName("WGS 66 (geocentric)")
     public void EPSG_4890() throws FactoryException {
         code         = 4890;
         name         = "WGS 66";
@@ -10567,7 +10567,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “WGS 72” geodetic CRS creation from the factory.
+     * Tests “WGS 72” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4322</b></li>
@@ -10592,7 +10592,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “WGS 72” geodetic CRS creation from the factory.
+     * Tests “WGS 72” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4985</b></li>
@@ -10605,7 +10605,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("WGS 72")
+    @DisplayName("WGS 72 (3D)")
     public void EPSG_4985() throws FactoryException {
         code         = 4985;
         name         = "WGS 72";
@@ -10615,7 +10615,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “WGS 72” geodetic CRS creation from the factory.
+     * Tests “WGS 72” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4984</b></li>
@@ -10628,7 +10628,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("WGS 72")
+    @DisplayName("WGS 72 (geocentric)")
     public void EPSG_4984() throws FactoryException {
         code         = 4984;
         name         = "WGS 72";
@@ -10639,7 +10639,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “WGS 72BE” geodetic CRS creation from the factory.
+     * Tests “WGS 72BE” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4324</b></li>
@@ -10662,7 +10662,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “WGS 72BE” geodetic CRS creation from the factory.
+     * Tests “WGS 72BE” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4987</b></li>
@@ -10675,7 +10675,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("WGS 72BE")
+    @DisplayName("WGS 72BE (3D)")
     public void EPSG_4987() throws FactoryException {
         code         = 4987;
         name         = "WGS 72BE";
@@ -10685,7 +10685,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “WGS 72BE” geodetic CRS creation from the factory.
+     * Tests “WGS 72BE” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4986</b></li>
@@ -10698,7 +10698,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("WGS 72BE")
+    @DisplayName("WGS 72BE (geocentric)")
     public void EPSG_4986() throws FactoryException {
         code         = 4986;
         name         = "WGS 72BE";
@@ -10709,7 +10709,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “WGS 84” geodetic CRS creation from the factory.
+     * Tests “WGS 84” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4326</b></li>
@@ -10732,7 +10732,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “WGS 84” geodetic CRS creation from the factory.
+     * Tests “WGS 84” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4979</b></li>
@@ -10745,7 +10745,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("WGS 84")
+    @DisplayName("WGS 84 (3D)")
     public void EPSG_4979() throws FactoryException {
         code         = 4979;
         name         = "WGS 84";
@@ -10755,7 +10755,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “WGS 84” geodetic CRS creation from the factory.
+     * Tests “WGS 84” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4978</b></li>
@@ -10768,7 +10768,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("WGS 84")
+    @DisplayName("WGS 84 (geocentric)")
     public void EPSG_4978() throws FactoryException {
         code         = 4978;
         name         = "WGS 84";
@@ -10779,7 +10779,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Xian 1980” geodetic CRS creation from the factory.
+     * Tests “Xian 1980” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4610</b></li>
@@ -10802,7 +10802,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Yacare” geodetic CRS creation from the factory.
+     * Tests “Yacare” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4309</b></li>
@@ -10827,7 +10827,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Yemen NGN96” geodetic CRS creation from the factory.
+     * Tests “Yemen NGN96” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4163</b></li>
@@ -10850,7 +10850,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Yemen NGN96” geodetic CRS creation from the factory.
+     * Tests “Yemen NGN96” geographic CRS (3D) creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4981</b></li>
@@ -10863,7 +10863,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Yemen NGN96")
+    @DisplayName("Yemen NGN96 (3D)")
     public void EPSG_4981() throws FactoryException {
         code         = 4981;
         name         = "Yemen NGN96";
@@ -10873,7 +10873,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Yemen NGN96” geodetic CRS creation from the factory.
+     * Tests “Yemen NGN96” geocentric CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4980</b></li>
@@ -10886,7 +10886,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
      * @throws FactoryException if an error occurred while creating the CRS from the EPSG code.
      */
     @Test
-    @DisplayName("Yemen NGN96")
+    @DisplayName("Yemen NGN96 (geocentric)")
     public void EPSG_4980() throws FactoryException {
         code         = 4980;
         name         = "Yemen NGN96";
@@ -10897,7 +10897,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Yoff” geodetic CRS creation from the factory.
+     * Tests “Yoff” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4310</b></li>
@@ -10920,7 +10920,7 @@ public class Test2205 extends Series2000<GeodeticCRS> {
     }
 
     /**
-     * Tests “Zanderij” geodetic CRS creation from the factory.
+     * Tests “Zanderij” geographic CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG CRS code: <b>4311</b></li>

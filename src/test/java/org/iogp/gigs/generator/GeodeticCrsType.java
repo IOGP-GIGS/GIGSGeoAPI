@@ -37,17 +37,17 @@ public enum GeodeticCrsType {
     /**
      * The "Geographic 2D" type declared in CSV file.
      */
-    GEOGRAPHIC_2D("Geographic 2D"),
+    GEOGRAPHIC_2D("Geographic 2D", "geographic CRS", ""),
 
     /**
      * The "Geographic 3D" type declared in CSV file.
      */
-    GEOGRAPHIC_3D("Geographic 3D"),
+    GEOGRAPHIC_3D("Geographic 3D", "geographic CRS (3D)", " (3D)"),
 
     /**
      * The "Geocentric" type declared in CSV file.
      */
-    GEOCENTRIC("Geocentric");
+    GEOCENTRIC("Geocentric", "geocentric CRS", " (geocentric)");
 
     /**
      * The text used in the CSV file for identifying this type.
@@ -55,12 +55,24 @@ public enum GeodeticCrsType {
     final String label;
 
     /**
+     * The text to write in the Javadoc summary sentence for identifying this type.
+     */
+    final String title;
+
+    /**
+     * A text to append to the display name for distinguishing test cases having the same name.
+     */
+    final String displayNameSuffix;
+
+    /**
      * Creates a new enumeration value.
      *
      * @param  label  text used in the CSV file for identifying this type.
      */
-    private GeodeticCrsType(final String label) {
+    private GeodeticCrsType(final String label, final String title, final String displayNameSuffix) {
         this.label = label;
+        this.title = title;
+        this.displayNameSuffix = displayNameSuffix;
     }
 
     /**
