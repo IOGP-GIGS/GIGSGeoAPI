@@ -25,6 +25,7 @@
 package org.iogp.gigs.internal;
 
 import java.lang.reflect.Method;
+import java.util.Properties;
 import org.iogp.gigs.IntegrityTest;
 import org.iogp.gigs.internal.geoapi.Configuration;
 
@@ -68,5 +69,15 @@ public class PrivateAccessor {
      * @param  value   the new enabled status, or {@code null} for removing.
      */
     public void setTestSpecificOption(Method method, Configuration.Key<Boolean> aspect, Boolean value) {
+    }
+
+    /**
+     * Gets the configuration of tests as a properties file.
+     * The returned map does not include the global configuration.
+     *
+     * @return configuration of all tests.
+     */
+    public Properties getTestConfigurations() {
+        return new Properties();
     }
 }

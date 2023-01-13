@@ -207,4 +207,30 @@ final class ConfigurationMap {
             }
         }
     }
+
+    /**
+     * Gets the configuration of tests as a properties file.
+     * The returned map does not include the global configuration.
+     *
+     * @return configuration of all tests.
+     */
+    final Properties getTestConfigurations() {
+        final Properties properties = new Properties();
+        final StringBuilder builder = new StringBuilder();
+        synchronized (byTest) {
+            for (final Map.Entry<Method, Map<Configuration.Key<Boolean>, Boolean>> test : byTest.entrySet()) {
+                final Method method = test.getKey();
+                builder.append(method.getDeclaringClass().getSimpleName()).append('.')
+                       .append(method.getName()).append('.');
+                final int s = builder.length();
+                for (final Map.Entry<Configuration.Key<Boolean>, Boolean> aspect : test.getValue().entrySet()) {
+                    final String key = builder.append(aspect.getKey().name()).toString();
+                    properties.setProperty(key, aspect.getValue().toString());
+                    builder.setLength(s);
+                }
+                builder.setLength(0);
+            }
+        }
+        return properties;
+    }
 }

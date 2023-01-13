@@ -33,7 +33,9 @@ package org.iogp.gigs.runner;
 
 import java.util.List;
 import java.util.Collections;
+import javax.swing.JMenuItem;
 import javax.swing.JTable;
+import javax.swing.JPopupMenu;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -93,6 +95,11 @@ final class ConfigurationTableModel extends AbstractTableModel {
         columns.getColumn(KEY_COLUMN)  .setPreferredWidth(400);
         columns.getColumn(VALUE_COLUMN).setPreferredWidth(100);
         columns.getColumn(PASS_COLUMN) .setPreferredWidth(300);
+        final var menus = new JPopupMenu();
+        final var shows = new JMenuItem("Show all configurations");
+        shows.addActionListener(new AllConfigurations());
+        menus.add(shows);
+        view.setComponentPopupMenu(menus);
         return view;
     }
 

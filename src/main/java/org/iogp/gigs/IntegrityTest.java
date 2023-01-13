@@ -24,6 +24,7 @@
  */
 package org.iogp.gigs;
 
+import java.util.Properties;
 import java.lang.reflect.Method;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
@@ -97,6 +98,11 @@ public abstract class IntegrityTest extends ConformanceTest {
             @Override
             public void setTestSpecificOption(Method method, Configuration.Key<Boolean> aspect, Boolean value) {
                 ConfigurationMap.INSTANCE.setTestSpecificOption(method, aspect, value);
+            }
+
+            @Override
+            public Properties getTestConfigurations() {
+                return ConfigurationMap.INSTANCE.getTestConfigurations();
             }
         };
     }
