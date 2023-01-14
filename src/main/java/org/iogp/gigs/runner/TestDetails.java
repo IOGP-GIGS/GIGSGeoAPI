@@ -95,9 +95,19 @@ final class TestDetails implements ActionListener {
     private final JTextArea exception;
 
     /**
+     * The "View javadoc" button.
+     */
+    private final JButton viewJavadoc;
+
+    /**
      * The desktop for browse operations, or {@code null} if unsupported.
      */
     private final Desktop desktop;
+
+    /**
+     * Whether the desktop supports browse action.
+     */
+    private final boolean canBrowse;
 
     /**
      * Constructs a new details pane.
@@ -109,17 +119,19 @@ final class TestDetails implements ActionListener {
         configuration    = new ConfigurationTableModel();
         factories        = new FactoryTableModel();
         exception        = new JTextArea();
+        viewJavadoc      = new JButton("Online documentation");
         desktop          = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+        canBrowse        = (desktop != null) && desktop.isSupported(Desktop.Action.BROWSE);
     }
 
     /**
      * Creates the Swing component for viewing the test details.
+     * This method shall be invoked only once.
      *
      * @return the Swing view for details about a selected test.
      */
     final Component createView() {
-        final JButton viewJavadoc = new JButton("Online documentation");
-        viewJavadoc.setEnabled(desktop != null && desktop.isSupported(Desktop.Action.BROWSE));
+        viewJavadoc.setEnabled(false);
         viewJavadoc.setToolTipText("View javadoc for this test");
         viewJavadoc.addActionListener(this);
         return new SwingPanelBuilder().createDetailsPane(testName, testResult, configurationTip,
@@ -182,13 +194,15 @@ final class TestDetails implements ActionListener {
         exception       .setCaretPosition(0);
         exception       .setEnabled(stacktrace != null);
         currentReport = entry;
+        viewJavadoc.setEnabled(canBrowse && entry != null);
     }
 
     /**
-     * Converts the given text to HTML
+     * Converts the given text to HTML.
+     * This is used for enabling automatic line wraps in {@link JLabel}.
      *
-     * @param  text  the text to convert. Can be null.
-     * @return the converted text, or null if the given text was null.
+     * @param  text  the text to convert. Can be {@code null}.
+     * @return the converted text, or {@code null} if the given text was null.
      */
     private static String toHTML(String text) {
         if (text == null) {

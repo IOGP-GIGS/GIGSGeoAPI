@@ -45,6 +45,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 
 
 /**
@@ -123,19 +124,45 @@ final class SwingPanelBuilder extends GridBagConstraints {
         final Font monospaced = Font.decode("Monospaced");
         testName.setFont(monospaced);
 
+        final JPanel desc = new JPanel(new GridBagLayout());
+        /*
+         * Upper part of the pane with name of the test, the result and a tip.
+         * The "Javadoc" button will be on the right side of the first line.
+         * This button has a height bigger than the line,
+         * so we put extra space on the top of the first line.
+         */
+        insets.left=12; insets.bottom=4;
+        gridx=0; anchor=SOUTHWEST; fill=HORIZONTAL;
+        gridy=0; desc.add(createLabel("Test method:", testName), this); anchor=NORTHWEST;
+        gridy++; desc.add(createLabel("Result:",    testResult), this);
+        gridy++; desc.add(createLabel("Tip:", configurationTip), this);
+        gridx++; weightx=1; anchor=SOUTHWEST;
+        gridy=0; desc.add(testName,         this); anchor=NORTHWEST; fill=BOTH; gridwidth=2;
+        gridy++; desc.add(testResult,       this);
+        gridy++; desc.add(configurationTip, this);
+        /*
+         * Javadoc button in the upper-right corner.
+         */
+        gridx++; gridy=0; gridwidth=1; weightx=0;
+        anchor=NORTH; fill=HORIZONTAL;
+        desc.add(viewJavadoc, this);
+        /*
+         * Wrap the test description part in another pane. On the left side of the description,
+         * we put an invisible component of fixed height. It force the description to have some
+         * minimal height. The intent is to keep the position of the configuration table more
+         * stable when there is a change in the number of lines in the test failure description.
+         */
         final JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBorder(BorderFactory.createEmptyBorder(9, 0, 0, 0));
-        gridx=0; weightx=0; anchor=NORTHWEST; fill=HORIZONTAL; insets.left = 12; insets.bottom = 3;
-        gridy=0; panel.add(createLabel("Test method:", testName), this);
-        gridy++; panel.add(createLabel("Result:",    testResult), this);
-        gridy++; panel.add(createLabel("Tip:", configurationTip), this);
-        gridx++; weightx=1; fill=BOTH;
-        gridy=0; panel.add(testName,         this);     // "Javadoc" button will be on the right side of this line.
-        gridy++; panel.add(testResult,       this); gridwidth=2;
-        gridy++; panel.add(configurationTip, this);
-        gridx++; gridy=0; gridwidth=1; gridheight=2; weightx=0; fill=HORIZONTAL; anchor=NORTH; panel.add(viewJavadoc, this);
-        gridx=0; gridy=3; gridwidth=3; gridheight=1; weightx=1; fill=BOTH; anchor=CENTER;
-        weighty=1; insets.left = 0; insets.top = 12;
+        gridx=0; anchor=NORTHWEST; fill=NONE; insets.left=0; insets.bottom=0;
+        panel.add(Box.createVerticalStrut(120), this);
+        gridx++; weightx=1; fill=HORIZONTAL;
+        panel.add(desc, this);
+        /*
+         * Bottom part of the pane with a table showing the configuration.
+         * Users can enable or disable some aspects of the test.
+         */
+        gridx=0; gridy++; gridwidth=2; weighty=1;
+        anchor=CENTER; fill=BOTH; insets.top=12;
         final JTabbedPane tabs = new JTabbedPane();
         panel.add(tabs, this);
         /*
