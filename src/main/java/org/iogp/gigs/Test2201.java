@@ -98,7 +98,7 @@ public class Test2201 extends Series2000<Unit<?>> {
      *   <li>{@link Units#metre()} if the unit to create is linear,</li>
      *   <li>{@link Units#radian()} if the unit to create is angular (except sexagesimal unit),</li>
      *   <li>{@link Units#one()} if the unit to create is a scale or a coefficient, or</li>
-     *   <li>(exceptionally) {@link Units#degree()} in the special case of {@link #testSexagesimalDegree()}.
+     *   <li>(exceptionally) {@link Units#degree()} in the special case of {@link #EPSG_9110()}.
      *       Note that sexagesimal units also have the {@linkplain #unitToBase ratio of the unit to base unit}
      *       set to {@link Double#NaN}.</li>
      * </ul>

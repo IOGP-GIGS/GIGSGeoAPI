@@ -78,9 +78,6 @@ public class Test3201 extends Series3000<Unit<?>> {
      *   <li>{@link Units#metre()} if the unit to create is linear,</li>
      *   <li>{@link Units#radian()} if the unit to create is angular (except sexagesimal unit),</li>
      *   <li>{@link Units#one()} if the unit to create is a scale or a coefficient, or</li>
-     *   <li>(exceptionally) {@link Units#degree()} in the special case of {@link #testSexagesimalDegree()}.
-     *       Note that sexagesimal units also have the {@linkplain #unitToBase ratio of the unit to base unit}
-     *       set to {@link Double#NaN}.</li>
      * </ul>
      *
      * This field is set by all test methods before to create and verify the {@link Unit} instance.
