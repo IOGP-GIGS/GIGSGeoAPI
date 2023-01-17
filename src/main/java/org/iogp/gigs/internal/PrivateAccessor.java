@@ -52,6 +52,14 @@ public class PrivateAccessor {
     }
 
     /**
+     * Loads the configuration declared by the implementer.
+     *
+     * @param  loader  class loader of the implementation to test, or {@code null} if none.
+     */
+    public void configureFor(ClassLoader loader) {
+    }
+
+    /**
      * Returns information about the configuration of a test.
      *
      * @param  test  the test for which to get the configuration.

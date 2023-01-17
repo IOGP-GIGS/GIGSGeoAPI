@@ -91,6 +91,11 @@ public abstract class IntegrityTest extends ConformanceTest {
     static {
         PrivateAccessor.INSTANCE = new PrivateAccessor() {
             @Override
+            public void configureFor(final ClassLoader loader) {
+                ConfigurationMap.INSTANCE.configureFor(loader);
+            }
+
+            @Override
             public Configuration configuration(final IntegrityTest test) {
                 return test.configuration();
             }

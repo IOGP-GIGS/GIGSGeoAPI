@@ -26,6 +26,8 @@ package org.iogp.gigs.internal;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.iogp.gigs.*;
 import org.iogp.gigs.internal.geoapi.Configuration;
 import org.iogp.gigs.internal.geoapi.Units;
@@ -88,12 +90,21 @@ public final class ExecutionContext implements ParameterResolver {
     public void execute(final ClassLoader loader, final Launcher launcher, final DiscoverySelector... selectors) {
         final LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request().selectors(selectors).build();
         try {
+            // For class initialization before we invoke `PrivateAccessor.INSTANCE` mehod.
+            Class.forName(IntegrityTest.class.getName(), true, ExecutionContext.class.getClassLoader());
+        } catch (ClassNotFoundException e) {
+            // Should never happen. Continue anyway and let JVM handle the error.
+            Logger.getLogger("org.iogp.gigs").log(Level.WARNING, e.toString(), e);
+        }
+        try {
+            PrivateAccessor.INSTANCE.configureFor(loader);
             factories = new DiscoveredFactories(loader);
             Units.setInstance(loader);
             launcher.execute(request);
         } finally {
             factories = null;
             Units.setInstance(null);
+            PrivateAccessor.INSTANCE.configureFor(null);
         }
     }
 

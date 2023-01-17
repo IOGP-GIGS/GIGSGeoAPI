@@ -102,6 +102,13 @@ public final class Configuration {
     }
 
     /**
+     * Clears all configuration settings.
+     */
+    public void clear() {
+        properties.clear();
+    }
+
+    /**
      * Returns the value to which the specified key is mapped, or {@code null}
      * if this map contains no mapping for the key.
      *
@@ -558,7 +565,7 @@ public final class Configuration {
          */
         public static Key<?>[] values() {
             synchronized (VALUES) {
-                return VALUES.toArray(new Key<?>[VALUES.size()]);
+                return VALUES.toArray(Key[]::new);
             }
         }
 

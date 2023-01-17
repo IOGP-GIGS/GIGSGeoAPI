@@ -43,8 +43,12 @@ import org.iogp.gigs.internal.geoapi.Configuration;
  * The customization is specified in properties files read from the following locations, in that order:
  *
  * <ol>
- *   <li>{@code "org.iogp.gigs.config"} system property</li>
+ *   <li>{@code "org.iogp.gigs.config"} system property documented in {@link org.iogp.gigs.runner.Launcher}.</li>
+ *   <li>{@code META-INF/GIGS.properties} in the JAR files of the implementation.</li>
  * </ol>
+ *
+ * The first applicable choice in above list has precedence over the other choices.
+ * For example if a system property is specified, the {@code META-INF/GIGS.properties} file is ignored.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
@@ -68,12 +72,41 @@ final class ConfigurationMap {
     private final Map<Method, Map<Configuration.Key<Boolean>, Boolean>> byTest;
 
     /**
+     * Whether the configuration was specified by an explicit Java property.
+     */
+    private final boolean userSpecified;
+
+    /**
      * Creates the unique instance.
      */
     private ConfigurationMap() {
         global = new Configuration();
         byTest = new HashMap<>();
-        loadProperties("org.iogp.gigs.config");
+        userSpecified = loadProperties("org.iogp.gigs.config");
+    }
+
+    /**
+     * Loads the configuration declared by the implementer.
+     *
+     * @param  loader  class loader of the implementation to test, or {@code null} if none.
+     */
+    final void configureFor(final ClassLoader loader) {
+        if (userSpecified) {
+            return;
+        }
+        global.clear();
+        byTest.clear();
+        if (loader != null) {
+            final Properties properties = new Properties();
+            try (InputStream in = loader.getResourceAsStream("META-INF/GIGS.properties")) {
+                if (in != null) {
+                    properties.load(in);
+                }
+            } catch (IOException e) {
+                warning("Can not load from META-INF.", e);
+            }
+            parse(properties);
+        }
     }
 
     /**
@@ -83,8 +116,9 @@ final class ConfigurationMap {
      * which may result in more test failures.
      *
      * @param  propertyName  name of the system property specifying the file to load.
+     * @return whether properties have been found and loaded.
      */
-    private void loadProperties(final String propertyName) {
+    private boolean loadProperties(final String propertyName) {
         final String filename = System.getProperty(propertyName);
         if (filename != null) {
             final Properties properties = new Properties();
@@ -93,8 +127,12 @@ final class ConfigurationMap {
             } catch (IOException e) {
                 warning("Can not load \"" + filename + "\".", e);
             }
-            parse(properties);
+            if (!properties.isEmpty()) {
+                parse(properties);
+                return true;
+            }
         }
+        return false;
     }
 
     /**
