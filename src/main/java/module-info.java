@@ -33,7 +33,7 @@
  * @version 1.0
  * @since   1.0
  */
-module GIGSTests {
+module org.iogp.gigs {
     /*
      * Modules needed by GIGS for its internal, but not exposed to users.
      */

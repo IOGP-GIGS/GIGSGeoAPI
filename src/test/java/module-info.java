@@ -27,7 +27,7 @@
  * Copy of the {@code module-info.java} file provided in main source,
  * modified with additional dependencies needed for testing purposes only.
  */
-module GIGSTests {
+module org.iogp.gigs {
     /*
      * Part copied from main code.
      */
