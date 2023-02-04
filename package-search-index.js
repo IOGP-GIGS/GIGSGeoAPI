@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.iogp.gigs"},{"l":"org.iogp.gigs.runner"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"org.iogp.gigs","l":"org.iogp.gigs"},{"m":"org.iogp.gigs","l":"org.iogp.gigs.runner"}];updateSearchResults();
