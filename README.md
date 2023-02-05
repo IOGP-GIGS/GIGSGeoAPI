@@ -1,17 +1,36 @@
-# GIGS-GeoAPI
+# GIGS runner through GeoAPI
 Repository for integrating GIGS reference data with OGC GeoAPI.
 This repository provides an executable form of [Geospatial Integrity of Geoscience Software](https://gigs.iogp.org/) (GIGS) tests.
 GIGS tests are published by the [International Association of Oil & Gas Producers](https://www.iogp.org) (IOGP) Geomatics Committee.
 This module makes those tests available in a form that can be executed by various implementations,
 through the [OGC GeoAPI 3.0.2](https://www.geoapi.org/) standard interfaces.
 
-## Documentation
+
+## Installation
+This project requires Java 11 or later and [Maven](https://maven.apache.org/) build system.
+For installation, clone this repository and build as below:
+
+```shell
+git clone https://github.com/IOGP-GIGS/GIGSGeoAPI.git
+cd GIGSGeoAPI
+mvn install
+```
+
+
+## Execution
+The tests can be executed using a graphical application,
+or integrated in the tests of a library using [JUnit 5](https://junit.org/).
+For launching the graphical application, execute the following command in the
+`GIGSGeoAPI` directory and select the JAR file of the application to test:
+
+```shell
+mvn exec:java
+```
+
+For integrating GIGS tests with the JUnit tests of an application, see:
+
 * [Online javadoc](https://iogp-gigs.github.io/GIGSGeoAPI/).
 
-## Warnings
-* This is a work in progress. Only a subset of GIGS tests are currently available.
-* This is a partial implementation of GIGS version 1. Upgrade to GIGS version 2 is planed but not yet done.
-* Testing framework is currently JUnit 4. Upgrade to JUnit 5 will be done in the future.
 
 ## Programming languages
 The tests are implemented in the Java programming language but are executable in the following languages:
@@ -19,6 +38,7 @@ The tests are implemented in the Java programming language but are executable in
 * Any Java library implementing OGC GeoAPI 3.0.2 interfaces.
 * Any C/C++ library providing Java Native Interface (JNI) bridge to GeoAPI 3.0.2.
 * Python library through the GeoAPI-Python bridge _(experimental in GeoAPI 4 branch)_.
+
 
 ### Implementations
 Known implementations capable to run GIGS tests are:
