@@ -43,6 +43,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import org.opentest4j.IncompleteExecutionException;
 
 
 /**
@@ -163,18 +164,17 @@ final class TestDetails implements ActionListener {
             result   = entry.getResultText();
             progName = entry.getProgrammaticName();
             tip      = entry.getConfigurationTip();
-            switch (entry.result.getStatus()) {
-                case FAILED: {
-                    final Throwable ex = entry.result.getThrowable().orElse(null);
-                    if (ex != null) {
-                        final StringWriter buffer = new StringWriter();
-                        final PrintWriter printer = new PrintWriter(buffer);
-                        ex.printStackTrace(printer);
-                        printer.flush();
-                        stacktrace = buffer.toString();
-                    }
-                    break;
+            Throwable ex = entry.result.getThrowable().orElse(null);
+            if (ex != null) {
+                if (ex instanceof IncompleteExecutionException) {
+                    final Throwable cause = ex.getCause();
+                    if (cause != null) ex = cause;
                 }
+                final StringWriter buffer = new StringWriter();
+                final PrintWriter printer = new PrintWriter(buffer);
+                ex.printStackTrace(printer);
+                printer.flush();
+                stacktrace = buffer.toString();
             }
             factories.entries     = entry.factories;
             configuration.entries = entry.configuration;
