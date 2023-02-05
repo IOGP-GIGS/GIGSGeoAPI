@@ -55,6 +55,20 @@ import javax.swing.UIManager;
  *   <li>If {@code class.method} is {@code "*"}, then the option applies to all tests.</li>
  * </ul>
  *
+ * <p>Example:</p>
+ * {@snippet lang="properties" :
+ *   # Configuration file for Geospatial Integrity of Geoscience Software (GIGS) tests
+ *   # https://gigs.iogp.org/
+ *   #
+ *   # This file disables some GIGS tests that are known to fail.
+ *
+ *   Test2203.EPSG_8913.isStandardAliasSupported = false
+ *   Test2204.EPSG_6123.isStandardAliasSupported = false
+ *   Test2204.EPSG_6277.isStandardNameSupported  = false
+ *   Test2204.EPSG_6326.isStandardAliasSupported = false
+ *   Test2204.EPSG_6659.isStandardNameSupported  = false
+ *   }
+ *
  * Currently, only boolean options are supported.
  *
  * @author  Martin Desruisseaux (Geomatys)

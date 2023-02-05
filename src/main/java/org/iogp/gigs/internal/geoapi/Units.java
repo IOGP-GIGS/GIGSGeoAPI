@@ -43,7 +43,7 @@ import javax.measure.spi.SystemOfUnits;
 
 
 /**
- * Pre-defined constants for the units of measurement used by the conformance tests.
+ * Predefined constants for the units of measurement used by the conformance tests.
  * This pseudo-factory provides separated methods for all units needed by {@code geoapi-conformance}.
  *
  * @author  Martin Desruisseaux (Geomatys)
