@@ -24,7 +24,7 @@ For launching the graphical application, execute the following command in the
 `GIGSGeoAPI` directory and select the JAR file of the application to test:
 
 ```shell
-mvn exec:java
+mvn exec:exec
 ```
 
 For integrating GIGS tests with the JUnit tests of an application, see:

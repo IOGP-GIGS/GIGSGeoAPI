@@ -54,6 +54,7 @@ module org.iogp.gigs {
     /*
      * Services providers defined by implementations to test.
      */
+    uses javax.measure.spi.ServiceProvider;
     uses org.opengis.referencing.datum.DatumFactory;
     uses org.opengis.referencing.datum.DatumAuthorityFactory;
     uses org.opengis.referencing.cs.CSFactory;
@@ -61,4 +62,6 @@ module org.iogp.gigs {
     uses org.opengis.referencing.crs.CRSFactory;
     uses org.opengis.referencing.crs.CRSAuthorityFactory;
     uses org.opengis.referencing.operation.CoordinateOperationFactory;
+    uses org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
+    uses org.opengis.referencing.operation.MathTransformFactory;
 }

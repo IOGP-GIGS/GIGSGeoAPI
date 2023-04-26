@@ -173,7 +173,13 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <mainClass>org.iogp.gigs.runner.Launcher</mainClass>
+          <executable>java</executable>
+          <arguments>
+            <argument>--module-path</argument>
+            <modulepath/>
+            <argument>--module</argument>
+            <argument>org.iogp.gigs/org.iogp.gigs.runner.Launcher</argument>
+          </arguments>
         </configuration>
       </plugin>
       <plugin>
