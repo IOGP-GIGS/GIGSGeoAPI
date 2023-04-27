@@ -57,18 +57,18 @@ final class DiscoveredFactories extends Factories {
     private static final String AUTHORITY = "EPSG";
 
     /**
-     * Creates a set of factories discovered using the specified service loader.
+     * Creates a set of factories discovered using the specified module layer.
      */
-    DiscoveredFactories(final ClassLoader loader) {
-        crsAuthorityFactory   = find(loader, CRSAuthorityFactory.class);
-        crsFactory            = find(loader, CRSFactory.class);
-        csAuthorityFactory    = find(loader, CSAuthorityFactory.class);
-        csFactory             = find(loader, CSFactory.class);
-        datumAuthorityFactory = find(loader, DatumAuthorityFactory.class);
-        datumFactory          = find(loader, DatumFactory.class);
-        copAuthorityFactory   = find(loader, CoordinateOperationAuthorityFactory.class);
-        copFactory            = find(loader, CoordinateOperationFactory.class);
-        mtFactory             = find(loader, MathTransformFactory.class);
+    DiscoveredFactories(final ModuleLayer layer) {
+        crsAuthorityFactory   = find(layer, CRSAuthorityFactory.class);
+        crsFactory            = find(layer, CRSFactory.class);
+        csAuthorityFactory    = find(layer, CSAuthorityFactory.class);
+        csFactory             = find(layer, CSFactory.class);
+        datumAuthorityFactory = find(layer, DatumAuthorityFactory.class);
+        datumFactory          = find(layer, DatumFactory.class);
+        copAuthorityFactory   = find(layer, CoordinateOperationAuthorityFactory.class);
+        copFactory            = find(layer, CoordinateOperationFactory.class);
+        mtFactory             = find(layer, MathTransformFactory.class);
     }
 
     /**
@@ -76,12 +76,12 @@ final class DiscoveredFactories extends Factories {
      * Authority factories are filtered in order to find an instance for the desired {@linkplain #AUTHORITY}.
      *
      * @param  <T>     compile-time value of the {@code type} argument.
-     * @param  loader  the loader to use for discovering factories.
+     * @param  layer   the module layer to use for discovering factories.
      * @param  type    GeoAPI interface of the desired factory.
      * @return factory for the specified interface, or {@code null} if none.
      */
-    private static <T extends Factory> T find(final ClassLoader loader, final Class<T> type) {
-        for (final Factory factory : ServiceLoader.load(type, loader)) {
+    private static <T extends Factory> T find(final ModuleLayer layer, final Class<T> type) {
+        for (final Factory factory : ServiceLoader.load(layer, type)) {
             if (factory instanceof AuthorityFactory) {
                 if (!useAuthority(((AuthorityFactory) factory).getAuthority())) {
                     continue;

@@ -72,10 +72,10 @@ final class ConfigurationMap {
     private final Map<Method, Map<Configuration.Key<Boolean>, Boolean>> byTest;
 
     /**
-     * The class loader for which the the configuration has been loaded.
+     * The module layer for which the the configuration has been loaded.
      * If no configuration has been loaded yet, then this is {@code null}.
      */
-    private ClassLoader loaded;
+    private ModuleLayer loaded;
 
     /**
      * Creates the unique instance.
@@ -87,26 +87,29 @@ final class ConfigurationMap {
 
     /**
      * Loads the configuration declared by the system property or by the implementer.
-     * If the class loader is the same one than the loader specified in the last call,
+     * If the module layer is the same one than the layer specified in the last call,
      * then this method does nothing.
      *
-     * @param  loader  class loader of the implementation to test, or {@code null} if none.
+     * @param  layer  module layer of the implementation to test, or {@code null} if none.
      */
-    final void configureFor(final ClassLoader loader) {
-        if (loader != null && loader != loaded) {
-            loaded = loader;
+    final void configureFor(final ModuleLayer layer) {
+        if (layer != null && layer != loaded) {
+            loaded = layer;
             global.clear();
             byTest.clear();
             if (!loadProperties("org.iogp.gigs.config")) {
                 final Properties properties = new Properties();
-                try (InputStream in = loader.getResourceAsStream("META-INF/GIGS.properties")) {
-                    if (in != null) {
-                        properties.load(in);
+                for (final Module module : layer.modules()) {
+                    try (InputStream in = module.getResourceAsStream("META-INF/GIGS.properties")) {
+                        if (in != null) {
+                            properties.load(in);
+                            parse(properties);
+                            break;
+                        }
+                    } catch (IOException e) {
+                        warning("Can not load from META-INF.", e);
                     }
-                } catch (IOException e) {
-                    warning("Can not load from META-INF.", e);
                 }
-                parse(properties);
             }
         }
     }

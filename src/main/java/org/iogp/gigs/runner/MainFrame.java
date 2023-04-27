@@ -33,12 +33,15 @@ package org.iogp.gigs.runner;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.prefs.Preferences;
 import java.util.concurrent.ExecutionException;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FileDialog;
+import java.lang.module.ModuleFinder;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingWorker;
@@ -177,7 +180,7 @@ final class MainFrame implements Runnable {
         /**
          * The JAR files.
          */
-        private final File[] files;
+        private final Path[] files;
 
         /**
          * Creates a new worker which will load the given JAR files.
@@ -185,7 +188,7 @@ final class MainFrame implements Runnable {
          * @param  files  the JAR files.
          */
         Loader(final File[] files) {
-            this.files = files;
+            this.files = Arrays.stream(files).map(File::toPath).toArray(Path[]::new);
         }
 
         /**
@@ -196,10 +199,11 @@ final class MainFrame implements Runnable {
          */
         @Override
         protected Runner doInBackground() throws IOException {
-            final ImplementationManifest manifest = ImplementationManifest.parse(files);
+            final var modules = ModuleFinder.of(files);
+            final var manifest = ImplementationManifest.parse(modules);
             EventQueue.invokeLater(() -> setManifest(manifest));
-            final File[] implementation = (manifest != null) ? manifest.dependencies : files;
-            final Runner runner = new Runner(new TestSuite(), implementation, results);
+            final Path[] implementation = (manifest != null) ? manifest.dependencies : files;
+            final Runner runner = new Runner(new TestSuite(), implementation, modules, results);
             runner.executeAll();
             return runner;
         }

@@ -54,9 +54,9 @@ public class PrivateAccessor {
     /**
      * Loads the configuration declared by the implementer.
      *
-     * @param  loader  class loader of the implementation to test, or {@code null} if none.
+     * @param  layer  module layer of the implementation to test, or {@code null} if none.
      */
-    public void configureFor(ClassLoader loader) {
+    public void configureFor(ModuleLayer layer) {
     }
 
     /**

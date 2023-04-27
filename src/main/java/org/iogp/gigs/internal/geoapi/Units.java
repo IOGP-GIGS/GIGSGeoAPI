@@ -138,11 +138,11 @@ public class Units extends PseudoFactory {
     /**
      * Sets the units factory by loading the first service provider found using the given class loader.
      *
-     * @param  loader  the class loader to use for initializing the instance, or {@code null} to reset the default.
+     * @param  layer  the module layer to use for initializing the instance, or {@code null} to reset the default.
      */
-    public static synchronized void setInstance(final ClassLoader loader) {
-        if (loader != null) {
-            for (final ServiceProvider provider : ServiceLoader.load(ServiceProvider.class, loader)) {
+    public static synchronized void setInstance(final ModuleLayer layer) {
+        if (layer != null) {
+            for (final ServiceProvider provider : ServiceLoader.load(layer, ServiceProvider.class)) {
                 setInstance(provider);
                 return;
             }

@@ -31,11 +31,17 @@
  */
 package org.iogp.gigs.runner;
 
-import java.io.File;
+import java.util.Set;
+import java.util.HashSet;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.io.IOException;
+import java.lang.module.Configuration;
+import java.lang.module.ModuleFinder;
+import java.lang.module.ModuleReference;
 import javax.swing.SwingWorker;
+
 import org.iogp.gigs.internal.TestSuite;
 import org.iogp.gigs.internal.ExecutionContext;
 import org.junit.platform.engine.TestExecutionResult;
@@ -64,9 +70,9 @@ final class Runner implements TestExecutionListener {
     private final TestSuite suite;
 
     /**
-     * The class loader to use for loading the implementation classes.
+     * The module layer to use for loading the implementation classes.
      */
-    private final ClassLoader loader;
+    private final ModuleLayer layer;
 
     /**
      * The JUnit object to use for running tests.
@@ -81,24 +87,39 @@ final class Runner implements TestExecutionListener {
     /**
      * Creates a new runner.
      *
-     * @param  suite            set of classes containing the tests to execute.
-     * @param  implementation   all JAR files required by the implementation to test.
-     * @param  destination      where to show the test results.
-     * @throws MalformedURLException if an implementation JAR file cannot be converted to a URL.
+     * @param  suite           set of classes containing the tests to execute.
+     * @param  implementation  all JAR files required by the implementation to test.
+     * @param  destination     where to show the test results.
+     * @throws IOException if an implementation JAR file cannot be parsed.
      */
     @SuppressWarnings("ThisEscapedInObjectConstruction")
-    Runner(final TestSuite suite, final File[] implementation, final ResultsView destination)
-            throws MalformedURLException
-    {
+    Runner(final TestSuite suite, final Path[] implementation, final ModuleFinder modules, final ResultsView destination) throws IOException {
         this.suite = suite;
         this.destination = destination;
         final URL[] urls = new URL[implementation.length];
         for (int i=0; i < urls.length; i++) {
-            urls[i] = implementation[i].toURI().toURL();
+            urls[i] = implementation[i].toUri().toURL();
         }
+        final ClassLoader loader;
+        final ModuleLayer parent;
+        final Configuration config;
         loader   = new URLClassLoader(urls, Runner.class.getClassLoader());
+        parent   = Runner.class.getModule().getLayer();
+        config   = parent.configuration().resolveAndBind(ModuleFinder.of(), modules, getAllModuleNames(modules));
+        layer    = parent.defineModulesWithOneLoader(config, loader);
         launcher = LauncherFactory.create();
         launcher.registerTestExecutionListeners(this);
+    }
+
+    /**
+     * Returns the names of all modules that the given finder can see.
+     */
+    private static Set<String> getAllModuleNames(final ModuleFinder modules) {
+        final var names = new HashSet<String>();
+        for (ModuleReference ref : modules.findAll()) {
+            names.add(ref.descriptor().name());
+        }
+        return names;
     }
 
     /**
@@ -111,7 +132,7 @@ final class Runner implements TestExecutionListener {
         for (int i=0; i<selectors.length; i++) {
             selectors[i] = DiscoverySelectors.selectClass(tests[i]);
         }
-        ExecutionContext.INSTANCE.execute(loader, launcher, selectors);
+        ExecutionContext.INSTANCE.execute(layer, launcher, selectors);
     }
 
     /**
@@ -131,7 +152,7 @@ final class Runner implements TestExecutionListener {
              */
             @Override protected Runner doInBackground() {
                 var selector = DiscoverySelectors.selectMethod(test.getJavaClass(), test.getJavaMethod());
-                ExecutionContext.INSTANCE.execute(loader, launcher, selector);
+                ExecutionContext.INSTANCE.execute(layer, launcher, selector);
                 return null;
             }
         }.execute();

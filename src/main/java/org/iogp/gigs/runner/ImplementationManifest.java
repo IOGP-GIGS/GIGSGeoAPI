@@ -33,23 +33,23 @@ package org.iogp.gigs.runner;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.net.URI;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.StringTokenizer;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.jar.Attributes;
-import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
+import java.lang.module.ModuleFinder;
+import java.lang.module.ModuleReference;
+import java.lang.module.ModuleDescriptor;
 
 
 /**
  * Information about a GeoAPI implementation, as found in the JAR manifest.
- * This class accepts only JAR files having at least one {@code "org.opengis.*"}
- * entry in their {@code META-INF/services/} directory. We use this criterion in
- * order to distinguish between the GeoAPI implementation and its dependencies.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 1.0
@@ -57,39 +57,28 @@ import java.util.jar.Manifest;
  */
 final class ImplementationManifest {
     /**
-     * The prefix of GeoAPI services to search for in the JAR files, in preference order.
+     * Name of the GeoAPI module to look for in the "request" statements.
      */
-    private static final String[] SERVICES = {
-        "META-INF/services/org.opengis.referencing",
-        "META-INF/services/org.opengis.util"
-    };
-
-    /**
-     * The preference order of this manifest.
-     * Used only if more than one suitable manifest is found.
-     */
-    private final int priority;
+    private static final String GEOAPI_MODULE = "org.opengis.geoapi";
 
     /**
      * The implementation title, version, or vendor.
-     * Any of those attributes accept the title may be null.
+     * Any of those attributes except the title may be null.
      */
     final String title, version, vendor, specification, specVersion, specVendor;
 
     /**
-     * The set of dependencies built from the {@linkplain #classpath}, or {@code null}.
+     * The set of dependencies built from the class path, or {@code null}.
      */
-    File[] dependencies;
+    Path[] dependencies;
 
     /**
      * Creates a new manifest for the given attributes.
      *
-     * @param priority    the preference order of this manifest.
      * @param title       the implementation title.
      * @param attributes  attributes from which to get version, vendor, etc.
      */
-    private ImplementationManifest(final int priority, final String title, final Attributes attributes) {
-        this.priority = priority;
+    private ImplementationManifest(final String title, final Attributes attributes) {
         this.title    = title;
         version       = (String) attributes.get(Attributes.Name.IMPLEMENTATION_VERSION);
         vendor        = (String) attributes.get(Attributes.Name.IMPLEMENTATION_VENDOR);
@@ -99,29 +88,36 @@ final class ImplementationManifest {
     }
 
     /**
-     * Parses the manifest entry of the given JAR files for information about GeoAPI
-     * implementation.
+     * Parses the manifest entry of the given JAR files for information about GeoAPI implementation.
      *
-     * @param  files  the JAR files to parse.
+     * @param  modules      contains the set of modules to examine.
      * @return information about the implementation, or {@code null} if none.
      * @throws IOException if an I/O error occurred when reading a file.
      */
-    static ImplementationManifest parse(final File[] files) throws IOException {
+    static ImplementationManifest parse(final ModuleFinder modules) throws IOException {
         final Set<File> classpath = new LinkedHashSet<>();
         ImplementationManifest manifest = null;
-        for (final File file : files) {
-            final ImplementationManifest candidate = parse(file, classpath);
-            if (candidate != null) {
-                if (manifest == null || candidate.priority < manifest.priority) {
+        for (ModuleReference ref : modules.findAll()) {
+            final URI location = ref.location().orElse(null);
+            if (location != null) {
+                boolean isImpl = false;
+                if (manifest == null) {
+                    for (ModuleDescriptor.Requires req : ref.descriptor().requires()) {
+                        isImpl = req.name().equals(GEOAPI_MODULE);
+                        if (isImpl) break;
+                    }
+                }
+                final ImplementationManifest candidate = parse(new File(location), classpath, isImpl);
+                if (candidate != null) {
                     manifest = candidate;
                 }
             }
         }
         /*
-         * Removes any classpath elements that duplicate a JAR file already on the classpath,
+         * Removes any path element that duplicates a JAR file already on the module path,
          * and stores the remaining classpath entries in the ImplementationManifest object.
          */
-        final String defcp = System.getProperty("java.class.path");
+        final String defcp = System.getProperty("jdk.module.path");
         if (defcp != null) {
             final Set<String> currentClasspath = new HashSet<>();
             final StringTokenizer tokens = new StringTokenizer(defcp, File.pathSeparator);
@@ -137,45 +133,34 @@ final class ImplementationManifest {
             }
         }
         if (manifest != null) {
-            manifest.dependencies = classpath.toArray(File[]::new);
+            manifest.dependencies = classpath.stream().map(File::toPath).toArray(Path[]::new);
         }
         return manifest;
     }
 
     /**
-     * Parses the manifest entry of the given JAR file for information about GeoAPI
-     * implementation. If such information is found, then this method returns the
-     * information in an {@link ImplementationManifest} object. Otherwise this method
-     * returns {@code null}.
+     * Parses the manifest entry of the given JAR file for information about GeoAPI implementation.
+     * If such information is found, then this method returns the information in an
+     * {@code ImplementationManifest} object. Otherwise this method returns {@code null}.
      *
      * @param  file       the JAR file to parse.
      * @param  classpath  a set in which to add classpath information.
+     * @param  isImpl     whether the dependency is a GeoAPI implementation.
      * @return information about the implementation, or {@code null} if none.
      * @throws IOException if an error occurred while reading the JAR file.
      */
-    private static ImplementationManifest parse(final File file, final Set<File> classpath) throws IOException {
+    private static ImplementationManifest parse(final File file, final Set<File> classpath, final boolean isImpl) throws IOException {
         ImplementationManifest impl = null;
         classpath.add(file.getAbsoluteFile());
-        int priority = -1;
         try (final JarFile jar = new JarFile(file, false)) {
-            final Enumeration<JarEntry> entries = jar.entries();
-scan:       while (entries.hasMoreElements()) {
-                final String name = entries.nextElement().getName();
-                for (int i=0; i<SERVICES.length; i++) {
-                    if (name.startsWith(SERVICES[i])) {
-                        priority = i;
-                        break scan;
-                    }
-                }
-            }
             final Manifest manifest = jar.getManifest();
             if (manifest != null) {
                 final Attributes attributes = manifest.getMainAttributes();
                 if (attributes != null) {
-                    if (priority >= 0) {
+                    if (isImpl) {
                         final String title = (String) attributes.get(Attributes.Name.IMPLEMENTATION_TITLE);
                         if (title != null) {
-                            impl = new ImplementationManifest(priority, title, attributes);
+                            impl = new ImplementationManifest(title, attributes);
                         }
                     }
                     final String cp = (String) attributes.get(Attributes.Name.CLASS_PATH);

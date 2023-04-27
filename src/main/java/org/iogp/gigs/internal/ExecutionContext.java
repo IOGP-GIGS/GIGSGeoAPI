@@ -83,11 +83,11 @@ public final class ExecutionContext implements ParameterResolver {
     /**
      * Executes tests specified by the given selectors.
      *
-     * @param  loader     class loader to use for loading the factories provided by the implementation to test.
+     * @param  layer      module layer to use for loading the factories provided by the implementation to test.
      * @param  launcher   the JUnit object to use for running tests.
      * @param  selectors  the tests to execute.
      */
-    public void execute(final ClassLoader loader, final Launcher launcher, final DiscoverySelector... selectors) {
+    public void execute(final ModuleLayer layer, final Launcher launcher, final DiscoverySelector... selectors) {
         final LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request().selectors(selectors).build();
         try {
             // For class initialization before we invoke `PrivateAccessor.INSTANCE` mehod.
@@ -97,9 +97,9 @@ public final class ExecutionContext implements ParameterResolver {
             Logger.getLogger("org.iogp.gigs").log(Level.WARNING, e.toString(), e);
         }
         try {
-            PrivateAccessor.INSTANCE.configureFor(loader);
-            factories = new DiscoveredFactories(loader);
-            Units.setInstance(loader);
+            PrivateAccessor.INSTANCE.configureFor(layer);
+            factories = new DiscoveredFactories(layer);
+            Units.setInstance(layer);
             launcher.execute(request);
         } finally {
             factories = null;
