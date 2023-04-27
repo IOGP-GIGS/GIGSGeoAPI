@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Configuration file for making possible to execute the GIGS tests runner from
+  Apache NetBeans IDE. An explicit configuration is needed because by default,
+  NetBeans launches the application as an unnamed module (i.e. using the Java
+  "classpath" options). But we need the application to be launched as a named
+  module (i.e. using the Java "modulepath" options) for enabling the dynamic
+  discovery of GeoAPI implementations when they are themselves named modules.
+-->
+<actions>
+  <action>
+    <actionName>run</actionName>
+    <packagings>
+      <packaging>jar</packaging>
+    </packagings>
+    <goals>
+      <goal>process-classes</goal>
+      <goal>org.codehaus.mojo:exec-maven-plugin:exec</goal>
+    </goals>
+    <properties>
+      <exec.vmArgs>-enableassertions</exec.vmArgs>
+    </properties>
+  </action>
+  <action>
+    <actionName>debug</actionName>
+    <packagings>
+      <packaging>jar</packaging>
+    </packagings>
+    <goals>
+      <goal>process-classes</goal>
+      <goal>org.codehaus.mojo:exec-maven-plugin:exec</goal>
+    </goals>
+    <properties>
+      <jpda.listen>true</jpda.listen>
+      <exec.vmArgs>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
+    </properties>
+  </action>
+</actions>

@@ -1,9 +1,6 @@
 # Maven files
 target/
 
-# Netbeans files
-nbactions.xml
-
 # Eclipse files
 .classpath
 .project

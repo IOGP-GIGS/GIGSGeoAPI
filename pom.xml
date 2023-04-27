@@ -9,7 +9,7 @@
   <artifactId>gigs</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>GIGS tests</name>
-  <!-- url>TBD</url -->
+  <url>https://github.com/IOGP-GIGS/GIGSGeoAPI</url>
   <description>
     Implementation of Geospatial Integrity of Geoscience Software (GIGS) tests.
     The tests can be executed on any software library implementing OGC GeoAPI 3.0.2 interfaces.
@@ -59,6 +59,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <exec.vmArgs>-disableassertions</exec.vmArgs>
   </properties>
 
   <dependencies>
@@ -175,6 +176,7 @@
         <configuration>
           <executable>java</executable>
           <arguments>
+            <argument>${exec.vmArgs}</argument>     <!-- For allowing IDE to insert debugging options. -->
             <argument>--module-path</argument>
             <modulepath/>
             <argument>--module</argument>
