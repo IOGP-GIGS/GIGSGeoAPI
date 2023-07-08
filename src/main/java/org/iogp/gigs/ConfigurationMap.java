@@ -104,7 +104,11 @@ final class ConfigurationMap {
                         if (in != null) {
                             properties.load(in);
                             parse(properties);
-                            break;
+                            /*
+                             * Continue iteration. There is usually at most one "GIGS.properties" file.
+                             * But if more than one file is nevertheless found, they will be merged.
+                             * If the same property is defined twice, the last one has precedence.
+                             */
                         }
                     } catch (IOException e) {
                         warning("Can not load from META-INF.", e);
